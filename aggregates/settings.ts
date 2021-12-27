@@ -21,4 +21,15 @@ export class Settings {
 
     return this;
   }
+
+  async updateNumberOfArticlesToAutosend(
+    value: VO.NumberOfArticlesToAutosendType
+  ) {
+    const event = Events.UpdatedNumberOfArticlesToAutosendEvent.parse({
+      name: Events.UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT,
+      version: 1,
+      payload: { numberOfArticlesToAutosend: value },
+    });
+    await EventRepository.save(event);
+  }
 }

@@ -4,7 +4,9 @@ import * as bg from "@bgord/node";
 
 import { Home } from "./routes/home";
 import { Dashboard } from "./routes/dashboard";
+import { UpdateNumberOfArticlesToAutosend } from "./routes/update-number-of-articles-to-autosend";
 
+import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
 
 const app = express();
@@ -23,6 +25,13 @@ AuthShield.applyTo(app);
 app.get("/", bg.CsrfShield.attach, Home);
 
 app.post(
+  "/update-number-of-articles-to-autosend",
+  bg.CsrfShield.verify,
+  AuthShield.verify,
+  UpdateNumberOfArticlesToAutosend
+);
+
+app.post(
   "/login",
   bg.CsrfShield.verify,
   AuthShield.attach,
@@ -36,6 +45,7 @@ app.get("/logout", (request, response) => {
 app.get("/dashboard", bg.CsrfShield.attach, AuthShield.verify, Dashboard);
 
 app.get("*", (_request, response) => response.redirect("/"));
+app.use(ErrorHandler.handle);
 
 const server = app.listen(Env.PORT, () =>
   bg.Reporter.info(`Server running on port: ${Env.PORT}`)
