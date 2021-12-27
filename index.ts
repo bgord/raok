@@ -7,12 +7,9 @@ import { Env } from "./env";
 const app = express();
 
 bg.addExpressEssentials(app);
+new bg.Handlebars().applyTo(app);
 
-app.get("/", (_request, response) =>
-  response.send({
-    message: "Hello from @bgord/node!",
-  })
-);
+app.get("/", (_request, response) => response.render("home"));
 
 const server = app.listen(Env.PORT, () =>
   bg.Reporter.info(`Server running on port: ${Env.PORT}`)
