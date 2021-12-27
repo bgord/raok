@@ -15,3 +15,32 @@
     Logout
   </a>
 </header>
+
+<main data-max-width="768" data-mx="auto" data-mt="24">
+  <form method="POST" action="/update-number-of-articles-to-autosend">
+    <input type="hidden" name="_csrf" value="{{_csrf}}" />
+
+    <div data-display="flex" data-cross="end">
+      <div
+        data-display="flex"
+        data-direction="column"
+        data-mt="24"
+        data-mr="12"
+      >
+        <label class="c-label" for="numberOfArticlesToAutosend" data-mb="6">
+          Number of articles to autosend
+        </label>
+        <input
+          id="numberOfArticlesToAutosend"
+          class="c-input"
+          type="number"
+          min="0"
+          max="10"
+        />
+      </div>
+      <button class="c-button" data-variant="secondary" type="submit">
+        Update
+      </button>
+    </div>
+  </form>
+</main>
