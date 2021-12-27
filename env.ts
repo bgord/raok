@@ -3,6 +3,9 @@ import { Schema, EnvironmentValidator } from "@bgord/node";
 
 const EnvironmentSchema = z.object({
   PORT: Schema.Port,
+  ADMIN_USERNAME: Schema.AdminUsername,
+  ADMIN_PASSWORD: Schema.AdminPassword,
+  COOKIE_SECRET: Schema.CookieSecret,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 
