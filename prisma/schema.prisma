@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./sqlite.db"
+}
+
+model Event {
+  id        String @id @default(uuid())
+  createdAt DateTime @default(now())
+  name      String
+  version   Int
+  payload   String
+}
