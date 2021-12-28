@@ -75,4 +75,9 @@ export class Articles {
       (article) => article.id === articleId
     ) as VO.ArticleType;
   }
+
+  toContent(articleId: VO.ArticleType["id"]) {
+    const article = this.getById(articleId);
+    return _.pick(article, "id", "url");
+  }
 }
