@@ -5,7 +5,9 @@ import * as Events from "../events";
 
 const prisma = new PrismaClient();
 
-type AcceptedEvent = typeof Events.UpdatedNumberOfArticlesToAutosendEvent;
+type AcceptedEvent =
+  | typeof Events.UpdatedNumberOfArticlesToAutosendEvent
+  | typeof Events.ArticleAddedEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {

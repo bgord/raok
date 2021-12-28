@@ -5,6 +5,7 @@ import * as bg from "@bgord/node";
 import { Home } from "./routes/home";
 import { Dashboard } from "./routes/dashboard";
 import { UpdateNumberOfArticlesToAutosend } from "./routes/update-number-of-articles-to-autosend";
+import { AddArticle } from "./routes/add-article";
 
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
@@ -30,6 +31,7 @@ app.post(
   AuthShield.verify,
   UpdateNumberOfArticlesToAutosend
 );
+app.post("/add-article", bg.CsrfShield.verify, AuthShield.verify, AddArticle);
 
 app.post(
   "/login",
