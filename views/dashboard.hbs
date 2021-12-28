@@ -93,11 +93,21 @@
         Deselect all
       </button>
 
-      <button class="c-button" data-variant="primary" data-ml="auto">
-        Create newspaper
-      </button>
+      <form
+        id="create-newspaper"
+        method="POST"
+        action="/create-newspaper"
+        data-ml="auto"
+      >
+        <input type="hidden" name="_csrf" value="{{ _csrf }}" />
+
+        <button type="submit" class="c-button" data-variant="primary">
+          Create newspaper
+        </button>
+      </form>
     </div>
-    <ul style="list-style: none">
+
+    <ul style="list-style: none" data-mt="36">
       {{#each articles}}
       <li
         data-display="flex"
