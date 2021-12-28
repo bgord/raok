@@ -37,7 +37,7 @@
     "ts-node-dev": "^1.1.8"
   },
   "dependencies": {
-    "@bgord/design": "^0.27.3",
+    "@bgord/design": "^0.27.4",
     "@bgord/node": "^0.58.1",
     "@prisma/client": "^3.7.0",
     "emittery": "^0.10.0",
