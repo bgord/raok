@@ -65,4 +65,14 @@ export class Articles {
     });
     await EventRepository.save(event);
   }
+
+  getById(articleId: VO.ArticleType["id"]): VO.ArticleType {
+    if (Policies.ArticleShouldExist.fails(this.articles, articleId)) {
+      throw new Policies.ArticleDoesNotExistError();
+    }
+
+    return this.articles.find(
+      (article) => article.id === articleId
+    ) as VO.ArticleType;
+  }
 }

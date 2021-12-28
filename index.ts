@@ -7,6 +7,7 @@ import { Dashboard } from "./routes/dashboard";
 import { UpdateNumberOfArticlesToAutosend } from "./routes/update-number-of-articles-to-autosend";
 import { AddArticle } from "./routes/add-article";
 import { DeleteArticle } from "./routes/delete-article";
+import { CreateNewspaper } from "./routes/create-newspaper";
 
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
@@ -38,6 +39,12 @@ app.post(
   bg.CsrfShield.verify,
   AuthShield.verify,
   DeleteArticle
+);
+app.post(
+  "/create-newspaper",
+  bg.CsrfShield.verify,
+  AuthShield.verify,
+  CreateNewspaper
 );
 
 app.post(
