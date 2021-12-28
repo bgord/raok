@@ -7,7 +7,8 @@ export async function DeleteArticle(
   response: express.Response,
   _next: express.NextFunction
 ): Promise<void> {
-  await Articles.deleteArticle({ articleId: request.params.articleId });
+  const articles = await new Articles().build();
+  await articles.deleteArticle({ articleId: request.params.articleId });
 
   return response.redirect("/dashboard");
 }

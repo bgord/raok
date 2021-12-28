@@ -2,6 +2,7 @@ import _ from "lodash";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
+import * as Policies from "../policies";
 
 import { EventRepository } from "../repositories/event-repository";
 
@@ -47,9 +48,12 @@ export class Articles {
     await EventRepository.save(event);
   }
 
-  static async deleteArticle(payload: Record<"articleId", unknown>) {
+  async deleteArticle(payload: Record<"articleId", unknown>) {
     const articleId = VO.Article._def.shape().id.parse(payload.articleId);
 
+    if (Policies.ArticleShouldExist.fails(this.articles, articleId)) {
+      throw new Policies.ArticleDoesNotExistError();
+    }
     const event = Events.ArticleDeletedEvent.parse({
       name: Events.ARTICLE_DELETED_EVENT,
       version: 1,
