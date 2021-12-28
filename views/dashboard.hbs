@@ -74,8 +74,26 @@
     </form>
   </section>
 
-  <section>
-    <ul data-mt="48" style="list-style: none">
+  <section data-mt="48">
+    <div>
+      <button
+        id="select-all"
+        type="button"
+        class="c-button"
+        data-variant="bare"
+      >
+        Select all
+      </button>
+      <button
+        id="deselect-all"
+        type="button"
+        class="c-button"
+        data-variant="bare"
+      >
+        Deselect all
+      </button>
+    </div>
+    <ul style="list-style: none">
       {{#each articles}}
       <li
         data-display="flex"
