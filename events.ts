@@ -34,9 +34,20 @@ export const ArticleAddedEvent = EventDraft.merge(
 );
 export type ArticleAddedEventType = z.infer<typeof ArticleAddedEvent>;
 
+export const ARTICLE_DELETED_EVENT = "ARTICLE_DELETED_EVENT";
+export const ArticleDeletedEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_DELETED_EVENT),
+    version: z.literal(1),
+    payload: z.object({ articleId: VO.Article._def.shape().id }),
+  })
+);
+export type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
   UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT: UpdatedNumberOfArticlesToAutosendEventType;
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
+  ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
 }>();

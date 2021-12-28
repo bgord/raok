@@ -6,6 +6,7 @@ import { Home } from "./routes/home";
 import { Dashboard } from "./routes/dashboard";
 import { UpdateNumberOfArticlesToAutosend } from "./routes/update-number-of-articles-to-autosend";
 import { AddArticle } from "./routes/add-article";
+import { DeleteArticle } from "./routes/delete-article";
 
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
@@ -32,6 +33,12 @@ app.post(
   UpdateNumberOfArticlesToAutosend
 );
 app.post("/add-article", bg.CsrfShield.verify, AuthShield.verify, AddArticle);
+app.post(
+  "/delete-article/:articleId",
+  bg.CsrfShield.verify,
+  AuthShield.verify,
+  DeleteArticle
+);
 
 app.post(
   "/login",

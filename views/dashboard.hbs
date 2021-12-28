@@ -2,7 +2,9 @@
   <h1 data-fs="20" data-ls="2" data-color="gray-100" data-fw="500">raok</h1>
 
   <div data-display="flex" data-ml="auto" data-mr="72" data-md-mr="24">
-    <strong data-ml="12" data-md-ml="6" data-color="white">{{username}}</strong>
+    <strong data-ml="12" data-md-ml="6" data-color="white">{{
+      username
+    }}</strong>
   </div>
 
   <a
@@ -20,7 +22,7 @@
   <section>
     <h2 data-fs="16" data-color="gray-800" data-fw="500">Settings</h2>
     <form method="POST" action="/update-number-of-articles-to-autosend">
-      <input type="hidden" name="_csrf" value="{{_csrf}}" />
+      <input type="hidden" name="_csrf" value="{{ _csrf }}" />
 
       <div data-display="flex" data-cross="end">
         <div
@@ -39,7 +41,7 @@
             type="number"
             min="0"
             max="10"
-            value="{{numberOfArticlesToAutosend}}"
+            value="{{ numberOfArticlesToAutosend }}"
           />
         </div>
         <button class="c-button" data-variant="secondary" type="submit">
@@ -53,7 +55,7 @@
     <h2 data-fs="16" data-color="gray-800" data-fw="500">Articles</h2>
 
     <form method="POST" action="/add-article" data-mt="24">
-      <input type="hidden" name="_csrf" value="{{_csrf}}" />
+      <input type="hidden" name="_csrf" value="{{ _csrf }}" />
 
       <div data-display="flex" data-cross="end">
         <div
@@ -74,23 +76,24 @@
 
   <ul data-mt="48" style="list-style: none">
     {{#each articles}}
-      <li
-        data-display="flex"
-        data-cross="center"
-        data-wrap="nowrap"
-        data-mt="24"
+    <li data-display="flex" data-cross="center" data-wrap="nowrap" data-mt="24">
+      <a
+        href="{{ this.url }}"
+        target="_blank"
+        class="c-link"
+        data-color="gray-700"
+        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
       >
-        <a
-          href="{{this.url}}"
-          target="_blank"
-          class="c-link"
-          data-color="gray-700"
-          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
-        >
-          {{this.url}}
-        </a>
-        <button class="c-button" data-variant="bare">Delete</button>
-      </li>
+        {{ this.url }}
+      </a>
+      <form method="POST" action="/delete-article/{{ this.id }}">
+        <input type="hidden" name="_csrf" value="{{../_csrf}}" />
+        <button type="submit" class="c-button" data-variant="bare">
+          Delete
+        </button>
+      </form>
+    </li>
     {{/each}}
   </ul>
 </main>
+

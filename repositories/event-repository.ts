@@ -7,7 +7,8 @@ const prisma = new PrismaClient();
 
 type AcceptedEvent =
   | typeof Events.UpdatedNumberOfArticlesToAutosendEvent
-  | typeof Events.ArticleAddedEvent;
+  | typeof Events.ArticleAddedEvent
+  | typeof Events.ArticleDeletedEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {

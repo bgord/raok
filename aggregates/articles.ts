@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import * as Events from "../events";
 import * as VO from "../value-objects";
 
@@ -7,7 +9,10 @@ export class Articles {
   articles: VO.ArticleType[] = [];
 
   async build() {
-    const events = await EventRepository.find([Events.ArticleAddedEvent]);
+    const events = await EventRepository.find([
+      Events.ArticleAddedEvent,
+      Events.ArticleDeletedEvent,
+    ]);
 
     const articles: VO.ArticleType[] = [];
 
@@ -19,6 +24,10 @@ export class Articles {
           source: event.payload.source,
           createdAt: event.payload.createdAt,
         });
+      }
+
+      if (event.name === Events.ARTICLE_DELETED_EVENT) {
+        _.remove(articles, (article) => article.id === event.payload.articleId);
       }
     }
 
@@ -34,6 +43,17 @@ export class Articles {
       name: Events.ARTICLE_ADDED_EVENT,
       version: 1,
       payload: { url, source: VO.ArticleSourceEnum.web },
+    });
+    await EventRepository.save(event);
+  }
+
+  static async deleteArticle(payload: Record<"articleId", unknown>) {
+    const articleId = VO.Article._def.shape().id.parse(payload.articleId);
+
+    const event = Events.ArticleDeletedEvent.parse({
+      name: Events.ARTICLE_DELETED_EVENT,
+      version: 1,
+      payload: { articleId },
     });
     await EventRepository.save(event);
   }
