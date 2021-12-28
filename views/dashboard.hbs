@@ -71,4 +71,26 @@
       </div>
     </form>
   </section>
+
+  <ul data-mt="48" style="list-style: none">
+    {{#each articles}}
+      <li
+        data-display="flex"
+        data-cross="center"
+        data-wrap="nowrap"
+        data-mt="24"
+      >
+        <a
+          href="{{this.url}}"
+          target="_blank"
+          class="c-link"
+          data-color="gray-700"
+          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
+        >
+          {{this.url}}
+        </a>
+        <button class="c-button" data-variant="bare">Delete</button>
+      </li>
+    {{/each}}
+  </ul>
 </main>
