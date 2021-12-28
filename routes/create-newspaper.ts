@@ -21,5 +21,9 @@ export async function CreateNewspaper(
     .map(articles.getById)
     .map((article) => _.pick(article, "id", "url"));
 
+  const toc = new TableOfContents(contents);
+
+  await toc.scheduleNewspaper();
+
   return response.redirect("/dashboard");
 }

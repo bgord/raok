@@ -44,10 +44,23 @@ export const ArticleDeletedEvent = EventDraft.merge(
 );
 export type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
 
+export const NEWSPAPER_SCHEDULED_EVENT = "NEWSPAPER_SCHEDULED_EVENT";
+export const NewspaperScheduledEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(NEWSPAPER_SCHEDULED_EVENT),
+    version: z.literal(1),
+    payload: VO.TableOfContents,
+  })
+);
+export type NewspaperScheduledEventType = z.infer<
+  typeof NewspaperScheduledEvent
+>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
   UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT: UpdatedNumberOfArticlesToAutosendEventType;
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
+  NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
 }>();

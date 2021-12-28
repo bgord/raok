@@ -6,10 +6,7 @@ import { ArticleSource } from "./article-source";
 
 export const Article = z.object({
   id: Schema.UUID,
-  createdAt: z
-    .number()
-    .positive()
-    .default(() => Date.now()),
+  createdAt: Schema.Timestamp,
   url: ArticleUrl,
   source: ArticleSource,
 });
