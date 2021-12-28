@@ -5,7 +5,7 @@ export class ArticleShouldExist {
     articles: VO.ArticleType[],
     articleId: VO.ArticleType["id"]
   ): boolean {
-    return Boolean(articles.some((article) => article.id === articleId));
+    return Boolean(articles.every((article) => article.id !== articleId));
   }
 }
 

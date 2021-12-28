@@ -37,13 +37,17 @@ export class Articles {
     return this;
   }
 
-  static async addArticle(payload: Record<"url", unknown>) {
-    const url = VO.Article._def.shape().url.parse(payload.url);
+  async addArticle(payload: Record<"url", unknown>) {
+    const articleUrl = VO.Article._def.shape().url.parse(payload.url);
+
+    if (Policies.ArticleUrlIsUnique.fails(this.articles, articleUrl)) {
+      throw new Policies.ArticleUrlIsNotUniqueError();
+    }
 
     const event = Events.ArticleAddedEvent.parse({
       name: Events.ARTICLE_ADDED_EVENT,
       version: 1,
-      payload: { url, source: VO.ArticleSourceEnum.web },
+      payload: { url: articleUrl, source: VO.ArticleSourceEnum.web },
     });
     await EventRepository.save(event);
   }
