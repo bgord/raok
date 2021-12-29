@@ -132,7 +132,11 @@
         >
           {{ this.url }}
         </a>
-        <form method="POST" action="/delete-article/{{ this.id }}">
+        <form
+          data-ml="auto"
+          method="POST"
+          action="/delete-article/{{ this.id }}"
+        >
           <input type="hidden" name="_csrf" value="{{../_csrf}}" />
           <button type="submit" class="c-button" data-variant="bare">
             Delete
