@@ -10,7 +10,9 @@ type ReadableArticleContentGeneratorConfigType = {
 };
 
 export class ReadableArticleContentGenerator {
-  static async generate(config: ReadableArticleContentGeneratorConfigType) {
+  static generate(
+    config: ReadableArticleContentGeneratorConfigType
+  ): VO.ReadableArticleType | null {
     const document = new JSDOM(config.content, { url: config.url });
     const article = new Readability(document.window.document).parse();
 
