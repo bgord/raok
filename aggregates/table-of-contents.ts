@@ -5,22 +5,22 @@ import * as VO from "../value-objects";
 
 import { EventRepository } from "../repositories/event-repository";
 
-type Content = Pick<VO.ArticleType, "id" | "url">;
+type Article = Pick<VO.ArticleType, "id" | "url">;
 
 export class TableOfContents {
   id = UUID.generate();
 
-  contents: Content[];
+  articles: Article[];
 
-  constructor(contents: Content[]) {
-    this.contents = contents;
+  constructor(articles: Article[]) {
+    this.articles = articles;
   }
 
   async scheduleNewspaper() {
     const event = Events.NewspaperScheduledEvent.parse({
       name: Events.NEWSPAPER_SCHEDULED_EVENT,
       version: 1,
-      payload: { id: this.id, contents: this.contents },
+      payload: { id: this.id, articles: this.articles },
     });
     await EventRepository.save(event);
   }
