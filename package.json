@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@bgord/design": "^0.27.6",
-    "@bgord/node": "^0.58.2",
+    "@bgord/node": "^0.58.3",
     "@prisma/client": "^3.7.0",
     "emittery": "^0.10.0",
     "express": "^4.17.2",

@@ -36,6 +36,11 @@ createNewspaperForm.addEventListener("submit", (event) => {
 
   return fetch("/create-newspaper", {
     method: "POST",
+    mode: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
     body: JSON.stringify({
       _csrf: csrfToken,
       articleIds: selectedArticleIds,

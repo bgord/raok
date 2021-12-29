@@ -17,7 +17,7 @@ export async function CreateNewspaper(
 
   const articles = await new Articles().build();
 
-  const contents = articleIds.map(articles.toContent);
+  const contents = articleIds.map((articleId) => articles.toContent(articleId));
 
   const toc = new TableOfContents(contents);
   await toc.scheduleNewspaper();

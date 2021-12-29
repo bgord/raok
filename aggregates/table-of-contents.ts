@@ -1,3 +1,5 @@
+import { UUID } from "@bgord/node";
+
 import * as Events from "../events";
 import * as VO from "../value-objects";
 
@@ -6,7 +8,7 @@ import { EventRepository } from "../repositories/event-repository";
 type Content = Pick<VO.ArticleType, "id" | "url">;
 
 export class TableOfContents {
-  id = VO.TableOfContents._def.shape().id.parse(null);
+  id = UUID.generate();
 
   contents: Content[];
 
