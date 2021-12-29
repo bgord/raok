@@ -3,6 +3,7 @@ import { EventDraft } from "@bgord/node";
 import Emittery from "emittery";
 
 import * as VO from "./value-objects";
+import { Newspaper } from "./aggregates/newspaper";
 
 export const UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT =
   "UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT";
@@ -64,3 +65,9 @@ export const emittery = new Emittery<{
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
 }>();
+
+emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
+  const newspaper = await new Newspaper(event.payload.id).build();
+
+  await newspaper.generate();
+});

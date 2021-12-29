@@ -5,6 +5,7 @@ export enum NewspaperStatusEnum {
   /* eslint-disable no-unused-vars */
   "undetermined" = "undetermined",
   "scheduled" = "scheduled",
+  "ready_to_send" = "ready_to_send",
 }
 
 export const NewspaperStatus = z

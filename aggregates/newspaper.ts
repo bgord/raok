@@ -1,5 +1,6 @@
 import * as Events from "../events";
 import * as VO from "../value-objects";
+import * as Services from "../services";
 
 import { EventRepository } from "../repositories/event-repository";
 
@@ -28,5 +29,18 @@ export class Newspaper {
     }
 
     return this;
+  }
+
+  async generate() {
+    const result = [];
+
+    for (const article of this.articles) {
+      const content = await Services.ArticleContentDownloader.download(
+        article.url
+      );
+      result.push(content);
+    }
+
+    this.status = VO.NewspaperStatusEnum.ready_to_send;
   }
 }
