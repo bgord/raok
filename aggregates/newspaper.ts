@@ -32,15 +32,34 @@ export class Newspaper {
   }
 
   async generate() {
-    const result = [];
+    const readableArticles: VO.ReadableArticleType[] = [];
 
     for (const article of this.articles) {
-      const content = await Services.ArticleContentDownloader.download(
+      const articleContent = await Services.ArticleContentDownloader.download(
         article.url
       );
-      result.push(content);
+
+      if (!articleContent) continue;
+
+      const readableArticle = Services.ReadableArticleContentGenerator.generate(
+        { content: articleContent, url: article.url }
+      );
+
+      if (!readableArticle) continue;
+
+      readableArticles.push(readableArticle);
     }
 
-    this.status = VO.NewspaperStatusEnum.ready_to_send;
+    await new Services.NewspaperFileCreator({
+      newspaperId: this.id,
+      readableArticles,
+    }).save();
+
+    const event = Events.NewspaperGenerateEvent.parse({
+      name: Events.NEWSPAPER_GENERATED_EVENT,
+      version: 1,
+      payload: { newspaperId: this.id },
+    });
+    await EventRepository.save(event);
   }
 }

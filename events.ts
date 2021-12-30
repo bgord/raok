@@ -57,6 +57,16 @@ export type NewspaperScheduledEventType = z.infer<
   typeof NewspaperScheduledEvent
 >;
 
+export const NEWSPAPER_GENERATED_EVENT = "NEWSPAPER_GENERATED_EVENT";
+export const NewspaperGenerateEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(NEWSPAPER_GENERATED_EVENT),
+    version: z.literal(1),
+    payload: z.object({ newspaperId: VO.Newspaper._def.shape().id }),
+  })
+);
+export type NewspaperGenerateEventType = z.infer<typeof NewspaperGenerateEvent>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
@@ -64,10 +74,10 @@ export const emittery = new Emittery<{
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
+  NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
 }>();
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   const newspaper = await new Newspaper(event.payload.id).build();
-
   await newspaper.generate();
 });

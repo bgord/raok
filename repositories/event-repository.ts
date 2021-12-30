@@ -9,7 +9,8 @@ type AcceptedEvent =
   | typeof Events.UpdatedNumberOfArticlesToAutosendEvent
   | typeof Events.ArticleAddedEvent
   | typeof Events.ArticleDeletedEvent
-  | typeof Events.NewspaperScheduledEvent;
+  | typeof Events.NewspaperScheduledEvent
+  | typeof Events.NewspaperGenerateEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {
