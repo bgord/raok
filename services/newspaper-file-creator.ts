@@ -16,7 +16,7 @@ export class NewspaperFileCreator {
   }
 
   async save() {
-    const path = this.getPath();
+    const path = NewspaperFileCreator.getPath(this.newspaperId);
 
     let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
 
@@ -28,7 +28,7 @@ export class NewspaperFileCreator {
     await fs.writeFile(path, result);
   }
 
-  private getPath() {
-    return `newspapers/${this.newspaperId}.html`;
+  static getPath(newspaperId: VO.NewspaperType["id"]) {
+    return `newspapers/${newspaperId}.html`;
   }
 }

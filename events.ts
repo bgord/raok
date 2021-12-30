@@ -81,3 +81,8 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   const newspaper = await new Newspaper(event.payload.id).build();
   await newspaper.generate();
 });
+
+emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
+  const newspaper = await new Newspaper(event.payload.newspaperId).build();
+  await newspaper.send();
+});

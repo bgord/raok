@@ -1,8 +1,18 @@
+import { Mailer } from "@bgord/node";
+
 import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Services from "../services";
 
+import { Env } from "../env";
 import { EventRepository } from "../repositories/event-repository";
+
+const mailer = new Mailer({
+  SMTP_HOST: Env.SMTP_HOST,
+  SMTP_PORT: Env.SMTP_PORT,
+  SMTP_USER: Env.SMTP_USER,
+  SMTP_PASS: Env.SMTP_PASS,
+});
 
 export class Newspaper {
   id: VO.NewspaperType["id"];
@@ -15,7 +25,10 @@ export class Newspaper {
   }
 
   async build() {
-    const events = await EventRepository.find([Events.NewspaperScheduledEvent]);
+    const events = await EventRepository.find([
+      Events.NewspaperScheduledEvent,
+      Events.NewspaperGenerateEvent,
+    ]);
 
     for (const event of events) {
       if (
@@ -25,6 +38,13 @@ export class Newspaper {
         this.articles = event.payload.articles;
         this.scheduledAt = event.payload.createdAt;
         this.status = VO.NewspaperStatusEnum.scheduled;
+      }
+
+      if (
+        event.name === Events.NEWSPAPER_GENERATED_EVENT &&
+        event.payload.newspaperId === this.id
+      ) {
+        this.status = VO.NewspaperStatusEnum.ready_to_send;
       }
     }
 
@@ -61,5 +81,19 @@ export class Newspaper {
       payload: { newspaperId: this.id },
     });
     await EventRepository.save(event);
+  }
+
+  async send() {
+    return mailer.send({
+      from: Env.SMTP_USER,
+      to: Env.EMAIL_TO_DELIVER_TO,
+      subject: "Newspaper",
+      attachments: [
+        {
+          filename: "newspaper.html",
+          path: Services.NewspaperFileCreator.getPath(this.id),
+        },
+      ],
+    });
   }
 }
