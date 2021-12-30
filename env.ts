@@ -6,6 +6,11 @@ const EnvironmentSchema = z.object({
   ADMIN_USERNAME: Schema.AdminUsername,
   ADMIN_PASSWORD: Schema.AdminPassword,
   COOKIE_SECRET: Schema.CookieSecret,
+  SMTP_HOST: Schema.SmtpHost,
+  SMTP_PORT: Schema.SmtpPort,
+  SMTP_USER: Schema.SmtpUser,
+  SMTP_PASS: Schema.SmtpPass,
+  EMAIL_TO_DELIVER_TO: Schema.Email,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 
