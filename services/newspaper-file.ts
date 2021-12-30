@@ -6,7 +6,7 @@ type NewspaperFileCreatorConfigType = {
   readableArticles: VO.ReadableArticleType[];
 };
 
-export class NewspaperFileCreator {
+export class NewspaperFile {
   newspaperId: NewspaperFileCreatorConfigType["newspaperId"];
   readableArticles: NewspaperFileCreatorConfigType["readableArticles"];
 
@@ -16,7 +16,7 @@ export class NewspaperFileCreator {
   }
 
   async save() {
-    const path = NewspaperFileCreator.getPath(this.newspaperId);
+    const path = NewspaperFile.getPath(this.newspaperId);
 
     let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
 
@@ -26,6 +26,13 @@ export class NewspaperFileCreator {
     }
 
     await fs.writeFile(path, result);
+  }
+
+  static async delete(newspaperId: VO.NewspaperType["id"]) {
+    const path = NewspaperFile.getPath(newspaperId);
+    try {
+      await fs.unlink(path);
+    } catch (error) {}
   }
 
   static getPath(newspaperId: VO.NewspaperType["id"]) {

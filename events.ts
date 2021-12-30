@@ -3,6 +3,7 @@ import { EventDraft } from "@bgord/node";
 import Emittery from "emittery";
 
 import * as VO from "./value-objects";
+import * as Services from "./services";
 import { Newspaper } from "./aggregates/newspaper";
 
 export const UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT =
@@ -67,6 +68,16 @@ export const NewspaperGenerateEvent = EventDraft.merge(
 );
 export type NewspaperGenerateEventType = z.infer<typeof NewspaperGenerateEvent>;
 
+export const NEWSPAPER_SENT_EVENT = "NEWSPAPER_SENT_EVENT";
+export const NewspaperSentEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(NEWSPAPER_SENT_EVENT),
+    version: z.literal(1),
+    payload: z.object({ newspaperId: VO.Newspaper._def.shape().id }),
+  })
+);
+export type NewspaperSentEventType = z.infer<typeof NewspaperSentEvent>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
@@ -75,6 +86,7 @@ export const emittery = new Emittery<{
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
   NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
+  NEWSPAPER_SENT_EVENT: NewspaperSentEventType;
 }>();
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
@@ -85,4 +97,8 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
 emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
   const newspaper = await new Newspaper(event.payload.newspaperId).build();
   await newspaper.send();
+});
+
+emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
+  await Services.NewspaperFile.delete(event.payload.newspaperId);
 });

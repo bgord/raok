@@ -1,4 +1,4 @@
-import { Mailer } from "@bgord/node";
+import { Mailer, Reporter } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -28,6 +28,7 @@ export class Newspaper {
     const events = await EventRepository.find([
       Events.NewspaperScheduledEvent,
       Events.NewspaperGenerateEvent,
+      Events.NewspaperSentEvent,
     ]);
 
     for (const event of events) {
@@ -45,6 +46,13 @@ export class Newspaper {
         event.payload.newspaperId === this.id
       ) {
         this.status = VO.NewspaperStatusEnum.ready_to_send;
+      }
+
+      if (
+        event.name === Events.NEWSPAPER_SENT_EVENT &&
+        event.payload.newspaperId === this.id
+      ) {
+        this.status = VO.NewspaperStatusEnum.delivered;
       }
     }
 
@@ -70,7 +78,7 @@ export class Newspaper {
       readableArticles.push(readableArticle);
     }
 
-    await new Services.NewspaperFileCreator({
+    await new Services.NewspaperFile({
       newspaperId: this.id,
       readableArticles,
     }).save();
@@ -84,16 +92,27 @@ export class Newspaper {
   }
 
   async send() {
-    return mailer.send({
-      from: Env.SMTP_USER,
-      to: Env.EMAIL_TO_DELIVER_TO,
-      subject: "Newspaper",
-      attachments: [
-        {
-          filename: "newspaper.html",
-          path: Services.NewspaperFileCreator.getPath(this.id),
-        },
-      ],
-    });
+    try {
+      await mailer.send({
+        from: Env.SMTP_USER,
+        to: Env.EMAIL_TO_DELIVER_TO,
+        subject: "Newspaper",
+        attachments: [
+          {
+            filename: "newspaper.html",
+            path: Services.NewspaperFile.getPath(this.id),
+          },
+        ],
+      });
+
+      const event = Events.NewspaperSentEvent.parse({
+        name: Events.NEWSPAPER_SENT_EVENT,
+        version: 1,
+        payload: { newspaperId: this.id },
+      });
+      await EventRepository.save(event);
+    } catch (error) {
+      Reporter.error(`Newspaper not sent [id=${this.id}]`);
+    }
   }
 }
