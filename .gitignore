@@ -1,10 +1,11 @@
-access.log
-build/
 .contributor
 .env.local
 .env.production
 .env.staging
 .eslintcache
+access.log
+build/
+newspapers
 node_modules/
 prisma/sqlite.db
 prisma/sqlite.db-journal
