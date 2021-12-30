@@ -47,3 +47,21 @@ createNewspaperForm.addEventListener("submit", (event) => {
     }),
   });
 });
+
+const timestamps = [...document.querySelectorAll("[data-timestamp]")];
+
+for (const timestamp of timestamps) {
+  const placement = timestamp.dataset.placement;
+
+  const formattedDate = new Date(
+    Number(timestamp.dataset.timestamp)
+  ).toLocaleString();
+
+  if (placement?.includes("title")) {
+    timestamp.title = formattedDate;
+  }
+
+  if (placement?.includes("inside")) {
+    timestamp.innerHTML = formattedDate;
+  }
+}
