@@ -4,6 +4,8 @@ import Emittery from "emittery";
 
 import * as VO from "./value-objects";
 import * as Services from "./services";
+
+import { NewspaperRepository } from "./repositories/newspaper-repository";
 import { Newspaper } from "./aggregates/newspaper";
 
 export const UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT =
@@ -90,15 +92,31 @@ export const emittery = new Emittery<{
 }>();
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
+  await NewspaperRepository.create({
+    id: event.payload.id,
+    scheduledAt: event.payload.createdAt,
+    status: VO.NewspaperStatusEnum.scheduled,
+  });
+
   const newspaper = await new Newspaper(event.payload.id).build();
   await newspaper.generate();
 });
 
 emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
+  await NewspaperRepository.updateStatus(
+    event.payload.newspaperId,
+    VO.NewspaperStatusEnum.ready_to_send
+  );
+
   const newspaper = await new Newspaper(event.payload.newspaperId).build();
   await newspaper.send();
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
+  await NewspaperRepository.updateStatus(
+    event.payload.newspaperId,
+    VO.NewspaperStatusEnum.delivered
+  );
+
   await Services.NewspaperFile.delete(event.payload.newspaperId);
 });
