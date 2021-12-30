@@ -14,3 +14,10 @@ model Event {
   version   Int
   payload   String
 }
+
+model Newspaper {
+  number      Int @id @default(autoincrement())
+  newspaperId String
+  status      String
+  scheduledAt Int
+}

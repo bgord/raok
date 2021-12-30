@@ -146,4 +146,33 @@
       {{/each}}
     </ul>
   </section>
+
+  <section data-mt="48">
+    <h2 data-fs="16" data-color="gray-800" data-fw="500">Newspapers</h2>
+
+    <ul data-mt="36" style="list-style: none">
+      {{#each newspapers}}
+      <li data-display="flex" data-cross="center" data-mb="24">
+        <strong
+          data-transform="uppercase"
+          data-color="gray-600"
+          data-bg="gray-200"
+          data-px="6"
+          data-br="4"
+          data-ls="1"
+          data-fs="12"
+          >{{ this.status }}</strong
+        >
+        <span data-ml="12">Newspaper #{{ this.number }}</span>
+        <span
+          data-fs="14"
+          data-color="gray-400"
+          data-ml="auto"
+          data-timestamp="{{ this.scheduledAt }}"
+          data-placement="inside"
+        ></span>
+      </li>
+      {{/each}}
+    </ul>
+  </section>
 </main>

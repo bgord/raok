@@ -11,7 +11,7 @@ export async function Dashboard(
   response: express.Response,
   _next: express.NextFunction
 ): Promise<void> {
-  const newsletter = await NewspaperRepository.getAll();
+  const newspapers = await NewspaperRepository.getAll();
 
   const settings = await new Settings().build();
   const articles = (await new Articles().build()).articles;
@@ -19,6 +19,7 @@ export async function Dashboard(
   const vars = {
     username: request.user,
     articles,
+    newspapers,
     ...settings,
     ...CsrfShield.extract(request),
   };

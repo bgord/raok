@@ -93,7 +93,7 @@ export const emittery = new Emittery<{
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   await NewspaperRepository.create({
-    id: event.payload.id,
+    newspaperId: event.payload.id,
     scheduledAt: event.payload.createdAt,
     status: VO.NewspaperStatusEnum.scheduled,
   });

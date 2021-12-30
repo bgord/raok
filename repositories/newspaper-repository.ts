@@ -10,7 +10,7 @@ export class NewspaperRepository {
   }
 
   static async create(newspaper: {
-    id: VO.NewspaperType["id"];
+    newspaperId: VO.NewspaperType["id"];
     status: VO.NewspaperType["status"];
     scheduledAt: VO.NewspaperType["scheduledAt"];
   }) {
@@ -18,11 +18,11 @@ export class NewspaperRepository {
   }
 
   static async updateStatus(
-    id: VO.NewspaperType["id"],
+    newspaperId: VO.NewspaperType["id"],
     status: VO.NewspaperType["status"]
   ) {
-    return prisma.newspaper.update({
-      where: { id },
+    return prisma.newspaper.updateMany({
+      where: { newspaperId },
       data: { status },
     });
   }
