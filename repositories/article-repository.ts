@@ -20,6 +20,16 @@ export class ArticleRepository {
     });
   }
 
+  static async updateStatus(
+    articleId: VO.ArticleType["id"],
+    status: VO.ArticleType["status"]
+  ) {
+    return prisma.article.updateMany({
+      where: { id: articleId },
+      data: { status },
+    });
+  }
+
   static async delete(articleId: VO.ArticleType["id"]) {
     return prisma.article.delete({ where: { id: articleId } });
   }

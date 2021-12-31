@@ -18,6 +18,7 @@ export class Article {
     const events = await EventRepository.find([
       Events.ArticleAddedEvent,
       Events.ArticleDeletedEvent,
+      Events.NewspaperScheduledEvent,
     ]);
 
     for (const event of events) {
@@ -30,6 +31,15 @@ export class Article {
 
       if (event.name === Events.ARTICLE_DELETED_EVENT) {
         this.entity = null;
+      }
+
+      if (
+        event.name === Events.NEWSPAPER_SCHEDULED_EVENT &&
+        event.payload.articles.some((article) => article.id === this.id)
+      ) {
+        if (this.entity) {
+          this.entity.status = VO.ArticleStatusEnum.in_progress;
+        }
       }
     }
 

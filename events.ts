@@ -93,6 +93,14 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   });
 
   const newspaper = await new Newspaper(event.payload.id).build();
+
+  for (const article of newspaper.articles) {
+    await ArticleRepository.updateStatus(
+      article.id,
+      VO.ArticleStatusEnum.in_progress
+    );
+  }
+
   await newspaper.generate();
 });
 

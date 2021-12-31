@@ -6,7 +6,6 @@ import * as Events from "../events";
 const prisma = new PrismaClient();
 
 type AcceptedEvent =
-  | typeof Events.UpdatedNumberOfArticlesToAutosendEvent
   | typeof Events.ArticleAddedEvent
   | typeof Events.ArticleDeletedEvent
   | typeof Events.NewspaperScheduledEvent
