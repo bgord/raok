@@ -10,7 +10,7 @@ export async function Dashboard(
   _next: express.NextFunction
 ): Promise<void> {
   const newspapers = await NewspaperRepository.getAll();
-  const articles = await ArticleRepository.getAll();
+  const articles = await ArticleRepository.getAllNonProcessed();
 
   const vars = {
     username: request.user,
