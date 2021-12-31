@@ -21,3 +21,11 @@ model Newspaper {
   status      String
   scheduledAt Int
 }
+
+model Article {
+  id        String @id @default(uuid())
+  url       String
+  source    String
+  status    String
+  createdAt Int
+}

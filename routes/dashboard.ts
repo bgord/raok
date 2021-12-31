@@ -2,9 +2,9 @@ import express from "express";
 import { CsrfShield } from "@bgord/node";
 
 import { NewspaperRepository } from "../repositories/newspaper-repository";
+import { ArticleRepository } from "../repositories/article-repository";
 
 import { Settings } from "../aggregates/settings";
-import { Articles } from "../aggregates/articles";
 
 export async function Dashboard(
   request: express.Request,
@@ -12,9 +12,9 @@ export async function Dashboard(
   _next: express.NextFunction
 ): Promise<void> {
   const newspapers = await NewspaperRepository.getAll();
+  const articles = await ArticleRepository.getAll();
 
   const settings = await new Settings().build();
-  const articles = (await new Articles().build()).articles;
 
   const vars = {
     username: request.user,

@@ -5,6 +5,7 @@ import Emittery from "emittery";
 import * as VO from "./value-objects";
 import * as Services from "./services";
 
+import { ArticleRepository } from "./repositories/article-repository";
 import { NewspaperRepository } from "./repositories/newspaper-repository";
 import { Newspaper } from "./aggregates/newspaper";
 
@@ -90,6 +91,14 @@ export const emittery = new Emittery<{
   NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
   NEWSPAPER_SENT_EVENT: NewspaperSentEventType;
 }>();
+
+emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
+  await ArticleRepository.create(event.payload);
+});
+
+emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
+  await ArticleRepository.delete(event.payload.articleId);
+});
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   await NewspaperRepository.create({

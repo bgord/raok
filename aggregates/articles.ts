@@ -23,6 +23,7 @@ export class Articles {
           id: event.payload.id,
           url: event.payload.url,
           source: event.payload.source,
+          status: VO.ArticleStatusEnum.ready,
           createdAt: event.payload.createdAt,
         });
       }
