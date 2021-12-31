@@ -76,7 +76,7 @@ export class Article {
   }
 
   async delete() {
-    if (this.entity === null) {
+    if (Policies.ArticleShouldExist.fails(this.entity)) {
       throw new Policies.ArticleDoesNotExistError();
     }
 
