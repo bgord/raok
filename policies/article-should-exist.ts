@@ -1,11 +1,13 @@
 import * as VO from "../value-objects";
 
+import { ArticleRepository } from "../repositories/article-repository";
+
 export class ArticleShouldExist {
-  static fails(
-    articles: VO.ArticleType[],
-    articleId: VO.ArticleType["id"]
-  ): boolean {
-    return Boolean(articles.every((article) => article.id !== articleId));
+  static async fails(articleId: VO.ArticleType["id"]): Promise<boolean> {
+    const numbersOfArticlesWithId =
+      await ArticleRepository.getNumbersOfArticlesWithId(articleId);
+
+    return numbersOfArticlesWithId < 1;
   }
 }
 

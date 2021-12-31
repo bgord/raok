@@ -27,4 +27,8 @@ export class ArticleRepository {
   static async getNumbersOfArticlesWithUrl(articleUrl: VO.ArticleType["url"]) {
     return prisma.article.count({ where: { url: articleUrl } });
   }
+
+  static async getNumbersOfArticlesWithId(articleId: VO.ArticleType["id"]) {
+    return prisma.article.count({ where: { id: articleId } });
+  }
 }

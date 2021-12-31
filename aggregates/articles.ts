@@ -56,7 +56,7 @@ export class Articles {
   async deleteArticle(payload: Record<"articleId", unknown>) {
     const articleId = VO.Article._def.shape().id.parse(payload.articleId);
 
-    if (Policies.ArticleShouldExist.fails(this.articles, articleId)) {
+    if (await Policies.ArticleShouldExist.fails(articleId)) {
       throw new Policies.ArticleDoesNotExistError();
     }
     const event = Events.ArticleDeletedEvent.parse({
@@ -67,8 +67,8 @@ export class Articles {
     await EventRepository.save(event);
   }
 
-  getById(articleId: VO.ArticleType["id"]): VO.ArticleType {
-    if (Policies.ArticleShouldExist.fails(this.articles, articleId)) {
+  async getById(articleId: VO.ArticleType["id"]): Promise<VO.ArticleType> {
+    if (await Policies.ArticleShouldExist.fails(articleId)) {
       throw new Policies.ArticleDoesNotExistError();
     }
 
@@ -77,8 +77,8 @@ export class Articles {
     ) as VO.ArticleType;
   }
 
-  toContent(articleId: VO.ArticleType["id"]) {
-    const article = this.getById(articleId);
+  async toContent(articleId: VO.ArticleType["id"]) {
+    const article = await this.getById(articleId);
     return _.pick(article, "id", "url");
   }
 }
