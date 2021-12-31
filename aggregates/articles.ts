@@ -41,7 +41,7 @@ export class Articles {
   async addArticle(payload: Record<"url", unknown>) {
     const articleUrl = VO.Article._def.shape().url.parse(payload.url);
 
-    if (Policies.ArticleUrlIsUnique.fails(this.articles, articleUrl)) {
+    if (await Policies.ArticleUrlIsUnique.fails(articleUrl)) {
       throw new Policies.ArticleUrlIsNotUniqueError();
     }
 

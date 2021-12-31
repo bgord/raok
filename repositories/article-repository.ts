@@ -23,4 +23,8 @@ export class ArticleRepository {
   static async delete(articleId: VO.ArticleType["id"]) {
     return prisma.article.delete({ where: { id: articleId } });
   }
+
+  static async getNumbersOfArticlesWithUrl(articleUrl: VO.ArticleType["url"]) {
+    return prisma.article.count({ where: { url: articleUrl } });
+  }
 }

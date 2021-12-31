@@ -1,11 +1,13 @@
 import * as VO from "../value-objects";
 
+import { ArticleRepository } from "../repositories/article-repository";
+
 export class ArticleUrlIsUnique {
-  static fails(
-    articles: VO.ArticleType[],
-    articleUrl: VO.ArticleType["url"]
-  ): boolean {
-    return Boolean(articles.some((article) => article.url === articleUrl));
+  static async fails(articleUrl: VO.ArticleType["url"]): Promise<boolean> {
+    const numbersOfArticlesWithUrl =
+      await ArticleRepository.getNumbersOfArticlesWithUrl(articleUrl);
+
+    return numbersOfArticlesWithUrl > 0;
   }
 }
 
