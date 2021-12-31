@@ -8,7 +8,7 @@ import { EventRepository } from "../repositories/event-repository";
 
 export class Article {
   id: VO.ArticleType["id"];
-  article: VO.ArticleType | null = null;
+  entity: VO.ArticleType | null = null;
 
   constructor(id: VO.ArticleType["id"]) {
     this.id = id;
@@ -25,11 +25,11 @@ export class Article {
         event.name === Events.ARTICLE_ADDED_EVENT &&
         this.id === event.payload.id
       ) {
-        this.article = event.payload;
+        this.entity = event.payload;
       }
 
       if (event.name === Events.ARTICLE_DELETED_EVENT) {
-        this.article = null;
+        this.entity = null;
       }
     }
 
@@ -56,7 +56,7 @@ export class Article {
   }
 
   async delete() {
-    if (this.article === null) {
+    if (this.entity === null) {
       throw new Policies.ArticleDoesNotExistError();
     }
 

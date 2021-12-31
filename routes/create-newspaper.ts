@@ -3,7 +3,7 @@ import _ from "lodash";
 import express from "express";
 
 import * as VO from "../value-objects";
-import { Articles } from "../aggregates/articles";
+import { Article } from "../aggregates/article";
 import { TableOfContents } from "../aggregates/table-of-contents";
 
 export async function CreateNewspaper(
@@ -15,11 +15,14 @@ export async function CreateNewspaper(
     .array(VO.Article._def.shape().id)
     .parse(request.body.articleIds);
 
-  const articles = await new Articles().build();
+  const contents = [];
 
-  const contents = await Promise.all(
-    articleIds.map((articleId) => articles.toContent(articleId))
-  );
+  for (const articleId of articleIds) {
+    const article = await new Article(articleId).build();
+
+    if (!article.entity) continue;
+    contents.push(article.entity);
+  }
 
   const toc = new TableOfContents(contents);
   await toc.scheduleNewspaper();
