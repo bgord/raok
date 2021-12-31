@@ -38,21 +38,6 @@ export class Articles {
     return this;
   }
 
-  async addArticle(payload: Record<"url", unknown>) {
-    const articleUrl = VO.Article._def.shape().url.parse(payload.url);
-
-    if (await Policies.ArticleUrlIsUnique.fails(articleUrl)) {
-      throw new Policies.ArticleUrlIsNotUniqueError();
-    }
-
-    const event = Events.ArticleAddedEvent.parse({
-      name: Events.ARTICLE_ADDED_EVENT,
-      version: 1,
-      payload: { url: articleUrl, source: VO.ArticleSourceEnum.web },
-    });
-    await EventRepository.save(event);
-  }
-
   async deleteArticle(payload: Record<"articleId", unknown>) {
     const articleId = VO.Article._def.shape().id.parse(payload.articleId);
 
