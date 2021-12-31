@@ -33,6 +33,7 @@ export const ArticleAddedEvent = EventDraft.merge(
       id: VO.Article._def.shape().id,
       url: VO.Article._def.shape().url,
       source: VO.Article._def.shape().source,
+      status: VO.Article._def.shape().status,
       createdAt: VO.Article._def.shape().createdAt,
     }),
   })

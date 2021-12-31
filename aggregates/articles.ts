@@ -38,20 +38,6 @@ export class Articles {
     return this;
   }
 
-  async deleteArticle(payload: Record<"articleId", unknown>) {
-    const articleId = VO.Article._def.shape().id.parse(payload.articleId);
-
-    if (await Policies.ArticleShouldExist.fails(articleId)) {
-      throw new Policies.ArticleDoesNotExistError();
-    }
-    const event = Events.ArticleDeletedEvent.parse({
-      name: Events.ARTICLE_DELETED_EVENT,
-      version: 1,
-      payload: { articleId },
-    });
-    await EventRepository.save(event);
-  }
-
   async getById(articleId: VO.ArticleType["id"]): Promise<VO.ArticleType> {
     if (await Policies.ArticleShouldExist.fails(articleId)) {
       throw new Policies.ArticleDoesNotExistError();
