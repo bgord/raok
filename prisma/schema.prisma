@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Event {
-  id        String @id @default(uuid())
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
   version   Int
@@ -16,15 +16,18 @@ model Event {
 }
 
 model Newspaper {
-  id        String @id @default(uuid())
+  id          String    @id @default(uuid())
   status      String
   scheduledAt Int
+  articles    Article[]
 }
 
 model Article {
-  id        String @id @default(uuid())
-  url       String
-  source    String
-  status    String
-  createdAt Int
+  id          String     @id @default(uuid())
+  url         String
+  source      String
+  status      String
+  createdAt   Int
+  Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
+  newspaperId String?
 }

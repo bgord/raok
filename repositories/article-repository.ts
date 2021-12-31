@@ -32,6 +32,16 @@ export class ArticleRepository {
     });
   }
 
+  static async assignToNewspaper(
+    articleId: VO.ArticleType["id"],
+    newspaperId: VO.NewspaperType["id"]
+  ) {
+    return prisma.article.update({
+      where: { id: articleId },
+      data: { newspaperId },
+    });
+  }
+
   static async delete(articleId: VO.ArticleType["id"]) {
     return prisma.article.delete({ where: { id: articleId } });
   }

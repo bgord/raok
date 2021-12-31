@@ -109,7 +109,8 @@
           data-br="4"
           data-ls="1"
           data-fs="12"
-          data-mx="12"
+          data-ml="auto"
+          data-mr="12"
         >
           {{ this.status }}
         </strong>
@@ -129,26 +130,33 @@
 
     <ul data-mt="36" style="list-style: none">
       {{#each newspapers}}
-      <li data-display="flex" data-cross="center" data-mb="24">
-        <strong
-          data-transform="uppercase"
-          data-color="gray-600"
-          data-bg="gray-200"
-          data-px="6"
-          data-br="4"
-          data-ls="1"
-          data-fs="12"
-        >
-          {{ this.status }}
-        </strong>
-        <span data-ml="12">Newspaper #{{ this.number }}</span>
-        <span
-          data-fs="14"
-          data-color="gray-400"
-          data-ml="auto"
-          data-timestamp="{{ this.scheduledAt }}"
-          data-placement="inside"
-        ></span>
+      <li data-display="flex" data-direction="column" data-mb="24">
+        <div data-display="flex">
+          <strong
+            data-transform="uppercase"
+            data-color="gray-600"
+            data-bg="gray-200"
+            data-px="6"
+            data-br="4"
+            data-ls="1"
+            data-fs="12"
+          >
+            {{ this.status }}
+          </strong>
+          <span data-ml="12">Newspaper #{{ this.number }}</span>
+          <span
+            data-fs="14"
+            data-color="gray-400"
+            data-ml="auto"
+            data-timestamp="{{ this.scheduledAt }}"
+            data-placement="inside"
+          ></span>
+        </div>
+        <ul data-mt="12" style="list-style: none">
+          {{#each this.articles}}
+          <li data-color="gray-500" data-mt="6">{{ this.url }}</li>
+          {{/each}}
+        </ul>
       </li>
       {{/each}}
     </ul>

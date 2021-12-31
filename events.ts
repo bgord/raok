@@ -89,18 +89,20 @@ emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
-  for (const article of event.payload.articles) {
-    await ArticleRepository.updateStatus(
-      article.id,
-      VO.ArticleStatusEnum.in_progress
-    );
-  }
-
   await NewspaperRepository.create({
     id: event.payload.id,
     scheduledAt: event.payload.createdAt,
     status: VO.NewspaperStatusEnum.scheduled,
   });
+
+  for (const article of event.payload.articles) {
+    await ArticleRepository.updateStatus(
+      article.id,
+      VO.ArticleStatusEnum.in_progress
+    );
+
+    await ArticleRepository.assignToNewspaper(article.id, event.payload.id);
+  }
 
   const newspaper = await new Newspaper(event.payload.id).build();
 

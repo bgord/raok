@@ -7,8 +7,16 @@ const prisma = new PrismaClient();
 export class NewspaperRepository {
   static async getAll() {
     return (
-      await prisma.newspaper.findMany({ orderBy: { scheduledAt: "desc" } })
-    ).map((newspaper, index) => ({ ...newspaper, number: index + 1 }));
+      await prisma.newspaper.findMany({
+        orderBy: { scheduledAt: "desc" },
+        include: {
+          articles: true,
+        },
+      })
+    ).map((newspaper, index, newspapers) => ({
+      ...newspaper,
+      number: newspapers.length - index,
+    }));
   }
 
   static async create(newspaper: {
