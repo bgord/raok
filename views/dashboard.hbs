@@ -132,11 +132,21 @@
         >
           {{ this.url }}
         </a>
-        <form
+
+        <strong
+          data-transform="uppercase"
+          data-color="gray-600"
+          data-bg="gray-200"
+          data-px="6"
+          data-br="4"
+          data-ls="1"
+          data-fs="12"
           data-ml="auto"
-          method="POST"
-          action="/delete-article/{{ this.id }}"
+          data-mr="12"
         >
+          {{ this.status }}
+        </strong>
+        <form method="POST" action="/delete-article/{{ this.id }}">
           <input type="hidden" name="_csrf" value="{{../_csrf}}" />
           <button type="submit" class="c-button" data-variant="bare">
             Delete
@@ -161,8 +171,9 @@
           data-br="4"
           data-ls="1"
           data-fs="12"
-          >{{ this.status }}</strong
         >
+          {{ this.status }}
+        </strong>
         <span data-ml="12">Newspaper #{{ this.number }}</span>
         <span
           data-fs="14"
