@@ -20,38 +20,6 @@
 
 <main data-max-width="768" data-mx="auto" data-mt="24">
   <section>
-    <h2 data-fs="16" data-color="gray-800" data-fw="500">Settings</h2>
-    <form method="POST" action="/update-number-of-articles-to-autosend">
-      <input type="hidden" name="_csrf" value="{{ _csrf }}" />
-
-      <div data-display="flex" data-cross="end">
-        <div
-          data-display="flex"
-          data-direction="column"
-          data-mt="24"
-          data-mr="12"
-        >
-          <label class="c-label" for="numberOfArticlesToAutosend" data-mb="6">
-            Number of articles to autosend
-          </label>
-          <input
-            id="numberOfArticlesToAutosend"
-            name="numberOfArticlesToAutosend"
-            class="c-input"
-            type="number"
-            min="0"
-            max="10"
-            value="{{ numberOfArticlesToAutosend }}"
-          />
-        </div>
-        <button class="c-button" data-variant="secondary" type="submit">
-          Update
-        </button>
-      </div>
-    </form>
-  </section>
-
-  <section data-mt="48">
     <h2 data-fs="16" data-color="gray-800" data-fw="500">Articles</h2>
 
     <form method="POST" action="/add-article" data-mt="24">

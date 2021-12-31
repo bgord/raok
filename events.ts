@@ -9,21 +9,6 @@ import { ArticleRepository } from "./repositories/article-repository";
 import { NewspaperRepository } from "./repositories/newspaper-repository";
 import { Newspaper } from "./aggregates/newspaper";
 
-export const UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT =
-  "UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT";
-export const UpdatedNumberOfArticlesToAutosendEvent = EventDraft.merge(
-  z.object({
-    name: z.literal(UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT),
-    version: z.literal(1),
-    payload: z.object({
-      numberOfArticlesToAutosend: VO.NumberOfArticlesToAutosend,
-    }),
-  })
-);
-export type UpdatedNumberOfArticlesToAutosendEventType = z.infer<
-  typeof UpdatedNumberOfArticlesToAutosendEvent
->;
-
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
 export const ArticleAddedEvent = EventDraft.merge(
   z.object({
@@ -85,7 +70,6 @@ export type NewspaperSentEventType = z.infer<typeof NewspaperSentEvent>;
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
-  UPDATED_NUMBER_OF_ARTICLES_TO_AUTOSEND_EVENT: UpdatedNumberOfArticlesToAutosendEventType;
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;

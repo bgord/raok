@@ -4,7 +4,6 @@ import * as bg from "@bgord/node";
 
 import { Home } from "./routes/home";
 import { Dashboard } from "./routes/dashboard";
-import { UpdateNumberOfArticlesToAutosend } from "./routes/update-number-of-articles-to-autosend";
 import { AddArticle } from "./routes/add-article";
 import { DeleteArticle } from "./routes/delete-article";
 import { CreateNewspaper } from "./routes/create-newspaper";
@@ -27,12 +26,6 @@ AuthShield.applyTo(app);
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
-app.post(
-  "/update-number-of-articles-to-autosend",
-  bg.CsrfShield.verify,
-  AuthShield.verify,
-  bg.Route(UpdateNumberOfArticlesToAutosend)
-);
 app.post(
   "/add-article",
   bg.CsrfShield.verify,
