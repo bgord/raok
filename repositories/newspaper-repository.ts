@@ -6,11 +6,13 @@ const prisma = new PrismaClient();
 
 export class NewspaperRepository {
   static async getAll() {
-    return prisma.newspaper.findMany({ orderBy: { scheduledAt: "desc" } });
+    return (
+      await prisma.newspaper.findMany({ orderBy: { scheduledAt: "desc" } })
+    ).map((newspaper, index) => ({ ...newspaper, number: index + 1 }));
   }
 
   static async create(newspaper: {
-    newspaperId: VO.NewspaperType["id"];
+    id: VO.NewspaperType["id"];
     status: VO.NewspaperType["status"];
     scheduledAt: VO.NewspaperType["scheduledAt"];
   }) {
@@ -22,7 +24,7 @@ export class NewspaperRepository {
     status: VO.NewspaperType["status"]
   ) {
     return prisma.newspaper.updateMany({
-      where: { newspaperId },
+      where: { id: newspaperId },
       data: { status },
     });
   }

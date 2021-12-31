@@ -16,8 +16,7 @@ model Event {
 }
 
 model Newspaper {
-  number      Int @id @default(autoincrement())
-  newspaperId String
+  id        String @id @default(uuid())
   status      String
   scheduledAt Int
 }

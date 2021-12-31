@@ -97,7 +97,7 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   }
 
   await NewspaperRepository.create({
-    newspaperId: event.payload.id,
+    id: event.payload.id,
     scheduledAt: event.payload.createdAt,
     status: VO.NewspaperStatusEnum.scheduled,
   });
