@@ -25,26 +25,31 @@ new bg.Session({ secret: Env.COOKIE_SECRET }).applyTo(app);
 
 AuthShield.applyTo(app);
 
-app.get("/", bg.CsrfShield.attach, Home);
+app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
 app.post(
   "/update-number-of-articles-to-autosend",
   bg.CsrfShield.verify,
   AuthShield.verify,
-  UpdateNumberOfArticlesToAutosend
+  bg.Route(UpdateNumberOfArticlesToAutosend)
 );
-app.post("/add-article", bg.CsrfShield.verify, AuthShield.verify, AddArticle);
+app.post(
+  "/add-article",
+  bg.CsrfShield.verify,
+  AuthShield.verify,
+  bg.Route(AddArticle)
+);
 app.post(
   "/delete-article/:articleId",
   bg.CsrfShield.verify,
   AuthShield.verify,
-  DeleteArticle
+  bg.Route(DeleteArticle)
 );
 app.post(
   "/create-newspaper",
   bg.CsrfShield.verify,
   AuthShield.verify,
-  CreateNewspaper
+  bg.Route(CreateNewspaper)
 );
 
 app.post(
@@ -58,7 +63,12 @@ app.get("/logout", (request, response) => {
   return response.redirect("/");
 });
 
-app.get("/dashboard", bg.CsrfShield.attach, AuthShield.verify, Dashboard);
+app.get(
+  "/dashboard",
+  bg.CsrfShield.attach,
+  AuthShield.verify,
+  bg.Route(Dashboard)
+);
 
 app.get("*", (_request, response) => response.redirect("/"));
 app.use(ErrorHandler.handle);
