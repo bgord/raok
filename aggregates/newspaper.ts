@@ -1,4 +1,4 @@
-import { Mailer, Reporter } from "@bgord/node";
+import { Mailer, Reporter, UUID } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -57,6 +57,15 @@ export class Newspaper {
     }
 
     return this;
+  }
+
+  static async schedule(articles: VO.ArticleType[]) {
+    const event = Events.NewspaperScheduledEvent.parse({
+      name: Events.NEWSPAPER_SCHEDULED_EVENT,
+      version: 1,
+      payload: { id: UUID.generate(), articles },
+    });
+    await EventRepository.save(event);
   }
 
   async generate() {

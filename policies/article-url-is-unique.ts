@@ -4,10 +4,12 @@ import { ArticleRepository } from "../repositories/article-repository";
 
 export class ArticleUrlIsUnique {
   static async fails(articleUrl: VO.ArticleType["url"]): Promise<boolean> {
-    const numbersOfArticlesWithUrl =
-      await ArticleRepository.getNumbersOfArticlesWithUrl(articleUrl);
+    const numbersOfNonProcessedArticlesWithUrl =
+      await ArticleRepository.getNumbersOfNonProcessedArticlesWithUrl(
+        articleUrl
+      );
 
-    return numbersOfArticlesWithUrl > 0;
+    return numbersOfNonProcessedArticlesWithUrl > 0;
   }
 }
 
