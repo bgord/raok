@@ -19,6 +19,7 @@ export class Article {
       Events.ArticleAddedEvent,
       Events.ArticleDeletedEvent,
       Events.NewspaperScheduledEvent,
+      Events.NewspaperSentEvent,
     ]);
 
     for (const event of events) {
@@ -39,6 +40,15 @@ export class Article {
       ) {
         if (this.entity) {
           this.entity.status = VO.ArticleStatusEnum.in_progress;
+        }
+      }
+
+      if (
+        event.name === Events.NEWSPAPER_SENT_EVENT &&
+        event.payload.articles.some((article) => article.id === this.id)
+      ) {
+        if (this.entity) {
+          this.entity.status = VO.ArticleStatusEnum.processed;
         }
       }
     }

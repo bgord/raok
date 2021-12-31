@@ -108,7 +108,7 @@ export class Newspaper {
       const event = Events.NewspaperSentEvent.parse({
         name: Events.NEWSPAPER_SENT_EVENT,
         version: 1,
-        payload: { newspaperId: this.id },
+        payload: { newspaperId: this.id, articles: this.articles },
       });
       await EventRepository.save(event);
     } catch (error) {

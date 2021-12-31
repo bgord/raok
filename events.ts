@@ -62,7 +62,10 @@ export const NewspaperSentEvent = EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_SENT_EVENT),
     version: z.literal(1),
-    payload: z.object({ newspaperId: VO.Newspaper._def.shape().id }),
+    payload: z.object({
+      newspaperId: VO.Newspaper._def.shape().id,
+      articles: VO.Newspaper._def.shape().articles,
+    }),
   })
 );
 export type NewspaperSentEventType = z.infer<typeof NewspaperSentEvent>;
@@ -86,6 +89,13 @@ emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
+  for (const article of event.payload.articles) {
+    await ArticleRepository.updateStatus(
+      article.id,
+      VO.ArticleStatusEnum.in_progress
+    );
+  }
+
   await NewspaperRepository.create({
     newspaperId: event.payload.id,
     scheduledAt: event.payload.createdAt,
@@ -93,13 +103,6 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   });
 
   const newspaper = await new Newspaper(event.payload.id).build();
-
-  for (const article of newspaper.articles) {
-    await ArticleRepository.updateStatus(
-      article.id,
-      VO.ArticleStatusEnum.in_progress
-    );
-  }
 
   await newspaper.generate();
 });
@@ -115,6 +118,13 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
+  for (const article of event.payload.articles) {
+    await ArticleRepository.updateStatus(
+      article.id,
+      VO.ArticleStatusEnum.processed
+    );
+  }
+
   await NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.delivered
