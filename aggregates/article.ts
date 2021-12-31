@@ -80,6 +80,10 @@ export class Article {
       throw new Policies.ArticleDoesNotExistError();
     }
 
+    if (Policies.ArticleWasNotProcessed.fails(this.entity as VO.ArticleType)) {
+      throw new Policies.ArticleInProcessingError();
+    }
+
     const event = Events.ArticleDeletedEvent.parse({
       name: Events.ARTICLE_DELETED_EVENT,
       version: 1,
