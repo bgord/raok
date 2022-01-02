@@ -4,6 +4,7 @@ export * from "./article-source";
 export * from "./article-status";
 export * from "./article-content";
 
+export * from "./feedly-article";
 export * from "./table-of-contents";
 
 export * from "./newspaper";
