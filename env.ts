@@ -11,6 +11,7 @@ const EnvironmentSchema = z.object({
   SMTP_USER: Schema.SmtpUser,
   SMTP_PASS: Schema.SmtpPass,
   EMAIL_TO_DELIVER_TO: Schema.Email,
+  FEEDLY_TOKEN: z.string().nonempty(),
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 
