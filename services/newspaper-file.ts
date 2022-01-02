@@ -1,4 +1,5 @@
 import execa from "execa";
+import path from "path";
 import { promises as fs } from "fs";
 
 import * as VO from "../value-objects";
@@ -53,10 +54,12 @@ export class NewspaperFile {
   }
 
   static getPaths(newspaperId: VO.NewspaperType["id"]) {
+    const base = path.resolve(__dirname, "../newspapers");
+
     return {
-      html: `newspapers/${newspaperId}.html`,
-      epub: `newspapers/${newspaperId}.epub`,
-      mobi: `newspapers/${newspaperId}.mobi`,
+      html: `${base}/${newspaperId}.html`,
+      epub: `${base}/${newspaperId}.epub`,
+      mobi: `${base}/${newspaperId}.mobi`,
     };
   }
 }
