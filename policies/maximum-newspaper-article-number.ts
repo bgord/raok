@@ -8,9 +8,13 @@ class TooManyArticlesInNewspaperError extends Error {
     Object.setPrototypeOf(this, TooManyArticlesInNewspaperError.prototype);
   }
 }
+type MaximumNewspaperArticleNumberConfigType = {
+  articles: VO.NewspaperType["articles"];
+  max: number;
+};
 
-class MaximumNewspaperArticleNumberFactory extends Policy {
-  async fails(config: { articles: VO.NewspaperType["articles"]; max: number }) {
+class MaximumNewspaperArticleNumberFactory extends Policy<MaximumNewspaperArticleNumberConfigType> {
+  async fails(config: MaximumNewspaperArticleNumberConfigType) {
     return config.articles.length > config.max;
   }
 

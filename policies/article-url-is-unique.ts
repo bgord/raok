@@ -11,10 +11,14 @@ class ArticleUrlIsNotUniqueError extends Error {
   }
 }
 
-class ArticleUrlIsUniqueFactory extends Policy {
-  async fails(articleUrl: VO.ArticleType["url"]) {
+type ArticleUrlIsUniqueConfigType = {
+  articleUrl: VO.ArticleType["url"];
+};
+
+class ArticleUrlIsUniqueFactory extends Policy<ArticleUrlIsUniqueConfigType> {
+  async fails(config: ArticleUrlIsUniqueConfigType) {
     const numbersOfArticlesWithUrl =
-      await ArticleRepository.getNumbersOfArticlesWithUrl(articleUrl);
+      await ArticleRepository.getNumbersOfArticlesWithUrl(config.articleUrl);
 
     return numbersOfArticlesWithUrl > 0;
   }

@@ -73,18 +73,11 @@ export class Newspaper {
   }
 
   static async schedule(articles: VO.ArticleType[]) {
-    if (Policies.ArticlesAreSendable.fails(articles)) {
-      throw Policies.ArticlesAreSendable.throw();
-    }
-
-    if (
-      Policies.MaximumNewspaperArticleNumber.fails({
-        articles,
-        max: Newspaper.MAX_NUMBER_OF_ARTICLES,
-      })
-    ) {
-      throw Policies.MaximumNewspaperArticleNumber.throw();
-    }
+    await Policies.ArticlesAreSendable.perform({ articles });
+    await Policies.MaximumNewspaperArticleNumber.perform({
+      articles,
+      max: Newspaper.MAX_NUMBER_OF_ARTICLES,
+    });
 
     const event = Events.NewspaperScheduledEvent.parse({
       name: Events.NEWSPAPER_SCHEDULED_EVENT,

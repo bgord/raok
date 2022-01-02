@@ -9,9 +9,13 @@ class ArticleInProcessingError extends Error {
   }
 }
 
-export class ArticleWasNotProcessedFactory extends Policy {
-  fails(entity: VO.ArticleType) {
-    return entity.status !== VO.ArticleStatusEnum.ready;
+type ArticleWasNotProcessedConfigType = {
+  entity: VO.ArticleType;
+};
+
+export class ArticleWasNotProcessedFactory extends Policy<ArticleWasNotProcessedConfigType> {
+  fails(config: ArticleWasNotProcessedConfigType) {
+    return config.entity.status !== VO.ArticleStatusEnum.ready;
   }
 
   error = ArticleInProcessingError;

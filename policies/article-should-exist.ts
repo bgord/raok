@@ -9,9 +9,13 @@ class ArticleDoesNotExistError extends Error {
   }
 }
 
-class ArticleShouldExistFactory extends Policy {
-  fails(entity: VO.ArticleType | null) {
-    return entity === null;
+type ArticleShouldExistConfigType = {
+  entity: VO.ArticleType | null;
+};
+
+class ArticleShouldExistFactory extends Policy<ArticleShouldExistConfigType> {
+  fails(config: ArticleShouldExistConfigType) {
+    return config.entity === null;
   }
 
   error = ArticleDoesNotExistError;

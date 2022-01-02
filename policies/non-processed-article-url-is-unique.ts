@@ -14,11 +14,17 @@ class NonProcessedArticleUrlIsNotUniqueError extends Error {
   }
 }
 
-class NonProcessedArticleUrlIsUniqueFactory extends Policy {
-  async fails(articleUrl: VO.ArticleType["url"]): Promise<boolean> {
+type NonProcessedArticleUrlIsUniqueConfigType = {
+  articleUrl: VO.ArticleType["url"];
+};
+
+class NonProcessedArticleUrlIsUniqueFactory extends Policy<NonProcessedArticleUrlIsUniqueConfigType> {
+  async fails(
+    config: NonProcessedArticleUrlIsUniqueConfigType
+  ): Promise<boolean> {
     const numbersOfNonProcessedArticlesWithUrl =
       await ArticleRepository.getNumbersOfNonProcessedArticlesWithUrl(
-        articleUrl
+        config.articleUrl
       );
 
     return numbersOfNonProcessedArticlesWithUrl > 0;

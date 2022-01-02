@@ -9,9 +9,13 @@ class ArticlesAreNotSendableError extends Error {
   }
 }
 
-class ArticlesAreSendableFactory extends Policy {
-  fails(articles: VO.ArticleType[]): boolean {
-    return articles.some(
+type ArticlesAreSendableConfigType = {
+  articles: VO.ArticleType[];
+};
+
+class ArticlesAreSendableFactory extends Policy<ArticlesAreSendableConfigType> {
+  fails(config: ArticlesAreSendableConfigType): boolean {
+    return config.articles.some(
       (article) => article.status !== VO.ArticleStatusEnum.ready
     );
   }

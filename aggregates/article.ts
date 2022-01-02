@@ -60,18 +60,12 @@ export class Article {
     const articleSource = payload.source ?? VO.ArticleSourceEnum.web;
     const articleUrl = VO.Article._def.shape().url.parse(payload.url);
 
-    if (
-      articleSource === VO.ArticleSourceEnum.web &&
-      (await Policies.NonProcessedArticleUrlIsUnique.fails(articleUrl))
-    ) {
-      throw Policies.NonProcessedArticleUrlIsUnique.throw();
+    if (articleSource === VO.ArticleSourceEnum.web) {
+      await Policies.NonProcessedArticleUrlIsUnique.perform({ articleUrl });
     }
 
-    if (
-      articleSource === VO.ArticleSourceEnum.feedly &&
-      (await Policies.ArticleUrlIsUnique.fails(articleUrl))
-    ) {
-      throw Policies.ArticleUrlIsUnique.throw();
+    if (articleSource === VO.ArticleSourceEnum.feedly) {
+      await Policies.ArticleUrlIsUnique.perform({ articleUrl });
     }
 
     const event = Events.ArticleAddedEvent.parse({
@@ -87,13 +81,10 @@ export class Article {
   }
 
   async delete() {
-    if (Policies.ArticleShouldExist.fails(this.entity)) {
-      Policies.ArticleShouldExist.throw();
-    }
-
-    if (Policies.ArticleWasNotProcessed.fails(this.entity as VO.ArticleType)) {
-      throw Policies.ArticleWasNotProcessed.throw();
-    }
+    await Policies.ArticleShouldExist.perform({ entity: this.entity });
+    await Policies.ArticleWasNotProcessed.perform({
+      entity: this.entity as VO.ArticleType,
+    });
 
     const event = Events.ArticleDeletedEvent.parse({
       name: Events.ARTICLE_DELETED_EVENT,
