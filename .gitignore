@@ -5,7 +5,8 @@
 .eslintcache
 access.log
 build/
-newspapers
+newspapers/*
+!newspapers/.gitkeep
 node_modules/
 prisma/sqlite.db
 prisma/sqlite.db-journal

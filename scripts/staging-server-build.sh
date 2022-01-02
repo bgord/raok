@@ -85,6 +85,11 @@ fi
 
 # ==========================================================
 
+mkdir $OUT_DIR/newspapers
+info "Created newspapers directory"
+
+# ==========================================================
+
 npx gzip build/static/*.js --extension=gz --extension=br
 npx gzip build/static/*.css --extension=gz --extension=br
 npx gzip build/static/*.png --extension=gz --extension=br
