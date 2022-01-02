@@ -14,6 +14,8 @@ export class Newspaper {
   scheduledAt: VO.NewspaperType["scheduledAt"] = 0;
   sentAt: VO.NewspaperType["sentAt"] = null;
 
+  static MAX_NUMBER_OF_ARTICLES = 10;
+
   constructor(id: VO.NewspaperType["id"]) {
     this.id = id;
   }
@@ -73,6 +75,15 @@ export class Newspaper {
   static async schedule(articles: VO.ArticleType[]) {
     if (Policies.ArticlesAreSendable.fails(articles)) {
       throw Policies.ArticlesAreSendable.throw();
+    }
+
+    if (
+      Policies.MaximumNewspaperArticleNumber.fails({
+        articles,
+        max: Newspaper.MAX_NUMBER_OF_ARTICLES,
+      })
+    ) {
+      throw Policies.MaximumNewspaperArticleNumber.throw();
     }
 
     const event = Events.NewspaperScheduledEvent.parse({
