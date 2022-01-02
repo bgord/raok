@@ -2,7 +2,7 @@ import * as VO from "../value-objects";
 
 import { ArticleRepository } from "../repositories/article-repository";
 
-export class ArticleUrlIsUnique {
+export class NonProcessedArticleUrlIsUnique {
   static async fails(articleUrl: VO.ArticleType["url"]): Promise<boolean> {
     const numbersOfNonProcessedArticlesWithUrl =
       await ArticleRepository.getNumbersOfNonProcessedArticlesWithUrl(
@@ -13,9 +13,12 @@ export class ArticleUrlIsUnique {
   }
 }
 
-export class ArticleUrlIsNotUniqueError extends Error {
+export class NonProcessedArticleUrlIsNotUniqueError extends Error {
   constructor() {
     super();
-    Object.setPrototypeOf(this, ArticleUrlIsNotUniqueError.prototype);
+    Object.setPrototypeOf(
+      this,
+      NonProcessedArticleUrlIsNotUniqueError.prototype
+    );
   }
 }
