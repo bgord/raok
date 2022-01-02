@@ -73,6 +73,10 @@ export class Newspaper {
   }
 
   static async schedule(articles: VO.ArticleType[]) {
+    await Policies.NewspaperStatusTransition.perform({
+      from: VO.NewspaperStatusEnum.undetermined,
+      to: VO.NewspaperStatusEnum.scheduled,
+    });
     await Policies.ArticlesAreSendable.perform({ articles });
     await Policies.MaximumNewspaperArticleNumber.perform({
       articles,
@@ -89,14 +93,10 @@ export class Newspaper {
   }
 
   async generate() {
-    if (
-      ![
-        VO.NewspaperStatusEnum.scheduled,
-        VO.NewspaperStatusEnum.error,
-      ].includes(this.status)
-    ) {
-      return null;
-    }
+    await Policies.NewspaperStatusTransition.perform({
+      from: this.status,
+      to: VO.NewspaperStatusEnum.ready_to_send,
+    });
 
     try {
       const readableArticles: VO.ReadableArticleType[] = [];
@@ -143,9 +143,10 @@ export class Newspaper {
   }
 
   async send() {
-    if (this.status !== VO.NewspaperStatusEnum.ready_to_send) {
-      return null;
-    }
+    await Policies.NewspaperStatusTransition.perform({
+      from: this.status,
+      to: VO.NewspaperStatusEnum.delivered,
+    });
 
     try {
       await Services.NewspaperSender.send(this.id);
@@ -173,14 +174,10 @@ export class Newspaper {
   }
 
   async archive() {
-    if (
-      ![
-        VO.NewspaperStatusEnum.delivered,
-        VO.NewspaperStatusEnum.error,
-      ].includes(this.status)
-    ) {
-      return null;
-    }
+    await Policies.NewspaperStatusTransition.perform({
+      from: this.status,
+      to: VO.NewspaperStatusEnum.archived,
+    });
 
     await EventRepository.save(
       Events.NewspaperArchivedEvent.parse({
@@ -192,14 +189,10 @@ export class Newspaper {
   }
 
   async resend() {
-    if (
-      ![
-        VO.NewspaperStatusEnum.error,
-        VO.NewspaperStatusEnum.delivered,
-      ].includes(this.status)
-    ) {
-      return null;
-    }
+    await Policies.NewspaperStatusTransition.perform({
+      from: this.status,
+      to: VO.NewspaperStatusEnum.scheduled,
+    });
 
     await EventRepository.save(
       Events.NewspaperScheduledEvent.parse({
