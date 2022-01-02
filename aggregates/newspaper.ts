@@ -153,4 +153,12 @@ export class Newspaper {
     });
     await EventRepository.save(event);
   }
+
+  async retry() {
+    if (this.status !== VO.NewspaperStatusEnum.error) {
+      return null;
+    }
+
+    await this.generate();
+  }
 }

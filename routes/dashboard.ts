@@ -16,9 +16,15 @@ export async function Dashboard(
   const vars = {
     username: request.user,
     articles,
-    newspapers: newspapers.filter(
-      (newspaper) => newspaper.status !== VO.NewspaperStatusEnum.archived
-    ),
+    newspapers: newspapers
+      .filter(
+        (newspaper) => newspaper.status !== VO.NewspaperStatusEnum.archived
+      )
+      .map((newspaper) => ({
+        ...newspaper,
+        hasFailed: newspaper.status === VO.NewspaperStatusEnum.error,
+        hasBeenDelivered: newspaper.status === VO.NewspaperStatusEnum.delivered,
+      })),
     ...CsrfShield.extract(request),
   };
 

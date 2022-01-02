@@ -118,17 +118,30 @@
           </div>
 
           <div data-toggle-target="{{ this.id }}" data-status="hidden">
-            <form
-              method="POST"
-              action="/archive-newspaper/{{ this.id }}"
-              data-mt="12"
-              data-mb="24"
-            >
-              <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
-              <button type="submit" class="c-button" data-variant="secondary">
-                Archive
-              </button>
-            </form>
+            <div data-display="flex" data-mt="12" data-mb="24">
+              {{#if this.hasBeenDelivered}}
+              <form
+                method="POST"
+                action="/archive-newspaper/{{ this.id }}"
+                data-mr="24"
+              >
+                <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
+                <button type="submit" class="c-button" data-variant="secondary">
+                  Archive
+                </button>
+              </form>
+              {{/if}}
+
+              {{#if this.hasFailed}}
+              <form method="POST" action="/retry-newspaper/{{ this.id }}">
+                <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
+
+                <button type="submit" class="c-button" data-variant="primary">
+                  Retry
+                </button>
+              </form>
+              {{/if}}
+            </div>
 
             <ul data-mt="6" data-mb="12" style="list-style: none">
               {{#each this.articles}}
