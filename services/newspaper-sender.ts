@@ -16,7 +16,7 @@ export class NewspaperSender {
   static async send(newspaperId: VO.NewspaperType["id"]) {
     const path = Services.NewspaperFile.getPaths(newspaperId).mobi;
 
-    await mailer.send({
+    return mailer.send({
       from: Env.SMTP_USER,
       to: Env.EMAIL_TO_DELIVER_TO,
       subject: "Newspaper",

@@ -48,7 +48,7 @@
     </form>
   </section>
 
-  <div data-max-width="768">
+  <div data-max-width="768" data-width="100%">
     <section>
       <div
         data-display="flex"
@@ -167,19 +167,27 @@
               {{/if}}
             </div>
 
-            <ul data-mt="6" data-mb="12" style="list-style: none">
+            <ol data-mt="6" data-mb="12" style="list-style: none">
               {{#each this.articles}}
-              <li data-mt="6">
+              <li data-mb="12">
                 <a
+                  data-display="block"
                   class="c-link"
                   data-color="gray-600"
                   href="{{ this.url }}"
                   target="_blank"
+                  data-max-width="768"
+                  data-pr="12"
+                  style="
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  "
                   >{{ this.url }}</a
                 >
               </li>
               {{/each}}
-            </ul>
+            </ol>
           </div>
         </li>
         {{/each}}
