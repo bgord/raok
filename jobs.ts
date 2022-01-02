@@ -10,17 +10,20 @@ export const Scheduler = new ToadScheduler();
 const task = new AsyncTask("feedly articles crawler", async () => {
   Reporter.info("Crawling Feedly articles...");
 
-  const articleUrls = await Services.Feedly.getArticles();
+  const articles = await Services.Feedly.getArticles();
+  Reporter.info(`Got ${articles.length} unread article(s).`);
 
-  for (const articleUrl of articleUrls) {
+  for (const article of articles) {
     try {
       await Article.add({
-        url: articleUrl,
+        url: article.canonicalUrl,
         source: VO.ArticleSourceEnum.feedly,
       });
-      Reporter.success(`Added article from feedly [url=${articleUrl}]`);
+      Reporter.success(
+        `Added article from feedly [url=${article.canonicalUrl}]`
+      );
     } catch (error) {
-      Reporter.error(`Article not added [url=${articleUrl}]`);
+      Reporter.error(`Article not added [url=${article.canonicalUrl}]`);
     }
   }
 });
