@@ -64,14 +64,14 @@ export class Article {
       articleSource === VO.ArticleSourceEnum.web &&
       (await Policies.NonProcessedArticleUrlIsUnique.fails(articleUrl))
     ) {
-      throw new Policies.NonProcessedArticleUrlIsNotUniqueError();
+      throw Policies.NonProcessedArticleUrlIsUnique.throw();
     }
 
     if (
       articleSource === VO.ArticleSourceEnum.feedly &&
       (await Policies.ArticleUrlIsUnique.fails(articleUrl))
     ) {
-      throw new Policies.ArticleUrlIsNotUniqueError();
+      throw Policies.ArticleUrlIsUnique.throw();
     }
 
     const event = Events.ArticleAddedEvent.parse({
@@ -88,11 +88,11 @@ export class Article {
 
   async delete() {
     if (Policies.ArticleShouldExist.fails(this.entity)) {
-      throw new Policies.ArticleDoesNotExistError();
+      Policies.ArticleShouldExist.throw();
     }
 
     if (Policies.ArticleWasNotProcessed.fails(this.entity as VO.ArticleType)) {
-      throw new Policies.ArticleInProcessingError();
+      throw Policies.ArticleWasNotProcessed.throw();
     }
 
     const event = Events.ArticleDeletedEvent.parse({

@@ -1,14 +1,20 @@
+import { Policy } from "@bgord/node";
+
 import * as VO from "../value-objects";
 
-export class ArticleShouldExist {
-  static fails(entity: VO.ArticleType | null): boolean {
-    return entity === null;
-  }
-}
-
-export class ArticleDoesNotExistError extends Error {
+class ArticleDoesNotExistError extends Error {
   constructor() {
     super();
     Object.setPrototypeOf(this, ArticleDoesNotExistError.prototype);
   }
 }
+
+class ArticleShouldExistFactory extends Policy {
+  fails(entity: VO.ArticleType | null) {
+    return entity === null;
+  }
+
+  error = ArticleDoesNotExistError;
+}
+
+export const ArticleShouldExist = new ArticleShouldExistFactory();

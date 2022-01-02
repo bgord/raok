@@ -72,7 +72,7 @@ export class Newspaper {
 
   static async schedule(articles: VO.ArticleType[]) {
     if (Policies.ArticlesAreSendable.fails(articles)) {
-      throw new Policies.ArticlesAreNotSendableError();
+      throw Policies.ArticlesAreSendable.throw();
     }
 
     const event = Events.NewspaperScheduledEvent.parse({
