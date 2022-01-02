@@ -3,3 +3,4 @@ export * from "./readable-article-content-generator";
 export * from "./newspaper-file";
 export * from "./newspaper-sender";
 export * from "./feedly";
+export * from "./estimated-reading-time-calculator";
