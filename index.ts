@@ -10,6 +10,7 @@ import { CreateNewspaper } from "./routes/create-newspaper";
 import { ArchiveNewspaper } from "./routes/archive-newspaper";
 import { ResendNewspaper } from "./routes/resend-newspaper";
 
+import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
 
@@ -84,4 +85,7 @@ const server = app.listen(Env.PORT, () =>
   bg.Reporter.info(`Server running on port: ${Env.PORT}`)
 );
 
-bg.GracefulShutdown.applyTo(server);
+bg.GracefulShutdown.applyTo(server, () => {
+  bg.Reporter.info("Shutting down job scheduler");
+  Scheduler.stop();
+});
