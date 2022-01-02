@@ -24,7 +24,13 @@ export class NewspaperRepository {
     status: VO.NewspaperType["status"];
     scheduledAt: VO.NewspaperType["scheduledAt"];
   }) {
-    return prisma.newspaper.create({ data: newspaper });
+    return prisma.newspaper.upsert({
+      create: newspaper,
+      update: { status: newspaper.status },
+      where: {
+        id: newspaper.id,
+      },
+    });
   }
 
   static async updateStatus(

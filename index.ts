@@ -8,7 +8,7 @@ import { AddArticle } from "./routes/add-article";
 import { DeleteArticle } from "./routes/delete-article";
 import { CreateNewspaper } from "./routes/create-newspaper";
 import { ArchiveNewspaper } from "./routes/archive-newspaper";
-import { RetryNewspaper } from "./routes/retry-newspaper";
+import { ResendNewspaper } from "./routes/resend-newspaper";
 
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
@@ -53,10 +53,10 @@ app.post(
   bg.Route(ArchiveNewspaper)
 );
 app.post(
-  "/retry-newspaper/:newspaperId",
+  "/resend-newspaper/:newspaperId",
   bg.CsrfShield.verify,
   AuthShield.verify,
-  bg.Route(RetryNewspaper)
+  bg.Route(ResendNewspaper)
 );
 
 app.post(

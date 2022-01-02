@@ -37,6 +37,7 @@
             class="c-input"
             type="url"
             required
+            placeholder="https://example.com/blogpost"
             data-grow="1"
           />
         </div>
@@ -140,11 +141,21 @@
               {{/if}}
 
               {{#if this.hasFailed}}
-              <form method="POST" action="/retry-newspaper/{{ this.id }}">
+              <form method="POST" action="/resend-newspaper/{{ this.id }}">
                 <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
 
                 <button type="submit" class="c-button" data-variant="primary">
-                  Retry
+                  Resend
+                </button>
+              </form>
+              {{/if}}
+
+              {{#if this.sentAt}}
+              <form method="POST" action="/resend-newspaper/{{ this.id }}">
+                <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
+
+                <button type="submit" class="c-button" data-variant="primary">
+                  Resend
                 </button>
               </form>
               {{/if}}

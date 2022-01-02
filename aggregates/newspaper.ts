@@ -181,8 +181,13 @@ export class Newspaper {
     await EventRepository.save(event);
   }
 
-  async retry() {
-    if (this.status !== VO.NewspaperStatusEnum.error) {
+  async resend() {
+    if (
+      ![
+        VO.NewspaperStatusEnum.error,
+        VO.NewspaperStatusEnum.delivered,
+      ].includes(this.status)
+    ) {
       return null;
     }
 
