@@ -65,3 +65,55 @@ for (const timestamp of timestamps) {
     timestamp.innerHTML = formattedDate;
   }
 }
+
+const toggleShowButtons = [...document.querySelectorAll("[data-toggle-show]")];
+
+for (const toggleShowButton of toggleShowButtons) {
+  toggleShowButton.addEventListener("click", () => {
+    const id = toggleShowButton.dataset.toggleShow;
+
+    toggleShowButton.dataset.status = "hidden";
+
+    const toggleHideButton = document.querySelector(
+      `[data-toggle-hide="${id}"]`
+    );
+
+    if (toggleHideButton) {
+      toggleHideButton.dataset.status = "visible";
+    }
+
+    const toggleTargetButton = document.querySelector(
+      `[data-toggle-target="${id}"]`
+    );
+
+    if (toggleTargetButton) {
+      toggleTargetButton.dataset.status = "visible";
+    }
+  });
+}
+
+const toggleHideButtons = [...document.querySelectorAll("[data-toggle-hide]")];
+
+for (const toggleHideButton of toggleHideButtons) {
+  toggleHideButton.addEventListener("click", () => {
+    const id = toggleHideButton.dataset.toggleHide;
+
+    toggleHideButton.dataset.status = "hidden";
+
+    const toggleShowButton = document.querySelector(
+      `[data-toggle-show="${id}"]`
+    );
+
+    if (toggleShowButton) {
+      toggleShowButton.dataset.status = "visible";
+    }
+
+    const toggleTargetButton = document.querySelector(
+      `[data-toggle-target="${id}"]`
+    );
+
+    if (toggleTargetButton) {
+      toggleTargetButton.dataset.status = "hidden";
+    }
+  });
+}

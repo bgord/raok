@@ -131,7 +131,7 @@
     <ul data-mt="36" style="list-style: none">
       {{#each newspapers}}
       <li data-display="flex" data-direction="column" data-mb="24">
-        <div data-display="flex">
+        <div data-display="flex" data-cross="center">
           <strong
             data-transform="uppercase"
             data-color="gray-600"
@@ -148,11 +148,35 @@
             data-fs="14"
             data-color="gray-400"
             data-ml="auto"
+            data-mr="6"
             data-timestamp="{{ this.scheduledAt }}"
             data-placement="inside"
           ></span>
+
+          <button
+            data-toggle-show="{{ this.id }}"
+            data-status="visible"
+            class="c-button"
+            data-variant="bare"
+          >
+            <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
+          </button>
+
+          <button
+            data-toggle-hide="{{ this.id }}"
+            data-status="hidden"
+            class="c-button"
+            data-variant="bare"
+          >
+            <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
+          </button>
         </div>
-        <ul data-mt="12" style="list-style: none">
+        <ul
+          data-mt="12"
+          style="list-style: none"
+          data-toggle-target="{{ this.id }}"
+          data-status="hidden"
+        >
           {{#each this.articles}}
           <li data-color="gray-500" data-mt="6">{{ this.url }}</li>
           {{/each}}
