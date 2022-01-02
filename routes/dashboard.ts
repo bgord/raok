@@ -12,8 +12,6 @@ export async function Dashboard(
   const newspapers = await NewspaperRepository.getAll();
   const articles = await ArticleRepository.getAllNonProcessed();
 
-  console.log(newspapers);
-
   const vars = {
     username: request.user,
     articles,

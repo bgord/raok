@@ -18,11 +18,9 @@
   </a>
 </header>
 
-<main data-max-width="768" data-mx="auto" data-mt="24">
-  <section>
-    <h2 data-fs="16" data-color="gray-800" data-fw="500">Articles</h2>
-
-    <form method="POST" action="/add-article" data-mt="24">
+<main data-display="flex" data-mx="auto" data-mt="48" style="max-width: 1296px">
+  <section data-grow="1" data-pr="48">
+    <form method="POST" action="/add-article">
       <input type="hidden" name="_csrf" value="{{ _csrf }}" />
 
       <div data-display="flex" data-cross="end">
@@ -42,96 +40,166 @@
     </form>
   </section>
 
-  <section data-mt="72">
-    <div data-display="flex">
-      <button
-        id="select-all"
-        type="button"
-        class="c-button"
-        data-variant="bare"
+  <div
+    data-display="flex"
+    data-direction="column"
+    data-max-width="768"
+    data-width="100%"
+  >
+    <section>
+      <h2
+        data-fs="16"
+        data-color="gray-800"
+        data-fw="500"
+        data-bg="gray-100"
+        data-bw="1"
+        data-bc="gray-200"
+        data-p="12"
       >
-        Select all
-      </button>
-      <button
-        id="deselect-all"
-        type="button"
-        class="c-button"
-        data-variant="bare"
+        Newspapers
+      </h2>
+
+      <ul
+        style="list-style: none"
+        data-bw="1"
+        data-bc="gray-200"
+        data-p="24"
+        data-pb="0"
       >
-        Deselect all
-      </button>
+        {{#each newspapers}}
+        <li data-display="flex" data-direction="column" data-mb="24">
+          <div data-display="flex" data-cross="center">
+            <strong
+              data-transform="uppercase"
+              data-color="gray-600"
+              data-bg="gray-200"
+              data-px="6"
+              data-br="4"
+              data-ls="1"
+              data-fs="12"
+            >
+              {{ this.status }}
+            </strong>
+            <span data-ml="12">Newspaper #{{ this.number }}</span>
+            <span
+              data-fs="14"
+              data-color="gray-400"
+              data-ml="auto"
+              data-mr="6"
+              data-timestamp="{{ this.scheduledAt }}"
+              data-placement="inside"
+            ></span>
 
-      <form
-        id="create-newspaper"
-        method="POST"
-        action="/create-newspaper"
-        data-ml="auto"
-      >
-        <input type="hidden" name="_csrf" value="{{ _csrf }}" />
+            <button
+              data-toggle-show="{{ this.id }}"
+              data-status="visible"
+              class="c-button"
+              data-variant="bare"
+            >
+              <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
+            </button>
 
-        <button type="submit" class="c-button" data-variant="primary">
-          Create newspaper
-        </button>
-      </form>
-    </div>
+            <button
+              data-toggle-hide="{{ this.id }}"
+              data-status="hidden"
+              class="c-button"
+              data-variant="bare"
+            >
+              <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
+            </button>
+          </div>
 
-    <ul style="list-style: none" data-mt="36">
-      {{#each articles}}
-      <li
-        data-display="flex"
-        data-cross="center"
-        data-wrap="nowrap"
-        data-mt="24"
-        data-md-px="6"
-      >
-        <input
-          id="urls"
-          name="{{ this.id }}"
-          class="c-checkbox"
-          type="checkbox"
-          data-mr="12"
-        />
-        <a
-          href="{{ this.url }}"
-          target="_blank"
-          class="c-link"
-          data-color="gray-700"
-          style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
-        >
-          {{ this.url }}
-        </a>
+          <ul
+            data-mt="6"
+            data-mb="12"
+            style="list-style: none"
+            data-toggle-target="{{ this.id }}"
+            data-status="hidden"
+          >
+            {{#each this.articles}}
+            <li data-color="gray-500" data-mt="6">{{ this.url }}</li>
+            {{/each}}
+          </ul>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
 
-        <strong
-          data-transform="uppercase"
-          data-color="gray-600"
-          data-bg="gray-200"
-          data-px="6"
-          data-br="4"
-          data-ls="1"
-          data-fs="12"
-          data-ml="auto"
-          data-mr="12"
-        >
-          {{ this.status }}
-        </strong>
-        <form method="POST" action="/delete-article/{{ this.id }}">
-          <input type="hidden" name="_csrf" value="{{../_csrf}}" />
-          <button type="submit" class="c-button" data-variant="bare">
-            Delete
+    <section data-mt="48">
+      <div data-bg="gray-100" data-bw="1" data-bc="gray-200" data-p="12">
+        <h2 data-fs="16" data-color="gray-800" data-fw="500">Articles</h2>
+
+        <div data-display="flex" data-mt="36">
+          <button
+            id="select-all"
+            type="button"
+            class="c-button"
+            data-variant="secondary"
+            data-mr="12"
+          >
+            Select all
           </button>
-        </form>
-      </li>
-      {{/each}}
-    </ul>
-  </section>
+          <button
+            id="deselect-all"
+            type="button"
+            class="c-button"
+            data-variant="secondary"
+          >
+            Deselect all
+          </button>
 
-  <section data-mt="48">
-    <h2 data-fs="16" data-color="gray-800" data-fw="500">Newspapers</h2>
+          <form
+            id="create-newspaper"
+            method="POST"
+            action="/create-newspaper"
+            data-ml="auto"
+          >
+            <input type="hidden" name="_csrf" value="{{ _csrf }}" />
 
-    <ul data-mt="36" style="list-style: none">
-      {{#each newspapers}}
-      <li data-display="flex" data-direction="column" data-mb="24">
-        <div data-display="flex" data-cross="center">
+            <button type="submit" class="c-button" data-variant="primary">
+              Create newspaper
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <ul
+        style="list-style: none"
+        data-bw="1"
+        data-bc="gray-200"
+        data-bct="transparent"
+        data-p="24"
+        data-pb="0"
+      >
+        {{#each articles}}
+        <li
+          data-display="flex"
+          data-cross="center"
+          data-wrap="nowrap"
+          data-mb="24"
+          data-md-px="6"
+        >
+          <input
+            id="urls"
+            name="{{ this.id }}"
+            class="c-checkbox"
+            type="checkbox"
+            data-mr="12"
+          />
+          <a
+            href="{{ this.url }}"
+            target="_blank"
+            class="c-link"
+            data-color="gray-700"
+            style="
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            "
+          >
+            {{ this.url }}
+          </a>
+
           <strong
             data-transform="uppercase"
             data-color="gray-600"
@@ -140,49 +208,20 @@
             data-br="4"
             data-ls="1"
             data-fs="12"
+            data-ml="auto"
+            data-mr="12"
           >
             {{ this.status }}
           </strong>
-          <span data-ml="12">Newspaper #{{ this.number }}</span>
-          <span
-            data-fs="14"
-            data-color="gray-400"
-            data-ml="auto"
-            data-mr="6"
-            data-timestamp="{{ this.scheduledAt }}"
-            data-placement="inside"
-          ></span>
-
-          <button
-            data-toggle-show="{{ this.id }}"
-            data-status="visible"
-            class="c-button"
-            data-variant="bare"
-          >
-            <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
-          </button>
-
-          <button
-            data-toggle-hide="{{ this.id }}"
-            data-status="hidden"
-            class="c-button"
-            data-variant="bare"
-          >
-            <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
-          </button>
-        </div>
-        <ul
-          data-mt="12"
-          style="list-style: none"
-          data-toggle-target="{{ this.id }}"
-          data-status="hidden"
-        >
-          {{#each this.articles}}
-          <li data-color="gray-500" data-mt="6">{{ this.url }}</li>
-          {{/each}}
-        </ul>
-      </li>
-      {{/each}}
-    </ul>
-  </section>
+          <form method="POST" action="/delete-article/{{ this.id }}">
+            <input type="hidden" name="_csrf" value="{{../_csrf}}" />
+            <button type="submit" class="c-button" data-variant="bare">
+              Delete
+            </button>
+          </form>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+  </div>
 </main>
