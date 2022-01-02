@@ -56,11 +56,22 @@ export class Article {
     return this;
   }
 
-  static async add(payload: Record<"url", unknown>) {
+  static async add(payload: { url: unknown; source?: VO.ArticleSourceEnum }) {
+    const articleSource = payload.source ?? VO.ArticleSourceEnum.web;
     const articleUrl = VO.Article._def.shape().url.parse(payload.url);
 
-    if (await Policies.NonProcessedArticleUrlIsUnique.fails(articleUrl)) {
+    if (
+      articleSource === VO.ArticleSourceEnum.web &&
+      (await Policies.NonProcessedArticleUrlIsUnique.fails(articleUrl))
+    ) {
       throw new Policies.NonProcessedArticleUrlIsNotUniqueError();
+    }
+
+    if (
+      articleSource === VO.ArticleSourceEnum.feedly &&
+      (await Policies.ArticleUrlIsUnique.fails(articleUrl))
+    ) {
+      throw new Policies.ArticleUrlIsNotUniqueError();
     }
 
     const event = Events.ArticleAddedEvent.parse({
@@ -68,7 +79,7 @@ export class Article {
       version: 1,
       payload: {
         url: articleUrl,
-        source: VO.ArticleSourceEnum.web,
+        source: articleSource,
         status: VO.ArticleStatusEnum.ready,
       },
     });
