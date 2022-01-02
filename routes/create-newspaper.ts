@@ -10,7 +10,7 @@ export async function CreateNewspaper(
   request: express.Request,
   response: express.Response,
   _next: express.NextFunction
-): Promise<void> {
+) {
   const articleIds = z
     .array(VO.Article._def.shape().id)
     .parse(request.body.articleIds);
@@ -26,5 +26,5 @@ export async function CreateNewspaper(
 
   await Newspaper.schedule(articles);
 
-  return response.redirect("/dashboard");
+  return response.send();
 }

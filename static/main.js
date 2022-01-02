@@ -1,7 +1,7 @@
 const selectAllButton = document.querySelector("#select-all");
 const deselectAllButton = document.querySelector("#deselect-all");
 
-selectAllButton.addEventListener("click", () => {
+selectAllButton?.addEventListener("click", () => {
   const checkboxes = document.querySelectorAll("#urls");
 
   checkboxes.forEach((node) => {
@@ -9,7 +9,7 @@ selectAllButton.addEventListener("click", () => {
   });
 });
 
-deselectAllButton.addEventListener("click", () => {
+deselectAllButton?.addEventListener("click", () => {
   const checkboxes = document.querySelectorAll("#urls");
 
   checkboxes.forEach((node) => {
@@ -19,7 +19,7 @@ deselectAllButton.addEventListener("click", () => {
 
 const createNewspaperForm = document.querySelector("#create-newspaper");
 
-createNewspaperForm.addEventListener("submit", (event) => {
+createNewspaperForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const selectedArticleIds = Array.from(document.querySelectorAll("#urls"))
@@ -34,7 +34,7 @@ createNewspaperForm.addEventListener("submit", (event) => {
     'form#create-newspaper > input[name="_csrf"]'
   )?.value;
 
-  return fetch("/create-newspaper", {
+  const response = await fetch("/create-newspaper", {
     method: "POST",
     mode: "same-origin",
     headers: {
@@ -46,6 +46,10 @@ createNewspaperForm.addEventListener("submit", (event) => {
       articleIds: selectedArticleIds,
     }),
   });
+
+  if (response.ok) {
+    window.location.reload();
+  }
 });
 
 const timestamps = [...document.querySelectorAll("[data-timestamp]")];
