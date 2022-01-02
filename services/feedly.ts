@@ -24,8 +24,6 @@ export class Feedly {
         { headers: { Authorization: `Bearer ${Env.FEEDLY_TOKEN}` } }
       );
 
-      console.log(response.data?.items);
-
       return z
         .array(VO.FeedlyArticle)
         .parse(response.data?.items)
