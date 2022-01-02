@@ -8,6 +8,7 @@ export enum NewspaperStatusEnum {
   "ready_to_send" = "ready_to_send",
   "delivered" = "delivered",
   "archived" = "archived",
+  "error" = "error",
 }
 
 export const NewspaperStatus = z

@@ -80,6 +80,16 @@ export const NewspaperArchivedEvent = EventDraft.merge(
 );
 export type NewspaperArchivedEventType = z.infer<typeof NewspaperArchivedEvent>;
 
+export const NEWSPAPER_FAILED_EVENT = "NEWSPAPER_FAILED_EVENT";
+export const NewspaperFailedEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(NEWSPAPER_FAILED_EVENT),
+    version: z.literal(1),
+    payload: z.object({ newspaperId: VO.Newspaper._def.shape().id }),
+  })
+);
+export type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
@@ -89,6 +99,7 @@ export const emittery = new Emittery<{
   NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
   NEWSPAPER_SENT_EVENT: NewspaperSentEventType;
   NEWSPAPER_ARCHIVED_EVENT: NewspaperArchivedEventType;
+  NEWSPAPER_FAILED_EVENT: NewspaperFailedEventType;
 }>();
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
@@ -150,5 +161,12 @@ emittery.on(NEWSPAPER_ARCHIVED_EVENT, async (event) => {
   await NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.archived
+  );
+});
+
+emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
+  await NewspaperRepository.updateStatus(
+    event.payload.newspaperId,
+    VO.NewspaperStatusEnum.error
   );
 });

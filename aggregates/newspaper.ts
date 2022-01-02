@@ -22,6 +22,7 @@ export class Newspaper {
       Events.NewspaperGenerateEvent,
       Events.NewspaperSentEvent,
       Events.NewspaperArchivedEvent,
+      Events.NewspaperFailedEvent,
     ]);
 
     for (const event of events) {
@@ -54,6 +55,13 @@ export class Newspaper {
       ) {
         this.status = VO.NewspaperStatusEnum.archived;
       }
+
+      if (
+        event.name === Events.NEWSPAPER_FAILED_EVENT &&
+        event.payload.newspaperId === this.id
+      ) {
+        this.status = VO.NewspaperStatusEnum.error;
+      }
     }
 
     return this;
@@ -69,35 +77,46 @@ export class Newspaper {
   }
 
   async generate() {
-    const readableArticles: VO.ReadableArticleType[] = [];
+    try {
+      const readableArticles: VO.ReadableArticleType[] = [];
 
-    for (const article of this.articles) {
-      const articleContent = await Services.ArticleContentDownloader.download(
-        article.url
-      );
+      for (const article of this.articles) {
+        const articleContent = await Services.ArticleContentDownloader.download(
+          article.url
+        );
 
-      if (!articleContent) continue;
+        if (!articleContent) continue;
 
-      const readableArticle = Services.ReadableArticleContentGenerator.generate(
-        { content: articleContent, url: article.url }
-      );
+        const readableArticle =
+          Services.ReadableArticleContentGenerator.generate({
+            content: articleContent,
+            url: article.url,
+          });
 
-      if (!readableArticle) continue;
+        if (!readableArticle) continue;
 
-      readableArticles.push(readableArticle);
+        readableArticles.push(readableArticle);
+      }
+
+      await new Services.NewspaperFile({
+        newspaperId: this.id,
+        readableArticles,
+      }).save();
+
+      const event = Events.NewspaperGenerateEvent.parse({
+        name: Events.NEWSPAPER_GENERATED_EVENT,
+        version: 1,
+        payload: { newspaperId: this.id },
+      });
+      await EventRepository.save(event);
+    } catch (error) {
+      const event = Events.NewspaperFailedEvent.parse({
+        name: Events.NEWSPAPER_FAILED_EVENT,
+        version: 1,
+        payload: { newspaperId: this.id },
+      });
+      await EventRepository.save(event);
     }
-
-    await new Services.NewspaperFile({
-      newspaperId: this.id,
-      readableArticles,
-    }).save();
-
-    const event = Events.NewspaperGenerateEvent.parse({
-      name: Events.NEWSPAPER_GENERATED_EVENT,
-      version: 1,
-      payload: { newspaperId: this.id },
-    });
-    await EventRepository.save(event);
   }
 
   async send() {
@@ -112,6 +131,13 @@ export class Newspaper {
       await EventRepository.save(event);
     } catch (error) {
       Reporter.error(`Newspaper not sent [id=${this.id}]`);
+
+      const event = Events.NewspaperFailedEvent.parse({
+        name: Events.NEWSPAPER_FAILED_EVENT,
+        version: 1,
+        payload: { newspaperId: this.id },
+      });
+      await EventRepository.save(event);
     }
   }
 
