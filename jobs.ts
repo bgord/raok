@@ -3,12 +3,19 @@ import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
 import * as Services from "./services";
 import * as VO from "./value-objects";
+import { Env } from "./env";
+
 import { Article } from "./aggregates/article";
 
 export const Scheduler = new ToadScheduler();
 
 const task = new AsyncTask("feedly articles crawler", async () => {
   Reporter.info("Crawling Feedly articles...");
+
+  if (Env.SUPRESS_FEEDLY_CRAWLING === "yes") {
+    Reporter.info("Suppressing Feedly crawling due to feature flag");
+    return;
+  }
 
   const articles = await Services.Feedly.getArticles();
   Reporter.info(`Got ${articles.length} unread article(s).`);
@@ -26,7 +33,7 @@ const task = new AsyncTask("feedly articles crawler", async () => {
       insertedArticlesFeedlyIds.push(article.id);
 
       Reporter.success(
-        `Added article from feedly [url=${article.canonicalUrl}]`
+        `Added article from Feedly [url=${article.canonicalUrl}]`
       );
     } catch (error) {
       Reporter.error(`Article not added [url=${article.canonicalUrl}]`);
@@ -34,6 +41,8 @@ const task = new AsyncTask("feedly articles crawler", async () => {
   }
 
   try {
+    if (insertedArticlesFeedlyIds.length === 0) return;
+
     await Services.Feedly.markArticlesAsRead(insertedArticlesFeedlyIds);
     Reporter.success(
       `Marked Feedly articles as read [ids=${insertedArticlesFeedlyIds}]`
@@ -44,7 +53,7 @@ const task = new AsyncTask("feedly articles crawler", async () => {
 });
 
 const job = new SimpleIntervalJob(
-  { minutes: 100, runImmediately: false },
+  { minutes: 120, runImmediately: false },
   task
 );
 
