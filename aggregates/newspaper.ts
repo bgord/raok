@@ -3,6 +3,7 @@ import { Reporter, UUID } from "@bgord/node";
 import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Services from "../services";
+import * as Policies from "../policies";
 
 import { EventRepository } from "../repositories/event-repository";
 
@@ -68,6 +69,10 @@ export class Newspaper {
   }
 
   static async schedule(articles: VO.ArticleType[]) {
+    if (Policies.ArticlesAreSendable.fails(articles)) {
+      throw new Policies.ArticlesAreNotSendableError();
+    }
+
     const event = Events.NewspaperScheduledEvent.parse({
       name: Events.NEWSPAPER_SCHEDULED_EVENT,
       version: 1,
@@ -77,6 +82,15 @@ export class Newspaper {
   }
 
   async generate() {
+    if (
+      ![
+        VO.NewspaperStatusEnum.scheduled,
+        VO.NewspaperStatusEnum.error,
+      ].includes(this.status)
+    ) {
+      return null;
+    }
+
     try {
       const readableArticles: VO.ReadableArticleType[] = [];
 
@@ -120,6 +134,10 @@ export class Newspaper {
   }
 
   async send() {
+    if (this.status !== VO.NewspaperStatusEnum.ready_to_send) {
+      return null;
+    }
+
     try {
       await Services.NewspaperSender.send(this.id);
 
@@ -130,8 +148,6 @@ export class Newspaper {
       });
       await EventRepository.save(event);
     } catch (error) {
-      Reporter.error(`Newspaper not sent [id=${this.id}]`);
-
       const event = Events.NewspaperFailedEvent.parse({
         name: Events.NEWSPAPER_FAILED_EVENT,
         version: 1,
@@ -142,7 +158,12 @@ export class Newspaper {
   }
 
   async archive() {
-    if (this.status !== VO.NewspaperStatusEnum.delivered) {
+    if (
+      ![
+        VO.NewspaperStatusEnum.delivered,
+        VO.NewspaperStatusEnum.error,
+      ].includes(this.status)
+    ) {
       return null;
     }
 
