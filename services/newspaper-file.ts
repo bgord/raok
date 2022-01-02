@@ -1,5 +1,7 @@
-import * as VO from "../value-objects";
+import execa from "execa";
 import { promises as fs } from "fs";
+
+import * as VO from "../value-objects";
 
 type NewspaperFileCreatorConfigType = {
   newspaperId: VO.NewspaperType["id"];
@@ -16,7 +18,7 @@ export class NewspaperFile {
   }
 
   async save() {
-    const path = NewspaperFile.getPath(this.newspaperId);
+    const paths = NewspaperFile.getPaths(this.newspaperId);
 
     let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
 
@@ -25,17 +27,31 @@ export class NewspaperFile {
       result += readableArticle.content;
     }
 
-    await fs.writeFile(path, result);
+    await fs.writeFile(paths.html, result);
+
+    try {
+      await execa("pandoc", ["-o", paths.epub, paths.html]);
+      await execa("ebook-convert", [paths.epub, paths.mobi]);
+    } catch (error) {
+      /* eslint-disable no-console */
+      console.error(error);
+    }
   }
 
   static async delete(newspaperId: VO.NewspaperType["id"]) {
-    const path = NewspaperFile.getPath(newspaperId);
+    const path = NewspaperFile.getPaths(newspaperId);
     try {
-      await fs.unlink(path);
+      await fs.unlink(path.html);
+      await fs.unlink(path.epub);
+      await fs.unlink(path.mobi);
     } catch (error) {}
   }
 
-  static getPath(newspaperId: VO.NewspaperType["id"]) {
-    return `newspapers/${newspaperId}.html`;
+  static getPaths(newspaperId: VO.NewspaperType["id"]) {
+    return {
+      html: `newspapers/${newspaperId}.html`,
+      epub: `newspapers/${newspaperId}.epub`,
+      mobi: `newspapers/${newspaperId}.mobi`,
+    };
   }
 }

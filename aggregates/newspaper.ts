@@ -108,8 +108,8 @@ export class Newspaper {
         subject: "Newspaper",
         attachments: [
           {
-            filename: "newspaper.html",
-            path: Services.NewspaperFile.getPath(this.id),
+            filename: "newspaper.mobi",
+            path: Services.NewspaperFile.getPaths(this.id).mobi,
           },
         ],
       });
