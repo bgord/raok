@@ -10,13 +10,7 @@ export class Feedly {
 
     return axios.get(
       `https://cloud.feedly.com/v3/streams/${streamId}/contents`,
-      {
-        headers: {
-          Authorization: `Bearer ${Env.FEEDLY_TOKEN}`,
-        },
-      }
+      { headers: { Authorization: `Bearer ${Env.FEEDLY_TOKEN}` } }
     );
   }
 }
-
-//

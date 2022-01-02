@@ -4,6 +4,7 @@ import { z } from "zod";
 export enum ArticleSourceEnum {
   /* eslint-disable no-unused-vars */
   web = "web",
+  feedly = "feedly",
 }
 
 export const ArticleSource = z

@@ -53,4 +53,10 @@ export class ArticleRepository {
       where: { url: articleUrl, status: VO.ArticleStatusEnum.ready },
     });
   }
+
+  static async getNumbersOfArticlesWithUrl(articleUrl: VO.ArticleType["url"]) {
+    return prisma.article.count({
+      where: { url: articleUrl, source: VO.ArticleSourceEnum.feedly },
+    });
+  }
 }
