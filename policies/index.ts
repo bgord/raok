@@ -4,3 +4,4 @@ export * from "./article-was-not-processed";
 export * from "./articles-are-sendable";
 export * from "./article-url-is-unique";
 export * from "./maximum-newspaper-article-number";
+export * from "./newspaper-status-transition";
