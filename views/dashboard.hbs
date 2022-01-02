@@ -117,25 +117,33 @@
             </button>
           </div>
 
-          <ul
-            data-mt="6"
-            data-mb="12"
-            style="list-style: none"
-            data-toggle-target="{{ this.id }}"
-            data-status="hidden"
-          >
-            {{#each this.articles}}
-            <li data-mt="6">
-              <a
-                class="c-link"
-                data-color="gray-600"
-                href="{{ this.url }}"
-                target="_blank"
-                >{{ this.url }}</a
-              >
-            </li>
-            {{/each}}
-          </ul>
+          <div data-toggle-target="{{ this.id }}" data-status="hidden">
+            <form
+              method="POST"
+              action="/archive-newspaper/{{ this.id }}"
+              data-mt="12"
+              data-mb="24"
+            >
+              <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
+              <button type="submit" class="c-button" data-variant="secondary">
+                Archive
+              </button>
+            </form>
+
+            <ul data-mt="6" data-mb="12" style="list-style: none">
+              {{#each this.articles}}
+              <li data-mt="6">
+                <a
+                  class="c-link"
+                  data-color="gray-600"
+                  href="{{ this.url }}"
+                  target="_blank"
+                  >{{ this.url }}</a
+                >
+              </li>
+              {{/each}}
+            </ul>
+          </div>
         </li>
         {{/each}}
       </ul>

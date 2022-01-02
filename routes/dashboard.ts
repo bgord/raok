@@ -1,6 +1,7 @@
 import express from "express";
 import { CsrfShield } from "@bgord/node";
 
+import * as VO from "../value-objects";
 import { NewspaperRepository } from "../repositories/newspaper-repository";
 import { ArticleRepository } from "../repositories/article-repository";
 
@@ -15,7 +16,9 @@ export async function Dashboard(
   const vars = {
     username: request.user,
     articles,
-    newspapers,
+    newspapers: newspapers.filter(
+      (newspaper) => newspaper.status !== VO.NewspaperStatusEnum.archived
+    ),
     ...CsrfShield.extract(request),
   };
 

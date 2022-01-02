@@ -21,6 +21,7 @@ export class Newspaper {
       Events.NewspaperScheduledEvent,
       Events.NewspaperGenerateEvent,
       Events.NewspaperSentEvent,
+      Events.NewspaperArchivedEvent,
     ]);
 
     for (const event of events) {
@@ -45,6 +46,13 @@ export class Newspaper {
         event.payload.newspaperId === this.id
       ) {
         this.status = VO.NewspaperStatusEnum.delivered;
+      }
+
+      if (
+        event.name === Events.NEWSPAPER_ARCHIVED_EVENT &&
+        event.payload.newspaperId === this.id
+      ) {
+        this.status = VO.NewspaperStatusEnum.archived;
       }
     }
 
@@ -105,5 +113,18 @@ export class Newspaper {
     } catch (error) {
       Reporter.error(`Newspaper not sent [id=${this.id}]`);
     }
+  }
+
+  async archive() {
+    if (this.status !== VO.NewspaperStatusEnum.delivered) {
+      return null;
+    }
+
+    const event = Events.NewspaperArchivedEvent.parse({
+      name: Events.NEWSPAPER_ARCHIVED_EVENT,
+      version: 1,
+      payload: { newspaperId: this.id },
+    });
+    await EventRepository.save(event);
   }
 }

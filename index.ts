@@ -7,6 +7,7 @@ import { Dashboard } from "./routes/dashboard";
 import { AddArticle } from "./routes/add-article";
 import { DeleteArticle } from "./routes/delete-article";
 import { CreateNewspaper } from "./routes/create-newspaper";
+import { ArchiveNewspaper } from "./routes/archive-newspaper";
 
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
@@ -43,6 +44,12 @@ app.post(
   bg.CsrfShield.verify,
   AuthShield.verify,
   bg.Route(CreateNewspaper)
+);
+app.post(
+  "/archive-newspaper/:newspaperId",
+  bg.CsrfShield.verify,
+  AuthShield.verify,
+  bg.Route(ArchiveNewspaper)
 );
 
 app.post(
