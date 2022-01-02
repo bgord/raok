@@ -20,14 +20,8 @@ export class NewspaperFile {
   async save() {
     const paths = NewspaperFile.getPaths(this.newspaperId);
 
-    let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
-
-    for (const readableArticle of this.readableArticles) {
-      result += `<h2 style="margin-top: 100px">${readableArticle.title}</h2>`;
-      result += readableArticle.content;
-    }
-
-    await fs.writeFile(paths.html, result);
+    const content = this.compose();
+    await fs.writeFile(paths.html, content);
 
     try {
       await execa("pandoc", ["-o", paths.epub, paths.html]);
@@ -36,6 +30,17 @@ export class NewspaperFile {
       /* eslint-disable no-console */
       console.error(error);
     }
+  }
+
+  private compose() {
+    let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
+
+    for (const readableArticle of this.readableArticles) {
+      result += `<h2 style="margin-top: 100px">${readableArticle.title}</h2>`;
+      result += readableArticle.content;
+    }
+
+    return result;
   }
 
   static async delete(newspaperId: VO.NewspaperType["id"]) {
