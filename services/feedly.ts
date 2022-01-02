@@ -5,12 +5,6 @@ import * as VO from "../value-objects";
 import { Env } from "../env";
 
 export class Feedly {
-  private static isNonTwitterUrl(
-    value: VO.FeedlyArticleType["canonicalUrl"]
-  ): value is NonNullable<VO.FeedlyArticleType["canonicalUrl"]> {
-    return value !== undefined && !value.includes("twitter.com");
-  }
-
   static async getArticles(): Promise<
     NonNullable<VO.FeedlyArticleType["canonicalUrl"]>[]
   > {
@@ -20,7 +14,7 @@ export class Feedly {
 
     try {
       const response = await axios.get(
-        `https://cloud.feedly.com/v3/streams/${streamId}/contents`,
+        `https://cloud.feedly.com/v3/streams/${streamId}/contents?unreadOnly=true`,
         { headers: { Authorization: `Bearer ${Env.FEEDLY_TOKEN}` } }
       );
 
@@ -32,5 +26,11 @@ export class Feedly {
     } catch (error) {
       return [];
     }
+  }
+
+  private static isNonTwitterUrl(
+    value: VO.FeedlyArticleType["canonicalUrl"]
+  ): value is NonNullable<VO.FeedlyArticleType["canonicalUrl"]> {
+    return value !== undefined && !value.includes("twitter.com");
   }
 }
