@@ -68,16 +68,17 @@ export class Article {
       await Policies.ArticleUrlIsUnique.perform({ articleUrl });
     }
 
-    const event = Events.ArticleAddedEvent.parse({
-      name: Events.ARTICLE_ADDED_EVENT,
-      version: 1,
-      payload: {
-        url: articleUrl,
-        source: articleSource,
-        status: VO.ArticleStatusEnum.ready,
-      },
-    });
-    await EventRepository.save(event);
+    await EventRepository.save(
+      Events.ArticleAddedEvent.parse({
+        name: Events.ARTICLE_ADDED_EVENT,
+        version: 1,
+        payload: {
+          url: articleUrl,
+          source: articleSource,
+          status: VO.ArticleStatusEnum.ready,
+        },
+      })
+    );
   }
 
   async delete() {
@@ -86,11 +87,12 @@ export class Article {
       entity: this.entity as VO.ArticleType,
     });
 
-    const event = Events.ArticleDeletedEvent.parse({
-      name: Events.ARTICLE_DELETED_EVENT,
-      version: 1,
-      payload: { articleId: this.id },
-    });
-    await EventRepository.save(event);
+    await EventRepository.save(
+      Events.ArticleDeletedEvent.parse({
+        name: Events.ARTICLE_DELETED_EVENT,
+        version: 1,
+        payload: { articleId: this.id },
+      })
+    );
   }
 }

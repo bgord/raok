@@ -79,12 +79,13 @@ export class Newspaper {
       max: Newspaper.MAX_NUMBER_OF_ARTICLES,
     });
 
-    const event = Events.NewspaperScheduledEvent.parse({
-      name: Events.NEWSPAPER_SCHEDULED_EVENT,
-      version: 1,
-      payload: { id: UUID.generate(), articles },
-    });
-    await EventRepository.save(event);
+    await EventRepository.save(
+      Events.NewspaperScheduledEvent.parse({
+        name: Events.NEWSPAPER_SCHEDULED_EVENT,
+        version: 1,
+        payload: { id: UUID.generate(), articles },
+      })
+    );
   }
 
   async generate() {
@@ -123,19 +124,21 @@ export class Newspaper {
         readableArticles,
       }).save();
 
-      const event = Events.NewspaperGenerateEvent.parse({
-        name: Events.NEWSPAPER_GENERATED_EVENT,
-        version: 1,
-        payload: { newspaperId: this.id },
-      });
-      await EventRepository.save(event);
+      await EventRepository.save(
+        Events.NewspaperGenerateEvent.parse({
+          name: Events.NEWSPAPER_GENERATED_EVENT,
+          version: 1,
+          payload: { newspaperId: this.id },
+        })
+      );
     } catch (error) {
-      const event = Events.NewspaperFailedEvent.parse({
-        name: Events.NEWSPAPER_FAILED_EVENT,
-        version: 1,
-        payload: { newspaperId: this.id },
-      });
-      await EventRepository.save(event);
+      await EventRepository.save(
+        Events.NewspaperFailedEvent.parse({
+          name: Events.NEWSPAPER_FAILED_EVENT,
+          version: 1,
+          payload: { newspaperId: this.id },
+        })
+      );
     }
   }
 
@@ -147,23 +150,25 @@ export class Newspaper {
     try {
       await Services.NewspaperSender.send(this.id);
 
-      const event = Events.NewspaperSentEvent.parse({
-        name: Events.NEWSPAPER_SENT_EVENT,
-        version: 1,
-        payload: {
-          newspaperId: this.id,
-          articles: this.articles,
-          sentAt: Date.now(),
-        },
-      });
-      await EventRepository.save(event);
+      await EventRepository.save(
+        Events.NewspaperSentEvent.parse({
+          name: Events.NEWSPAPER_SENT_EVENT,
+          version: 1,
+          payload: {
+            newspaperId: this.id,
+            articles: this.articles,
+            sentAt: Date.now(),
+          },
+        })
+      );
     } catch (error) {
-      const event = Events.NewspaperFailedEvent.parse({
-        name: Events.NEWSPAPER_FAILED_EVENT,
-        version: 1,
-        payload: { newspaperId: this.id },
-      });
-      await EventRepository.save(event);
+      await EventRepository.save(
+        Events.NewspaperFailedEvent.parse({
+          name: Events.NEWSPAPER_FAILED_EVENT,
+          version: 1,
+          payload: { newspaperId: this.id },
+        })
+      );
     }
   }
 
@@ -177,12 +182,13 @@ export class Newspaper {
       return null;
     }
 
-    const event = Events.NewspaperArchivedEvent.parse({
-      name: Events.NEWSPAPER_ARCHIVED_EVENT,
-      version: 1,
-      payload: { newspaperId: this.id },
-    });
-    await EventRepository.save(event);
+    await EventRepository.save(
+      Events.NewspaperArchivedEvent.parse({
+        name: Events.NEWSPAPER_ARCHIVED_EVENT,
+        version: 1,
+        payload: { newspaperId: this.id },
+      })
+    );
   }
 
   async resend() {
@@ -195,11 +201,12 @@ export class Newspaper {
       return null;
     }
 
-    const event = Events.NewspaperScheduledEvent.parse({
-      name: Events.NEWSPAPER_SCHEDULED_EVENT,
-      version: 1,
-      payload: { id: this.id, articles: this.articles },
-    });
-    await EventRepository.save(event);
+    await EventRepository.save(
+      Events.NewspaperScheduledEvent.parse({
+        name: Events.NEWSPAPER_SCHEDULED_EVENT,
+        version: 1,
+        payload: { id: this.id, articles: this.articles },
+      })
+    );
   }
 }
