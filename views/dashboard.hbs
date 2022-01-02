@@ -141,6 +141,17 @@
                 </button>
               </form>
               {{/if}}
+
+              {{#if this.sentAt}}
+              <span
+                data-fs="14"
+                data-color="gray-400"
+                data-ml="auto"
+                data-mr="6"
+                data-timestamp="{{ this.sentAt }}"
+                data-placement="inside"
+              ></span>
+              {{/if}}
             </div>
 
             <ul data-mt="6" data-mb="12" style="list-style: none">

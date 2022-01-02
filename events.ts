@@ -65,6 +65,7 @@ export const NewspaperSentEvent = EventDraft.merge(
     payload: z.object({
       newspaperId: VO.Newspaper._def.shape().id,
       articles: VO.Newspaper._def.shape().articles,
+      sentAt: VO.Newspaper._def.shape().sentAt,
     }),
   })
 );
@@ -152,6 +153,11 @@ emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
   await NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.delivered
+  );
+
+  await NewspaperRepository.updateSentAt(
+    event.payload.newspaperId,
+    event.payload.sentAt
   );
 
   await Services.NewspaperFile.delete(event.payload.newspaperId);

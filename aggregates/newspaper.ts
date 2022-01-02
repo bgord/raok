@@ -1,4 +1,4 @@
-import { Reporter, UUID } from "@bgord/node";
+import { UUID } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -12,6 +12,7 @@ export class Newspaper {
   status: VO.NewspaperType["status"] = VO.NewspaperStatusEnum.undetermined;
   articles: VO.NewspaperType["articles"] = [];
   scheduledAt: VO.NewspaperType["scheduledAt"] = 0;
+  sentAt: VO.NewspaperType["sentAt"] = null;
 
   constructor(id: VO.NewspaperType["id"]) {
     this.id = id;
@@ -48,6 +49,7 @@ export class Newspaper {
         event.payload.newspaperId === this.id
       ) {
         this.status = VO.NewspaperStatusEnum.delivered;
+        this.sentAt = event.payload.sentAt;
       }
 
       if (
@@ -144,7 +146,11 @@ export class Newspaper {
       const event = Events.NewspaperSentEvent.parse({
         name: Events.NEWSPAPER_SENT_EVENT,
         version: 1,
-        payload: { newspaperId: this.id, articles: this.articles },
+        payload: {
+          newspaperId: this.id,
+          articles: this.articles,
+          sentAt: Date.now(),
+        },
       });
       await EventRepository.save(event);
     } catch (error) {

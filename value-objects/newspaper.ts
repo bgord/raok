@@ -9,6 +9,7 @@ export const Newspaper = z.object({
   articles: TableOfContents._def.shape().articles,
   status: NewspaperStatus,
   scheduledAt: Schema.Timestamp,
+  sentAt: z.union([Schema.Timestamp, z.null()]).default(null),
 });
 
 export type NewspaperType = z.infer<typeof Newspaper>;

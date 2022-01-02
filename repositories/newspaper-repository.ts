@@ -36,4 +36,14 @@ export class NewspaperRepository {
       data: { status },
     });
   }
+
+  static async updateSentAt(
+    newspaperId: VO.NewspaperType["id"],
+    sentAt: VO.NewspaperType["sentAt"]
+  ) {
+    return prisma.newspaper.updateMany({
+      where: { id: newspaperId },
+      data: { sentAt },
+    });
+  }
 }

@@ -20,6 +20,7 @@ model Newspaper {
   status      String
   scheduledAt Int
   articles    Article[]
+  sentAt      Int?
 }
 
 model Article {
