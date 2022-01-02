@@ -13,18 +13,33 @@ const task = new AsyncTask("feedly articles crawler", async () => {
   const articles = await Services.Feedly.getArticles();
   Reporter.info(`Got ${articles.length} unread article(s).`);
 
+  if (articles.length === 0) return;
+
+  const insertedArticlesFeedlyIds: VO.FeedlyArticleType["id"][] = [];
+
   for (const article of articles) {
     try {
       await Article.add({
         url: article.canonicalUrl,
         source: VO.ArticleSourceEnum.feedly,
       });
+      insertedArticlesFeedlyIds.push(article.id);
+
       Reporter.success(
         `Added article from feedly [url=${article.canonicalUrl}]`
       );
     } catch (error) {
       Reporter.error(`Article not added [url=${article.canonicalUrl}]`);
     }
+  }
+
+  try {
+    await Services.Feedly.markArticlesAsRead(insertedArticlesFeedlyIds);
+    Reporter.success(
+      `Marked Feedly articles as read [ids=${insertedArticlesFeedlyIds}]`
+    );
+  } catch (error) {
+    Reporter.error("Failed to mark Feedly articles as read");
   }
 });
 
