@@ -186,6 +186,11 @@ export class Newspaper {
       return null;
     }
 
-    await this.generate();
+    const event = Events.NewspaperScheduledEvent.parse({
+      name: Events.NEWSPAPER_SCHEDULED_EVENT,
+      version: 1,
+      payload: { id: this.id, articles: this.articles },
+    });
+    await EventRepository.save(event);
   }
 }
