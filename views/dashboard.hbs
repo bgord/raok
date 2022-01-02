@@ -59,13 +59,13 @@
         Newspapers
       </h2>
 
-      <ul
-        style="list-style: none"
-        data-bw="1"
-        data-bc="gray-200"
-        data-p="24"
-        data-pb="0"
+      {{#unless newspapers}}
+      <small data-md-px="12" data-mt="12" data-ml="6"
+        >No newspapers added at the moment</small
       >
+      {{/unless}}
+
+      <ul style="list-style: none" data-mt="24">
         {{#each newspapers}}
         <li data-display="flex" data-direction="column" data-mb="24">
           <div data-display="flex" data-cross="center">
@@ -117,7 +117,15 @@
             data-status="hidden"
           >
             {{#each this.articles}}
-            <li data-color="gray-500" data-mt="6">{{ this.url }}</li>
+            <li data-mt="6">
+              <a
+                class="c-link"
+                data-color="gray-600"
+                href="{{ this.url }}"
+                target="_blank"
+                >{{ this.url }}</a
+              >
+            </li>
             {{/each}}
           </ul>
         </li>
@@ -127,9 +135,18 @@
 
     <section data-mt="48">
       <div data-bg="gray-100" data-bw="1" data-bc="gray-200" data-p="12">
-        <h2 data-fs="16" data-color="gray-800" data-fw="500">Articles</h2>
+        <h2
+          data-fs="16"
+          data-color="gray-800"
+          data-fw="500"
+          data-bw="2"
+          data-bcb="gray-200"
+          data-pb="6"
+        >
+          Articles
+        </h2>
 
-        <div data-display="flex" data-mt="36">
+        <div data-display="flex" data-mt="24">
           <button
             id="select-all"
             type="button"
@@ -163,14 +180,13 @@
         </div>
       </div>
 
-      <ul
-        style="list-style: none"
-        data-bw="1"
-        data-bc="gray-200"
-        data-bct="transparent"
-        data-p="24"
-        data-pb="0"
+      {{#unless articles}}
+      <small data-md-px="12" data-mt="12" data-ml="6"
+        >No articles added at the moment</small
       >
+      {{/unless}}
+
+      <ul style="list-style: none" data-mt="24">
         {{#each articles}}
         <li
           data-display="flex"
