@@ -121,3 +121,9 @@ for (const toggleHideButton of toggleHideButtons) {
     }
   });
 }
+
+const refresh = document.querySelector("[data-reload]");
+
+refresh?.addEventListener("click", () => {
+  window.location.reload();
+});
