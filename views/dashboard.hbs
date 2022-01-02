@@ -145,6 +145,18 @@
           >
             {{ this.status }}
           </strong>
+          <strong
+            data-transform="uppercase"
+            data-color="gray-600"
+            data-bg="gray-200"
+            data-px="6"
+            data-br="4"
+            data-ls="1"
+            data-fs="12"
+            data-mr="12"
+          >
+            {{ this.source }}
+          </strong>
           <form method="POST" action="/delete-article/{{ this.id }}">
             <input type="hidden" name="_csrf" value="{{../_csrf}}" />
             <button type="submit" class="c-button" data-variant="bare">
@@ -276,14 +288,13 @@
 
             <ol data-mt="6" data-mb="12" style="list-style: none">
               {{#each this.articles}}
-              <li data-mb="12">
+              <li data-display="flex" data-wrap="nowrap" data-mb="12" data-max-width="768">
                 <a
                   data-display="block"
                   class="c-link"
                   data-color="gray-600"
                   href="{{ this.url }}"
                   target="_blank"
-                  data-max-width="768"
                   data-pr="12"
                   style="
                     white-space: nowrap;
@@ -292,6 +303,19 @@
                   "
                   >{{ this.url }}</a
                 >
+                <strong
+                  data-transform="uppercase"
+                  data-color="gray-600"
+                  data-bg="gray-200"
+                  data-px="6"
+                  data-br="4"
+                  data-ls="1"
+                  data-fs="12"
+                  data-ml"auto"
+                  data-mr="12"
+                >
+                  {{ this.source }}
+                </strong>
               </li>
               {{/each}}
             </ol>
