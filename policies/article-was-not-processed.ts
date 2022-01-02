@@ -2,7 +2,7 @@ import * as VO from "../value-objects";
 
 export class ArticleWasNotProcessed {
   static fails(entity: VO.ArticleType): boolean {
-    return entity.status === VO.ArticleStatusEnum.ready;
+    return entity.status !== VO.ArticleStatusEnum.ready;
   }
 }
 
