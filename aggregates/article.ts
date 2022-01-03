@@ -29,7 +29,10 @@ export class Article {
         this.entity = event.payload;
       }
 
-      if (event.name === Events.ARTICLE_DELETED_EVENT) {
+      if (
+        event.name === Events.ARTICLE_DELETED_EVENT &&
+        this.id === event.payload.articleId
+      ) {
         this.entity = null;
       }
 
