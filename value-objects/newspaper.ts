@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { Schema } from "@bgord/node";
 
+import { NewspaperId } from "./newspaper-id";
 import { NewspaperStatus } from "./newspaper-status";
-import { TableOfContents } from "./table-of-contents";
+import { Article } from "./article";
 
 export const Newspaper = z.object({
-  id: TableOfContents._def.shape().id,
-  articles: TableOfContents._def.shape().articles,
+  id: NewspaperId,
+  articles: z.array(Article.pick({ id: true, url: true })),
   status: NewspaperStatus,
   scheduledAt: Schema.Timestamp,
   sentAt: z.union([Schema.Timestamp, z.null()]).default(null),

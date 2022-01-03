@@ -9,6 +9,7 @@ export * from "./feedly-article";
 export * from "./feedly-article-id";
 
 export * from "./newspaper";
+export * from "./newspaper-id";
 export * from "./newspaper-status";
 
 export * from "./readable-article";
