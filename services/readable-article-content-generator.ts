@@ -20,7 +20,7 @@ export class ReadableArticleContentGenerator {
 
     const readableArticleContent = VO.ReadableArticleContent.parse(article);
 
-    const readingTime = Services.ReadingTimeCalculator.calculateMinutes(
+    const readingTime = Services.ReadingTimeCalculator.getMinutes(
       readableArticleContent
     );
 
