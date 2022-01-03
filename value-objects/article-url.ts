@@ -1,5 +1,11 @@
 import { z } from "zod";
+import { Brand, toBrand } from "./_brand";
 
-export const ArticleUrl = z.string().url();
+export type ArticleUrlType = Brand<
+  "article-url",
+  z.infer<typeof ArticleUrlSchema>
+>;
 
-export type ArticleUrlType = z.infer<typeof ArticleUrl>;
+const ArticleUrlSchema = z.string().url();
+
+export const ArticleUrl = toBrand<ArticleUrlType>(ArticleUrlSchema);
