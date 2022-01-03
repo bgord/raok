@@ -9,9 +9,13 @@ import { EventRepository } from "../repositories/event-repository";
 
 export class Newspaper {
   id: VO.NewspaperType["id"];
+
   status: VO.NewspaperType["status"] = VO.NewspaperStatusEnum.undetermined;
+
   articles: VO.NewspaperType["articles"] = [];
+
   scheduledAt: VO.NewspaperType["scheduledAt"] = 0;
+
   sentAt: VO.NewspaperType["sentAt"] = null;
 
   static MAX_NUMBER_OF_ARTICLES = 10;

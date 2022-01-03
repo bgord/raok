@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
@@ -8,6 +6,7 @@ import { EventRepository } from "../repositories/event-repository";
 
 export class Article {
   id: VO.ArticleType["id"];
+
   entity: VO.ArticleType | null = null;
 
   constructor(id: VO.ArticleType["id"]) {

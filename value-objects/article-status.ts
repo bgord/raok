@@ -1,8 +1,8 @@
+/* eslint-ignore */
+
 import { z } from "zod";
 
-/* eslint-disable no-shadow */
 export enum ArticleStatusEnum {
-  /* eslint-disable no-unused-vars */
   "ready" = "ready",
   "in_progress" = "in_progress",
   "processed" = "processed",

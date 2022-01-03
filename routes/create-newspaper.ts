@@ -1,5 +1,4 @@
 import { z } from "zod";
-import _ from "lodash";
 import express from "express";
 
 import * as VO from "../value-objects";

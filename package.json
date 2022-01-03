@@ -23,7 +23,7 @@
     "@types/passport-local": "^1.0.34",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",
-    "eslint": "^8.5.0",
+    "eslint": "^8.6.0",
     "eslint-config-bgord": "^3.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@bgord/design": "^0.27.6",
-    "@bgord/node": "^0.58.8",
+    "@bgord/node": "^0.58.9",
     "@mozilla/readability": "^0.4.1",
     "@prisma/client": "^3.7.0",
     "@types/jsdom": "^16.2.14",

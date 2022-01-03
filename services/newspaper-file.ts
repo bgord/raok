@@ -1,3 +1,4 @@
+import { Reporter } from "@bgord/node";
 import execa from "execa";
 import path from "path";
 import { promises as fs } from "fs";
@@ -13,6 +14,7 @@ type NewspaperFileCreatorConfigType = {
 
 export class NewspaperFile {
   newspaperId: NewspaperFileCreatorConfigType["newspaperId"];
+
   articles: NewspaperFileCreatorConfigType["articles"];
 
   constructor(config: NewspaperFileCreatorConfigType) {
@@ -30,8 +32,7 @@ export class NewspaperFile {
       await execa("pandoc", ["-o", paths.epub, paths.html]);
       await execa("ebook-convert", [paths.epub, paths.mobi]);
     } catch (error) {
-      /* eslint-disable no-console */
-      console.error(error);
+      Reporter.raw("NewspaperFile#generate", error);
     }
   }
 
@@ -68,12 +69,15 @@ export class NewspaperFile {
   }
 
   static async delete(newspaperId: VO.NewspaperType["id"]) {
-    const path = NewspaperFile.getPaths(newspaperId);
+    const paths = NewspaperFile.getPaths(newspaperId);
+
     try {
-      await fs.unlink(path.html);
-      await fs.unlink(path.epub);
-      await fs.unlink(path.mobi);
-    } catch (error) {}
+      await fs.unlink(paths.html);
+      await fs.unlink(paths.epub);
+      await fs.unlink(paths.mobi);
+    } catch (error) {
+      Reporter.raw("NewspaperFile#delete", error);
+    }
   }
 
   static getPaths(newspaperId: VO.NewspaperType["id"]) {
