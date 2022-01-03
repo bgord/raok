@@ -18,16 +18,16 @@ export class ReadableArticleContentGenerator {
 
     if (!article) return null;
 
-    const readableArticleContent = VO.ReadableArticleContent.parse(article);
-
-    const readingTime = Services.ReadingTimeCalculator.getMinutes(
-      readableArticleContent
+    const readableArticleContent = VO.ReadableArticleContent.parse(
+      article.content
     );
 
     return {
-      title: article.title,
       content: readableArticleContent,
-      readingTime,
+      title: VO.ReadableArticleTitle.parse(article.title),
+      readingTime: Services.ReadingTimeCalculator.getMinutes(
+        readableArticleContent
+      ),
     };
   }
 }

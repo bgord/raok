@@ -1,5 +1,13 @@
 import { z } from "zod";
+import { Brand, toBrand } from "./_brand";
 
-export const ReadableArticleTitle = z.string().max(256);
+export type ReadableArticleTitleType = Brand<
+  "readable-article-title",
+  z.infer<typeof ReadableArticleTitleSchema>
+>;
 
-export type ReadableArticleTitleType = z.infer<typeof ReadableArticleTitle>;
+const ReadableArticleTitleSchema = z.string().max(256);
+
+export const ReadableArticleTitle = toBrand<ReadableArticleTitleType>(
+  ReadableArticleTitleSchema
+);
