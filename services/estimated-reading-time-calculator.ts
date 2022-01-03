@@ -1,6 +1,6 @@
 import * as VO from "../value-objects";
 
-export class EstimatedReadingTimeCalculator {
+export class ReadingTimeCalculator {
   static WORDS_PER_MINUTE = 225;
 
   static calculateMinutes(
@@ -8,8 +8,6 @@ export class EstimatedReadingTimeCalculator {
   ): VO.ReadableArticleReadingTimeType {
     const numberOfWords = content.split(" ").length;
 
-    return Math.ceil(
-      numberOfWords / EstimatedReadingTimeCalculator.WORDS_PER_MINUTE
-    );
+    return Math.ceil(numberOfWords / ReadingTimeCalculator.WORDS_PER_MINUTE);
   }
 }

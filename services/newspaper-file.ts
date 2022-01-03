@@ -58,7 +58,9 @@ export class NewspaperFile {
     let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
 
     for (const readableArticle of readableArticles) {
-      result += `<h2 style="margin-top: 100px">${readableArticle.title}</h2>`;
+      const readingTime = `(${readableArticle.readingTime} min)`;
+
+      result += `<h2 style="margin-top: 100px">${readableArticle.title} ${readingTime}</h2>`;
       result += readableArticle.content;
     }
 
