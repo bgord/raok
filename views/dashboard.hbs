@@ -123,6 +123,7 @@
             target="_blank"
             class="c-link"
             data-color="gray-700"
+            data-mr="12"
             style="
               white-space: nowrap;
               overflow: hidden;
@@ -211,14 +212,18 @@
               {{ this.status }}
             </strong>
             <span data-ml="12">Newspaper #{{ this.number }}</span>
+
+            {{#if this.sentAt}}
             <span
               data-fs="14"
               data-color="gray-400"
               data-ml="auto"
               data-mr="6"
-              data-timestamp="{{ this.scheduledAt }}"
+              data-timestamp="{{ this.sentAt }}"
               data-placement="inside"
-            ></span>
+              >Sent at
+            </span>
+            {{/if}}
 
             <button
               data-toggle-show="{{ this.id }}"
@@ -274,16 +279,15 @@
               </form>
               {{/if}}
 
-              {{#if this.sentAt}}
               <span
                 data-fs="14"
                 data-color="gray-400"
                 data-ml="auto"
                 data-mr="6"
-                data-timestamp="{{ this.sentAt }}"
+                data-timestamp="{{ this.scheduledAt }}"
                 data-placement="inside"
-              ></span>
-              {{/if}}
+                >Scheduled at
+              </span>
             </div>
 
             <ol data-mt="6" data-mb="12" style="list-style: none">

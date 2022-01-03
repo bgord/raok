@@ -66,7 +66,7 @@ for (const timestamp of timestamps) {
   }
 
   if (placement?.includes("inside")) {
-    timestamp.innerHTML = formattedDate;
+    timestamp.insertAdjacentHTML("beforeend", formattedDate);
   }
 }
 
