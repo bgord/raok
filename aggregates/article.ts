@@ -58,16 +58,20 @@ export class Article {
     return this;
   }
 
-  static async add(payload: { url: unknown; source?: VO.ArticleSourceEnum }) {
-    const articleSource = payload.source ?? VO.ArticleSourceEnum.web;
-    const articleUrl = VO.Article._def.shape().url.parse(payload.url);
+  static async add(newArticle: {
+    url: VO.ArticleUrlType;
+    source?: VO.ArticleSourceEnum;
+  }) {
+    const newArticleSource = newArticle.source ?? VO.ArticleSourceEnum.web;
 
-    if (articleSource === VO.ArticleSourceEnum.web) {
-      await Policies.NonProcessedArticleUrlIsUnique.perform({ articleUrl });
+    if (newArticleSource === VO.ArticleSourceEnum.web) {
+      await Policies.NonProcessedArticleUrlIsUnique.perform({
+        articleUrl: newArticle.url,
+      });
     }
 
-    if (articleSource === VO.ArticleSourceEnum.feedly) {
-      await Policies.ArticleUrlIsUnique.perform({ articleUrl });
+    if (newArticleSource === VO.ArticleSourceEnum.feedly) {
+      await Policies.ArticleUrlIsUnique.perform({ articleUrl: newArticle.url });
     }
 
     await EventRepository.save(
@@ -75,8 +79,8 @@ export class Article {
         name: Events.ARTICLE_ADDED_EVENT,
         version: 1,
         payload: {
-          url: articleUrl,
-          source: articleSource,
+          url: newArticle.url,
+          source: newArticleSource,
           status: VO.ArticleStatusEnum.ready,
         },
       })

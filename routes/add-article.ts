@@ -1,5 +1,6 @@
 import express from "express";
 
+import * as VO from "../value-objects";
 import { Article } from "../aggregates/article";
 
 export async function AddArticle(
@@ -7,7 +8,9 @@ export async function AddArticle(
   response: express.Response,
   _next: express.NextFunction
 ): Promise<void> {
-  await Article.add({ url: request.body.url });
+  const articleUrl = VO.ArticleUrl.parse(request.body.url);
+
+  await Article.add({ url: articleUrl });
 
   return response.redirect("/dashboard");
 }

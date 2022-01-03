@@ -10,9 +10,7 @@ export async function CreateNewspaper(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const articleIds = z
-    .array(VO.Article._def.shape().id)
-    .parse(request.body.articleIds);
+  const articleIds = z.array(VO.ArticleId).parse(request.body.articleIds);
 
   const articles = [];
 

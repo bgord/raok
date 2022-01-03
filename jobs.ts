@@ -25,6 +25,8 @@ const task = new AsyncTask("feedly articles crawler", async () => {
   const insertedArticlesFeedlyIds: VO.FeedlyArticleType["id"][] = [];
 
   for (const article of articles) {
+    if (!article.canonicalUrl) continue;
+
     try {
       await Article.add({
         url: article.canonicalUrl,
