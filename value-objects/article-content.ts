@@ -1,5 +1,5 @@
 import { z } from "zod";
-type Brand<B extends string, T> = { _brand: B } & T;
+import { Brand, toBrand } from "./_brand";
 
 export type ArticleContentType = Brand<
   "article-content",
@@ -8,6 +8,4 @@ export type ArticleContentType = Brand<
 
 const ArticleContentSchema = z.string().max(100000);
 
-export const ArticleContent = ArticleContentSchema.transform(
-  (x) => x as ArticleContentType
-);
+export const ArticleContent = toBrand<ArticleContentType>(ArticleContentSchema);
