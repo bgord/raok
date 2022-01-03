@@ -99,30 +99,10 @@ export class Newspaper {
     });
 
     try {
-      const readableArticles: VO.ReadableArticleType[] = [];
-
-      for (const article of this.articles) {
-        const articleContent = await Services.ArticleContentDownloader.download(
-          article.url
-        );
-
-        if (!articleContent) continue;
-
-        const readableArticle =
-          Services.ReadableArticleContentGenerator.generate({
-            content: articleContent,
-            url: article.url,
-          });
-
-        if (!readableArticle) continue;
-
-        readableArticles.push(readableArticle);
-      }
-
       await new Services.NewspaperFile({
         newspaperId: this.id,
-        readableArticles,
-      }).save();
+        articles: this.articles,
+      }).create();
 
       await EventRepository.save(
         Events.NewspaperGenerateEvent.parse({

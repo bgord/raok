@@ -3,25 +3,27 @@ import path from "path";
 import { promises as fs } from "fs";
 
 import * as VO from "../value-objects";
+import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
+import { ArticleContentDownloader } from "./article-content-downloader";
 
 type NewspaperFileCreatorConfigType = {
   newspaperId: VO.NewspaperType["id"];
-  readableArticles: VO.ReadableArticleType[];
+  articles: VO.NewspaperType["articles"];
 };
 
 export class NewspaperFile {
   newspaperId: NewspaperFileCreatorConfigType["newspaperId"];
-  readableArticles: NewspaperFileCreatorConfigType["readableArticles"];
+  articles: NewspaperFileCreatorConfigType["articles"];
 
   constructor(config: NewspaperFileCreatorConfigType) {
     this.newspaperId = config.newspaperId;
-    this.readableArticles = config.readableArticles;
+    this.articles = config.articles;
   }
 
-  async save() {
+  async create() {
     const paths = NewspaperFile.getPaths(this.newspaperId);
 
-    const content = this.compose();
+    const content = await this.compose();
     await fs.writeFile(paths.html, content);
 
     try {
@@ -33,10 +35,29 @@ export class NewspaperFile {
     }
   }
 
-  private compose() {
+  private async compose() {
+    const readableArticles: VO.ReadableArticleType[] = [];
+
+    for (const article of this.articles) {
+      const articleContent = await ArticleContentDownloader.download(
+        article.url
+      );
+
+      if (!articleContent) continue;
+
+      const readableArticle = ReadableArticleContentGenerator.generate({
+        content: articleContent,
+        url: article.url,
+      });
+
+      if (!readableArticle) continue;
+
+      readableArticles.push(readableArticle);
+    }
+
     let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
 
-    for (const readableArticle of this.readableArticles) {
+    for (const readableArticle of readableArticles) {
       result += `<h2 style="margin-top: 100px">${readableArticle.title}</h2>`;
       result += readableArticle.content;
     }
