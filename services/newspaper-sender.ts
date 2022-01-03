@@ -20,7 +20,8 @@ export class NewspaperSender {
       from: Env.SMTP_USER,
       to: Env.EMAIL_TO_DELIVER_TO,
       subject: "Newspaper",
-      attachments: [{ filename: path, path }],
+      text: "Sent from raok.",
+      attachments: [{ filename: "newspaper.mobi", path }],
     });
   }
 }

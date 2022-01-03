@@ -52,9 +52,6 @@ const task = new AsyncTask("feedly articles crawler", async () => {
   }
 });
 
-const job = new SimpleIntervalJob(
-  { minutes: 120, runImmediately: false },
-  task
-);
+const job = new SimpleIntervalJob({ minutes: 10, runImmediately: false }, task);
 
 Scheduler.addSimpleIntervalJob(job);
