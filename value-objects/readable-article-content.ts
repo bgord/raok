@@ -1,7 +1,13 @@
 import { z } from "zod";
+type Brand<B extends string, T> = { _brand: B } & T;
 
-import { ArticleContent } from "./article-content";
+const ReadableArticleContentSchema = z.string().max(100000);
 
-export const ReadableArticleContent = ArticleContent;
+export const ReadableArticleContent = ReadableArticleContentSchema.transform(
+  (x) => x as ReadableArticleContentType
+);
 
-export type ReadableArticleContentType = z.infer<typeof ReadableArticleContent>;
+export type ReadableArticleContentType = Brand<
+  "readable-article-content",
+  z.infer<typeof ReadableArticleContentSchema>
+>;

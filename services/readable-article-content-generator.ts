@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { JSDOM } from "jsdom";
 import { Readability } from "@mozilla/readability";
 
@@ -19,10 +18,16 @@ export class ReadableArticleContentGenerator {
 
     if (!article) return null;
 
+    const readableArticleContent = VO.ReadableArticleContent.parse(article);
+
     const readingTime = Services.ReadingTimeCalculator.calculateMinutes(
-      article.content
+      readableArticleContent
     );
 
-    return { ..._.pick(article, "title", "content"), readingTime };
+    return {
+      title: article.title,
+      content: readableArticleContent,
+      readingTime,
+    };
   }
 }
