@@ -1,4 +1,5 @@
 export * from "./article";
+export * from "./article-id";
 export * from "./article-url";
 export * from "./article-source";
 export * from "./article-status";
