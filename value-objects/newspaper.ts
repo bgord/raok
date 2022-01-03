@@ -10,7 +10,7 @@ export const Newspaper = z.object({
   articles: z.array(Article.pick({ id: true, url: true })),
   status: NewspaperStatus,
   scheduledAt: Schema.Timestamp,
-  sentAt: z.union([Schema.Timestamp, z.null()]).default(null),
+  sentAt: Schema.Timestamp.nullable(),
 });
 
 export type NewspaperType = z.infer<typeof Newspaper>;
