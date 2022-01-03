@@ -40,7 +40,11 @@ export const NewspaperScheduledEvent = EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_SCHEDULED_EVENT),
     version: z.literal(1),
-    payload: VO.TableOfContents,
+    payload: z.object({
+      id: VO.Newspaper._def.shape().id,
+      articles: VO.Newspaper._def.shape().articles,
+      createdAt: Schema.Timestamp,
+    }),
   })
 );
 export type NewspaperScheduledEventType = z.infer<
