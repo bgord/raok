@@ -1,9 +1,10 @@
 import { z } from "zod";
 
+import { FeedlyArticleId } from "./feedly-article-id";
 import { ArticleUrl } from "./article-url";
 
 export const FeedlyArticle = z.object({
-  id: z.string().nonempty(),
+  id: FeedlyArticleId,
   canonicalUrl: ArticleUrl.optional(),
 });
 
