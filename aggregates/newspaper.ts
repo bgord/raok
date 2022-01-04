@@ -88,12 +88,14 @@ export class Newspaper {
       max: Newspaper.MAX_NUMBER_OF_ARTICLES,
     });
 
+    const newspaperId = VO.NewspaperId.parse(UUID.generate());
+
     await EventRepository.save(
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         version: 1,
         payload: {
-          id: UUID.generate(),
+          id: newspaperId,
           articles: articles.map((x) => x.entity),
         },
       })
