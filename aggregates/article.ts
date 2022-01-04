@@ -101,4 +101,16 @@ export class Article {
       })
     );
   }
+
+  async lock(newspaperId: VO.NewspaperIdType) {
+    if (!this.entity) return;
+
+    await EventRepository.save(
+      Events.ArticleLockedEvent.parse({
+        name: Events.ARTICLE_LOCKED_EVENT,
+        version: 1,
+        payload: { articleId: this.id, newspaperId },
+      })
+    );
+  }
 }
