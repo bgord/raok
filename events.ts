@@ -7,6 +7,7 @@ import * as Services from "./services";
 
 import { ArticleRepository } from "./repositories/article-repository";
 import { NewspaperRepository } from "./repositories/newspaper-repository";
+import { StatsRepository } from "./repositories/stats-repository";
 import { Newspaper } from "./aggregates/newspaper";
 
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
@@ -103,6 +104,7 @@ export const emittery = new Emittery<{
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
   await ArticleRepository.create(event.payload);
+  await StatsRepository.incrementCreatedArticles();
 });
 
 emittery.on(ARTICLE_DELETED_EVENT, async (event) => {

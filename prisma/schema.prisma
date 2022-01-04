@@ -35,5 +35,5 @@ model Article {
 
 model Stats {
   id                String     @id @default(uuid())
-  createdArticles   Int
+  createdArticles   Int        @default(0)
 }

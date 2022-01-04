@@ -1,5 +1,5 @@
 -- CreateTable
 CREATE TABLE "Stats" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "createdArticles" INTEGER NOT NULL
+    "createdArticles" INTEGER NOT NULL DEFAULT 0
 );
