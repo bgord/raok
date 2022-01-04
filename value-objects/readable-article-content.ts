@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Brand, toBrand } from "./_brand";
+import { Brand, toBrand } from "@bgord/node";
 
 export type ReadableArticleContentType = Brand<
   "readable-article-content",

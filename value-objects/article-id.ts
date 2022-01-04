@@ -1,7 +1,5 @@
 import { z } from "zod";
-import { Schema } from "@bgord/node";
-
-import { Brand, toBrand } from "./_brand";
+import { Schema, Brand, toBrand } from "@bgord/node";
 
 export type ArticleIdType = Brand<
   "article-id",
