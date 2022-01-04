@@ -5,6 +5,7 @@ import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Policies from "../policies";
 
+import { Article } from "./article";
 import { EventRepository } from "../repositories/event-repository";
 
 export class Newspaper {
@@ -76,7 +77,7 @@ export class Newspaper {
     return this;
   }
 
-  static async schedule(articles: VO.ArticleType[]) {
+  static async schedule(articles: Article[]) {
     await Policies.NewspaperStatusTransition.perform({
       from: VO.NewspaperStatusEnum.undetermined,
       to: VO.NewspaperStatusEnum.scheduled,
@@ -91,7 +92,10 @@ export class Newspaper {
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         version: 1,
-        payload: { id: UUID.generate(), articles },
+        payload: {
+          id: UUID.generate(),
+          articles: articles.map((x) => x.entity),
+        },
       })
     );
   }

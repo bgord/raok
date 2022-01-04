@@ -1,6 +1,7 @@
 import { Policy } from "@bgord/node";
 
 import * as VO from "../value-objects";
+import { Article } from "../aggregates/article";
 
 class ArticlesAreNotSendableError extends Error {
   constructor() {
@@ -10,14 +11,14 @@ class ArticlesAreNotSendableError extends Error {
 }
 
 type ArticlesAreSendableConfigType = {
-  articles: VO.ArticleType[];
+  articles: Article[];
 };
 
 class ArticlesAreSendableFactory extends Policy<ArticlesAreSendableConfigType> {
   fails(config: ArticlesAreSendableConfigType): boolean {
-    return config.articles.some(
-      (article) => article.status !== VO.ArticleStatusEnum.ready
-    );
+    return config.articles
+      .map((article) => article.entity)
+      .some((article) => article?.status !== VO.ArticleStatusEnum.ready);
   }
 
   error = ArticlesAreNotSendableError;

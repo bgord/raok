@@ -18,7 +18,7 @@ export async function CreateNewspaper(
     const article = await new Article(articleId).build();
 
     if (!article.entity) continue;
-    articles.push(article.entity);
+    articles.push(article);
   }
 
   await Newspaper.schedule(articles);

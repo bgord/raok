@@ -1,6 +1,6 @@
 import { Policy } from "@bgord/node";
 
-import * as VO from "../value-objects";
+import { Article } from "../aggregates/article";
 
 class TooManyArticlesInNewspaperError extends Error {
   constructor() {
@@ -9,7 +9,7 @@ class TooManyArticlesInNewspaperError extends Error {
   }
 }
 type MaximumNewspaperArticleNumberConfigType = {
-  articles: VO.NewspaperType["articles"];
+  articles: Article[];
   max: number;
 };
 
