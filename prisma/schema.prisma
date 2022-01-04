@@ -32,3 +32,8 @@ model Article {
   Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
   newspaperId String?
 }
+
+model Stats {
+  id                String     @id @default(uuid())
+  createdArticles   Int
+}
