@@ -8,6 +8,8 @@ import * as Services from "./services";
 import { ArticleRepository } from "./repositories/article-repository";
 import { NewspaperRepository } from "./repositories/newspaper-repository";
 import { StatsRepository } from "./repositories/stats-repository";
+
+import { Article } from "./aggregates/article";
 import { Newspaper } from "./aggregates/newspaper";
 
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
@@ -122,6 +124,18 @@ emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
   await ArticleRepository.delete(event.payload.articleId);
 });
 
+emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
+  await ArticleRepository.updateStatus(
+    event.payload.articleId,
+    VO.ArticleStatusEnum.in_progress
+  );
+
+  await ArticleRepository.assignToNewspaper(
+    event.payload.articleId,
+    event.payload.newspaperId
+  );
+});
+
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   await NewspaperRepository.create({
     id: event.payload.id,
@@ -129,13 +143,9 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
     status: VO.NewspaperStatusEnum.scheduled,
   });
 
-  for (const article of event.payload.articles) {
-    await ArticleRepository.updateStatus(
-      article.id,
-      VO.ArticleStatusEnum.in_progress
-    );
-
-    await ArticleRepository.assignToNewspaper(article.id, event.payload.id);
+  for (const entity of event.payload.articles) {
+    const article = await new Article(entity.id).build();
+    await article.lock(event.payload.id);
   }
 
   const newspaper = await new Newspaper(event.payload.id).build();
