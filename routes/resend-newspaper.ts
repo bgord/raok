@@ -8,9 +8,7 @@ export async function ResendNewspaper(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const newspaperId = VO.Newspaper._def
-    .shape()
-    .id.parse(request.params.newspaperId);
+  const newspaperId = VO.NewspaperId.parse(request.params.newspaperId);
 
   const newspaper = await new Newspaper(newspaperId).build();
   await newspaper.resend();

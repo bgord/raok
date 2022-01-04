@@ -213,35 +213,36 @@
             </strong>
             <span data-ml="12">Newspaper #{{ this.number }}</span>
 
-            {{#if this.sentAt}}
-            <span
-              data-fs="14"
-              data-color="gray-400"
-              data-ml="auto"
-              data-mr="6"
-              data-timestamp="{{ this.sentAt }}"
-              data-placement="inside"
-              >Sent at
-            </span>
-            {{/if}}
+            <div data-ml="auto">
+              {{#if this.sentAt}}
+              <span
+                data-fs="14"
+                data-color="gray-400"
+                data-mr="6"
+                data-timestamp="{{ this.sentAt }}"
+                data-placement="inside"
+                >Sent at
+              </span>
+              {{/if}}
 
-            <button
-              data-toggle-show="{{ this.id }}"
-              data-status="visible"
-              class="c-button"
-              data-variant="bare"
-            >
-              <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
-            </button>
+              <button
+                data-toggle-show="{{ this.id }}"
+                data-status="visible"
+                class="c-button"
+                data-variant="bare"
+              >
+                <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
+              </button>
 
-            <button
-              data-toggle-hide="{{ this.id }}"
-              data-status="hidden"
-              class="c-button"
-              data-variant="bare"
-            >
-              <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
-            </button>
+              <button
+                data-toggle-hide="{{ this.id }}"
+                data-status="hidden"
+                class="c-button"
+                data-variant="bare"
+              >
+                <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
+              </button>
+            </div>
           </div>
 
           <div data-toggle-target="{{ this.id }}" data-status="hidden">

@@ -1,13 +1,15 @@
 export * from "./article";
+export * from "./article-id";
 export * from "./article-url";
 export * from "./article-source";
 export * from "./article-status";
 export * from "./article-content";
 
 export * from "./feedly-article";
-export * from "./table-of-contents";
+export * from "./feedly-article-id";
 
 export * from "./newspaper";
+export * from "./newspaper-id";
 export * from "./newspaper-status";
 
 export * from "./readable-article";

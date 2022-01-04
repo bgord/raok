@@ -1,5 +1,11 @@
 import { z } from "zod";
+import { Brand, toBrand } from "@bgord/node";
 
-export const ArticleContent = z.string().max(100000);
+export type ArticleContentType = Brand<
+  "article-content",
+  z.infer<typeof ArticleContentSchema>
+>;
 
-export type ArticleContentType = z.infer<typeof ArticleContent>;
+const ArticleContentSchema = z.string().max(100000);
+
+export const ArticleContent = toBrand<ArticleContentType>(ArticleContentSchema);

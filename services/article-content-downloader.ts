@@ -9,7 +9,7 @@ export class ArticleContentDownloader {
     try {
       const result = await axios.get(url);
 
-      return result.data;
+      return VO.ArticleContent.parse(result.data);
     } catch (error) {
       return null;
     }

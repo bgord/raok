@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EventDraft } from "@bgord/node";
+import { EventDraft, Schema } from "@bgord/node";
 import Emittery from "emittery";
 
 import * as VO from "./value-objects";
@@ -14,13 +14,7 @@ export const ArticleAddedEvent = EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_ADDED_EVENT),
     version: z.literal(1),
-    payload: z.object({
-      id: VO.Article._def.shape().id,
-      url: VO.Article._def.shape().url,
-      source: VO.Article._def.shape().source,
-      status: VO.Article._def.shape().status,
-      createdAt: VO.Article._def.shape().createdAt,
-    }),
+    payload: VO.Article,
   })
 );
 export type ArticleAddedEventType = z.infer<typeof ArticleAddedEvent>;
@@ -30,7 +24,7 @@ export const ArticleDeletedEvent = EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_DELETED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.Article._def.shape().id }),
+    payload: z.object({ articleId: VO.ArticleId }),
   })
 );
 export type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
@@ -40,7 +34,11 @@ export const NewspaperScheduledEvent = EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_SCHEDULED_EVENT),
     version: z.literal(1),
-    payload: VO.TableOfContents,
+    payload: z.object({
+      id: VO.NewspaperId,
+      articles: VO.Newspaper._def.shape().articles,
+      createdAt: Schema.Timestamp,
+    }),
   })
 );
 export type NewspaperScheduledEventType = z.infer<
@@ -52,7 +50,7 @@ export const NewspaperGenerateEvent = EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_GENERATED_EVENT),
     version: z.literal(1),
-    payload: z.object({ newspaperId: VO.Newspaper._def.shape().id }),
+    payload: z.object({ newspaperId: VO.NewspaperId }),
   })
 );
 export type NewspaperGenerateEventType = z.infer<typeof NewspaperGenerateEvent>;
@@ -63,7 +61,7 @@ export const NewspaperSentEvent = EventDraft.merge(
     name: z.literal(NEWSPAPER_SENT_EVENT),
     version: z.literal(1),
     payload: z.object({
-      newspaperId: VO.Newspaper._def.shape().id,
+      newspaperId: VO.NewspaperId,
       articles: VO.Newspaper._def.shape().articles,
       sentAt: VO.Newspaper._def.shape().sentAt,
     }),
@@ -76,7 +74,7 @@ export const NewspaperArchivedEvent = EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_ARCHIVED_EVENT),
     version: z.literal(1),
-    payload: z.object({ newspaperId: VO.Newspaper._def.shape().id }),
+    payload: z.object({ newspaperId: VO.NewspaperId }),
   })
 );
 export type NewspaperArchivedEventType = z.infer<typeof NewspaperArchivedEvent>;
@@ -86,7 +84,7 @@ export const NewspaperFailedEvent = EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_FAILED_EVENT),
     version: z.literal(1),
-    payload: z.object({ newspaperId: VO.Newspaper._def.shape().id }),
+    payload: z.object({ newspaperId: VO.NewspaperId }),
   })
 );
 export type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;
