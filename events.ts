@@ -42,6 +42,16 @@ export const ArticleLockedEvent = EventDraft.merge(
 );
 export type ArticleLockedEventType = z.infer<typeof ArticleLockedEvent>;
 
+export const ARTICLE_PROCESSED_EVENT = "ARTICLE_PROCESSED_EVENT";
+export const ArticleProcessedEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_PROCESSED_EVENT),
+    version: z.literal(1),
+    payload: z.object({ articleId: VO.ArticleId }),
+  })
+);
+export type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
+
 export const NEWSPAPER_SCHEDULED_EVENT = "NEWSPAPER_SCHEDULED_EVENT";
 export const NewspaperScheduledEvent = EventDraft.merge(
   z.object({
@@ -108,6 +118,7 @@ export const emittery = new Emittery<{
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   ARTICLE_LOCKED_EVENT: ArticleLockedEventType;
+  ARTICLE_PROCESSED_EVENT: ArticleProcessedEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
   NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
   NEWSPAPER_SENT_EVENT: NewspaperSentEventType;

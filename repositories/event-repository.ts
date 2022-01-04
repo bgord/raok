@@ -13,7 +13,8 @@ type AcceptedEvent =
   | typeof Events.NewspaperSentEvent
   | typeof Events.NewspaperArchivedEvent
   | typeof Events.NewspaperFailedEvent
-  | typeof Events.ArticleLockedEvent;
+  | typeof Events.ArticleLockedEvent
+  | typeof Events.ArticleProcessedEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {
