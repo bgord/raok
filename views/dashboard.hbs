@@ -20,34 +20,7 @@
 
 <main data-display="flex" data-mx="auto" data-mt="48" style="max-width: 1296px">
   <section data-grow="1" data-pr="48">
-    <form method="POST" action="/add-article">
-      <input type="hidden" name="_csrf" value="{{ _csrf }}" />
-
-      <div data-display="flex" data-cross="end">
-        <div
-          data-display="flex"
-          data-direction="column"
-          data-mr="12"
-          data-grow="1"
-        >
-          <label class="c-label" for="url" data-mb="6">Article URL </label>
-          <input
-            id="url"
-            name="url"
-            class="c-input"
-            type="url"
-            required
-            placeholder="https://example.com/blogpost"
-            data-grow="1"
-          />
-        </div>
-        <button class="c-button" data-variant="secondary" type="submit">
-          Add
-        </button>
-      </div>
-    </form>
-
-    <div data-mt="48" data-bg="gray-100" data-p="12">
+    <div data-bg="gray-100" data-p="12">
       <h2 data-fs="16" data-color="gray-800" data-fw="500" data-mb="24">
         Statistics
       </h2>
@@ -59,6 +32,8 @@
   </section>
 
   <div data-max-width="768" data-width="100%">
+    <div id="root"></div>
+
     <section>
       <div data-bg="gray-100" data-bw="1" data-bc="gray-200" data-p="12">
         <h2

@@ -29,12 +29,7 @@ AuthShield.applyTo(app);
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
-app.post(
-  "/add-article",
-  bg.CsrfShield.verify,
-  AuthShield.verify,
-  bg.Route(AddArticle)
-);
+app.post("/add-article", AuthShield.verify, bg.Route(AddArticle));
 app.post(
   "/delete-article/:articleId",
   bg.CsrfShield.verify,
