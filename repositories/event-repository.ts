@@ -19,14 +19,15 @@ type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {
   static async find<T extends AcceptedEvent[]>(
-    acceptedEvents: T
+    acceptedEvents: T,
+    stream?: Events.StreamType
   ): Promise<z.infer<T[0]>[]> {
     const acceptedEventNames = acceptedEvents.map(
       (acceptedEvent) => acceptedEvent._def.shape().name._def.value
     );
 
     const events = await prisma.event.findMany({
-      where: { name: { in: acceptedEventNames } },
+      where: { name: { in: acceptedEventNames }, stream },
       orderBy: { createdAt: "asc" },
     });
 
