@@ -19,44 +19,37 @@ export class Article {
   }
 
   async build() {
-    const events = await EventRepository.find([
-      Events.ArticleAddedEvent,
-      Events.ArticleDeletedEvent,
-      Events.ArticleLockedEvent,
-      Events.ArticleProcessedEvent,
-    ]);
+    const events = await EventRepository.find(
+      [
+        Events.ArticleAddedEvent,
+        Events.ArticleDeletedEvent,
+        Events.ArticleLockedEvent,
+        Events.ArticleProcessedEvent,
+      ],
+      Article.getStream(this.id)
+    );
 
     for (const event of events) {
-      if (
-        event.name === Events.ARTICLE_ADDED_EVENT &&
-        this.id === event.payload.id
-      ) {
-        this.entity = event.payload;
-      }
+      switch (event.name) {
+        case Events.ARTICLE_ADDED_EVENT:
+          this.entity = event.payload;
+          break;
 
-      if (
-        event.name === Events.ARTICLE_DELETED_EVENT &&
-        this.id === event.payload.articleId
-      ) {
-        this.entity = null;
-      }
+        case Events.ARTICLE_DELETED_EVENT:
+          this.entity = null;
+          break;
 
-      if (
-        event.name === Events.ARTICLE_LOCKED_EVENT &&
-        this.id === event.payload.articleId
-      ) {
-        if (this.entity) {
+        case Events.ARTICLE_LOCKED_EVENT:
+          if (!this.entity) continue;
           this.entity.status = VO.ArticleStatusEnum.in_progress;
-        }
-      }
+          break;
 
-      if (
-        event.name === Events.ARTICLE_PROCESSED_EVENT &&
-        this.id === event.payload.articleId
-      ) {
-        if (this.entity) {
+        case Events.ARTICLE_PROCESSED_EVENT:
+          if (!this.entity) continue;
           this.entity.status = VO.ArticleStatusEnum.processed;
-        }
+          break;
+        default:
+          continue;
       }
     }
 
