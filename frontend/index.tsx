@@ -50,6 +50,21 @@ function Badge(props: { children: ComponentChild }) {
     />
   );
 }
+function Link(props: h.JSX.IntrinsicElements["a"]) {
+  return (
+    <a
+      target="_blank"
+      class="c-link"
+      data-color="gray-700"
+      style={{
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+      }}
+      {...props}
+    />
+  );
+}
 
 function AddArticleForm() {
   const [url, setUrl] = useState<ArticleUrlType>("");
@@ -208,20 +223,9 @@ function ArticleList() {
                 type="checkbox"
                 data-mr="12"
               />
-              <a
-                href={article.url}
-                target="_blank"
-                class="c-link"
-                data-color="gray-700"
-                data-mr="12"
-                style={{
-                  "white-space": "nowrap",
-                  overflow: "hidden",
-                  "text-overflow": "ellipsis",
-                }}
-              >
+              <Link href={article.url} data-mr="12">
                 {article.url}
-              </a>
+              </Link>
 
               <Badge dat-ml="auto" data-mr="12">
                 {article.status}
@@ -377,21 +381,9 @@ function NewspaperList() {
                       data-mb="12"
                       data-max-width="768"
                     >
-                      <a
-                        data-display="block"
-                        class="c-link"
-                        data-color="gray-600"
-                        href={article.url}
-                        target="_blank"
-                        data-pr="12"
-                        style={{
-                          "white-space": "nowrap",
-                          overflow: "hidden",
-                          "text-overflow": "ellipsis",
-                        }}
-                      >
+                      <Link href={article.url} data-pr="12">
                         {article.url}
-                      </a>
+                      </Link>
 
                       <Badge data-ml="auto" data-mr="12">
                         {article.source}
