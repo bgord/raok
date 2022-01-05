@@ -2,9 +2,7 @@
   <h1 data-fs="20" data-ls="2" data-color="gray-100" data-fw="500">raok</h1>
 
   <div data-display="flex" data-ml="auto" data-mr="72" data-md-mr="24">
-    <strong data-ml="12" data-md-ml="6" data-color="white">{{
-      username
-    }}</strong>
+    <strong data-ml="12" data-md-ml="6" data-color="white">{{username}}</strong>
   </div>
 
   <a
@@ -26,178 +24,13 @@
       </h2>
 
       <div data-fs="14" data-color="gray-600">
-        <strong>{{ stats.createdArticles }}</strong> created article(s) overall
+        <strong>{{stats.createdArticles}}</strong>
+        created article(s) overall
       </div>
     </div>
   </section>
 
   <div data-max-width="768" data-width="100%">
     <div id="root"></div>
-
-    <section data-mt="48">
-      <div
-        data-display="flex"
-        data-cross="center"
-        data-bg="gray-100"
-        data-bw="1"
-        data-bc="gray-200"
-        data-p="12"
-      >
-        <h2 data-fs="16" data-color="gray-800" data-fw="500">Newspapers</h2>
-        <button
-          data-reload
-          class="c-button"
-          data-variant="bare"
-          type="button"
-          data-ml="auto"
-        >
-          Refresh
-        </button>
-      </div>
-
-      {{#unless newspapers}}
-      <small data-md-px="12" data-mt="12" data-ml="6"
-        >No newspapers added at the moment</small
-      >
-      {{/unless}}
-
-      <ul style="list-style: none" data-mt="24">
-        {{#each newspapers}}
-        <li data-display="flex" data-direction="column" data-mb="24">
-          <div data-display="flex" data-cross="center">
-            <strong
-              data-transform="uppercase"
-              data-color="gray-600"
-              data-bg="gray-200"
-              data-px="6"
-              data-br="4"
-              data-ls="1"
-              data-fs="12"
-            >
-              {{ this.status }}
-            </strong>
-            <span data-ml="12">Newspaper #{{ this.number }}</span>
-
-            <div data-ml="auto">
-              {{#if this.sentAt}}
-              <span
-                data-fs="14"
-                data-color="gray-400"
-                data-mr="6"
-                data-timestamp="{{ this.sentAt }}"
-                data-placement="inside"
-                >Sent at
-              </span>
-              {{/if}}
-
-              <button
-                data-toggle-show="{{ this.id }}"
-                data-status="visible"
-                class="c-button"
-                data-variant="bare"
-              >
-                <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
-              </button>
-
-              <button
-                data-toggle-hide="{{ this.id }}"
-                data-status="hidden"
-                class="c-button"
-                data-variant="bare"
-              >
-                <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
-              </button>
-            </div>
-          </div>
-
-          <div data-toggle-target="{{ this.id }}" data-status="hidden">
-            <div data-display="flex" data-mt="12" data-mb="24">
-              {{#if this.hasBeenDelivered}}
-              <form
-                method="POST"
-                action="/archive-newspaper/{{ this.id }}"
-                data-mr="24"
-              >
-                <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
-                <button type="submit" class="c-button" data-variant="secondary">
-                  Archive
-                </button>
-              </form>
-              {{/if}}
-
-              {{#if this.hasFailed}}
-              <form method="POST" action="/resend-newspaper/{{ this.id }}">
-                <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
-
-                <button type="submit" class="c-button" data-variant="primary">
-                  Resend
-                </button>
-              </form>
-              {{/if}}
-
-              {{#if this.sentAt}}
-              <form method="POST" action="/resend-newspaper/{{ this.id }}">
-                <input type="hidden" name="_csrf" value="{{ ../_csrf }}" />
-
-                <button type="submit" class="c-button" data-variant="primary">
-                  Resend
-                </button>
-              </form>
-              {{/if}}
-
-              <span
-                data-fs="14"
-                data-color="gray-400"
-                data-ml="auto"
-                data-mr="6"
-                data-timestamp="{{ this.scheduledAt }}"
-                data-placement="inside"
-                >Scheduled at
-              </span>
-            </div>
-
-            <ol data-mt="6" data-mb="12" style="list-style: none">
-              {{#each this.articles}}
-              <li
-                data-display="flex"
-                data-wrap="nowrap"
-                data-mb="12"
-                data-max-width="768"
-              >
-                <a
-                  data-display="block"
-                  class="c-link"
-                  data-color="gray-600"
-                  href="{{ this.url }}"
-                  target="_blank"
-                  data-pr="12"
-                  style="
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                  "
-                  >{{ this.url }}</a
-                >
-                <strong
-                  data-transform="uppercase"
-                  data-color="gray-600"
-                  data-bg="gray-200"
-                  data-px="6"
-                  data-br="4"
-                  data-ls="1"
-                  data-fs="12"
-                  data-ml="auto"
-                  data-mr="12"
-                >
-                  {{ this.source }}
-                </strong>
-              </li>
-              {{/each}}
-            </ol>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
-    </section>
   </div>
 </main>

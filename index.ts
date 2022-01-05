@@ -10,6 +10,7 @@ import { CreateNewspaper } from "./routes/create-newspaper";
 import { ArchiveNewspaper } from "./routes/archive-newspaper";
 import { ResendNewspaper } from "./routes/resend-newspaper";
 import { Articles } from "./routes/articles";
+import { Newspapers } from "./routes/newspapers";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -31,6 +32,7 @@ AuthShield.applyTo(app);
 app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
 app.get("/articles", AuthShield.verify, bg.Route(Articles));
+app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));
 
 app.post("/add-article", AuthShield.verify, bg.Route(AddArticle));
 app.post(

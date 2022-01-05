@@ -15,20 +15,32 @@ type ArticleUrlType = string;
 type ArticleStatusType = string;
 type ArticleSourceType = string;
 
-type ArticlePayload = { url: ArticleUrlType };
+type ArticlePayloadType = { url: ArticleUrlType };
 
-type Article = {
+type ArticleType = {
   id: ArticleIdType;
   url: ArticleUrlType;
   status: ArticleStatusType;
   source: ArticleSourceType;
 };
 
+type NewspaperIdType = string;
+type NewspaperStatusType = string;
+
+type NewspaperType = {
+  id: NewspaperIdType;
+  status: NewspaperStatusType;
+  number: string;
+  sentAt: number;
+  scheduledAt: number;
+  articles: ArticleType[];
+};
+
 function AddArticleForm() {
   const [url, setUrl] = useState<ArticleUrlType>("");
 
   const addArticleRequest = useMutation(
-    async (article: ArticlePayload) =>
+    async (article: ArticlePayloadType) =>
       fetch("/add-article", {
         method: "POST",
         mode: "same-origin",
@@ -87,7 +99,7 @@ function AddArticleForm() {
 function ArticleList() {
   const articles = useQuery(
     ["articles"],
-    async (): Promise<Article[]> =>
+    async (): Promise<ArticleType[]> =>
       fetch("/articles", {
         method: "GET",
         mode: "same-origin",
@@ -100,7 +112,7 @@ function ArticleList() {
   );
 
   const deleteArticle = useMutation(
-    async (articleId: Article["id"]) =>
+    async (articleId: ArticleType["id"]) =>
       fetch(`/delete-article/${articleId}`, {
         method: "POST",
         mode: "same-origin",
@@ -239,11 +251,192 @@ function ArticleList() {
   );
 }
 
+function NewspaperList() {
+  const newspapers = useQuery(
+    ["newspapers"],
+    async (): Promise<NewspaperType[]> =>
+      fetch("/newspapers", {
+        method: "GET",
+        mode: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+      }).then((response) => (response.ok ? response.json() : [])),
+    { initialData: [] }
+  );
+
+  return (
+    <section data-mt="48">
+      <div
+        data-display="flex"
+        data-cross="center"
+        data-bg="gray-100"
+        data-bw="1"
+        data-bc="gray-200"
+        data-p="12"
+      >
+        <h2 data-fs="16" data-color="gray-800" data-fw="500">
+          Newspapers
+        </h2>
+      </div>
+
+      {newspapers.isSuccess && newspapers.data.length === 0 && (
+        <small data-md-px="12" data-mt="12" data-ml="6">
+          No newspapers added at the moment
+        </small>
+      )}
+
+      <ul style={{ "list-style": "none" }} data-mt="24">
+        {newspapers.isSuccess &&
+          newspapers.data.map((newspaper) => (
+            <li data-display="flex" data-direction="column" data-mb="24">
+              <div data-display="flex" data-cross="center">
+                <strong
+                  data-transform="uppercase"
+                  data-color="gray-600"
+                  data-bg="gray-200"
+                  data-px="6"
+                  data-br="4"
+                  data-ls="1"
+                  data-fs="12"
+                >
+                  {newspaper.status}
+                </strong>
+                <span data-ml="12">Newspaper #{newspaper.number}</span>
+
+                <div data-ml="auto">
+                  {newspaper.status === "delivered" && (
+                    <span data-fs="14" data-color="gray-400" data-mr="6">
+                      Sent at {new Date(newspaper.sentAt).toLocaleString()}
+                    </span>
+                  )}
+
+                  <button
+                    data-status="visible"
+                    class="c-button"
+                    data-variant="bare"
+                  >
+                    <img
+                      height="16"
+                      width="16"
+                      src="/arrow-down-icon.svg"
+                      alt=""
+                    />
+                  </button>
+
+                  <button
+                    data-status="hidden"
+                    class="c-button"
+                    data-variant="bare"
+                  >
+                    <img
+                      height="16"
+                      width="16"
+                      src="/arrow-up-icon.svg"
+                      alt=""
+                    />
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <div data-display="flex" data-mt="12" data-mb="24">
+                  {newspaper.status === "delivered" && (
+                    <form
+                      method="POST"
+                      action={`/archive-newspaper/${newspaper.id}`}
+                      data-mr="24"
+                    >
+                      <button
+                        type="submit"
+                        class="c-button"
+                        data-variant="secondary"
+                      >
+                        Archive
+                      </button>
+                    </form>
+                  )}
+
+                  {["delivered", "error"].includes(newspaper.status) && (
+                    <form
+                      method="POST"
+                      action={`/resend-newspaper/${newspaper.id}`}
+                    >
+                      <button
+                        type="submit"
+                        class="c-button"
+                        data-variant="primary"
+                      >
+                        Resend
+                      </button>
+                    </form>
+                  )}
+
+                  <span
+                    data-fs="14"
+                    data-color="gray-400"
+                    data-ml="auto"
+                    data-mr="6"
+                  >
+                    Scheduled at{" "}
+                    {new Date(newspaper.scheduledAt).toLocaleString()}
+                  </span>
+                </div>
+
+                <ol data-mt="6" data-mb="12" style={{ "list-style": "none" }}>
+                  {newspaper.articles.map((article) => (
+                    <li
+                      data-display="flex"
+                      data-wrap="nowrap"
+                      data-mb="12"
+                      data-max-width="768"
+                    >
+                      <a
+                        data-display="block"
+                        class="c-link"
+                        data-color="gray-600"
+                        href={article.url}
+                        target="_blank"
+                        data-pr="12"
+                        style={{
+                          "white-space": "nowrap",
+                          overflow: "hidden",
+                          "text-overflow": "ellipsis",
+                        }}
+                      >
+                        {article.url}
+                      </a>
+                      <strong
+                        data-transform="uppercase"
+                        data-color="gray-600"
+                        data-bg="gray-200"
+                        data-px="6"
+                        data-br="4"
+                        data-ls="1"
+                        data-fs="12"
+                        data-ml="auto"
+                        data-mr="12"
+                      >
+                        {article.source}
+                      </strong>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </li>
+          ))}
+      </ul>
+    </section>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AddArticleForm />
       <ArticleList />
+      <NewspaperList />
     </QueryClientProvider>
   );
 }
