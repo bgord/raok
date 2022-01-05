@@ -113,4 +113,16 @@ export class Article {
       })
     );
   }
+
+  async markAsProcessed() {
+    if (!this.entity) return;
+
+    await EventRepository.save(
+      Events.ArticleProcessedEvent.parse({
+        name: Events.ARTICLE_PROCESSED_EVENT,
+        version: 1,
+        payload: { articleId: this.id },
+      })
+    );
+  }
 }

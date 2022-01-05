@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EventDraft, Schema } from "@bgord/node";
+import { EventDraft, Schema, sleep } from "@bgord/node";
 import Emittery from "emittery";
 
 import * as VO from "./value-objects";
@@ -147,6 +147,13 @@ emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
   );
 });
 
+emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
+  await ArticleRepository.updateStatus(
+    event.payload.articleId,
+    VO.ArticleStatusEnum.processed
+  );
+});
+
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   await NewspaperRepository.create({
     id: event.payload.id,
@@ -175,13 +182,6 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
-  for (const article of event.payload.articles) {
-    await ArticleRepository.updateStatus(
-      article.id,
-      VO.ArticleStatusEnum.processed
-    );
-  }
-
   await NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.delivered
@@ -191,6 +191,11 @@ emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
     event.payload.newspaperId,
     event.payload.sentAt
   );
+
+  for (const entity of event.payload.articles) {
+    const article = await new Article(entity.id).build();
+    await article.markAsProcessed();
+  }
 
   await Services.NewspaperFile.delete(event.payload.newspaperId);
 });
