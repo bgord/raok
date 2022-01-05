@@ -29,51 +29,44 @@ export class Newspaper {
   }
 
   async build() {
-    const events = await EventRepository.find([
-      Events.NewspaperScheduledEvent,
-      Events.NewspaperGenerateEvent,
-      Events.NewspaperSentEvent,
-      Events.NewspaperArchivedEvent,
-      Events.NewspaperFailedEvent,
-    ]);
+    const events = await EventRepository.find(
+      [
+        Events.NewspaperScheduledEvent,
+        Events.NewspaperGenerateEvent,
+        Events.NewspaperSentEvent,
+        Events.NewspaperArchivedEvent,
+        Events.NewspaperFailedEvent,
+      ],
+      Newspaper.getStream(this.id)
+    );
 
     for (const event of events) {
-      if (
-        event.name === Events.NEWSPAPER_SCHEDULED_EVENT &&
-        event.payload.id === this.id
-      ) {
-        this.articles = event.payload.articles;
-        this.scheduledAt = event.payload.createdAt;
-        this.status = VO.NewspaperStatusEnum.scheduled;
-      }
+      switch (event.name) {
+        case Events.NEWSPAPER_SCHEDULED_EVENT:
+          this.articles = event.payload.articles;
+          this.scheduledAt = event.payload.createdAt;
+          this.status = VO.NewspaperStatusEnum.scheduled;
+          break;
 
-      if (
-        event.name === Events.NEWSPAPER_GENERATED_EVENT &&
-        event.payload.newspaperId === this.id
-      ) {
-        this.status = VO.NewspaperStatusEnum.ready_to_send;
-      }
+        case Events.NEWSPAPER_GENERATED_EVENT:
+          this.status = VO.NewspaperStatusEnum.ready_to_send;
+          break;
 
-      if (
-        event.name === Events.NEWSPAPER_SENT_EVENT &&
-        event.payload.newspaperId === this.id
-      ) {
-        this.status = VO.NewspaperStatusEnum.delivered;
-        this.sentAt = event.payload.sentAt;
-      }
+        case Events.NEWSPAPER_SENT_EVENT:
+          this.status = VO.NewspaperStatusEnum.delivered;
+          this.sentAt = event.payload.sentAt;
+          break;
 
-      if (
-        event.name === Events.NEWSPAPER_ARCHIVED_EVENT &&
-        event.payload.newspaperId === this.id
-      ) {
-        this.status = VO.NewspaperStatusEnum.archived;
-      }
+        case Events.NEWSPAPER_ARCHIVED_EVENT:
+          this.status = VO.NewspaperStatusEnum.archived;
+          break;
 
-      if (
-        event.name === Events.NEWSPAPER_FAILED_EVENT &&
-        event.payload.newspaperId === this.id
-      ) {
-        this.status = VO.NewspaperStatusEnum.error;
+        case Events.NEWSPAPER_FAILED_EVENT:
+          this.status = VO.NewspaperStatusEnum.error;
+          break;
+
+        default:
+          continue;
       }
     }
 
