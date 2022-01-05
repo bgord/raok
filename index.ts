@@ -35,7 +35,6 @@ app.get("/articles", AuthShield.verify, bg.Route(Articles));
 app.post("/add-article", AuthShield.verify, bg.Route(AddArticle));
 app.post(
   "/delete-article/:articleId",
-  bg.CsrfShield.verify,
   AuthShield.verify,
   bg.Route(DeleteArticle)
 );

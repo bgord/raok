@@ -85,7 +85,7 @@ function AddArticleForm() {
 }
 
 function ArticleList() {
-  const state = useQuery(
+  const articles = useQuery(
     ["articles"],
     async (): Promise<Article[]> =>
       fetch("/articles", {
@@ -97,6 +97,19 @@ function ArticleList() {
         redirect: "follow",
       }).then((response) => (response.ok ? response.json() : [])),
     { initialData: [] }
+  );
+
+  const deleteArticle = useMutation(
+    async (articleId: Article["id"]) =>
+      fetch(`/delete-article/${articleId}`, {
+        method: "POST",
+        mode: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+      }),
+    { onSuccess: () => queryClient.invalidateQueries(["articles"]) }
   );
 
   return (
@@ -145,15 +158,15 @@ function ArticleList() {
         </div>
       </div>
 
-      {state.isSuccess && state.data.length === 0 && (
+      {articles.isSuccess && articles.data.length === 0 && (
         <small data-md-px="12" data-mt="12" data-ml="6">
           No articles added at the moment
         </small>
       )}
 
       <ul style={{ "list-style": "none" }} data-mt="24">
-        {state.isSuccess &&
-          state.data.map((article) => (
+        {articles.isSuccess &&
+          articles.data.map((article) => (
             <li
               data-display="flex"
               data-cross="center"
@@ -208,7 +221,13 @@ function ArticleList() {
               >
                 {article.source}
               </strong>
-              <form method="POST" action={`/delete-article/${article.id}`}>
+
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  deleteArticle.mutate(article.id);
+                }}
+              >
                 <button type="submit" class="c-button" data-variant="bare">
                   Delete
                 </button>
