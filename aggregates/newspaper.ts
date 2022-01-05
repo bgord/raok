@@ -11,6 +11,8 @@ import { EventRepository } from "../repositories/event-repository";
 export class Newspaper {
   id: VO.NewspaperType["id"];
 
+  stream: Events.StreamType;
+
   status: VO.NewspaperType["status"] = VO.NewspaperStatusEnum.undetermined;
 
   articles: VO.NewspaperType["articles"] = [];
@@ -23,6 +25,7 @@ export class Newspaper {
 
   constructor(id: VO.NewspaperType["id"]) {
     this.id = id;
+    this.stream = Newspaper.getStream(id);
   }
 
   async build() {
@@ -93,6 +96,7 @@ export class Newspaper {
     await EventRepository.save(
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
+        stream: Newspaper.getStream(newspaperId),
         version: 1,
         payload: {
           id: newspaperId,
@@ -117,6 +121,7 @@ export class Newspaper {
       await EventRepository.save(
         Events.NewspaperGenerateEvent.parse({
           name: Events.NEWSPAPER_GENERATED_EVENT,
+          stream: this.stream,
           version: 1,
           payload: { newspaperId: this.id },
         })
@@ -126,6 +131,7 @@ export class Newspaper {
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
+          stream: this.stream,
           payload: { newspaperId: this.id },
         })
       );
@@ -144,6 +150,7 @@ export class Newspaper {
       await EventRepository.save(
         Events.NewspaperSentEvent.parse({
           name: Events.NEWSPAPER_SENT_EVENT,
+          stream: this.stream,
           version: 1,
           payload: {
             newspaperId: this.id,
@@ -157,6 +164,7 @@ export class Newspaper {
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
+          stream: this.stream,
           payload: { newspaperId: this.id },
         })
       );
@@ -173,6 +181,7 @@ export class Newspaper {
       Events.NewspaperArchivedEvent.parse({
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
+        stream: this.stream,
         payload: { newspaperId: this.id },
       })
     );
@@ -188,8 +197,13 @@ export class Newspaper {
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         version: 1,
+        stream: this.stream,
         payload: { id: this.id, articles: this.articles },
       })
     );
+  }
+
+  static getStream(id: VO.NewspaperIdType) {
+    return `newspaper_${id}`;
   }
 }

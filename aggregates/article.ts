@@ -1,3 +1,5 @@
+import { UUID } from "@bgord/node";
+
 import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
@@ -7,10 +9,13 @@ import { EventRepository } from "../repositories/event-repository";
 export class Article {
   id: VO.ArticleType["id"];
 
+  stream: Events.StreamType;
+
   entity: VO.ArticleType | null = null;
 
   constructor(id: VO.ArticleType["id"]) {
     this.id = id;
+    this.stream = Article.getStream(id);
   }
 
   async build() {
@@ -63,6 +68,7 @@ export class Article {
     source?: VO.ArticleSourceEnum;
   }) {
     const newArticleSource = newArticle.source ?? VO.ArticleSourceEnum.web;
+    const newArticleId = VO.ArticleId.parse(UUID.generate());
 
     if (newArticleSource === VO.ArticleSourceEnum.web) {
       await Policies.NonProcessedArticleUrlIsUnique.perform({
@@ -77,8 +83,10 @@ export class Article {
     await EventRepository.save(
       Events.ArticleAddedEvent.parse({
         name: Events.ARTICLE_ADDED_EVENT,
+        stream: Article.getStream(newArticleId),
         version: 1,
         payload: {
+          id: newArticleId,
           url: newArticle.url,
           source: newArticleSource,
           status: VO.ArticleStatusEnum.ready,
@@ -88,6 +96,8 @@ export class Article {
   }
 
   async delete() {
+    if (!this.entity) return;
+
     await Policies.ArticleShouldExist.perform({ entity: this.entity });
     await Policies.ArticleWasNotProcessed.perform({
       entity: this.entity as VO.ArticleType,
@@ -96,6 +106,7 @@ export class Article {
     await EventRepository.save(
       Events.ArticleDeletedEvent.parse({
         name: Events.ARTICLE_DELETED_EVENT,
+        stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
       })
@@ -113,6 +124,7 @@ export class Article {
     await EventRepository.save(
       Events.ArticleLockedEvent.parse({
         name: Events.ARTICLE_LOCKED_EVENT,
+        stream: this.stream,
         version: 1,
         payload: { articleId: this.id, newspaperId },
       })
@@ -130,9 +142,14 @@ export class Article {
     await EventRepository.save(
       Events.ArticleProcessedEvent.parse({
         name: Events.ARTICLE_PROCESSED_EVENT,
+        stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
       })
     );
+  }
+
+  static getStream(id: VO.ArticleIdType) {
+    return `article_${id}`;
   }
 }

@@ -11,6 +11,7 @@ model Event {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
+  stream    String
   version   Int
   payload   String
 }
