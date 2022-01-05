@@ -1,4 +1,4 @@
-import { h, render } from "preact";
+import { h, render, ComponentChild } from "preact";
 import { useState } from "preact/hooks";
 
 import {
@@ -35,6 +35,21 @@ type NewspaperType = {
   scheduledAt: number;
   articles: ArticleType[];
 };
+
+function Badge(props: { children: ComponentChild }) {
+  return (
+    <strong
+      data-transform="uppercase"
+      data-color="gray-600"
+      data-bg="gray-200"
+      data-px="6"
+      data-br="4"
+      data-ls="1"
+      data-fs="12"
+      {...props}
+    />
+  );
+}
 
 function AddArticleForm() {
   const [url, setUrl] = useState<ArticleUrlType>("");
@@ -176,7 +191,7 @@ function ArticleList() {
         </small>
       )}
 
-      <ul style={{ "list-style": "none" }} data-mt="24">
+      <ul data-mt="24">
         {articles.isSuccess &&
           articles.data.map((article) => (
             <li
@@ -208,31 +223,11 @@ function ArticleList() {
                 {article.url}
               </a>
 
-              <strong
-                data-transform="uppercase"
-                data-color="gray-600"
-                data-bg="gray-200"
-                data-px="6"
-                data-br="4"
-                data-ls="1"
-                data-fs="12"
-                data-ml="auto"
-                data-mr="12"
-              >
+              <Badge dat-ml="auto" data-mr="12">
                 {article.status}
-              </strong>
-              <strong
-                data-transform="uppercase"
-                data-color="gray-600"
-                data-bg="gray-200"
-                data-px="6"
-                data-br="4"
-                data-ls="1"
-                data-fs="12"
-                data-mr="12"
-              >
-                {article.source}
-              </strong>
+              </Badge>
+
+              <Badge data-mr="12">{article.source}</Badge>
 
               <form
                 onSubmit={(event) => {
@@ -287,22 +282,12 @@ function NewspaperList() {
         </small>
       )}
 
-      <ul style={{ "list-style": "none" }} data-mt="24">
+      <ul data-mt="24">
         {newspapers.isSuccess &&
           newspapers.data.map((newspaper) => (
             <li data-display="flex" data-direction="column" data-mb="24">
               <div data-display="flex" data-cross="center">
-                <strong
-                  data-transform="uppercase"
-                  data-color="gray-600"
-                  data-bg="gray-200"
-                  data-px="6"
-                  data-br="4"
-                  data-ls="1"
-                  data-fs="12"
-                >
-                  {newspaper.status}
-                </strong>
+                <Badge>{newspaper.status}</Badge>
                 <span data-ml="12">Newspaper #{newspaper.number}</span>
 
                 <div data-ml="auto">
@@ -384,7 +369,7 @@ function NewspaperList() {
                   </span>
                 </div>
 
-                <ol data-mt="6" data-mb="12" style={{ "list-style": "none" }}>
+                <ol data-mt="6" data-mb="12">
                   {newspaper.articles.map((article) => (
                     <li
                       data-display="flex"
@@ -407,19 +392,10 @@ function NewspaperList() {
                       >
                         {article.url}
                       </a>
-                      <strong
-                        data-transform="uppercase"
-                        data-color="gray-600"
-                        data-bg="gray-200"
-                        data-px="6"
-                        data-br="4"
-                        data-ls="1"
-                        data-fs="12"
-                        data-ml="auto"
-                        data-mr="12"
-                      >
+
+                      <Badge data-ml="auto" data-mr="12">
                         {article.source}
-                      </strong>
+                      </Badge>
                     </li>
                   ))}
                 </ol>
