@@ -25,19 +25,26 @@ type Article = {
 };
 
 function AddArticleForm() {
-  const addArticleRequest = useMutation(async (article: ArticlePayload) =>
-    fetch("/add-article", {
-      method: "POST",
-      mode: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      redirect: "follow",
-      body: JSON.stringify(article),
-    })
-  );
-
   const [url, setUrl] = useState<ArticleUrlType>("");
+
+  const addArticleRequest = useMutation(
+    async (article: ArticlePayload) =>
+      fetch("/add-article", {
+        method: "POST",
+        mode: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        body: JSON.stringify(article),
+      }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["articles"]);
+        setUrl("");
+      },
+    }
+  );
 
   return (
     <form
