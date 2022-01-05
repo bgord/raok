@@ -18,7 +18,7 @@ export class Article {
       Events.ArticleAddedEvent,
       Events.ArticleDeletedEvent,
       Events.ArticleLockedEvent,
-      Events.NewspaperSentEvent,
+      Events.ArticleProcessedEvent,
     ]);
 
     for (const event of events) {
@@ -46,8 +46,8 @@ export class Article {
       }
 
       if (
-        event.name === Events.NEWSPAPER_SENT_EVENT &&
-        event.payload.articles.some((article) => article.id === this.id)
+        event.name === Events.ARTICLE_PROCESSED_EVENT &&
+        this.id === event.payload.articleId
       ) {
         if (this.entity) {
           this.entity.status = VO.ArticleStatusEnum.processed;

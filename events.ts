@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EventDraft, Schema, sleep } from "@bgord/node";
+import { EventDraft, Schema } from "@bgord/node";
 import Emittery from "emittery";
 
 import * as VO from "./value-objects";
