@@ -1,5 +1,11 @@
-import { h, render } from "preact";
+import { h, hydrate } from "preact";
 
-import { App } from "./app";
+import { App, InitialDataType } from "./app";
 
-render(<App />, document.querySelector("#root") as Element);
+// @ts-ignore
+const state = window!.__STATE__;
+
+hydrate(
+  <App {...(state as InitialDataType)} />,
+  document.querySelector("#root") as Element
+);

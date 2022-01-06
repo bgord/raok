@@ -6,9 +6,15 @@ import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
 
+import { StatsType } from "./types";
+
 const queryClient = new QueryClient();
 
-export function App() {
+export type InitialDataType = {
+  stats: StatsType;
+};
+
+export function App(props: InitialDataType) {
   return (
     <QueryClientProvider client={queryClient}>
       <main
@@ -19,7 +25,7 @@ export function App() {
       >
         <section data-grow="1" data-pr="48">
           <AddArticleForm />
-          <Stats />
+          <Stats initialData={props.stats} />
         </section>
 
         <div data-max-width="768" data-width="100%">

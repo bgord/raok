@@ -2,9 +2,12 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 
 import { api } from "./api";
+import { StatsType } from "./types";
 
-export function Stats() {
-  const stats = useQuery(["stats"], api.getStats);
+export function Stats(props: { initialData: StatsType }) {
+  const stats = useQuery(["stats"], api.getStats, {
+    initialData: props.initialData,
+  });
 
   const createdArticles = stats.isSuccess ? stats.data.createdArticles : "-";
 
