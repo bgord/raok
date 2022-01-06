@@ -2,7 +2,9 @@
   <h1 data-fs="20" data-ls="2" data-color="gray-100" data-fw="500">raok</h1>
 
   <div data-display="flex" data-ml="auto" data-mr="72" data-md-mr="24">
-    <strong data-ml="12" data-md-ml="6" data-color="white">{{username}}</strong>
+    <strong data-ml="12" data-md-ml="6" data-color="white">{{
+      username
+    }}</strong>
   </div>
 
   <a
@@ -16,21 +18,5 @@
   </a>
 </header>
 
-<main data-display="flex" data-mx="auto" data-mt="48" style="max-width: 1296px">
-  <section data-grow="1" data-pr="48">
-    <div data-bg="gray-100" data-p="12">
-      <h2 data-fs="16" data-color="gray-800" data-fw="500" data-mb="24">
-        Statistics
-      </h2>
+<div id="root"></div>
 
-      <div data-fs="14" data-color="gray-600">
-        <strong>{{stats.createdArticles}}</strong>
-        created article(s) overall
-      </div>
-    </div>
-  </section>
-
-  <div data-max-width="768" data-width="100%">
-    <div id="root"></div>
-  </div>
-</main>

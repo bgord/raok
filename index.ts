@@ -11,6 +11,7 @@ import { ArchiveNewspaper } from "./routes/archive-newspaper";
 import { ResendNewspaper } from "./routes/resend-newspaper";
 import { Articles } from "./routes/articles";
 import { Newspapers } from "./routes/newspapers";
+import { Stats } from "./routes/stats";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -33,6 +34,7 @@ app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
 app.get("/articles", AuthShield.verify, bg.Route(Articles));
 app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));
+app.get("/stats", AuthShield.verify, bg.Route(Stats));
 
 app.post("/add-article", AuthShield.verify, bg.Route(AddArticle));
 app.post(

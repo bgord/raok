@@ -15,3 +15,7 @@ export type NewspaperType = {
   scheduledAt: number;
   articles: ArticleType[];
 };
+
+export type StatsType = {
+  createdArticles: number;
+};
