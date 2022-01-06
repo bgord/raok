@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "react-query";
 import * as UI from "./ui";
 import { api } from "./api";
 import { NewspaperType } from "./types";
+import { useToggle } from "./hooks";
 
 type NewspaperProps = NewspaperType;
 
@@ -21,10 +22,13 @@ export function Newspaper(props: NewspaperProps) {
     },
   });
 
+  const details = useToggle();
+
   return (
     <li data-display="flex" data-direction="column" data-mb="24">
       <div data-display="flex" data-cross="center">
         <UI.Badge>{props.status}</UI.Badge>
+
         <span data-ml="12">Newspaper #{props.number}</span>
 
         <div data-ml="auto">
@@ -34,17 +38,29 @@ export function Newspaper(props: NewspaperProps) {
             </span>
           )}
 
-          <button data-status="visible" class="c-button" data-variant="bare">
-            <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
-          </button>
+          {details.off && (
+            <button
+              class="c-button"
+              data-variant="bare"
+              onClick={details.toggle}
+            >
+              <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
+            </button>
+          )}
 
-          <button data-status="hidden" class="c-button" data-variant="bare">
-            <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
-          </button>
+          {details.on && (
+            <button
+              class="c-button"
+              data-variant="bare"
+              onClick={details.toggle}
+            >
+              <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
+            </button>
+          )}
         </div>
       </div>
 
-      <div>
+      {details.on && (
         <div data-display="flex" data-mt="12" data-mb="24">
           {props.status === "delivered" && (
             <form
@@ -96,7 +112,7 @@ export function Newspaper(props: NewspaperProps) {
             </li>
           ))}
         </ol>
-      </div>
+      )}
     </li>
   );
 }
