@@ -44,7 +44,7 @@ info "Installed packages"
 
 # ==========================================================
 
-./scripts/staging-frontend-build.sh
+./bgord-scripts/frontend:build.sh
 info "Built frontend"
 
 # ==========================================================
