@@ -1,12 +1,13 @@
-import { h, render, ComponentChild } from "preact";
+import { h, render } from "preact";
 import { useState } from "preact/hooks";
-
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
   useMutation,
 } from "react-query";
+
+import * as UI from "./ui";
 
 const queryClient = new QueryClient();
 
@@ -35,36 +36,6 @@ type NewspaperType = {
   scheduledAt: number;
   articles: ArticleType[];
 };
-
-function Badge(props: { children: ComponentChild }) {
-  return (
-    <strong
-      data-transform="uppercase"
-      data-color="gray-600"
-      data-bg="gray-200"
-      data-px="6"
-      data-br="4"
-      data-ls="1"
-      data-fs="12"
-      {...props}
-    />
-  );
-}
-function Link(props: h.JSX.IntrinsicElements["a"]) {
-  return (
-    <a
-      target="_blank"
-      class="c-link"
-      data-color="gray-700"
-      style={{
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-      }}
-      {...props}
-    />
-  );
-}
 
 function AddArticleForm() {
   const [url, setUrl] = useState<ArticleUrlType>("");
@@ -271,15 +242,15 @@ function ArticleList() {
                 type="checkbox"
                 data-mr="12"
               />
-              <Link href={article.url} data-mr="12">
+              <UI.Link href={article.url} data-mr="12">
                 {article.url}
-              </Link>
+              </UI.Link>
 
-              <Badge dat-ml="auto" data-mr="12">
+              <UI.Badge dat-ml="auto" data-mr="12">
                 {article.status}
-              </Badge>
+              </UI.Badge>
 
-              <Badge data-mr="12">{article.source}</Badge>
+              <UI.Badge data-mr="12">{article.source}</UI.Badge>
 
               <form
                 onSubmit={(event) => {
@@ -370,7 +341,7 @@ function NewspaperList() {
           newspapers.data.map((newspaper) => (
             <li data-display="flex" data-direction="column" data-mb="24">
               <div data-display="flex" data-cross="center">
-                <Badge>{newspaper.status}</Badge>
+                <UI.Badge>{newspaper.status}</UI.Badge>
                 <span data-ml="12">Newspaper #{newspaper.number}</span>
 
                 <div data-ml="auto">
@@ -464,13 +435,13 @@ function NewspaperList() {
                       data-mb="12"
                       data-max-width="768"
                     >
-                      <Link href={article.url} data-pr="12">
+                      <UI.Link href={article.url} data-pr="12">
                         {article.url}
-                      </Link>
+                      </UI.Link>
 
-                      <Badge data-ml="auto" data-mr="12">
+                      <UI.Badge data-ml="auto" data-mr="12">
                         {article.source}
-                      </Badge>
+                      </UI.Badge>
                     </li>
                   ))}
                 </ol>
