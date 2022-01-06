@@ -21,4 +21,5 @@ npx ts-node-dev \
   --notify false \
   --prefer-ts \
   --ignore-watch node_modules \
+  --ignore-watch frontend \
   -- index.ts
