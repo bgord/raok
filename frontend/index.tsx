@@ -18,11 +18,11 @@ function App() {
         style="max-width: 1296px"
       >
         <section data-grow="1" data-pr="48">
+          <AddArticleForm />
           <Stats />
         </section>
 
         <div data-max-width="768" data-width="100%">
-          <AddArticleForm />
           <ArticleList />
           <NewspaperList />
         </div>

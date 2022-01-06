@@ -49,7 +49,7 @@ async function getArticles(): Promise<ArticleType[]> {
 }
 
 async function addArticle(article: ArticlePayloadType) {
-  return fetch("/add-article", {
+  return _api("/add-article", {
     method: "POST",
     body: JSON.stringify(article),
   });
