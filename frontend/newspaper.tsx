@@ -1,5 +1,5 @@
 import { h, Fragment } from "preact";
-import { useMutation, useQueryClient } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 
 import * as UI from "./ui";
 import { api } from "./api";
@@ -24,6 +24,8 @@ export function Newspaper(props: NewspaperProps) {
 
   const details = useToggle();
 
+  useAutoUpdateNewspaper(props, details.setOn);
+
   const sentAt = new Date(props.sentAt).toLocaleString();
   const scheduledAt = new Date(props.scheduledAt).toLocaleString();
 
@@ -32,7 +34,7 @@ export function Newspaper(props: NewspaperProps) {
       <div data-display="flex" data-cross="center">
         <UI.Badge>{props.status}</UI.Badge>
 
-        <span data-ml="12">Newspaper #{props.number}</span>
+        <span data-ml="12">Newspaper #{props.id.split("-")[0]}</span>
 
         <div data-ml="auto">
           {props.status === "delivered" && (
@@ -111,13 +113,36 @@ export function Newspaper(props: NewspaperProps) {
                 {article.url}
               </UI.Link>
 
-              <UI.Badge data-ml="auto" data-mr="12">
-                {article.source}
-              </UI.Badge>
+              <UI.Badge data-ml="auto">{article.source}</UI.Badge>
             </li>
           ))}
         </ol>
       )}
     </li>
   );
+}
+
+function useAutoUpdateNewspaper(
+  props: NewspaperType,
+  callback: VoidFunction = () => {}
+) {
+  const queryClient = useQueryClient();
+
+  useQuery(["newspapers", props.id], () => api.getSingleNewspaper(props.id), {
+    initialData: props,
+    enabled: !["delivered", "archived", "error"].includes(props.status),
+    refetchInterval: 1000,
+    onSuccess(updated) {
+      queryClient.setQueryData<NewspaperType[]>(
+        "newspapers",
+        (newspapers = []) =>
+          newspapers.map((x) => (x.id === updated.id ? updated : x))
+      );
+
+      if (updated.status === "delivered") {
+        queryClient.invalidateQueries(["articles"]);
+        callback();
+      }
+    },
+  });
 }

@@ -12,6 +12,7 @@ export function AddArticleForm() {
   const addArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries(["articles"]);
+      queryClient.invalidateQueries(["stats"]);
       setUrl("");
     },
   });
