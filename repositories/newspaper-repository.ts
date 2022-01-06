@@ -18,7 +18,7 @@ export class NewspaperRepository {
   }
 
   static async getById(newspaperId: VO.NewspaperIdType) {
-    return await prisma.newspaper.findFirst({
+    return prisma.newspaper.findFirst({
       where: { id: newspaperId },
       include: { articles: true },
     });
