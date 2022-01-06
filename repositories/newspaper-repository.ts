@@ -9,14 +9,19 @@ export class NewspaperRepository {
     return (
       await prisma.newspaper.findMany({
         orderBy: { scheduledAt: "desc" },
-        include: {
-          articles: true,
-        },
+        include: { articles: true },
       })
     ).map((newspaper, index, newspapers) => ({
       ...newspaper,
       number: newspapers.length - index,
     }));
+  }
+
+  static async getById(newspaperId: VO.NewspaperIdType) {
+    return await prisma.newspaper.findFirst({
+      where: { id: newspaperId },
+      include: { articles: true },
+    });
   }
 
   static async create(newspaper: {
@@ -27,9 +32,7 @@ export class NewspaperRepository {
     return prisma.newspaper.upsert({
       create: newspaper,
       update: { status: newspaper.status },
-      where: {
-        id: newspaper.id,
-      },
+      where: { id: newspaper.id },
     });
   }
 

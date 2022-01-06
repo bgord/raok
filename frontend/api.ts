@@ -19,6 +19,14 @@ async function getNewspapers(): Promise<NewspaperType[]> {
   );
 }
 
+async function getSingleNewspaper(
+  id: NewspaperType["id"]
+): Promise<NewspaperType> {
+  return _api(`/newspaper/${id}`).then((response) =>
+    response.ok ? response.json() : []
+  );
+}
+
 async function createNewspaper(articleIds: ArticleType["id"][]) {
   return _api("/create-newspaper", {
     method: "POST",
@@ -26,12 +34,12 @@ async function createNewspaper(articleIds: ArticleType["id"][]) {
   });
 }
 
-async function archiveNewspaper(newspaperId: NewspaperType["id"]) {
-  return _api(`/archive-newspaper/${newspaperId}`, { method: "POST" });
+async function archiveNewspaper(id: NewspaperType["id"]) {
+  return _api(`/archive-newspaper/${id}`, { method: "POST" });
 }
 
-async function resendNewspaper(newspaperId: NewspaperType["id"]) {
-  return _api(`/resend-newspaper/${newspaperId}`, { method: "POST" });
+async function resendNewspaper(id: NewspaperType["id"]) {
+  return _api(`/resend-newspaper/${id}`, { method: "POST" });
 }
 
 async function getStats(): Promise<StatsType> {
@@ -61,6 +69,7 @@ async function deleteArticle(articleId: ArticleType["id"]) {
 
 export const api = {
   getNewspapers,
+  getSingleNewspaper,
   createNewspaper,
   archiveNewspaper,
   resendNewspaper,
