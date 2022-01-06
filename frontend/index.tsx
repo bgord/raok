@@ -127,6 +127,10 @@ function AddArticleForm() {
 }
 
 function ArticleList() {
+  const [selectedArticleIds, setSelectedArticleIds] = useState<
+    ArticleType["id"][]
+  >([]);
+
   const articles = useQuery(
     ["articles"],
     async (): Promise<ArticleType[]> =>
@@ -154,6 +158,30 @@ function ArticleList() {
     { onSuccess: () => queryClient.invalidateQueries(["articles"]) }
   );
 
+  function selectAllArticleIds() {
+    if (!articles.isSuccess) return;
+
+    setSelectedArticleIds(articles.data.map((x) => x.id));
+  }
+
+  function deselectAllArticleIds() {
+    setSelectedArticleIds([]);
+  }
+
+  function toggleArticleId(articleId: ArticleType["id"]) {
+    if (isArticleIdSelected(articleId)) {
+      setSelectedArticleIds((articleIds) =>
+        articleIds.filter((x) => x !== articleId)
+      );
+    } else {
+      setSelectedArticleIds((articleIds) => [...articleIds, articleId]);
+    }
+  }
+
+  function isArticleIdSelected(articleId: ArticleType["id"]) {
+    return selectedArticleIds.some((x) => x === articleId);
+  }
+
   return (
     <section>
       <div data-bg="gray-100" data-bw="1" data-bc="gray-200" data-p="12">
@@ -170,7 +198,7 @@ function ArticleList() {
 
         <div data-display="flex" data-mt="24">
           <button
-            id="select-all"
+            onClick={selectAllArticleIds}
             type="button"
             class="c-button"
             data-variant="secondary"
@@ -179,7 +207,7 @@ function ArticleList() {
             Select all
           </button>
           <button
-            id="deselect-all"
+            onClick={deselectAllArticleIds}
             type="button"
             class="c-button"
             data-variant="secondary"
@@ -217,8 +245,8 @@ function ArticleList() {
               data-md-px="6"
             >
               <input
-                id="urls"
-                name={article.id}
+                onClick={() => toggleArticleId(article.id)}
+                checked={isArticleIdSelected(article.id)}
                 class="c-checkbox"
                 type="checkbox"
                 data-mr="12"
