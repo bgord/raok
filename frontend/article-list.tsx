@@ -102,7 +102,7 @@ export function ArticleList() {
                 {article.url}
               </UI.Link>
 
-              <UI.Badge dat-ml="auto" data-mr="12">
+              <UI.Badge data-ml="auto" data-mr="12">
                 {article.status}
               </UI.Badge>
 

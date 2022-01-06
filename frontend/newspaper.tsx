@@ -1,4 +1,4 @@
-import { h } from "preact";
+import { h, Fragment } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 
 import * as UI from "./ui";
@@ -24,6 +24,9 @@ export function Newspaper(props: NewspaperProps) {
 
   const details = useToggle();
 
+  const sentAt = new Date(props.sentAt).toLocaleString();
+  const scheduledAt = new Date(props.scheduledAt).toLocaleString();
+
   return (
     <li data-display="flex" data-direction="column" data-mb="24">
       <div data-display="flex" data-cross="center">
@@ -34,11 +37,11 @@ export function Newspaper(props: NewspaperProps) {
         <div data-ml="auto">
           {props.status === "delivered" && (
             <span data-fs="14" data-color="gray-400" data-mr="6">
-              Sent at {new Date(props.sentAt).toLocaleString()}
+              Sent at {sentAt}
             </span>
           )}
 
-          {details.off && (
+          {details.off && props.status === "delivered" && (
             <button
               class="c-button"
               data-variant="bare"
@@ -48,7 +51,7 @@ export function Newspaper(props: NewspaperProps) {
             </button>
           )}
 
-          {details.on && (
+          {details.on && props.status === "delivered" && (
             <button
               class="c-button"
               data-variant="bare"
@@ -62,38 +65,40 @@ export function Newspaper(props: NewspaperProps) {
 
       {details.on && (
         <div data-display="flex" data-mt="12" data-mb="24">
-          {props.status === "delivered" && (
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                archiveNewspaper.mutate(props.id);
-              }}
-              data-mr="24"
-            >
-              <button type="submit" class="c-button" data-variant="secondary">
-                Archive
-              </button>
-            </form>
-          )}
-
           {["delivered", "error"].includes(props.status) && (
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                resendNewspaper.mutate(props.id);
-              }}
-            >
-              <button type="submit" class="c-button" data-variant="primary">
-                Resend
-              </button>
-            </form>
+            <Fragment>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  archiveNewspaper.mutate(props.id);
+                }}
+                data-mr="24"
+              >
+                <button type="submit" class="c-button" data-variant="secondary">
+                  Archive
+                </button>
+              </form>
+
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  resendNewspaper.mutate(props.id);
+                }}
+              >
+                <button type="submit" class="c-button" data-variant="primary">
+                  Resend
+                </button>
+              </form>
+            </Fragment>
           )}
 
           <span data-fs="14" data-color="gray-400" data-ml="auto" data-mr="6">
-            Scheduled at {new Date(props.scheduledAt).toLocaleString()}
+            Scheduled at {scheduledAt}
           </span>
         </div>
+      )}
 
+      {details.on && props.status === "delivered" && (
         <ol data-mt="6" data-mb="12">
           {props.articles.map((article) => (
             <li
