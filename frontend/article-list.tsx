@@ -108,16 +108,18 @@ export function ArticleList() {
 
               <UI.Badge data-mr="12">{article.source}</UI.Badge>
 
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  deleteArticle.mutate(article.id);
-                }}
-              >
-                <button type="submit" class="c-button" data-variant="bare">
-                  Delete
-                </button>
-              </form>
+              {article.status === "ready" && (
+                <form
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    deleteArticle.mutate(article.id);
+                  }}
+                >
+                  <button type="submit" class="c-button" data-variant="bare">
+                    Delete
+                  </button>
+                </form>
+              )}
             </li>
           ))}
       </ul>
