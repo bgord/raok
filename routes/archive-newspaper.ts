@@ -15,5 +15,5 @@ export async function ArchiveNewspaper(
   const newspaper = await new Newspaper(newspaperId).build();
   await newspaper.archive();
 
-  return response.redirect("/dashboard");
+  return response.send();
 }

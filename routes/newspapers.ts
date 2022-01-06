@@ -1,4 +1,6 @@
 import express from "express";
+
+import * as VO from "../value-objects";
 import { NewspaperRepository } from "../repositories/newspaper-repository";
 
 export async function Newspapers(
@@ -8,5 +10,9 @@ export async function Newspapers(
 ) {
   const newspapers = await NewspaperRepository.getAll();
 
-  return response.send(newspapers);
+  const nonArchivedNewspapers = newspapers.filter(
+    (newspaper) => newspaper.status !== VO.NewspaperStatusEnum.archived
+  );
+
+  return response.send(nonArchivedNewspapers);
 }

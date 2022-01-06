@@ -48,7 +48,6 @@ app.post(
 );
 app.post(
   "/archive-newspaper/:newspaperId",
-  bg.CsrfShield.verify,
   AuthShield.verify,
   bg.Route(ArchiveNewspaper)
 );

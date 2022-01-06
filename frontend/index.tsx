@@ -265,6 +265,19 @@ function NewspaperList() {
     { initialData: [] }
   );
 
+  const archiveNewspaper = useMutation(
+    async (newspaperId: NewspaperType["id"]) =>
+      fetch(`/archive-newspaper/${newspaperId}`, {
+        method: "POST",
+        mode: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+      }),
+    { onSuccess: () => queryClient.invalidateQueries(["newspapers"]) }
+  );
+
   return (
     <section data-mt="48">
       <div
@@ -333,8 +346,10 @@ function NewspaperList() {
                 <div data-display="flex" data-mt="12" data-mb="24">
                   {newspaper.status === "delivered" && (
                     <form
-                      method="POST"
-                      action={`/archive-newspaper/${newspaper.id}`}
+                      onSubmit={(event) => {
+                        event.preventDefault();
+                        archiveNewspaper.mutate(newspaper.id);
+                      }}
                       data-mr="24"
                     >
                       <button
