@@ -158,6 +158,25 @@ function ArticleList() {
     { onSuccess: () => queryClient.invalidateQueries(["articles"]) }
   );
 
+  const createNewspaper = useMutation(
+    async (articleIds: ArticleType["id"][]) =>
+      fetch("/create-newspaper/", {
+        method: "POST",
+        mode: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        body: JSON.stringify({ articleIds }),
+      }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["newspapers"]);
+        queryClient.invalidateQueries(["articles"]);
+      },
+    }
+  );
+
   function selectAllArticleIds() {
     if (!articles.isSuccess) return;
 
@@ -211,15 +230,16 @@ function ArticleList() {
             type="button"
             class="c-button"
             data-variant="secondary"
+            data-mr="auto"
           >
             Deselect all
           </button>
 
           <form
-            id="create-newspaper"
-            method="POST"
-            action="/create-newspaper"
-            data-ml="auto"
+            onSubmit={(event) => {
+              event.preventDefault();
+              createNewspaper.mutate(selectedArticleIds);
+            }}
           >
             <button type="submit" class="c-button" data-variant="primary">
               Create newspaper

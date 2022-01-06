@@ -40,12 +40,7 @@ app.post(
   AuthShield.verify,
   bg.Route(DeleteArticle)
 );
-app.post(
-  "/create-newspaper",
-  bg.CsrfShield.verify,
-  AuthShield.verify,
-  bg.Route(CreateNewspaper)
-);
+app.post("/create-newspaper", AuthShield.verify, bg.Route(CreateNewspaper));
 app.post(
   "/archive-newspaper/:newspaperId",
   AuthShield.verify,
