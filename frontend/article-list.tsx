@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import * as UI from "./ui";
 import { ArticleType } from "./types";
+import { api } from "./api";
 
 export function ArticleList() {
   const queryClient = useQueryClient();
@@ -12,51 +13,18 @@ export function ArticleList() {
     ArticleType["id"][]
   >([]);
 
-  const articles = useQuery(
-    ["articles"],
-    async (): Promise<ArticleType[]> =>
-      fetch("/articles", {
-        method: "GET",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-      }).then((response) => (response.ok ? response.json() : [])),
-    { initialData: [] }
-  );
+  const articles = useQuery(["articles"], api.getArticles, { initialData: [] });
 
-  const deleteArticle = useMutation(
-    async (articleId: ArticleType["id"]) =>
-      fetch(`/delete-article/${articleId}`, {
-        method: "POST",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-      }),
-    { onSuccess: () => queryClient.invalidateQueries(["articles"]) }
-  );
+  const deleteArticle = useMutation(api.deleteArticle, {
+    onSuccess: () => queryClient.invalidateQueries(["articles"]),
+  });
 
-  const createNewspaper = useMutation(
-    async (articleIds: ArticleType["id"][]) =>
-      fetch("/create-newspaper/", {
-        method: "POST",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        body: JSON.stringify({ articleIds }),
-      }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["newspapers"]);
-        queryClient.invalidateQueries(["articles"]);
-      },
-    }
-  );
+  const createNewspaper = useMutation(api.createNewspaper, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["newspapers"]);
+      queryClient.invalidateQueries(["articles"]);
+    },
+  });
 
   function selectAllArticleIds() {
     if (!articles.isSuccess) return;

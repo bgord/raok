@@ -2,55 +2,25 @@ import { h } from "preact";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import * as UI from "./ui";
-import { NewspaperType } from "./types";
+import { api } from "./api";
 
 export function NewspaperList() {
   const queryClient = useQueryClient();
 
-  const newspapers = useQuery(
-    ["newspapers"],
-    async (): Promise<NewspaperType[]> =>
-      fetch("/newspapers", {
-        method: "GET",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-      }).then((response) => (response.ok ? response.json() : [])),
-    { initialData: [] }
-  );
+  const newspapers = useQuery(["newspapers"], api.getNewspapers, {
+    initialData: [],
+  });
 
-  const archiveNewspaper = useMutation(
-    async (newspaperId: NewspaperType["id"]) =>
-      fetch(`/archive-newspaper/${newspaperId}`, {
-        method: "POST",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-      }),
-    { onSuccess: () => queryClient.invalidateQueries(["newspapers"]) }
-  );
+  const archiveNewspaper = useMutation(api.archiveNewspaper, {
+    onSuccess: () => queryClient.invalidateQueries(["newspapers"]),
+  });
 
-  const resendNewspaper = useMutation(
-    async (newspaperId: NewspaperType["id"]) =>
-      fetch(`/resend-newspaper/${newspaperId}`, {
-        method: "POST",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-      }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["newspapers"]);
-        queryClient.invalidateQueries(["articles"]);
-      },
-    }
-  );
+  const resendNewspaper = useMutation(api.resendNewspaper, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["newspapers"]);
+      queryClient.invalidateQueries(["articles"]);
+    },
+  });
 
   return (
     <section data-mt="48">

@@ -2,30 +2,19 @@ import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
 
-import { ArticleType, ArticlePayloadType } from "./types";
+import { ArticleType } from "./types";
+import { api } from "./api";
 
 export function AddArticleForm() {
   const queryClient = useQueryClient();
   const [url, setUrl] = useState<ArticleType["url"]>("");
 
-  const addArticleRequest = useMutation(
-    async (article: ArticlePayloadType) =>
-      fetch("/add-article", {
-        method: "POST",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        body: JSON.stringify(article),
-      }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["articles"]);
-        setUrl("");
-      },
-    }
-  );
+  const addArticleRequest = useMutation(api.addArticle, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["articles"]);
+      setUrl("");
+    },
+  });
 
   return (
     <form

@@ -1,30 +1,12 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
 
-import { StatsType } from "./types";
-
-const defaultStats: StatsType = {
-  createdArticles: 0,
-};
+import { api } from "./api";
 
 export function Stats() {
-  const stats = useQuery(
-    ["stats"],
-    async (): Promise<StatsType> =>
-      fetch("/stats", {
-        method: "GET",
-        mode: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        redirect: "follow",
-      }).then((response) => (response.ok ? response.json() : defaultStats)),
-    { initialData: defaultStats }
-  );
+  const stats = useQuery(["stats"], api.getStats);
 
-  const createdArticles = stats.isSuccess
-    ? stats.data.createdArticles
-    : defaultStats.createdArticles;
+  const createdArticles = stats.isSuccess ? stats.data.createdArticles : "-";
 
   return (
     <div data-bg="gray-100" data-p="12">
