@@ -8,37 +8,12 @@ import {
 } from "react-query";
 
 import * as UI from "./ui";
+import { ArticleType, ArticlePayloadType, NewspaperType } from "./types";
 
 const queryClient = new QueryClient();
 
-type ArticleIdType = string;
-type ArticleUrlType = string;
-type ArticleStatusType = string;
-type ArticleSourceType = string;
-
-type ArticlePayloadType = { url: ArticleUrlType };
-
-type ArticleType = {
-  id: ArticleIdType;
-  url: ArticleUrlType;
-  status: ArticleStatusType;
-  source: ArticleSourceType;
-};
-
-type NewspaperIdType = string;
-type NewspaperStatusType = string;
-
-type NewspaperType = {
-  id: NewspaperIdType;
-  status: NewspaperStatusType;
-  number: string;
-  sentAt: number;
-  scheduledAt: number;
-  articles: ArticleType[];
-};
-
 function AddArticleForm() {
-  const [url, setUrl] = useState<ArticleUrlType>("");
+  const [url, setUrl] = useState<ArticleType["url"]>("");
 
   const addArticleRequest = useMutation(
     async (article: ArticlePayloadType) =>
