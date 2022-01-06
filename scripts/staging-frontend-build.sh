@@ -11,4 +11,4 @@ info "Building frontend..."
 npx esbuild frontend/index.tsx \
   --bundle \
   --minify \
-  --outdir=build/
+  --outdir=static/

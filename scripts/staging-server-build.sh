@@ -44,6 +44,11 @@ info "Installed packages"
 
 # ==========================================================
 
+./scripts/staging-frontend-build.sh
+info "Built frontend"
+
+# ==========================================================
+
 if test -d static
 then
   cp -r static $OUT_DIR
