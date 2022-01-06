@@ -53,7 +53,6 @@ app.post(
 );
 app.post(
   "/resend-newspaper/:newspaperId",
-  bg.CsrfShield.verify,
   AuthShield.verify,
   bg.Route(ResendNewspaper)
 );

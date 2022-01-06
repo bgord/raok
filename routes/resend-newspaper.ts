@@ -13,5 +13,5 @@ export async function ResendNewspaper(
   const newspaper = await new Newspaper(newspaperId).build();
   await newspaper.resend();
 
-  return response.redirect("/dashboard");
+  return response.send();
 }

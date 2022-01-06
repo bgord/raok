@@ -278,6 +278,24 @@ function NewspaperList() {
     { onSuccess: () => queryClient.invalidateQueries(["newspapers"]) }
   );
 
+  const resendNewspaper = useMutation(
+    async (newspaperId: NewspaperType["id"]) =>
+      fetch(`/resend-newspaper/${newspaperId}`, {
+        method: "POST",
+        mode: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+      }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["newspapers"]);
+        queryClient.invalidateQueries(["articles"]);
+      },
+    }
+  );
+
   return (
     <section data-mt="48">
       <div
@@ -364,8 +382,10 @@ function NewspaperList() {
 
                   {["delivered", "error"].includes(newspaper.status) && (
                     <form
-                      method="POST"
-                      action={`/resend-newspaper/${newspaper.id}`}
+                      onSubmit={(event) => {
+                        event.preventDefault();
+                        resendNewspaper.mutate(newspaper.id);
+                      }}
                     >
                       <button
                         type="submit"
