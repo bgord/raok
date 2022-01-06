@@ -1,17 +1,15 @@
 import { h } from "preact";
-import { useState } from "preact/hooks";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import * as UI from "./ui";
 import { ArticleType } from "./types";
 import { api } from "./api";
+import { useList } from "./hooks";
 
 export function ArticleList() {
   const queryClient = useQueryClient();
 
-  const [selectedArticleIds, setSelectedArticleIds] = useState<
-    ArticleType["id"][]
-  >([]);
+  const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
 
   const articles = useQuery(["articles"], api.getArticles, { initialData: [] });
 
@@ -25,30 +23,6 @@ export function ArticleList() {
       queryClient.invalidateQueries(["articles"]);
     },
   });
-
-  function selectAllArticleIds() {
-    if (!articles.isSuccess) return;
-
-    setSelectedArticleIds(articles.data.map((x) => x.id));
-  }
-
-  function deselectAllArticleIds() {
-    setSelectedArticleIds([]);
-  }
-
-  function toggleArticleId(articleId: ArticleType["id"]) {
-    if (isArticleIdSelected(articleId)) {
-      setSelectedArticleIds((articleIds) =>
-        articleIds.filter((x) => x !== articleId)
-      );
-    } else {
-      setSelectedArticleIds((articleIds) => [...articleIds, articleId]);
-    }
-  }
-
-  function isArticleIdSelected(articleId: ArticleType["id"]) {
-    return selectedArticleIds.some((x) => x === articleId);
-  }
 
   return (
     <section>
@@ -66,7 +40,11 @@ export function ArticleList() {
 
         <div data-display="flex" data-mt="24">
           <button
-            onClick={selectAllArticleIds}
+            onClick={() =>
+              actions.add(
+                articles.isSuccess ? articles.data.map((x) => x.id) : []
+              )
+            }
             type="button"
             class="c-button"
             data-variant="secondary"
@@ -75,7 +53,7 @@ export function ArticleList() {
             Select all
           </button>
           <button
-            onClick={deselectAllArticleIds}
+            onClick={actions.clear}
             type="button"
             class="c-button"
             data-variant="secondary"
@@ -114,8 +92,8 @@ export function ArticleList() {
               data-md-px="6"
             >
               <input
-                onClick={() => toggleArticleId(article.id)}
-                checked={isArticleIdSelected(article.id)}
+                onClick={() => actions.toggle(article.id)}
+                checked={actions.isAdded(article.id)}
                 class="c-checkbox"
                 type="checkbox"
                 data-mr="12"
