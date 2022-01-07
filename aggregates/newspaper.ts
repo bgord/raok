@@ -78,11 +78,15 @@ export class Newspaper {
       from: VO.NewspaperStatusEnum.undetermined,
       to: VO.NewspaperStatusEnum.scheduled,
     });
-    await Policies.ArticlesAreSendable.perform({ articles });
+
+    await Policies.NoEmptyNewspaper.perform({ articles });
+
     await Policies.MaximumNewspaperArticleNumber.perform({
       articles,
       max: Newspaper.MAX_NUMBER_OF_ARTICLES,
     });
+
+    await Policies.ArticlesAreSendable.perform({ articles });
 
     const newspaperId = VO.NewspaperId.parse(UUID.generate());
 

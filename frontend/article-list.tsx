@@ -4,12 +4,13 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import * as UI from "./ui";
 import { ArticleType } from "./types";
 import { api } from "./api";
-import { useList } from "./hooks";
+import { useList, useToggle } from "./hooks";
 
 export function ArticleList() {
   const queryClient = useQueryClient();
 
   const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
+  const emptyNewspaperError = useToggle();
 
   const articles = useQuery(["articles"], api.getArticles, { initialData: [] });
 
@@ -38,7 +39,7 @@ export function ArticleList() {
           Articles
         </h2>
 
-        <div data-display="flex" data-mt="24">
+        <div data-display="flex" data-cross="baseline" data-mt="24">
           <button
             onClick={() =>
               actions.add(
@@ -62,9 +63,23 @@ export function ArticleList() {
             Deselect all
           </button>
 
+          {emptyNewspaperError.on && (
+            <div data-mr="12" data-fs="14">
+              Select at least one article
+            </div>
+          )}
+
           <form
             onSubmit={(event) => {
               event.preventDefault();
+
+              if (selectedArticleIds.length === 0) {
+                emptyNewspaperError.setOn();
+                return;
+              } else {
+                emptyNewspaperError.setOff();
+              }
+
               createNewspaper.mutate(selectedArticleIds);
             }}
           >
@@ -77,7 +92,7 @@ export function ArticleList() {
 
       {articles.isSuccess && articles.data.length === 0 && (
         <small data-md-px="12" data-mt="12" data-ml="6">
-          No articles added at the moment
+          No articles available at the moment
         </small>
       )}
 

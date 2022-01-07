@@ -6,3 +6,4 @@ export * from "./article-url-is-unique";
 export * from "./article-status-transition";
 export * from "./maximum-newspaper-article-number";
 export * from "./newspaper-status-transition";
+export * from "./no-empty-newspaper";
