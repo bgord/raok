@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
 
+import { Header } from "./ui";
 import { api } from "./api";
 import { NewspaperType } from "./types";
 
@@ -11,18 +12,9 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
 
   return (
     <section data-mt="48">
-      <div
-        data-display="flex"
-        data-cross="center"
-        data-bg="gray-100"
-        data-bw="1"
-        data-bc="gray-200"
-        data-p="12"
-      >
-        <h2 data-fs="16" data-color="gray-800" data-fw="500">
-          Newspapers
-        </h2>
-      </div>
+      <Header data-bg="gray-100" data-bw="1" data-bc="gray-200" data-p="12">
+        Newspapers
+      </Header>
 
       {newspapers.isSuccess && newspapers.data.length === 0 && (
         <small data-md-px="12" data-mt="12" data-ml="6">

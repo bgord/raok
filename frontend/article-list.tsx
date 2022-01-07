@@ -28,16 +28,9 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   return (
     <section>
       <div data-bg="gray-100" data-bw="1" data-bc="gray-200" data-p="12">
-        <h2
-          data-fs="16"
-          data-color="gray-800"
-          data-fw="500"
-          data-bw="2"
-          data-bcb="gray-200"
-          data-pb="6"
-        >
+        <UI.Header data-bw="2" data-bcb="gray-200" data-pb="6">
           Articles
-        </h2>
+        </UI.Header>
 
         <div data-display="flex" data-cross="baseline" data-mt="24">
           <button

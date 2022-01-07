@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export class NewspaperRepository {
   static async getAllNonArchived() {
-    return await prisma.newspaper.findMany({
+    return prisma.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { scheduledAt: "desc" },
       include: { articles: true },
