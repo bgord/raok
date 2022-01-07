@@ -26,7 +26,7 @@ export function Newspaper(props: NewspaperProps) {
 
   useAutoUpdateNewspaper(props, details.setOn);
 
-  const sentAt = new Date(props.sentAt).toLocaleString();
+  const sentAt = props.sentAt ? new Date(props.sentAt).toLocaleString() : "-";
   const scheduledAt = new Date(props.scheduledAt).toLocaleString();
 
   return (

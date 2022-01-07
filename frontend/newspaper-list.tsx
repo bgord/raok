@@ -2,12 +2,12 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 
 import { api } from "./api";
+import { NewspaperType } from "./types";
+
 import { Newspaper } from "./newspaper";
 
-export function NewspaperList() {
-  const newspapers = useQuery(["newspapers"], api.getNewspapers, {
-    initialData: [],
-  });
+export function NewspaperList(props: { initialData: NewspaperType[] }) {
+  const newspapers = useQuery(["newspapers"], api.getNewspapers, props);
 
   return (
     <section data-mt="48">

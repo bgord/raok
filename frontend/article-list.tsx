@@ -12,9 +12,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
   const emptyNewspaperError = useToggle();
 
-  const articles = useQuery(["articles"], api.getArticles, {
-    initialData: props.initialData,
-  });
+  const articles = useQuery(["articles"], api.getArticles, props);
 
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => queryClient.invalidateQueries(["articles"]),

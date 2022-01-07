@@ -6,13 +6,14 @@ import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
 
-import { StatsType, ArticleType } from "./types";
+import { StatsType, ArticleType, NewspaperType } from "./types";
 
 const queryClient = new QueryClient();
 
 export type InitialDataType = {
   stats: StatsType;
   articles: ArticleType[];
+  newspapers: NewspaperType[];
 };
 
 export function App(props: InitialDataType) {
@@ -31,7 +32,7 @@ export function App(props: InitialDataType) {
 
         <div data-max-width="768" data-width="100%">
           <ArticleList initialData={props.articles} />
-          <NewspaperList />
+          <NewspaperList initialData={props.newspapers} />
         </div>
       </main>
     </QueryClientProvider>

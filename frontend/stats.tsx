@@ -5,9 +5,7 @@ import { api } from "./api";
 import { StatsType } from "./types";
 
 export function Stats(props: { initialData: StatsType }) {
-  const stats = useQuery(["stats"], api.getStats, {
-    initialData: props.initialData,
-  });
+  const stats = useQuery(["stats"], api.getStats, props);
 
   const createdArticles = stats.isSuccess ? stats.data.createdArticles : "-";
 
