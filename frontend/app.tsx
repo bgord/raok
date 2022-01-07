@@ -5,6 +5,7 @@ import { AddArticleForm } from "./add-article-form";
 import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
+import { SendArbitraryFile } from "./send-arbitrary-file";
 
 import { StatsType, ArticleType, NewspaperType } from "./types";
 
@@ -28,6 +29,7 @@ export function App(props: InitialDataType) {
         <section data-grow="1" data-pr="48">
           <AddArticleForm />
           <Stats initialData={props.stats} />
+          <SendArbitraryFile />
         </section>
 
         <div data-max-width="768" data-width="100%">
