@@ -77,7 +77,7 @@ export function Newspaper(props: NewspaperProps) {
       </div>
 
       {details.on && (
-        <div data-display="flex" data-mt="12" data-mb="24" data-p="12">
+        <div data-display="flex" data-mt="12" data-mb="24" data-px="12">
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
               <form
