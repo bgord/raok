@@ -30,7 +30,15 @@ export function Newspaper(props: NewspaperProps) {
   const scheduledAt = new Date(props.scheduledAt).toLocaleString();
 
   return (
-    <li data-display="flex" data-direction="column" data-mb="24">
+    <li
+      data-display="flex"
+      data-direction="column"
+      data-mb="24"
+      data-p={details.on ? "12" : "6"}
+      data-pb="0"
+      data-bc={details.on && "gray-200"}
+      data-bw="1"
+    >
       <div data-display="flex" data-cross="center">
         <UI.Badge>{props.status}</UI.Badge>
 
