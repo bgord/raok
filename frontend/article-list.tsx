@@ -6,13 +6,15 @@ import { ArticleType } from "./types";
 import { api } from "./api";
 import { useList, useToggle } from "./hooks";
 
-export function ArticleList() {
+export function ArticleList(props: { initialData: ArticleType[] }) {
   const queryClient = useQueryClient();
 
   const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
   const emptyNewspaperError = useToggle();
 
-  const articles = useQuery(["articles"], api.getArticles, { initialData: [] });
+  const articles = useQuery(["articles"], api.getArticles, {
+    initialData: props.initialData,
+  });
 
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => queryClient.invalidateQueries(["articles"]),

@@ -2,6 +2,7 @@ import express from "express";
 import render from "preact-render-to-string";
 import serialize from "serialize-javascript";
 
+import { ArticleRepository } from "../repositories/article-repository";
 import { StatsRepository } from "../repositories/stats-repository";
 
 import { App } from "../frontend/app";
@@ -83,9 +84,10 @@ export async function Dashboard(
   response: express.Response,
   _next: express.NextFunction
 ) {
+  const articles = await ArticleRepository.getAllNonProcessed();
   const stats = await StatsRepository.getAll();
 
-  const initialData = { stats };
+  const initialData = { stats, articles };
   const app = render(App(initialData));
 
   return response.send(
