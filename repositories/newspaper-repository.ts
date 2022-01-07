@@ -6,16 +6,11 @@ const prisma = new PrismaClient();
 
 export class NewspaperRepository {
   static async getAllNonArchived() {
-    return (
-      await prisma.newspaper.findMany({
-        where: { status: { not: VO.NewspaperStatusEnum.archived } },
-        orderBy: { scheduledAt: "desc" },
-        include: { articles: true },
-      })
-    ).map((newspaper, index, newspapers) => ({
-      ...newspaper,
-      number: newspapers.length - index,
-    }));
+    return await prisma.newspaper.findMany({
+      where: { status: { not: VO.NewspaperStatusEnum.archived } },
+      orderBy: { scheduledAt: "desc" },
+      include: { articles: true },
+    });
   }
 
   static async getById(newspaperId: VO.NewspaperIdType) {

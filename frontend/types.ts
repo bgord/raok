@@ -10,7 +10,6 @@ export type ArticlePayloadType = { url: ArticleType["url"] };
 export type NewspaperType = {
   id: string;
   status: string;
-  number: number;
   sentAt: number | null;
   scheduledAt: number;
   articles: ArticleType[];
