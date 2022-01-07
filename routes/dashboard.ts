@@ -86,7 +86,7 @@ export async function Dashboard(
   _next: express.NextFunction
 ) {
   const articles = await ArticleRepository.getAllNonProcessed();
-  const newspapers = await NewspaperRepository.getAll();
+  const newspapers = await NewspaperRepository.getAllNonArchived();
   const stats = await StatsRepository.getAll();
 
   const initialData = { stats, articles, newspapers };
