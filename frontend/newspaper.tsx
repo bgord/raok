@@ -34,12 +34,15 @@ export function Newspaper(props: NewspaperProps) {
       data-display="flex"
       data-direction="column"
       data-mb="24"
-      data-p={details.on ? "12" : "6"}
       data-pb="0"
       data-bc={details.on && "gray-200"}
       data-bw="1"
     >
-      <div data-display="flex" data-cross="center">
+      <div
+        data-display="flex"
+        data-cross="center"
+        data-p={details.on ? "12" : "0"}
+      >
         <UI.Badge>{props.status}</UI.Badge>
 
         <span data-ml="12">Newspaper #{props.id.split("-")[0]}</span>
@@ -74,7 +77,7 @@ export function Newspaper(props: NewspaperProps) {
       </div>
 
       {details.on && (
-        <div data-display="flex" data-mt="12" data-mb="24">
+        <div data-display="flex" data-mt="12" data-mb="24" data-p="12">
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
               <form
@@ -116,6 +119,7 @@ export function Newspaper(props: NewspaperProps) {
               data-wrap="nowrap"
               data-mb="12"
               data-max-width="768"
+              data-px="12"
             >
               <UI.Link href={article.url} data-pr="12">
                 {article.url}
