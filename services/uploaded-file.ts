@@ -8,7 +8,7 @@ export class UploadedFile {
     this.file = Schema.UploadedFile.parse(uploadedFile);
   }
 
-  async delete(path: Schema.UploadedFileType["path"]) {
-    return fs.unlink(path);
+  async delete() {
+    return fs.unlink(this.file.path);
   }
 }

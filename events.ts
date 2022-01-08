@@ -235,9 +235,11 @@ emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
 emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   try {
     await Services.ArbitraryFileSender.send(event.payload);
-    Reporter.success(`File sent [name=${event.payload.originalFilename} ]`);
+    Reporter.success(`File sent [name=${event.payload.originalFilename}]`);
   } catch (error) {
     Reporter.raw("Mailer error", error);
-    Reporter.error(`File not sent [name=${event.payload.originalFilename} ]`);
+    Reporter.error(`File not sent [name=${event.payload.originalFilename}]`);
+  } finally {
+    await new Services.UploadedFile(event.payload).delete();
   }
 });
