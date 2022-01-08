@@ -13,6 +13,7 @@ import { Articles } from "./routes/articles";
 import { Newspapers } from "./routes/newspapers";
 import { SingleNewspaper } from "./routes/single-newspaper";
 import { Stats } from "./routes/stats";
+import { SendArbitraryFile } from "./routes/send-arbitrary-file";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -62,6 +63,11 @@ app.post(
   "/resend-newspaper/:newspaperId",
   AuthShield.verify,
   bg.Route(ResendNewspaper)
+);
+app.post(
+  "/send-arbitrary-file",
+  AuthShield.verify,
+  bg.Route(SendArbitraryFile)
 );
 
 app.post(
