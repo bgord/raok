@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EventDraft as _EventDraft, Schema } from "@bgord/node";
+import { EventDraft as _EventDraft, Schema, Reporter } from "@bgord/node";
 import Emittery from "emittery";
 
 import * as VO from "./value-objects";
@@ -232,4 +232,12 @@ emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
   );
 });
 
-emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {});
+emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
+  try {
+    await Services.ArbitraryFileSender.send(event.payload);
+    Reporter.success(`File sent [name=${event.payload.originalFilename} ]`);
+  } catch (error) {
+    Reporter.raw("Mailer error", error);
+    Reporter.error(`File not sent [name=${event.payload.originalFilename} ]`);
+  }
+});
