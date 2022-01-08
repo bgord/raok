@@ -31,6 +31,7 @@ bg.addExpressEssentials(app, {
     contentSecurityPolicy: false,
   },
 });
+
 new bg.Handlebars().applyTo(app);
 new bg.Session({ secret: Env.COOKIE_SECRET }).applyTo(app);
 
@@ -67,6 +68,7 @@ app.post(
 app.post(
   "/send-arbitrary-file",
   AuthShield.verify,
+  ...new bg.FileUploader({ autoClean: false }).handle(),
   bg.Route(SendArbitraryFile)
 );
 

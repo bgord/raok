@@ -68,7 +68,7 @@ async function deleteArticle(articleId: ArticleType["id"]) {
 }
 
 async function sendArbitraryFile(form: FormData) {
-  return _api("/send-arbitrary-file", {
+  return fetch("/send-arbitrary-file", {
     method: "POST",
     body: form,
   });
