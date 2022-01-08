@@ -9,6 +9,7 @@ export function Stats(props: { initialData: StatsType }) {
   const stats = useQuery(["stats"], api.getStats, props);
 
   const createdArticles = stats.isSuccess ? stats.data.createdArticles : "-";
+  const sentNewspapers = stats.isSuccess ? stats.data.sentNewspapers : "-";
 
   return (
     <div data-bg="gray-100" data-p="12">
@@ -17,6 +18,11 @@ export function Stats(props: { initialData: StatsType }) {
       <div data-fs="14" data-color="gray-600">
         <strong>{createdArticles} </strong>
         created article(s) overall
+      </div>
+
+      <div data-fs="14" data-color="gray-600" data-mt="12">
+        <strong>{sentNewspapers} </strong>
+        sent newspapers(s) overall
       </div>
     </div>
   );

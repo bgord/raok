@@ -200,6 +200,8 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
+  await StatsRepository.incrementSentNewspapers();
+
   await NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.delivered

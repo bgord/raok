@@ -19,6 +19,7 @@ export function Newspaper(props: NewspaperProps) {
     onSuccess: () => {
       queryClient.invalidateQueries(["newspapers"]);
       queryClient.invalidateQueries(["articles"]);
+      queryClient.invalidateQueries(["stats"]);
     },
   });
 
