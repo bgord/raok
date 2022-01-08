@@ -4,6 +4,8 @@ export * from "./article-url";
 export * from "./article-source";
 export * from "./article-status";
 export * from "./article-content";
+
+export * from "./article-metatags";
 export * from "./article-title";
 export * from "./article-description";
 export * from "./article-image";
