@@ -67,6 +67,13 @@ async function deleteArticle(articleId: ArticleType["id"]) {
   return _api(`/delete-article/${articleId}`, { method: "POST" });
 }
 
+async function sendArbitraryFile(form: FormData) {
+  return _api("/send-arbitrary-file", {
+    method: "POST",
+    body: form,
+  });
+}
+
 export const api = {
   getNewspapers,
   getSingleNewspaper,
@@ -77,4 +84,5 @@ export const api = {
   getArticles,
   addArticle,
   deleteArticle,
+  sendArbitraryFile,
 };

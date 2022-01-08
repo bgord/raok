@@ -1,5 +1,7 @@
 import { h, Fragment } from "preact";
+import { useMutation } from "react-query";
 
+import { api } from "./api";
 import { Header } from "./ui";
 import { useFile, UseFileState } from "./hooks";
 
@@ -13,6 +15,7 @@ const style = {
 };
 
 export function SendArbitraryFile() {
+  const fileUpload = useMutation(api.sendArbitraryFile);
   const file = useFile();
 
   return (
@@ -27,6 +30,8 @@ export function SendArbitraryFile() {
 
         const form = new FormData();
         form.append("file", file.data);
+
+        fileUpload.mutate(form);
       }}
     >
       <Header data-mb="24">Send arbitrary file</Header>
