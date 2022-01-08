@@ -117,6 +117,18 @@ export const NewspaperFailedEvent = EventDraft.merge(
 );
 export type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;
 
+export const ARBITRARY_FILE_SCHEDULED_EVENT = "ARBITRARY_FILE_SCHEDULED_EVENT";
+export const ArbitraryFileScheduledEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(ARBITRARY_FILE_SCHEDULED_EVENT),
+    version: z.literal(1),
+    payload: Schema.UploadedFile,
+  })
+);
+export type ArbitraryFileScheduledEventType = z.infer<
+  typeof ArbitraryFileScheduledEvent
+>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
@@ -129,6 +141,7 @@ export const emittery = new Emittery<{
   NEWSPAPER_SENT_EVENT: NewspaperSentEventType;
   NEWSPAPER_ARCHIVED_EVENT: NewspaperArchivedEventType;
   NEWSPAPER_FAILED_EVENT: NewspaperFailedEventType;
+  ARBITRARY_FILE_SCHEDULED_EVENT: ArbitraryFileScheduledEventType;
 }>();
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
@@ -218,3 +231,5 @@ emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
     VO.NewspaperStatusEnum.error
   );
 });
+
+emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {});
