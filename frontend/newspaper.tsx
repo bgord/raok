@@ -79,7 +79,7 @@ export function Newspaper(props: NewspaperProps) {
           data-mt="12"
           data-mb="24"
           data-px="12"
-          {...details.toggle}
+          {...details.props}
         >
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
@@ -99,6 +99,7 @@ export function Newspaper(props: NewspaperProps) {
                 onSubmit={(event) => {
                   event.preventDefault();
                   resendNewspaper.mutate(props.id);
+                  details.actions.hide();
                 }}
               >
                 <button type="submit" class="c-button" data-variant="primary">
@@ -115,7 +116,7 @@ export function Newspaper(props: NewspaperProps) {
       )}
 
       {details.state !== "hidden" && (
-        <ol data-mt="6" data-mb="12" {...details.toggle}>
+        <ol data-mt="6" data-mb="12" {...details.props}>
           {props.articles.map((article) => (
             <li
               data-display="flex"

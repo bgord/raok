@@ -146,6 +146,6 @@ export function useAnimatiedToggle(
   return {
     state,
     actions: { show, hide, toggle },
-    toggle: { "data-toggle": state },
+    props: { "data-toggle": state },
   };
 }
