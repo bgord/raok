@@ -27,4 +27,6 @@ npx ts-node-dev \
   --prefer-ts \
   --ignore-watch node_modules \
   --ignore-watch frontend \
+  --exit-child \
+  --transpile-only \
   -- index.ts
