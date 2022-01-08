@@ -9,8 +9,6 @@ const style = {
   width: "0.1px",
   height: "0.1px",
   opacity: "0",
-  overflow: "hidden",
-  position: "absolute",
   zIndex: "-1",
 };
 
@@ -44,6 +42,8 @@ export function SendArbitraryFile() {
         accept=".txt,.html,.epub,.mobi"
         type="file"
         onInput={file.actions.selectFile}
+        data-overflow="hidden"
+        data-position="absolute"
         style={style}
       />
 
@@ -94,11 +94,8 @@ export function SendArbitraryFile() {
           data-pr="12"
           data-fs="14"
           data-color="gray-600"
-          style={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
+          data-overflow="hidden"
+          style={{ whiteSpace: "nowrap", textOverflow: "ellipsis" }}
         >
           <strong data-color="gray-500">Selected file: </strong>
           {file.data.name}

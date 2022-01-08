@@ -111,16 +111,13 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
                 data-display="flex"
                 data-direction="column"
                 data-mr="12"
-                style={{ overflow: "hidden" }}
+                data-overflow="hidden"
               >
                 <div
                   data-mb="6"
                   data-width="100%"
-                  style={{
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
+                  data-overflow="hidden"
+                  style={{ whiteSpace: "nowrap", textOverflow: "ellipsis" }}
                 >
                   {article.title ?? "-"}
                 </div>
