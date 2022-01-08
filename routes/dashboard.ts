@@ -37,6 +37,25 @@ function Html(content: string, username: string, state: string) {
         />
         <link rel="manifest" href="/site.webmanifest" />
 
+        <style>
+          *[data-toggle="appearing"] {
+            opacity: 0;
+          }
+          *[data-toggle="appeared"] {
+            opacity: 1;
+            transition: opacity 660ms;
+          }
+          *[data-toggle="hidding"] {
+            opacity: 0;
+            transition: opacity 330ms;
+          }
+          *[data-toggle="hidden"] {
+            display: none;
+            opacity: 0;
+            transition: opacity 330ms;
+          }
+        </style>
+
         <title>RAOK - read articles on Kindle</title>
       </head>
 

@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as UI from "./ui";
 import { api } from "./api";
 import { NewspaperType } from "./types";
-import { useToggle } from "./hooks";
+import { useAnimatiedToggle } from "./hooks";
 
 type NewspaperProps = NewspaperType;
 
@@ -22,9 +22,9 @@ export function Newspaper(props: NewspaperProps) {
     },
   });
 
-  const details = useToggle();
+  const details = useAnimatiedToggle();
 
-  useAutoUpdateNewspaper(props, details.setOn);
+  useAutoUpdateNewspaper(props, details.actions.show);
 
   const sentAt = props.sentAt ? new Date(props.sentAt).toLocaleString() : "-";
   const scheduledAt = new Date(props.scheduledAt).toLocaleString();
@@ -35,13 +35,13 @@ export function Newspaper(props: NewspaperProps) {
       data-direction="column"
       data-mb="24"
       data-pb="0"
-      data-bc={details.on && "gray-200"}
+      data-bc={details.state !== "hidden" && "gray-200"}
       data-bw="1"
     >
       <div
         data-display="flex"
         data-cross="center"
-        data-p={details.on ? "12" : "0"}
+        data-p={details.state !== "hidden" ? "12" : "0"}
       >
         <UI.Badge>{props.status}</UI.Badge>
 
@@ -54,30 +54,38 @@ export function Newspaper(props: NewspaperProps) {
             </span>
           )}
 
-          {details.off && props.status === "delivered" && (
-            <button
-              class="c-button"
-              data-variant="bare"
-              onClick={details.toggle}
-            >
-              <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
-            </button>
-          )}
+          {["hidden", "hidding"].includes(details.state) &&
+            props.status === "delivered" && (
+              <button
+                class="c-button"
+                data-variant="bare"
+                onClick={details.actions.show}
+              >
+                <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
+              </button>
+            )}
 
-          {details.on && props.status === "delivered" && (
-            <button
-              class="c-button"
-              data-variant="bare"
-              onClick={details.toggle}
-            >
-              <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
-            </button>
-          )}
+          {["appeared", "appearing"].includes(details.state) &&
+            props.status === "delivered" && (
+              <button
+                class="c-button"
+                data-variant="bare"
+                onClick={details.actions.hide}
+              >
+                <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
+              </button>
+            )}
         </div>
       </div>
 
-      {details.on && (
-        <div data-display="flex" data-mt="12" data-mb="24" data-px="12">
+      {details.state !== "hidden" && (
+        <div
+          data-display="flex"
+          data-mt="12"
+          data-mb="24"
+          data-px="12"
+          {...details.toggle}
+        >
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
               <form
@@ -111,8 +119,8 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       )}
 
-      {details.on && props.status === "delivered" && (
-        <ol data-mt="6" data-mb="12">
+      {details.state !== "hidden" && (
+        <ol data-mt="6" data-mb="12" {...details.toggle}>
           {props.articles.map((article) => (
             <li
               data-display="flex"
