@@ -54,27 +54,21 @@ export function Newspaper(props: NewspaperProps) {
             </span>
           )}
 
-          {["hidden", "hidding"].includes(details.state) &&
-            props.status === "delivered" && (
-              <button
-                class="c-button"
-                data-variant="bare"
-                onClick={details.actions.show}
-              >
+          {props.status === "delivered" && (
+            <button
+              class="c-button"
+              data-variant="bare"
+              onClick={details.actions.toggle}
+            >
+              {["hidden", "appearing"].includes(details.state) && (
                 <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
-              </button>
-            )}
+              )}
 
-          {["appeared", "appearing"].includes(details.state) &&
-            props.status === "delivered" && (
-              <button
-                class="c-button"
-                data-variant="bare"
-                onClick={details.actions.hide}
-              >
+              {["appeared", "hidding"].includes(details.state) && (
                 <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
-              </button>
-            )}
+              )}
+            </button>
+          )}
         </div>
       </div>
 

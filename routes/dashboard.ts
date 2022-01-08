@@ -43,16 +43,16 @@ function Html(content: string, username: string, state: string) {
           }
           *[data-toggle="appeared"] {
             opacity: 1;
-            transition: opacity 660ms;
+            transition: opacity 440ms;
           }
           *[data-toggle="hidding"] {
             opacity: 0;
-            transition: opacity 330ms;
+            transition: opacity 220ms;
           }
           *[data-toggle="hidden"] {
             display: none;
             opacity: 0;
-            transition: opacity 330ms;
+            transition: opacity 220ms;
           }
         </style>
 

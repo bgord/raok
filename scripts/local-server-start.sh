@@ -29,4 +29,5 @@ npx ts-node-dev \
   --ignore-watch frontend \
   --exit-child \
   --transpile-only \
+  --rs \
   -- index.ts

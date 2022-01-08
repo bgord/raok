@@ -105,8 +105,12 @@ export enum AnimatedToggleState {
   hidden = "hidden",
 }
 
-export function useAnimatiedToggle(defaultState = AnimatedToggleState.hidden) {
-  const [state, setState] = useState<AnimatedToggleState>(defaultState);
+const defaultConfig = { default: AnimatedToggleState.hidden, delay: 220 };
+
+export function useAnimatiedToggle(
+  config: { default: AnimatedToggleState; delay: number } = defaultConfig
+) {
+  const [state, setState] = useState<AnimatedToggleState>(config.default);
 
   function show() {
     setState(AnimatedToggleState.appearing);
@@ -116,12 +120,20 @@ export function useAnimatiedToggle(defaultState = AnimatedToggleState.hidden) {
     setState(AnimatedToggleState.hidding);
   }
 
+  function toggle() {
+    if (state === AnimatedToggleState.appeared) hide();
+    else show();
+  }
+
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> =
       null as unknown as ReturnType<typeof setTimeout>;
 
     if (state === AnimatedToggleState.hidding) {
-      timeoutId = setTimeout(() => setState(AnimatedToggleState.hidden), 330);
+      timeoutId = setTimeout(
+        () => setState(AnimatedToggleState.hidden),
+        config.delay
+      );
     }
 
     if (state === AnimatedToggleState.appearing) {
@@ -131,5 +143,9 @@ export function useAnimatiedToggle(defaultState = AnimatedToggleState.hidden) {
     return () => clearTimeout(timeoutId);
   }, [state]);
 
-  return { state, actions: { show, hide }, toggle: { "data-toggle": state } };
+  return {
+    state,
+    actions: { show, hide, toggle },
+    toggle: { "data-toggle": state },
+  };
 }
