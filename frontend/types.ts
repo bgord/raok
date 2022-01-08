@@ -1,8 +1,12 @@
+import { ArticleTitleType, ArticleDescriptionType } from "../value-objects";
+
 export type ArticleType = {
   id: string;
   url: string;
   status: string;
   source: string;
+  title: ArticleTitleType;
+  description: ArticleDescriptionType;
 };
 
 export type ArticlePayloadType = { url: ArticleType["url"] };

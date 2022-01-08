@@ -22,7 +22,7 @@ export const ArticleAddedEvent = EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_ADDED_EVENT),
     version: z.literal(1),
-    payload: VO.Article,
+    payload: VO.Article.merge(VO.ArticleMetatags),
   })
 );
 export type ArticleAddedEventType = z.infer<typeof ArticleAddedEvent>;

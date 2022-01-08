@@ -30,6 +30,9 @@ model Article {
   source      String
   status      String
   createdAt   Int
+  title       String?
+  description String?
+  image       String?
   Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
   newspaperId String?
 }

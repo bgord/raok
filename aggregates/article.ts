@@ -3,6 +3,7 @@ import { UUID } from "@bgord/node";
 import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
+import * as Services from "../services";
 
 import { EventRepository } from "../repositories/event-repository";
 
@@ -73,6 +74,8 @@ export class Article {
       await Policies.ArticleUrlIsUnique.perform({ articleUrl: newArticle.url });
     }
 
+    const metatags = await Services.ArticleMetatagsScraper.get(newArticle.url);
+
     await EventRepository.save(
       Events.ArticleAddedEvent.parse({
         name: Events.ARTICLE_ADDED_EVENT,
@@ -83,6 +86,7 @@ export class Article {
           url: newArticle.url,
           source: newArticleSource,
           status: VO.ArticleStatusEnum.ready,
+          ...metatags,
         },
       })
     );

@@ -10,14 +10,12 @@ export class ArticleMetatagsScraper {
       return VO.ArticleMetatags.parse({
         title: response.ogTitle,
         description: response.ogDescription,
-        image: (response.ogImage as unknown as { url: string }).url,
       });
     }
 
     return VO.ArticleMetatags.parse({
       title: undefined,
       description: undefined,
-      image: undefined,
     });
   }
 }

@@ -106,9 +106,28 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
                 type="checkbox"
                 data-mr="12"
               />
-              <UI.Link href={article.url} data-mr="12">
-                {article.url}
-              </UI.Link>
+
+              <div
+                data-display="flex"
+                data-direction="column"
+                data-mr="12"
+                style={{ overflow: "hidden" }}
+              >
+                <div
+                  data-mb="6"
+                  data-width="100%"
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {article.title ?? "-"}
+                </div>
+                <UI.Link href={article.url} data-mr="12" data-width="100%">
+                  {article.url}
+                </UI.Link>
+              </div>
 
               <UI.Badge data-ml="auto" data-mr="12">
                 {article.status}
