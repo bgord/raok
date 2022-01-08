@@ -43,7 +43,7 @@ async function resendNewspaper(id: NewspaperType["id"]) {
 }
 
 async function getStats(): Promise<StatsType> {
-  const defaultStats: StatsType = { createdArticles: 0 };
+  const defaultStats: StatsType = { createdArticles: 0, sentNewspapers: 0 };
 
   return _api("/stats", { method: "GET" }).then((response) =>
     response.ok ? response.json() : defaultStats
