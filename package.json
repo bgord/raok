@@ -41,7 +41,7 @@
     "ts-node-dev": "^1.1.8"
   },
   "dependencies": {
-    "@bgord/design": "^0.27.7",
+    "@bgord/design": "^0.27.8",
     "@bgord/node": "^0.58.15",
     "@mozilla/readability": "^0.4.1",
     "@prisma/client": "^3.7.0",

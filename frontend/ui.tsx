@@ -21,8 +21,7 @@ export function Link(props: h.JSX.IntrinsicElements["a"]) {
       target="_blank"
       class="c-link"
       data-color="gray-700"
-      data-overflow="hidden"
-      style={{ whiteSpace: "nowrap", textOverflow: "ellipsis" }}
+      data-transform="truncate"
       {...props}
     />
   );

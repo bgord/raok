@@ -94,8 +94,7 @@ export function SendArbitraryFile() {
           data-pr="12"
           data-fs="14"
           data-color="gray-600"
-          data-overflow="hidden"
-          style={{ whiteSpace: "nowrap", textOverflow: "ellipsis" }}
+          data-transform="truncate"
         >
           <strong data-color="gray-500">Selected file: </strong>
           {file.data.name}

@@ -113,12 +113,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
                 data-mr="12"
                 data-overflow="hidden"
               >
-                <div
-                  data-mb="6"
-                  data-width="100%"
-                  data-overflow="hidden"
-                  style={{ whiteSpace: "nowrap", textOverflow: "ellipsis" }}
-                >
+                <div data-mb="6" data-width="100%" data-transform="truncate">
                   {article.title ?? "-"}
                 </div>
                 <UI.Link href={article.url} data-mr="12" data-width="100%">
