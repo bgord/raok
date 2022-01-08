@@ -1,4 +1,4 @@
-import { h, Fragment } from "preact";
+import { h } from "preact";
 import { useMutation } from "react-query";
 
 import { api } from "./api";
@@ -23,9 +23,11 @@ export function SendArbitraryFile() {
       data-mt="24"
       data-bg="gray-100"
       data-p="12"
+      style={{ maxWidth: "480px" }}
       onSubmit={(event) => {
         event.preventDefault();
 
+        if (fileUpload.isLoading) return;
         if (file.state !== UseFileState.selected) return;
 
         const form = new FormData();
@@ -54,30 +56,64 @@ export function SendArbitraryFile() {
         <label for="file">Choose a file</label>
       </button>
 
-      {file.state === UseFileState.selected && (
-        <Fragment>
-          <button
-            type="submit"
-            class="c-button"
-            data-variant="primary"
-            data-ml="12"
-          >
-            Upload file
-          </button>
-
-          <button
-            type="button"
-            class="c-button"
-            data-variant="secondary"
-            data-ml="12"
-            onClick={file.actions.clearFile}
-          >
-            Clear
-          </button>
-        </Fragment>
+      {file.state === UseFileState.selected && !fileUpload.isSuccess && (
+        <button
+          type="submit"
+          class="c-button"
+          data-variant="primary"
+          data-ml="12"
+        >
+          Upload file
+        </button>
       )}
 
-      <div data-mt="24">{file.state}</div>
+      {file.state === UseFileState.selected && (
+        <button
+          type="button"
+          class="c-button"
+          data-variant="secondary"
+          data-ml="12"
+          onClick={() => {
+            file.actions.clearFile();
+            if (fileUpload.isSuccess) fileUpload.reset();
+          }}
+        >
+          Clear
+        </button>
+      )}
+
+      {(fileUpload.isIdle || fileUpload.isSuccess) &&
+        file.state === UseFileState.idle && (
+          <div data-mt="24" data-fs="14" data-color="gray-600">
+            Select a file to send.
+          </div>
+        )}
+      {fileUpload.isIdle && file.state === UseFileState.selected && (
+        <div
+          data-mt="24"
+          data-pr="12"
+          data-fs="14"
+          data-color="gray-600"
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          <strong data-color="gray-500">Selected file: </strong>
+          {file.data.name}
+        </div>
+      )}
+      {fileUpload.isSuccess && file.state === UseFileState.selected && (
+        <div data-mt="24" data-fs="14" data-color="gray-600">
+          File has been sent!
+        </div>
+      )}
+      {fileUpload.isError && (
+        <div data-mt="24" data-fs="14" data-color="gray-600">
+          Pleasy, try again.
+        </div>
+      )}
     </form>
   );
 }
