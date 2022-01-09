@@ -27,8 +27,20 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
   return (
     <section>
-      <div data-bg="gray-100" data-bw="1" data-bc="gray-200" data-bwt="4" data-p="12">
-        <UI.Header data-bw="2" data-bcb="gray-200" data-pb="6">
+      <div data-bg="gray-100" data-bct="gray-200" data-bwt="4" data-p="12">
+        <UI.Header
+          data-display="flex"
+          data-cross="center"
+          data-pb="6"
+          data-color="gray-700"
+        >
+          <img
+            height="20"
+            width="20"
+            src="/icon-article.svg"
+            alt=""
+            data-mr="12"
+          />
           Articles
         </UI.Header>
 
