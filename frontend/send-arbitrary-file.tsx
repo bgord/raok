@@ -36,7 +36,10 @@ export function SendArbitraryFile() {
         fileUpload.mutate(form);
       }}
     >
-      <Header data-mb="24">Send arbitrary file</Header>
+      <Header data-display="flex" data-cross="center" data-mb="24">
+        <img height="20" width="20" src="/icon-book.svg" alt="" data-mr="12" />
+        Send a book
+      </Header>
 
       <input
         id="file"
