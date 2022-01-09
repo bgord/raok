@@ -12,7 +12,13 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
 
   return (
     <section data-mt="48">
-      <Header data-bg="gray-100" data-bw="1" data-bc="gray-200" data-p="12">
+      <Header
+        data-bg="gray-100"
+        data-bw="1"
+        data-bc="gray-200"
+        data-bwt="4"
+        data-p="12"
+      >
         Newspapers
       </Header>
 

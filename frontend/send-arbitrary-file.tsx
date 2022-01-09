@@ -21,7 +21,7 @@ export function SendArbitraryFile() {
       data-mt="24"
       data-bg="gray-100"
       data-p="12"
-      data-bw="6"
+      data-bw="4"
       data-bct="gray-200"
       style={{ maxWidth: "480px" }}
       onSubmit={(event) => {
@@ -36,7 +36,12 @@ export function SendArbitraryFile() {
         fileUpload.mutate(form);
       }}
     >
-      <Header data-display="flex" data-cross="center" data-mb="24">
+      <Header
+        data-display="flex"
+        data-cross="center"
+        data-mb="24"
+        data-color="gray-700"
+      >
         <img height="20" width="20" src="/icon-book.svg" alt="" data-mr="12" />
         Send a book
       </Header>
