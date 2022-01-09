@@ -16,8 +16,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
         data-display="flex"
         data-cross="center"
         data-bg="gray-100"
-        data-bw="1"
-        data-bc="gray-200"
+        data-bct="gray-200"
         data-bwt="4"
         data-p="12"
       >
