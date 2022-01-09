@@ -145,9 +145,15 @@ function useAutoUpdateNewspaper(
 ) {
   const queryClient = useQueryClient();
 
+  const cutoff = 3 * 60 * 1000; // 3 minutes
+  const now = Date.now();
+  const hasCutoffPassed = now - props.scheduledAt > cutoff;
+
   useQuery(["newspapers", props.id], () => api.getSingleNewspaper(props.id), {
     initialData: props,
-    enabled: !["delivered", "archived", "error"].includes(props.status),
+    enabled:
+      !["delivered", "archived", "error"].includes(props.status) &&
+      !hasCutoffPassed,
     refetchInterval: 1000,
     onSuccess(updated) {
       queryClient.setQueryData<NewspaperType[]>(
