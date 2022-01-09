@@ -47,7 +47,12 @@ export function AddArticleForm() {
             data-grow="1"
           />
         </div>
-        <button class="c-button" data-variant="secondary" type="submit">
+        <button
+          class="c-button"
+          data-variant="secondary"
+          type="submit"
+          style={{ minWidth: "80px" }}
+        >
           Add
         </button>
       </div>
