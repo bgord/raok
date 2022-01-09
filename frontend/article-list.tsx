@@ -32,7 +32,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           Articles
         </UI.Header>
 
-        <div data-display="flex" data-cross="baseline" data-mt="24">
+        <div data-display="flex" data-cross="baseline" data-mt="12">
           <button
             onClick={() =>
               actions.add(
@@ -125,7 +125,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
                 {article.status}
               </UI.Badge>
 
-              <UI.Badge data-mr="12">{article.source}</UI.Badge>
+              <UI.Badge data-mr="6">{article.source}</UI.Badge>
 
               {article.status === "ready" && (
                 <form
@@ -135,7 +135,12 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
                   }}
                 >
                   <button type="submit" class="c-button" data-variant="bare">
-                    Delete
+                    <img
+                      height="30"
+                      width="30"
+                      src="/icon-trash.svg"
+                      alt="delete"
+                    />
                   </button>
                 </form>
               )}
