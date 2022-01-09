@@ -35,9 +35,10 @@ export function Newspaper(props: NewspaperProps) {
       data-display="flex"
       data-direction="column"
       data-mb="24"
-      data-pb="0"
       data-bc={details.state !== "hidden" && "gray-200"}
       data-bw="1"
+      data-bcr="gray-100"
+      data-bwr="4"
     >
       <div
         data-display="flex"

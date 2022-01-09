@@ -110,6 +110,8 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               data-wrap="nowrap"
               data-mb="24"
               data-md-px="6"
+              data-bcr="gray-100"
+              data-bwr="4"
             >
               <input
                 onClick={() => actions.toggle(article.id)}
