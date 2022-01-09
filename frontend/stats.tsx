@@ -12,15 +12,23 @@ export function Stats(props: { initialData: StatsType }) {
   const sentNewspapers = stats.isSuccess ? stats.data.sentNewspapers : "-";
 
   return (
-    <div data-bg="gray-100" data-p="12">
-      <Header data-mb="24">Statistics</Header>
+    <div data-bg="gray-100" data-p="12" data-bw="6" data-bct="gray-200">
+      <Header
+        data-display="flex"
+        data-cross="center"
+        data-mb="24"
+        data-color="gray-600"
+      >
+        <img height="20" width="20" src="/icon-stats.svg" alt="" data-mr="12" />
+        Statistics
+      </Header>
 
       <div data-fs="14" data-color="gray-600">
         <strong>{createdArticles} </strong>
         created article(s) overall
       </div>
 
-      <div data-fs="14" data-color="gray-600" data-mt="12">
+      <div data-fs="14" data-color="gray-600" data-mt="6">
         <strong>{sentNewspapers} </strong>
         sent newspapers(s) overall
       </div>
