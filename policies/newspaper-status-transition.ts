@@ -23,8 +23,8 @@ class NewspaperStatusTransitionFactory extends Policy<NewspaperStatusTransitionC
       VO.NewspaperType["status"][]
     > = {
       [enums.undetermined]: [enums.scheduled],
-      [enums.scheduled]: [enums.ready_to_send, enums.error],
-      [enums.ready_to_send]: [enums.delivered, enums.error],
+      [enums.scheduled]: [enums.ready_to_send, enums.error, enums.archived],
+      [enums.ready_to_send]: [enums.delivered, enums.error, enums.archived],
       [enums.delivered]: [enums.archived, enums.scheduled],
       [enums.archived]: [],
       [enums.error]: [enums.scheduled, enums.archived],

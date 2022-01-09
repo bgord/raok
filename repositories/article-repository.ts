@@ -18,7 +18,6 @@ export class ArticleRepository {
     createdAt: VO.ArticleType["createdAt"];
     title: VO.ArticleMetatagsType["title"];
     description: VO.ArticleMetatagsType["description"];
-    image: VO.ArticleMetatagsType["image"];
   }) {
     return prisma.article.create({
       data: { ...article, status: VO.ArticleStatusEnum.ready },
