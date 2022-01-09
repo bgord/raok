@@ -23,7 +23,8 @@ export function AddArticleForm() {
         event.preventDefault();
         addArticleRequest.mutate({ url });
       }}
-      data-mb="48"
+      data-mt="12"
+      data-my="24"
     >
       <div data-display="flex" data-cross="end">
         <div
@@ -32,9 +33,6 @@ export function AddArticleForm() {
           data-mr="12"
           data-grow="1"
         >
-          <label class="c-label" for="url" data-mb="6">
-            Article URL
-          </label>
           <input
             id="url"
             name="url"

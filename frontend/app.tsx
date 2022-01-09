@@ -1,7 +1,6 @@
 import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import { AddArticleForm } from "./add-article-form";
 import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
@@ -27,7 +26,6 @@ export function App(props: InitialDataType) {
         style="max-width: 1296px"
       >
         <section data-grow="1" data-pr="48">
-          <AddArticleForm />
           <Stats initialData={props.stats} />
           <SendArbitraryFile />
         </section>

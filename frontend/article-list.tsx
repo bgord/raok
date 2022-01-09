@@ -5,6 +5,7 @@ import * as UI from "./ui";
 import { ArticleType } from "./types";
 import { api } from "./api";
 import { useList, useToggle } from "./hooks";
+import { AddArticleForm } from "./add-article-form";
 
 export function ArticleList(props: { initialData: ArticleType[] }) {
   const queryClient = useQueryClient();
@@ -43,6 +44,8 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           />
           Articles
         </UI.Header>
+
+        <AddArticleForm />
 
         <div data-display="flex" data-cross="baseline" data-mt="12">
           <button
