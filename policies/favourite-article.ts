@@ -17,7 +17,7 @@ class FavouriteArticleFactory extends Policy<FavouriteArticleConfigType> {
   fails(config: FavouriteArticleConfigType) {
     return (
       config.entity.status !== VO.ArticleStatusEnum.processed ||
-      config.entity.isFavourite
+      config.entity.favourite
     );
   }
 

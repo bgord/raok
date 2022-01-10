@@ -7,6 +7,7 @@ export type ArticleType = {
   source: string;
   title: ArticleTitleType;
   description: ArticleDescriptionType;
+  favourite: boolean;
 };
 
 export type ArticlePayloadType = { url: ArticleType["url"] };

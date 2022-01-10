@@ -11,6 +11,12 @@ export class ArticleRepository {
     });
   }
 
+  static async getFavourite() {
+    return prisma.article.findMany({
+      where: { favourite: true },
+    });
+  }
+
   static async create(article: {
     id: VO.ArticleType["id"];
     url: VO.ArticleType["url"];
@@ -18,6 +24,7 @@ export class ArticleRepository {
     createdAt: VO.ArticleType["createdAt"];
     title: VO.ArticleMetatagsType["title"];
     description: VO.ArticleMetatagsType["description"];
+    favourite: VO.ArticleType["favourite"];
   }) {
     return prisma.article.create({
       data: { ...article, status: VO.ArticleStatusEnum.ready },
@@ -35,7 +42,7 @@ export class ArticleRepository {
   }
 
   static async addToFavourites(articleId: VO.ArticleType["id"]) {
-    return prisma.article.updateMany({
+    return prisma.article.update({
       where: { id: articleId },
       data: { favourite: true },
     });

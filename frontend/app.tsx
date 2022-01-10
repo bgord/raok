@@ -5,6 +5,7 @@ import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
 import { SendArbitraryFile } from "./send-arbitrary-file";
+import { FavouriteArticles } from "./favourite-articles";
 
 import { StatsType, ArticleType, NewspaperType } from "./types";
 
@@ -25,9 +26,10 @@ export function App(props: InitialDataType) {
         data-mt="48"
         style="max-width: 1296px"
       >
-        <section data-grow="1" data-pr="48">
+        <section data-grow="1" data-pr="48" style={{ maxWidth: "528px" }}>
           <Stats initialData={props.stats} />
           <SendArbitraryFile />
+          <FavouriteArticles initialData={[]} />
         </section>
 
         <div data-max-width="768" data-width="100%">

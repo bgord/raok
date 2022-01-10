@@ -21,6 +21,10 @@ export function Newspaper(props: NewspaperProps) {
     },
   });
 
+  const addArticleToFavourites = useMutation(api.addArticleToFavourites, {
+    onSuccess: () => queryClient.invalidateQueries(["favourite-articles"]),
+  });
+
   const details = useAnimatiedToggle();
 
   useAutoUpdateNewspaper(props, details.actions.show);
@@ -122,7 +126,34 @@ export function Newspaper(props: NewspaperProps) {
               data-mb="12"
               data-max-width="768"
               data-px="12"
+              data-cross="center"
             >
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  addArticleToFavourites.mutate(article.id);
+                }}
+              >
+                <button
+                  type="submit"
+                  class="c-button"
+                  data-variant="bare"
+                  data-mr="6"
+                >
+                  {article.favourite && (
+                    <img
+                      height="20"
+                      width="20"
+                      src="/icon-star-filled.svg"
+                      alt=""
+                    />
+                  )}
+                  {!article.favourite && (
+                    <img height="20" width="20" src="/icon-star.svg" alt="" />
+                  )}
+                </button>
+              </form>
+
               <UI.Link href={article.url} data-pr="12">
                 {article.url}
               </UI.Link>

@@ -56,6 +56,12 @@ async function getArticles(): Promise<ArticleType[]> {
   );
 }
 
+async function getFavouriteArticles(): Promise<ArticleType[]> {
+  return _api("/articles/favourite", { method: "GET" }).then((response) =>
+    response.ok ? response.json() : []
+  );
+}
+
 async function addArticle(article: ArticlePayloadType) {
   return _api("/add-article", {
     method: "POST",
@@ -65,6 +71,10 @@ async function addArticle(article: ArticlePayloadType) {
 
 async function deleteArticle(articleId: ArticleType["id"]) {
   return _api(`/delete-article/${articleId}`, { method: "POST" });
+}
+
+async function addArticleToFavourites(articleId: ArticleType["id"]) {
+  return _api(`/article/${articleId}/favourite`, { method: "POST" });
 }
 
 async function sendArbitraryFile(form: FormData) {
@@ -85,4 +95,6 @@ export const api = {
   addArticle,
   deleteArticle,
   sendArbitraryFile,
+  getFavouriteArticles,
+  addArticleToFavourites,
 };

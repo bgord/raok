@@ -35,7 +35,7 @@ export class Article {
       switch (event.name) {
         case Events.ARTICLE_ADDED_EVENT:
           this.entity = event.payload;
-          this.entity.isFavourite = VO.ArticleFavourite.parse(false);
+          this.entity.favourite = VO.ArticleFavourite.parse(false);
           break;
 
         case Events.ARTICLE_DELETED_EVENT:
@@ -54,7 +54,7 @@ export class Article {
 
         case Events.ARTICLE_ADDED_TO_FAVOURITES:
           if (!this.entity) continue;
-          this.entity.isFavourite = VO.ArticleFavourite.parse(true);
+          this.entity.favourite = VO.ArticleFavourite.parse(true);
           break;
 
         default:
@@ -94,6 +94,7 @@ export class Article {
           url: newArticle.url,
           source: newArticleSource,
           status: VO.ArticleStatusEnum.ready,
+          favourite: false,
           ...metatags,
         },
       })

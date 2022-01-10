@@ -14,6 +14,8 @@ import { Newspapers } from "./routes/newspapers";
 import { SingleNewspaper } from "./routes/single-newspaper";
 import { Stats } from "./routes/stats";
 import { SendArbitraryFile } from "./routes/send-arbitrary-file";
+import { FavouriteArticles } from "./routes/favourite-articles";
+import { AddArticleToFavourites } from "./routes/add-article-to-favourites";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -40,6 +42,7 @@ AuthShield.applyTo(app);
 app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
 app.get("/articles", AuthShield.verify, bg.Route(Articles));
+app.get("/articles/favourite", AuthShield.verify, bg.Route(FavouriteArticles));
 app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));
 app.get(
   "/newspaper/:newspaperId",
@@ -54,6 +57,12 @@ app.post(
   AuthShield.verify,
   bg.Route(DeleteArticle)
 );
+app.post(
+  "/article/:articleId/favourite",
+  AuthShield.verify,
+  bg.Route(AddArticleToFavourites)
+);
+
 app.post("/create-newspaper", AuthShield.verify, bg.Route(CreateNewspaper));
 app.post(
   "/archive-newspaper/:newspaperId",

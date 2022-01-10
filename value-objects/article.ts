@@ -13,7 +13,7 @@ export const Article = z.object({
   url: ArticleUrl,
   source: ArticleSource,
   status: ArticleStatus,
-  isFavourite: ArticleFavourite,
+  favourite: ArticleFavourite,
 });
 
 export type ArticleType = z.infer<typeof Article>;

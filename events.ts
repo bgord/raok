@@ -62,7 +62,7 @@ export const ArticleAddedToFavouritesEvent = EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_ADDED_TO_FAVOURITES),
     version: z.literal(1),
-    payload: VO.Article.merge(VO.ArticleMetatags),
+    payload: z.object({ articleId: VO.ArticleId }),
   })
 );
 export type ArticleAddedToFavouritesEventType = z.infer<
@@ -148,6 +148,7 @@ export const emittery = new Emittery<{
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   ARTICLE_LOCKED_EVENT: ArticleLockedEventType;
   ARTICLE_PROCESSED_EVENT: ArticleProcessedEventType;
+  ARTICLE_ADDED_TO_FAVOURITES: ArticleProcessedEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
   NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
   NEWSPAPER_SENT_EVENT: NewspaperSentEventType;
@@ -175,6 +176,10 @@ emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
     event.payload.articleId,
     event.payload.newspaperId
   );
+});
+
+emittery.on(ARTICLE_ADDED_TO_FAVOURITES, async (event) => {
+  await ArticleRepository.addToFavourites(event.payload.articleId);
 });
 
 emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
