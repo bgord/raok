@@ -25,13 +25,15 @@ export function Article(
       data-bcr="gray-100"
       data-bwr="4"
     >
-      <input
-        onClick={() => props.toggle(props.id)}
-        checked={props.isAdded(props.id)}
-        class="c-checkbox"
-        type="checkbox"
-        data-mr="12"
-      />
+      {props.status === "ready" && (
+        <input
+          onClick={() => props.toggle(props.id)}
+          checked={props.isAdded(props.id)}
+          class="c-checkbox"
+          type="checkbox"
+          data-mr="12"
+        />
+      )}
 
       <div
         data-display="flex"

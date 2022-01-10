@@ -6,6 +6,8 @@ import { api } from "./api";
 import { NewspaperType } from "./types";
 import { useAnimatiedToggle } from "./hooks";
 
+import { hasNewspaperStalled } from "../policies/common";
+
 type NewspaperProps = NewspaperType;
 
 export function Newspaper(props: NewspaperProps) {
@@ -26,10 +28,10 @@ export function Newspaper(props: NewspaperProps) {
   const sentAt = props.sentAt ? new Date(props.sentAt).toLocaleString() : "-";
   const scheduledAt = new Date(props.scheduledAt).toLocaleString();
 
-  const now = Date.now();
-  const cutoff = 10 * 60 * 1000; // 10 minutes
-
-  const hasCutoffPassed = now - props.scheduledAt > cutoff;
+  const isStalled = hasNewspaperStalled({
+    status: props.status,
+    scheduledAt: props.scheduledAt,
+  });
 
   return (
     <li
@@ -51,9 +53,7 @@ export function Newspaper(props: NewspaperProps) {
         <span data-ml="12">Newspaper #{props.id.split("-")[0]}</span>
 
         <div data-ml="auto">
-          {((["scheduled", "ready_to_send"].includes(props.status) &&
-            hasCutoffPassed) ||
-            props.status === "error") && (
+          {(isStalled || props.status === "error") && (
             <ArchiveNewspaper data-mr="12" id={props.id} />
           )}
 

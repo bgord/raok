@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export class ArticleRepository {
   static async getAllNonProcessed() {
     return prisma.article.findMany({
-      where: { status: { not: VO.ArticleStatusEnum.processed } },
+      where: { status: VO.ArticleStatusEnum.ready },
     });
   }
 

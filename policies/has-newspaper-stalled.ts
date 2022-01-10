@@ -1,6 +1,6 @@
 import { Policy } from "@bgord/node";
 
-import * as VO from "../value-objects";
+import { hasNewspaperStalled } from "./common";
 import { Newspaper } from "../aggregates/newspaper";
 
 class NewspaperHasNotStalledError extends Error {
@@ -17,17 +17,10 @@ type NoEmptyNewspaperConfigType = {
 
 class HasNewspaperStalledFactory extends Policy<NoEmptyNewspaperConfigType> {
   async fails(config: NoEmptyNewspaperConfigType) {
-    const now = Date.now();
-    const cutoff = 10 * 60 * 1000; // 10 minutes
-
-    const hasCutoffPassed = now - config.scheduledAt > cutoff;
-
-    return (
-      ![
-        VO.NewspaperStatusEnum.scheduled,
-        VO.NewspaperStatusEnum.ready_to_send,
-      ].includes(config.status) || !hasCutoffPassed
-    );
+    return !hasNewspaperStalled({
+      status: config.status,
+      scheduledAt: config.scheduledAt,
+    });
   }
 
   error = NewspaperHasNotStalledError;
