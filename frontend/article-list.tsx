@@ -6,6 +6,7 @@ import { ArticleType } from "./types";
 import { api } from "./api";
 import { useList, useToggle } from "./hooks";
 import { AddArticleForm } from "./add-article-form";
+import { Article } from "./article";
 
 export function ArticleList(props: { initialData: ArticleType[] }) {
   const queryClient = useQueryClient();
@@ -14,10 +15,6 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const emptyNewspaperError = useToggle();
 
   const articles = useQuery(["articles"], api.getArticles, props);
-
-  const deleteArticle = useMutation(api.deleteArticle, {
-    onSuccess: () => queryClient.invalidateQueries(["articles"]),
-  });
 
   const createNewspaper = useMutation(api.createNewspaper, {
     onSuccess: () => {
@@ -106,63 +103,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
       <ul data-mt="24">
         {articles.isSuccess &&
-          articles.data.map((article) => (
-            <li
-              data-display="flex"
-              data-cross="center"
-              data-wrap="nowrap"
-              data-mb="24"
-              data-md-px="6"
-              data-bcr="gray-100"
-              data-bwr="4"
-            >
-              <input
-                onClick={() => actions.toggle(article.id)}
-                checked={actions.isAdded(article.id)}
-                class="c-checkbox"
-                type="checkbox"
-                data-mr="12"
-              />
-
-              <div
-                data-display="flex"
-                data-direction="column"
-                data-mr="12"
-                data-overflow="hidden"
-              >
-                <div data-mb="6" data-width="100%" data-transform="truncate">
-                  {article.title ?? "-"}
-                </div>
-                <UI.Link href={article.url} data-mr="12" data-width="100%">
-                  {article.url}
-                </UI.Link>
-              </div>
-
-              <UI.Badge data-ml="auto" data-mr="12">
-                {article.status}
-              </UI.Badge>
-
-              <UI.Badge data-mr="6">{article.source}</UI.Badge>
-
-              {article.status === "ready" && (
-                <form
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    deleteArticle.mutate(article.id);
-                  }}
-                >
-                  <button type="submit" class="c-button" data-variant="bare">
-                    <img
-                      height="30"
-                      width="30"
-                      src="/icon-trash.svg"
-                      alt="delete"
-                    />
-                  </button>
-                </form>
-              )}
-            </li>
-          ))}
+          articles.data.map((article) => <Article {...article} {...actions} />)}
       </ul>
     </section>
   );

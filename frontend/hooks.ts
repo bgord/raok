@@ -1,16 +1,17 @@
 import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 
-export function useList<T>(defaultItems: T[] = []): [
-  T[],
-  {
-    clear: VoidFunction;
-    add: (x: T | T[]) => void;
-    remove: (x: T) => void;
-    toggle: (x: T) => void;
-    isAdded: (x: T) => boolean;
-  }
-] {
+export type UseListActionsType<T> = {
+  clear: VoidFunction;
+  add: (x: T | T[]) => void;
+  remove: (x: T) => void;
+  toggle: (x: T) => void;
+  isAdded: (x: T) => boolean;
+};
+
+export function useList<T>(
+  defaultItems: T[] = []
+): [T[], UseListActionsType<T>] {
   const [items, setItems] = useState<T[]>(defaultItems);
 
   function clear() {
