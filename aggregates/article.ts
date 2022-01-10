@@ -26,6 +26,7 @@ export class Article {
         Events.ArticleDeletedEvent,
         Events.ArticleLockedEvent,
         Events.ArticleProcessedEvent,
+        Events.ArticleAddedToFavouritesEvent,
       ],
       Article.getStream(this.id)
     );
@@ -34,6 +35,7 @@ export class Article {
       switch (event.name) {
         case Events.ARTICLE_ADDED_EVENT:
           this.entity = event.payload;
+          this.entity.isFavourite = VO.ArticleFavourite.parse(false);
           break;
 
         case Events.ARTICLE_DELETED_EVENT:
@@ -49,6 +51,12 @@ export class Article {
           if (!this.entity) continue;
           this.entity.status = VO.ArticleStatusEnum.processed;
           break;
+
+        case Events.ARTICLE_ADDED_TO_FAVOURITES:
+          if (!this.entity) continue;
+          this.entity.isFavourite = VO.ArticleFavourite.parse(true);
+          break;
+
         default:
           continue;
       }
@@ -139,6 +147,21 @@ export class Article {
     await EventRepository.save(
       Events.ArticleProcessedEvent.parse({
         name: Events.ARTICLE_PROCESSED_EVENT,
+        stream: this.stream,
+        version: 1,
+        payload: { articleId: this.id },
+      })
+    );
+  }
+
+  async addToFavourites() {
+    if (!this.entity) return;
+
+    await Policies.FavouriteArticle.perform({ entity: this.entity });
+
+    await EventRepository.save(
+      Events.ArticleAddedToFavouritesEvent.parse({
+        name: Events.ARTICLE_ADDED_TO_FAVOURITES,
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },

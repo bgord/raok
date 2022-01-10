@@ -35,6 +35,7 @@ model Article {
   image       String?
   Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
   newspaperId String?
+  favourite   Boolean   @default(false)
 }
 
 model Stats {

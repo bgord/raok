@@ -5,6 +5,7 @@ import { ArticleId } from "./article-id";
 import { ArticleUrl } from "./article-url";
 import { ArticleSource } from "./article-source";
 import { ArticleStatus } from "./article-status";
+import { ArticleFavourite } from "./article-favourite";
 
 export const Article = z.object({
   id: ArticleId,
@@ -12,6 +13,7 @@ export const Article = z.object({
   url: ArticleUrl,
   source: ArticleSource,
   status: ArticleStatus,
+  isFavourite: ArticleFavourite,
 });
 
 export type ArticleType = z.infer<typeof Article>;

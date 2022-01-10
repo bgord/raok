@@ -57,6 +57,18 @@ export const ArticleProcessedEvent = EventDraft.merge(
 );
 export type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
 
+export const ARTICLE_ADDED_TO_FAVOURITES = "ARTICLE_ADDED_TO_FAVOURITES";
+export const ArticleAddedToFavouritesEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_ADDED_TO_FAVOURITES),
+    version: z.literal(1),
+    payload: VO.Article.merge(VO.ArticleMetatags),
+  })
+);
+export type ArticleAddedToFavouritesEventType = z.infer<
+  typeof ArticleAddedToFavouritesEvent
+>;
+
 export const NEWSPAPER_SCHEDULED_EVENT = "NEWSPAPER_SCHEDULED_EVENT";
 export const NewspaperScheduledEvent = EventDraft.merge(
   z.object({

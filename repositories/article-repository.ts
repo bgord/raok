@@ -34,6 +34,13 @@ export class ArticleRepository {
     });
   }
 
+  static async addToFavourites(articleId: VO.ArticleType["id"]) {
+    return prisma.article.updateMany({
+      where: { id: articleId },
+      data: { favourite: true },
+    });
+  }
+
   static async assignToNewspaper(
     articleId: VO.ArticleType["id"],
     newspaperId: VO.NewspaperType["id"]
