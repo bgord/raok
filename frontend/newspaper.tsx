@@ -11,10 +11,6 @@ type NewspaperProps = NewspaperType;
 export function Newspaper(props: NewspaperProps) {
   const queryClient = useQueryClient();
 
-  const archiveNewspaper = useMutation(api.archiveNewspaper, {
-    onSuccess: () => queryClient.invalidateQueries(["newspapers"]),
-  });
-
   const resendNewspaper = useMutation(api.resendNewspaper, {
     onSuccess: () => {
       queryClient.invalidateQueries(["newspapers"]);
@@ -29,6 +25,11 @@ export function Newspaper(props: NewspaperProps) {
 
   const sentAt = props.sentAt ? new Date(props.sentAt).toLocaleString() : "-";
   const scheduledAt = new Date(props.scheduledAt).toLocaleString();
+
+  const now = Date.now();
+  const cutoff = 10 * 60 * 1000; // 10 minutes
+
+  const hasCutoffPassed = now - props.scheduledAt > cutoff;
 
   return (
     <li
@@ -50,6 +51,12 @@ export function Newspaper(props: NewspaperProps) {
         <span data-ml="12">Newspaper #{props.id.split("-")[0]}</span>
 
         <div data-ml="auto">
+          {((["scheduled", "ready_to_send"].includes(props.status) &&
+            hasCutoffPassed) ||
+            props.status === "error") && (
+            <ArchiveNewspaper data-mr="12" id={props.id} />
+          )}
+
           {props.status === "delivered" && (
             <span data-fs="14" data-color="gray-400" data-mr="6">
               Sent at {sentAt}
@@ -84,17 +91,7 @@ export function Newspaper(props: NewspaperProps) {
         >
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  archiveNewspaper.mutate(props.id);
-                }}
-                data-mr="24"
-              >
-                <button type="submit" class="c-button" data-variant="secondary">
-                  Archive
-                </button>
-              </form>
+              <ArchiveNewspaper id={props.id} data-mr="12" />
 
               <form
                 onSubmit={(event) => {
@@ -168,4 +165,30 @@ function useAutoUpdateNewspaper(
       }
     },
   });
+}
+
+function ArchiveNewspaper(props: {
+  id: NewspaperType["id"] & h.JSX.IntrinsicElements["form"];
+}) {
+  const { id, ...rest } = props;
+
+  const queryClient = useQueryClient();
+
+  const archiveNewspaper = useMutation(api.archiveNewspaper, {
+    onSuccess: () => queryClient.invalidateQueries(["newspapers"]),
+  });
+
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        archiveNewspaper.mutate(id);
+      }}
+      {...rest}
+    >
+      <button type="submit" class="c-button" data-variant="secondary">
+        Archive
+      </button>
+    </form>
+  );
 }

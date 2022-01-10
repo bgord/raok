@@ -174,6 +174,11 @@ export class Newspaper {
       to: VO.NewspaperStatusEnum.archived,
     });
 
+    await Policies.HasNewspaperStalled.perform({
+      status: this.status,
+      scheduledAt: this.scheduledAt,
+    });
+
     await EventRepository.save(
       Events.NewspaperArchivedEvent.parse({
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
