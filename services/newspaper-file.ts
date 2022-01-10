@@ -63,6 +63,7 @@ export class NewspaperFile {
 
       result += `<h2 style="margin-top: 100px">${readableArticle.title} ${readingTime}</h2>`;
       result += readableArticle.content;
+      result += '<p style="page-break-after: always;">&nbsp;</p>';
     }
 
     return result;
