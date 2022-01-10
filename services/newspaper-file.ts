@@ -56,7 +56,11 @@ export class NewspaperFile {
       readableArticles.push(readableArticle);
     }
 
-    let result = `<h1 style="margin-bottom: 50px">Newspaper</h1>`;
+    let result = `
+      <title>Newspaper</title>
+      <meta name="author" content="RAOK">
+      <meta name="description" content="RAOK newspaper">
+    `;
 
     for (const readableArticle of readableArticles) {
       const readingTime = `(${readableArticle.readingTime} min)`;
