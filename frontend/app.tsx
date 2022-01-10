@@ -15,6 +15,7 @@ export type InitialDataType = {
   stats: StatsType;
   articles: ArticleType[];
   newspapers: NewspaperType[];
+  favouriteArticles: ArticleType[];
 };
 
 export function App(props: InitialDataType) {
@@ -29,7 +30,7 @@ export function App(props: InitialDataType) {
         <section data-grow="1" data-pr="48" style={{ maxWidth: "528px" }}>
           <Stats initialData={props.stats} />
           <SendArbitraryFile />
-          <FavouriteArticles initialData={[]} />
+          <FavouriteArticles initialData={props.favouriteArticles} />
         </section>
 
         <div data-max-width="768" data-width="100%">
