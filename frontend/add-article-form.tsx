@@ -43,15 +43,17 @@ export function AddArticleForm() {
             placeholder="https://example.com/blogpost"
             class="c-input"
             data-grow="1"
+            disabled={addArticleRequest.isLoading}
           />
         </div>
         <button
           class="c-button"
           data-variant="secondary"
           type="submit"
-          style={{ minWidth: "80px" }}
+          disabled={addArticleRequest.isLoading}
+          style={{ width: "105px" }}
         >
-          Add
+          {addArticleRequest.isLoading ? "Adding..." : "Add"}
         </button>
       </div>
     </form>
