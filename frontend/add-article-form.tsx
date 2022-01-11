@@ -30,7 +30,7 @@ export function AddArticleForm() {
         <div
           data-display="flex"
           data-direction="column"
-          data-mr="12"
+          data-mr="24"
           data-grow="1"
         >
           <input
