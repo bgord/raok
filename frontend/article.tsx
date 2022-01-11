@@ -49,11 +49,17 @@ export function Article(
         </UI.Link>
       </div>
 
-      <UI.Badge data-ml="auto" data-mr="12">
-        {props.status}
-      </UI.Badge>
+      <div
+        data-display="flex"
+        data-direction="column"
+        data-cross="end"
+        data-mr="6"
+        data-ml="auto"
+      >
+        <UI.Badge data-mb="6">{props.status}</UI.Badge>
 
-      <UI.Badge data-mr="6">{props.source}</UI.Badge>
+        <UI.Badge>{props.source}</UI.Badge>
+      </div>
 
       {props.status === "ready" && (
         <form
