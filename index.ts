@@ -39,14 +39,6 @@ app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
 app.get("/articles", AuthShield.verify, bg.Route(Articles));
 app.get("/articles/favourite", AuthShield.verify, bg.Route(FavouriteArticles));
-app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));
-app.get(
-  "/newspaper/:newspaperId",
-  AuthShield.verify,
-  bg.Route(SingleNewspaper)
-);
-app.get("/stats", AuthShield.verify, bg.Route(Stats));
-
 app.post("/add-article", AuthShield.verify, bg.Route(AddArticle));
 app.post(
   "/delete-article/:articleId",
@@ -59,6 +51,12 @@ app.post(
   bg.Route(AddArticleToFavourites)
 );
 
+app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));
+app.get(
+  "/newspaper/:newspaperId",
+  AuthShield.verify,
+  bg.Route(SingleNewspaper)
+);
 app.post("/create-newspaper", AuthShield.verify, bg.Route(CreateNewspaper));
 app.post(
   "/archive-newspaper/:newspaperId",
@@ -70,12 +68,15 @@ app.post(
   AuthShield.verify,
   bg.Route(ResendNewspaper)
 );
+
 app.post(
   "/send-arbitrary-file",
   AuthShield.verify,
   ...new bg.FileUploader({ autoClean: false }).handle(),
   bg.Route(SendArbitraryFile)
 );
+
+app.get("/stats", AuthShield.verify, bg.Route(Stats));
 
 app.post(
   "/login",
@@ -88,12 +89,7 @@ app.get("/logout", (request, response) => {
   return response.redirect("/");
 });
 
-app.get(
-  "/dashboard",
-  bg.CsrfShield.attach,
-  AuthShield.verify,
-  bg.Route(Dashboard)
-);
+app.get("/dashboard", AuthShield.verify, bg.Route(Dashboard));
 
 app.get("*", (_request, response) => response.redirect("/"));
 app.use(ErrorHandler.handle);
