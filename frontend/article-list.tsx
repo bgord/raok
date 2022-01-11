@@ -97,7 +97,13 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
       </div>
 
       {articles.isSuccess && articles.data.length === 0 && (
-        <small data-md-px="12" data-mt="12" data-ml="6">
+        <small
+          data-fs="14"
+          data-color="gray-600"
+          data-md-px="12"
+          data-mt="24"
+          data-ml="6"
+        >
           No articles available at the moment
         </small>
       )}

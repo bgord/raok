@@ -63,7 +63,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
       </UI.Header>
 
       {articles.data?.length === 0 && (
-        <small data-color="gray-700">
+        <small data-fs="14" data-color="gray-600">
           Your favourite sent articles will appear here
         </small>
       )}

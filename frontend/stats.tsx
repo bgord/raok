@@ -47,7 +47,7 @@ export function Stats(props: { initialData: StatsType }) {
         sent newspapers(s) overall
       </div>
 
-      <div data-fs="12" data-color="gray-400" data-mt="6">
+      <div data-fs="12" data-color="gray-400" data-mt="12">
         Last Feedly import performed {lastFeedlyImport}
       </div>
     </div>

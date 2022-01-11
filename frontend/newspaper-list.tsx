@@ -32,7 +32,13 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
       </Header>
 
       {newspapers.isSuccess && newspapers.data.length === 0 && (
-        <small data-md-px="12" data-mt="12" data-ml="6">
+        <small
+          data-fs="14"
+          data-color="gray-600"
+          data-md-px="12"
+          data-mt="24"
+          data-ml="6"
+        >
           No newspapers added at the moment
         </small>
       )}
