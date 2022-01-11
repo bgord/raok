@@ -1,5 +1,6 @@
 import { h, Fragment } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 import * as UI from "./ui";
 import { api } from "./api";
@@ -26,7 +27,14 @@ export function Newspaper(props: NewspaperProps) {
 
   useAutoUpdateNewspaper(props, details.actions.show);
 
-  const sentAt = props.sentAt ? new Date(props.sentAt).toLocaleString() : "-";
+  const sentAtDate = props.sentAt
+    ? new Date(props.sentAt).toLocaleString()
+    : "-";
+
+  const sentAtRelative = props.sentAt
+    ? formatDistanceToNow(props.sentAt, { addSuffix: true })
+    : "-";
+
   const scheduledAt = new Date(props.scheduledAt).toLocaleString();
 
   const isStalled = hasNewspaperStalled({
@@ -53,14 +61,19 @@ export function Newspaper(props: NewspaperProps) {
 
         <span data-ml="12">Newspaper #{props.id.split("-")[0]}</span>
 
-        <div data-ml="auto">
+        <div data-display="flex" data-cross="center" data-ml="auto">
           {(isStalled || props.status === "error") && (
             <CancelNewspaper data-mr="12" id={props.id} />
           )}
 
           {props.status === "delivered" && (
-            <span data-fs="14" data-color="gray-400" data-mr="6">
-              Sent at {sentAt}
+            <span
+              data-fs="14"
+              data-color="gray-400"
+              data-mr="12"
+              title={sentAtDate}
+            >
+              Sent {sentAtRelative}
             </span>
           )}
 
@@ -68,6 +81,7 @@ export function Newspaper(props: NewspaperProps) {
             <button
               class="c-button"
               data-variant="bare"
+              data-mr="6"
               onClick={details.actions.toggle}
             >
               {["hidden", "appearing"].includes(details.state) && (
