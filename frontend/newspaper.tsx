@@ -74,11 +74,23 @@ export function Newspaper(props: NewspaperProps) {
               onClick={details.actions.toggle}
             >
               {["hidden", "appearing"].includes(details.state) && (
-                <img height="16" width="16" src="/arrow-down-icon.svg" alt="" />
+                <img
+                  loading="eager"
+                  height="16"
+                  width="16"
+                  src="/arrow-down-icon.svg"
+                  alt=""
+                />
               )}
 
               {["appeared", "hidding"].includes(details.state) && (
-                <img height="16" width="16" src="/arrow-up-icon.svg" alt="" />
+                <img
+                  loading="eager"
+                  height="16"
+                  width="16"
+                  src="/arrow-up-icon.svg"
+                  alt=""
+                />
               )}
             </button>
           )}
@@ -142,6 +154,7 @@ export function Newspaper(props: NewspaperProps) {
                 >
                   {article.favourite && (
                     <img
+                      loading="eager"
                       height="20"
                       width="20"
                       src="/icon-star-filled.svg"
@@ -149,7 +162,13 @@ export function Newspaper(props: NewspaperProps) {
                     />
                   )}
                   {!article.favourite && (
-                    <img height="20" width="20" src="/icon-star.svg" alt="" />
+                    <img
+                      loading="eager"
+                      height="20"
+                      width="20"
+                      src="/icon-star.svg"
+                      alt=""
+                    />
                   )}
                 </button>
               </form>

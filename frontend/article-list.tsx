@@ -33,6 +33,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           data-color="gray-700"
         >
           <img
+            loading="eager"
             height="20"
             width="20"
             src="/icon-article.svg"

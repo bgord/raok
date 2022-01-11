@@ -26,7 +26,14 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
         data-mb="24"
         data-color="gray-700"
       >
-        <img height="20" width="20" src="/icon-star.svg" alt="" data-mr="12" />
+        <img
+          loading="eager"
+          height="20"
+          width="20"
+          src="/icon-star.svg"
+          alt=""
+          data-mr="12"
+        />
         Favourite articles
       </UI.Header>
 

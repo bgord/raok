@@ -25,7 +25,14 @@ export function Stats(props: { initialData: StatsType }) {
         data-mb="24"
         data-color="gray-700"
       >
-        <img height="20" width="20" src="/icon-stats.svg" alt="" data-mr="12" />
+        <img
+          loading="eager"
+          height="20"
+          width="20"
+          src="/icon-stats.svg"
+          alt=""
+          data-mr="12"
+        />
         Statistics
       </Header>
 

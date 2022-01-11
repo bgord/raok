@@ -42,7 +42,14 @@ export function SendArbitraryFile() {
         data-mb="24"
         data-color="gray-700"
       >
-        <img height="20" width="20" src="/icon-book.svg" alt="" data-mr="12" />
+        <img
+          loading="eager"
+          height="20"
+          width="20"
+          src="/icon-book.svg"
+          alt=""
+          data-mr="12"
+        />
         Send a book
       </Header>
 

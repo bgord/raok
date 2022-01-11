@@ -63,7 +63,13 @@ export function Article(
           }}
         >
           <button type="submit" class="c-button" data-variant="bare">
-            <img height="30" width="30" src="/icon-trash.svg" alt="delete" />
+            <img
+              loading="eager"
+              height="30"
+              width="30"
+              src="/icon-trash.svg"
+              alt="delete"
+            />
           </button>
         </form>
       )}

@@ -21,6 +21,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
         data-p="12"
       >
         <img
+          loading="eager"
           height="20"
           width="20"
           src="/icon-newspaper.svg"
