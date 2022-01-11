@@ -18,7 +18,9 @@ export function NewspaperArticle(props: ArticleType) {
           newspapers.map((newspaper) => ({
             ...newspaper,
             articles: newspaper.articles.map((article) => {
-              article.favourite = true;
+              if (article.id === props.id) {
+                article.favourite = true;
+              }
               return article;
             }),
           }))
@@ -38,7 +40,9 @@ export function NewspaperArticle(props: ArticleType) {
             newspapers.map((newspaper) => ({
               ...newspaper,
               articles: newspaper.articles.map((article) => {
-                article.favourite = false;
+                if (article.id === props.id) {
+                  article.favourite = false;
+                }
                 return article;
               }),
             }))

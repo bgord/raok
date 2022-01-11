@@ -17,7 +17,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
   const deleteArticleFromFavourites = useMutation(
     api.deleteArticleFromFavourites,
     {
-      onSuccess: () => {
+      onSuccess: (_response, articleId) => {
         queryClient.invalidateQueries(["favourite-articles"]);
 
         queryClient.setQueryData<NewspaperType[]>(
@@ -26,7 +26,9 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
             newspapers.map((newspaper) => ({
               ...newspaper,
               articles: newspaper.articles.map((article) => {
-                article.favourite = false;
+                if (article.id === articleId) {
+                  article.favourite = false;
+                }
                 return article;
               }),
             }))
