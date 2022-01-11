@@ -8,7 +8,11 @@ export class StatsRepository {
 
     if (stats) return stats;
 
-    const newStats = { createdArticles: 0, sentNewspapers: 0 };
+    const newStats = {
+      createdArticles: 0,
+      sentNewspapers: 0,
+      lastFeedlyImport: 0,
+    };
 
     return prisma.stats.create({ data: newStats });
   }
@@ -19,9 +23,9 @@ export class StatsRepository {
     });
   }
 
-  static async incrementSentNewspapers() {
+  static async updateLastFeedlyImport(timestamp: number) {
     return prisma.stats.updateMany({
-      data: { sentNewspapers: { increment: 1 } },
+      data: { lastFeedlyImport: timestamp },
     });
   }
 }

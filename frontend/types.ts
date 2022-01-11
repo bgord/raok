@@ -23,4 +23,5 @@ export type NewspaperType = {
 export type StatsType = {
   createdArticles: number;
   sentNewspapers: number;
+  lastFeedlyImport: number;
 };

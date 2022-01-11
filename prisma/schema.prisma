@@ -42,4 +42,5 @@ model Stats {
   id                String     @id @default(uuid())
   createdArticles   Int        @default(0)
   sentNewspapers    Int        @default(0)
+  lastFeedlyImport  Int        @default(0)
 }

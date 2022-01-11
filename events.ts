@@ -160,6 +160,10 @@ export const emittery = new Emittery<{
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
   await ArticleRepository.create(event.payload);
   await StatsRepository.incrementCreatedArticles();
+
+  if (event.payload.source === VO.ArticleSourceEnum.feedly) {
+    await StatsRepository.updateLastFeedlyImport(event.payload.createdAt);
+  }
 });
 
 emittery.on(ARTICLE_DELETED_EVENT, async (event) => {

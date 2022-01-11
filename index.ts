@@ -28,11 +28,7 @@ const AuthShield = new bg.EnvUserAuthShield({
   ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
 });
 
-bg.addExpressEssentials(app, {
-  helmet: {
-    contentSecurityPolicy: false,
-  },
-});
+bg.addExpressEssentials(app, { helmet: { contentSecurityPolicy: false } });
 
 new bg.Handlebars().applyTo(app);
 new bg.Session({ secret: Env.COOKIE_SECRET }).applyTo(app);

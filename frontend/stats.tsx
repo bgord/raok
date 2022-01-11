@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 import { Header } from "./ui";
 import { api } from "./api";
@@ -9,7 +10,12 @@ export function Stats(props: { initialData: StatsType }) {
   const stats = useQuery(["stats"], api.getStats, props);
 
   const createdArticles = stats.isSuccess ? stats.data.createdArticles : "-";
+
   const sentNewspapers = stats.isSuccess ? stats.data.sentNewspapers : "-";
+
+  const lastFeedlyImport = stats.isSuccess
+    ? formatDistanceToNow(stats.data.lastFeedlyImport, { addSuffix: true })
+    : "N/A";
 
   return (
     <div data-bg="gray-100" data-p="12" data-bw="4" data-bct="gray-200">
@@ -31,6 +37,10 @@ export function Stats(props: { initialData: StatsType }) {
       <div data-fs="14" data-color="gray-600" data-mt="6">
         <strong>{sentNewspapers} </strong>
         sent newspapers(s) overall
+      </div>
+
+      <div data-fs="12" data-color="gray-400" data-mt="6">
+        Last Feedly import performed {lastFeedlyImport}
       </div>
     </div>
   );
