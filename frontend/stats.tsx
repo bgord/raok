@@ -13,9 +13,10 @@ export function Stats(props: { initialData: StatsType }) {
 
   const sentNewspapers = stats.isSuccess ? stats.data.sentNewspapers : "-";
 
-  const lastFeedlyImport = stats.isSuccess
-    ? formatDistanceToNow(stats.data.lastFeedlyImport, { addSuffix: true })
-    : "N/A";
+  const lastFeedlyImport =
+    stats.isSuccess && stats.data.lastFeedlyImport !== 0
+      ? formatDistanceToNow(stats.data.lastFeedlyImport, { addSuffix: true })
+      : "N/A";
 
   return (
     <div data-bg="gray-100" data-p="12" data-bw="4" data-bct="gray-200">
