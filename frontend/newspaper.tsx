@@ -1,6 +1,7 @@
 import { h, Fragment } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import formatDistanceStrict from "date-fns/formatDistanceStrict";
 
 import * as UI from "./ui";
 import { api } from "./api";
@@ -35,7 +36,7 @@ export function Newspaper(props: NewspaperProps) {
     ? formatDistanceToNow(props.sentAt, { addSuffix: true })
     : "-";
 
-  const scheduledAt = new Date(props.scheduledAt).toLocaleString();
+  const duration = formatDistanceStrict(props.sentAt ?? 0, props.scheduledAt);
 
   const isStalled = hasNewspaperStalled({
     status: props.status,
@@ -135,7 +136,7 @@ export function Newspaper(props: NewspaperProps) {
           )}
 
           <span data-fs="14" data-color="gray-400" data-ml="auto" data-mr="6">
-            Scheduled at {scheduledAt}
+            Processed in {duration}
           </span>
         </div>
       )}
