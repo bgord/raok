@@ -9,9 +9,12 @@ export type UseListActionsType<T> = {
   isAdded: (x: T) => boolean;
 };
 
+export type UseListReturnType<T> = [T[], UseListActionsType<T>];
+
 export function useList<T>(
-  defaultItems: T[] = []
-): [T[], UseListActionsType<T>] {
+  defaultItems: T[] = [],
+  comparisonFn: (a: T, b: T) => boolean = (a, b) => a === b
+): UseListReturnType<T> {
   const [items, setItems] = useState<T[]>(defaultItems);
 
   function clear() {
@@ -28,11 +31,11 @@ export function useList<T>(
   }
 
   function remove(item: T) {
-    setItems((items) => items.filter((x) => x !== item));
+    setItems((items) => items.filter((x) => !comparisonFn(x, item)));
   }
 
   function isAdded(item: T) {
-    return items.some((x) => x === item);
+    return items.some((x) => comparisonFn(x, item));
   }
 
   function toggle(item: T) {
