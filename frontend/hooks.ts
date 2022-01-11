@@ -28,7 +28,7 @@ export function useList<T>(
   }
 
   function remove(item: T) {
-    setItems((items) => items.filter((x) => x === item));
+    setItems((items) => items.filter((x) => x !== item));
   }
 
   function isAdded(item: T) {
