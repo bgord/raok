@@ -38,6 +38,10 @@ async function archiveNewspaper(id: NewspaperType["id"]) {
   return _api(`/archive-newspaper/${id}`, { method: "POST" });
 }
 
+async function cancelNewspaper(id: NewspaperType["id"]) {
+  return _api(`/cancel-newspaper/${id}`, { method: "POST" });
+}
+
 async function resendNewspaper(id: NewspaperType["id"]) {
   return _api(`/resend-newspaper/${id}`, { method: "POST" });
 }
@@ -97,6 +101,7 @@ export const api = {
   getSingleNewspaper,
   createNewspaper,
   archiveNewspaper,
+  cancelNewspaper,
   resendNewspaper,
   getStats,
   getArticles,

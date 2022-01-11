@@ -174,6 +174,17 @@ export class Newspaper {
       to: VO.NewspaperStatusEnum.archived,
     });
 
+    await EventRepository.save(
+      Events.NewspaperArchivedEvent.parse({
+        name: Events.NEWSPAPER_ARCHIVED_EVENT,
+        version: 1,
+        stream: this.stream,
+        payload: { newspaperId: this.id },
+      })
+    );
+  }
+
+  async cancel() {
     await Policies.HasNewspaperStalled.perform({
       status: this.status,
       scheduledAt: this.scheduledAt,

@@ -55,7 +55,7 @@ export function Newspaper(props: NewspaperProps) {
 
         <div data-ml="auto">
           {(isStalled || props.status === "error") && (
-            <ArchiveNewspaper data-mr="12" id={props.id} />
+            <CancelNewspaper data-mr="12" id={props.id} />
           )}
 
           {props.status === "delivered" && (
@@ -189,6 +189,32 @@ function ArchiveNewspaper(props: {
     >
       <button type="submit" class="c-button" data-variant="secondary">
         Archive
+      </button>
+    </form>
+  );
+}
+
+function CancelNewspaper(props: {
+  id: NewspaperType["id"] & h.JSX.IntrinsicElements["form"];
+}) {
+  const { id, ...rest } = props;
+
+  const queryClient = useQueryClient();
+
+  const cancelNewspaper = useMutation(api.cancelNewspaper, {
+    onSuccess: () => queryClient.invalidateQueries(["newspapers"]),
+  });
+
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        cancelNewspaper.mutate(id);
+      }}
+      {...rest}
+    >
+      <button type="submit" class="c-button" data-variant="secondary">
+        Cancel
       </button>
     </form>
   );

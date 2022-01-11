@@ -8,6 +8,7 @@ import { AddArticle } from "./routes/add-article";
 import { DeleteArticle } from "./routes/delete-article";
 import { CreateNewspaper } from "./routes/create-newspaper";
 import { ArchiveNewspaper } from "./routes/archive-newspaper";
+import { CancelNewspaper } from "./routes/cancel-newspaper";
 import { ResendNewspaper } from "./routes/resend-newspaper";
 import { Articles } from "./routes/articles";
 import { Newspapers } from "./routes/newspapers";
@@ -68,6 +69,11 @@ app.post(
   "/archive-newspaper/:newspaperId",
   AuthShield.verify,
   bg.Route(ArchiveNewspaper)
+);
+app.post(
+  "/cancel-newspaper/:newspaperId",
+  AuthShield.verify,
+  bg.Route(CancelNewspaper)
 );
 app.post(
   "/resend-newspaper/:newspaperId",
