@@ -69,6 +69,19 @@ export type ArticleAddedToFavouritesEventType = z.infer<
   typeof ArticleAddedToFavouritesEvent
 >;
 
+export const ARTICLE_DELETED_FROM_FAVOURITES =
+  "ARTICLE_DELETED_FROM_FAVOURITES";
+export const ArticleDeletedFromFavouritesEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_DELETED_FROM_FAVOURITES),
+    version: z.literal(1),
+    payload: z.object({ articleId: VO.ArticleId }),
+  })
+);
+export type ArticleDeletedFromFavouritesEventType = z.infer<
+  typeof ArticleDeletedFromFavouritesEvent
+>;
+
 export const NEWSPAPER_SCHEDULED_EVENT = "NEWSPAPER_SCHEDULED_EVENT";
 export const NewspaperScheduledEvent = EventDraft.merge(
   z.object({
@@ -148,7 +161,8 @@ export const emittery = new Emittery<{
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   ARTICLE_LOCKED_EVENT: ArticleLockedEventType;
   ARTICLE_PROCESSED_EVENT: ArticleProcessedEventType;
-  ARTICLE_ADDED_TO_FAVOURITES: ArticleProcessedEventType;
+  ARTICLE_ADDED_TO_FAVOURITES: ArticleAddedToFavouritesEventType;
+  ARTICLE_DELETED_FROM_FAVOURITES: ArticleDeletedFromFavouritesEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
   NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
   NEWSPAPER_SENT_EVENT: NewspaperSentEventType;
@@ -184,6 +198,10 @@ emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
 
 emittery.on(ARTICLE_ADDED_TO_FAVOURITES, async (event) => {
   await ArticleRepository.addToFavourites(event.payload.articleId);
+});
+
+emittery.on(ARTICLE_DELETED_FROM_FAVOURITES, async (event) => {
+  await ArticleRepository.deleteFromFavourites(event.payload.articleId);
 });
 
 emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {

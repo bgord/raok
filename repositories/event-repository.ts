@@ -11,6 +11,7 @@ type AcceptedEvent =
   | typeof Events.ArticleLockedEvent
   | typeof Events.ArticleProcessedEvent
   | typeof Events.ArticleAddedToFavouritesEvent
+  | typeof Events.ArticleDeletedFromFavouritesEvent
   | typeof Events.NewspaperArchivedEvent
   | typeof Events.NewspaperFailedEvent
   | typeof Events.NewspaperGenerateEvent

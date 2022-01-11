@@ -9,3 +9,4 @@ export * from "./newspaper-status-transition";
 export * from "./no-empty-newspaper";
 export * from "./has-newspaper-stalled";
 export * from "./favourite-article";
+export * from "./unfavourite-article";

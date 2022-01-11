@@ -48,6 +48,13 @@ export class ArticleRepository {
     });
   }
 
+  static async deleteFromFavourites(articleId: VO.ArticleType["id"]) {
+    return prisma.article.update({
+      where: { id: articleId },
+      data: { favourite: false },
+    });
+  }
+
   static async assignToNewspaper(
     articleId: VO.ArticleType["id"],
     newspaperId: VO.NewspaperType["id"]

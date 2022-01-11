@@ -7,6 +7,7 @@ import { NewspaperType } from "./types";
 import { useAnimatiedToggle } from "./hooks";
 
 import { hasNewspaperStalled } from "../policies/common";
+import { NewspaperArticle } from "./newspaper-article";
 
 type NewspaperProps = NewspaperType;
 
@@ -19,10 +20,6 @@ export function Newspaper(props: NewspaperProps) {
       queryClient.invalidateQueries(["articles"]);
       queryClient.invalidateQueries(["stats"]);
     },
-  });
-
-  const addArticleToFavourites = useMutation(api.addArticleToFavourites, {
-    onSuccess: () => queryClient.invalidateQueries(["favourite-articles"]),
   });
 
   const details = useAnimatiedToggle();
@@ -132,53 +129,7 @@ export function Newspaper(props: NewspaperProps) {
       {details.state !== "hidden" && (
         <ol data-mt="6" data-mb="12" {...details.props}>
           {props.articles.map((article) => (
-            <li
-              data-display="flex"
-              data-wrap="nowrap"
-              data-mb="12"
-              data-max-width="768"
-              data-px="12"
-              data-cross="center"
-            >
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  addArticleToFavourites.mutate(article.id);
-                }}
-              >
-                <button
-                  type="submit"
-                  class="c-button"
-                  data-variant="bare"
-                  data-mr="6"
-                >
-                  {article.favourite && (
-                    <img
-                      loading="eager"
-                      height="20"
-                      width="20"
-                      src="/icon-star-filled.svg"
-                      alt=""
-                    />
-                  )}
-                  {!article.favourite && (
-                    <img
-                      loading="eager"
-                      height="20"
-                      width="20"
-                      src="/icon-star.svg"
-                      alt=""
-                    />
-                  )}
-                </button>
-              </form>
-
-              <UI.Link href={article.url} data-pr="12">
-                {article.url}
-              </UI.Link>
-
-              <UI.Badge data-ml="auto">{article.source}</UI.Badge>
-            </li>
+            <NewspaperArticle {...article} />
           ))}
         </ol>
       )}

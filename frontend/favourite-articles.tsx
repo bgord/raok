@@ -1,15 +1,38 @@
 import { h } from "preact";
-import { useQuery } from "react-query";
+import { useQueryClient, useQuery, useMutation } from "react-query";
 
 import * as UI from "./ui";
 import { api } from "./api";
-import { ArticleType } from "./types";
+import { ArticleType, NewspaperType } from "./types";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
+  const queryClient = useQueryClient();
+
   const articles = useQuery(
     ["favourite-articles"],
     api.getFavouriteArticles,
     props
+  );
+
+  const deleteArticleFromFavourites = useMutation(
+    api.deleteArticleFromFavourites,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["favourite-articles"]);
+
+        queryClient.setQueryData<NewspaperType[]>(
+          "newspapers",
+          (newspapers = []) =>
+            newspapers.map((newspaper) => ({
+              ...newspaper,
+              articles: newspaper.articles.map((article) => {
+                article.favourite = false;
+                return article;
+              }),
+            }))
+        );
+      },
+    }
   );
 
   return (
@@ -54,9 +77,22 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
           >
             <UI.Link href={article.url}>{article.title || article.url}</UI.Link>
 
-            <button class="c-button" data-variant="bare" data-ml="auto">
-              Remove
-            </button>
+            <form
+              data-ml="auto"
+              onSubmit={(event) => {
+                event.preventDefault();
+                deleteArticleFromFavourites.mutate(article.id);
+              }}
+            >
+              <button
+                disabled={deleteArticleFromFavourites.isLoading}
+                type="submit"
+                class="c-button"
+                data-variant="bare"
+              >
+                Remove
+              </button>
+            </form>
           </li>
         ))}
       </ul>

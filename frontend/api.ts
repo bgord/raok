@@ -43,7 +43,11 @@ async function resendNewspaper(id: NewspaperType["id"]) {
 }
 
 async function getStats(): Promise<StatsType> {
-  const defaultStats: StatsType = { createdArticles: 0, sentNewspapers: 0 };
+  const defaultStats: StatsType = {
+    createdArticles: 0,
+    sentNewspapers: 0,
+    lastFeedlyImport: 0,
+  };
 
   return _api("/stats", { method: "GET" }).then((response) =>
     response.ok ? response.json() : defaultStats
@@ -77,6 +81,10 @@ async function addArticleToFavourites(articleId: ArticleType["id"]) {
   return _api(`/article/${articleId}/favourite`, { method: "POST" });
 }
 
+async function deleteArticleFromFavourites(articleId: ArticleType["id"]) {
+  return _api(`/article/${articleId}/unfavourite`, { method: "POST" });
+}
+
 async function sendArbitraryFile(form: FormData) {
   return fetch("/send-arbitrary-file", {
     method: "POST",
@@ -97,4 +105,5 @@ export const api = {
   sendArbitraryFile,
   getFavouriteArticles,
   addArticleToFavourites,
+  deleteArticleFromFavourites,
 };

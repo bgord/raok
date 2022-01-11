@@ -16,6 +16,7 @@ import { Stats } from "./routes/stats";
 import { SendArbitraryFile } from "./routes/send-arbitrary-file";
 import { FavouriteArticles } from "./routes/favourite-articles";
 import { AddArticleToFavourites } from "./routes/add-article-to-favourites";
+import { DeleteArticleFromFavourites } from "./routes/delete-article-from-favourites";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -49,6 +50,11 @@ app.post(
   "/article/:articleId/favourite",
   AuthShield.verify,
   bg.Route(AddArticleToFavourites)
+);
+app.post(
+  "/article/:articleId/unfavourite",
+  AuthShield.verify,
+  bg.Route(DeleteArticleFromFavourites)
 );
 
 app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));

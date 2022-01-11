@@ -23,6 +23,12 @@ export class StatsRepository {
     });
   }
 
+  static async incrementSentNewspapers() {
+    return prisma.stats.updateMany({
+      data: { sentNewspapers: { increment: 1 } },
+    });
+  }
+
   static async updateLastFeedlyImport(timestamp: number) {
     return prisma.stats.updateMany({
       data: { lastFeedlyImport: timestamp },
