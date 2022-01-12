@@ -20,8 +20,8 @@ export function Notifications() {
           data-notification={notification.state}
           data-display="flex"
           data-cross="center"
-          data-pl="12"
-          data-px="0"
+          data-py="6"
+          data-px="12"
           data-mt="12"
           data-fs="14"
           data-color="gray-700"
