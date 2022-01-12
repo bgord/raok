@@ -4,16 +4,19 @@ import { useList } from "./hooks";
 
 type NotificationType = "success" | "error";
 
+type NotificationState = "visible" | "hidding" | "hidden";
+
 type Notification = {
   id: number;
   type: NotificationType;
+  state: NotificationState;
   message: string;
 };
 
 type UseNotificationsReturnType = [
   Notification[],
   {
-    add: (notification: Omit<Notification, "id">) => void;
+    add: (notification: Omit<Notification, "id" | "state">) => void;
     remove: (notification: Notification) => void;
     clear: VoidFunction;
   }
@@ -25,17 +28,38 @@ function useNotificationsImplementation(): UseNotificationsReturnType {
     (a, b) => a.id === b.id
   );
 
-  function add(notification: Omit<Notification, "id">) {
+  function add(notification: Omit<Notification, "id" | "state">) {
     const id = Date.now();
 
-    actions.add({ ...notification, id });
+    actions.add({ ...notification, id, state: "visible" });
+    scheduleRemoval({ ...notification, id, state: "visible" });
+  }
 
-    setTimeout(() => actions.remove({ ...notification, id }), 5000);
+  function scheduleRemoval(notification: Notification) {
+    setTimeout(
+      () =>
+        actions.update((items) =>
+          items.map((item) =>
+            item.id === notification.id ? { ...item, state: "hidding" } : item
+          )
+        ),
+      5000
+    );
+
+    setTimeout(
+      () =>
+        actions.remove({
+          ...notification,
+          id: notification.id,
+          state: "hidden",
+        }),
+      5300
+    );
   }
 
   return [
     [...notifications].reverse(),
-    { add, remove: actions.remove, clear: actions.clear },
+    { add, remove: scheduleRemoval, clear: actions.clear },
   ];
 }
 

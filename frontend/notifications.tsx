@@ -16,6 +16,7 @@ export function Notifications() {
     >
       {notifications.map((notification) => (
         <li
+          data-notification={notification.state}
           data-display="flex"
           data-cross="center"
           data-pl="12"
