@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, StateUpdater } from "preact/hooks";
 
 export type UseListActionsType<T> = {
   clear: VoidFunction;
@@ -7,6 +7,7 @@ export type UseListActionsType<T> = {
   remove: (x: T) => void;
   toggle: (x: T) => void;
   isAdded: (x: T) => boolean;
+  update: StateUpdater<T[]>;
 };
 
 export type UseListReturnType<T> = [T[], UseListActionsType<T>];
@@ -42,7 +43,7 @@ export function useList<T>(
     isAdded(item) ? remove(item) : add(item);
   }
 
-  return [items, { clear, add, remove, toggle, isAdded }];
+  return [items, { clear, add, remove, toggle, isAdded, update: setItems }];
 }
 
 export function useToggle(defaultValue = false) {
