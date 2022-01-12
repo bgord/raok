@@ -3,7 +3,7 @@ import { h } from "preact";
 import { useNotifications } from "./notifications-context";
 
 export function Notifications() {
-  const [notifications, actions] = useNotifications();
+  const [notifications] = useNotifications();
 
   return (
     <ul
@@ -29,15 +29,6 @@ export function Notifications() {
           data-br="2"
         >
           {notification.message}
-
-          <button
-            class="c-button"
-            data-variant="bare"
-            data-ml="auto"
-            onClick={() => actions.remove(notification)}
-          >
-            <img src="/icon-close.svg" alt="" loading="eager" />
-          </button>
         </li>
       ))}
     </ul>

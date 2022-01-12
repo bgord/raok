@@ -32,19 +32,22 @@ function useNotificationsImplementation(): UseNotificationsReturnType {
     const id = Date.now();
 
     actions.add({ ...notification, id, state: "appearing" });
-    scheduleRemoval({ ...notification, id });
-  }
 
-  function scheduleRemoval(notification: Omit<Notification, "state">) {
     setTimeout(
       () =>
         actions.update((items) =>
           items.map((item) =>
-            item.id === notification.id ? { ...item, state: "visible" } : item
+            item.id === id ? { ...item, state: "visible" } : item
           )
         ),
       300
     );
+
+    scheduleRemoval({ ...notification, id });
+  }
+
+  function scheduleRemoval(notification: Omit<Notification, "state">) {
+    console.log("scheduling removal");
 
     setTimeout(
       () =>
