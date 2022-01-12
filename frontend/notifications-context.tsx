@@ -4,7 +4,7 @@ import { useList } from "./hooks";
 
 type NotificationType = "success" | "error";
 
-type NotificationState = "visible" | "hidding" | "hidden";
+type NotificationState = "appearing" | "visible" | "hidding" | "hidden";
 
 type Notification = {
   id: number;
@@ -31,11 +31,21 @@ function useNotificationsImplementation(): UseNotificationsReturnType {
   function add(notification: Omit<Notification, "id" | "state">) {
     const id = Date.now();
 
-    actions.add({ ...notification, id, state: "visible" });
-    scheduleRemoval({ ...notification, id, state: "visible" });
+    actions.add({ ...notification, id, state: "appearing" });
+    scheduleRemoval({ ...notification, id });
   }
 
-  function scheduleRemoval(notification: Notification) {
+  function scheduleRemoval(notification: Omit<Notification, "state">) {
+    setTimeout(
+      () =>
+        actions.update((items) =>
+          items.map((item) =>
+            item.id === notification.id ? { ...item, state: "visible" } : item
+          )
+        ),
+      300
+    );
+
     setTimeout(
       () =>
         actions.update((items) =>

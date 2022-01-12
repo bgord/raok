@@ -77,8 +77,13 @@ function Html(content: string, username: string, state: string) {
             }
           }
 
-          *[data-notification="visible"] {
+          *[data-notification="appearing"] {
             animation: slideIn 0.3s ease-out;
+          }
+
+          *[data-notification="visible"] {
+            opacity: 1;
+            transform: translateX(0);
           }
 
           *[data-notification="hidding"] {
