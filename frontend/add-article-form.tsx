@@ -4,9 +4,11 @@ import { useMutation, useQueryClient } from "react-query";
 
 import { ArticleType } from "./types";
 import { api } from "./api";
+import { useNotificationTrigger } from "./notifications-context";
 
 export function AddArticleForm() {
   const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
 
   const [url, setUrl] = useState<ArticleType["url"]>("");
 
@@ -15,6 +17,7 @@ export function AddArticleForm() {
       queryClient.invalidateQueries(["articles"]);
       queryClient.invalidateQueries(["stats"]);
       setUrl("");
+      notify({ type: "success", message: "Article added" });
     },
   });
 

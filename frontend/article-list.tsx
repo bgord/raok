@@ -4,12 +4,14 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import * as UI from "./ui";
 import { ArticleType } from "./types";
 import { api } from "./api";
+import { useNotificationTrigger } from "./notifications-context";
 import { useList, useToggle } from "./hooks";
 import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
 export function ArticleList(props: { initialData: ArticleType[] }) {
   const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
 
   const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
   const emptyNewspaperError = useToggle();
@@ -20,6 +22,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
     onSuccess: () => {
       queryClient.invalidateQueries(["newspapers"]);
       queryClient.invalidateQueries(["articles"]);
+      notify({ type: "success", message: "Newspaper scheduled" });
     },
   });
 

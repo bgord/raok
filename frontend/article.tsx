@@ -4,15 +4,20 @@ import { useMutation, useQueryClient } from "react-query";
 import * as UI from "./ui";
 import { api } from "./api";
 import { ArticleType } from "./types";
+import { useNotificationTrigger } from "./notifications-context";
 import { UseListActionsType } from "./hooks";
 
 export function Article(
   props: ArticleType & UseListActionsType<ArticleType["id"]>
 ) {
   const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
 
   const deleteArticle = useMutation(api.deleteArticle, {
-    onSuccess: () => queryClient.invalidateQueries(["articles"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["articles"]);
+      notify({ type: "success", message: "Article deleted" });
+    },
   });
 
   return (

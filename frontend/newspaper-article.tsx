@@ -4,9 +4,11 @@ import { useMutation, useQueryClient } from "react-query";
 import * as UI from "./ui";
 import { api } from "./api";
 import { ArticleType, NewspaperType } from "./types";
+import { useNotificationTrigger } from "./notifications-context";
 
 export function NewspaperArticle(props: ArticleType) {
   const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
 
   const addArticleToFavourites = useMutation(api.addArticleToFavourites, {
     onSuccess: () => {
@@ -25,6 +27,8 @@ export function NewspaperArticle(props: ArticleType) {
             }),
           }))
       );
+
+      notify({ type: "success", message: "Article added to favourites" });
     },
   });
 
@@ -47,6 +51,8 @@ export function NewspaperArticle(props: ArticleType) {
               }),
             }))
         );
+
+        notify({ type: "success", message: "Article deleted from favourites" });
       },
     }
   );

@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 import { Header } from "./ui";
 import { api } from "./api";
 import { NewspaperType } from "./types";
-
 import { Newspaper } from "./newspaper";
 
 export function NewspaperList(props: { initialData: NewspaperType[] }) {

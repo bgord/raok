@@ -7,7 +7,7 @@ import * as UI from "./ui";
 import { api } from "./api";
 import { NewspaperType } from "./types";
 import { useAnimatiedToggle } from "./hooks";
-
+import { useNotificationTrigger } from "./notifications-context";
 import { hasNewspaperStalled } from "../policies/common";
 import { NewspaperArticle } from "./newspaper-article";
 
@@ -15,12 +15,15 @@ type NewspaperProps = NewspaperType;
 
 export function Newspaper(props: NewspaperProps) {
   const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
 
   const resendNewspaper = useMutation(api.resendNewspaper, {
     onSuccess: () => {
       queryClient.invalidateQueries(["newspapers"]);
       queryClient.invalidateQueries(["articles"]);
       queryClient.invalidateQueries(["stats"]);
+
+      notify({ type: "success", message: "Newspaper resent" });
     },
   });
 
@@ -188,10 +191,14 @@ function ArchiveNewspaper(props: {
 }) {
   const { id, ...rest } = props;
 
+  const notify = useNotificationTrigger();
   const queryClient = useQueryClient();
 
   const archiveNewspaper = useMutation(api.archiveNewspaper, {
-    onSuccess: () => queryClient.invalidateQueries(["newspapers"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["newspapers"]);
+      notify({ type: "success", message: "Newspaper archived" });
+    },
   });
 
   return (
@@ -214,10 +221,14 @@ function CancelNewspaper(props: {
 }) {
   const { id, ...rest } = props;
 
+  const notify = useNotificationTrigger();
   const queryClient = useQueryClient();
 
   const cancelNewspaper = useMutation(api.cancelNewspaper, {
-    onSuccess: () => queryClient.invalidateQueries(["newspapers"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["newspapers"]);
+      notify({ type: "success", message: "Newspaper cancelled" });
+    },
   });
 
   return (

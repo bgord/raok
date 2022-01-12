@@ -4,9 +4,11 @@ import { useQueryClient, useQuery, useMutation } from "react-query";
 import * as UI from "./ui";
 import { api } from "./api";
 import { ArticleType, NewspaperType } from "./types";
+import { useNotificationTrigger } from "./notifications-context";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
   const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
 
   const articles = useQuery(
     ["favourite-articles"],
@@ -18,6 +20,8 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
     api.deleteArticleFromFavourites,
     {
       onSuccess: (_response, articleId) => {
+        notify({ type: "success", message: "Deleted from favourites" });
+
         queryClient.invalidateQueries(["favourite-articles"]);
 
         queryClient.setQueryData<NewspaperType[]>(

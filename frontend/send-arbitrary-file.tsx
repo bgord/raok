@@ -4,6 +4,7 @@ import { useMutation } from "react-query";
 import { api } from "./api";
 import { Header } from "./ui";
 import { useFile, UseFileState } from "./hooks";
+import { useNotificationTrigger } from "./notifications-context";
 
 const style = {
   width: "0.1px",
@@ -13,7 +14,11 @@ const style = {
 };
 
 export function SendArbitraryFile() {
-  const fileUpload = useMutation(api.sendArbitraryFile);
+  const notify = useNotificationTrigger();
+
+  const fileUpload = useMutation(api.sendArbitraryFile, {
+    onSuccess: () => notify({ type: "success", message: "File sent" }),
+  });
   const file = useFile();
 
   return (

@@ -54,6 +54,36 @@ function Html(content: string, username: string, state: string) {
             opacity: 0;
             transition: opacity 220ms;
           }
+
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateX(-30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0px);
+            }
+          }
+
+          @keyframes slideOut {
+            from {
+              opacity: 1;
+              transform: translateX(0px);
+            }
+            to {
+              opacity: 0;
+              transform: translateX(-30px);
+            }
+          }
+
+          *[data-notification="visible"] {
+            animation: slideIn 0.3s ease-out;
+          }
+
+          *[data-notification="hidding"] {
+            animation: slideOut 0.3s ease-out;
+          }
         </style>
 
         <title>RAOK - read articles on Kindle</title>
