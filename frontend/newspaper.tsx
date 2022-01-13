@@ -61,7 +61,9 @@ export function Newspaper(props: NewspaperProps) {
         data-cross="center"
         data-p={details.state !== "hidden" ? "12" : "0"}
       >
-        <UI.Badge>{props.status}</UI.Badge>
+        <UI.Badge data-bg="gray-600" data-color="gray-100" data-px="6">
+          {props.status}
+        </UI.Badge>
 
         <span data-ml="12">Newspaper #{props.id.split("-")[0]}</span>
 
