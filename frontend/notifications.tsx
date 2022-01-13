@@ -8,11 +8,11 @@ export function Notifications() {
   return (
     <ul
       data-position="fixed"
-      data-mt="72"
+      data-mb="12"
       data-ml="12"
       data-pt="12"
       data-width="100%"
-      style={{ top: 0, left: 0, maxWidth: "290px", listStyle: "none" }}
+      style={{ bottom: 0, left: 0, maxWidth: "290px", listStyle: "none" }}
     >
       {notifications.map((notification) => (
         <li
