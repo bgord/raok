@@ -7,3 +7,4 @@ export * from "./estimated-reading-time-calculator";
 export * from "./uploaded-file";
 export * from "./artbitrary-file-sender";
 export * from "./article-metatags-scraper";
+export * from "./articles-to-review-notification-sender";
