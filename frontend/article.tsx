@@ -46,10 +46,10 @@ export function Article(
         data-mr="12"
         data-overflow="hidden"
       >
-        <div data-mb="6" data-width="100%" data-transform="truncate">
+        <div data-mb="3" data-width="100%" data-transform="truncate">
           {props.title ?? "-"}
         </div>
-        <UI.Link href={props.url} data-mr="12" data-width="100%">
+        <UI.Link href={props.url} data-mr="12" data-width="100%" data-fs="14">
           {props.url}
         </UI.Link>
       </div>
