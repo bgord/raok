@@ -63,7 +63,8 @@ export function NewspaperArticle(props: ArticleType) {
       data-wrap="nowrap"
       data-mb="12"
       data-max-width="768"
-      data-px="12"
+      data-pl="6"
+      data-pr="12"
       data-cross="center"
     >
       <form
@@ -107,11 +108,13 @@ export function NewspaperArticle(props: ArticleType) {
         </button>
       </form>
 
-      <UI.Link href={props.url} data-pr="12">
+      <UI.Link href={props.url} data-pr="6">
         {props.url}
       </UI.Link>
 
-      <UI.Badge data-ml="auto">{props.source}</UI.Badge>
+      <UI.Badge data-ml="auto" data-mr="6">
+        {props.source}
+      </UI.Badge>
     </li>
   );
 }
