@@ -154,3 +154,40 @@ export function useAnimatiedToggle(
     props: { "data-toggle": state },
   };
 }
+
+export function useExpandableList(config: { max: number; length: number }) {
+  const numberOfExcessiveElements = config.length - config.max;
+  const areThereExcessiveElements = config.length > config.max;
+
+  const [state, setState] = useState<"contracted" | "expanded">(
+    areThereExcessiveElements ? "contracted" : "expanded"
+  );
+
+  function showMore() {
+    if (state === "contracted") {
+      setState("expanded");
+    }
+  }
+
+  function showLess() {
+    if (state === "expanded") {
+      setState("contracted");
+    }
+  }
+
+  function filterFn(element: any, index: number) {
+    console.log({ element, index });
+    if (state === "expanded") return true;
+    return index < config.max;
+  }
+
+  return {
+    state,
+    displayShowMore: state === "contracted",
+    displayShowLess: state === "expanded" && areThereExcessiveElements,
+    showMore,
+    showLess,
+    numberOfExcessiveElements,
+    filterFn,
+  };
+}
