@@ -57,13 +57,17 @@ export function Article(
       <div
         data-display="flex"
         data-direction="column"
-        data-cross="end"
-        data-mr="6"
+        data-cross="center"
+        data-mr="3"
         data-ml="auto"
       >
-        <UI.Badge data-mb="6">{props.status}</UI.Badge>
+        <UI.Badge data-mb="6" data-width="100%">
+          {props.status}
+        </UI.Badge>
 
-        <UI.Badge>{props.source}</UI.Badge>
+        <UI.Badge data-width="100%" style="text-align: center">
+          {props.source}
+        </UI.Badge>
       </div>
 
       {props.status === "ready" && (
