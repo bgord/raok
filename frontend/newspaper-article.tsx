@@ -34,7 +34,7 @@ export function NewspaperArticle(props: ArticleType) {
           type="submit"
           class="c-button"
           data-variant="bare"
-          data-mr="6"
+          data-mx="12"
           disabled={
             addArticleToFavourites.isLoading ||
             deleteArticleFromFavourites.isLoading
@@ -61,7 +61,7 @@ export function NewspaperArticle(props: ArticleType) {
         </button>
       </form>
 
-      <UI.Link href={props.url} data-pr="6">
+      <UI.Link href={props.url} data-pr="12">
         {props.url}
       </UI.Link>
 

@@ -71,6 +71,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
                 type="submit"
                 class="c-button"
                 data-variant="bare"
+                data-ml="12"
               >
                 Remove
               </button>

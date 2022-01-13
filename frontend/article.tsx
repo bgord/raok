@@ -72,6 +72,7 @@ export function Article(
 
       {props.status === "ready" && (
         <form
+          data-mx="6"
           onSubmit={(event) => {
             event.preventDefault();
             deleteArticle.mutate(props.id);
