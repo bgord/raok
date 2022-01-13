@@ -8,9 +8,6 @@ import { ArticleType, NewspaperType } from "./types";
 import { useNotificationTrigger } from "./notifications-context";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
-  const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
-
   const articles = useQuery(
     ["favourite-articles"],
     api.getFavouriteArticles,
@@ -22,30 +19,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
     length: articles?.data?.length ?? 0,
   });
 
-  const deleteArticleFromFavourites = useMutation(
-    api.deleteArticleFromFavourites,
-    {
-      onSuccess: (_response, articleId) => {
-        notify({ type: "success", message: "Deleted from favourites" });
-
-        queryClient.invalidateQueries(["favourite-articles"]);
-
-        queryClient.setQueryData<NewspaperType[]>(
-          "newspapers",
-          (newspapers = []) =>
-            newspapers.map((newspaper) => ({
-              ...newspaper,
-              articles: newspaper.articles.map((article) => {
-                if (article.id === articleId) {
-                  article.favourite = false;
-                }
-                return article;
-              }),
-            }))
-        );
-      },
-    }
-  );
+  const deleteArticleFromFavourites = useDeleteArticleFromFavourites();
 
   return (
     <div data-bg="gray-100" data-p="12" data-bw="4" data-bct="gray-200">
@@ -123,4 +97,31 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
       )}
     </div>
   );
+}
+
+function useDeleteArticleFromFavourites() {
+  const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
+
+  return useMutation(api.deleteArticleFromFavourites, {
+    onSuccess: (_response, articleId) => {
+      notify({ type: "success", message: "Deleted from favourites" });
+
+      queryClient.invalidateQueries(["favourite-articles"]);
+
+      queryClient.setQueryData<NewspaperType[]>(
+        "newspapers",
+        (newspapers = []) =>
+          newspapers.map((newspaper) => ({
+            ...newspaper,
+            articles: newspaper.articles.map((article) => {
+              if (article.id === articleId) {
+                article.favourite = false;
+              }
+              return article;
+            }),
+          }))
+      );
+    },
+  });
 }

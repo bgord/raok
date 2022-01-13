@@ -176,7 +176,6 @@ export function useExpandableList(config: { max: number; length: number }) {
   }
 
   function filterFn(element: any, index: number) {
-    console.log({ element, index });
     if (state === "expanded") return true;
     return index < config.max;
   }
