@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useQueryClient, useQuery, useMutation } from "react-query";
 
 import * as UI from "./ui";
+import { useExpandableList } from "./hooks";
 import { api } from "./api";
 import { ArticleType, NewspaperType } from "./types";
 import { useNotificationTrigger } from "./notifications-context";
@@ -15,6 +16,11 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
     api.getFavouriteArticles,
     props
   );
+
+  const list = useExpandableList({
+    max: 5,
+    length: articles?.data?.length ?? 0,
+  });
 
   const deleteArticleFromFavourites = useMutation(
     api.deleteArticleFromFavourites,
@@ -67,7 +73,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
       )}
 
       <ul style={{ listStyle: "none" }}>
-        {articles.data?.map((article) => (
+        {articles.data?.filter(list.filterFn).map((article) => (
           <li
             data-display="flex"
             data-cross="center"
@@ -98,6 +104,23 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
           </li>
         ))}
       </ul>
+
+      {list.displayShowMore && (
+        <button
+          class="c-button"
+          data-variant="bare"
+          data-px="0"
+          onClick={list.showMore}
+        >
+          Show {list.numberOfExcessiveElements} more
+        </button>
+      )}
+
+      {list.displayShowLess && (
+        <button class="c-button" data-variant="bare" onClick={list.showLess}>
+          Show less
+        </button>
+      )}
     </div>
   );
 }
