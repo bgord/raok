@@ -14,22 +14,10 @@ import { NewspaperArticle } from "./newspaper-article";
 type NewspaperProps = NewspaperType;
 
 export function Newspaper(props: NewspaperProps) {
-  const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
-
-  const resendNewspaper = useMutation(api.resendNewspaper, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["newspapers"]);
-      queryClient.invalidateQueries(["articles"]);
-      queryClient.invalidateQueries(["stats"]);
-
-      notify({ type: "success", message: "Newspaper resent" });
-    },
-  });
-
   const details = useAnimatiedToggle();
-
   useAutoUpdateNewspaper(props, details.actions.show);
+
+  const resendNewspaper = useResendNewspaper();
 
   const sentAtDate = props.sentAt
     ? new Date(props.sentAt).toLocaleString()
@@ -246,4 +234,19 @@ function CancelNewspaper(props: {
       </button>
     </form>
   );
+}
+
+function useResendNewspaper() {
+  const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
+
+  return useMutation(api.resendNewspaper, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["newspapers"]);
+      queryClient.invalidateQueries(["articles"]);
+      queryClient.invalidateQueries(["stats"]);
+
+      notify({ type: "success", message: "Newspaper resent" });
+    },
+  });
 }

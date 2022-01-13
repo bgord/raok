@@ -19,6 +19,7 @@ export function SendArbitraryFile() {
   const fileUpload = useMutation(api.sendArbitraryFile, {
     onSuccess: () => notify({ type: "success", message: "File sent" }),
   });
+
   const file = useFile();
 
   return (

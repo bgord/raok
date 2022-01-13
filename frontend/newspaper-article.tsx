@@ -7,55 +7,8 @@ import { ArticleType, NewspaperType } from "./types";
 import { useNotificationTrigger } from "./notifications-context";
 
 export function NewspaperArticle(props: ArticleType) {
-  const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
-
-  const addArticleToFavourites = useMutation(api.addArticleToFavourites, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["favourite-articles"]);
-
-      queryClient.setQueryData<NewspaperType[]>(
-        "newspapers",
-        (newspapers = []) =>
-          newspapers.map((newspaper) => ({
-            ...newspaper,
-            articles: newspaper.articles.map((article) => {
-              if (article.id === props.id) {
-                article.favourite = true;
-              }
-              return article;
-            }),
-          }))
-      );
-
-      notify({ type: "success", message: "Article added to favourites" });
-    },
-  });
-
-  const deleteArticleFromFavourites = useMutation(
-    api.deleteArticleFromFavourites,
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["favourite-articles"]);
-
-        queryClient.setQueryData<NewspaperType[]>(
-          "newspapers",
-          (newspapers = []) =>
-            newspapers.map((newspaper) => ({
-              ...newspaper,
-              articles: newspaper.articles.map((article) => {
-                if (article.id === props.id) {
-                  article.favourite = false;
-                }
-                return article;
-              }),
-            }))
-        );
-
-        notify({ type: "success", message: "Article deleted from favourites" });
-      },
-    }
-  );
+  const addArticleToFavourites = useAddArticleToFavourites(props.id);
+  const deleteArticleFromFavourites = useDeleteArticleFromFavourites(props.id);
 
   return (
     <li
@@ -117,4 +70,58 @@ export function NewspaperArticle(props: ArticleType) {
       </UI.Badge>
     </li>
   );
+}
+
+function useAddArticleToFavourites(id: ArticleType["id"]) {
+  const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
+
+  return useMutation(api.addArticleToFavourites, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["favourite-articles"]);
+
+      queryClient.setQueryData<NewspaperType[]>(
+        "newspapers",
+        (newspapers = []) =>
+          newspapers.map((newspaper) => ({
+            ...newspaper,
+            articles: newspaper.articles.map((article) => {
+              if (article.id === id) {
+                article.favourite = true;
+              }
+              return article;
+            }),
+          }))
+      );
+
+      notify({ type: "success", message: "Article added to favourites" });
+    },
+  });
+}
+
+function useDeleteArticleFromFavourites(id: ArticleType["id"]) {
+  const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
+
+  return useMutation(api.deleteArticleFromFavourites, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["favourite-articles"]);
+
+      queryClient.setQueryData<NewspaperType[]>(
+        "newspapers",
+        (newspapers = []) =>
+          newspapers.map((newspaper) => ({
+            ...newspaper,
+            articles: newspaper.articles.map((article) => {
+              if (article.id === id) {
+                article.favourite = false;
+              }
+              return article;
+            }),
+          }))
+      );
+
+      notify({ type: "success", message: "Article deleted from favourites" });
+    },
+  });
 }

@@ -10,21 +10,12 @@ import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
 export function ArticleList(props: { initialData: ArticleType[] }) {
-  const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
-
   const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
   const emptyNewspaperError = useToggle();
 
   const articles = useQuery(["articles"], api.getArticles, props);
 
-  const createNewspaper = useMutation(api.createNewspaper, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["newspapers"]);
-      queryClient.invalidateQueries(["articles"]);
-      notify({ type: "success", message: "Newspaper scheduled" });
-    },
-  });
+  const createNewspaper = useCreateNewspaper();
 
   return (
     <section>
@@ -117,4 +108,17 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
       </ul>
     </section>
   );
+}
+
+function useCreateNewspaper() {
+  const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
+
+  return useMutation(api.createNewspaper, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["newspapers"]);
+      queryClient.invalidateQueries(["articles"]);
+      notify({ type: "success", message: "Newspaper scheduled" });
+    },
+  });
 }
