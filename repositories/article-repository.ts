@@ -11,6 +11,12 @@ export class ArticleRepository {
     });
   }
 
+  static async getNumberOfNonProcessed() {
+    return prisma.article.count({
+      where: { status: VO.ArticleStatusEnum.ready },
+    });
+  }
+
   static async getFavourite() {
     return prisma.article.findMany({
       where: { favourite: true },

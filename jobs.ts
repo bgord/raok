@@ -57,9 +57,31 @@ const FeedlyArticlesCrawlerTask = new AsyncTask(
   }
 );
 
+const ArtclesToReviewNotifierTask = new AsyncTask(
+  "artcles to review notifier",
+  async () => {
+    const notification = await new Services.ArticlesToReviewNotifier().build();
+
+    if (notification.shouldBeSent()) {
+      try {
+        await notification.send();
+        Reporter.success("Articles to review notification sent");
+      } catch (error) {
+        Reporter.raw("artcles to review notification sent", error);
+      }
+    }
+  }
+);
+
 const FeedlyArticlesCrawlerJob = new SimpleIntervalJob(
   { hours: 2, runImmediately: false },
   FeedlyArticlesCrawlerTask
 );
 
+const ArtclesToReviewNotifierJob = new SimpleIntervalJob(
+  { minutes: 1, runImmediately: true },
+  ArtclesToReviewNotifierTask
+);
+
 Scheduler.addSimpleIntervalJob(FeedlyArticlesCrawlerJob);
+Scheduler.addSimpleIntervalJob(ArtclesToReviewNotifierJob);
