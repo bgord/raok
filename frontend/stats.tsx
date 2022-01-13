@@ -19,7 +19,13 @@ export function Stats(props: { initialData: StatsType }) {
       : "N/A";
 
   return (
-    <div data-bg="gray-100" data-p="12" data-bw="4" data-bct="gray-200">
+    <div
+      data-mt="48"
+      data-bg="gray-100"
+      data-p="12"
+      data-bw="4"
+      data-bct="gray-200"
+    >
       <Header
         data-display="flex"
         data-cross="center"

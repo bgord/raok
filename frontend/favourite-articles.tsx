@@ -42,13 +42,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
   );
 
   return (
-    <div
-      data-bg="gray-100"
-      data-p="12"
-      data-bw="4"
-      data-bct="gray-200"
-      data-mt="48"
-    >
+    <div data-bg="gray-100" data-p="12" data-bw="4" data-bct="gray-200">
       <UI.Header
         data-display="flex"
         data-cross="center"
@@ -79,7 +73,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
             data-cross="center"
             data-overflow="hidden"
             data-wrap="nowrap"
-            data-mb="12"
+            data-mb="6"
           >
             <UI.Link href={article.url} data-fs="14">
               {article.title || article.url}

@@ -32,9 +32,9 @@ export function App(props: InitialDataType) {
           style="max-width: 1296px"
         >
           <section data-grow="1" data-pr="48" style={{ maxWidth: "528px" }}>
-            <Stats initialData={props.stats} />
-            <SendArbitraryFile />
             <FavouriteArticles initialData={props.favouriteArticles} />
+            <SendArbitraryFile />
+            <Stats initialData={props.stats} />
           </section>
 
           <div data-max-width="768" data-width="100%">
