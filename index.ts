@@ -18,6 +18,7 @@ import { SendArbitraryFile } from "./routes/send-arbitrary-file";
 import { FavouriteArticles } from "./routes/favourite-articles";
 import { AddArticleToFavourites } from "./routes/add-article-to-favourites";
 import { DeleteArticleFromFavourites } from "./routes/delete-article-from-favourites";
+import { Settings } from "./routes/settings";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -89,6 +90,7 @@ app.post(
 );
 
 app.get("/stats", AuthShield.verify, bg.Route(Stats));
+app.get("/settings", AuthShield.verify, bg.Route(Settings));
 
 app.post(
   "/login",

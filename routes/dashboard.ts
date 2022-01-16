@@ -105,7 +105,17 @@ function Html(content: string, username: string, state: string) {
             raok
           </h1>
 
-          <div data-display="flex" data-ml="auto" data-mr="72" data-md-mr="24">
+          <a
+            class="c-link"
+            data-color="white"
+            href="/settings"
+            data-ml="auto"
+            data-mr="24"
+          >
+            Settings
+          </a>
+
+          <div data-display="flex" data-mr="72" data-md-mr="24">
             <strong data-ml="12" data-md-ml="6" data-color="white">
               ${username}
             </strong>

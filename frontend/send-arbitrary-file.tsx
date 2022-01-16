@@ -108,7 +108,7 @@ export function SendArbitraryFile() {
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
         file.state === UseFileState.idle && (
           <small data-mt="24" data-fs="14" data-color="gray-600">
-            Select a file to send up to 5 MB
+            Select a file to send, up to 5 MB
           </small>
         )}
       {fileUpload.isIdle && file.state === UseFileState.selected && (
