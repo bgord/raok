@@ -13,7 +13,10 @@ export class Settings {
 
   async build() {
     const events = await EventRepository.find(
-      [Events.ArticlesToReviewNotificationsDisabledEvent],
+      [
+        Events.ArticlesToReviewNotificationsDisabledEvent,
+        Events.ArticlesToReviewNotificationsEnabledEvent,
+      ],
       this.stream
     );
 
@@ -21,6 +24,10 @@ export class Settings {
       switch (event.name) {
         case Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT:
           this.isArticlesToReviewNotificationEnabled = false;
+          break;
+
+        case Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT:
+          this.isArticlesToReviewNotificationEnabled = true;
           break;
 
         default:
@@ -37,6 +44,19 @@ export class Settings {
     await EventRepository.save(
       Events.ArticlesToReviewNotificationsDisabledEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT,
+        version: 1,
+        stream: this.stream,
+        payload: {},
+      })
+    );
+  }
+
+  async enableArticlesToReviewNotification() {
+    if (this.isArticlesToReviewNotificationEnabled) return;
+
+    await EventRepository.save(
+      Events.ArticlesToReviewNotificationsEnabledEvent.parse({
+        name: Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT,
         version: 1,
         stream: this.stream,
         payload: {},

@@ -167,6 +167,19 @@ export type ArticlesToReviewNotificationsDisabledEventType = z.infer<
   typeof ArticlesToReviewNotificationsDisabledEvent
 >;
 
+export const ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT =
+  "ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT";
+export const ArticlesToReviewNotificationsEnabledEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT),
+    version: z.literal(1),
+    payload: z.object({}),
+  })
+);
+export type ArticlesToReviewNotificationsEnabledEventType = z.infer<
+  typeof ArticlesToReviewNotificationsEnabledEvent
+>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
@@ -183,6 +196,7 @@ export const emittery = new Emittery<{
   NEWSPAPER_FAILED_EVENT: NewspaperFailedEventType;
   ARBITRARY_FILE_SCHEDULED_EVENT: ArbitraryFileScheduledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: ArticlesToReviewNotificationsDisabledEventType;
+  ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: ArticlesToReviewNotificationsEnabledEventType;
 }>();
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {

@@ -48,6 +48,7 @@
     data-bcb="gray-200"
   >
     <div data-display="flex" data-cross="center" data-mt="24">
+      {{#if isArticlesToReviewNotificationEnabled}}
       <strong
         data-transform="uppercase"
         data-color="gray-600"
@@ -60,16 +61,38 @@
       >
         Enabled
       </strong>
+      {{else}}
+      <strong
+        data-transform="uppercase"
+        data-color="gray-600"
+        data-bg="gray-200"
+        data-px="6"
+        data-br="4"
+        data-ls="1"
+        data-fs="12"
+        data-mr="12"
+      >
+        Disabled
+      </strong>
+      {{/if}}
 
       <h3 data-fs="16" data-color="gray-600" data-mr="36">
         Articles to review notifications
       </h3>
 
-      <form>
+      {{#if isArticlesToReviewNotificationEnabled}}
+      <form method="POST" action="/disable-articles-to-review-notification">
         <button type="submit" class="c-button" data-variant="primary">
           Disable
         </button>
       </form>
+      {{else}}
+      <form method="POST" action="/enable-articles-to-review-notification">
+        <button type="submit" class="c-button" data-variant="primary">
+          Enable
+        </button>
+      </form>
+      {{/if}}
     </div>
 
     <small data-fs="14" data-color="gray-400" data-mt="24">

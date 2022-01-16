@@ -19,6 +19,8 @@ import { FavouriteArticles } from "./routes/favourite-articles";
 import { AddArticleToFavourites } from "./routes/add-article-to-favourites";
 import { DeleteArticleFromFavourites } from "./routes/delete-article-from-favourites";
 import { Settings } from "./routes/settings";
+import { DisableArticlesToReviewNotification } from "./routes/disable-articles-to-review-notification";
+import { EnableArticlesToReviewNotification } from "./routes/enable-articles-to-review-notification";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -91,6 +93,16 @@ app.post(
 
 app.get("/stats", AuthShield.verify, bg.Route(Stats));
 app.get("/settings", AuthShield.verify, bg.Route(Settings));
+app.post(
+  "/disable-articles-to-review-notification",
+  AuthShield.verify,
+  bg.Route(DisableArticlesToReviewNotification)
+);
+app.post(
+  "/enable-articles-to-review-notification",
+  AuthShield.verify,
+  bg.Route(EnableArticlesToReviewNotification)
+);
 
 app.post(
   "/login",
