@@ -95,6 +95,18 @@
       {{/if}}
     </div>
 
+    <div data-mt="36">
+      <label class="c-label" for="hour" data-mr="12">Hour</label>
+      <select id="hour" class="c-select">
+        {{#each hours}}
+        <option value="{{ this.value }}">{{ this.label }}</option>
+        {{/each}}
+      </select>
+      <button class="c-button" data-variant="secondary" data-ml="24">
+        Update
+      </button>
+    </div>
+
     <small data-fs="14" data-color="gray-400" data-mt="24">
       Notification will be sent at 9 AM every day.
     </small>

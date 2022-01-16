@@ -21,3 +21,5 @@ export * from "./readable-article";
 export * from "./readable-article-content";
 export * from "./readable-article-title";
 export * from "./readable-article-reading-time";
+
+export * from "./hour";
