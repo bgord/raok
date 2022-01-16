@@ -61,7 +61,7 @@ export function Article(
         data-mr="3"
         data-ml="auto"
       >
-        <UI.Badge data-mb="6" data-width="100%">
+        <UI.Badge data-mb="6" data-width="100%" style="text-align: center">
           {props.status}
         </UI.Badge>
 
