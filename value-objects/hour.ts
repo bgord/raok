@@ -10,7 +10,7 @@ const HourSchema = z
 
 export type HourType = Brand<"hour", z.infer<typeof HourSchema>>;
 
-const hour = toBrand<HourType>(HourSchema);
+export const hour = toBrand<HourType>(HourSchema);
 
 export class Hour {
   static hours: HourType[] = z.array(hour).parse(hours);
