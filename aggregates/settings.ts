@@ -1,11 +1,13 @@
 import * as Events from "../events";
 
+import * as VO from "../value-objects";
 import { EventRepository } from "../repositories/event-repository";
 
 export class Settings {
   stream: Events.StreamType;
 
   isArticlesToReviewNotificationEnabled: boolean = true;
+  articlesToReviewNotificationHour: VO.HourType = VO.hour.parse(9);
 
   constructor() {
     this.stream = Settings.getStream();
@@ -16,6 +18,7 @@ export class Settings {
       [
         Events.ArticlesToReviewNotificationsDisabledEvent,
         Events.ArticlesToReviewNotificationsEnabledEvent,
+        Events.ArticlesToReviewNotificationHourSetEvent,
       ],
       this.stream
     );
@@ -28,6 +31,10 @@ export class Settings {
 
         case Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT:
           this.isArticlesToReviewNotificationEnabled = true;
+          break;
+
+        case Events.ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT:
+          this.articlesToReviewNotificationHour = event.payload.hour;
           break;
 
         default:
@@ -60,6 +67,21 @@ export class Settings {
         version: 1,
         stream: this.stream,
         payload: {},
+      })
+    );
+  }
+
+  async setArticlesToReviewNotificationHour(hour: VO.HourType) {
+    if (!this.isArticlesToReviewNotificationEnabled) return;
+
+    if (this.articlesToReviewNotificationHour === hour) return;
+
+    await EventRepository.save(
+      Events.ArticlesToReviewNotificationHourSetEvent.parse({
+        name: Events.ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT,
+        version: 1,
+        stream: this.stream,
+        payload: { hour },
       })
     );
   }

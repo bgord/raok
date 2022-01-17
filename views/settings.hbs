@@ -95,20 +95,27 @@
       {{/if}}
     </div>
 
-    <div data-mt="36">
+    <form method="POST" action="/set-articles-to-review-notification-hour" data-mt="36">
       <label class="c-label" for="hour" data-mr="12">Hour</label>
-      <select id="hour" class="c-select">
+      <select id="hour" name="hour" class="c-select">
         {{#each hours}}
-        <option value="{{ this.value }}">{{ this.label }}</option>
+          <option
+            value="{{ this.value }}"
+            {{#if this.selected}}
+              selected
+            {{/if}}
+          >
+            {{ this.label }}
+          </option>
         {{/each}}
       </select>
-      <button class="c-button" data-variant="secondary" data-ml="24">
+      <button type="submit" class="c-button" data-variant="secondary" data-ml="24">
         Update
       </button>
-    </div>
+    </form>
 
     <small data-fs="14" data-color="gray-400" data-mt="24">
-      Notification will be sent at 9 AM every day.
+      Notification will be sent at {{articlesToReviewNotificationHour.label}} every day.
     </small>
   </section>
 </main>

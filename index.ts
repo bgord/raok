@@ -21,6 +21,7 @@ import { DeleteArticleFromFavourites } from "./routes/delete-article-from-favour
 import { Settings } from "./routes/settings";
 import { DisableArticlesToReviewNotification } from "./routes/disable-articles-to-review-notification";
 import { EnableArticlesToReviewNotification } from "./routes/enable-articles-to-review-notification";
+import { SetArticlesToReviewNotificationHour } from "./routes/set-articles-to-review-notification-hour";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -102,6 +103,11 @@ app.post(
   "/enable-articles-to-review-notification",
   AuthShield.verify,
   bg.Route(EnableArticlesToReviewNotification)
+);
+app.post(
+  "/set-articles-to-review-notification-hour",
+  AuthShield.verify,
+  bg.Route(SetArticlesToReviewNotificationHour)
 );
 
 app.post(

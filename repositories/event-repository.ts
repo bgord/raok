@@ -18,7 +18,8 @@ type AcceptedEvent =
   | typeof Events.NewspaperScheduledEvent
   | typeof Events.NewspaperSentEvent
   | typeof Events.ArticlesToReviewNotificationsDisabledEvent
-  | typeof Events.ArticlesToReviewNotificationsEnabledEvent;
+  | typeof Events.ArticlesToReviewNotificationsEnabledEvent
+  | typeof Events.ArticlesToReviewNotificationHourSetEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {

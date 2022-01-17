@@ -10,10 +10,19 @@ export async function Settings(
 ): Promise<void> {
   const settings = await new _Settings().build();
 
+  const hours = VO.Hour.listFormatted().map((hour) => ({
+    selected: hour.value === settings.articlesToReviewNotificationHour,
+    ...hour,
+  }));
+
   const vars = {
     username: request.user as string,
-    hours: VO.Hour.listFormatted(),
-    ...settings,
+    hours,
+    isArticlesToReviewNotificationEnabled:
+      settings.isArticlesToReviewNotificationEnabled,
+    articlesToReviewNotificationHour: VO.Hour.format(
+      settings.articlesToReviewNotificationHour
+    ),
   };
 
   return response.render("settings", vars);
