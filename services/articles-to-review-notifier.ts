@@ -1,6 +1,10 @@
 import { Mailer } from "@bgord/node";
 
+import { Settings } from "../aggregates/settings";
+
 import { ArticleRepository } from "../repositories/article-repository";
+
+import * as VO from "../value-objects";
 import { Env } from "../env";
 
 const mailer = new Mailer({
@@ -11,9 +15,13 @@ const mailer = new Mailer({
 });
 
 export class ArticlesToReviewNotifier {
-  UTC_HOUR = 8;
+  UTC_HOUR: VO.HourType;
 
   numberOfArticlesToReview: number = 0;
+
+  constructor(settings: Settings) {
+    this.UTC_HOUR = settings.articlesToReviewNotificationHour;
+  }
 
   async build() {
     this.numberOfArticlesToReview =

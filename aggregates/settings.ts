@@ -7,7 +7,7 @@ export class Settings {
   stream: Events.StreamType;
 
   isArticlesToReviewNotificationEnabled: boolean = true;
-  articlesToReviewNotificationHour: VO.HourType = VO.hour.parse(9);
+  articlesToReviewNotificationHour: VO.HourType = VO.hour.parse(8);
 
   constructor() {
     this.stream = Settings.getStream();

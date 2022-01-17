@@ -6,6 +6,7 @@ import * as VO from "./value-objects";
 import { Env } from "./env";
 
 import { Article } from "./aggregates/article";
+import { Settings } from "./aggregates/settings";
 
 export const Scheduler = new ToadScheduler();
 
@@ -60,7 +61,11 @@ const FeedlyArticlesCrawlerTask = new AsyncTask(
 const ArtclesToReviewNotifierTask = new AsyncTask(
   "artcles to review notifier",
   async () => {
-    const notification = await new Services.ArticlesToReviewNotifier().build();
+    const settings = await new Settings().build();
+
+    const notification = await new Services.ArticlesToReviewNotifier(
+      settings
+    ).build();
 
     if (notification.shouldBeSent()) {
       try {

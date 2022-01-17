@@ -20,6 +20,8 @@ export async function Settings(
     hours,
     isArticlesToReviewNotificationEnabled:
       settings.isArticlesToReviewNotificationEnabled,
+    isArticlesToReviewNotificationDisabled:
+      !settings.isArticlesToReviewNotificationEnabled,
     articlesToReviewNotificationHour: VO.Hour.format(
       settings.articlesToReviewNotificationHour
     ),
