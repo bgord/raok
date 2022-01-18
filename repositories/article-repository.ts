@@ -5,6 +5,10 @@ import * as VO from "../value-objects";
 const prisma = new PrismaClient();
 
 export class ArticleRepository {
+  static async getAll() {
+    return prisma.article.findMany();
+  }
+
   static async getAllNonProcessed() {
     return prisma.article.findMany({
       where: { status: VO.ArticleStatusEnum.ready },

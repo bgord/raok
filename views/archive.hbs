@@ -1,0 +1,131 @@
+<header data-display="flex" data-p="12" data-md-px="12" data-bg="gray-800">
+  <a href="/">
+    <h1 data-fs="20" data-ls="2" data-color="gray-100" data-fw="500">raok</h1>
+  </a>
+
+  <a
+    class="c-link"
+    data-color="white"
+    href="/archive"
+    data-ml="auto"
+    data-mr="24"
+  >
+    Archive
+  </a>
+
+  <a class="c-link" data-color="white" href="/settings" data-mr="24">
+    Settings
+  </a>
+
+  <div data-display="flex" data-mr="72" data-md-mr="24">
+    <strong data-ml="12" data-md-ml="6" data-color="white">
+      {{ username }}
+    </strong>
+  </div>
+
+  <a
+    class="c-link"
+    data-color="white"
+    data-mr="12"
+    data-md-mr="0"
+    href="/logout"
+  >
+    Logout
+  </a>
+</header>
+
+<main
+  data-display="flex"
+  data-direction="column"
+  data-mx="auto"
+  data-mt="48"
+  data-max-width="768"
+  data-width="100%"
+>
+  <h2 data-fs="24" data-fw="400">Archive</h2>
+
+  <h2
+    data-fs="20"
+    data-color="gray-800"
+    data-fw="500"
+    data-mt="48"
+    data-pb="6"
+    data-bwb="1"
+    data-bcb="gray-200"
+  >
+    Articles
+  </h2>
+
+  <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
+    {{#each articles}}
+    <li
+      data-display="flex"
+      data-cross="center"
+      data-wrap="nowrap"
+      data-mb="24"
+      data-md-px="6"
+      data-max-width="768"
+      data-width="100%"
+    >
+      <div
+        data-display="flex"
+        data-direction="column"
+        data-mr="12"
+        data-overflow="hidden"
+      >
+        <div data-mb="3" data-width="100%" data-transform="truncate">
+          {{ this.title }}
+        </div>
+        <a
+          target="_blank"
+          class="c-link"
+          data-color="gray-700"
+          data-transform="truncate"
+          href="{{ this.url }}"
+          data-mr="12"
+          data-width="100%"
+          data-fs="14"
+        >
+          {{ this.url }}
+        </a>
+      </div>
+
+      <div
+        data-display="flex"
+        data-direction="column"
+        data-cross="center"
+        data-ml="auto"
+      >
+        <strong
+          data-transform="uppercase"
+          data-color="gray-600"
+          data-bg="gray-200"
+          data-px="6"
+          data-br="4"
+          data-ls="1"
+          data-fs="12"
+          data-mb="6"
+          data-width="100%"
+          style="text-align: center"
+        >
+          {{ this.status }}
+        </strong>
+
+        <strong
+          data-transform="uppercase"
+          data-color="gray-600"
+          data-bg="gray-200"
+          data-px="6"
+          data-br="4"
+          data-ls="1"
+          data-fs="12"
+          data-width="100%"
+          style="text-align: center"
+        >
+          {{ this.source }}
+        </strong>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+</main>

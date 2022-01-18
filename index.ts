@@ -22,6 +22,7 @@ import { Settings } from "./routes/settings";
 import { DisableArticlesToReviewNotification } from "./routes/disable-articles-to-review-notification";
 import { EnableArticlesToReviewNotification } from "./routes/enable-articles-to-review-notification";
 import { SetArticlesToReviewNotificationHour } from "./routes/set-articles-to-review-notification-hour";
+import { Archive } from "./routes/archive";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -109,6 +110,8 @@ app.post(
   AuthShield.verify,
   bg.Route(SetArticlesToReviewNotificationHour)
 );
+
+app.get("/archive", AuthShield.verify, bg.Route(Archive));
 
 app.post(
   "/login",
