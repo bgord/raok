@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import delay from "lodash/delay";
 
 import * as UI from "./ui";
 import { ArticleType } from "./types";
@@ -116,9 +117,9 @@ function useCreateNewspaper() {
 
   return useMutation(api.createNewspaper, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["newspapers"]);
-      queryClient.invalidateQueries(["articles"]);
+      queryClient.invalidateQueries("newspapers");
       notify({ type: "success", message: "Newspaper scheduled" });
+      delay(() => queryClient.invalidateQueries("articles"), 500);
     },
   });
 }

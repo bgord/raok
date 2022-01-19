@@ -47,8 +47,6 @@ function useNotificationsImplementation(): UseNotificationsReturnType {
   }
 
   function scheduleRemoval(notification: Omit<Notification, "state">) {
-    console.log("scheduling removal");
-
     setTimeout(
       () =>
         actions.update((items) =>
