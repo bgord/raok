@@ -38,7 +38,12 @@ const AuthShield = new bg.EnvUserAuthShield({
 bg.addExpressEssentials(app, { helmet: { contentSecurityPolicy: false } });
 
 new bg.Handlebars().applyTo(app);
-new bg.Session({ secret: Env.COOKIE_SECRET }).applyTo(app);
+
+const session = new bg.Session({
+  secret: Env.COOKIE_SECRET,
+  store: bg.SessionFileStore.build(),
+});
+session.applyTo(app);
 
 AuthShield.applyTo(app);
 

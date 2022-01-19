@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@bgord/design": "^0.27.12",
-    "@bgord/node": "^0.58.15",
+    "@bgord/node": "^0.58.16",
     "@mozilla/readability": "^0.4.1",
     "@prisma/client": "^3.7.0",
     "@types/jsdom": "^16.2.14",

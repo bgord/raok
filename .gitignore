@@ -10,6 +10,7 @@ newspapers/*
 node_modules/
 prisma/sqlite.db
 prisma/sqlite.db-journal
+sessions/
 static/index.js
 static/main.css
 static/main.min.css
