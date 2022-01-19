@@ -23,6 +23,7 @@ import { DisableArticlesToReviewNotification } from "./routes/disable-articles-t
 import { EnableArticlesToReviewNotification } from "./routes/enable-articles-to-review-notification";
 import { SetArticlesToReviewNotificationHour } from "./routes/set-articles-to-review-notification-hour";
 import { Archive } from "./routes/archive";
+import { ScheduleFeedlyArticlesCrawl } from "./routes/schedule-feedly-articles-crawl";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -117,6 +118,12 @@ app.post(
 );
 
 app.get("/archive", AuthShield.verify, bg.Route(Archive));
+
+app.post(
+  "/schedule-feedly-articles-crawl",
+  AuthShield.verify,
+  bg.Route(ScheduleFeedlyArticlesCrawl)
+);
 
 app.post(
   "/login",
