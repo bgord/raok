@@ -343,4 +343,6 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   }
 });
 
-emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {});
+emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {
+  await Services.FeedlyArticlesCrawler.run();
+});
