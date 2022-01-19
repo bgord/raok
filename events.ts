@@ -195,6 +195,19 @@ export type ArticlesToReviewNotificationHourSetEventType = z.infer<
   typeof ArticlesToReviewNotificationHourSetEvent
 >;
 
+export const FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT =
+  "FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT";
+export const FeedlyArticlesCrawlingScheduledEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT),
+    version: z.literal(1),
+    payload: z.object({}),
+  })
+);
+export type FeedlyArticlesCrawlingScheduledEventType = z.infer<
+  typeof FeedlyArticlesCrawlingScheduledEvent
+>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
@@ -213,6 +226,7 @@ export const emittery = new Emittery<{
   ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: ArticlesToReviewNotificationsDisabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: ArticlesToReviewNotificationsEnabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: ArticlesToReviewNotificationHourSetEventType;
+  FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT: FeedlyArticlesCrawlingScheduledEventType;
 }>();
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
@@ -328,3 +342,5 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
     await new Services.UploadedFile(event.payload).delete();
   }
 });
+
+emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {});
