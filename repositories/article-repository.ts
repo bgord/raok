@@ -6,7 +6,11 @@ const prisma = new PrismaClient();
 
 export class ArticleRepository {
   static async getAll() {
-    return prisma.article.findMany();
+    return prisma.article.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
   }
 
   static async getAllNonProcessed() {
