@@ -96,6 +96,10 @@ async function sendArbitraryFile(form: FormData) {
   });
 }
 
+async function scheduleFeedlyArticlesCrawl() {
+  return _api("/schedule-feedly-articles-crawl", { method: "POST" });
+}
+
 export const api = {
   getNewspapers,
   getSingleNewspaper,
@@ -111,4 +115,5 @@ export const api = {
   getFavouriteArticles,
   addArticleToFavourites,
   deleteArticleFromFavourites,
+  scheduleFeedlyArticlesCrawl,
 };

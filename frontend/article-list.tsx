@@ -17,6 +17,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const articles = useQuery(["articles"], api.getArticles, props);
 
   const createNewspaper = useCreateNewspaper();
+  const scheduleFeedlyArticlesCrawl = useScheduleFeedlyArticlesCrawl();
 
   return (
     <section>
@@ -36,6 +37,21 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             data-mr="12"
           />
           Articles
+          <button
+            onClick={() => scheduleFeedlyArticlesCrawl.mutate()}
+            disabled={
+              scheduleFeedlyArticlesCrawl.isLoading ||
+              scheduleFeedlyArticlesCrawl.isSuccess
+            }
+            class="c-button"
+            data-variant="bare"
+            data-ml="auto"
+          >
+            {scheduleFeedlyArticlesCrawl.isIdle && "Schedule Feedly crawl"}
+            {scheduleFeedlyArticlesCrawl.isLoading && "Scheduling..."}
+            {scheduleFeedlyArticlesCrawl.isSuccess && "Scheduled!"}
+            {scheduleFeedlyArticlesCrawl.isError && "Couldn't schedule"}
+          </button>
         </UI.Header>
 
         <AddArticleForm />
@@ -122,4 +138,17 @@ function useCreateNewspaper() {
       delay(() => queryClient.invalidateQueries("articles"), 500);
     },
   });
+}
+
+function useScheduleFeedlyArticlesCrawl() {
+  const scheduleFeedlyArticlesCrawl = useMutation(
+    api.scheduleFeedlyArticlesCrawl,
+    {
+      onSuccess() {
+        delay(scheduleFeedlyArticlesCrawl.reset, 5000);
+      },
+    }
+  );
+
+  return scheduleFeedlyArticlesCrawl;
 }
