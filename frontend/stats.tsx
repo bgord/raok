@@ -26,12 +26,7 @@ export function Stats(props: { initialData: StatsType }) {
       data-bw="4"
       data-bct="gray-200"
     >
-      <Header
-        data-display="flex"
-        data-cross="center"
-        data-mb="24"
-        data-color="gray-700"
-      >
+      <Header data-display="flex" data-mb="24">
         <img
           loading="eager"
           height="20"

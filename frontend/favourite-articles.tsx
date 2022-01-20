@@ -23,12 +23,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
 
   return (
     <div data-bg="gray-100" data-p="12" data-bw="4" data-bct="gray-200">
-      <UI.Header
-        data-display="flex"
-        data-cross="center"
-        data-mb="24"
-        data-color="gray-700"
-      >
+      <UI.Header data-display="flex" data-mb="24">
         <img
           loading="eager"
           height="20"

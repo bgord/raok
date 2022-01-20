@@ -42,12 +42,7 @@ export function SendArbitraryFile() {
         fileUpload.mutate(form);
       }}
     >
-      <Header
-        data-display="flex"
-        data-cross="center"
-        data-mb="24"
-        data-color="gray-700"
-      >
+      <Header data-display="flex" data-mb="24">
         <img
           loading="eager"
           height="20"

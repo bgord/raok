@@ -28,5 +28,5 @@ export function Link(props: h.JSX.IntrinsicElements["a"]) {
 }
 
 export function Header(props: h.JSX.IntrinsicElements["h2"]) {
-  return <h2 data-fs="16" data-color="gray-800" data-fw="500" {...props} />;
+  return <h2 data-fs="16" data-color="gray-700" data-fw="500" {...props} />;
 }

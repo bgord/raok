@@ -13,7 +13,6 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
     <section data-mt="48">
       <Header
         data-display="flex"
-        data-cross="center"
         data-bg="gray-100"
         data-bct="gray-200"
         data-bwt="4"
