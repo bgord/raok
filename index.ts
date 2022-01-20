@@ -42,7 +42,7 @@ new bg.Handlebars().applyTo(app);
 
 const session = new bg.Session({
   secret: Env.COOKIE_SECRET,
-  store: bg.SessionFileStore.build(),
+  store: bg.SessionFileStore.build({ ttl: 60 * 60 * 24 * 3 /* 3 days */ }),
 });
 session.applyTo(app);
 
