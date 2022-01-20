@@ -16,6 +16,7 @@ export function Notifications() {
     >
       {notifications.map((notification) => (
         <li
+          key={notification.id}
           aria-live="polite"
           data-notification={notification.state}
           data-display="flex"

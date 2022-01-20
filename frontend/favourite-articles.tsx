@@ -49,6 +49,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
       <ul style={{ listStyle: "none" }}>
         {articles.data?.filter(list.filterFn).map((article) => (
           <li
+            key={article.id}
             data-display="flex"
             data-cross="center"
             data-overflow="hidden"

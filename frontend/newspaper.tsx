@@ -137,7 +137,7 @@ export function Newspaper(props: NewspaperProps) {
       {details.state !== "hidden" && (
         <ol data-mt="6" data-mb="12" {...details.props}>
           {props.articles.map((article) => (
-            <NewspaperArticle {...article} />
+            <NewspaperArticle key={article.id} {...article} />
           ))}
         </ol>
       )}

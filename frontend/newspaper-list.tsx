@@ -44,7 +44,9 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
 
       <ul data-mt="24">
         {newspapers.isSuccess &&
-          newspapers.data.map((newspaper) => <Newspaper {...newspaper} />)}
+          newspapers.data.map((newspaper) => (
+            <Newspaper key={newspaper.id} {...newspaper} />
+          ))}
       </ul>
     </section>
   );

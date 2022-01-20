@@ -121,7 +121,9 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
       <ul data-mt="24">
         {articles.isSuccess &&
-          articles.data.map((article) => <Article {...article} {...actions} />)}
+          articles.data.map((article) => (
+            <Article key={article.id} {...article} {...actions} />
+          ))}
       </ul>
     </section>
   );
