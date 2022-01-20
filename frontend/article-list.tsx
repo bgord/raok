@@ -143,11 +143,16 @@ function useCreateNewspaper() {
 }
 
 function useScheduleFeedlyArticlesCrawl() {
+  const queryClient = useQueryClient();
+  const notify = useNotificationTrigger();
+
   const scheduleFeedlyArticlesCrawl = useMutation(
     api.scheduleFeedlyArticlesCrawl,
     {
       onSuccess() {
         delay(scheduleFeedlyArticlesCrawl.reset, 5000);
+        notify({ type: "success", message: "Feedly crawl scheduled" });
+        queryClient.invalidateQueries("stats");
       },
     }
   );
