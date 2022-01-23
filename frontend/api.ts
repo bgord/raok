@@ -100,6 +100,12 @@ async function scheduleFeedlyArticlesCrawl() {
   return _api("/schedule-feedly-articles-crawl", { method: "POST" });
 }
 
+async function getArchiveArticles(): Promise<ArticleType[]> {
+  return _api("/archive-articles", { method: "GET" }).then((response) =>
+    response.ok ? response.json() : []
+  );
+}
+
 export const api = {
   getNewspapers,
   getSingleNewspaper,
@@ -116,4 +122,5 @@ export const api = {
   addArticleToFavourites,
   deleteArticleFromFavourites,
   scheduleFeedlyArticlesCrawl,
+  getArchiveArticles,
 };

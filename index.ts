@@ -22,7 +22,7 @@ import { Settings } from "./routes/settings";
 import { DisableArticlesToReviewNotification } from "./routes/disable-articles-to-review-notification";
 import { EnableArticlesToReviewNotification } from "./routes/enable-articles-to-review-notification";
 import { SetArticlesToReviewNotificationHour } from "./routes/set-articles-to-review-notification-hour";
-import { Archive } from "./routes/archive";
+import { ArchiveArticles } from "./routes/archive-articles";
 import { ScheduleFeedlyArticlesCrawl } from "./routes/schedule-feedly-articles-crawl";
 
 import { Scheduler } from "./jobs";
@@ -117,6 +117,7 @@ app.post(
   bg.Route(SetArticlesToReviewNotificationHour)
 );
 
+app.get("/archive-articles", AuthShield.verify, bg.Route(ArchiveArticles));
 app.get("/archive", AuthShield.verify, bg.Route(Dashboard));
 
 app.post(

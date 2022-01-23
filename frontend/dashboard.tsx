@@ -1,6 +1,5 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
-import { QueryClient, QueryClientProvider } from "react-query";
 
 import { NotificationsContextProvider } from "./notifications-context";
 
@@ -13,8 +12,6 @@ import { Notifications } from "./notifications";
 
 import { StatsType, ArticleType, NewspaperType } from "./types";
 
-const queryClient = new QueryClient();
-
 export type InitialDashboardDataType = {
   stats: StatsType;
   articles: ArticleType[];
@@ -24,28 +21,26 @@ export type InitialDashboardDataType = {
 
 export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <NotificationsContextProvider>
-        <main
-          data-display="flex"
-          data-mx="auto"
-          data-mt="48"
-          style="max-width: 1296px"
-        >
-          <section data-grow="1" data-pr="48" style={{ maxWidth: "528px" }}>
-            <FavouriteArticles initialData={props.favouriteArticles} />
-            <SendArbitraryFile />
-            <Stats initialData={props.stats} />
-          </section>
+    <NotificationsContextProvider>
+      <main
+        data-display="flex"
+        data-mx="auto"
+        data-mt="48"
+        style="max-width: 1296px"
+      >
+        <section data-grow="1" data-pr="48" style={{ maxWidth: "528px" }}>
+          <FavouriteArticles initialData={props.favouriteArticles} />
+          <SendArbitraryFile />
+          <Stats initialData={props.stats} />
+        </section>
 
-          <div data-max-width="768" data-width="100%">
-            <ArticleList initialData={props.articles} />
-            <NewspaperList initialData={props.newspapers} />
-          </div>
-        </main>
+        <div data-max-width="768" data-width="100%">
+          <ArticleList initialData={props.articles} />
+          <NewspaperList initialData={props.newspapers} />
+        </div>
+      </main>
 
-        <Notifications />
-      </NotificationsContextProvider>
-    </QueryClientProvider>
+      <Notifications />
+    </NotificationsContextProvider>
   );
 }
