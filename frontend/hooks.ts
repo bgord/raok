@@ -190,3 +190,30 @@ export function useExpandableList(config: { max: number; length: number }) {
     filterFn,
   };
 }
+
+export function useSearch(): {
+  query: string;
+  clear: VoidFunction;
+  onChange: (event: h.JSX.TargetedEvent<HTMLInputElement, Event>) => void;
+  filterFn: (value: string) => boolean;
+} {
+  const defaultQuery = "";
+
+  const [query, setValue] = useState<string>(defaultQuery);
+
+  function clear() {
+    setValue(defaultQuery);
+  }
+
+  function onChange(event: h.JSX.TargetedEvent<HTMLInputElement, Event>) {
+    setValue(event.currentTarget.value);
+  }
+
+  function filterFn(value: string) {
+    if (query === "") return true;
+
+    return value?.toLowerCase().includes(query.toLowerCase());
+  }
+
+  return { query, clear, onChange, filterFn };
+}

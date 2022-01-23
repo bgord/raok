@@ -3,10 +3,12 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 
 import { api } from "./api";
+import { useSearch } from "./hooks";
 import { ArchiveArticle } from "./archive-article";
 
 export function Archive(_props: RoutableProps) {
   const archiveArticles = useQuery("archive-articles", api.getArchiveArticles);
+  const search = useSearch();
 
   return (
     <main
@@ -31,8 +33,9 @@ export function Archive(_props: RoutableProps) {
 
         <div data-position="relative">
           <input
+            onInput={search.onChange}
+            value={search.query}
             class="c-input"
-            list="articles"
             placeholder="Search for an article..."
             style="min-width: 280px; padding-right: 36px"
           />
@@ -48,7 +51,13 @@ export function Archive(_props: RoutableProps) {
           />
         </div>
 
-        <button class="c-button" data-variant="bare" data-px="3" data-ml="6">
+        <button
+          onClick={search.clear}
+          class="c-button"
+          data-variant="bare"
+          data-px="3"
+          data-ml="6"
+        >
           <img
             loading="eager"
             height="24"
@@ -60,9 +69,11 @@ export function Archive(_props: RoutableProps) {
       </div>
 
       <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
-        {archiveArticles.data?.map((article) => (
-          <ArchiveArticle {...article} />
-        ))}
+        {archiveArticles.data
+          ?.filter((article) => search.filterFn(article.title))
+          .map((article) => (
+            <ArchiveArticle key={article.id} {...article} />
+          ))}
       </ul>
     </main>
   );
