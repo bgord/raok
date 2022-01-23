@@ -117,7 +117,7 @@ app.post(
   bg.Route(SetArticlesToReviewNotificationHour)
 );
 
-app.get("/archive", AuthShield.verify, bg.Route(Archive));
+app.get("/archive", AuthShield.verify, bg.Route(Dashboard));
 
 app.post(
   "/schedule-feedly-articles-crawl",

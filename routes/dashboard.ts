@@ -101,9 +101,11 @@ function Html(content: string, username: string, state: string) {
           data-md-px="12"
           data-bg="gray-800"
         >
-          <h1 data-fs="20" data-ls="2" data-color="gray-100" data-fw="500">
-            raok
-          </h1>
+          <a href="/dashboard">
+            <h1 data-fs="20" data-ls="2" data-color="gray-100" data-fw="500">
+              raok
+            </h1>
+          </a>
 
           <a
             class="c-link"
