@@ -52,6 +52,8 @@ app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
 app.get("/articles", AuthShield.verify, bg.Route(Articles));
 app.get("/articles/favourite", AuthShield.verify, bg.Route(FavouriteArticles));
+app.get("/articles/archive", AuthShield.verify, bg.Route(ArchiveArticles));
+
 app.post("/add-article", AuthShield.verify, bg.Route(AddArticle));
 app.post(
   "/delete-article/:articleId",
@@ -117,7 +119,6 @@ app.post(
   bg.Route(SetArticlesToReviewNotificationHour)
 );
 
-app.get("/archive-articles", AuthShield.verify, bg.Route(ArchiveArticles));
 app.get("/archive", AuthShield.verify, bg.Route(Dashboard));
 
 app.post(

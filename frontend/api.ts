@@ -101,7 +101,7 @@ async function scheduleFeedlyArticlesCrawl() {
 }
 
 async function getArchiveArticles(): Promise<ArticleType[]> {
-  return _api("/archive-articles", { method: "GET" }).then((response) =>
+  return _api("/articles/archive", { method: "GET" }).then((response) =>
     response.ok ? response.json() : []
   );
 }
