@@ -3,18 +3,20 @@ import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Dashboard, InitialDashboardDataType } from "./dashboard";
-import { Archive } from "./archive";
+import { Archive, InitialArchiveDataType } from "./archive";
 
-export type InitialDataType = InitialDashboardDataType;
+export type InitialDataType = InitialDashboardDataType & InitialArchiveDataType;
 
 const queryClient = new QueryClient();
 
 export function App(props: InitialDataType) {
+  const { archiveArticles, ...rest } = props;
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <Dashboard {...props} path="/dashboard" />
-        <Archive path="/archive" />
+        <Archive path="/archive" archiveArticles={archiveArticles} />
+        <Dashboard path="/dashboard" {...rest} />
       </Router>
     </QueryClientProvider>
   );

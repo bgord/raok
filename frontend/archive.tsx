@@ -4,10 +4,17 @@ import { useQuery } from "react-query";
 
 import { api } from "./api";
 import { useSearch } from "./hooks";
+import { ArticleType } from "./types";
 import { ArchiveArticle } from "./archive-article";
 
-export function Archive(_props: RoutableProps) {
-  const archiveArticles = useQuery("archive-articles", api.getArchiveArticles);
+export type InitialArchiveDataType = {
+  archiveArticles: ArticleType[];
+};
+
+export function Archive(props: InitialArchiveDataType & RoutableProps) {
+  const archiveArticles = useQuery("archive-articles", api.getArchiveArticles, {
+    initialData: props.archiveArticles,
+  });
   const search = useSearch();
 
   return (

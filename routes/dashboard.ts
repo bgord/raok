@@ -156,11 +156,18 @@ export async function Dashboard(
   _next: express.NextFunction
 ) {
   const articles = await ArticleRepository.getAllNonProcessed();
+  const archiveArticles = await ArticleRepository.getAll();
   const favouriteArticles = await ArticleRepository.getFavourite();
   const newspapers = await NewspaperRepository.getAllNonArchived();
   const stats = await StatsRepository.getAll();
 
-  const initialData = { stats, articles, newspapers, favouriteArticles };
+  const initialData = {
+    stats,
+    articles,
+    newspapers,
+    favouriteArticles,
+    archiveArticles,
+  };
   const app = render(App(initialData));
 
   return response.send(
