@@ -29,7 +29,6 @@ export function SendArbitraryFile() {
       data-p="12"
       data-bw="4"
       data-bct="gray-200"
-      style={{ maxWidth: "480px" }}
       onSubmit={(event) => {
         event.preventDefault();
 

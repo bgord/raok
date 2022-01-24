@@ -33,7 +33,9 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
         <section
           data-width="100%"
           data-grow="1"
+          data-md-pr="0"
           data-pr="48"
+          data-md-mx="12"
           style={{ maxWidth: "528px" }}
         >
           <FavouriteArticles initialData={props.favouriteArticles} />
@@ -41,7 +43,7 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
           <Stats initialData={props.stats} />
         </section>
 
-        <div data-max-width="768" data-width="100%">
+        <div data-max-width="768" data-width="100%" data-md-mx="12">
           <ArticleList initialData={props.articles} />
           <NewspaperList initialData={props.newspapers} />
         </div>
