@@ -231,7 +231,7 @@ export const emittery = new Emittery<{
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
   await ArticleRepository.create(event.payload);
-  await StatsRepository.incrementCreatedArticles();
+  await StatsRepository.kv_incrementCreatedArticles();
 
   if (event.payload.source === VO.ArticleSourceEnum.feedly) {
     await StatsRepository.updateLastFeedlyImport(event.payload.createdAt);

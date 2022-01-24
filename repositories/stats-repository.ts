@@ -6,7 +6,13 @@ export class StatsRepository {
   static async getAll() {
     const stats = await prisma.stats.findFirst();
 
-    if (stats) return stats;
+    const createdArticles = await prisma.statsKeyValue.findFirst({
+      where: { key: "createdArticles" },
+    });
+
+    if (stats) {
+      return { ...stats, createdArticles: createdArticles?.value ?? 0 };
+    }
 
     const newStats = {
       createdArticles: 0,
@@ -17,9 +23,11 @@ export class StatsRepository {
     return prisma.stats.create({ data: newStats });
   }
 
-  static async incrementCreatedArticles() {
-    return prisma.stats.updateMany({
-      data: { createdArticles: { increment: 1 } },
+  static async kv_incrementCreatedArticles() {
+    return prisma.statsKeyValue.upsert({
+      where: { key: "createdArticles" },
+      update: { value: { increment: 1 } },
+      create: { key: "createdArticles", value: 1 },
     });
   }
 
