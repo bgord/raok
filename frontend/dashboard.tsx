@@ -35,6 +35,7 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
           data-pr="48"
           data-md-px="12"
           data-width="100%"
+          data-md-max-width="unset"
           data-max-width="528"
         >
           <FavouriteArticles initialData={props.favouriteArticles} />
