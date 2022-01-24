@@ -12,7 +12,7 @@ export function Notifications() {
       data-ml="12"
       data-pt="12"
       data-width="100%"
-      style={{ bottom: 0, left: 0, maxWidth: "290px", listStyle: "none" }}
+      style={{ bottom: 0, left: 0, maxWidth: "290px" }}
     >
       {notifications.map((notification) => (
         <li
