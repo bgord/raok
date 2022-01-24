@@ -7,7 +7,7 @@ import { useSearch, useFilter } from "./hooks";
 import { ArticleType } from "./types";
 import { ArchiveArticle } from "./archive-article";
 
-import { ArticleSourceEnum } from "../value-objects/types";
+import { ArticleSourceEnum, ArticleStatusEnum } from "../value-objects/types";
 
 export type InitialArchiveDataType = {
   archiveArticles: ArticleType[];
@@ -17,8 +17,10 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
   const archiveArticles = useQuery("archive-articles", api.getArchiveArticles, {
     initialData: props.archiveArticles,
   });
+
   const search = useSearch();
   const source = useFilter({ enum: ArticleSourceEnum });
+  const status = useFilter({ enum: ArticleStatusEnum });
 
   return (
     <main
@@ -80,6 +82,29 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
           />
         </button>
 
+        <div data-display="flex" data-direction="column" data-mr="24">
+          <label class="c-label" for="status">
+            Status
+          </label>
+          <div class="c-select-wrapper">
+            <select
+              id="status"
+              name="status"
+              class="c-select"
+              value={status.query}
+              onInput={status.onChange}
+            >
+              <option selected value="all">
+                All
+              </option>
+
+              {status.options.map((status) => (
+                <option value={status}>{status}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
         <div data-display="flex" data-direction="column">
           <label class="c-label" for="source">
             Source
@@ -108,6 +133,7 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
         {archiveArticles.data
           ?.filter((article) => search.filterFn(article.title))
           .filter((article) => source.filterFn(article.source))
+          .filter((article) => status.filterFn(article.status))
           .map((article) => (
             <ArchiveArticle key={article.id} {...article} />
           ))}
