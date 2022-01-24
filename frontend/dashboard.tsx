@@ -28,14 +28,14 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
         data-mx="auto"
         data-my="48"
         data-wrap="wrap-reverse"
-        style="max-width: 1296px"
+        data-max-width="1296"
       >
         <section
-          data-width="100%"
           data-grow="1"
           data-pr="48"
           data-md-px="12"
-          style={{ maxWidth: "528px" }}
+          data-width="100%"
+          data-max-width="528"
         >
           <FavouriteArticles initialData={props.favouriteArticles} />
           <SendArbitraryFile />
