@@ -26,7 +26,7 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
         data-display="flex"
         data-main="center"
         data-mx="auto"
-        data-mt="48"
+        data-my="48"
         data-wrap="wrap-reverse"
         style="max-width: 1296px"
       >
