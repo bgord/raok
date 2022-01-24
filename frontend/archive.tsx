@@ -4,10 +4,8 @@ import { useQuery } from "react-query";
 
 import { api } from "./api";
 import { useSearch, useFilter } from "./hooks";
-import { ArticleType } from "./types";
+import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
 import { ArchiveArticle } from "./archive-article";
-
-import { ArticleSourceEnum, ArticleStatusEnum } from "../value-objects/types";
 
 export type InitialArchiveDataType = {
   archiveArticles: ArticleType[];

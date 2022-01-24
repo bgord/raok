@@ -1,5 +1,16 @@
 import { ArticleTitleType, ArticleDescriptionType } from "../value-objects";
 
+export enum ArticleSourceEnum {
+  web = "web",
+  feedly = "feedly",
+}
+
+export enum ArticleStatusEnum {
+  "ready" = "ready",
+  "in_progress" = "in_progress",
+  "processed" = "processed",
+}
+
 export type ArticleType = {
   id: string;
   url: string;
