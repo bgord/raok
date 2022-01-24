@@ -217,3 +217,39 @@ export function useSearch(): {
 
   return { query, clear, onChange, filterFn };
 }
+
+export function useFilter<T extends string>(config: {
+  enum: { [key: string]: string };
+  defaultValue?: T | "all";
+}) {
+  const defaultValue = config.defaultValue ?? "all";
+
+  const [query, setValue] = useState<T | "all">(defaultValue);
+
+  function clear() {
+    setValue(defaultValue);
+  }
+
+  function isEnumValue(value: unknown): value is T {
+    if (value === "all") return true;
+    return Boolean(config.enum[String(value)]);
+  }
+
+  function onChange(event: h.JSX.TargetedEvent<HTMLSelectElement, Event>) {
+    const { value } = event.currentTarget;
+
+    if (isEnumValue(value)) {
+      setValue(value);
+    }
+  }
+
+  function filterFn(value: string) {
+    if (query === "all") return true;
+
+    return value === query;
+  }
+
+  const options = Object.keys(config.enum);
+
+  return { query, clear, onChange, filterFn, options };
+}

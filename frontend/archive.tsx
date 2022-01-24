@@ -3,9 +3,11 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 
 import { api } from "./api";
-import { useSearch } from "./hooks";
+import { useSearch, useFilter } from "./hooks";
 import { ArticleType } from "./types";
 import { ArchiveArticle } from "./archive-article";
+
+import { ArticleSourceEnum } from "../value-objects/types";
 
 export type InitialArchiveDataType = {
   archiveArticles: ArticleType[];
@@ -16,6 +18,7 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
     initialData: props.archiveArticles,
   });
   const search = useSearch();
+  const source = useFilter({ enum: ArticleSourceEnum });
 
   return (
     <main
@@ -26,18 +29,20 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
       data-max-width="768"
       data-width="100%"
     >
-      <div
-        data-display="flex"
-        data-cross="center"
-        data-bwt="4"
-        data-bct="gray-100"
+      <h2
         data-my="24"
         data-pt="12"
+        data-fs="20"
+        data-color="gray-800"
+        data-bwt="4"
+        data-bct="gray-100"
+        data-fw="500"
+        data-width="100%"
       >
-        <h2 data-mr="auto" data-fs="20" data-color="gray-800" data-fw="500">
-          Archived articles
-        </h2>
+        Archived articles
+      </h2>
 
+      <div data-display="flex" data-cross="end" data-mb="24">
         <div data-position="relative">
           <input
             onInput={search.onChange}
@@ -64,6 +69,7 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
           data-variant="bare"
           data-px="3"
           data-ml="6"
+          data-mr="auto"
         >
           <img
             loading="eager"
@@ -73,11 +79,35 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
             alt=""
           />
         </button>
+
+        <div data-display="flex" data-direction="column">
+          <label class="c-label" for="source">
+            Source
+          </label>
+          <div class="c-select-wrapper">
+            <select
+              id="source"
+              name="source"
+              class="c-select"
+              value={source.query}
+              onInput={source.onChange}
+            >
+              <option selected value="all">
+                All
+              </option>
+
+              {source.options.map((source) => (
+                <option value={source}>{source}</option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
 
       <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
         {archiveArticles.data
           ?.filter((article) => search.filterFn(article.title))
+          .filter((article) => source.filterFn(article.source))
           .map((article) => (
             <ArchiveArticle key={article.id} {...article} />
           ))}
