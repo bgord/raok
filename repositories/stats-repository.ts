@@ -4,8 +4,6 @@ const prisma = new PrismaClient();
 
 export class StatsRepository {
   static async getAll() {
-    const stats = await prisma.stats.findFirst();
-
     const createdArticles = await prisma.statsKeyValue.findFirst({
       where: { key: "createdArticles" },
     });
@@ -14,21 +12,15 @@ export class StatsRepository {
       where: { key: "sentNewspapers" },
     });
 
-    if (stats) {
-      return {
-        ...stats,
-        createdArticles: createdArticles?.value ?? 0,
-        sentNewspapers: sentNewspapers?.value ?? 0,
-      };
-    }
+    const lastFeedlyImport = await prisma.statsKeyValue.findFirst({
+      where: { key: "lastFeedlyImport" },
+    });
 
-    const newStats = {
-      createdArticles: 0,
-      sentNewspapers: 0,
-      lastFeedlyImport: 0,
+    return {
+      lastFeedlyImport: lastFeedlyImport?.value ?? 0,
+      createdArticles: createdArticles?.value ?? 0,
+      sentNewspapers: sentNewspapers?.value ?? 0,
     };
-
-    return prisma.stats.create({ data: newStats });
   }
 
   static async kv_incrementCreatedArticles() {
@@ -47,9 +39,11 @@ export class StatsRepository {
     });
   }
 
-  static async updateLastFeedlyImport(timestamp: number) {
-    return prisma.stats.updateMany({
-      data: { lastFeedlyImport: timestamp },
+  static async kv_updateLastFeedlyImport(timestamp: number) {
+    return prisma.statsKeyValue.upsert({
+      where: { key: "lastFeedlyImport" },
+      update: { value: timestamp },
+      create: { key: "lastFeedlyImport", value: timestamp },
     });
   }
 }

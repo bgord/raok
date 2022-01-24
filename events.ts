@@ -234,7 +234,7 @@ emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
   await StatsRepository.kv_incrementCreatedArticles();
 
   if (event.payload.source === VO.ArticleSourceEnum.feedly) {
-    await StatsRepository.updateLastFeedlyImport(event.payload.createdAt);
+    await StatsRepository.kv_updateLastFeedlyImport(event.payload.createdAt);
   }
 });
 
