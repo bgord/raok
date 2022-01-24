@@ -1,4 +1,4 @@
-import { UUID } from "@bgord/node";
+import { UUID, Reporter } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -157,6 +157,7 @@ export class Newspaper {
         })
       );
     } catch (error) {
+      Reporter.raw("newspaper_error", error);
       await EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,

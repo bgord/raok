@@ -10,8 +10,16 @@ export class StatsRepository {
       where: { key: "createdArticles" },
     });
 
+    const sentNewspapers = await prisma.statsKeyValue.findFirst({
+      where: { key: "sentNewspapers" },
+    });
+
     if (stats) {
-      return { ...stats, createdArticles: createdArticles?.value ?? 0 };
+      return {
+        ...stats,
+        createdArticles: createdArticles?.value ?? 0,
+        sentNewspapers: sentNewspapers?.value ?? 0,
+      };
     }
 
     const newStats = {
@@ -31,9 +39,11 @@ export class StatsRepository {
     });
   }
 
-  static async incrementSentNewspapers() {
-    return prisma.stats.updateMany({
-      data: { sentNewspapers: { increment: 1 } },
+  static async kv_incrementSentNewspapers() {
+    return prisma.statsKeyValue.upsert({
+      where: { key: "sentNewspapers" },
+      update: { value: { increment: 1 } },
+      create: { key: "sentNewspapers", value: 1 },
     });
   }
 
