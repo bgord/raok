@@ -20,8 +20,8 @@ model Newspaper {
   id          String    @id @default(uuid())
   status      String
   scheduledAt Int
-  articles    Article[]
   sentAt      Int?
+  articles    Article[]
 }
 
 model Article {
@@ -33,14 +33,20 @@ model Article {
   title       String?
   description String?
   image       String?
-  Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
   newspaperId String?
-  favourite   Boolean   @default(false)
+  favourite   Boolean    @default(false)
+  Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
 }
 
 model Stats {
-  id                String     @id @default(uuid())
-  createdArticles   Int        @default(0)
-  sentNewspapers    Int        @default(0)
-  lastFeedlyImport  Int        @default(0)
+  id               String @id @default(uuid())
+  createdArticles  Int    @default(0)
+  sentNewspapers   Int    @default(0)
+  lastFeedlyImport Int    @default(0)
+}
+
+model StatsKeyValue {
+  id    String  @id @default(uuid())
+  key   String? @unique(map: "sqlite_autoindex_StatsKeyValue_2")
+  value Int
 }
