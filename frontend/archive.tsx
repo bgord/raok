@@ -47,6 +47,7 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
       <div data-display="flex" data-cross="end" data-mb="24">
         <div data-position="relative">
           <input
+            list="articles"
             onInput={search.onChange}
             value={search.query}
             class="c-input"
@@ -128,6 +129,12 @@ export function Archive(props: InitialArchiveDataType & RoutableProps) {
           </div>
         </div>
       </div>
+
+      <datalist id="articles">
+        {archiveArticles.data?.map((article) => (
+          <option value={article.title} />
+        ))}
+      </datalist>
 
       <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
         {archiveArticles.data
