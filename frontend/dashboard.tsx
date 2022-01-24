@@ -24,11 +24,18 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
     <NotificationsContextProvider>
       <main
         data-display="flex"
+        data-main="center"
         data-mx="auto"
         data-mt="48"
+        data-wrap="wrap-reverse"
         style="max-width: 1296px"
       >
-        <section data-grow="1" data-pr="48" style={{ maxWidth: "528px" }}>
+        <section
+          data-width="100%"
+          data-grow="1"
+          data-pr="48"
+          style={{ maxWidth: "528px" }}
+        >
           <FavouriteArticles initialData={props.favouriteArticles} />
           <SendArbitraryFile />
           <Stats initialData={props.stats} />

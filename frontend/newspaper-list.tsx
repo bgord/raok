@@ -10,7 +10,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
   const newspapers = useQuery(["newspapers"], api.getNewspapers, props);
 
   return (
-    <section data-mt="48">
+    <section data-mt="48" data-mb="72">
       <Header
         data-display="flex"
         data-bg="gray-100"
