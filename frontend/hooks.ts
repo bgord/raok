@@ -159,9 +159,13 @@ export function useExpandableList(config: { max: number; length: number }) {
   const numberOfExcessiveElements = config.length - config.max;
   const areThereExcessiveElements = config.length > config.max;
 
-  const [state, setState] = useState<"contracted" | "expanded">(
-    areThereExcessiveElements ? "contracted" : "expanded"
-  );
+  function getState() {
+    return areThereExcessiveElements ? "contracted" : "expanded";
+  }
+
+  const [state, setState] = useState<"contracted" | "expanded">(getState);
+
+  useEffect(() => setState(getState()), [config.length, config.max]);
 
   function showMore() {
     if (state === "contracted") {
