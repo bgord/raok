@@ -1,21 +1,30 @@
+import { Reporter } from "@bgord/node";
 import og from "open-graph-scraper";
 
 import * as VO from "../value-objects";
 
 export class ArticleMetatagsScraper {
   static async get(url: VO.ArticleUrlType): Promise<VO.ArticleMetatagsType> {
-    const response = (await og({ url })).result;
-
-    if (response.success) {
-      return VO.ArticleMetatags.parse({
-        title: response.ogTitle,
-        description: response.ogDescription,
-      });
-    }
-
-    return VO.ArticleMetatags.parse({
+    const emptyMetatags = {
       title: undefined,
       description: undefined,
-    });
+    };
+
+    try {
+      const response = (await og({ url })).result;
+
+      if (response.success) {
+        return VO.ArticleMetatags.parse({
+          title: response.ogTitle,
+          description: response.ogDescription,
+        });
+      }
+
+      return VO.ArticleMetatags.parse(emptyMetatags);
+    } catch (error) {
+      Reporter.raw("ArticleMetatagsScraper#get", error);
+
+      return VO.ArticleMetatags.parse(emptyMetatags);
+    }
   }
 }
