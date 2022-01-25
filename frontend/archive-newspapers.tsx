@@ -3,13 +3,21 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 
 import { api } from "./api";
+import { NewspaperType } from "./types";
 
 import { Newspaper } from "./newspaper";
 
-export function ArchiveNewspapers(_props: RoutableProps) {
+export type InitialArchiveNewspapersDataType = {
+  archiveNewspapers: NewspaperType[];
+};
+
+export function ArchiveNewspapers(
+  props: InitialArchiveNewspapersDataType & RoutableProps
+) {
   const archiveNewspapers = useQuery(
     "archive-newspapers",
-    api.getArchiveNewspapers
+    api.getArchiveNewspapers,
+    { initialData: props.archiveNewspapers }
   );
 
   return (

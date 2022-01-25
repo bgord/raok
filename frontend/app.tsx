@@ -9,15 +9,19 @@ import {
   ArchiveArticles,
   InitialArchiveArticlesDataType,
 } from "./archive-articles";
-import { ArchiveNewspapers } from "./archive-newspapers";
+import {
+  ArchiveNewspapers,
+  InitialArchiveNewspapersDataType,
+} from "./archive-newspapers";
 
 export type InitialDataType = InitialDashboardDataType &
-  InitialArchiveArticlesDataType;
+  InitialArchiveArticlesDataType &
+  InitialArchiveNewspapersDataType;
 
 const queryClient = new QueryClient();
 
 export function App(props: InitialDataType) {
-  const { archiveArticles, ...rest } = props;
+  const { archiveArticles, archiveNewspapers, ...rest } = props;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -27,7 +31,10 @@ export function App(props: InitialDataType) {
             path="/archive/articles"
             archiveArticles={archiveArticles}
           />
-          <ArchiveNewspapers path="/archive/newspapers" />
+          <ArchiveNewspapers
+            path="/archive/newspapers"
+            archiveNewspapers={archiveNewspapers}
+          />
           <Dashboard path="/dashboard" {...rest} />
         </Router>
 

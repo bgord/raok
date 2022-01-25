@@ -169,6 +169,7 @@ export async function Dashboard(
   const favouriteArticles = await ArticleRepository.getFavourite();
   const newspapers = await NewspaperRepository.getAllNonArchived();
   const stats = await StatsRepository.getAll();
+  const archiveNewspapers = await NewspaperRepository.getAll();
 
   const initialData = {
     stats,
@@ -176,6 +177,7 @@ export async function Dashboard(
     newspapers,
     favouriteArticles,
     archiveArticles,
+    archiveNewspapers,
   };
   const app = render(App(initialData));
 
