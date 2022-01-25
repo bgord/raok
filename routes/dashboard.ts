@@ -110,11 +110,11 @@ function Html(content: string, username: string, state: string) {
           <a
             class="c-link"
             data-color="white"
-            href="/archive"
+            href="/archive/articles"
             data-ml="auto"
             data-mr="24"
           >
-            Archive
+            Articles
           </a>
 
           <a class="c-link" data-color="white" href="/settings" data-mr="24">

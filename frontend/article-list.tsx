@@ -81,7 +81,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           )}
 
           {emptyNewspaperError.on && (
-            <div data-mr="12" data-fs="14">
+            <div data-ml="12" data-color="gray-600" data-fs="14">
               Select at least one article
             </div>
           )}

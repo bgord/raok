@@ -7,11 +7,13 @@ import { useSearch, useFilter } from "./hooks";
 import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
 import { ArchiveArticle } from "./archive-article";
 
-export type InitialArchiveDataType = {
+export type InitialArchiveArticlesDataType = {
   archiveArticles: ArticleType[];
 };
 
-export function Archive(props: InitialArchiveDataType & RoutableProps) {
+export function ArchiveArticles(
+  props: InitialArchiveArticlesDataType & RoutableProps
+) {
   const archiveArticles = useQuery("archive-articles", api.getArchiveArticles, {
     initialData: props.archiveArticles,
   });
