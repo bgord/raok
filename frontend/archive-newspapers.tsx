@@ -2,6 +2,7 @@ import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
 
+import * as UI from "./ui";
 import { api } from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
 import { useFilter } from "./hooks";
@@ -24,6 +25,12 @@ export function ArchiveNewspapers(
   const status = useFilter({ enum: NewspaperStatusEnum });
   const sentAt = useSentAtFilter();
 
+  const newspapers = (archiveNewspapers.data ?? [])
+    .filter((newspaper) => status.filterFn(newspaper.status))
+    .filter((newspaper) => sentAt.filterFn(newspaper.sentAt));
+
+  const numberOfNewspapers = newspapers.length;
+
   return (
     <main
       data-display="flex"
@@ -33,19 +40,23 @@ export function ArchiveNewspapers(
       data-max-width="768"
       data-width="100%"
     >
-      <h2
+      <div
+        data-display="flex"
+        data-cross="center"
         data-mt="24"
         data-mb="36"
-        data-pt="12"
-        data-fs="20"
-        data-color="gray-800"
         data-bwt="4"
         data-bct="gray-100"
-        data-fw="500"
-        data-width="100%"
+        data-pt="12"
       >
-        Archive Newspapers
-      </h2>
+        <h2 data-fs="20" data-color="gray-800" data-fw="500">
+          Archive Newspapers
+        </h2>
+
+        <UI.Badge data-ml="12" data-p="3">
+          {numberOfNewspapers}
+        </UI.Badge>
+      </div>
 
       <div data-display="flex" data-cross="end" data-mb="24">
         <div data-display="flex" data-direction="column" data-mr="36">
@@ -100,12 +111,9 @@ export function ArchiveNewspapers(
       )}
 
       <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
-        {archiveNewspapers.data
-          ?.filter((newspaper) => status.filterFn(newspaper.status))
-          ?.filter((newspaper) => sentAt.filterFn(newspaper.sentAt))
-          .map((newspaper) => (
-            <Newspaper key={newspaper.id} {...newspaper} />
-          ))}
+        {newspapers.map((newspaper) => (
+          <Newspaper key={newspaper.id} {...newspaper} />
+        ))}
       </ul>
     </main>
   );

@@ -2,6 +2,7 @@ import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
 
+import * as UI from "./ui";
 import { api } from "./api";
 import { useSearch, useFilter } from "./hooks";
 import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
@@ -22,6 +23,13 @@ export function ArchiveArticles(
   const source = useFilter({ enum: ArticleSourceEnum });
   const status = useFilter({ enum: ArticleStatusEnum });
 
+  const articles = (archiveArticles.data ?? [])
+    .filter((article) => search.filterFn(article.title))
+    .filter((article) => source.filterFn(article.source))
+    .filter((article) => status.filterFn(article.status));
+
+  const numberOfArticles = articles.length;
+
   return (
     <main
       data-display="flex"
@@ -31,18 +39,23 @@ export function ArchiveArticles(
       data-max-width="768"
       data-width="100%"
     >
-      <h2
-        data-my="24"
-        data-pt="12"
-        data-fs="20"
-        data-color="gray-800"
+      <div
+        data-display="flex"
+        data-cross="center"
+        data-mt="24"
+        data-mb="36"
         data-bwt="4"
         data-bct="gray-100"
-        data-fw="500"
-        data-width="100%"
+        data-pt="12"
       >
-        Archive articles
-      </h2>
+        <h2 data-fs="20" data-color="gray-800" data-fw="500">
+          Archive Articles
+        </h2>
+
+        <UI.Badge data-ml="12" data-p="3">
+          {numberOfArticles}
+        </UI.Badge>
+      </div>
 
       <div data-display="flex" data-cross="end" data-mb="24">
         <div data-position="relative">
@@ -143,13 +156,9 @@ export function ArchiveArticles(
       </datalist>
 
       <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
-        {archiveArticles.data
-          ?.filter((article) => search.filterFn(article.title))
-          .filter((article) => source.filterFn(article.source))
-          .filter((article) => status.filterFn(article.status))
-          .map((article) => (
-            <ArchiveArticle key={article.id} {...article} />
-          ))}
+        {articles.map((article) => (
+          <ArchiveArticle key={article.id} {...article} />
+        ))}
       </ul>
     </main>
   );
