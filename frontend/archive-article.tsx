@@ -31,7 +31,7 @@ export function ArchiveArticle(props: ArticleType) {
             />
           )}
           <div data-mb="3" data-width="100%" data-transform="truncate">
-            {props.title}
+            {props.title ?? "-"}
           </div>
         </div>
         <a
