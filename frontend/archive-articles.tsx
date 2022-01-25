@@ -60,45 +60,7 @@ export function ArchiveArticles(
       </div>
 
       <div data-display="flex" data-cross="end" data-mb="24">
-        <div data-position="relative">
-          <input
-            list="articles"
-            onInput={search.onChange}
-            value={search.query}
-            class="c-input"
-            placeholder="Search for an article..."
-            style="min-width: 280px; padding-right: 36px"
-          />
-          <img
-            data-position="absolute"
-            loading="eager"
-            height="34"
-            width="34"
-            src="/icon-search.svg"
-            alt=""
-            data-p="6"
-            style="top: 1px; right: 1px; background: white"
-          />
-        </div>
-
-        <button
-          onClick={search.clear}
-          class="c-button"
-          data-variant="bare"
-          data-px="3"
-          data-ml="6"
-          data-mr="auto"
-        >
-          <img
-            loading="eager"
-            height="24"
-            width="24"
-            src="/icon-close.svg"
-            alt=""
-          />
-        </button>
-
-        <div data-display="flex" data-direction="column" data-mr="12">
+        <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" for="sent-at">
             Sent at
           </label>
@@ -121,7 +83,7 @@ export function ArchiveArticles(
           </div>
         </div>
 
-        <div data-display="flex" data-direction="column" data-mr="12">
+        <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" for="status">
             Status
           </label>
@@ -166,6 +128,46 @@ export function ArchiveArticles(
             </select>
           </div>
         </div>
+      </div>
+
+      <div data-display="flex" data-mb="24" data-mt="12">
+        <div data-position="relative">
+          <input
+            list="articles"
+            onInput={search.onChange}
+            value={search.query}
+            class="c-input"
+            placeholder="Search for an article..."
+            style="min-width: 280px; padding-right: 36px"
+          />
+          <img
+            data-position="absolute"
+            loading="eager"
+            height="34"
+            width="34"
+            src="/icon-search.svg"
+            alt=""
+            data-p="6"
+            style="top: 1px; right: 1px; background: white"
+          />
+        </div>
+
+        <button
+          onClick={search.clear}
+          class="c-button"
+          data-variant="bare"
+          data-px="3"
+          data-ml="6"
+          data-mr="auto"
+        >
+          <img
+            loading="eager"
+            height="24"
+            width="24"
+            src="/icon-close.svg"
+            alt=""
+          />
+        </button>
       </div>
 
       {archiveArticles.isSuccess && archiveArticles.data.length === 0 && (
