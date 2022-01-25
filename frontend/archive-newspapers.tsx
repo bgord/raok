@@ -129,6 +129,7 @@ function useSentAtFilter() {
 
   const sentAt = useFilter<NewspaperType["sentAt"]>({
     enum: SentAtFiltersEnum,
+    defaultValue: SentAtFiltersEnum.last_3_days,
     filterFn: (value) => {
       if (sentAt.query === "all") return true;
 
