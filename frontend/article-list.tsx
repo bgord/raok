@@ -70,10 +70,15 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             type="button"
             class="c-button"
             data-variant="secondary"
-            data-mr="auto"
           >
             Deselect all
           </button>
+
+          {selectedArticleIds.length > 0 && (
+            <div data-ml="12" data-color="gray-600" data-fs="14">
+              {selectedArticleIds.length}/5 articles
+            </div>
+          )}
 
           {emptyNewspaperError.on && (
             <div data-mr="12" data-fs="14">
@@ -82,6 +87,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           )}
 
           <form
+            data-ml="auto"
             onSubmit={(event) => {
               event.preventDefault();
 
