@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import * as UI from "./ui";
 import { api } from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
-import { useFilter } from "./hooks";
+import { useTimestampFilter, useFilter } from "./hooks";
 
 import { Newspaper } from "./newspaper";
 
@@ -23,7 +23,7 @@ export function ArchiveNewspapers(
   );
 
   const status = useFilter({ enum: NewspaperStatusEnum });
-  const sentAt = useSentAtFilter();
+  const sentAt = useTimestampFilter({ defaultValue: "last_3_days" });
 
   const newspapers = (archiveNewspapers.data ?? [])
     .filter((newspaper) => status.filterFn(newspaper.status))
@@ -117,41 +117,4 @@ export function ArchiveNewspapers(
       </ul>
     </main>
   );
-}
-
-function useSentAtFilter() {
-  enum SentAtFiltersEnum {
-    today = "today",
-    last_3_days = "last_3_days",
-    last_week = "last_week",
-    last_30_days = "last_30_days",
-  }
-
-  const sentAt = useFilter<NewspaperType["sentAt"]>({
-    enum: SentAtFiltersEnum,
-    defaultValue: SentAtFiltersEnum.last_3_days,
-    filterFn: (value) => {
-      if (sentAt.query === "all") return true;
-
-      if (!value) return false;
-
-      const timeSinceSent = Date.now() - value;
-
-      const DAY = 24 * 60 * 60 * 1000;
-      if (sentAt.query === "today") return timeSinceSent <= DAY;
-
-      const THREE_DAYS = 3 * DAY;
-      if (sentAt.query === "last_3_days") return timeSinceSent <= THREE_DAYS;
-
-      const WEEK = 7 * DAY;
-      if (sentAt.query === "last_week") return timeSinceSent <= WEEK;
-
-      const THIRTY_DAYS = 30 * DAY;
-      if (sentAt.query === "last_30_days") return timeSinceSent <= THIRTY_DAYS;
-
-      return false;
-    },
-  });
-
-  return sentAt;
 }
