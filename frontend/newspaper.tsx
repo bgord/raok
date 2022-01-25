@@ -60,7 +60,7 @@ export function Newspaper(props: NewspaperProps) {
             <CancelNewspaper data-mr="12" id={props.id} />
           )}
 
-          {props.status === "delivered" && (
+          {(props.status === "delivered" || sentAtRelative !== "-") && (
             <span
               data-fs="14"
               data-color="gray-400"
