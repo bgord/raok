@@ -117,6 +117,15 @@ function Html(content: string, username: string, state: string) {
             Articles
           </a>
 
+          <a
+            class="c-link"
+            data-color="white"
+            href="/archive/newspapers"
+            data-mr="24"
+          >
+            Newspapers
+          </a>
+
           <a class="c-link" data-color="white" href="/settings" data-mr="24">
             Settings
           </a>

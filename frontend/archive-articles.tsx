@@ -41,7 +41,7 @@ export function ArchiveArticles(
         data-fw="500"
         data-width="100%"
       >
-        Archived articles
+        Archive articles
       </h2>
 
       <div data-display="flex" data-cross="end" data-mb="24">
@@ -129,6 +129,12 @@ export function ArchiveArticles(
           </div>
         </div>
       </div>
+
+      {archiveArticles.isSuccess && archiveArticles.data.length === 0 && (
+        <div data-fs="14" data-color="gray-700">
+          No archive articles.
+        </div>
+      )}
 
       <datalist id="articles">
         {archiveArticles.data?.map((article) => (

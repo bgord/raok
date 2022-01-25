@@ -3,9 +3,14 @@ import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Dashboard, InitialDashboardDataType } from "./dashboard";
-import { ArchiveArticles, InitialArchiveArticlesDataType } from "./archive-articles";
+import {
+  ArchiveArticles,
+  InitialArchiveArticlesDataType,
+} from "./archive-articles";
+import { ArchiveNewspapers } from "./archive-newspapers";
 
-export type InitialDataType = InitialDashboardDataType & InitialArchiveArticlesDataType;
+export type InitialDataType = InitialDashboardDataType &
+  InitialArchiveArticlesDataType;
 
 const queryClient = new QueryClient();
 
@@ -19,6 +24,7 @@ export function App(props: InitialDataType) {
           path="/archive/articles"
           archiveArticles={archiveArticles}
         />
+        <ArchiveNewspapers path="/archive/newspapers" />
         <Dashboard path="/dashboard" {...rest} />
       </Router>
     </QueryClientProvider>

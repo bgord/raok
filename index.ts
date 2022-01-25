@@ -23,6 +23,7 @@ import { DisableArticlesToReviewNotification } from "./routes/disable-articles-t
 import { EnableArticlesToReviewNotification } from "./routes/enable-articles-to-review-notification";
 import { SetArticlesToReviewNotificationHour } from "./routes/set-articles-to-review-notification-hour";
 import { ArchiveArticles } from "./routes/archive-articles";
+import { ArchiveNewspapers } from "./routes/archive-newspapers";
 import { ScheduleFeedlyArticlesCrawl } from "./routes/schedule-feedly-articles-crawl";
 
 import { Scheduler } from "./jobs";
@@ -72,6 +73,7 @@ app.post(
 );
 
 app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));
+app.get("/newspapers/archive", AuthShield.verify, bg.Route(ArchiveNewspapers));
 app.get(
   "/newspaper/:newspaperId",
   AuthShield.verify,
@@ -120,6 +122,7 @@ app.post(
 );
 
 app.get("/archive/articles", AuthShield.verify, bg.Route(Dashboard));
+app.get("/archive/newspapers", AuthShield.verify, bg.Route(Dashboard));
 
 app.post(
   "/schedule-feedly-articles-crawl",

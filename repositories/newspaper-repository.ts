@@ -5,6 +5,22 @@ import * as VO from "../value-objects";
 const prisma = new PrismaClient();
 
 export class NewspaperRepository {
+  static async getAll() {
+    return prisma.newspaper.findMany({
+      where: {
+        status: {
+          in: [
+            VO.NewspaperStatusEnum.delivered,
+            VO.NewspaperStatusEnum.error,
+            VO.NewspaperStatusEnum.archived,
+          ],
+        },
+      },
+      orderBy: { scheduledAt: "desc" },
+      include: { articles: true },
+    });
+  }
+
   static async getAllNonArchived() {
     return prisma.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },

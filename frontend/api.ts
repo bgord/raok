@@ -19,6 +19,12 @@ async function getNewspapers(): Promise<NewspaperType[]> {
   );
 }
 
+async function getArchiveNewspapers(): Promise<NewspaperType[]> {
+  return _api("/newspapers/archive").then((response) =>
+    response.ok ? response.json() : []
+  );
+}
+
 async function getSingleNewspaper(
   id: NewspaperType["id"]
 ): Promise<NewspaperType> {
@@ -108,6 +114,7 @@ async function getArchiveArticles(): Promise<ArticleType[]> {
 
 export const api = {
   getNewspapers,
+  getArchiveNewspapers,
   getSingleNewspaper,
   createNewspaper,
   archiveNewspaper,
