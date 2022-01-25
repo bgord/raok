@@ -186,10 +186,18 @@ export class Newspaper {
   }
 
   async cancel() {
-    await Policies.HasNewspaperStalled.perform({
-      status: this.status,
-      scheduledAt: this.scheduledAt,
-    });
+    if (
+      (await Policies.HasNewspaperStalled.fails({
+        status: this.status,
+        scheduledAt: this.scheduledAt,
+      })) &&
+      (await Policies.NewspaperStatusTransition.fails({
+        from: this.status,
+        to: VO.NewspaperStatusEnum.archived,
+      }))
+    ) {
+      return;
+    }
 
     await EventRepository.save(
       Events.NewspaperArchivedEvent.parse({
