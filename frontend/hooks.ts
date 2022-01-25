@@ -222,35 +222,31 @@ export function useSearch(): {
   return { query, clear, onChange, filterFn };
 }
 
+type UseFilterValueType = string;
+
 export function useFilter<T = string>(config: {
-  enum: { [key: string]: string };
-  defaultValue?: T | "all";
+  enum: { [key: string]: UseFilterValueType };
+  defaultValue?: UseFilterValueType;
 }) {
   const defaultValue = config.defaultValue ?? "all";
 
-  const [query, setValue] = useState<T | "all">(defaultValue);
+  const [query, setValue] = useState<UseFilterValueType>(defaultValue);
 
   function clear() {
     setValue(defaultValue);
   }
 
-  function isEnumValue(value: unknown): value is T {
-    if (value === "all") return true;
-    return Boolean(config.enum[String(value)]);
-  }
-
   function onChange(event: h.JSX.TargetedEvent<HTMLSelectElement, Event>) {
     const { value } = event.currentTarget;
 
-    if (isEnumValue(value)) {
-      setValue(value);
-    }
+    if (value !== "all" && !Boolean(config.enum[String(value)])) return;
+    else setValue(value);
   }
 
-  function filterFn(value: T | "all") {
+  function filterFn(value: T) {
     if (query === "all") return true;
 
-    return value === query;
+    return query === String(value);
   }
 
   const options = Object.keys(config.enum);
