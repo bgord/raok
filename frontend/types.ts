@@ -25,6 +25,7 @@ export type ArticleType = {
   title: ArticleTitleType;
   description: ArticleDescriptionType;
   favourite: boolean;
+  createdAt: number;
 };
 
 export type ArticlePayloadType = { url: ArticleType["url"] };

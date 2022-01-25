@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 
 import * as UI from "./ui";
 import { api } from "./api";
-import { useSearch, useFilter } from "./hooks";
+import { useSearch, useFilter, useTimestampFilter } from "./hooks";
 import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
 import { ArchiveArticle } from "./archive-article";
 
@@ -22,11 +22,13 @@ export function ArchiveArticles(
   const search = useSearch();
   const source = useFilter({ enum: ArticleSourceEnum });
   const status = useFilter({ enum: ArticleStatusEnum });
+  const createdAt = useTimestampFilter({ defaultValue: "last_week" });
 
   const articles = (archiveArticles.data ?? [])
     .filter((article) => search.filterFn(article.title))
     .filter((article) => source.filterFn(article.source))
-    .filter((article) => status.filterFn(article.status));
+    .filter((article) => status.filterFn(article.status))
+    .filter((article) => createdAt.filterFn(article.createdAt));
 
   const numberOfArticles = articles.length;
 
@@ -96,7 +98,30 @@ export function ArchiveArticles(
           />
         </button>
 
-        <div data-display="flex" data-direction="column" data-mr="24">
+        <div data-display="flex" data-direction="column" data-mr="12">
+          <label class="c-label" for="sent-at">
+            Sent at
+          </label>
+          <div class="c-select-wrapper">
+            <select
+              id="sent-at"
+              name="sent-at"
+              class="c-select"
+              value={createdAt.query}
+              onInput={createdAt.onChange}
+            >
+              <option selected value="all">
+                All
+              </option>
+
+              {createdAt.options.map((option) => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div data-display="flex" data-direction="column" data-mr="12">
           <label class="c-label" for="status">
             Status
           </label>
