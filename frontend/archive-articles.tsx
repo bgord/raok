@@ -61,13 +61,13 @@ export function ArchiveArticles(
 
       <div data-display="flex" data-cross="end" data-mb="24">
         <div data-display="flex" data-direction="column" data-mr="24">
-          <label class="c-label" for="sent-at">
-            Sent at
+          <label class="c-label" for="created-at">
+            Created at
           </label>
           <div class="c-select-wrapper">
             <select
-              id="sent-at"
-              name="sent-at"
+              id="created-at"
+              name="created-at"
               class="c-select"
               value={createdAt.query}
               onInput={createdAt.onChange}
@@ -106,7 +106,7 @@ export function ArchiveArticles(
           </div>
         </div>
 
-        <div data-display="flex" data-direction="column">
+        <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" for="source">
             Source
           </label>
@@ -128,6 +128,18 @@ export function ArchiveArticles(
             </select>
           </div>
         </div>
+
+        <button
+          class="c-button"
+          data-variant="bare"
+          onClick={() => {
+            createdAt.clear();
+            status.clear();
+            source.clear();
+          }}
+        >
+          Reset
+        </button>
       </div>
 
       <div data-display="flex" data-mb="24" data-mt="12">
