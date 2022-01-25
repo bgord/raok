@@ -126,15 +126,9 @@ function Html(content: string, username: string, state: string) {
             Newspapers
           </a>
 
-          <a class="c-link" data-color="white" href="/settings" data-mr="24">
-            Settings
-          </a>
+          <a class="c-link" data-color="white" href="/settings"> Settings </a>
 
-          <div data-display="flex" data-mr="72" data-md-mr="24">
-            <strong data-ml="12" data-md-ml="6" data-color="white">
-              ${username}
-            </strong>
-          </div>
+          <strong data-mx="36" data-color="white">${username}</strong>
 
           <a
             class="c-link"
