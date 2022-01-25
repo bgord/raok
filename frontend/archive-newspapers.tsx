@@ -59,7 +59,7 @@ export function ArchiveNewspapers(
       </div>
 
       <div data-display="flex" data-cross="end" data-mb="24">
-        <div data-display="flex" data-direction="column" data-mr="36">
+        <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" for="sent-at">
             Sent at
           </label>
@@ -80,7 +80,7 @@ export function ArchiveNewspapers(
             </select>
           </div>
         </div>
-        <div data-display="flex" data-direction="column">
+        <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" for="status">
             Status
           </label>
@@ -102,6 +102,17 @@ export function ArchiveNewspapers(
             </select>
           </div>
         </div>
+
+        <button
+          class="c-button"
+          data-variant="bare"
+          onClick={() => {
+            sentAt.clear();
+            status.clear();
+          }}
+        >
+          Reset
+        </button>
       </div>
 
       {archiveNewspapers.isSuccess && archiveNewspapers.data.length === 0 && (
