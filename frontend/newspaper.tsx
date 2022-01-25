@@ -71,7 +71,7 @@ export function Newspaper(props: NewspaperProps) {
             </span>
           )}
 
-          {props.status === "delivered" && (
+          {["delivered", "archived"].includes(props.status) && (
             <button
               class="c-button"
               data-variant="bare"
@@ -102,7 +102,7 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       </div>
 
-      {details.state !== "hidden" && (
+      {details.state !== "hidden" && props.status === "delivered" && (
         <div
           data-display="flex"
           data-mt="12"

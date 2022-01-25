@@ -20,48 +20,50 @@ export function NewspaperArticle(props: ArticleType) {
       data-pr="12"
       data-cross="center"
     >
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (props.favourite) {
-            deleteArticleFromFavourites.mutate(props.id);
-          } else {
-            addArticleToFavourites.mutate(props.id);
-          }
-        }}
-      >
-        <button
-          type="submit"
-          class="c-button"
-          data-variant="bare"
-          data-mx="12"
-          disabled={
-            addArticleToFavourites.isLoading ||
-            deleteArticleFromFavourites.isLoading
-          }
+      {props.status === "delivered" && (
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (props.favourite) {
+              deleteArticleFromFavourites.mutate(props.id);
+            } else {
+              addArticleToFavourites.mutate(props.id);
+            }
+          }}
         >
-          {props.favourite && (
-            <img
-              loading="eager"
-              height="20"
-              width="20"
-              src="/icon-star-filled.svg"
-              alt=""
-            />
-          )}
-          {!props.favourite && (
-            <img
-              loading="eager"
-              height="20"
-              width="20"
-              src="/icon-star.svg"
-              alt=""
-            />
-          )}
-        </button>
-      </form>
+          <button
+            type="submit"
+            class="c-button"
+            data-variant="bare"
+            data-mx="12"
+            disabled={
+              addArticleToFavourites.isLoading ||
+              deleteArticleFromFavourites.isLoading
+            }
+          >
+            {props.favourite && (
+              <img
+                loading="eager"
+                height="20"
+                width="20"
+                src="/icon-star-filled.svg"
+                alt=""
+              />
+            )}
+            {!props.favourite && (
+              <img
+                loading="eager"
+                height="20"
+                width="20"
+                src="/icon-star.svg"
+                alt=""
+              />
+            )}
+          </button>
+        </form>
+      )}
 
-      <UI.Link href={props.url} data-pr="12">
+      <UI.Link href={props.url} data-mr="12" data-ml="6">
         {props.url}
       </UI.Link>
 
