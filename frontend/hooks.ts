@@ -222,7 +222,7 @@ export function useSearch(): {
   return { query, clear, onChange, filterFn };
 }
 
-export function useFilter<T extends string>(config: {
+export function useFilter<T = string>(config: {
   enum: { [key: string]: string };
   defaultValue?: T | "all";
 }) {
@@ -247,7 +247,7 @@ export function useFilter<T extends string>(config: {
     }
   }
 
-  function filterFn(value: string) {
+  function filterFn(value: T | "all") {
     if (query === "all") return true;
 
     return value === query;
