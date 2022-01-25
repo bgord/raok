@@ -227,6 +227,7 @@ type UseFilterValueType = string;
 export function useFilter<T = string>(config: {
   enum: { [key: string]: UseFilterValueType };
   defaultValue?: UseFilterValueType;
+  filterFn?: (value: T) => boolean;
 }) {
   const defaultValue = config.defaultValue ?? "all";
 
@@ -251,5 +252,11 @@ export function useFilter<T = string>(config: {
 
   const options = Object.keys(config.enum);
 
-  return { query, clear, onChange, filterFn, options };
+  return {
+    query,
+    clear,
+    onChange,
+    filterFn: config.filterFn ?? filterFn,
+    options,
+  };
 }
