@@ -2,6 +2,8 @@ import Router from "preact-router";
 import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
 
+import { NotificationsContextProvider } from "./notifications-context";
+import { Notifications } from "./notifications";
 import { Dashboard, InitialDashboardDataType } from "./dashboard";
 import {
   ArchiveArticles,
@@ -19,14 +21,18 @@ export function App(props: InitialDataType) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <ArchiveArticles
-          path="/archive/articles"
-          archiveArticles={archiveArticles}
-        />
-        <ArchiveNewspapers path="/archive/newspapers" />
-        <Dashboard path="/dashboard" {...rest} />
-      </Router>
+      <NotificationsContextProvider>
+        <Router>
+          <ArchiveArticles
+            path="/archive/articles"
+            archiveArticles={archiveArticles}
+          />
+          <ArchiveNewspapers path="/archive/newspapers" />
+          <Dashboard path="/dashboard" {...rest} />
+        </Router>
+
+        <Notifications />
+      </NotificationsContextProvider>
     </QueryClientProvider>
   );
 }
