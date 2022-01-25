@@ -11,6 +11,12 @@ export enum ArticleStatusEnum {
   "processed" = "processed",
 }
 
+export enum NewspaperStatusEnum {
+  "delivered" = "delivered",
+  "archived" = "archived",
+  "error" = "error",
+}
+
 export type ArticleType = {
   id: string;
   url: string;
