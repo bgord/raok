@@ -83,7 +83,7 @@ export function useFile(): UseFileIdle | UseFileSelected {
   function selectFile(event: h.JSX.TargetedEvent<HTMLInputElement, Event>) {
     const files = event.currentTarget.files;
 
-    if (!files) return;
+    if (!files || !files[0]) return;
 
     setFile(files[0]);
     setState(UseFileState.selected);

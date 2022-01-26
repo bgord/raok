@@ -4,7 +4,8 @@
     "esModuleInterop": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment"
+    "jsxFragmentFactory": "Fragment",
+    "noUncheckedIndexedAccess": true
   },
   "exclude": ["bgord-scripts"]
 }
