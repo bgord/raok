@@ -51,7 +51,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
         <AddArticleForm />
 
-        <div data-display="flex" data-cross="baseline" data-mt="12">
+        <div data-display="flex" data-cross="center" data-mt="12">
           <button
             onClick={() =>
               actions.add(
@@ -65,6 +65,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           >
             Select all
           </button>
+
           <button
             onClick={actions.clear}
             type="button"
@@ -72,6 +73,22 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             data-variant="secondary"
           >
             Deselect all
+          </button>
+
+          <button
+            onClick={() => articles.refetch()}
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            data-ml="12"
+          >
+            <img
+              loading="eager"
+              height="20"
+              width="20"
+              src="/icon-refresh.svg"
+              alt=""
+            />
           </button>
 
           {selectedArticleIds.length > 0 && (
