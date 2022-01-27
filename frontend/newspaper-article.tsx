@@ -20,7 +20,7 @@ export function NewspaperArticle(props: ArticleType) {
       data-pr="12"
       data-cross="center"
     >
-      {props.status === "delivered" && (
+      {props.status === "processed" && (
         <form
           onSubmit={(event) => {
             event.preventDefault();

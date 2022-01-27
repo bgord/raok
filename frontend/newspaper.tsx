@@ -38,7 +38,7 @@ export function Newspaper(props: NewspaperProps) {
     <li
       data-display="flex"
       data-direction="column"
-      data-mb="24"
+      data-my="12"
       data-bc={details.state !== "hidden" && "gray-200"}
       data-bw="1"
       data-bcr="gray-100"
@@ -135,7 +135,7 @@ export function Newspaper(props: NewspaperProps) {
       )}
 
       {details.state !== "hidden" && (
-        <ol data-mt="6" data-mb="12" {...details.props}>
+        <ol data-mt="6" data-mb="24" {...details.props}>
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />
           ))}

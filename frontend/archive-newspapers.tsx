@@ -36,7 +36,7 @@ export function ArchiveNewspapers(
       data-display="flex"
       data-direction="column"
       data-mx="auto"
-      data-mt="24"
+      data-my="24"
       data-max-width="768"
       data-width="100%"
     >
@@ -121,7 +121,13 @@ export function ArchiveNewspapers(
         </div>
       )}
 
-      <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
+      <ul
+        data-display="flex"
+        data-direction="column"
+        data-mt="24"
+        data-bg="gray-100"
+        data-px="12"
+      >
         {newspapers.map((newspaper) => (
           <Newspaper key={newspaper.id} {...newspaper} />
         ))}
