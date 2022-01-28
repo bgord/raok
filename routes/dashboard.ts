@@ -54,10 +54,18 @@ function Html(content: string, username: string, state: string) {
           *[data-anime-style="opacity"][data-anime="hidding"] {
             opacity: 0;
           }
-          *[data-toggle="hidden"] {
-            display: none;
-            opacity: 0;
-            transition: opacity 220ms;
+
+          @keyframes rotate {
+            from {
+              transform: rotate(0);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
+
+          *[data-anime-effect="rotate"] {
+            animation: rotate 2s linear infinite;
           }
 
           @keyframes slideIn {
