@@ -16,7 +16,7 @@ type NewspaperProps = NewspaperType;
 
 export function Newspaper(props: NewspaperProps) {
   const details = useToggle();
-  useAutoUpdateNewspaper(props, details.setOn);
+  useAutoUpdateNewspaper(props, details.enable);
 
   const resendNewspaper = useResendNewspaper();
 
@@ -110,7 +110,7 @@ export function Newspaper(props: NewspaperProps) {
                 onSubmit={(event) => {
                   event.preventDefault();
                   resendNewspaper.mutate(props.id);
-                  details.setOff();
+                  details.disable();
                 }}
               >
                 <button type="submit" class="c-button" data-variant="primary">

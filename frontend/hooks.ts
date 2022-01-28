@@ -49,11 +49,11 @@ export function useList<T>(
 export function useToggle(defaultValue = false) {
   const [on, setIsOn] = useState(defaultValue);
 
-  const setOn = () => setIsOn(true);
-  const setOff = () => setIsOn(false);
+  const enable = () => setIsOn(true);
+  const disable = () => setIsOn(false);
   const toggle = () => setIsOn((v) => !v);
 
-  return { on, off: !on, setOn, setOff, toggle };
+  return { on, off: !on, enable, disable, toggle };
 }
 
 export enum UseFileState {

@@ -38,16 +38,21 @@ function Html(content: string, username: string, state: string) {
         <link rel="manifest" href="/site.webmanifest" />
 
         <style>
-          *[data-toggle="appearing"] {
+          *[data-anime="appeared"] {
+            transition: all var(--duration, 300ms);
+          }
+          *[data-anime="hidding"] {
+            transition: all var(--duration, 300ms);
+          }
+
+          *[data-anime-style="opacity"][data-anime="appearing"] {
             opacity: 0;
           }
-          *[data-toggle="appeared"] {
+          *[data-anime-style="opacity"][data-anime="appeared"] {
             opacity: 1;
-            transition: opacity 440ms;
           }
-          *[data-toggle="hidding"] {
+          *[data-anime-style="opacity"][data-anime="hidding"] {
             opacity: 0;
-            transition: opacity 220ms;
           }
           *[data-toggle="hidden"] {
             display: none;

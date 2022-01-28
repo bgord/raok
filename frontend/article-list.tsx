@@ -118,10 +118,10 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               event.preventDefault();
 
               if (selectedArticleIds.length === 0) {
-                emptyNewspaperError.setOn();
+                emptyNewspaperError.enable();
                 return;
               } else {
-                emptyNewspaperError.setOff();
+                emptyNewspaperError.disable();
               }
 
               createNewspaper.mutate(selectedArticleIds);
