@@ -16,7 +16,6 @@ export function NewspaperArticle(props: ArticleType) {
       data-wrap="nowrap"
       data-mb="12"
       data-max-width="768"
-      data-pl="6"
       data-pr="12"
       data-cross="center"
     >

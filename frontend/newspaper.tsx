@@ -39,16 +39,10 @@ export function Newspaper(props: NewspaperProps) {
       data-display="flex"
       data-direction="column"
       data-my="12"
-      data-bc={details.state !== "hidden" && "gray-200"}
-      data-bw="1"
       data-bcr="gray-100"
       data-bwr="4"
     >
-      <div
-        data-display="flex"
-        data-cross="center"
-        data-p={details.state !== "hidden" ? "12" : "0"}
-      >
+      <div data-display="flex" data-cross="center">
         <UI.Badge data-bg="gray-600" data-color="gray-100" data-px="6">
           {props.status}
         </UI.Badge>
@@ -105,9 +99,8 @@ export function Newspaper(props: NewspaperProps) {
       {details.state !== "hidden" && props.status === "delivered" && (
         <div
           data-display="flex"
-          data-mt="12"
-          data-mb="24"
-          data-px="12"
+          data-my="24"
+          data-pr="6"
           {...details.props}
         >
           {["delivered", "error"].includes(props.status) && (
