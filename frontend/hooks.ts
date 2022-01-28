@@ -103,58 +103,6 @@ export function useFile(): UseFileIdle | UseFileSelected {
   return { state, data: file as File, actions };
 }
 
-export enum AnimatedToggleState {
-  appearing = "appearing",
-  appeared = "appeared",
-  hidding = "hidding",
-  hidden = "hidden",
-}
-
-const defaultConfig = { default: AnimatedToggleState.hidden, delay: 220 };
-
-export function useAnimatiedToggle(
-  config: { default: AnimatedToggleState; delay: number } = defaultConfig
-) {
-  const [state, setState] = useState<AnimatedToggleState>(config.default);
-
-  function show() {
-    setState(AnimatedToggleState.appearing);
-  }
-
-  function hide() {
-    setState(AnimatedToggleState.hidding);
-  }
-
-  function toggle() {
-    if (state === AnimatedToggleState.appeared) hide();
-    else show();
-  }
-
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout> =
-      null as unknown as ReturnType<typeof setTimeout>;
-
-    if (state === AnimatedToggleState.hidding) {
-      timeoutId = setTimeout(
-        () => setState(AnimatedToggleState.hidden),
-        config.delay
-      );
-    }
-
-    if (state === AnimatedToggleState.appearing) {
-      timeoutId = setTimeout(() => setState(AnimatedToggleState.appeared), 0);
-    }
-
-    return () => clearTimeout(timeoutId);
-  }, [state]);
-
-  return {
-    state,
-    actions: { show, hide, toggle },
-    props: { "data-toggle": state },
-  };
-}
-
 export function useExpandableList(config: { max: number; length: number }) {
   const numberOfExcessiveElements = config.length - config.max;
   const areThereExcessiveElements = config.length > config.max;

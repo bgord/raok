@@ -5,8 +5,9 @@ import formatDistanceStrict from "date-fns/formatDistanceStrict";
 
 import * as UI from "./ui";
 import { api } from "./api";
+import { Anime } from "./anime";
 import { NewspaperType } from "./types";
-import { useAnimatiedToggle } from "./hooks";
+import { useToggle } from "./hooks";
 import { useNotificationTrigger } from "./notifications-context";
 import { hasNewspaperStalled } from "../policies/common";
 import { NewspaperArticle } from "./newspaper-article";
@@ -14,8 +15,8 @@ import { NewspaperArticle } from "./newspaper-article";
 type NewspaperProps = NewspaperType;
 
 export function Newspaper(props: NewspaperProps) {
-  const details = useAnimatiedToggle();
-  useAutoUpdateNewspaper(props, details.actions.show);
+  const details = useToggle();
+  useAutoUpdateNewspaper(props, details.setOn);
 
   const resendNewspaper = useResendNewspaper();
 
@@ -70,9 +71,9 @@ export function Newspaper(props: NewspaperProps) {
               class="c-button"
               data-variant="bare"
               data-mr="6"
-              onClick={details.actions.toggle}
+              onClick={details.toggle}
             >
-              {["hidden", "appearing"].includes(details.state) && (
+              {details.off && (
                 <img
                   loading="eager"
                   height="16"
@@ -82,7 +83,7 @@ export function Newspaper(props: NewspaperProps) {
                 />
               )}
 
-              {["appeared", "hidding"].includes(details.state) && (
+              {details.on && (
                 <img
                   loading="eager"
                   height="16"
@@ -96,13 +97,11 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       </div>
 
-      {details.state !== "hidden" && props.status === "delivered" && (
-        <div
-          data-display="flex"
-          data-my="24"
-          data-pr="6"
-          {...details.props}
-        >
+      <Anime
+        visible={details.on && props.status === "delivered"}
+        style="opacity"
+      >
+        <div data-display="flex" data-my="24" data-pr="6">
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
               <ArchiveNewspaper id={props.id} data-mr="12" />
@@ -111,7 +110,7 @@ export function Newspaper(props: NewspaperProps) {
                 onSubmit={(event) => {
                   event.preventDefault();
                   resendNewspaper.mutate(props.id);
-                  details.actions.hide();
+                  details.setOff();
                 }}
               >
                 <button type="submit" class="c-button" data-variant="primary">
@@ -125,15 +124,15 @@ export function Newspaper(props: NewspaperProps) {
             Processed in {duration}
           </span>
         </div>
-      )}
+      </Anime>
 
-      {details.state !== "hidden" && (
-        <ol data-mt="6" data-mb="24" {...details.props}>
+      <Anime visible={details.on} style="opacity">
+        <ol data-mt="6" data-mb="24">
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />
           ))}
         </ol>
-      )}
+      </Anime>
     </li>
   );
 }
