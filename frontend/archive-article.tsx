@@ -1,6 +1,7 @@
 import { h } from "preact";
 
 import { ArticleType } from "./types";
+import { FavouriteUnfavourite } from "./favourite-unfavourite";
 
 export function ArchiveArticle(props: ArticleType) {
   return (
@@ -19,18 +20,18 @@ export function ArchiveArticle(props: ArticleType) {
         data-mr="12"
         data-overflow="hidden"
       >
-        <div data-display="flex" data-wrap="nowrap" data-max-width="100%">
-          {props.favourite && (
-            <img
-              loading="eager"
-              height="20"
-              width="20"
-              src="/icon-star-filled.svg"
-              alt=""
-              data-mr="6"
-            />
-          )}
-          <div data-mb="3" data-width="100%" data-transform="truncate">
+        <div
+          data-display="flex"
+          data-cross="center"
+          data-wrap="nowrap"
+          data-max-width="100%"
+        >
+          {props.status === "processed" && <FavouriteUnfavourite {...props} />}
+          <div
+            data-width="100%"
+            data-ml={props.status === "processed" && "12"}
+            data-transform="truncate"
+          >
             {props.title ?? "-"}
           </div>
         </div>
