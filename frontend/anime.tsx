@@ -1,6 +1,8 @@
 import { h, cloneElement } from "preact";
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import delay from "lodash/delay";
+
+import { usePreviousValue } from "./hooks";
 
 enum AnimeState {
   appearing = "appearing",
@@ -22,7 +24,7 @@ export function Anime(props: AnimeConfigType) {
   const [state, setState] = useState<AnimeState>(
     props.visible ? AnimeState.appearing : AnimeState.hidden
   );
-  const previousState = usePrevious(state);
+  const previousState = usePreviousValue(state);
 
   useEffect(() => {
     if (
@@ -48,14 +50,4 @@ export function Anime(props: AnimeConfigType) {
     "data-anime-style": props.style,
     style: { "--duration": `${duration}ms` },
   });
-}
-
-function usePrevious<T>(value: T) {
-  const previousValue = useRef<T | null>(null);
-
-  useEffect(() => {
-    previousValue.current = value;
-  });
-
-  return previousValue.current;
 }

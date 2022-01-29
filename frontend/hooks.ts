@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useState, useEffect, StateUpdater } from "preact/hooks";
+import { useState, useEffect, StateUpdater, useRef } from "preact/hooks";
 
 export type UseListActionsType<T> = {
   clear: VoidFunction;
@@ -246,4 +246,14 @@ export function useTimestampFilter(config?: {
   });
 
   return timestamp;
+}
+
+export function usePreviousValue<T>(value: T) {
+  const previousValue = useRef<T | null>(null);
+
+  useEffect(() => {
+    previousValue.current = value;
+  });
+
+  return previousValue.current;
 }
