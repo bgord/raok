@@ -70,7 +70,10 @@ export function AnimaList(
   );
 }
 
-export function useAnimaList<T>(list: T[]): {
+export function useAnimaList<T extends { id: string }>(
+  list: T[],
+  direction: "head" | "tail" = "head"
+): {
   items: { item: T; props: { visible: boolean } }[];
   count: number;
 } {
@@ -88,10 +91,17 @@ export function useAnimaList<T>(list: T[]): {
   useEffect(() => {
     if (added.length === 0) return;
 
-    setOfficialList([
-      ...officialList,
-      ...added.map((item) => ({ item, props: { visible: true } })),
-    ]);
+    if (direction === "head") {
+      setOfficialList([
+        ...added.map((item) => ({ item, props: { visible: true } })),
+        ...officialList,
+      ]);
+    } else {
+      setOfficialList([
+        ...officialList,
+        ...added.map((item) => ({ item, props: { visible: true } })),
+      ]);
+    }
   }, [added.length]);
 
   const deleted: T[] = [];

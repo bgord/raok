@@ -10,7 +10,7 @@ import { Newspaper } from "./newspaper";
 export function NewspaperList(props: { initialData: NewspaperType[] }) {
   const _newspapers = useQuery(["newspapers"], api.getNewspapers, props);
 
-  const newspapers = useAnimaList(_newspapers.data ?? []);
+  const newspapers = useAnimaList(_newspapers.data ?? [], "head");
 
   return (
     <section data-mt="48" data-mb="72">
