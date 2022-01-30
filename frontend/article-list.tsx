@@ -5,6 +5,7 @@ import delay from "lodash/delay";
 import * as UI from "./ui";
 import { ArticleType } from "./types";
 import { api } from "./api";
+import { AnimaList, useAnimaList, Anima } from "./anima";
 import { useNotificationTrigger } from "./notifications-context";
 import { useList, useToggle } from "./hooks";
 import { AddArticleForm } from "./add-article-form";
@@ -14,10 +15,12 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
   const emptyNewspaperError = useToggle();
 
-  const articles = useQuery(["articles"], api.getArticles, props);
+  const _articles = useQuery("articles", api.getArticles, props);
 
   const createNewspaper = useCreateNewspaper(actions.clear);
   const scheduleFeedlyArticlesCrawl = useScheduleFeedlyArticlesCrawl();
+
+  const articles = useAnimaList(_articles.data ?? []);
 
   return (
     <section>
@@ -53,11 +56,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
         <div data-display="flex" data-cross="center" data-mt="12">
           <button
-            onClick={() =>
-              actions.add(
-                articles.isSuccess ? articles.data.map((x) => x.id) : []
-              )
-            }
+            onClick={() => actions.add(articles.items.map((x) => x.item.id))}
             type="button"
             class="c-button"
             data-variant="secondary"
@@ -76,7 +75,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           </button>
 
           <button
-            onClick={() => articles.refetch()}
+            onClick={() => _articles.refetch()}
             type="button"
             class="c-button"
             data-variant="bare"
@@ -88,7 +87,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               width="20"
               src="/icon-refresh.svg"
               alt=""
-              data-anima-effect={articles.isRefetching && "rotate"}
+              data-anima-effect={_articles.isRefetching && "rotate"}
             />
           </button>
 
@@ -126,7 +125,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
         </div>
       </div>
 
-      {articles.isSuccess && articles.data.length === 0 && (
+      {articles.count === 0 && (
         <small
           data-fs="14"
           data-color="gray-600"
@@ -138,12 +137,13 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
         </small>
       )}
 
-      <ul data-mt="24">
-        {articles.isSuccess &&
-          articles.data.map((article) => (
-            <Article key={article.id} {...article} {...actions} />
-          ))}
-      </ul>
+      <AnimaList data-mt="24">
+        {articles.items.map((article) => (
+          <Anima key={article.item.id} style="opacity" {...article.props}>
+            <Article {...article.item} {...actions} />
+          </Anima>
+        ))}
+      </AnimaList>
     </section>
   );
 }

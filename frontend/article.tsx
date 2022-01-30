@@ -8,7 +8,9 @@ import { useNotificationTrigger } from "./notifications-context";
 import { UseListActionsType } from "./hooks";
 
 export function Article(
-  props: ArticleType & UseListActionsType<ArticleType["id"]>
+  props: ArticleType &
+    UseListActionsType<ArticleType["id"]> &
+    h.JSX.IntrinsicElements["li"]
 ) {
   const queryClient = useQueryClient();
   const notify = useNotificationTrigger();
@@ -29,8 +31,9 @@ export function Article(
       data-md-px="6"
       data-bcr="gray-100"
       data-bwr="4"
+      {...props}
     >
-      {props.status === "ready" && (
+      {status === "ready" && (
         <input
           onClick={() => props.toggle(props.id)}
           checked={props.isAdded(props.id)}
@@ -62,7 +65,7 @@ export function Article(
         data-ml="auto"
       >
         <UI.Badge data-mb="6" data-width="100%" style="text-align: center">
-          {props.status}
+          {status}
         </UI.Badge>
 
         <UI.Badge data-width="100%" style="text-align: center">
@@ -70,7 +73,7 @@ export function Article(
         </UI.Badge>
       </div>
 
-      {props.status === "ready" && (
+      {status === "ready" && (
         <form
           data-mx="6"
           onSubmit={(event) => {
