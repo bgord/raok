@@ -5,10 +5,12 @@ import * as UI from "./ui";
 import { useExpandableList } from "./hooks";
 import { api } from "./api";
 import { ArticleType, NewspaperType } from "./types";
+import { Anima, useAnimaList } from "./anima";
+
 import { useNotificationTrigger } from "./notifications-context";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
-  const articles = useQuery(
+  const _articles = useQuery(
     ["favourite-articles"],
     api.getFavouriteArticles,
     props
@@ -16,8 +18,11 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
 
   const list = useExpandableList({
     max: 5,
-    length: articles?.data?.length ?? 0,
+    length: _articles.data?.length ?? 0,
   });
+
+  const favouriteArticles = (_articles.data ?? []).filter(list.filterFn);
+  const articles = useAnimaList(favouriteArticles);
 
   const deleteArticleFromFavourites = useDeleteArticleFromFavourites();
 
@@ -35,44 +40,46 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
         Favourite articles
       </UI.Header>
 
-      {articles.data?.length === 0 && (
+      {articles.length === 0 && (
         <small data-fs="14" data-color="gray-600">
           Your favourite sent articles will appear here
         </small>
       )}
 
       <ul>
-        {articles.data?.filter(list.filterFn).map((article) => (
-          <li
-            key={article.id}
-            data-display="flex"
-            data-cross="center"
-            data-overflow="hidden"
-            data-wrap="nowrap"
-            data-mb="6"
-          >
-            <UI.Link href={article.url} data-fs="14">
-              {article.title || article.url}
-            </UI.Link>
-
-            <form
-              data-ml="auto"
-              onSubmit={(event) => {
-                event.preventDefault();
-                deleteArticleFromFavourites.mutate(article.id);
-              }}
+        {articles.map((article) => (
+          <Anima visible={article.visible} style="opacity">
+            <li
+              key={article.item.id}
+              data-display="flex"
+              data-cross="center"
+              data-overflow="hidden"
+              data-wrap="nowrap"
+              data-mb="6"
             >
-              <button
-                disabled={deleteArticleFromFavourites.isLoading}
-                type="submit"
-                class="c-button"
-                data-variant="bare"
-                data-ml="12"
+              <UI.Link href={article.item.url} data-fs="14">
+                {article.item.title || article.item.url}
+              </UI.Link>
+
+              <form
+                data-ml="auto"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  deleteArticleFromFavourites.mutate(article.item.id);
+                }}
               >
-                Remove
-              </button>
-            </form>
-          </li>
+                <button
+                  disabled={deleteArticleFromFavourites.isLoading}
+                  type="submit"
+                  class="c-button"
+                  data-variant="bare"
+                  data-ml="12"
+                >
+                  Remove
+                </button>
+              </form>
+            </li>
+          </Anima>
         ))}
       </ul>
 
