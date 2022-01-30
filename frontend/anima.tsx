@@ -16,21 +16,26 @@ enum AnimaState {
 }
 
 type AnimaConfigType = {
-  duration?: number;
   children: h.JSX.Element;
   visible: boolean;
   style: string;
+  duration?: number;
+  isInitial?: boolean;
 };
 
 export function Anima(props: AnimaConfigType) {
   const duration = props.duration ?? 300;
 
-  const [state, setState] = useState<AnimaState>(
-    props.visible ? AnimaState.appearing : AnimaState.hidden
-  );
+  const [state, setState] = useState<AnimaState>(() => {
+    if (!props.visible) return AnimaState.hidden;
+    if (props.isInitial) return AnimaState.appeared;
+    return AnimaState.appearing;
+  });
   const previousState = usePreviousValue(state);
 
   useEffect(() => {
+    if (props.isInitial) return;
+
     if (props.visible) {
       setState(AnimaState.appearing);
       delay(() => setState(AnimaState.appeared), 100);
@@ -48,6 +53,24 @@ export function Anima(props: AnimaConfigType) {
     "data-anima-style": props.style,
     style: { "--duration": `${duration}ms` },
   });
+}
+
+export function AnimaList(
+  props: {
+    children: h.JSX.Element[];
+  } & h.JSX.IntrinsicElements["ul"]
+) {
+  const { children, ...rest } = props;
+
+  const [isInitial, setIsInitial] = useState<boolean>(true);
+
+  useEffect(() => setIsInitial(false), []);
+
+  return (
+    <ul {...rest}>
+      {props.children.map((child) => cloneElement(child, { isInitial }))}
+    </ul>
+  );
 }
 
 export function useAnimaList<T>(list: T[]): { item: T; visible: boolean }[] {

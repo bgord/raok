@@ -5,7 +5,7 @@ import * as UI from "./ui";
 import { useExpandableList } from "./hooks";
 import { api } from "./api";
 import { ArticleType, NewspaperType } from "./types";
-import { Anima, useAnimaList } from "./anima";
+import { Anima, AnimaList, useAnimaList } from "./anima";
 
 import { useNotificationTrigger } from "./notifications-context";
 
@@ -46,7 +46,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
         </small>
       )}
 
-      <ul>
+      <AnimaList>
         {articles.map((article) => (
           <Anima visible={article.visible} style="opacity">
             <li
@@ -81,7 +81,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
             </li>
           </Anima>
         ))}
-      </ul>
+      </AnimaList>
 
       {list.displayShowMore && (
         <button
