@@ -128,7 +128,10 @@ export function useAnimaList<T extends { id: string }>(
   }, [deleted.length]);
 
   return {
-    items: officialList,
+    items: officialList.map((item) => {
+      const updated = list.find((y) => y.id === item.item.id);
+      return updated ? { ...item, item: updated } : item;
+    }),
     count: officialList.filter((x) => x.props.visible).length,
   };
 }
