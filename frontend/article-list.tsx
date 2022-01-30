@@ -20,7 +20,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const createNewspaper = useCreateNewspaper(actions.clear);
   const scheduleFeedlyArticlesCrawl = useScheduleFeedlyArticlesCrawl();
 
-  const articles = useAnimaList(_articles.data ?? []);
+  const articles = useAnimaList(_articles.data ?? [], "tail");
 
   return (
     <section>
