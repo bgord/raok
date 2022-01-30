@@ -21,8 +21,8 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
     length: _articles.data?.length ?? 0,
   });
 
-  const favouriteArticles = (_articles.data ?? []).filter(list.filterFn);
-  const articles = useAnimaList(favouriteArticles);
+  const favouriteArticles = _articles.data ?? [];
+  const articles = useAnimaList(favouriteArticles, "tail");
 
   const deleteArticleFromFavourites = useDeleteArticleFromFavourites();
 
@@ -47,7 +47,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
       )}
 
       <AnimaList>
-        {articles.items.map((article) => (
+        {articles.items.filter(list.filterFn).map((article) => (
           <Anima style="opacity" {...article.props}>
             <li
               key={article.item.id}
