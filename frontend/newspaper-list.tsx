@@ -3,11 +3,14 @@ import { useQuery } from "react-query";
 
 import { Header } from "./ui";
 import { api } from "./api";
+import { Anima, AnimaList, useAnimaList } from "./anima";
 import { NewspaperType } from "./types";
 import { Newspaper } from "./newspaper";
 
 export function NewspaperList(props: { initialData: NewspaperType[] }) {
-  const newspapers = useQuery(["newspapers"], api.getNewspapers, props);
+  const _newspapers = useQuery(["newspapers"], api.getNewspapers, props);
+
+  const newspapers = useAnimaList(_newspapers.data ?? []);
 
   return (
     <section data-mt="48" data-mb="72">
@@ -29,7 +32,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
         Newspapers
       </Header>
 
-      {newspapers.isSuccess && newspapers.data.length === 0 && (
+      {newspapers.count === 0 && (
         <small
           data-fs="14"
           data-color="gray-600"
@@ -41,12 +44,13 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
         </small>
       )}
 
-      <ul data-mt="24">
-        {newspapers.isSuccess &&
-          newspapers.data.map((newspaper) => (
-            <Newspaper key={newspaper.id} {...newspaper} />
-          ))}
-      </ul>
+      <AnimaList data-mt="24">
+        {newspapers.items.map((newspaper) => (
+          <Anima key={newspaper.item.id} style="opacity" {...newspaper.props}>
+            <Newspaper {...newspaper.item} />
+          </Anima>
+        ))}
+      </AnimaList>
     </section>
   );
 }

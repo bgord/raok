@@ -12,7 +12,7 @@ import { useNotificationTrigger } from "./notifications-context";
 import { hasNewspaperStalled } from "../policies/common";
 import { NewspaperArticle } from "./newspaper-article";
 
-type NewspaperProps = NewspaperType;
+type NewspaperProps = NewspaperType & h.JSX.IntrinsicElements["li"];
 
 export function Newspaper(props: NewspaperProps) {
   const details = useToggle();
@@ -42,6 +42,7 @@ export function Newspaper(props: NewspaperProps) {
       data-my="12"
       data-bcr="gray-100"
       data-bwr="4"
+      {...props}
     >
       <div data-display="flex" data-cross="center">
         <UI.Badge data-bg="gray-600" data-color="gray-100" data-px="6">
