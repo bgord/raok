@@ -84,7 +84,10 @@ export function useAnimaList<T extends { id: string }>(
   const added: T[] = [];
 
   for (const item of list) {
-    const wasAdded = !officialList.map((x) => x.item).some((x) => eq(item, x));
+    const wasAdded = !officialList
+      .map((x) => x.item)
+      .some((x) => eq(item.id, x.id));
+
     if (wasAdded) added.push(item);
   }
 
@@ -107,7 +110,8 @@ export function useAnimaList<T extends { id: string }>(
   const deleted: T[] = [];
 
   for (const { item } of officialList) {
-    const wasDeleted = list.every((x) => !eq(x, item));
+    const wasDeleted = list.every((x) => !eq(x.id, item.id));
+
     if (wasDeleted) deleted.push(item);
   }
 
@@ -116,7 +120,7 @@ export function useAnimaList<T extends { id: string }>(
 
     setOfficialList(
       officialList.map((x) => {
-        const wasDeleted = deleted.some((item) => eq(item, x.item));
+        const wasDeleted = deleted.some((item) => eq(item.id, x.item.id));
 
         return wasDeleted ? { ...x, props: { visible: false } } : x;
       })
