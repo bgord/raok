@@ -40,15 +40,15 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
         Favourite articles
       </UI.Header>
 
-      {articles.length === 0 && (
+      {articles.count === 0 && (
         <small data-fs="14" data-color="gray-600">
           Your favourite sent articles will appear here
         </small>
       )}
 
       <AnimaList>
-        {articles.map((article) => (
-          <Anima visible={article.visible} style="opacity">
+        {articles.items.map((article) => (
+          <Anima style="opacity" {...article.props}>
             <li
               key={article.item.id}
               data-display="flex"

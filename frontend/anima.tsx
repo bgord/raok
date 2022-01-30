@@ -1,10 +1,7 @@
 import { h, cloneElement } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import delay from "lodash/delay";
-import difference from "lodash/difference";
-import eq from "lodash/eq";
-import uniqWith from "lodash/uniqWith";
-import isEqual from "lodash/isEqual";
+import eq from "lodash/isEqual";
 
 import { usePreviousValue } from "./hooks";
 
@@ -73,27 +70,51 @@ export function AnimaList(
   );
 }
 
-export function useAnimaList<T>(list: T[]): { item: T; visible: boolean }[] {
-  const previousList = usePreviousValue(list);
+export function useAnimaList<T>(list: T[]): {
+  items: { item: T; props: { visible: boolean } }[];
+  count: number;
+} {
+  const [officialList, setOfficialList] = useState<
+    { item: T; props: { visible: boolean } }[]
+  >(list.map((item) => ({ item, props: { visible: true } })));
 
-  const diff = difference(previousList, list);
+  const added: T[] = [];
 
-  if (diff.length === 0) {
-    return list.map((item) => ({
-      item,
-      visible: true,
-    }));
+  for (const item of list) {
+    const wasAdded = !officialList.map((x) => x.item).some((x) => eq(item, x));
+    if (wasAdded) added.push(item);
   }
 
-  return uniqWith([...list, ...(previousList ?? [])], isEqual).map((item) => {
-    const hasChanged = diff.some((x) => eq(x, item));
+  useEffect(() => {
+    if (added.length === 0) return;
 
-    if (!hasChanged) {
-      return { item, visible: true };
-    }
+    setOfficialList([
+      ...officialList,
+      ...added.map((item) => ({ item, props: { visible: true } })),
+    ]);
+  }, [added.length]);
 
-    const wasDeleted = previousList?.some((x) => eq(x, item));
+  const deleted: T[] = [];
 
-    return { item, visible: wasDeleted ? false : true };
-  });
+  for (const { item } of officialList) {
+    const wasDeleted = list.every((x) => !eq(x, item));
+    if (wasDeleted) deleted.push(item);
+  }
+
+  useEffect(() => {
+    if (deleted.length === 0) return;
+
+    setOfficialList(
+      officialList.map((x) => {
+        const wasDeleted = deleted.some((item) => eq(item, x.item));
+
+        return wasDeleted ? { ...x, props: { visible: false } } : x;
+      })
+    );
+  }, [deleted.length]);
+
+  return {
+    items: officialList,
+    count: officialList.filter((x) => x.props.visible).length,
+  };
 }
