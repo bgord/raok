@@ -28,6 +28,7 @@ export class ArticleRepository {
   static async getFavourite() {
     return prisma.article.findMany({
       where: { favourite: true },
+      orderBy: { favouritedAt: "asc" },
     });
   }
 
@@ -58,7 +59,7 @@ export class ArticleRepository {
   static async addToFavourites(articleId: VO.ArticleType["id"]) {
     return prisma.article.update({
       where: { id: articleId },
-      data: { favourite: true },
+      data: { favourite: true, favouritedAt: Date.now() },
     });
   }
 

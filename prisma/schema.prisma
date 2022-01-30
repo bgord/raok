@@ -25,17 +25,18 @@ model Newspaper {
 }
 
 model Article {
-  id          String     @id @default(uuid())
-  url         String
-  source      String
-  status      String
-  createdAt   Int
-  title       String?
-  description String?
-  image       String?
-  newspaperId String?
-  favourite   Boolean    @default(false)
-  Newspaper   Newspaper? @relation(fields: [newspaperId], references: [id])
+  id           String     @id @default(uuid())
+  url          String
+  source       String
+  status       String
+  createdAt    Int
+  title        String?
+  description  String?
+  image        String?
+  newspaperId  String?
+  favourite    Boolean    @default(false)
+  favouritedAt Int        @default(0)
+  Newspaper    Newspaper? @relation(fields: [newspaperId], references: [id])
 }
 
 model StatsKeyValue {
