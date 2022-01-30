@@ -33,7 +33,7 @@ export function Article(
       data-bwr="4"
       {...props}
     >
-      {status === "ready" && (
+      {props.status === "ready" && (
         <input
           onClick={() => props.toggle(props.id)}
           checked={props.isAdded(props.id)}
@@ -65,7 +65,7 @@ export function Article(
         data-ml="auto"
       >
         <UI.Badge data-mb="6" data-width="100%" style="text-align: center">
-          {status}
+          {props.status}
         </UI.Badge>
 
         <UI.Badge data-width="100%" style="text-align: center">
@@ -73,7 +73,7 @@ export function Article(
         </UI.Badge>
       </div>
 
-      {status === "ready" && (
+      {props.status === "ready" && (
         <form
           data-mx="6"
           onSubmit={(event) => {
