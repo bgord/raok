@@ -97,7 +97,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               width="20"
               src="/icon-refresh.svg"
               alt=""
-              data-anime-effect={articles.isRefetching && "rotate"}
+              data-anima-effect={articles.isRefetching && "rotate"}
             />
           </button>
 

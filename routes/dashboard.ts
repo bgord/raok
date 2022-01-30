@@ -38,20 +38,20 @@ function Html(content: string, username: string, state: string) {
         <link rel="manifest" href="/site.webmanifest" />
 
         <style>
-          *[data-anime="appeared"] {
+          *[data-anima="appeared"] {
             transition: all var(--duration, 300ms);
           }
-          *[data-anime="hidding"] {
+          *[data-anima="hidding"] {
             transition: all var(--duration, 300ms);
           }
 
-          *[data-anime-style="opacity"][data-anime="appearing"] {
+          *[data-anima-style="opacity"][data-anima="appearing"] {
             opacity: 0;
           }
-          *[data-anime-style="opacity"][data-anime="appeared"] {
+          *[data-anima-style="opacity"][data-anima="appeared"] {
             opacity: 1;
           }
-          *[data-anime-style="opacity"][data-anime="hidding"] {
+          *[data-anima-style="opacity"][data-anima="hidding"] {
             opacity: 0;
           }
 
@@ -64,7 +64,7 @@ function Html(content: string, username: string, state: string) {
             }
           }
 
-          *[data-anime-effect="rotate"] {
+          *[data-anima-effect="rotate"] {
             animation: rotate 2s linear infinite;
           }
 

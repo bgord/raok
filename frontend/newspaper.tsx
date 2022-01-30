@@ -5,7 +5,7 @@ import formatDistanceStrict from "date-fns/formatDistanceStrict";
 
 import * as UI from "./ui";
 import { api } from "./api";
-import { Anime } from "./anime";
+import { Anima } from "./anima";
 import { NewspaperType } from "./types";
 import { useToggle } from "./hooks";
 import { useNotificationTrigger } from "./notifications-context";
@@ -97,7 +97,7 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       </div>
 
-      <Anime
+      <Anima
         visible={details.on && props.status === "delivered"}
         style="opacity"
       >
@@ -124,15 +124,15 @@ export function Newspaper(props: NewspaperProps) {
             Processed in {duration}
           </span>
         </div>
-      </Anime>
+      </Anima>
 
-      <Anime visible={details.on} style="opacity">
+      <Anima visible={details.on} style="opacity">
         <ol data-mt="6" data-mb="24">
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />
           ))}
         </ol>
-      </Anime>
+      </Anima>
     </li>
   );
 }
