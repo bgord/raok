@@ -6,6 +6,7 @@ import { promises as fs } from "fs";
 import * as VO from "../value-objects";
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";
+import { EpubToMobiConverter } from "./epub-to-mobi";
 
 type NewspaperFileCreatorConfigType = {
   newspaperId: VO.NewspaperType["id"];
@@ -30,7 +31,7 @@ export class NewspaperFile {
 
     try {
       await execa("pandoc", ["-o", paths.epub, paths.html]);
-      await execa("ebook-convert", [paths.epub, paths.mobi]);
+      await EpubToMobiConverter.convert(paths.epub, paths.mobi);
     } catch (error) {
       Reporter.raw("NewspaperFile#generate", error);
     }
