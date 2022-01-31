@@ -20,14 +20,14 @@ export function ArchiveArticles(
   });
 
   const search = useSearch();
-  const source = useFilter({ enum: ArticleSourceEnum });
-  const status = useFilter({ enum: ArticleStatusEnum });
+  const sourceFilter = useFilter({ enum: ArticleSourceEnum });
+  const statusFilter = useFilter({ enum: ArticleStatusEnum });
   const createdAt = useTimestampFilter({ defaultValue: "last_week" });
 
   const articles = (archiveArticles.data ?? [])
     .filter((article) => search.filterFn(article.title))
-    .filter((article) => source.filterFn(article.source))
-    .filter((article) => status.filterFn(article.status))
+    .filter((article) => sourceFilter.filterFn(article.source))
+    .filter((article) => statusFilter.filterFn(article.status))
     .filter((article) => createdAt.filterFn(article.createdAt));
 
   const numberOfArticles = articles.length;
@@ -92,14 +92,14 @@ export function ArchiveArticles(
               id="status"
               name="status"
               class="c-select"
-              value={status.query}
-              onInput={status.onChange}
+              value={statusFilter.query}
+              onInput={statusFilter.onChange}
             >
               <option selected value="all">
                 All
               </option>
 
-              {status.options.map((status) => (
+              {statusFilter.options.map((status) => (
                 <option value={status}>{status}</option>
               ))}
             </select>
@@ -115,14 +115,14 @@ export function ArchiveArticles(
               id="source"
               name="source"
               class="c-select"
-              value={source.query}
-              onInput={source.onChange}
+              value={sourceFilter.query}
+              onInput={sourceFilter.onChange}
             >
               <option selected value="all">
                 All
               </option>
 
-              {source.options.map((source) => (
+              {sourceFilter.options.map((source) => (
                 <option value={source}>{source}</option>
               ))}
             </select>
@@ -130,12 +130,13 @@ export function ArchiveArticles(
         </div>
 
         <button
+          type="button"
           class="c-button"
           data-variant="bare"
           onClick={() => {
             createdAt.clear();
-            status.clear();
-            source.clear();
+            statusFilter.clear();
+            sourceFilter.clear();
           }}
         >
           Reset
@@ -165,6 +166,7 @@ export function ArchiveArticles(
         </div>
 
         <button
+          type="button"
           onClick={search.clear}
           class="c-button"
           data-variant="bare"

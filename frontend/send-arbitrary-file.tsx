@@ -65,6 +65,8 @@ export function SendArbitraryFile() {
       />
 
       <button
+        id="file-explorer"
+        name="file-explorer"
         disabled={file.state === UseFileState.selected}
         type="button"
         class="c-button"

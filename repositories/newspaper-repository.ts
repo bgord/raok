@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Newspaper, Article } from "@prisma/client";
 
 import * as VO from "../value-objects";
 
@@ -20,14 +20,7 @@ export class NewspaperRepository {
       include: { articles: true },
     });
 
-    return result.map((newspaper) => ({
-      ...newspaper,
-      articles: newspaper.articles.map((article) => ({
-        ...article,
-        title: article.title ?? "-",
-        description: article.description ?? "-",
-      })),
-    }));
+    return result.map(NewspaperRepository._mapper);
   }
 
   static async getAllNonArchived() {
@@ -37,14 +30,7 @@ export class NewspaperRepository {
       include: { articles: true },
     });
 
-    return result.map((newspaper) => ({
-      ...newspaper,
-      articles: newspaper.articles.map((article) => ({
-        ...article,
-        title: article.title ?? "-",
-        description: article.description ?? "-",
-      })),
-    }));
+    return result.map(NewspaperRepository._mapper);
   }
 
   static async getById(newspaperId: VO.NewspaperIdType) {
@@ -84,5 +70,16 @@ export class NewspaperRepository {
       where: { id: newspaperId },
       data: { sentAt },
     });
+  }
+
+  static _mapper(newspaper: Newspaper & { articles: Article[] }) {
+    return {
+      ...newspaper,
+      articles: newspaper.articles.map((article) => ({
+        ...article,
+        title: article.title ?? "-",
+        description: article.description ?? "-",
+      })),
+    };
   }
 }

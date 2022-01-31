@@ -6,7 +6,8 @@ import { EventRepository } from "../repositories/event-repository";
 export class Settings {
   stream: Events.StreamType;
 
-  isArticlesToReviewNotificationEnabled: boolean = true;
+  isArticlesToReviewNotificationEnabled = true;
+
   articlesToReviewNotificationHour: VO.HourType = VO.hour.parse(8);
 
   constructor() {

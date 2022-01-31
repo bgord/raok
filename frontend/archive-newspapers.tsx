@@ -22,12 +22,12 @@ export function ArchiveNewspapers(
     { initialData: props.archiveNewspapers }
   );
 
-  const status = useFilter({ enum: NewspaperStatusEnum });
-  const sentAt = useTimestampFilter({ defaultValue: "last_3_days" });
+  const statusFilter = useFilter({ enum: NewspaperStatusEnum });
+  const sentAtFilter = useTimestampFilter({ defaultValue: "last_3_days" });
 
   const newspapers = (archiveNewspapers.data ?? [])
-    .filter((newspaper) => status.filterFn(newspaper.status))
-    .filter((newspaper) => sentAt.filterFn(newspaper.sentAt));
+    .filter((newspaper) => statusFilter.filterFn(newspaper.status))
+    .filter((newspaper) => sentAtFilter.filterFn(newspaper.sentAt));
 
   const numberOfNewspapers = newspapers.length;
 
@@ -68,13 +68,13 @@ export function ArchiveNewspapers(
               id="sent-at"
               name="sent-at"
               class="c-select"
-              value={sentAt.query}
-              onInput={sentAt.onChange}
+              value={sentAtFilter.query}
+              onInput={sentAtFilter.onChange}
             >
               <option selected value="all">
                 All
               </option>
-              {sentAt.options.map((sentAtOption) => (
+              {sentAtFilter.options.map((sentAtOption) => (
                 <option value={sentAtOption}>{sentAtOption}</option>
               ))}
             </select>
@@ -89,14 +89,14 @@ export function ArchiveNewspapers(
               id="status"
               name="status"
               class="c-select"
-              value={status.query}
-              onInput={status.onChange}
+              value={statusFilter.query}
+              onInput={statusFilter.onChange}
             >
               <option selected value="all">
                 All
               </option>
 
-              {status.options.map((status) => (
+              {statusFilter.options.map((status) => (
                 <option value={status}>{status}</option>
               ))}
             </select>
@@ -104,11 +104,12 @@ export function ArchiveNewspapers(
         </div>
 
         <button
+          type="button"
           class="c-button"
           data-variant="bare"
           onClick={() => {
-            sentAt.clear();
-            status.clear();
+            sentAtFilter.clear();
+            statusFilter.clear();
           }}
         >
           Reset

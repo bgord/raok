@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Article } from "@prisma/client";
 
 import * as VO from "../value-objects";
 
@@ -12,11 +12,7 @@ export class ArticleRepository {
       },
     });
 
-    return result.map((article) => ({
-      ...article,
-      title: article.title ?? "-",
-      description: article.description ?? "-",
-    }));
+    return result.map(ArticleRepository._mapper);
   }
 
   static async getAllNonProcessed() {
@@ -43,11 +39,7 @@ export class ArticleRepository {
       orderBy: { favouritedAt: "asc" },
     });
 
-    return result.map((article) => ({
-      ...article,
-      title: article.title ?? "-",
-      description: article.description ?? "-",
-    }));
+    return result.map(ArticleRepository._mapper);
   }
 
   static async create(article: {
@@ -114,5 +106,13 @@ export class ArticleRepository {
     return prisma.article.count({
       where: { url: articleUrl, source: VO.ArticleSourceEnum.feedly },
     });
+  }
+
+  static _mapper(article: Article) {
+    return {
+      ...article,
+      title: article.title ?? "-",
+      description: article.description ?? "-",
+    };
   }
 }

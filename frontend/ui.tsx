@@ -17,6 +17,7 @@ export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
 
 export function Link(props: h.JSX.IntrinsicElements["a"]) {
   return (
+    /* eslint-disable jsx-a11y/anchor-has-content */
     <a
       target="_blank"
       class="c-link"
@@ -28,5 +29,6 @@ export function Link(props: h.JSX.IntrinsicElements["a"]) {
 }
 
 export function Header(props: h.JSX.IntrinsicElements["h2"]) {
+  /* eslint-disable jsx-a11y/heading-has-content */
   return <h2 data-fs="16" data-color="gray-700" data-fw="500" {...props} />;
 }

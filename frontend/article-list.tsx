@@ -36,6 +36,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           />
           Articles
           <button
+            type="button"
             onClick={() => scheduleFeedlyArticlesCrawl.mutate()}
             disabled={
               scheduleFeedlyArticlesCrawl.isLoading ||
@@ -111,9 +112,9 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               if (selectedArticleIds.length === 0) {
                 emptyNewspaperError.enable();
                 return;
-              } else {
-                emptyNewspaperError.disable();
               }
+
+              emptyNewspaperError.disable();
 
               createNewspaper.mutate(selectedArticleIds);
             }}

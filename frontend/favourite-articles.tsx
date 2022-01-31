@@ -85,6 +85,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
 
       {list.displayShowMore && (
         <button
+          type="button"
           class="c-button"
           data-variant="bare"
           data-px="0"
@@ -95,7 +96,12 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
       )}
 
       {list.displayShowLess && (
-        <button class="c-button" data-variant="bare" onClick={list.showLess}>
+        <button
+          type="button"
+          class="c-button"
+          data-variant="bare"
+          onClick={list.showLess}
+        >
           Show less
         </button>
       )}

@@ -69,6 +69,7 @@ export function Newspaper(props: NewspaperProps) {
 
           {["delivered", "archived"].includes(props.status) && (
             <button
+              type="button"
               class="c-button"
               data-variant="bare"
               data-mr="6"

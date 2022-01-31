@@ -21,8 +21,8 @@ export class Hour {
     this.value = hour.parse(value);
   }
 
-  equals(hour: Hour) {
-    return this.value === hour.value;
+  equals(anotherHour: Hour) {
+    return this.value === anotherHour.value;
   }
 
   static list() {

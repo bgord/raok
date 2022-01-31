@@ -17,7 +17,7 @@ const mailer = new Mailer({
 export class ArticlesToReviewNotifier {
   UTC_HOUR: VO.HourType;
 
-  numberOfArticlesToReview: number = 0;
+  numberOfArticlesToReview = 0;
 
   constructor(settings: Settings) {
     this.UTC_HOUR = settings.articlesToReviewNotificationHour;
