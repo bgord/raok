@@ -1,5 +1,3 @@
-import { ArticleTitleType, ArticleDescriptionType } from "../value-objects";
-
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",
@@ -22,8 +20,8 @@ export type ArticleType = {
   url: string;
   status: string;
   source: string;
-  title: ArticleTitleType;
-  description: ArticleDescriptionType;
+  title: string | null;
+  description: string | null;
   favourite: boolean;
   createdAt: number;
 };
