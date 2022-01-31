@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export class NewspaperRepository {
   static async getAll() {
-    return prisma.newspaper.findMany({
+    const result = await prisma.newspaper.findMany({
       where: {
         status: {
           in: [
@@ -19,14 +19,32 @@ export class NewspaperRepository {
       orderBy: { scheduledAt: "desc" },
       include: { articles: true },
     });
+
+    return result.map((newspaper) => ({
+      ...newspaper,
+      articles: newspaper.articles.map((article) => ({
+        ...article,
+        title: article.title ?? "-",
+        description: article.description ?? "-",
+      })),
+    }));
   }
 
   static async getAllNonArchived() {
-    return prisma.newspaper.findMany({
+    const result = await prisma.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { scheduledAt: "desc" },
       include: { articles: true },
     });
+
+    return result.map((newspaper) => ({
+      ...newspaper,
+      articles: newspaper.articles.map((article) => ({
+        ...article,
+        title: article.title ?? "-",
+        description: article.description ?? "-",
+      })),
+    }));
   }
 
   static async getById(newspaperId: VO.NewspaperIdType) {

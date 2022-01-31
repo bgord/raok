@@ -20,8 +20,8 @@ export type ArticleType = {
   url: string;
   status: string;
   source: string;
-  title: string | null;
-  description: string | null;
+  title: string;
+  description: string;
   favourite: boolean;
   createdAt: number;
 };

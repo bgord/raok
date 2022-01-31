@@ -6,17 +6,29 @@ const prisma = new PrismaClient();
 
 export class ArticleRepository {
   static async getAll() {
-    return prisma.article.findMany({
+    const result = await prisma.article.findMany({
       orderBy: {
         createdAt: "desc",
       },
     });
+
+    return result.map((article) => ({
+      ...article,
+      title: article.title ?? "-",
+      description: article.description ?? "-",
+    }));
   }
 
   static async getAllNonProcessed() {
-    return prisma.article.findMany({
+    const articles = await prisma.article.findMany({
       where: { status: VO.ArticleStatusEnum.ready },
     });
+
+    return articles.map((article) => ({
+      ...article,
+      title: article?.title ?? "-",
+      description: article?.description ?? "-",
+    }));
   }
 
   static async getNumberOfNonProcessed() {
@@ -26,10 +38,16 @@ export class ArticleRepository {
   }
 
   static async getFavourite() {
-    return prisma.article.findMany({
+    const result = await prisma.article.findMany({
       where: { favourite: true },
       orderBy: { favouritedAt: "asc" },
     });
+
+    return result.map((article) => ({
+      ...article,
+      title: article.title ?? "-",
+      description: article.description ?? "-",
+    }));
   }
 
   static async create(article: {
