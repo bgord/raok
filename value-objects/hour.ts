@@ -2,7 +2,7 @@ import _ from "lodash";
 import { z } from "zod";
 import { Brand, toBrand } from "@bgord/node";
 
-const hours = _.range(0, 23);
+const hours = _.range(0, 24);
 
 const HourSchema = z
   .number()

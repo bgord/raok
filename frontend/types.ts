@@ -41,3 +41,14 @@ export type StatsType = {
   sentNewspapers: number;
   lastFeedlyImport: number;
 };
+
+type Hour = {
+  value: number;
+  label: string;
+};
+
+export type Settings = {
+  hours: Hour[];
+  articlesToReviewNotificationHour: Hour;
+  isArticlesToReviewNotificationEnabled: boolean;
+};

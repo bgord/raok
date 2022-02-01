@@ -104,7 +104,9 @@ app.post(
 );
 
 app.get("/stats", AuthShield.verify, bg.Route(Stats));
-app.get("/settings", AuthShield.verify, bg.Route(Settings));
+app.get("/settings", AuthShield.verify, bg.Route(Dashboard));
+app.get("/account/settings", AuthShield.verify, bg.Route(Settings));
+
 app.post(
   "/disable-articles-to-review-notification",
   AuthShield.verify,
