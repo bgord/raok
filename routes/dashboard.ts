@@ -65,7 +65,7 @@ function Html(content: string, username: string, state: string) {
           }
 
           *[data-anima-effect="rotate"] {
-            animation: rotate 2s linear infinite;
+            animation: rotate 330ms linear infinite;
           }
 
           @keyframes slideIn {
