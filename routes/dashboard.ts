@@ -186,7 +186,7 @@ export async function Dashboard(
     archiveArticles,
     archiveNewspapers,
   };
-  const app = render(App(initialData));
+  const app = render(App({ ...initialData, url: request.url }));
 
   return response.send(
     Html(app, request.user as string, serialize(initialData, { isJSON: true }))

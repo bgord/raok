@@ -16,7 +16,7 @@ import {
 
 export type InitialDataType = InitialDashboardDataType &
   InitialArchiveArticlesDataType &
-  InitialArchiveNewspapersDataType;
+  InitialArchiveNewspapersDataType & { url: string };
 
 const queryClient = new QueryClient();
 
@@ -26,7 +26,7 @@ export function App(props: InitialDataType) {
   return (
     <QueryClientProvider client={queryClient}>
       <NotificationsContextProvider>
-        <Router>
+        <Router url={props.url}>
           <ArchiveArticles
             path="/archive/articles"
             archiveArticles={archiveArticles}
