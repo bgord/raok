@@ -25,7 +25,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   return (
     <section>
       <div data-bg="gray-100" data-bct="gray-200" data-bwt="4" data-p="12">
-        <UI.Header data-display="flex" data-pb="6">
+        <UI.Header data-display="flex" data-cross="center" data-pb="6">
           <img
             loading="eager"
             height="20"
@@ -34,6 +34,9 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             alt=""
             data-mr="12"
           />
+          <UI.Badge data-bg="white" data-mr="6">
+            {articles.count}
+          </UI.Badge>
           Articles
           <button
             type="button"
