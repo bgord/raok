@@ -45,11 +45,16 @@ export function Newspaper(props: NewspaperProps) {
       {...props}
     >
       <div data-display="flex" data-cross="center">
-        <UI.Badge data-bg="gray-600" data-color="gray-100" data-px="6">
+        <UI.Badge
+          data-bg="gray-600"
+          data-color="gray-100"
+          data-px="6"
+          data-mr="12"
+        >
           {props.status}
         </UI.Badge>
 
-        <span data-ml="12">Newspaper #{props.id.split("-")[0]}</span>
+        <span>{props.title}</span>
 
         <div data-display="flex" data-cross="center" data-ml="auto">
           {(isStalled || props.status === "error") && (

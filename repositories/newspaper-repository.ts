@@ -1,4 +1,5 @@
 import { PrismaClient, Newspaper, Article } from "@prisma/client";
+import { format } from "date-fns";
 
 import * as VO from "../value-objects";
 
@@ -75,6 +76,7 @@ export class NewspaperRepository {
   static _mapper(newspaper: Newspaper & { articles: Article[] }) {
     return {
       ...newspaper,
+      title: `Newspaper ${format(newspaper.scheduledAt, "yyyy-MM-dd-hh-mm")}`,
       articles: newspaper.articles.map((article) => ({
         ...article,
         title: article.title ?? "-",
