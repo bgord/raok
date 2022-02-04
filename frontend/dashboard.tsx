@@ -23,12 +23,16 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
       data-main="center"
       data-mx="auto"
       data-my="48"
-      data-wrap="wrap-reverse"
       data-max-width="1296"
     >
+      <section data-max-width="768" data-width="100%" data-md-px="12">
+        <ArticleList initialData={props.articles} />
+        <NewspaperList initialData={props.newspapers} />
+      </section>
+
       <section
         data-grow="1"
-        data-pr="48"
+        data-pl="48"
         data-md-px="12"
         data-width="100%"
         data-md-max-width="unset"
@@ -37,11 +41,6 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
         <FavouriteArticles initialData={props.favouriteArticles} />
         <SendArbitraryFile />
         <Stats initialData={props.stats} />
-      </section>
-
-      <section data-max-width="768" data-width="100%" data-md-px="12">
-        <ArticleList initialData={props.articles} />
-        <NewspaperList initialData={props.newspapers} />
       </section>
     </main>
   );

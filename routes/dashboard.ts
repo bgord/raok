@@ -71,7 +71,7 @@ function Html(content: string, username: string, state: string) {
           @keyframes slideIn {
             from {
               opacity: 0;
-              transform: translateX(-30px);
+              transform: translateX(30px);
             }
             to {
               opacity: 1;
@@ -86,7 +86,7 @@ function Html(content: string, username: string, state: string) {
             }
             to {
               opacity: 0;
-              transform: translateX(-30px);
+              transform: translateX(30px);
             }
           }
 
