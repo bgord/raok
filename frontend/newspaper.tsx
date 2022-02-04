@@ -129,7 +129,7 @@ export function Newspaper(props: NewspaperProps) {
       </Anima>
 
       <Anima visible={details.on} style="opacity">
-        <ol data-mt="6" data-mb="24">
+        <ol data-mt="6" data-mb="24" data-max-width="100%">
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />
           ))}
