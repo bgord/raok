@@ -29,8 +29,6 @@ export function Article(
       data-wrap="nowrap"
       data-mb="24"
       data-md-px="6"
-      data-bcr="gray-100"
-      data-bwr="4"
       {...props}
     >
       {props.status === "ready" && (
@@ -75,7 +73,7 @@ export function Article(
 
       {props.status === "ready" && (
         <form
-          data-mx="6"
+          data-ml="6"
           onSubmit={(event) => {
             event.preventDefault();
             deleteArticle.mutate(props.id);
