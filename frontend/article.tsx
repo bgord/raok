@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
+import omit from "lodash/omit";
 
 import * as UI from "./ui";
 import { api } from "./api";
@@ -12,6 +13,17 @@ export function Article(
     UseListActionsType<ArticleType["id"]> &
     h.JSX.IntrinsicElements["li"]
 ) {
+  const rest = omit(props, [
+    "id",
+    "url",
+    "title",
+    "description",
+    "status",
+    "source",
+    "createdAt",
+    "favouritedAt",
+  ]);
+
   const queryClient = useQueryClient();
   const notify = useNotificationTrigger();
 
@@ -29,7 +41,7 @@ export function Article(
       data-wrap="nowrap"
       data-mb="24"
       data-md-px="6"
-      {...props}
+      {...rest}
     >
       {props.status === "ready" && (
         <input
