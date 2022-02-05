@@ -7,7 +7,7 @@ type NotificationType = "success" | "error";
 type NotificationState = "appearing" | "visible" | "hidding" | "hidden";
 
 type Notification = {
-  id: number;
+  id: string;
   type: NotificationType;
   state: NotificationState;
   message: string;
@@ -29,7 +29,7 @@ function useNotificationsImplementation(): UseNotificationsReturnType {
   );
 
   function add(notification: Omit<Notification, "id" | "state">) {
-    const id = Date.now();
+    const id = String(Date.now());
 
     actions.add({ ...notification, id, state: "appearing" });
 
