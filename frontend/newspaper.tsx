@@ -36,14 +36,7 @@ export function Newspaper(props: NewspaperProps) {
   });
 
   return (
-    <li
-      data-display="flex"
-      data-direction="column"
-      data-my="12"
-      data-bcr="gray-100"
-      data-bwr="4"
-      {...props}
-    >
+    <li data-display="flex" data-direction="column" data-my="12" {...props}>
       <div data-display="flex" data-cross="center">
         <UI.Badge
           data-bg="gray-600"
@@ -127,7 +120,7 @@ export function Newspaper(props: NewspaperProps) {
             </Fragment>
           )}
 
-          <span data-fs="14" data-color="gray-400" data-ml="auto" data-mr="6">
+          <span data-fs="14" data-color="gray-400" data-ml="auto">
             Processed in {duration}
           </span>
         </div>
