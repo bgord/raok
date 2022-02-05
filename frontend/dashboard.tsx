@@ -25,7 +25,7 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
       data-my="48"
       data-max-width="1296"
     >
-      <section data-max-width="768" data-width="100%" data-md-px="12">
+      <section data-max-width="768" data-width="100%">
         <ArticleList initialData={props.articles} />
         <NewspaperList initialData={props.newspapers} />
       </section>
