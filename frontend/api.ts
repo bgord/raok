@@ -3,7 +3,7 @@ import {
   ArticlePayloadType,
   NewspaperType,
   StatsType,
-  Settings,
+  SettingsType,
 } from "./types";
 
 export const _api: typeof fetch = (input, init) =>
@@ -113,7 +113,7 @@ async function getArchiveArticles(): Promise<ArticleType[]> {
   );
 }
 
-async function getSettings(): Promise<Settings> {
+async function getSettings(): Promise<SettingsType> {
   return _api("/account/settings", { method: "GET" }).then((response) =>
     response.json()
   );

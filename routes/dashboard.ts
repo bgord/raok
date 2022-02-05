@@ -2,9 +2,11 @@ import express from "express";
 import render from "preact-render-to-string";
 import serialize from "serialize-javascript";
 
+import * as VO from "../value-objects";
 import { ArticleRepository } from "../repositories/article-repository";
 import { NewspaperRepository } from "../repositories/newspaper-repository";
 import { StatsRepository } from "../repositories/stats-repository";
+import { Settings } from "../aggregates/settings";
 
 import { App } from "../frontend/app";
 
@@ -177,6 +179,7 @@ export async function Dashboard(
   const newspapers = await NewspaperRepository.getAllNonArchived();
   const stats = await StatsRepository.getAll();
   const archiveNewspapers = await NewspaperRepository.getAll();
+  const settings = await new Settings().build();
 
   const initialData = {
     stats,
@@ -185,6 +188,14 @@ export async function Dashboard(
     favouriteArticles,
     archiveArticles,
     archiveNewspapers,
+    settings: {
+      hours: VO.Hour.listFormatted(),
+      articlesToReviewNotificationHour: VO.Hour.format(
+        settings.articlesToReviewNotificationHour
+      ),
+      isArticlesToReviewNotificationEnabled:
+        settings.isArticlesToReviewNotificationEnabled,
+    },
   };
   const app = render(App({ ...initialData, url: request.url }));
 

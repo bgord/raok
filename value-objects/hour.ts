@@ -33,7 +33,7 @@ export class Hour {
     return Hour.hours.map(Hour.format);
   }
 
-  static format(value: HourType) {
+  static format(value: HourType): { value: number; label: string } {
     return {
       value,
       label: `${String(value).padStart(2, "0")}:00`,

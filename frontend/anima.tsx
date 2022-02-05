@@ -5,6 +5,7 @@ import eq from "lodash/isEqual";
 
 import { usePreviousValue } from "./hooks";
 
+/* eslint-disable no-shadow */
 enum AnimaState {
   appearing = "appearing",
   appeared = "appeared",

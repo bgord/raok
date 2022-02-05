@@ -48,7 +48,7 @@ type Hour = {
   label: string;
 };
 
-export type Settings = {
+export type SettingsType = {
   hours: Hour[];
   articlesToReviewNotificationHour: Hour;
   isArticlesToReviewNotificationEnabled: boolean;

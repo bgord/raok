@@ -13,16 +13,17 @@ import {
   ArchiveNewspapers,
   InitialArchiveNewspapersDataType,
 } from "./archive-newspapers";
-import { Settings } from "./settings";
+import { Settings, InitialSettingsDataType } from "./settings";
 
 export type InitialDataType = InitialDashboardDataType &
   InitialArchiveArticlesDataType &
-  InitialArchiveNewspapersDataType & { url: string };
+  InitialArchiveNewspapersDataType &
+  InitialSettingsDataType & { url: string };
 
 const queryClient = new QueryClient();
 
 export function App(props: InitialDataType) {
-  const { archiveArticles, archiveNewspapers, ...rest } = props;
+  const { archiveArticles, archiveNewspapers, settings, ...rest } = props;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -37,7 +38,7 @@ export function App(props: InitialDataType) {
             archiveNewspapers={archiveNewspapers}
           />
           <Dashboard path="/dashboard" {...rest} />
-          <Settings path="/settings" />
+          <Settings path="/settings" settings={settings} />
         </Router>
 
         <Notifications />

@@ -3,9 +3,16 @@ import { RoutableProps } from "preact-router";
 import { useQuery } from "react-query";
 
 import { api } from "./api";
+import { SettingsType } from "./types";
 
-export function Settings(_props: RoutableProps) {
-  const settings = useQuery("settings", api.getSettings);
+export type InitialSettingsDataType = {
+  settings: SettingsType;
+};
+
+export function Settings(props: RoutableProps & InitialSettingsDataType) {
+  const settings = useQuery("settings", api.getSettings, {
+    initialData: props.settings,
+  });
 
   return (
     <main
