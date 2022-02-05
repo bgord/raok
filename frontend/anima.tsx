@@ -96,17 +96,17 @@ export function useAnimaList<T extends { id: string }>(
     if (added.length === 0) return;
 
     if (direction === "head") {
-      setOfficialList([
+      setOfficialList((officialList) => [
         ...added.map((item) => ({ item, props: { visible: true } })),
         ...officialList,
       ]);
     } else {
-      setOfficialList([
+      setOfficialList((officialList) => [
         ...officialList,
         ...added.map((item) => ({ item, props: { visible: true } })),
       ]);
     }
-  }, [added.length]);
+  }, [added.length, direction]);
 
   const deleted: T[] = [];
 
@@ -119,7 +119,7 @@ export function useAnimaList<T extends { id: string }>(
   useEffect(() => {
     if (deleted.length === 0) return;
 
-    setOfficialList(
+    setOfficialList((officialList) =>
       officialList.map((x) => {
         const wasDeleted = deleted.some((item) => eq(item.id, x.item.id));
 
