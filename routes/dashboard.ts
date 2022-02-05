@@ -69,41 +69,6 @@ function Html(content: string, username: string, state: string) {
           *[data-anima-effect="rotate"] {
             animation: rotate 330ms linear infinite;
           }
-
-          @keyframes slideIn {
-            from {
-              opacity: 0;
-              transform: translateX(30px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0px);
-            }
-          }
-
-          @keyframes slideOut {
-            from {
-              opacity: 1;
-              transform: translateX(0px);
-            }
-            to {
-              opacity: 0;
-              transform: translateX(30px);
-            }
-          }
-
-          *[data-notification="appearing"] {
-            animation: slideIn 0.3s ease-out;
-          }
-
-          *[data-notification="visible"] {
-            opacity: 1;
-            transform: translateX(0);
-          }
-
-          *[data-notification="hidding"] {
-            animation: slideOut 0.3s ease-out;
-          }
         </style>
 
         <title>RAOK - read articles on Kindle</title>

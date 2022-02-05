@@ -1,15 +1,14 @@
 import { createContext, h } from "preact";
 import { useContext } from "preact/hooks";
+import delay from "lodash/delay";
+
 import { useList } from "./hooks";
 
 type NotificationType = "success" | "error";
 
-type NotificationState = "appearing" | "visible" | "hidding" | "hidden";
-
 type Notification = {
   id: string;
   type: NotificationType;
-  state: NotificationState;
   message: string;
 };
 
@@ -28,49 +27,16 @@ function useNotificationsImplementation(): UseNotificationsReturnType {
     (a, b) => a.id === b.id
   );
 
-  function add(notification: Omit<Notification, "id" | "state">) {
+  function add(notification: Omit<Notification, "id">) {
     const id = String(Date.now());
 
-    actions.add({ ...notification, id, state: "appearing" });
-
-    setTimeout(
-      () =>
-        actions.update((items) =>
-          items.map((item) =>
-            item.id === id ? { ...item, state: "visible" } : item
-          )
-        ),
-      300
-    );
-
-    scheduleRemoval({ ...notification, id });
-  }
-
-  function scheduleRemoval(notification: Omit<Notification, "state">) {
-    setTimeout(
-      () =>
-        actions.update((items) =>
-          items.map((item) =>
-            item.id === notification.id ? { ...item, state: "hidding" } : item
-          )
-        ),
-      5000
-    );
-
-    setTimeout(
-      () =>
-        actions.remove({
-          ...notification,
-          id: notification.id,
-          state: "hidden",
-        }),
-      5300
-    );
+    actions.add({ ...notification, id });
+    delay(() => actions.remove({ ...notification, id }), 5000);
   }
 
   return [
     [...notifications].reverse(),
-    { add, remove: scheduleRemoval, clear: actions.clear },
+    { add, remove: actions.remove, clear: actions.clear },
   ];
 }
 
