@@ -37,71 +37,95 @@ export function Article(
   return (
     <li
       data-display="flex"
-      data-cross="center"
+      data-md-direction="column"
       data-wrap="nowrap"
       data-mb="24"
-      data-md-px="6"
       {...rest}
     >
-      {props.status === "ready" && (
-        <input
-          onClick={() => props.toggle(props.id)}
-          checked={props.isAdded(props.id)}
-          class="c-checkbox"
-          type="checkbox"
+      <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
+        {props.status === "ready" && (
+          <input
+            onClick={() => props.toggle(props.id)}
+            checked={props.isAdded(props.id)}
+            class="c-checkbox"
+            type="checkbox"
+            data-my="auto"
+            data-mr="12"
+          />
+        )}
+        <div
+          data-display="flex"
+          data-direction="column"
+          data-max-width="100%"
+          data-overflow="hidden"
           data-mr="12"
-        />
-      )}
-
-      <div
-        data-display="flex"
-        data-direction="column"
-        data-mr="12"
-        data-overflow="hidden"
-      >
-        <div data-mb="3" data-width="100%" data-transform="truncate">
-          {props.title ?? "-"}
-        </div>
-        <UI.Link href={props.url} data-mr="12" data-width="100%" data-fs="14">
-          {props.url}
-        </UI.Link>
-      </div>
-
-      <div
-        data-display="flex"
-        data-direction="column"
-        data-cross="center"
-        data-mr="3"
-        data-ml="auto"
-      >
-        <UI.Badge data-mb="6" data-width="100%" style="text-align: center">
-          {props.status}
-        </UI.Badge>
-
-        <UI.Badge data-width="100%" style="text-align: center">
-          {props.source}
-        </UI.Badge>
-      </div>
-
-      {props.status === "ready" && (
-        <form
-          data-ml="6"
-          onSubmit={(event) => {
-            event.preventDefault();
-            deleteArticle.mutate(props.id);
-          }}
+          data-md-mr="3"
         >
-          <button type="submit" class="c-button" data-variant="bare">
-            <img
-              loading="eager"
-              height="30"
-              width="30"
-              src="/icon-trash.svg"
-              alt="delete"
-            />
-          </button>
-        </form>
-      )}
+          <div
+            data-width="100%"
+            data-mb="3"
+            data-md-mb="0"
+            data-transform="truncate"
+            data-md-fs="14"
+          >
+            {props.title ?? "-"}
+          </div>
+          <UI.Link
+            href={props.url}
+            data-width="100%"
+            data-fs="14"
+            data-md-fs="12"
+          >
+            {props.url}
+          </UI.Link>
+        </div>
+      </div>
+
+      <div
+        data-display="flex"
+        data-wrap="nowrap"
+        data-cross="center"
+        data-ml="auto"
+        data-md-mt="6"
+      >
+        <div
+          data-display="flex"
+          data-direction="column"
+          data-md-direction="row"
+          data-md-mt="3"
+        >
+          <UI.Badge
+            data-mb="6"
+            data-md-mb="0"
+            data-md-mr="6"
+            style="text-align: center"
+          >
+            {props.status}
+          </UI.Badge>
+
+          <UI.Badge style="text-align: center">{props.source}</UI.Badge>
+        </div>
+
+        {props.status === "ready" && (
+          <form
+            data-ml="6"
+            onSubmit={(event) => {
+              event.preventDefault();
+              deleteArticle.mutate(props.id);
+            }}
+          >
+            <button type="submit" class="c-button" data-variant="bare">
+              <img
+                loading="eager"
+                height="30"
+                width="30"
+                src="/icon-trash.svg"
+                alt="delete"
+              />
+            </button>
+          </form>
+        )}
+      </div>
     </li>
   );
 }
