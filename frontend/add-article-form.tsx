@@ -14,9 +14,9 @@ export function AddArticleForm() {
 
   const addArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["articles"]);
-      queryClient.invalidateQueries(["stats"]);
       setUrl("");
+      queryClient.invalidateQueries("articles");
+      queryClient.invalidateQueries("stats");
       notify({ type: "success", message: "Article added" });
     },
   });
@@ -27,39 +27,36 @@ export function AddArticleForm() {
         event.preventDefault();
         addArticleRequest.mutate({ url });
       }}
+      data-display="flex"
       data-mt="12"
-      data-my="24"
+      data-md-mt="24"
+      data-mb="24"
+      data-md-mb="36"
     >
-      <div data-display="flex" data-cross="end">
-        <div
-          data-display="flex"
-          data-direction="column"
-          data-mr="24"
-          data-grow="1"
-        >
-          <input
-            id="url"
-            name="url"
-            type="url"
-            required
-            value={url}
-            onInput={(event) => setUrl(event.currentTarget.value)}
-            placeholder="https://example.com/blogpost"
-            class="c-input"
-            data-grow="1"
-            disabled={addArticleRequest.isLoading}
-          />
-        </div>
-        <button
-          class="c-button"
-          data-variant="secondary"
-          type="submit"
-          disabled={addArticleRequest.isLoading}
-          style={{ width: "105px" }}
-        >
-          {addArticleRequest.isLoading ? "Adding..." : "Add"}
-        </button>
-      </div>
+      <input
+        id="url"
+        name="url"
+        type="url"
+        required
+        value={url}
+        onInput={(event) => setUrl(event.currentTarget.value)}
+        disabled={addArticleRequest.isLoading}
+        placeholder="https://example.com/blogpost"
+        class="c-input"
+        data-mr="12"
+        data-md-mr="6"
+        data-grow="1"
+      />
+
+      <button
+        class="c-button"
+        data-variant="secondary"
+        type="submit"
+        disabled={addArticleRequest.isLoading}
+        style={{ minWidth: "60px" }}
+      >
+        {addArticleRequest.isLoading ? "Adding..." : "Add"}
+      </button>
     </form>
   );
 }
