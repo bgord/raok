@@ -67,26 +67,16 @@ export function Article(
 
       <div
         data-display="flex"
-        data-wrap="nowrap"
+        data-direction="column"
+        data-md-direction="row"
         data-cross="center"
         data-ml="auto"
         data-md-mt="6"
       >
-        <div
-          data-display="flex"
-          data-direction="column"
-          data-md-direction="row"
-          data-md-mt="3"
-        >
-          <UI.Badge data-mb="6" data-md-mb="0" data-md-mr="6">
-            {props.status}
-          </UI.Badge>
-
-          <UI.Badge>{props.source}</UI.Badge>
-        </div>
+        <UI.Badge>{props.source}</UI.Badge>
 
         <form
-          data-ml="6"
+          data-md-ml="6"
           onSubmit={(event) => {
             event.preventDefault();
             deleteArticle.mutate(props.id);
