@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import omit from "lodash/omit";
 
 import * as UI from "./ui";
+import * as Icons from "./icons";
 import { api } from "./api";
 import { ArticleType } from "./types";
 import { useNotificationTrigger } from "./notifications-context";
@@ -115,13 +116,7 @@ export function Article(
             }}
           >
             <button type="submit" class="c-button" data-variant="bare">
-              <img
-                loading="eager"
-                height="30"
-                width="30"
-                src="/icon-trash.svg"
-                alt="delete"
-              />
+              <Icons.Trash />
             </button>
           </form>
         )}
