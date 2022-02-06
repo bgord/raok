@@ -1,6 +1,5 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
-import omit from "lodash/omit";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
@@ -10,21 +9,8 @@ import { useNotificationTrigger } from "./notifications-context";
 import { UseListActionsType } from "./hooks";
 
 export function Article(
-  props: ArticleType &
-    UseListActionsType<ArticleType["id"]> &
-    h.JSX.IntrinsicElements["li"]
+  props: ArticleType & UseListActionsType<ArticleType["id"]>
 ) {
-  const rest = omit(props, [
-    "id",
-    "url",
-    "title",
-    "description",
-    "status",
-    "source",
-    "createdAt",
-    "favouritedAt",
-  ]);
-
   const queryClient = useQueryClient();
   const notify = useNotificationTrigger();
 
@@ -41,7 +27,6 @@ export function Article(
       data-md-direction="column"
       data-wrap="nowrap"
       data-mb="24"
-      {...rest}
     >
       <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
         {props.status === "ready" && (
