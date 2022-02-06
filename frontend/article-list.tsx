@@ -8,6 +8,8 @@ import { api } from "./api";
 import { AnimaList, useAnimaList, Anima } from "./anima";
 import { useNotificationTrigger } from "./notifications-context";
 import { useList, useToggle } from "./hooks";
+
+import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
@@ -18,7 +20,6 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const _articles = useQuery("articles", api.getArticles, props);
 
   const createNewspaper = useCreateNewspaper(actions.clear);
-  const scheduleFeedlyArticlesCrawl = useScheduleFeedlyArticlesCrawl();
 
   const articles = useAnimaList(_articles.data ?? [], "tail");
 
@@ -41,22 +42,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             data-mr="12"
           />
           Articles
-          <button
-            type="button"
-            onClick={() => scheduleFeedlyArticlesCrawl.mutate()}
-            disabled={
-              scheduleFeedlyArticlesCrawl.isLoading ||
-              scheduleFeedlyArticlesCrawl.isSuccess
-            }
-            class="c-button"
-            data-variant="bare"
-            data-ml="auto"
-          >
-            {scheduleFeedlyArticlesCrawl.isIdle && "Schedule Feedly crawl"}
-            {scheduleFeedlyArticlesCrawl.isLoading && "Scheduling..."}
-            {scheduleFeedlyArticlesCrawl.isSuccess && "Scheduled!"}
-            {scheduleFeedlyArticlesCrawl.isError && "Couldn't schedule"}
-          </button>
+          <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
 
         <AddArticleForm />
@@ -153,24 +139,6 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
       </AnimaList>
     </section>
   );
-}
-
-function useScheduleFeedlyArticlesCrawl() {
-  const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
-
-  const scheduleFeedlyArticlesCrawl = useMutation(
-    api.scheduleFeedlyArticlesCrawl,
-    {
-      onSuccess() {
-        delay(scheduleFeedlyArticlesCrawl.reset, 5000);
-        notify({ type: "success", message: "Feedly crawl scheduled" });
-        queryClient.invalidateQueries("stats");
-      },
-    }
-  );
-
-  return scheduleFeedlyArticlesCrawl;
 }
 
 function useCreateNewspaper(callback?: VoidFunction) {
