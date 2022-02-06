@@ -1,5 +1,6 @@
 import { h } from "preact";
 
+import * as UI from "./ui";
 import { ArticleType } from "./types";
 import { FavouriteUnfavourite } from "./favourite-unfavourite";
 
@@ -55,34 +56,8 @@ export function ArchiveArticle(props: ArticleType) {
         data-cross="center"
         data-ml="auto"
       >
-        <strong
-          data-transform="uppercase"
-          data-color="gray-600"
-          data-bg="gray-200"
-          data-px="6"
-          data-br="4"
-          data-ls="1"
-          data-fs="12"
-          data-mb="6"
-          data-width="100%"
-          style="text-align: center"
-        >
-          {props.status}
-        </strong>
-
-        <strong
-          data-transform="uppercase"
-          data-color="gray-600"
-          data-bg="gray-200"
-          data-px="6"
-          data-br="4"
-          data-ls="1"
-          data-fs="12"
-          data-width="100%"
-          style="text-align: center"
-        >
-          {props.source}
-        </strong>
+        <UI.Badge data-mb="6">{props.status}</UI.Badge>
+        <UI.Badge>{props.source}</UI.Badge>
       </div>
     </li>
   );
