@@ -30,8 +30,6 @@ export function AddArticleForm() {
       data-display="flex"
       data-mt="12"
       data-md-mt="24"
-      data-mb="24"
-      data-md-mb="36"
     >
       <input
         id="url"

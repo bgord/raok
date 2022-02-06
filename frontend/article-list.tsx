@@ -47,42 +47,44 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
         <AddArticleForm />
 
-        <div data-display="flex" data-cross="center" data-mt="12">
-          <button
-            onClick={() => actions.add(articles.items.map((x) => x.item.id))}
-            type="button"
-            class="c-button"
-            data-variant="secondary"
-            data-mr="12"
-          >
-            Select all
-          </button>
+        <div data-display="flex" data-cross="center">
+          <div data-display="flex" data-mt="24">
+            <button
+              onClick={() => actions.add(articles.items.map((x) => x.item.id))}
+              type="button"
+              class="c-button"
+              data-variant="secondary"
+              data-mr="12"
+            >
+              Select all
+            </button>
 
-          <button
-            onClick={actions.clear}
-            type="button"
-            class="c-button"
-            data-variant="secondary"
-          >
-            Deselect all
-          </button>
+            <button
+              onClick={actions.clear}
+              type="button"
+              class="c-button"
+              data-variant="secondary"
+            >
+              Deselect all
+            </button>
 
-          <button
-            onClick={() => _articles.refetch()}
-            type="button"
-            class="c-button"
-            data-variant="bare"
-            data-ml="12"
-          >
-            <img
-              loading="eager"
-              height="20"
-              width="20"
-              src="/icon-refresh.svg"
-              alt=""
-              data-anima-effect={_articles.isRefetching && "rotate"}
-            />
-          </button>
+            <button
+              onClick={() => _articles.refetch()}
+              type="button"
+              class="c-button"
+              data-variant="bare"
+              data-ml="12"
+            >
+              <img
+                loading="eager"
+                height="20"
+                width="20"
+                src="/icon-refresh.svg"
+                alt=""
+                data-anima-effect={_articles.isRefetching && "rotate"}
+              />
+            </button>
+          </div>
 
           <Anima visible={selectedArticleIds.length > 0} style="opacity">
             <div data-ml="12" data-color="gray-600" data-fs="14">
@@ -90,13 +92,9 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             </div>
           </Anima>
 
-          {emptyNewspaperError.on && (
-            <div data-ml="12" data-color="gray-600" data-fs="14">
-              Select at least one article
-            </div>
-          )}
-
           <form
+            data-display="flex"
+            data-mt="24"
             data-ml="auto"
             onSubmit={(event) => {
               event.preventDefault();
@@ -111,6 +109,17 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               createNewspaper.mutate(selectedArticleIds);
             }}
           >
+            {emptyNewspaperError.on && (
+              <div
+                data-mr="12"
+                data-my="auto"
+                data-color="gray-600"
+                data-fs="14"
+              >
+                Select min. 1 article
+              </div>
+            )}
+
             <button type="submit" class="c-button" data-variant="primary">
               Create newspaper
             </button>
