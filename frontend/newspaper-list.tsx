@@ -13,7 +13,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
   const newspapers = useAnimaList(_newspapers.data ?? [], "head");
 
   return (
-    <section data-mt="48" data-mb="72">
+    <section data-mt="48" data-mb="72" data-md-mb="36">
       <Header
         data-display="flex"
         data-bg="gray-100"

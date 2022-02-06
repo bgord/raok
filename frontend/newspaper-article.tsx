@@ -9,13 +9,14 @@ export function NewspaperArticle(props: ArticleType) {
     <li
       data-display="flex"
       data-wrap="nowrap"
-      data-mb="12"
       data-max-width="768"
       data-cross="center"
+      data-mb="12"
+      data-md-mx="12"
     >
       {props.status === "processed" && <FavouriteUnfavourite {...props} />}
 
-      <UI.Link href={props.url} data-mx="12">
+      <UI.Link href={props.url} data-fs="14" data-mx="12">
         {props.url}
       </UI.Link>
 

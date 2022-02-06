@@ -27,6 +27,7 @@ export function Article(
       data-md-direction="column"
       data-wrap="nowrap"
       data-mb="24"
+      data-md-mx="6"
     >
       <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
         <input

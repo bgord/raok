@@ -37,7 +37,7 @@ export function Newspaper(props: NewspaperProps) {
 
   return (
     <li data-display="flex" data-direction="column" data-my="12" {...props}>
-      <div data-display="flex" data-cross="center">
+      <div data-display="flex" data-cross="center" data-px="3" data-md-px="6">
         <UI.Badge
           data-bg="gray-600"
           data-color="gray-100"
@@ -47,7 +47,7 @@ export function Newspaper(props: NewspaperProps) {
           {props.status}
         </UI.Badge>
 
-        <span>{props.title}</span>
+        <span data-md-fs="14">{props.title}</span>
 
         <div data-display="flex" data-cross="center" data-ml="auto">
           {(isStalled || props.status === "error") && (
@@ -56,9 +56,9 @@ export function Newspaper(props: NewspaperProps) {
 
           {(props.status === "delivered" || sentAtRelative !== "-") && (
             <span
+              data-md-display="none"
               data-fs="14"
               data-color="gray-400"
-              data-mr="12"
               title={sentAtDate}
             >
               Sent {sentAtRelative}
@@ -70,7 +70,7 @@ export function Newspaper(props: NewspaperProps) {
               type="button"
               class="c-button"
               data-variant="bare"
-              data-mr="6"
+              data-mx="6"
               onClick={details.toggle}
             >
               {details.off && (
@@ -101,7 +101,7 @@ export function Newspaper(props: NewspaperProps) {
         visible={details.on && props.status === "delivered"}
         style="opacity"
       >
-        <div data-display="flex" data-my="24" data-pr="6">
+        <div data-display="flex" data-my="24" data-md-px="12">
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
               <ArchiveNewspaper id={props.id} data-mr="12" />
