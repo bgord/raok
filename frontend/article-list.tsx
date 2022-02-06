@@ -34,9 +34,6 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             alt=""
             data-mr="12"
           />
-          <UI.Badge data-bg="white" data-mr="6">
-            {articles.count}
-          </UI.Badge>
           Articles
           <button
             type="button"
