@@ -10,6 +10,7 @@ export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
       data-br="4"
       data-ls="1"
       data-fs="12"
+      style="text-align: center"
       {...props}
     />
   );

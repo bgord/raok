@@ -80,16 +80,11 @@ export function Article(
           data-md-direction="row"
           data-md-mt="3"
         >
-          <UI.Badge
-            data-mb="6"
-            data-md-mb="0"
-            data-md-mr="6"
-            style="text-align: center"
-          >
+          <UI.Badge data-mb="6" data-md-mb="0" data-md-mr="6">
             {props.status}
           </UI.Badge>
 
-          <UI.Badge style="text-align: center">{props.source}</UI.Badge>
+          <UI.Badge>{props.source}</UI.Badge>
         </div>
 
         {props.status === "ready" && (
