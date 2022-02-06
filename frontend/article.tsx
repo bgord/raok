@@ -29,16 +29,14 @@ export function Article(
       data-mb="24"
     >
       <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
-        {props.status === "ready" && (
-          <input
-            onClick={() => props.toggle(props.id)}
-            checked={props.isAdded(props.id)}
-            class="c-checkbox"
-            type="checkbox"
-            data-my="auto"
-            data-mr="12"
-          />
-        )}
+        <input
+          onClick={() => props.toggle(props.id)}
+          checked={props.isAdded(props.id)}
+          class="c-checkbox"
+          type="checkbox"
+          data-my="auto"
+          data-mr="12"
+        />
         <div
           data-display="flex"
           data-direction="column"
@@ -87,19 +85,17 @@ export function Article(
           <UI.Badge>{props.source}</UI.Badge>
         </div>
 
-        {props.status === "ready" && (
-          <form
-            data-ml="6"
-            onSubmit={(event) => {
-              event.preventDefault();
-              deleteArticle.mutate(props.id);
-            }}
-          >
-            <button type="submit" class="c-button" data-variant="bare">
-              <Icons.Trash />
-            </button>
-          </form>
-        )}
+        <form
+          data-ml="6"
+          onSubmit={(event) => {
+            event.preventDefault();
+            deleteArticle.mutate(props.id);
+          }}
+        >
+          <button type="submit" class="c-button" data-variant="bare">
+            <Icons.Trash />
+          </button>
+        </form>
       </div>
     </li>
   );
