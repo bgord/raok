@@ -84,11 +84,11 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             />
           </button>
 
-          {selectedArticleIds.length > 0 && (
+          <Anima visible={selectedArticleIds.length > 0} style="opacity">
             <div data-ml="12" data-color="gray-600" data-fs="14">
               {selectedArticleIds.length}/5 articles
             </div>
-          )}
+          </Anima>
 
           {emptyNewspaperError.on && (
             <div data-ml="12" data-color="gray-600" data-fs="14">
