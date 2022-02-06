@@ -23,9 +23,15 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const articles = useAnimaList(_articles.data ?? [], "tail");
 
   return (
-    <section data-px="6">
-      <div data-bg="gray-100" data-bct="gray-200" data-bwt="4" data-p="12">
-        <UI.Header data-display="flex" data-cross="center" data-pb="6">
+    <section>
+      <div
+        data-bg="gray-100"
+        data-bct="gray-200"
+        data-bwt="4"
+        data-p="12"
+        data-pt="6"
+      >
+        <UI.Header data-display="flex" data-cross="center">
           <img
             loading="eager"
             height="20"
