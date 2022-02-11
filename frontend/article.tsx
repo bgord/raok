@@ -22,6 +22,7 @@ export function Article(
   });
 
   return (
+    // TODO: Decrease spacing on mobile
     <li
       data-display="flex"
       data-md-direction="column"

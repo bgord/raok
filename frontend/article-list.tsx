@@ -23,6 +23,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const articles = useAnimaList(_articles.data ?? [], "tail");
 
   return (
+    // TODO: Decrease spacing on mobile
     <section>
       <div
         data-bg="gray-100"

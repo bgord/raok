@@ -23,6 +23,8 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
       data-main="center"
       data-mx="auto"
       data-my="48"
+      data-md-mt="12"
+      data-md-mb="72"
       data-max-width="1296"
     >
       <section
