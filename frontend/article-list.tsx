@@ -17,10 +17,9 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
   const emptyNewspaperError = useToggle();
 
-  const _articles = useQuery("articles", api.getArticles, props);
-
   const createNewspaper = useCreateNewspaper(actions.clear);
 
+  const _articles = useQuery("articles", api.getArticles, props);
   const articles = useAnimaList(_articles.data ?? [], "tail");
 
   return (
@@ -47,7 +46,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
         <AddArticleForm />
 
-        <div data-display="flex" data-cross="center">
+        <div data-display="flex" data-cross="end">
           <div data-display="flex" data-mt="24">
             <button
               onClick={() => actions.add(articles.items.map((x) => x.item.id))}
@@ -87,7 +86,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           </div>
 
           <Anima visible={selectedArticleIds.length > 0} style="opacity">
-            <div data-ml="12" data-color="gray-600" data-fs="14">
+            <div data-ml="auto" data-mb="6" data-color="gray-600" data-fs="14">
               {selectedArticleIds.length}/5 articles
             </div>
           </Anima>
