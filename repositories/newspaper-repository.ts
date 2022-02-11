@@ -35,10 +35,12 @@ export class NewspaperRepository {
   }
 
   static async getById(newspaperId: VO.NewspaperIdType) {
-    return prisma.newspaper.findFirst({
+    const result = await prisma.newspaper.findFirst({
       where: { id: newspaperId },
       include: { articles: true },
     });
+
+    return result ? NewspaperRepository._mapper(result) : null;
   }
 
   static async create(newspaper: {
