@@ -81,19 +81,16 @@ function Html(content: string, username: string, state: string) {
           data-md-px="12"
           data-bg="gray-800"
         >
-          // TODO: Add mobile navigation
-          <h1>
-            <a
-              data-fs="20"
-              data-ls="2"
-              data-color="gray-100"
-              data-fw="500"
-              class="c-link"
-              href="/dashboard"
-            >
-              raok
-            </a>
-          </h1>
+          <a
+            data-fs="20"
+            data-ls="2"
+            data-color="gray-100"
+            data-fw="500"
+            class="c-link"
+            href="/dashboard"
+          >
+            raok
+          </a>
 
           <a
             class="c-link"
