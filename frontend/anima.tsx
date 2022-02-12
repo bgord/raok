@@ -2,6 +2,7 @@ import { h, cloneElement } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import delay from "lodash/delay";
 import eq from "lodash/isEqual";
+import pick from "lodash/pick";
 
 import { usePreviousValue } from "./hooks";
 
@@ -29,6 +30,7 @@ export function Anima(props: AnimaConfigType) {
     if (props.isInitial) return AnimaState.appeared;
     return AnimaState.appearing;
   });
+
   const previousState = usePreviousValue(state);
 
   useEffect(() => {
@@ -51,6 +53,10 @@ export function Anima(props: AnimaConfigType) {
     "data-anima-style": props.style,
     style: { "--duration": `${duration}ms` },
   });
+}
+
+export function getAnimaProps(props: any) {
+  return pick(props, "data-anima", "data-anima-style", "style");
 }
 
 export function AnimaList(

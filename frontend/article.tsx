@@ -5,11 +5,14 @@ import * as UI from "./ui";
 import * as Icons from "./icons";
 import { api } from "./api";
 import { ArticleType } from "./types";
-import { useNotificationTrigger } from "./notifications-context";
 import { UseListActionsType } from "./hooks";
+import { getAnimaProps } from "./anima";
+import { useNotificationTrigger } from "./notifications-context";
 
 export function Article(
-  props: ArticleType & UseListActionsType<ArticleType["id"]>
+  props: ArticleType &
+    UseListActionsType<ArticleType["id"]> &
+    h.JSX.IntrinsicElements["li"]
 ) {
   const queryClient = useQueryClient();
   const notify = useNotificationTrigger();
@@ -29,6 +32,7 @@ export function Article(
       data-wrap="nowrap"
       data-mb="24"
       data-md-mx="6"
+      {...getAnimaProps(props)}
     >
       <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
         <input
