@@ -99,7 +99,10 @@ app.post(
 app.post(
   "/send-arbitrary-file",
   AuthShield.verify,
-  ...new bg.FileUploader({ autoClean: false }).handle(),
+  ...new bg.FileUploader({
+    autoClean: false,
+    maxFilesSize: 5_000_000, // 5 MB
+  }).handle(),
   bg.Route(SendArbitraryFile)
 );
 
