@@ -1,5 +1,4 @@
 import { Reporter } from "@bgord/node";
-import execa from "execa";
 import path from "path";
 import { promises as fs } from "fs";
 
@@ -7,7 +6,9 @@ import * as VO from "../value-objects";
 import * as Services from "../services";
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";
+
 import { EpubToMobiConverter } from "./epub-to-mobi";
+import { HtmlToEpubConverter } from "./html-to-epub";
 
 type NewspaperFileCreatorConfigType = {
   newspaperId: VO.NewspaperType["id"];
@@ -27,14 +28,14 @@ export class NewspaperFile {
   async create() {
     const paths = NewspaperFile.getPaths(this.newspaperId);
 
-    const content = await this.compose();
-    await fs.writeFile(paths.html, content);
-
     try {
-      await execa("pandoc", ["-o", paths.epub, paths.html]);
+      const content = await this.compose();
+      await fs.writeFile(paths.html, content);
+
+      await HtmlToEpubConverter.convert(paths.html, paths.epub);
       await EpubToMobiConverter.convert(paths.epub, paths.mobi);
     } catch (error) {
-      Reporter.raw("NewspaperFile#generate", error);
+      Reporter.raw("NewspaperFile#create", error);
     }
   }
 
