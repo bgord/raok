@@ -126,7 +126,7 @@ export function SendArbitraryFile() {
       )}
       {fileUpload.isError && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
-          Pleasy, try again.
+          Please, try again.
         </div>
       )}
     </form>
