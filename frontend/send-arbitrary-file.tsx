@@ -94,7 +94,7 @@ export function SendArbitraryFile() {
           data-ml="12"
           onClick={() => {
             file.actions.clearFile();
-            if (fileUpload.isSuccess) fileUpload.reset();
+            fileUpload.reset();
           }}
         >
           Clear
