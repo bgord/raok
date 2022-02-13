@@ -336,15 +336,18 @@ emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {
 });
 
 emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
+  let file = event.payload;
+
   try {
-    const file = event.payload;
+    file = await Services.ArbitraryFileProcessor.process(event.payload);
 
     await Services.ArbitraryFileSender.send(file);
-    Reporter.success(`File sent [name=${event.payload.originalFilename}]`);
+
+    Reporter.success(`File sent [name=${file.originalFilename}]`);
   } catch (error) {
     Reporter.raw("Mailer error", error);
-    Reporter.error(`File not sent [name=${event.payload.originalFilename}]`);
+    Reporter.error(`File not sent [name=${file.originalFilename}]`);
   } finally {
-    await new Services.UploadedFile(event.payload).delete();
+    await new Services.UploadedFile(file).delete();
   }
 });

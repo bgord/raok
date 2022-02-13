@@ -10,3 +10,4 @@ export * from "./article-metatags-scraper";
 export * from "./articles-to-review-notifier";
 export * from "./epub-to-mobi";
 export * from "./html-to-epub";
+export * from "./arbitrary-file-processor";
