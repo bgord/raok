@@ -10,7 +10,9 @@ const mailer = new Mailer({
 });
 
 export class ArbitraryFileSender {
-  static send(file: Schema.UploadedFileType) {
+  static send(
+    file: Pick<Schema.UploadedFileType, "originalFilename" | "path">
+  ) {
     return mailer.send({
       from: Env.SMTP_USER,
       to: Env.EMAIL_TO_DELIVER_TO,

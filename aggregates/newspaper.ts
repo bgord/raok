@@ -124,6 +124,7 @@ export class Newspaper {
         })
       );
     } catch (error) {
+      Reporter.raw("Newspaper#generate", error);
       await EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
@@ -142,7 +143,9 @@ export class Newspaper {
     });
 
     try {
-      await Services.NewspaperSender.send(this.id);
+      await Services.ArbitraryFileSender.send(
+        Services.NewspaperFile.getAttachment(this.id)
+      );
 
       await EventRepository.save(
         Events.NewspaperSentEvent.parse({

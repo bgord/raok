@@ -4,6 +4,7 @@ import path from "path";
 import { promises as fs } from "fs";
 
 import * as VO from "../value-objects";
+import * as Services from "../services";
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";
 import { EpubToMobiConverter } from "./epub-to-mobi";
@@ -94,5 +95,11 @@ export class NewspaperFile {
       epub: `${base}/${newspaperId}.epub`,
       mobi: `${base}/${newspaperId}.mobi`,
     };
+  }
+
+  static getAttachment(id: VO.NewspaperType["id"]) {
+    const path = Services.NewspaperFile.getPaths(id).mobi;
+
+    return { path, originalFilename: "newspaper" };
   }
 }

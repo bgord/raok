@@ -331,9 +331,15 @@ emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
   );
 });
 
+emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {
+  await Services.FeedlyArticlesCrawler.run();
+});
+
 emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   try {
-    await Services.ArbitraryFileSender.send(event.payload);
+    const file = event.payload;
+
+    await Services.ArbitraryFileSender.send(file);
     Reporter.success(`File sent [name=${event.payload.originalFilename}]`);
   } catch (error) {
     Reporter.raw("Mailer error", error);
@@ -341,8 +347,4 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   } finally {
     await new Services.UploadedFile(event.payload).delete();
   }
-});
-
-emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {
-  await Services.FeedlyArticlesCrawler.run();
 });
