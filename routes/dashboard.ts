@@ -69,6 +69,10 @@ function Html(content: string, state: string) {
           *[data-anima-effect="rotate"] {
             animation: rotate 330ms linear infinite;
           }
+
+          .c-link--active {
+            text-decoration: underline !important;
+          }
         </style>
 
         <title>RAOK - read articles on Kindle</title>

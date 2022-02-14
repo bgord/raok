@@ -1,4 +1,4 @@
-import { Link } from "preact-router";
+import { Link } from "preact-router/match";
 import { h, Fragment } from "preact";
 
 import * as Icons from "./icons";
@@ -137,7 +137,13 @@ function NavigationShell() {
 
 function NavigationLink(props: h.JSX.HTMLAttributes) {
   return (
-    <Link class="c-link" data-color="white" data-variant="bare" {...props} />
+    <Link
+      activeClassName="c-link--active"
+      class="c-link"
+      data-color="white"
+      data-variant="bare"
+      {...props}
+    />
   );
 }
 
