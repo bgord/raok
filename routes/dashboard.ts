@@ -10,7 +10,7 @@ import { Settings } from "../aggregates/settings";
 
 import { App } from "../frontend/app";
 
-function Html(content: string, username: string, state: string) {
+function Html(content: string, state: string) {
   return /* HTML */ `
     <html lang="en">
       <head>
@@ -118,7 +118,5 @@ export async function Dashboard(
   };
   const app = render(App({ ...initialData, url: request.url }));
 
-  return response.send(
-    Html(app, request.user as string, serialize(initialData, { isJSON: true }))
-  );
+  return response.send(Html(app, serialize(initialData, { isJSON: true })));
 }

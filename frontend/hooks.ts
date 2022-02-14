@@ -300,19 +300,25 @@ export function useWindowSize(): Size {
   return windowSize;
 }
 
-export function useBodyScrollLock(condition = true) {
+export function useScrollLock(condition = true) {
   useLayoutEffect(() => {
     if (!condition) return;
 
-    // Get original body overflow
-    const originalStyle = window.getComputedStyle(document.body).overflow;
+    const html = document.querySelector("html") as HTMLElement;
+    const body = document.body;
+
+    // Get original overflows
+    const originalBodyOverflow = window.getComputedStyle(body).overflow;
+    const originalHtmlOverflow = window.getComputedStyle(html).overflow;
 
     // Prevent scrolling on mount
-    document.body.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
 
     // Re-enable scrolling when component unmounts
     return () => {
-      document.body.style.overflow = originalStyle;
+      body.style.overflow = originalBodyOverflow;
+      html.style.overflow = originalHtmlOverflow;
     };
   }, [condition]);
 }

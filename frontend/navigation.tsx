@@ -2,7 +2,7 @@ import { Link } from "preact-router";
 import { h } from "preact";
 
 import * as Icons from "./icons";
-import { useWindowSize, useToggle, useBodyScrollLock } from "./hooks";
+import { useWindowSize, useToggle, useScrollLock } from "./hooks";
 
 export function Navigation() {
   const { width } = useWindowSize();
@@ -41,7 +41,7 @@ function NavigationDesktop() {
 function NavigationMobile() {
   const navigation = useToggle();
 
-  useBodyScrollLock(navigation.on);
+  useScrollLock(navigation.on);
 
   if (navigation.on) {
     return (
