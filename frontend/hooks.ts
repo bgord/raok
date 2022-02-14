@@ -1,5 +1,11 @@
 import { h } from "preact";
-import { useState, useEffect, StateUpdater, useRef } from "preact/hooks";
+import {
+  useState,
+  useEffect,
+  StateUpdater,
+  useRef,
+  useLayoutEffect,
+} from "preact/hooks";
 
 export type UseListActionsType<T> = {
   clear: VoidFunction;
@@ -292,4 +298,21 @@ export function useWindowSize(): Size {
   }, []); // Empty array ensures that effect is only run on mount
 
   return windowSize;
+}
+
+export function useBodyScrollLock(condition = true) {
+  useLayoutEffect(() => {
+    if (!condition) return;
+
+    // Get original body overflow
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+
+    // Prevent scrolling on mount
+    document.body.style.overflow = "hidden";
+
+    // Re-enable scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, [condition]);
 }
