@@ -4,6 +4,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import { NotificationsContextProvider } from "./notifications-context";
 import { Notifications } from "./notifications";
+
+import { Navigation } from "./navigation";
+
 import { Dashboard, InitialDashboardDataType } from "./dashboard";
 import {
   ArchiveArticles,
@@ -28,6 +31,8 @@ export function App(props: InitialDataType) {
   return (
     <QueryClientProvider client={queryClient}>
       <NotificationsContextProvider>
+        <Navigation />
+
         <Router url={props.url}>
           <ArchiveArticles
             path="/archive/articles"
