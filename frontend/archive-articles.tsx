@@ -3,6 +3,7 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 
 import * as UI from "./ui";
+import * as Icons from "./icons";
 import { api } from "./api";
 import { useSearch, useFilter, useTimestampFilter } from "./hooks";
 import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
@@ -174,13 +175,7 @@ export function ArchiveArticles(
           data-ml="6"
           data-mr="auto"
         >
-          <img
-            loading="eager"
-            height="24"
-            width="24"
-            src="/icon-close.svg"
-            alt=""
-          />
+          <Icons.Close />
         </button>
       </div>
 
