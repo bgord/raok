@@ -1,8 +1,9 @@
 import { Link } from "preact-router";
-import { h } from "preact";
+import { h, Fragment } from "preact";
 
 import * as Icons from "./icons";
 import { useWindowSize, useToggle, useScrollLock } from "./hooks";
+import { Anima } from "./anima";
 
 export function Navigation() {
   const { width } = useWindowSize();
@@ -43,72 +44,72 @@ function NavigationMobile() {
 
   useScrollLock(navigation.on);
 
-  if (navigation.on) {
-    return (
+  return (
+    <Fragment>
       <nav
         data-display="flex"
-        data-direction="column"
+        data-cross="center"
+        data-py="6"
+        data-px="12"
         data-bg="gray-800"
-        data-position="fixed"
-        data-z="1"
-        style={{ top: 0, right: 0, bottom: 0, left: 0 }}
       >
-        <div data-display="flex" data-cross="center" data-py="6" data-px="12">
-          <NavigationLogo />
+        <NavigationLogo />
 
-          <button
-            type="button"
-            class="c-button"
-            data-variant="bare"
-            onClick={navigation.disable}
-          >
-            <Icons.Close data-color="white" height="30" width="30" />
-          </button>
-        </div>
+        <button
+          type="button"
+          class="c-button"
+          data-variant="bare"
+          onClick={navigation.enable}
+        >
+          <Icons.HamburgerMenu />
+        </button>
+      </nav>
 
-        <div
+      <Anima visible={navigation.on} style="opacity">
+        <nav
           data-display="flex"
           data-direction="column"
-          data-cross="center"
-          data-mt="48"
+          data-bg="gray-800"
+          data-position="fixed"
+          data-z="1"
+          style={{ top: 0, right: 0, bottom: 0, left: 0 }}
         >
-          <NavigationLink href="/archive/articles" data-mb="24">
-            Articles
-          </NavigationLink>
-          <NavigationLink href="/archive/newspapers" data-mb="24">
-            Newspapers
-          </NavigationLink>
-          <NavigationLink href="/settings" data-mb="24">
-            Settings
-          </NavigationLink>
-          <strong data-color="white" data-mb="24">
-            admin
-          </strong>
-          <NavigationLink href="/logout">Logout</NavigationLink>
-        </div>
-      </nav>
-    );
-  }
+          <div data-display="flex" data-cross="center" data-py="6" data-px="12">
+            <NavigationLogo />
 
-  return (
-    <nav
-      data-display="flex"
-      data-cross="center"
-      data-py="6"
-      data-px="12"
-      data-bg="gray-800"
-    >
-      <NavigationLogo />
+            <button
+              type="button"
+              class="c-button"
+              data-variant="bare"
+              onClick={navigation.disable}
+            >
+              <Icons.Close data-color="white" height="30" width="30" />
+            </button>
+          </div>
 
-      <button
-        type="button"
-        class="c-button"
-        data-variant="bare"
-        onClick={navigation.enable}
-      >
-        <Icons.HamburgerMenu />
-      </button>
-    </nav>
+          <div
+            data-display="flex"
+            data-direction="column"
+            data-cross="center"
+            data-mt="48"
+          >
+            <NavigationLink href="/archive/articles" data-mb="24">
+              Articles
+            </NavigationLink>
+            <NavigationLink href="/archive/newspapers" data-mb="24">
+              Newspapers
+            </NavigationLink>
+            <NavigationLink href="/settings" data-mb="24">
+              Settings
+            </NavigationLink>
+            <strong data-color="white" data-mb="24">
+              admin
+            </strong>
+            <NavigationLink href="/logout">Logout</NavigationLink>
+          </div>
+        </nav>
+      </Anima>
+    </Fragment>
   );
 }
 
