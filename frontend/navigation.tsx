@@ -2,7 +2,7 @@ import { Link } from "preact-router";
 import { h } from "preact";
 
 import * as Icons from "./icons";
-import { useWindowSize, useToggle } from "./hooks";
+import { useWindowSize, useToggle, useBodyScrollLock } from "./hooks";
 
 export function Navigation() {
   const { width } = useWindowSize();
@@ -41,6 +41,55 @@ function NavigationDesktop() {
 function NavigationMobile() {
   const navigation = useToggle();
 
+  useBodyScrollLock(navigation.on);
+
+  if (navigation.on) {
+    return (
+      <nav
+        data-display="flex"
+        data-direction="column"
+        data-bg="gray-800"
+        data-position="fixed"
+        data-z="1"
+        style={{ top: 0, right: 0, bottom: 0, left: 0 }}
+      >
+        <div data-display="flex" data-cross="center" data-py="6" data-px="12">
+          <NavigationLogo />
+
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            onClick={navigation.disable}
+          >
+            <Icons.Close data-color="white" height="30" width="30" />
+          </button>
+        </div>
+
+        <div
+          data-display="flex"
+          data-direction="column"
+          data-cross="center"
+          data-mt="48"
+        >
+          <NavigationLink href="/archive/articles" data-mb="24">
+            Articles
+          </NavigationLink>
+          <NavigationLink href="/archive/newspapers" data-mb="24">
+            Newspapers
+          </NavigationLink>
+          <NavigationLink href="/settings" data-mb="24">
+            Settings
+          </NavigationLink>
+          <strong data-color="white" data-mb="24">
+            admin
+          </strong>
+          <NavigationLink href="/logout">Logout</NavigationLink>
+        </div>
+      </nav>
+    );
+  }
+
   return (
     <nav
       data-display="flex"
@@ -55,7 +104,7 @@ function NavigationMobile() {
         type="button"
         class="c-button"
         data-variant="bare"
-        onClick={navigation.toggle}
+        onClick={navigation.enable}
       >
         <Icons.HamburgerMenu />
       </button>
