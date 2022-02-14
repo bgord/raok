@@ -61,6 +61,7 @@ function Html(content: string, username: string, state: string) {
             from {
               transform: rotate(0);
             }
+
             to {
               transform: rotate(360deg);
             }
