@@ -51,7 +51,7 @@ export function Anima(props: AnimaConfigType) {
   return cloneElement(props.children, {
     "data-anima": state,
     "data-anima-style": props.style,
-    style: { "--duration": `${duration}ms` },
+    style: { "--duration": `${duration}ms`, ...props.children.props.style },
   });
 }
 
