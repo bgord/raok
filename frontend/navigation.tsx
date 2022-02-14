@@ -75,7 +75,7 @@ function NavigationMobile() {
           style={{ top: 0, right: 0, bottom: 0, left: 0 }}
         >
           <div data-display="flex" data-cross="center" data-py="6" data-px="12">
-            <NavigationLogo />
+            <NavigationLogo onClick={navigation.disable} />
 
             <button
               type="button"
@@ -93,19 +93,33 @@ function NavigationMobile() {
             data-cross="center"
             data-mt="48"
           >
-            <NavigationLink href="/archive/articles" data-mb="24">
+            <NavigationLink
+              onClick={navigation.disable}
+              href="/archive/articles"
+              data-mb="24"
+            >
               Articles
             </NavigationLink>
-            <NavigationLink href="/archive/newspapers" data-mb="24">
+            <NavigationLink
+              onClick={navigation.disable}
+              href="/archive/newspapers"
+              data-mb="24"
+            >
               Newspapers
             </NavigationLink>
-            <NavigationLink href="/settings" data-mb="24">
+            <NavigationLink
+              onClick={navigation.disable}
+              href="/settings"
+              data-mb="24"
+            >
               Settings
             </NavigationLink>
             <strong data-color="white" data-mb="24">
               admin
             </strong>
-            <NavigationLink href="/logout">Logout</NavigationLink>
+            <NavigationLink onClick={navigation.disable} href="/logout">
+              Logout
+            </NavigationLink>
           </div>
         </nav>
       </Anima>
@@ -127,7 +141,7 @@ function NavigationLink(props: h.JSX.HTMLAttributes) {
   );
 }
 
-function NavigationLogo() {
+function NavigationLogo(props: h.JSX.HTMLAttributes) {
   return (
     <NavigationLink
       href="/dashboard"
@@ -136,6 +150,7 @@ function NavigationLogo() {
       data-color="gray-100"
       data-fw="500"
       data-mr="auto"
+      {...props}
     >
       RAOK
     </NavigationLink>
