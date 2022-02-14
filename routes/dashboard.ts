@@ -75,57 +75,6 @@ function Html(content: string, username: string, state: string) {
       </head>
 
       <body data-mx="auto">
-        <header
-          data-display="flex"
-          data-p="12"
-          data-md-px="12"
-          data-bg="gray-800"
-        >
-          <a
-            data-fs="20"
-            data-ls="2"
-            data-color="gray-100"
-            data-fw="500"
-            class="c-link"
-            href="/dashboard"
-          >
-            raok
-          </a>
-
-          <a
-            class="c-link"
-            data-color="white"
-            href="/archive/articles"
-            data-ml="auto"
-            data-mr="24"
-          >
-            Articles
-          </a>
-
-          <a
-            class="c-link"
-            data-color="white"
-            href="/archive/newspapers"
-            data-mr="24"
-          >
-            Newspapers
-          </a>
-
-          <a class="c-link" data-color="white" href="/settings"> Settings </a>
-
-          <strong data-mx="36" data-color="white">${username}</strong>
-
-          <a
-            class="c-link"
-            data-color="white"
-            data-mr="12"
-            data-md-mr="0"
-            href="/logout"
-          >
-            Logout
-          </a>
-        </header>
-
         <div id="root">${content}</div>
 
         <script>
