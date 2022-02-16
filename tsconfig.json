@@ -6,7 +6,8 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
     "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "exclude": ["bgord-scripts"]
 }

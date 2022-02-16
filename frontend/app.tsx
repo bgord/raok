@@ -4,8 +4,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import { NotificationsContextProvider } from "./notifications-context";
 import { Notifications } from "./notifications";
-
 import { Navigation } from "./navigation";
+import { BuildMeta, BuildMetaDataType } from "./build-meta";
 
 import { Dashboard, InitialDashboardDataType } from "./dashboard";
 import {
@@ -21,12 +21,22 @@ import { Settings, InitialSettingsDataType } from "./settings";
 export type InitialDataType = InitialDashboardDataType &
   InitialArchiveArticlesDataType &
   InitialArchiveNewspapersDataType &
-  InitialSettingsDataType & { url: string };
+  InitialSettingsDataType &
+  BuildMetaDataType & {
+    url: string;
+  };
 
 const queryClient = new QueryClient();
 
 export function App(props: InitialDataType) {
-  const { archiveArticles, archiveNewspapers, settings, ...rest } = props;
+  const {
+    archiveArticles,
+    archiveNewspapers,
+    settings,
+    BUILD_DATE,
+    BUILD_VERSION,
+    ...rest
+  } = props;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -47,6 +57,8 @@ export function App(props: InitialDataType) {
         </Router>
 
         <Notifications />
+
+        <BuildMeta BUILD_VERSION={BUILD_VERSION} BUILD_DATE={BUILD_DATE} />
       </NotificationsContextProvider>
     </QueryClientProvider>
   );

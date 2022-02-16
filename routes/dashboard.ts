@@ -1,6 +1,7 @@
 import express from "express";
 import render from "preact-render-to-string";
 import serialize from "serialize-javascript";
+import packageJson from "../package.json";
 
 import * as VO from "../value-objects";
 import { ArticleRepository } from "../repositories/article-repository";
@@ -119,7 +120,10 @@ export async function Dashboard(
       isArticlesToReviewNotificationEnabled:
         settings.isArticlesToReviewNotificationEnabled,
     },
+    BUILD_DATE: Date.now(),
+    BUILD_VERSION: `v${packageJson.version}`,
   };
+
   const app = render(App({ ...initialData, url: request.url }));
 
   return response.send(Html(app, serialize(initialData, { isJSON: true })));
