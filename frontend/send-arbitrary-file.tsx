@@ -114,6 +114,7 @@ export function SendArbitraryFile() {
           data-fs="14"
           data-color="gray-600"
           data-transform="truncate"
+          title={file.data.name}
         >
           <strong data-color="gray-500">Selected file: </strong>
           {file.data.name}
