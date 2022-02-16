@@ -40,12 +40,12 @@ export function Stats(props: { initialData: StatsType }) {
 
       <div data-fs="14" data-color="gray-600">
         <strong>{createdArticles} </strong>
-        created article(s) overall
+        articles added overall
       </div>
 
       <div data-fs="14" data-color="gray-600" data-mt="6">
         <strong>{sentNewspapers} </strong>
-        sent newspapers(s) overall
+        newspapers sent overall
       </div>
 
       <div data-fs="12" data-color="gray-400" data-mt="12">
