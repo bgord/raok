@@ -1,5 +1,6 @@
-import { h } from "preact";
+import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
+import prettyBytes from "pretty-bytes";
 
 import { api } from "./api";
 import { Header } from "./ui";
@@ -108,17 +109,23 @@ export function SendArbitraryFile() {
           </small>
         )}
       {fileUpload.isIdle && file.state === UseFileState.selected && (
-        <div
-          data-mt="24"
-          data-pr="12"
-          data-fs="14"
-          data-color="gray-600"
-          data-transform="truncate"
-          title={file.data.name}
-        >
-          <strong data-color="gray-500">Selected file: </strong>
-          {file.data.name}
-        </div>
+        <Fragment>
+          <div
+            data-mt="24"
+            data-pr="12"
+            data-fs="14"
+            data-color="gray-600"
+            data-transform="truncate"
+            title={file.data.name}
+          >
+            <strong data-color="gray-500">File: </strong>
+            {file.data.name}
+          </div>
+
+          <div data-fs="14" data-color="gray-500">
+            <strong>Size: </strong> {prettyBytes(file.data.size)}
+          </div>
+        </Fragment>
       )}
       {fileUpload.isSuccess && file.state === UseFileState.selected && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
