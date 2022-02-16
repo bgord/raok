@@ -62,9 +62,13 @@ export function useToggle(defaultValue = false) {
   return { on, off: !on, enable, disable, toggle };
 }
 
+type UseFileConfigType = {
+  maxSize?: number;
+};
 export enum UseFileState {
   "idle" = "idle",
   "selected" = "selected",
+  "error" = "error",
 }
 type UseFileIdle = {
   state: UseFileState.idle;
@@ -82,7 +86,19 @@ type UseFileSelected = {
     clearFile: VoidFunction;
   };
 };
-export function useFile(): UseFileIdle | UseFileSelected {
+type UseFileError = {
+  state: UseFileState.error;
+  data: null;
+  actions: {
+    selectFile(event: h.JSX.TargetedEvent<HTMLInputElement, Event>): void;
+    clearFile: VoidFunction;
+  };
+};
+export function useFile(
+  config?: UseFileConfigType
+): UseFileIdle | UseFileSelected | UseFileError {
+  const maxSize = config?.maxSize ?? Infinity;
+
   const [state, setState] = useState<UseFileState>(UseFileState.idle);
   const [file, setFile] = useState<File | null>(null);
 
@@ -91,7 +107,11 @@ export function useFile(): UseFileIdle | UseFileSelected {
 
     if (!files || !files[0]) return;
 
-    setFile(files[0]);
+    const file = files[0];
+
+    if (file.size > maxSize) return setState(UseFileState.error);
+
+    setFile(file);
     setState(UseFileState.selected);
   }
 
@@ -106,7 +126,11 @@ export function useFile(): UseFileIdle | UseFileSelected {
     return { state, data: null, actions };
   }
 
-  return { state, data: file as File, actions };
+  if (state === UseFileState.selected) {
+    return { state, data: file as File, actions };
+  }
+
+  return { state, data: null, actions };
 }
 
 export function useExpandableList(config: { max: number; length: number }) {

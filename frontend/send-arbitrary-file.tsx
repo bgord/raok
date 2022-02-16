@@ -1,6 +1,6 @@
 import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
-import prettyBytes from "pretty-bytes";
+import prettyBytes from "pretty-bytes-es5";
 
 import { api } from "./api";
 import { Header } from "./ui";
@@ -21,7 +21,8 @@ export function SendArbitraryFile() {
     onSuccess: () => notify({ type: "success", message: "File sent" }),
   });
 
-  const file = useFile();
+  const maxFileSizeInBytes = 5_000_000;
+  const file = useFile({ maxSize: maxFileSizeInBytes });
 
   return (
     <form
@@ -87,7 +88,7 @@ export function SendArbitraryFile() {
         </button>
       )}
 
-      {file.state === UseFileState.selected && (
+      {[UseFileState.selected, UseFileState.error].includes(file.state) && (
         <button
           type="button"
           class="c-button"
@@ -102,10 +103,16 @@ export function SendArbitraryFile() {
         </button>
       )}
 
+      {file.state === UseFileState.error && (
+        <div data-fs="14" data-mt="24" data-color="gray-600">
+          This file is too big, please select another file
+        </div>
+      )}
+
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
         file.state === UseFileState.idle && (
           <small data-mt="24" data-fs="14" data-color="gray-600">
-            Select a file to send, up to 5 MB
+            Select a file to send, up to {prettyBytes(maxFileSizeInBytes)}
           </small>
         )}
       {fileUpload.isIdle && file.state === UseFileState.selected && (
