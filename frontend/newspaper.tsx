@@ -36,8 +36,14 @@ export function Newspaper(props: NewspaperProps) {
   });
 
   return (
-    <li data-display="flex" data-direction="column" data-my="12" {...props}>
-      <div data-display="flex" data-cross="center" data-px="3" data-md-px="6">
+    <li
+      data-display="flex"
+      data-direction="column"
+      data-my="12"
+      data-md-pl="3"
+      {...props}
+    >
+      <div data-display="flex" data-cross="center">
         <UI.Badge
           data-bg="gray-600"
           data-color="gray-100"
@@ -101,12 +107,13 @@ export function Newspaper(props: NewspaperProps) {
         visible={details.on && props.status === "delivered"}
         style="opacity"
       >
-        <div data-display="flex" data-my="24" data-md-px="12">
+        <div data-display="flex" data-mt="12" data-mb="6">
           {["delivered", "error"].includes(props.status) && (
             <Fragment>
               <ArchiveNewspaper id={props.id} data-mr="12" />
 
               <form
+                data-mr="12"
                 onSubmit={(event) => {
                   event.preventDefault();
                   resendNewspaper.mutate(props.id);
@@ -120,18 +127,18 @@ export function Newspaper(props: NewspaperProps) {
             </Fragment>
           )}
 
-          <span data-fs="14" data-color="gray-400" data-ml="auto">
+          <span data-mt="6" data-fs="14" data-color="gray-400">
             Processed in {duration}
           </span>
         </div>
       </Anima>
 
       <Anima visible={details.on} style="opacity">
-        <ol data-mt="6" data-mb="24" data-max-width="100%">
+        <ul data-mt="6" data-max-width="100%">
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />
           ))}
-        </ol>
+        </ul>
       </Anima>
     </li>
   );

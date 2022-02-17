@@ -12,7 +12,7 @@ export function NewspaperArticle(props: ArticleType) {
       data-max-width="768"
       data-cross="center"
       data-mb="12"
-      data-md-mx="12"
+      data-md-ml="3"
     >
       {props.status === "processed" && <FavouriteUnfavourite {...props} />}
 
