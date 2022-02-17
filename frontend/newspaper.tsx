@@ -1,4 +1,4 @@
-import { h, Fragment } from "preact";
+import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import formatDistanceStrict from "date-fns/formatDistanceStrict";
@@ -109,22 +109,22 @@ export function Newspaper(props: NewspaperProps) {
       >
         <div data-display="flex" data-mt="12" data-mb="6">
           {["delivered", "error"].includes(props.status) && (
-            <Fragment>
-              <ArchiveNewspaper id={props.id} data-mr="12" />
+            <form
+              data-mr="12"
+              onSubmit={(event) => {
+                event.preventDefault();
+                resendNewspaper.mutate(props.id);
+                details.disable();
+              }}
+            >
+              <button type="submit" class="c-button" data-variant="primary">
+                Resend
+              </button>
+            </form>
+          )}
 
-              <form
-                data-mr="12"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  resendNewspaper.mutate(props.id);
-                  details.disable();
-                }}
-              >
-                <button type="submit" class="c-button" data-variant="primary">
-                  Resend
-                </button>
-              </form>
-            </Fragment>
+          {["delivered", "error"].includes(props.status) && (
+            <ArchiveNewspaper id={props.id} data-mr="12" />
           )}
 
           <span data-mt="6" data-fs="14" data-color="gray-400">
