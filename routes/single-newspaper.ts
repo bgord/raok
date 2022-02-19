@@ -9,7 +9,6 @@ export async function SingleNewspaper(
   _next: express.NextFunction
 ) {
   const newspaperId = VO.NewspaperId.parse(request.params.newspaperId);
-
   const newspaper = await NewspaperRepository.getById(newspaperId);
 
   return response.send(newspaper);

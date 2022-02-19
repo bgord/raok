@@ -8,5 +8,6 @@ export async function ArchiveArticles(
   _next: express.NextFunction
 ) {
   const articles = await ArticleRepository.getAll();
+
   return response.send(articles);
 }

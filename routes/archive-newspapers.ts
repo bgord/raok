@@ -8,5 +8,6 @@ export async function ArchiveNewspapers(
   _next: express.NextFunction
 ) {
   const newspapers = await NewspaperRepository.getAll();
+
   return response.send(newspapers);
 }
