@@ -314,7 +314,7 @@ emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
     await article.markAsProcessed();
   }
 
-  await Services.NewspaperFile.delete(event.payload.newspaperId);
+  await Services.NewspaperFile.clear(event.payload.newspaperId);
 });
 
 emittery.on(NEWSPAPER_ARCHIVED_EVENT, async (event) => {

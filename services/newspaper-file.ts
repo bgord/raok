@@ -76,11 +76,10 @@ export class NewspaperFile {
     return result;
   }
 
-  static async delete(newspaperId: VO.NewspaperType["id"]) {
+  static async clear(newspaperId: VO.NewspaperType["id"]) {
     const paths = NewspaperFile.getPaths(newspaperId);
 
     try {
-      await fs.unlink(paths.html);
       await fs.unlink(paths.epub);
       await fs.unlink(paths.mobi);
     } catch (error) {
