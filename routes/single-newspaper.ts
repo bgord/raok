@@ -1,7 +1,7 @@
 import express from "express";
 
 import * as VO from "../value-objects";
-import { NewspaperRepository } from "../repositories/newspaper-repository";
+import * as Repos from "../repositories";
 
 export async function SingleNewspaper(
   request: express.Request,
@@ -9,7 +9,7 @@ export async function SingleNewspaper(
   _next: express.NextFunction
 ) {
   const newspaperId = VO.NewspaperId.parse(request.params.newspaperId);
-  const newspaper = await NewspaperRepository.getById(newspaperId);
+  const newspaper = await Repos.NewspaperRepository.getById(newspaperId);
 
   return response.send(newspaper);
 }

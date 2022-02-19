@@ -4,9 +4,9 @@ import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Policies from "../policies";
+import * as Repos from "../repositories";
 
 import { Article } from "./article";
-import { EventRepository } from "../repositories/event-repository";
 
 export class Newspaper {
   id: VO.NewspaperType["id"];
@@ -29,7 +29,7 @@ export class Newspaper {
   }
 
   async build() {
-    const events = await EventRepository.find(
+    const events = await Repos.EventRepository.find(
       [
         Events.NewspaperScheduledEvent,
         Events.NewspaperGenerateEvent,
@@ -90,7 +90,7 @@ export class Newspaper {
 
     const newspaperId = VO.NewspaperId.parse(UUID.generate());
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         stream: Newspaper.getStream(newspaperId),
@@ -115,7 +115,7 @@ export class Newspaper {
         articles: this.articles,
       }).create();
 
-      await EventRepository.save(
+      await Repos.EventRepository.save(
         Events.NewspaperGenerateEvent.parse({
           name: Events.NEWSPAPER_GENERATED_EVENT,
           stream: this.stream,
@@ -125,7 +125,7 @@ export class Newspaper {
       );
     } catch (error) {
       Reporter.raw("Newspaper#generate", error);
-      await EventRepository.save(
+      await Repos.EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
@@ -147,7 +147,7 @@ export class Newspaper {
         Services.NewspaperFile.getAttachment(this.id)
       );
 
-      await EventRepository.save(
+      await Repos.EventRepository.save(
         Events.NewspaperSentEvent.parse({
           name: Events.NEWSPAPER_SENT_EVENT,
           stream: this.stream,
@@ -161,7 +161,7 @@ export class Newspaper {
       );
     } catch (error) {
       Reporter.raw("newspaper_error", error);
-      await EventRepository.save(
+      await Repos.EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
@@ -178,7 +178,7 @@ export class Newspaper {
       to: VO.NewspaperStatusEnum.archived,
     });
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.NewspaperArchivedEvent.parse({
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
@@ -202,7 +202,7 @@ export class Newspaper {
       return;
     }
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.NewspaperArchivedEvent.parse({
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
@@ -218,7 +218,7 @@ export class Newspaper {
       to: VO.NewspaperStatusEnum.scheduled,
     });
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         version: 1,

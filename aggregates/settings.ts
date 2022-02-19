@@ -1,7 +1,7 @@
 import * as Events from "../events";
 
 import * as VO from "../value-objects";
-import { EventRepository } from "../repositories/event-repository";
+import * as Repos from "../repositories";
 
 export class Settings {
   stream: Events.StreamType;
@@ -15,7 +15,7 @@ export class Settings {
   }
 
   async build() {
-    const events = await EventRepository.find(
+    const events = await Repos.EventRepository.find(
       [
         Events.ArticlesToReviewNotificationsDisabledEvent,
         Events.ArticlesToReviewNotificationsEnabledEvent,
@@ -49,7 +49,7 @@ export class Settings {
   async disableArticlesToReviewNotification() {
     if (!this.isArticlesToReviewNotificationEnabled) return;
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationsDisabledEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT,
         version: 1,
@@ -62,7 +62,7 @@ export class Settings {
   async enableArticlesToReviewNotification() {
     if (this.isArticlesToReviewNotificationEnabled) return;
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationsEnabledEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT,
         version: 1,
@@ -77,7 +77,7 @@ export class Settings {
 
     if (this.articlesToReviewNotificationHour === hour) return;
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationHourSetEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT,
         version: 1,

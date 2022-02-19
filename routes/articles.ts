@@ -1,12 +1,13 @@
 import express from "express";
-import { ArticleRepository } from "../repositories/article-repository";
+
+import * as Repos from "../repositories";
 
 export async function Articles(
   _request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const articles = await ArticleRepository.getAllNonProcessed();
+  const articles = await Repos.ArticleRepository.getAllNonProcessed();
 
   return response.send(articles);
 }

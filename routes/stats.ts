@@ -1,12 +1,13 @@
 import express from "express";
-import { StatsRepository } from "../repositories/stats-repository";
+
+import * as Repos from "../repositories";
 
 export async function Stats(
   _request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const stats = await StatsRepository.getAll();
+  const stats = await Repos.StatsRepository.getAll();
 
   return response.send(stats);
 }

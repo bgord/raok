@@ -4,8 +4,7 @@ import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
 import * as Services from "../services";
-
-import { EventRepository } from "../repositories/event-repository";
+import * as Repos from "../repositories";
 
 export class Article {
   id: VO.ArticleType["id"];
@@ -20,7 +19,7 @@ export class Article {
   }
 
   async build() {
-    const events = await EventRepository.find(
+    const events = await Repos.EventRepository.find(
       [
         Events.ArticleAddedEvent,
         Events.ArticleDeletedEvent,
@@ -90,7 +89,7 @@ export class Article {
 
     const metatags = await Services.ArticleMetatagsScraper.get(newArticle.url);
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticleAddedEvent.parse({
         name: Events.ARTICLE_ADDED_EVENT,
         stream: Article.getStream(newArticleId),
@@ -115,7 +114,7 @@ export class Article {
       entity: this.entity as VO.ArticleType,
     });
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticleDeletedEvent.parse({
         name: Events.ARTICLE_DELETED_EVENT,
         stream: this.stream,
@@ -133,7 +132,7 @@ export class Article {
       to: VO.ArticleStatusEnum.in_progress,
     });
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticleLockedEvent.parse({
         name: Events.ARTICLE_LOCKED_EVENT,
         stream: this.stream,
@@ -151,7 +150,7 @@ export class Article {
       to: VO.ArticleStatusEnum.processed,
     });
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticleProcessedEvent.parse({
         name: Events.ARTICLE_PROCESSED_EVENT,
         stream: this.stream,
@@ -166,7 +165,7 @@ export class Article {
 
     await Policies.FavouriteArticle.perform({ entity: this.entity });
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticleAddedToFavouritesEvent.parse({
         name: Events.ARTICLE_ADDED_TO_FAVOURITES,
         stream: this.stream,
@@ -181,7 +180,7 @@ export class Article {
 
     await Policies.UnfavouriteArticle.perform({ entity: this.entity });
 
-    await EventRepository.save(
+    await Repos.EventRepository.save(
       Events.ArticleDeletedFromFavouritesEvent.parse({
         name: Events.ARTICLE_DELETED_FROM_FAVOURITES,
         stream: this.stream,

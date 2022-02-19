@@ -2,8 +2,7 @@ import { Mailer } from "@bgord/node";
 
 import { Settings } from "../aggregates/settings";
 
-import { ArticleRepository } from "../repositories/article-repository";
-
+import * as Repos from "../repositories";
 import * as VO from "../value-objects";
 import { Env } from "../env";
 
@@ -25,7 +24,7 @@ export class ArticlesToReviewNotifier {
 
   async build() {
     this.numberOfArticlesToReview =
-      await ArticleRepository.getNumberOfNonProcessed();
+      await Repos.ArticleRepository.getNumberOfNonProcessed();
 
     return this;
   }

@@ -1,13 +1,13 @@
 import express from "express";
 
-import { NewspaperRepository } from "../repositories/newspaper-repository";
+import * as Repos from "../repositories";
 
 export async function Newspapers(
   _request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const newspapers = await NewspaperRepository.getAllNonArchived();
+  const newspapers = await Repos.NewspaperRepository.getAllNonArchived();
 
   return response.send(newspapers);
 }

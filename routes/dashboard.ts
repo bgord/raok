@@ -2,11 +2,7 @@ import express from "express";
 import render from "preact-render-to-string";
 
 import * as Services from "../services";
-import { ArticleRepository } from "../repositories/article-repository";
-import { NewspaperRepository } from "../repositories/newspaper-repository";
-import { StatsRepository } from "../repositories/stats-repository";
-import { SettingsRepository } from "../repositories/settings-repository";
-import { BuildRepository } from "../repositories/build-repository";
+import * as Repos from "../repositories";
 
 import { App } from "../frontend/app";
 
@@ -16,14 +12,14 @@ export async function Dashboard(
   _next: express.NextFunction
 ) {
   const state = {
-    ...BuildRepository.getAll(),
-    archiveArticles: await ArticleRepository.getAll(),
-    archiveNewspapers: await NewspaperRepository.getAll(),
-    articles: await ArticleRepository.getAllNonProcessed(),
-    favouriteArticles: await ArticleRepository.getFavourite(),
-    newspapers: await NewspaperRepository.getAllNonArchived(),
-    settings: await SettingsRepository.getAll(),
-    stats: await StatsRepository.getAll(),
+    ...Repos.BuildRepository.getAll(),
+    archiveArticles: await Repos.ArticleRepository.getAll(),
+    archiveNewspapers: await Repos.NewspaperRepository.getAll(),
+    articles: await Repos.ArticleRepository.getAllNonProcessed(),
+    favouriteArticles: await Repos.ArticleRepository.getFavourite(),
+    newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
+    settings: await Repos.SettingsRepository.getAll(),
+    stats: await Repos.StatsRepository.getAll(),
   };
 
   const frontend = render(App({ ...state, url: request.url }));

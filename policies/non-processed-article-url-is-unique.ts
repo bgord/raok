@@ -1,8 +1,7 @@
 import { Policy } from "@bgord/node";
 
 import * as VO from "../value-objects";
-
-import { ArticleRepository } from "../repositories/article-repository";
+import * as Repos from "../repositories";
 
 class NonProcessedArticleUrlIsNotUniqueError extends Error {
   constructor() {
@@ -23,7 +22,7 @@ class NonProcessedArticleUrlIsUniqueFactory extends Policy<NonProcessedArticleUr
     config: NonProcessedArticleUrlIsUniqueConfigType
   ): Promise<boolean> {
     const numbersOfNonProcessedArticlesWithUrl =
-      await ArticleRepository.getNumbersOfNonProcessedArticlesWithUrl(
+      await Repos.ArticleRepository.getNumbersOfNonProcessedArticlesWithUrl(
         config.articleUrl
       );
 

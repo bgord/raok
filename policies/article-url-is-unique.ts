@@ -1,8 +1,7 @@
 import { Policy } from "@bgord/node";
 
 import * as VO from "../value-objects";
-
-import { ArticleRepository } from "../repositories/article-repository";
+import * as Repos from "../repositories";
 
 class ArticleUrlIsNotUniqueError extends Error {
   constructor() {
@@ -18,7 +17,9 @@ type ArticleUrlIsUniqueConfigType = {
 class ArticleUrlIsUniqueFactory extends Policy<ArticleUrlIsUniqueConfigType> {
   async fails(config: ArticleUrlIsUniqueConfigType) {
     const numbersOfArticlesWithUrl =
-      await ArticleRepository.getNumbersOfArticlesWithUrl(config.articleUrl);
+      await Repos.ArticleRepository.getNumbersOfArticlesWithUrl(
+        config.articleUrl
+      );
 
     return numbersOfArticlesWithUrl > 0;
   }
