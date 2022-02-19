@@ -1,6 +1,5 @@
 import express from "express";
 import render from "preact-render-to-string";
-import serialize from "serialize-javascript";
 
 import * as Services from "../services";
 import { ArticleRepository } from "../repositories/article-repository";
@@ -29,10 +28,7 @@ export async function Dashboard(
 
   const frontend = render(App({ ...state, url: request.url }));
 
-  const html = Services.Html.process({
-    content: frontend,
-    state: serialize(state, { isJSON: true }),
-  });
+  const html = Services.Html.process({ frontend, state });
 
   return response.send(html);
 }

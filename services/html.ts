@@ -1,5 +1,14 @@
+import serialize from "serialize-javascript";
+
+type HtmlConfigType = {
+  frontend: string;
+  state: Record<string, any>;
+};
+
 export class Html {
-  static process(config: { content: string; state: string }): string {
+  static process(config: HtmlConfigType): string {
+    const serializedState = Html.serializeState(config.state);
+
     return /* HTML */ `
       <html lang="en">
         <head>
@@ -68,15 +77,19 @@ export class Html {
         </head>
 
         <body data-mx="auto">
-          <div id="root">${config.content}</div>
+          <div id="root">${config.frontend}</div>
 
           <script>
-            window.__STATE__ = ${config.state};
+            window.__STATE__ = ${serializedState};
           </script>
 
           <script async src="/index.js"></script>
         </body>
       </html>
     `;
+  }
+
+  private static serializeState(state: HtmlConfigType["state"]): string {
+    return serialize(state, { isJSON: true });
   }
 }
