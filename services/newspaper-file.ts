@@ -97,14 +97,20 @@ export class NewspaperFile {
   }
 
   static getAttachment(id: VO.NewspaperType["id"]) {
-    const path = NewspaperFile.getPaths(id).mobi;
+    const { mobi } = NewspaperFile.getPaths(id);
 
-    return { path, originalFilename: "newspaper" };
+    return { path: mobi, originalFilename: "newspaper" };
   }
 
   static async read(id: VO.NewspaperType["id"]): Promise<string | null> {
-    const path = NewspaperFile.getPaths(id).html;
+    const { html } = NewspaperFile.getPaths(id);
 
-    return (await fs.readFile(path)).toString();
+    try {
+      const file = await fs.readFile(html);
+      return file.toString();
+    } catch (error) {
+      Reporter.raw("NewspaperFile#read", error);
+      return null;
+    }
   }
 }
