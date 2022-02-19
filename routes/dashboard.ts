@@ -17,21 +17,16 @@ export async function Dashboard(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const articles = await ArticleRepository.getAllNonProcessed();
-  const archiveArticles = await ArticleRepository.getAll();
-  const favouriteArticles = await ArticleRepository.getFavourite();
-  const newspapers = await NewspaperRepository.getAllNonArchived();
-  const stats = await StatsRepository.getAll();
-  const archiveNewspapers = await NewspaperRepository.getAll();
   const settings = await new Settings().build();
 
   const state = {
-    stats,
-    articles,
-    newspapers,
-    favouriteArticles,
-    archiveArticles,
-    archiveNewspapers,
+    BUILD_DATE: Date.now(),
+    BUILD_VERSION: `v${packageJson.version}`,
+    archiveArticles: await ArticleRepository.getAll(),
+    archiveNewspapers: await NewspaperRepository.getAll(),
+    articles: await ArticleRepository.getAllNonProcessed(),
+    favouriteArticles: await ArticleRepository.getFavourite(),
+    newspapers: await NewspaperRepository.getAllNonArchived(),
     settings: {
       hours: VO.Hour.listFormatted(),
       articlesToReviewNotificationHour: VO.Hour.format(
@@ -40,8 +35,7 @@ export async function Dashboard(
       isArticlesToReviewNotificationEnabled:
         settings.isArticlesToReviewNotificationEnabled,
     },
-    BUILD_DATE: Date.now(),
-    BUILD_VERSION: `v${packageJson.version}`,
+    stats: await StatsRepository.getAll(),
   };
 
   const frontend = render(App({ ...state, url: request.url }));
