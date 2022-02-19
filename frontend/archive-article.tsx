@@ -32,6 +32,7 @@ export function ArchiveArticle(props: ArticleType) {
             data-width="100%"
             data-ml={props.status === "processed" && "12"}
             data-transform="truncate"
+            title={props.title}
           >
             {props.title ?? "-"}
           </div>
@@ -40,11 +41,12 @@ export function ArchiveArticle(props: ArticleType) {
           target="_blank"
           class="c-link"
           data-color="gray-700"
-          data-transform="truncate"
           href="{{ this.url }}"
           data-mr="12"
           data-width="100%"
           data-fs="14"
+          data-transform="truncate"
+          title={props.url}
         >
           {props.url}
         </a>

@@ -55,8 +55,9 @@ export function Article(
             data-width="100%"
             data-mb="3"
             data-md-mb="0"
-            data-transform="truncate"
             data-md-fs="14"
+            data-transform="truncate"
+            title={props.title}
           >
             {props.title ?? "-"}
           </div>

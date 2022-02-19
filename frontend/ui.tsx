@@ -24,6 +24,7 @@ export function Link(props: h.JSX.IntrinsicElements["a"]) {
       class="c-link"
       data-color="gray-700"
       data-transform="truncate"
+      title={props.href}
       {...props}
     />
   );
