@@ -21,6 +21,7 @@ export function Link(props: h.JSX.IntrinsicElements["a"]) {
     /* eslint-disable jsx-a11y/anchor-has-content */
     <a
       target="_blank"
+      rel="noopener noreferrer"
       class="c-link"
       data-color="gray-700"
       data-transform="truncate"
