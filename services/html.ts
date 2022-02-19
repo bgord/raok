@@ -38,23 +38,6 @@ export class Html {
           <link rel="manifest" href="/site.webmanifest" />
 
           <style>
-            *[data-anima="appeared"] {
-              transition: all var(--duration, 300ms);
-            }
-            *[data-anima="hidding"] {
-              transition: all var(--duration, 300ms);
-            }
-
-            *[data-anima-style="opacity"][data-anima="appearing"] {
-              opacity: 0;
-            }
-            *[data-anima-style="opacity"][data-anima="appeared"] {
-              opacity: 1;
-            }
-            *[data-anima-style="opacity"][data-anima="hidding"] {
-              opacity: 0;
-            }
-
             @keyframes rotate {
               from {
                 transform: rotate(0);
