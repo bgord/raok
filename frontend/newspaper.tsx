@@ -117,7 +117,7 @@ export function Newspaper(props: NewspaperProps) {
                 details.disable();
               }}
             >
-              <button type="submit" class="c-button" data-variant="primary">
+              <button type="submit" class="c-button" data-variant="secondary">
                 Resend
               </button>
             </form>
@@ -125,6 +125,18 @@ export function Newspaper(props: NewspaperProps) {
 
           {["delivered", "error"].includes(props.status) && (
             <ArchiveNewspaper id={props.id} data-mr="12" />
+          )}
+
+          {props.status === "delivered" && (
+            <UI.Link
+              href={`/newspaper/${props.id}`}
+              target="_blank"
+              data-mr="auto"
+            >
+              <button type="button" class="c-button" data-variant="bare">
+                Read online
+              </button>
+            </UI.Link>
           )}
 
           <span data-mt="6" data-fs="14" data-color="gray-400">
