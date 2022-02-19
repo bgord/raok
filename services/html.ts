@@ -2,7 +2,7 @@ import serialize from "serialize-javascript";
 
 type HtmlConfigType = {
   frontend: string;
-  state: Record<string, any>;
+  state: Record<string, unknown>;
 };
 
 export class Html {

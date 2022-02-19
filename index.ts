@@ -13,6 +13,7 @@ import { ResendNewspaper } from "./routes/resend-newspaper";
 import { Articles } from "./routes/articles";
 import { Newspapers } from "./routes/newspapers";
 import { SingleNewspaper } from "./routes/single-newspaper";
+import { NewspaperRead } from "./routes/newspaper-read";
 import { Stats } from "./routes/stats";
 import { SendArbitraryFile } from "./routes/send-arbitrary-file";
 import { FavouriteArticles } from "./routes/favourite-articles";
@@ -78,6 +79,11 @@ app.get(
   "/newspaper/:newspaperId",
   AuthShield.verify,
   bg.Route(SingleNewspaper)
+);
+app.get(
+  "/newspaper/:newspaperId/read",
+  AuthShield.verify,
+  bg.Route(NewspaperRead)
 );
 app.post("/create-newspaper", AuthShield.verify, bg.Route(CreateNewspaper));
 app.post(
