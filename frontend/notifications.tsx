@@ -11,10 +11,12 @@ export function Notifications() {
   return (
     <AnimaList
       data-position="fixed"
+      data-bottom="0"
+      data-right="0"
       data-mb="12"
       data-pt="12"
       data-width="100%"
-      style={{ bottom: 0, right: 0, maxWidth: "290px" }}
+      style={{ maxWidth: "290px" }}
     >
       {notifications.items.map((notification) => (
         <Anima style="opacity" {...notification.props}>

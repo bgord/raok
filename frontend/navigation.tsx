@@ -71,8 +71,8 @@ function NavigationMobile() {
           data-direction="column"
           data-bg="gray-800"
           data-position="fixed"
+          data-inset="0"
           data-z="1"
-          style={{ top: 0, right: 0, bottom: 0, left: 0 }}
         >
           <div data-display="flex" data-cross="center" data-py="6" data-px="12">
             <NavigationLogo onClick={navigation.disable} />

@@ -155,14 +155,16 @@ export function ArchiveArticles(
             style="min-width: 280px; padding-right: 36px"
           />
           <img
-            data-position="absolute"
             loading="eager"
             height="34"
             width="34"
             src="/icon-search.svg"
             alt=""
+            data-position="absolute"
+            data-top="0"
+            data-right="0"
             data-p="6"
-            style="top: 1px; right: 1px; background: white"
+            data-bg="white"
           />
         </div>
 

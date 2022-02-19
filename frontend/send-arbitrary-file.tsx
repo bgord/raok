@@ -7,13 +7,6 @@ import { Header } from "./ui";
 import { useFile, UseFileState } from "./hooks";
 import { useNotificationTrigger } from "./notifications-context";
 
-const style = {
-  width: "0.1px",
-  height: "0.1px",
-  opacity: "0",
-  zIndex: "-1",
-};
-
 export function SendArbitraryFile() {
   const notify = useNotificationTrigger();
 
@@ -63,7 +56,8 @@ export function SendArbitraryFile() {
         onInput={file.actions.selectFile}
         data-overflow="hidden"
         data-position="absolute"
-        style={style}
+        data-z="-1"
+        style={{ width: "0.1px", height: "0.1px", opacity: "0" }}
       />
 
       <button
