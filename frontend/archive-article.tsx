@@ -37,19 +37,15 @@ export function ArchiveArticle(props: ArticleType) {
             {props.title ?? "-"}
           </div>
         </div>
-        <a
-          target="_blank"
-          class="c-link"
-          data-color="gray-700"
-          href="{{ this.url }}"
+        <UI.Link
+          href={props.url}
           data-mr="12"
           data-width="100%"
           data-fs="14"
-          data-transform="truncate"
           title={props.url}
         >
           {props.url}
-        </a>
+        </UI.Link>
       </div>
 
       <div
