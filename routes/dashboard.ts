@@ -1,13 +1,13 @@
 import express from "express";
 import render from "preact-render-to-string";
 import serialize from "serialize-javascript";
-import packageJson from "../package.json";
 
 import * as Services from "../services";
 import { ArticleRepository } from "../repositories/article-repository";
 import { NewspaperRepository } from "../repositories/newspaper-repository";
 import { StatsRepository } from "../repositories/stats-repository";
 import { SettingsRepository } from "../repositories/settings-repository";
+import { BuildRepository } from "../repositories/build-repository";
 
 import { App } from "../frontend/app";
 
@@ -17,8 +17,7 @@ export async function Dashboard(
   _next: express.NextFunction
 ) {
   const state = {
-    BUILD_DATE: Date.now(),
-    BUILD_VERSION: `v${packageJson.version}`,
+    ...BuildRepository.getAll(),
     archiveArticles: await ArticleRepository.getAll(),
     archiveNewspapers: await NewspaperRepository.getAll(),
     articles: await ArticleRepository.getAllNonProcessed(),
