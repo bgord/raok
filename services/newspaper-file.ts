@@ -3,7 +3,6 @@ import path from "path";
 import { promises as fs } from "fs";
 
 import * as VO from "../value-objects";
-import * as Services from "../services";
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";
 
@@ -98,8 +97,14 @@ export class NewspaperFile {
   }
 
   static getAttachment(id: VO.NewspaperType["id"]) {
-    const path = Services.NewspaperFile.getPaths(id).mobi;
+    const path = NewspaperFile.getPaths(id).mobi;
 
     return { path, originalFilename: "newspaper" };
+  }
+
+  static async read(id: VO.NewspaperType["id"]): Promise<string | null> {
+    const path = NewspaperFile.getPaths(id).html;
+
+    return (await fs.readFile(path)).toString();
   }
 }

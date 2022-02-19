@@ -129,7 +129,7 @@ export function Newspaper(props: NewspaperProps) {
 
           {props.status === "delivered" && (
             <UI.Link
-              href={`/newspaper/${props.id}`}
+              href={`/newspaper/${props.id}/read`}
               target="_blank"
               data-mr="auto"
             >
