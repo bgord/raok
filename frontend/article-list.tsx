@@ -1,13 +1,12 @@
 import { h } from "preact";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useToggle } from "@bgord/frontend";
+import { useToggle, useList } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import { ArticleType } from "./types";
 import { AnimaList, useAnimaList, Anima } from "./anima";
 import { useNotificationTrigger } from "./notifications-context";
-import { useList } from "./hooks";
 
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";

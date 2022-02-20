@@ -1,11 +1,11 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
+import { UseListActionsType } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import { ArticleType } from "./types";
-import { UseListActionsType } from "./hooks";
 import { getAnimaProps } from "./anima";
 import { useNotificationTrigger } from "./notifications-context";
 
