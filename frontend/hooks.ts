@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useState, useEffect, StateUpdater } from "preact/hooks";
+import { useState, StateUpdater } from "preact/hooks";
 
 export type UseListActionsType<T> = {
   clear: VoidFunction;
@@ -115,46 +115,6 @@ export function useFile(
   }
 
   return { state, data: null, actions };
-}
-
-export function useExpandableList(config: { max: number; length: number }) {
-  const numberOfExcessiveElements = config.length - config.max;
-  const areThereExcessiveElements = config.length > config.max;
-
-  function getState() {
-    return areThereExcessiveElements ? "contracted" : "expanded";
-  }
-
-  const [state, setState] = useState<"contracted" | "expanded">(getState);
-
-  useEffect(() => setState(getState()), [config.length, config.max]);
-
-  function showMore() {
-    if (state === "contracted") {
-      setState("expanded");
-    }
-  }
-
-  function showLess() {
-    if (state === "expanded") {
-      setState("contracted");
-    }
-  }
-
-  function filterFn(_element: any, index: number) {
-    if (state === "expanded") return true;
-    return index < config.max;
-  }
-
-  return {
-    state,
-    displayShowMore: state === "contracted",
-    displayShowLess: state === "expanded" && areThereExcessiveElements,
-    showMore,
-    showLess,
-    numberOfExcessiveElements,
-    filterFn,
-  };
 }
 
 export function useSearch(): {
