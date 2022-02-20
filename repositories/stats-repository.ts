@@ -23,7 +23,7 @@ export class StatsRepository {
     };
   }
 
-  static async kv_incrementCreatedArticles() {
+  static async incrementCreatedArticles() {
     return prisma.statsKeyValue.upsert({
       where: { key: "createdArticles" },
       update: { value: { increment: 1 } },
@@ -31,7 +31,7 @@ export class StatsRepository {
     });
   }
 
-  static async kv_incrementSentNewspapers() {
+  static async incrementSentNewspapers() {
     return prisma.statsKeyValue.upsert({
       where: { key: "sentNewspapers" },
       update: { value: { increment: 1 } },
@@ -39,7 +39,7 @@ export class StatsRepository {
     });
   }
 
-  static async kv_updateLastFeedlyImport(timestamp: number) {
+  static async updateLastFeedlyImport(timestamp: number) {
     return prisma.statsKeyValue.upsert({
       where: { key: "lastFeedlyImport" },
       update: { value: timestamp },

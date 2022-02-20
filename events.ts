@@ -231,10 +231,10 @@ export const emittery = new Emittery<{
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
   await ArticleRepository.create(event.payload);
-  await StatsRepository.kv_incrementCreatedArticles();
+  await StatsRepository.incrementCreatedArticles();
 
   if (event.payload.source === VO.ArticleSourceEnum.feedly) {
-    await StatsRepository.kv_updateLastFeedlyImport(event.payload.createdAt);
+    await StatsRepository.updateLastFeedlyImport(event.payload.createdAt);
   }
 });
 
@@ -297,7 +297,7 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
-  await StatsRepository.kv_incrementSentNewspapers();
+  await StatsRepository.incrementSentNewspapers();
 
   await NewspaperRepository.updateStatus(
     event.payload.newspaperId,
