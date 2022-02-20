@@ -1,7 +1,6 @@
 import { h, cloneElement } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import delay from "lodash/delay";
-import eq from "lodash/isEqual";
 
 import { usePreviousValue } from "./hooks";
 
@@ -96,7 +95,7 @@ export function useAnimaList<T extends { id: string }>(
   for (const item of list) {
     const wasAdded = !officialList
       .map((x) => x.item)
-      .some((x) => eq(item.id, x.id));
+      .some((x) => item.id === x.id);
 
     if (wasAdded) added.push(item);
   }
@@ -120,7 +119,7 @@ export function useAnimaList<T extends { id: string }>(
   const deleted: T[] = [];
 
   for (const { item } of officialList) {
-    const wasDeleted = list.every((x) => !eq(x.id, item.id));
+    const wasDeleted = list.every((x) => x.id !== item.id);
 
     if (wasDeleted) deleted.push(item);
   }
@@ -130,7 +129,7 @@ export function useAnimaList<T extends { id: string }>(
 
     setOfficialList((officialList) =>
       officialList.map((x) => {
-        const wasDeleted = deleted.some((item) => eq(item.id, x.item.id));
+        const wasDeleted = deleted.some((item) => item.id === x.item.id);
 
         return wasDeleted ? { ...x, props: { visible: false } } : x;
       })
