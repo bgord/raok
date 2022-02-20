@@ -11,15 +11,19 @@ export async function Dashboard(
   response: express.Response,
   _next: express.NextFunction
 ) {
+  const timeZoneOffsetMs = request.timeZoneOffset.miliseconds;
+
   const state = {
     ...Repos.BuildRepository.getAll(),
     archiveArticles: await Repos.ArticleRepository.getAll(),
-    archiveNewspapers: await Repos.NewspaperRepository.getAll(),
+    archiveNewspapers: await Repos.NewspaperRepository.getAll(timeZoneOffsetMs),
     articles: await Repos.ArticleRepository.getAllNonProcessed(),
     favouriteArticles: await Repos.ArticleRepository.getFavourite(),
-    newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
+    newspapers: await Repos.NewspaperRepository.getAllNonArchived(
+      timeZoneOffsetMs
+    ),
     settings: await Repos.SettingsRepository.getAll(),
-    stats: await Repos.StatsRepository.getAll(),
+    stats: await Repos.StatsRepository.getAll(timeZoneOffsetMs),
   };
 
   const frontend = render(App({ ...state, url: request.url }));

@@ -9,7 +9,11 @@ export async function SingleNewspaper(
   _next: express.NextFunction
 ) {
   const newspaperId = VO.NewspaperId.parse(request.params.newspaperId);
-  const newspaper = await Repos.NewspaperRepository.getById(newspaperId);
+
+  const newspaper = await Repos.NewspaperRepository.getById(
+    newspaperId,
+    request.timeZoneOffset.miliseconds
+  );
 
   return response.send(newspaper);
 }

@@ -32,15 +32,19 @@ export type NewspaperType = {
   id: string;
   title: string;
   status: string;
-  sentAt: number | null;
+  sentAt: {
+    raw: number;
+    formatted: string | null;
+  };
   scheduledAt: number;
+  duration: string;
   articles: ArticleType[];
 };
 
 export type StatsType = {
   createdArticles: number;
   sentNewspapers: number;
-  lastFeedlyImport: number;
+  lastFeedlyImport: string | null;
 };
 
 type Hour = {

@@ -27,7 +27,7 @@ export function ArchiveNewspapers(
 
   const newspapers = (archiveNewspapers.data ?? [])
     .filter((newspaper) => statusFilter.filterFn(newspaper.status))
-    .filter((newspaper) => sentAtFilter.filterFn(newspaper.sentAt));
+    .filter((newspaper) => sentAtFilter.filterFn(newspaper.sentAt.raw));
 
   const numberOfNewspapers = newspapers.length;
 

@@ -1,12 +1,13 @@
 import { PrismaClient, Newspaper, Article } from "@prisma/client";
-import { format } from "date-fns";
+import { Schema } from "@bgord/node";
+import { format, formatDistanceToNow, formatDistanceStrict } from "date-fns";
 
 import * as VO from "../value-objects";
 
 const prisma = new PrismaClient();
 
 export class NewspaperRepository {
-  static async getAll() {
+  static async getAll(timeZoneOffsetMs: Schema.TimeZoneOffsetType) {
     const result = await prisma.newspaper.findMany({
       where: {
         status: {
@@ -21,26 +22,35 @@ export class NewspaperRepository {
       include: { articles: true },
     });
 
-    return result.map(NewspaperRepository._mapper);
+    return result.map((newspaper) =>
+      NewspaperRepository._mapper(newspaper, timeZoneOffsetMs)
+    );
   }
 
-  static async getAllNonArchived() {
+  static async getAllNonArchived(timeZoneOffsetMs: Schema.TimeZoneOffsetType) {
     const result = await prisma.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { scheduledAt: "desc" },
       include: { articles: true },
     });
 
-    return result.map(NewspaperRepository._mapper);
+    return result.map((newspaper) =>
+      NewspaperRepository._mapper(newspaper, timeZoneOffsetMs)
+    );
   }
 
-  static async getById(newspaperId: VO.NewspaperIdType) {
+  static async getById(
+    newspaperId: VO.NewspaperIdType,
+    timeZoneOffsetMs: Schema.TimeZoneOffsetType
+  ) {
     const result = await prisma.newspaper.findFirst({
       where: { id: newspaperId },
       include: { articles: true },
     });
 
-    return result ? NewspaperRepository._mapper(result) : null;
+    return result
+      ? NewspaperRepository._mapper(result, timeZoneOffsetMs)
+      : null;
   }
 
   static async create(newspaper: {
@@ -75,10 +85,27 @@ export class NewspaperRepository {
     });
   }
 
-  static _mapper(newspaper: Newspaper & { articles: Article[] }) {
+  static _mapper(
+    newspaper: Newspaper & { articles: Article[] },
+    timeZoneOffsetMs: Schema.TimeZoneOffsetType
+  ) {
+    const sentAtRaw = newspaper.sentAt ?? 0;
+    const sentAtFormatted = formatDistanceToNow(sentAtRaw + timeZoneOffsetMs, {
+      addSuffix: true,
+    });
+
     return {
       ...newspaper,
+
+      sentAt: {
+        raw: sentAtRaw,
+        formatted: sentAtRaw === 0 ? sentAtFormatted : null,
+      },
+
+      duration: formatDistanceStrict(sentAtRaw, newspaper.scheduledAt),
+
       title: `Newspaper ${format(newspaper.scheduledAt, "yyyy-MM-dd-hh-mm")}`,
+
       articles: newspaper.articles.map((article) => ({
         ...article,
         title: article.title ?? "-",

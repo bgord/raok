@@ -1,6 +1,5 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 import * as api from "./api";
 import { Header } from "./ui";
@@ -9,14 +8,9 @@ import { StatsType } from "./types";
 export function Stats(props: { initialData: StatsType }) {
   const stats = useQuery(["stats"], api.getStats, props);
 
-  const createdArticles = stats.isSuccess ? stats.data.createdArticles : "-";
-
-  const sentNewspapers = stats.isSuccess ? stats.data.sentNewspapers : "-";
-
-  const lastFeedlyImport =
-    stats.isSuccess && stats.data.lastFeedlyImport !== 0
-      ? formatDistanceToNow(stats.data.lastFeedlyImport, { addSuffix: true })
-      : "N/A";
+  const createdArticles = stats.data?.createdArticles ?? "-";
+  const sentNewspapers = stats.data?.sentNewspapers ?? "-";
+  const lastFeedlyImport = stats.data?.lastFeedlyImport ?? "N/A";
 
   return (
     <div

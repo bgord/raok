@@ -60,7 +60,7 @@ export async function getStats(): Promise<StatsType> {
   const defaultStats: StatsType = {
     createdArticles: 0,
     sentNewspapers: 0,
-    lastFeedlyImport: 0,
+    lastFeedlyImport: null,
   };
 
   return _api("/stats", { method: "GET" }).then((response) =>

@@ -3,11 +3,13 @@ import express from "express";
 import * as Repos from "../repositories";
 
 export async function Newspapers(
-  _request: express.Request,
+  request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const newspapers = await Repos.NewspaperRepository.getAllNonArchived();
+  const newspapers = await Repos.NewspaperRepository.getAllNonArchived(
+    request.timeZoneOffset.miliseconds
+  );
 
   return response.send(newspapers);
 }
