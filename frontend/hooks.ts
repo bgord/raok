@@ -1,11 +1,5 @@
 import { h } from "preact";
-import {
-  useState,
-  useEffect,
-  StateUpdater,
-  useRef,
-  useLayoutEffect,
-} from "preact/hooks";
+import { useState, useEffect, StateUpdater } from "preact/hooks";
 
 export type UseListActionsType<T> = {
   clear: VoidFunction;
@@ -266,37 +260,4 @@ export function useTimestampFilter(config?: {
   });
 
   return timestamp;
-}
-
-export function usePreviousValue<T>(value: T) {
-  const previousValue = useRef<T | null>(null);
-
-  useEffect(() => {
-    previousValue.current = value;
-  });
-
-  return previousValue.current;
-}
-
-export function useScrollLock(condition = true) {
-  useLayoutEffect(() => {
-    if (!condition) return;
-
-    const html = document.querySelector("html") as HTMLElement;
-    const body = document.body;
-
-    // Get original overflows
-    const originalBodyOverflow = window.getComputedStyle(body).overflow;
-    const originalHtmlOverflow = window.getComputedStyle(html).overflow;
-
-    // Prevent scrolling on mount
-    body.style.overflow = "hidden";
-    html.style.overflow = "hidden";
-
-    // Re-enable scrolling when component unmounts
-    return () => {
-      body.style.overflow = originalBodyOverflow;
-      html.style.overflow = originalHtmlOverflow;
-    };
-  }, [condition]);
 }

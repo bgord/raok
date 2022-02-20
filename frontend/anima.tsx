@@ -1,7 +1,6 @@
 import { h, cloneElement } from "preact";
 import { useState, useEffect } from "preact/hooks";
-
-import { usePreviousValue } from "./hooks";
+import { usePreviousValue } from "@bgord/frontend";
 
 /* eslint-disable no-shadow */
 enum AnimaState {

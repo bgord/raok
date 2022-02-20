@@ -1,9 +1,8 @@
 import { Link } from "preact-router/match";
 import { h, Fragment } from "preact";
-import { useToggle, useWindowDimensions } from "@bgord/frontend";
+import { useToggle, useWindowDimensions, useScrollLock } from "@bgord/frontend";
 
 import * as Icons from "./icons";
-import { useScrollLock } from "./hooks";
 import { Anima } from "./anima";
 
 export function Navigation() {
