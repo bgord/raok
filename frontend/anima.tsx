@@ -2,7 +2,6 @@ import { h, cloneElement } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import delay from "lodash/delay";
 import eq from "lodash/isEqual";
-import pick from "lodash/pick";
 
 import { usePreviousValue } from "./hooks";
 
@@ -55,8 +54,12 @@ export function Anima(props: AnimaConfigType) {
   });
 }
 
-export function getAnimaProps(props: any) {
-  return pick(props, "data-anima", "data-anima-style", "style");
+export function getAnimaProps(props: Record<string, unknown>) {
+  return {
+    "data-anima": props["data-anima"],
+    "data-anima-style": props["data-anima-style"],
+    style: props.style,
+  };
 }
 
 export function AnimaList(
