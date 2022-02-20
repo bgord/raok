@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
-import { api } from "./api";
+import * as api from "./api";
 import { useSearch, useFilter, useTimestampFilter } from "./hooks";
 import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
 import { ArchiveArticle } from "./archive-article";

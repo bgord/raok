@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 
-import { api } from "./api";
+import * as api from "./api";
 import { ArticleType, NewspaperType } from "./types";
 import { useNotificationTrigger } from "./notifications-context";
 

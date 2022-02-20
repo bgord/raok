@@ -2,7 +2,7 @@ import { h } from "preact";
 import { RoutableProps } from "preact-router";
 import { useQuery } from "react-query";
 
-import { api } from "./api";
+import * as api from "./api";
 import { SettingsType } from "./types";
 
 export type InitialSettingsDataType = {

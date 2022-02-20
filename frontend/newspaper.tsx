@@ -4,7 +4,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import formatDistanceStrict from "date-fns/formatDistanceStrict";
 
 import * as UI from "./ui";
-import { api } from "./api";
+import * as api from "./api";
 import { Anima } from "./anima";
 import { NewspaperType } from "./types";
 import { useToggle } from "./hooks";

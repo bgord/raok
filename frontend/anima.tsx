@@ -52,7 +52,7 @@ export function Anima(props: AnimaConfigType) {
   });
 }
 
-export function getAnimaProps(props: Record<string, unknown>) {
+export function getAnimaProps(props: Record<string, any>) {
   return {
     "data-anima": props["data-anima"],
     "data-anima-style": props["data-anima-style"],

@@ -2,8 +2,8 @@ import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
 
+import * as api from "./api";
 import { ArticleType } from "./types";
-import { api } from "./api";
 import { useNotificationTrigger } from "./notifications-context";
 
 export function AddArticleForm() {

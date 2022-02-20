@@ -3,7 +3,7 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 
 import * as UI from "./ui";
-import { api } from "./api";
+import * as api from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
 import { useTimestampFilter, useFilter } from "./hooks";
 

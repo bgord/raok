@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
-import { api } from "./api";
+import * as api from "./api";
 import { ArticleType } from "./types";
 import { UseListActionsType } from "./hooks";
 import { getAnimaProps } from "./anima";

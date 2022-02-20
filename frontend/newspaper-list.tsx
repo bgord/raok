@@ -1,8 +1,8 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
 
+import * as api from "./api";
 import { Header } from "./ui";
-import { api } from "./api";
 import { Anima, AnimaList, useAnimaList } from "./anima";
 import { NewspaperType } from "./types";
 import { Newspaper } from "./newspaper";

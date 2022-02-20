@@ -2,7 +2,7 @@ import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
 import prettyBytes from "pretty-bytes-es5";
 
-import { api } from "./api";
+import * as api from "./api";
 import { Header } from "./ui";
 import { useFile, UseFileState } from "./hooks";
 import { useNotificationTrigger } from "./notifications-context";

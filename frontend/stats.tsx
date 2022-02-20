@@ -2,8 +2,8 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
+import * as api from "./api";
 import { Header } from "./ui";
-import { api } from "./api";
 import { StatsType } from "./types";
 
 export function Stats(props: { initialData: StatsType }) {

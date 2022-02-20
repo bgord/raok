@@ -1,9 +1,9 @@
 import { h } from "preact";
 import { useQueryClient, useQuery, useMutation } from "react-query";
 
+import * as api from "./api";
 import * as UI from "./ui";
 import { useExpandableList } from "./hooks";
-import { api } from "./api";
 import { ArticleType, NewspaperType } from "./types";
 import { Anima, AnimaList, useAnimaList } from "./anima";
 
