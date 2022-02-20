@@ -9,7 +9,10 @@ import {
 export const _api: typeof fetch = (input, init) =>
   fetch(input, {
     mode: "same-origin",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      TimeZoneOffset: new Date().getTimezoneOffset().toString(),
+    },
     redirect: "follow",
     ...init,
   });
