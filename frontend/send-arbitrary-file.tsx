@@ -1,10 +1,10 @@
 import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
 import prettyBytes from "pretty-bytes-es5";
+import { useFile, UseFileState } from "@bgord/frontend";
 
 import * as api from "./api";
 import { Header } from "./ui";
-import { useFile, UseFileState } from "./hooks";
 import { useNotificationTrigger } from "./notifications-context";
 
 export function SendArbitraryFile() {
