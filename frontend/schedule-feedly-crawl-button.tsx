@@ -1,6 +1,5 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
-import delay from "lodash/delay";
 
 import { api } from "./api";
 import { useNotificationTrigger } from "./notifications-context";
@@ -15,7 +14,7 @@ export function ScheduleFeedlyCrawlButton(
     api.scheduleFeedlyArticlesCrawl,
     {
       onSuccess() {
-        delay(scheduleFeedlyArticlesCrawl.reset, 5000);
+        setTimeout(scheduleFeedlyArticlesCrawl.reset, 5000);
         notify({ type: "success", message: "Feedly crawl scheduled" });
         queryClient.invalidateQueries("stats");
       },

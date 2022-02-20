@@ -1,6 +1,5 @@
 import { h, cloneElement } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import delay from "lodash/delay";
 
 import { usePreviousValue } from "./hooks";
 
@@ -36,11 +35,11 @@ export function Anima(props: AnimaConfigType) {
 
     if (props.visible) {
       setState(AnimaState.appearing);
-      delay(() => setState(AnimaState.appeared), 100);
+      setTimeout(() => setState(AnimaState.appeared), 100);
     } else {
       if (!previousState) return;
       setState(AnimaState.hidding);
-      delay(() => setState(AnimaState.hidden), duration);
+      setTimeout(() => setState(AnimaState.hidden), duration);
     }
   }, [props.visible]);
 

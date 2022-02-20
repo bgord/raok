@@ -1,6 +1,5 @@
 import { createContext, h } from "preact";
 import { useContext } from "preact/hooks";
-import delay from "lodash/delay";
 
 import { useList } from "./hooks";
 
@@ -31,7 +30,7 @@ function useNotificationsImplementation(): UseNotificationsReturnType {
     const id = String(Date.now());
 
     actions.add({ ...notification, id });
-    delay(() => actions.remove({ ...notification, id }), 5000);
+    setTimeout(() => actions.remove({ ...notification, id }), 5000);
   }
 
   return [
