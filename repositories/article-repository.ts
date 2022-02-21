@@ -1,4 +1,5 @@
 import { PrismaClient, Article } from "@prisma/client";
+import _ from "lodash";
 
 import * as VO from "../value-objects";
 
@@ -39,7 +40,9 @@ export class ArticleRepository {
       orderBy: { favouritedAt: "asc" },
     });
 
-    return result.map(ArticleRepository._mapper);
+    return result
+      .map(ArticleRepository._mapper)
+      .map((article) => _.pick(article, "id", "url", "title"));
   }
 
   static async create(article: {

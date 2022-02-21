@@ -7,13 +7,18 @@ import { Stats } from "./stats";
 import { SendArbitraryFile } from "./send-arbitrary-file";
 import { FavouriteArticles } from "./favourite-articles";
 
-import { StatsType, ArticleType, NewspaperType } from "./types";
+import {
+  StatsType,
+  ArticleType,
+  FavouriteArticleType,
+  NewspaperType,
+} from "./types";
 
 export type InitialDashboardDataType = {
   stats: StatsType;
   articles: ArticleType[];
   newspapers: NewspaperType[];
-  favouriteArticles: ArticleType[];
+  favouriteArticles: FavouriteArticleType[];
 };
 
 export function Dashboard(props: InitialDashboardDataType & RoutableProps) {

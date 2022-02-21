@@ -26,6 +26,8 @@ export type ArticleType = {
   createdAt: number;
 };
 
+export type FavouriteArticleType = Pick<ArticleType, "id" | "url" | "title">;
+
 export type ArticlePayloadType = { url: ArticleType["url"] };
 
 export type NewspaperType = {

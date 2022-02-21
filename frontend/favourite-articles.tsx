@@ -4,9 +4,11 @@ import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
 import * as UI from "./ui";
-import { ArticleType, NewspaperType } from "./types";
+import { FavouriteArticleType, NewspaperType } from "./types";
 
-export function FavouriteArticles(props: { initialData: ArticleType[] }) {
+export function FavouriteArticles(props: {
+  initialData: FavouriteArticleType[];
+}) {
   const _articles = useQuery(
     ["favourite-articles"],
     api.getFavouriteArticles,
