@@ -57,3 +57,9 @@ export type SettingsType = {
   articlesToReviewNotificationHour: Hour;
   isArticlesToReviewNotificationEnabled: boolean;
 };
+
+export type NotificationType = {
+  id: string;
+  type: string;
+  message: string;
+};

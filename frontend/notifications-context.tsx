@@ -2,29 +2,23 @@ import { createContext, h } from "preact";
 import { useContext } from "preact/hooks";
 import { useList } from "@bgord/frontend";
 
-type NotificationType = "success" | "error";
-
-type Notification = {
-  id: string;
-  type: NotificationType;
-  message: string;
-};
+import { NotificationType } from "./types";
 
 type UseNotificationsReturnType = [
-  Notification[],
+  NotificationType[],
   {
-    add: (notification: Omit<Notification, "id" | "state">) => void;
-    remove: (notification: Notification) => void;
+    add: (notification: Omit<NotificationType, "id" | "state">) => void;
+    remove: (notification: NotificationType) => void;
     clear: VoidFunction;
   }
 ];
 
 function useNotificationsImplementation(): UseNotificationsReturnType {
-  const [notifications, actions] = useList<Notification>({
+  const [notifications, actions] = useList<NotificationType>({
     comparisonFn: (a, b) => a.id === b.id,
   });
 
-  function add(notification: Omit<Notification, "id">) {
+  function add(notification: Omit<NotificationType, "id">) {
     const id = String(Date.now());
 
     actions.add({ ...notification, id });
