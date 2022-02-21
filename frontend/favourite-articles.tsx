@@ -1,11 +1,11 @@
 import { h } from "preact";
 import { useQueryClient, useQuery, useMutation } from "react-query";
-import { useExpandableList, useToastTrigger } from "@bgord/frontend";
+import { useExpandableList, useToastTrigger, Anima } from "@bgord/frontend";
 
 import * as api from "./api";
 import * as UI from "./ui";
 import { ArticleType, NewspaperType } from "./types";
-import { Anima, AnimaList, useAnimaList } from "./anima";
+import { AnimaList, useAnimaList } from "./anima";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
   const _articles = useQuery(
@@ -46,7 +46,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
 
       <AnimaList>
         {articles.items.filter(list.filterFn).map((article) => (
-          <Anima style="opacity" {...article.props}>
+          <Anima effect="opacity" {...article.props}>
             <li
               key={article.item.id}
               data-display="flex"

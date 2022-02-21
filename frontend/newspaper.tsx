@@ -1,10 +1,9 @@
 import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { useToggle, useToastTrigger } from "@bgord/frontend";
+import { useToggle, useToastTrigger, Anima } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
-import { Anima } from "./anima";
 import { NewspaperType } from "./types";
 import { hasNewspaperStalled } from "../policies/common";
 import { NewspaperArticle } from "./newspaper-article";
@@ -98,7 +97,7 @@ export function Newspaper(props: NewspaperProps) {
 
       <Anima
         visible={details.on && props.status === "delivered"}
-        style="opacity"
+        effect="opacity"
       >
         <div data-display="flex" data-mt="12" data-mb="6">
           {["delivered", "error"].includes(props.status) && (
@@ -138,7 +137,7 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       </Anima>
 
-      <Anima visible={details.on} style="opacity">
+      <Anima visible={details.on} effect="opacity">
         <ul data-mt="6" data-max-width="100%">
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />

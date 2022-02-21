@@ -1,60 +1,10 @@
 import { h, cloneElement } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import { usePreviousValue } from "@bgord/frontend";
-
-/* eslint-disable no-shadow */
-enum AnimaState {
-  appearing = "appearing",
-  appeared = "appeared",
-  hidding = "hidding",
-  hidden = "hidden",
-}
-
-type AnimaConfigType = {
-  children: h.JSX.Element;
-  visible: boolean;
-  style: string;
-  duration?: number;
-  isInitial?: boolean;
-};
-
-export function Anima(props: AnimaConfigType) {
-  const duration = props.duration ?? 300;
-
-  const [state, setState] = useState<AnimaState>(() => {
-    if (!props.visible) return AnimaState.hidden;
-    if (props.isInitial) return AnimaState.appeared;
-    return AnimaState.appearing;
-  });
-
-  const previousState = usePreviousValue(state);
-
-  useEffect(() => {
-    if (props.isInitial) return;
-
-    if (props.visible) {
-      setState(AnimaState.appearing);
-      setTimeout(() => setState(AnimaState.appeared), 100);
-    } else {
-      if (!previousState) return;
-      setState(AnimaState.hidding);
-      setTimeout(() => setState(AnimaState.hidden), duration);
-    }
-  }, [props.visible]);
-
-  if (state === AnimaState.hidden) return null;
-
-  return cloneElement(props.children, {
-    "data-anima": state,
-    "data-anima-style": props.style,
-    style: { "--duration": `${duration}ms`, ...props.children.props.style },
-  });
-}
 
 export function getAnimaProps(props: Record<string, any>) {
   return {
     "data-anima": props["data-anima"],
-    "data-anima-style": props["data-anima-style"],
+    "data-anima-effect": props["data-anima-effect"],
     style: props.style,
   };
 }

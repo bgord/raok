@@ -1,9 +1,10 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
+import { Anima } from "@bgord/frontend";
 
 import * as api from "./api";
 import { Header } from "./ui";
-import { Anima, AnimaList, useAnimaList } from "./anima";
+import { AnimaList, useAnimaList } from "./anima";
 import { NewspaperType } from "./types";
 import { Newspaper } from "./newspaper";
 
@@ -46,7 +47,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
 
       <AnimaList data-mt="24">
         {newspapers.items.map((newspaper) => (
-          <Anima key={newspaper.item.id} style="opacity" {...newspaper.props}>
+          <Anima key={newspaper.item.id} effect="opacity" {...newspaper.props}>
             <Newspaper {...newspaper.item} />
           </Anima>
         ))}

@@ -1,9 +1,13 @@
 import { Link } from "preact-router/match";
 import { h, Fragment } from "preact";
-import { useToggle, useWindowDimensions, useScrollLock } from "@bgord/frontend";
+import {
+  useToggle,
+  useWindowDimensions,
+  useScrollLock,
+  Anima,
+} from "@bgord/frontend";
 
 import * as Icons from "./icons";
-import { Anima } from "./anima";
 
 export function Navigation() {
   const { width } = useWindowDimensions();
@@ -65,7 +69,7 @@ function NavigationMobile() {
         </button>
       </nav>
 
-      <Anima visible={navigation.on} style="opacity">
+      <Anima visible={navigation.on} effect="opacity">
         <nav
           data-display="flex"
           data-direction="column"

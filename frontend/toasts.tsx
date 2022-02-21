@@ -1,7 +1,7 @@
 import { h } from "preact";
-import { useToastsContext } from "@bgord/frontend";
+import { useToastsContext, Anima } from "@bgord/frontend";
 
-import { AnimaList, Anima, useAnimaList } from "./anima";
+import { AnimaList, useAnimaList } from "./anima";
 
 export function Toasts() {
   const [_toasts] = useToastsContext();
@@ -18,7 +18,7 @@ export function Toasts() {
       style={{ maxWidth: "290px" }}
     >
       {toasts.items.map((toast) => (
-        <Anima style="opacity" {...toast.props}>
+        <Anima effect="opacity" {...toast.props}>
           <li
             key={toast.item.id}
             aria-live="polite"

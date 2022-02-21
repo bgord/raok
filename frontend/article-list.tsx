@@ -1,11 +1,11 @@
 import { h } from "preact";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useToggle, useList, useToastTrigger } from "@bgord/frontend";
+import { useToggle, useList, useToastTrigger, Anima } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import { ArticleType } from "./types";
-import { AnimaList, useAnimaList, Anima } from "./anima";
+import { AnimaList, useAnimaList } from "./anima";
 
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";
@@ -84,7 +84,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             </button>
           </div>
 
-          <Anima visible={selectedArticleIds.length > 0} style="opacity">
+          <Anima visible={selectedArticleIds.length > 0} effect="opacity">
             <div data-ml="auto" data-mb="6" data-color="gray-600" data-fs="14">
               {selectedArticleIds.length}/5 articles
             </div>
@@ -139,7 +139,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
       <AnimaList data-mt="24">
         {articles.items.map((article) => (
-          <Anima key={article.item.id} style="opacity" {...article.props}>
+          <Anima key={article.item.id} effect="opacity" {...article.props}>
             <Article {...article.item} {...actions} />
           </Anima>
         ))}
