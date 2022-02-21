@@ -17,7 +17,7 @@ export function AddArticleForm() {
       setUrl("");
       queryClient.invalidateQueries("articles");
       queryClient.invalidateQueries("stats");
-      notify({ type: "success", message: "Article added" });
+      notify({ message: "Article added" });
     },
   });
 

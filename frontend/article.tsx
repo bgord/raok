@@ -20,7 +20,7 @@ export function Article(
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries(["articles"]);
-      notify({ type: "success", message: "Article deleted" });
+      notify({ message: "Article deleted" });
     },
   });
 

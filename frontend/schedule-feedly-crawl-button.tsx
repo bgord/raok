@@ -15,7 +15,7 @@ export function ScheduleFeedlyCrawlButton(
     {
       onSuccess() {
         setTimeout(scheduleFeedlyArticlesCrawl.reset, 5000);
-        notify({ type: "success", message: "Feedly crawl scheduled" });
+        notify({ message: "Feedly crawl scheduled" });
         queryClient.invalidateQueries("stats");
       },
     }

@@ -80,7 +80,7 @@ function useAddArticleToFavourites(id: ArticleType["id"]) {
           }))
       );
 
-      notify({ type: "success", message: "Article added to favourites" });
+      notify({ message: "Article added to favourites" });
     },
   });
 }
@@ -108,7 +108,7 @@ function useDeleteArticleFromFavourites(id: ArticleType["id"]) {
           }))
       );
 
-      notify({ type: "success", message: "Article deleted from favourites" });
+      notify({ message: "Article deleted from favourites" });
     },
   });
 }

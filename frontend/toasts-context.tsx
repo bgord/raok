@@ -8,7 +8,6 @@ type ToastsConfigType = {
 
 export type BaseToastType = {
   id: string;
-  type: string;
   message: string;
 };
 

@@ -115,7 +115,7 @@ function useDeleteArticleFromFavourites() {
 
   return useMutation(api.deleteArticleFromFavourites, {
     onSuccess: (_response, articleId) => {
-      notify({ type: "success", message: "Deleted from favourites" });
+      notify({ message: "Deleted from favourites" });
 
       queryClient.invalidateQueries(["favourite-articles"]);
 
