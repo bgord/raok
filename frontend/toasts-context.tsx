@@ -4,6 +4,10 @@ import { useList } from "@bgord/frontend";
 
 import { ToastType } from "./types";
 
+type ToastsConfigType = {
+  timeout?: number;
+};
+
 type UseToastsReturnType = [
   ToastType[],
   {
@@ -13,9 +17,9 @@ type UseToastsReturnType = [
   }
 ];
 
-function useToastsImplementation(config?: {
-  timeout?: number;
-}): UseToastsReturnType {
+function useToastsImplementation(
+  config?: ToastsConfigType
+): UseToastsReturnType {
   const timeout = config?.timeout ?? 5000;
 
   const [toasts, actions] = useList<ToastType>({
@@ -38,10 +42,11 @@ function useToastsImplementation(config?: {
 
 const ToastsContext = createContext<UseToastsReturnType | undefined>(undefined);
 
-export function ToastsContextProvider(props: {
-  children: h.JSX.Element | h.JSX.Element[];
-  timeout?: number;
-}) {
+export function ToastsContextProvider(
+  props: {
+    children: h.JSX.Element | h.JSX.Element[];
+  } & ToastsConfigType
+) {
   const { children, ...config } = props;
 
   const [toasts, actions] = useToastsImplementation(config);
@@ -54,12 +59,13 @@ export function ToastsContextProvider(props: {
 }
 
 export function useToasts() {
-  const state = useContext(ToastsContext);
+  const context = useContext(ToastsContext);
 
-  if (state === undefined) {
+  if (context === undefined) {
     throw new Error(`useToasts must be used within the ToastsContextProvider`);
   }
-  return state;
+
+  return context;
 }
 
 export function useToastTrigger() {
