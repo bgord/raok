@@ -35,16 +35,14 @@ const NotificationsContext = createContext<
   UseNotificationsReturnType | undefined
 >(undefined);
 
-export function NotificationsContextProvider({
-  children,
-}: {
+export function NotificationsContextProvider(props: {
   children: h.JSX.Element | h.JSX.Element[];
 }) {
   const [notifications, actions] = useNotificationsImplementation();
 
   return (
     <NotificationsContext.Provider value={[notifications, actions]}>
-      {children}
+      {props.children}
     </NotificationsContext.Provider>
   );
 }
