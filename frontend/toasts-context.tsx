@@ -1,4 +1,4 @@
-import { createContext, h } from "preact";
+import { createContext, h, Context } from "preact";
 import { useContext } from "preact/hooks";
 import { useList } from "@bgord/frontend";
 
@@ -12,11 +12,11 @@ export type BaseToastType = {
   message: string;
 };
 
-type ToastsContextDataType = [
-  BaseToastType[],
+type ToastsContextDataType<ToastType extends BaseToastType = BaseToastType> = [
+  ToastType[],
   {
-    add: (toast: Omit<BaseToastType, "id">) => void;
-    remove: (toast: BaseToastType) => void;
+    add: (toast: Omit<ToastType, "id">) => void;
+    remove: (toast: ToastType) => void;
     clear: VoidFunction;
   }
 ];
@@ -60,8 +60,10 @@ export function ToastsContextProvider(
   );
 }
 
-export function useToasts() {
-  const context = useContext(ToastsContext);
+export function useToasts<ToastType extends BaseToastType = BaseToastType>() {
+  const context = useContext<ToastsContextDataType<ToastType>>(
+    ToastsContext as unknown as Context<ToastsContextDataType<ToastType>>
+  );
 
   if (context === undefined) {
     throw new Error(`useToasts must be used within the ToastsContextProvider`);
@@ -70,8 +72,10 @@ export function useToasts() {
   return context;
 }
 
-export function useToastTrigger() {
-  const [, actions] = useToasts();
+export function useToastTrigger<
+  ToastType extends BaseToastType = BaseToastType
+>() {
+  const [, actions] = useToasts<ToastType>();
 
   return actions.add;
 }
