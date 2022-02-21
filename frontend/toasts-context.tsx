@@ -2,7 +2,11 @@ import { createContext, h } from "preact";
 import { useContext } from "preact/hooks";
 import { useList } from "@bgord/frontend";
 
-import { ToastType } from "./types";
+export type ToastType = {
+  id: string;
+  type: string;
+  message: string;
+};
 
 type ToastsConfigType = {
   timeout?: number;
