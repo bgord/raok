@@ -2,7 +2,7 @@ import { createContext, h } from "preact";
 import { useContext } from "preact/hooks";
 import { useList } from "@bgord/frontend";
 
-export type ToastType = {
+export type BaseToastType = {
   id: string;
   type: string;
   message: string;
@@ -13,10 +13,10 @@ type ToastsConfigType = {
 };
 
 type UseToastsReturnType = [
-  ToastType[],
+  BaseToastType[],
   {
-    add: (toast: Omit<ToastType, "id">) => void;
-    remove: (toast: ToastType) => void;
+    add: (toast: Omit<BaseToastType, "id">) => void;
+    remove: (toast: BaseToastType) => void;
     clear: VoidFunction;
   }
 ];
@@ -31,11 +31,11 @@ export function ToastsContextProvider(
   function useToastsImplementation(): UseToastsReturnType {
     const timeout = props?.timeout ?? 5000;
 
-    const [toasts, actions] = useList<ToastType>({
+    const [toasts, actions] = useList<BaseToastType>({
       comparisonFn: (a, b) => a.id === b.id,
     });
 
-    function add(payload: Omit<ToastType, "id">) {
+    function add(payload: Omit<BaseToastType, "id">) {
       const id = String(Date.now());
       const toast = { ...payload, id };
 
