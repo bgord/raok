@@ -1,11 +1,10 @@
 import { h } from "preact";
 import { useQueryClient, useQuery, useMutation } from "react-query";
-import { useExpandableList, useToastTrigger, Anima } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
 import * as UI from "./ui";
 import { ArticleType, NewspaperType } from "./types";
-import { AnimaList, useAnimaList } from "./anima";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
   const _articles = useQuery(
@@ -14,13 +13,13 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
     props
   );
 
-  const list = useExpandableList({
+  const list = bg.useExpandableList({
     max: 5,
     length: _articles.data?.length ?? 0,
   });
 
   const favouriteArticles = _articles.data ?? [];
-  const articles = useAnimaList(favouriteArticles, "tail");
+  const articles = bg.useAnimaList(favouriteArticles, "tail");
 
   const deleteArticleFromFavourites = useDeleteArticleFromFavourites();
 
@@ -44,9 +43,9 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
         </small>
       )}
 
-      <AnimaList>
+      <bg.AnimaList>
         {articles.items.filter(list.filterFn).map((article) => (
-          <Anima effect="opacity" {...article.props}>
+          <bg.Anima effect="opacity" {...article.props}>
             <li
               key={article.item.id}
               data-display="flex"
@@ -77,9 +76,9 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
                 </button>
               </form>
             </li>
-          </Anima>
+          </bg.Anima>
         ))}
-      </AnimaList>
+      </bg.AnimaList>
 
       {list.displayShowMore && (
         <button
@@ -109,7 +108,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
 
 function useDeleteArticleFromFavourites() {
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   return useMutation(api.deleteArticleFromFavourites, {
     onSuccess: (_response, articleId) => {

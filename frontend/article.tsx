@@ -1,20 +1,19 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
-import { UseListActionsType, useToastTrigger } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import { ArticleType } from "./types";
-import { getAnimaProps } from "./anima";
 
-export function Article(
-  props: ArticleType &
-    UseListActionsType<ArticleType["id"]> &
-    h.JSX.IntrinsicElements["li"]
-) {
+type ArticlePropsType = ArticleType &
+  bg.UseListActionsType<ArticleType["id"]> &
+  h.JSX.IntrinsicElements["li"];
+
+export function Article(props: ArticlePropsType) {
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => {
@@ -31,7 +30,7 @@ export function Article(
       data-wrap="nowrap"
       data-mb="24"
       data-md-mx="6"
-      {...getAnimaProps(props)}
+      {...bg.getAnimaProps(props)}
     >
       <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
         <input

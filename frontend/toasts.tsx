@@ -1,14 +1,12 @@
 import { h } from "preact";
-import { useToastsContext, Anima } from "@bgord/frontend";
-
-import { AnimaList, useAnimaList } from "./anima";
+import * as bg from "@bgord/frontend";
 
 export function Toasts() {
-  const [_toasts] = useToastsContext();
-  const toasts = useAnimaList(_toasts, "tail");
+  const [_toasts] = bg.useToastsContext();
+  const toasts = bg.useAnimaList(_toasts, "tail");
 
   return (
-    <AnimaList
+    <bg.AnimaList
       data-position="fixed"
       data-bottom="0"
       data-right="0"
@@ -18,7 +16,7 @@ export function Toasts() {
       style={{ maxWidth: "290px" }}
     >
       {toasts.items.map((toast) => (
-        <Anima effect="opacity" {...toast.props}>
+        <bg.Anima effect="opacity" {...toast.props}>
           <li
             key={toast.item.id}
             aria-live="polite"
@@ -34,8 +32,8 @@ export function Toasts() {
           >
             {toast.item.message}
           </li>
-        </Anima>
+        </bg.Anima>
       ))}
-    </AnimaList>
+    </bg.AnimaList>
   );
 }

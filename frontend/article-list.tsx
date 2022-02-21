@@ -1,24 +1,23 @@
 import { h } from "preact";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useToggle, useList, useToastTrigger, Anima } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import { ArticleType } from "./types";
-import { AnimaList, useAnimaList } from "./anima";
 
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
 export function ArticleList(props: { initialData: ArticleType[] }) {
-  const [selectedArticleIds, actions] = useList<ArticleType["id"]>();
-  const emptyNewspaperError = useToggle();
+  const [selectedArticleIds, actions] = bg.useList<ArticleType["id"]>();
+  const emptyNewspaperError = bg.useToggle();
 
   const createNewspaper = useCreateNewspaper(actions.clear);
 
   const _articles = useQuery("articles", api.getArticles, props);
-  const articles = useAnimaList(_articles.data ?? [], "tail");
+  const articles = bg.useAnimaList(_articles.data ?? [], "tail");
 
   return (
     // TODO: Decrease spacing on mobile
@@ -84,11 +83,11 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             </button>
           </div>
 
-          <Anima visible={selectedArticleIds.length > 0} effect="opacity">
+          <bg.Anima visible={selectedArticleIds.length > 0} effect="opacity">
             <div data-ml="auto" data-mb="6" data-color="gray-600" data-fs="14">
               {selectedArticleIds.length}/5 articles
             </div>
-          </Anima>
+          </bg.Anima>
 
           <form
             data-display="flex"
@@ -137,20 +136,20 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
         </small>
       )}
 
-      <AnimaList data-mt="24">
+      <bg.AnimaList data-mt="24">
         {articles.items.map((article) => (
-          <Anima key={article.item.id} effect="opacity" {...article.props}>
+          <bg.Anima key={article.item.id} effect="opacity" {...article.props}>
             <Article {...article.item} {...actions} />
-          </Anima>
+          </bg.Anima>
         ))}
-      </AnimaList>
+      </bg.AnimaList>
     </section>
   );
 }
 
 function useCreateNewspaper(callback?: VoidFunction) {
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   return useMutation(api.createNewspaper, {
     onSuccess: () => {

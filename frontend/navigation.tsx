@@ -1,16 +1,11 @@
 import { Link } from "preact-router/match";
 import { h, Fragment } from "preact";
-import {
-  useToggle,
-  useWindowDimensions,
-  useScrollLock,
-  Anima,
-} from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 import * as Icons from "./icons";
 
 export function Navigation() {
-  const { width } = useWindowDimensions();
+  const { width } = bg.useWindowDimensions();
 
   if (!width) return <NavigationShell />; // Don't SSR navigation
   if (width <= 768) return <NavigationMobile />;
@@ -44,9 +39,9 @@ function NavigationDesktop() {
 }
 
 function NavigationMobile() {
-  const navigation = useToggle();
+  const navigation = bg.useToggle();
 
-  useScrollLock(navigation.on);
+  bg.useScrollLock(navigation.on);
 
   return (
     <Fragment>
@@ -69,7 +64,7 @@ function NavigationMobile() {
         </button>
       </nav>
 
-      <Anima visible={navigation.on} effect="opacity">
+      <bg.Anima visible={navigation.on} effect="opacity">
         <nav
           data-display="flex"
           data-direction="column"
@@ -126,7 +121,7 @@ function NavigationMobile() {
             </NavigationLink>
           </div>
         </nav>
-      </Anima>
+      </bg.Anima>
     </Fragment>
   );
 }
