@@ -7,7 +7,7 @@ import { NotificationType } from "./types";
 type UseNotificationsReturnType = [
   NotificationType[],
   {
-    add: (notification: Omit<NotificationType, "id" | "state">) => void;
+    add: (notification: Omit<NotificationType, "id">) => void;
     remove: (notification: NotificationType) => void;
     clear: VoidFunction;
   }
