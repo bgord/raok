@@ -22,11 +22,12 @@ function useNotificationsImplementation(config?: {
     comparisonFn: (a, b) => a.id === b.id,
   });
 
-  function add(notification: Omit<NotificationType, "id">) {
+  function add(payload: Omit<NotificationType, "id">) {
     const id = String(Date.now());
+    const notification = { ...payload, id };
 
-    actions.add({ ...notification, id });
-    setTimeout(() => actions.remove({ ...notification, id }), 5000);
+    actions.add(notification);
+    setTimeout(() => actions.remove(notification), timeout);
   }
 
   return [
