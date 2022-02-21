@@ -13,7 +13,11 @@ type UseNotificationsReturnType = [
   }
 ];
 
-function useNotificationsImplementation(): UseNotificationsReturnType {
+function useNotificationsImplementation(config?: {
+  timeout?: number;
+}): UseNotificationsReturnType {
+  const timeout = config?.timeout ?? 5000;
+
   const [notifications, actions] = useList<NotificationType>({
     comparisonFn: (a, b) => a.id === b.id,
   });
@@ -37,8 +41,11 @@ const NotificationsContext = createContext<
 
 export function NotificationsContextProvider(props: {
   children: h.JSX.Element | h.JSX.Element[];
+  timeout?: number;
 }) {
-  const [notifications, actions] = useNotificationsImplementation();
+  const { children, ...config } = props;
+
+  const [notifications, actions] = useNotificationsImplementation(config);
 
   return (
     <NotificationsContext.Provider value={[notifications, actions]}>
