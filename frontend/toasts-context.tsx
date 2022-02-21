@@ -17,29 +17,6 @@ type UseToastsReturnType = [
   }
 ];
 
-function useToastsImplementation(
-  config?: ToastsConfigType
-): UseToastsReturnType {
-  const timeout = config?.timeout ?? 5000;
-
-  const [toasts, actions] = useList<ToastType>({
-    comparisonFn: (a, b) => a.id === b.id,
-  });
-
-  function add(payload: Omit<ToastType, "id">) {
-    const id = String(Date.now());
-    const toast = { ...payload, id };
-
-    actions.add(toast);
-    setTimeout(() => actions.remove(toast), timeout);
-  }
-
-  return [
-    [...toasts].reverse(),
-    { add, remove: actions.remove, clear: actions.clear },
-  ];
-}
-
 const ToastsContext = createContext<UseToastsReturnType | undefined>(undefined);
 
 export function ToastsContextProvider(
@@ -47,9 +24,28 @@ export function ToastsContextProvider(
     children: h.JSX.Element | h.JSX.Element[];
   } & ToastsConfigType
 ) {
-  const { children, ...config } = props;
+  function useToastsImplementation(): UseToastsReturnType {
+    const timeout = props?.timeout ?? 5000;
 
-  const [toasts, actions] = useToastsImplementation(config);
+    const [toasts, actions] = useList<ToastType>({
+      comparisonFn: (a, b) => a.id === b.id,
+    });
+
+    function add(payload: Omit<ToastType, "id">) {
+      const id = String(Date.now());
+      const toast = { ...payload, id };
+
+      actions.add(toast);
+      setTimeout(() => actions.remove(toast), timeout);
+    }
+
+    return [
+      [...toasts].reverse(),
+      { add, remove: actions.remove, clear: actions.clear },
+    ];
+  }
+
+  const [toasts, actions] = useToastsImplementation();
 
   return (
     <ToastsContext.Provider value={[toasts, actions]}>
