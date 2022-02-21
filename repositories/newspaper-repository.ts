@@ -99,7 +99,7 @@ export class NewspaperRepository {
 
       sentAt: {
         raw: sentAtRaw,
-        formatted: sentAtRaw === 0 ? sentAtFormatted : null,
+        formatted: sentAtRaw === 0 ? null : sentAtFormatted,
       },
 
       duration: formatDistanceStrict(sentAtRaw, newspaper.scheduledAt),
