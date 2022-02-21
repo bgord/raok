@@ -10,10 +10,7 @@ export async function SingleNewspaper(
 ) {
   const newspaperId = VO.NewspaperId.parse(request.params.newspaperId);
 
-  const newspaper = await Repos.NewspaperRepository.getById(
-    newspaperId,
-    request.timeZoneOffset.miliseconds
-  );
+  const newspaper = await Repos.NewspaperRepository.getById(newspaperId);
 
   return response.send(newspaper);
 }

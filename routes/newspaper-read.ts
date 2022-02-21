@@ -10,11 +10,7 @@ export async function NewspaperRead(
   _next: express.NextFunction
 ) {
   const newspaperId = VO.NewspaperId.parse(request.params.newspaperId);
-
-  const newspaper = await Repos.NewspaperRepository.getById(
-    newspaperId,
-    request.timeZoneOffset.miliseconds
-  );
+  const newspaper = await Repos.NewspaperRepository.getById(newspaperId);
 
   if (!newspaper) return response.send("File doesn't exist");
 

@@ -7,7 +7,7 @@ import * as VO from "../value-objects";
 const prisma = new PrismaClient();
 
 export class NewspaperRepository {
-  static async getAll(timeZoneOffsetMs: Schema.TimeZoneOffsetType) {
+  static async getAll() {
     const result = await prisma.newspaper.findMany({
       where: {
         status: {
@@ -22,35 +22,26 @@ export class NewspaperRepository {
       include: { articles: true },
     });
 
-    return result.map((newspaper) =>
-      NewspaperRepository._mapper(newspaper, timeZoneOffsetMs)
-    );
+    return result.map(NewspaperRepository._mapper);
   }
 
-  static async getAllNonArchived(timeZoneOffsetMs: Schema.TimeZoneOffsetType) {
+  static async getAllNonArchived() {
     const result = await prisma.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { scheduledAt: "desc" },
       include: { articles: true },
     });
 
-    return result.map((newspaper) =>
-      NewspaperRepository._mapper(newspaper, timeZoneOffsetMs)
-    );
+    return result.map(NewspaperRepository._mapper);
   }
 
-  static async getById(
-    newspaperId: VO.NewspaperIdType,
-    timeZoneOffsetMs: Schema.TimeZoneOffsetType
-  ) {
+  static async getById(newspaperId: VO.NewspaperIdType) {
     const result = await prisma.newspaper.findFirst({
       where: { id: newspaperId },
       include: { articles: true },
     });
 
-    return result
-      ? NewspaperRepository._mapper(result, timeZoneOffsetMs)
-      : null;
+    return result ? NewspaperRepository._mapper(result) : null;
   }
 
   static async create(newspaper: {
@@ -85,12 +76,10 @@ export class NewspaperRepository {
     });
   }
 
-  static _mapper(
-    newspaper: Newspaper & { articles: Article[] },
-    timeZoneOffsetMs: Schema.TimeZoneOffsetType
-  ) {
+  static _mapper(newspaper: Newspaper & { articles: Article[] }) {
     const sentAtRaw = newspaper.sentAt ?? 0;
-    const sentAtFormatted = formatDistanceToNow(sentAtRaw + timeZoneOffsetMs, {
+
+    const sentAtFormatted = formatDistanceToNow(sentAtRaw, {
       addSuffix: true,
     });
 

@@ -1,11 +1,10 @@
 import { PrismaClient } from "@prisma/client";
-import { Schema } from "@bgord/node";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const prisma = new PrismaClient();
 
 export class StatsRepository {
-  static async getAll(timeZoneOffsetMs: Schema.TimeZoneOffsetType) {
+  static async getAll() {
     const createdArticles = await prisma.statsKeyValue.findFirst({
       where: { key: "createdArticles" },
     });
@@ -20,9 +19,7 @@ export class StatsRepository {
 
     return {
       lastFeedlyImport: lastFeedlyImport?.value
-        ? formatDistanceToNow(lastFeedlyImport?.value + timeZoneOffsetMs, {
-            addSuffix: true,
-          })
+        ? formatDistanceToNow(lastFeedlyImport?.value, { addSuffix: true })
         : null,
 
       createdArticles: createdArticles?.value ?? 0,
