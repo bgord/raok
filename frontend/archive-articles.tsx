@@ -1,11 +1,12 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
+import { useSearch } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
-import { useSearch, useFilter, useTimestampFilter } from "./hooks";
+import { useFilter, useTimestampFilter } from "./hooks";
 import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
 import { ArchiveArticle } from "./archive-article";
 
