@@ -59,14 +59,14 @@ export function Article(props: ArticlePropsType) {
           >
             {props.title ?? "-"}
           </div>
-          <UI.Link
+          <UI.OutboundLink
             href={props.url}
             data-width="100%"
             data-fs="14"
             data-md-fs="12"
           >
             {props.url}
-          </UI.Link>
+          </UI.OutboundLink>
         </div>
       </div>
 

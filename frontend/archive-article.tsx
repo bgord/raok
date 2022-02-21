@@ -37,7 +37,7 @@ export function ArchiveArticle(props: ArticleType) {
             {props.title ?? "-"}
           </div>
         </div>
-        <UI.Link
+        <UI.OutboundLink
           href={props.url}
           data-mr="12"
           data-width="100%"
@@ -45,7 +45,7 @@ export function ArchiveArticle(props: ArticleType) {
           title={props.url}
         >
           {props.url}
-        </UI.Link>
+        </UI.OutboundLink>
       </div>
 
       <div

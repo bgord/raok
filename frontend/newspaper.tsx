@@ -120,15 +120,14 @@ export function Newspaper(props: NewspaperProps) {
           )}
 
           {props.status === "delivered" && (
-            <UI.Link
+            <UI.OutboundLink
               href={`/newspaper/${props.id}/read`}
-              target="_blank"
               data-mr="auto"
             >
               <button type="button" class="c-button" data-variant="bare">
                 Read online
               </button>
-            </UI.Link>
+            </UI.OutboundLink>
           )}
 
           <span data-mt="6" data-fs="14" data-color="gray-400">

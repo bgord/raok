@@ -1,4 +1,5 @@
 import { h } from "preact";
+import * as bg from "@bgord/frontend";
 
 export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
   return (
@@ -20,8 +21,6 @@ export function Link(props: h.JSX.IntrinsicElements["a"]) {
   return (
     /* eslint-disable jsx-a11y/anchor-has-content */
     <a
-      target="_blank"
-      rel="noopener noreferrer"
       class="c-link"
       data-color="gray-700"
       data-transform="truncate"
@@ -29,6 +28,10 @@ export function Link(props: h.JSX.IntrinsicElements["a"]) {
       {...props}
     />
   );
+}
+
+export function OutboundLink(props: h.JSX.IntrinsicElements["a"]) {
+  return <bg.OutboundLink as={Link} {...props} />;
 }
 
 export function Header(props: h.JSX.IntrinsicElements["h2"]) {

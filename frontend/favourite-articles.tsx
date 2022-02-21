@@ -54,9 +54,9 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
               data-wrap="nowrap"
               data-mb="6"
             >
-              <UI.Link href={article.item.url} data-fs="14">
+              <UI.OutboundLink href={article.item.url} data-fs="14">
                 {article.item.title || article.item.url}
-              </UI.Link>
+              </UI.OutboundLink>
 
               <form
                 data-ml="auto"

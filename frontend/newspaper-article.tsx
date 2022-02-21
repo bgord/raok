@@ -16,9 +16,9 @@ export function NewspaperArticle(props: ArticleType) {
     >
       {props.status === "processed" && <FavouriteUnfavourite {...props} />}
 
-      <UI.Link href={props.url} data-fs="14" data-mx="12">
+      <UI.OutboundLink href={props.url} data-fs="14" data-mx="12">
         {props.url}
-      </UI.Link>
+      </UI.OutboundLink>
 
       <UI.Badge data-ml="auto" data-mr="6">
         {props.source}
