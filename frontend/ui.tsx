@@ -4,14 +4,13 @@ import * as bg from "@bgord/frontend";
 export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
   return (
     <strong
-      data-transform="uppercase"
+      data-transform="uppercase center"
       data-color="gray-600"
       data-bg="gray-200"
       data-px="6"
       data-br="4"
       data-ls="1"
       data-fs="12"
-      style="text-align: center"
       {...props}
     />
   );
