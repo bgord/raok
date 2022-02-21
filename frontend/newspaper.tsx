@@ -1,12 +1,11 @@
 import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { useToggle } from "@bgord/frontend";
+import { useToggle, useToastTrigger } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import { Anima } from "./anima";
 import { NewspaperType } from "./types";
-import { useToastTrigger } from "./toasts-context";
 import { hasNewspaperStalled } from "../policies/common";
 import { NewspaperArticle } from "./newspaper-article";
 

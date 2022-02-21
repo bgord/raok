@@ -1,8 +1,8 @@
 import Router from "preact-router";
 import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastsContextProvider } from "@bgord/frontend";
 
-import { ToastsContextProvider } from "./toasts-context";
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
 import { BuildMeta, BuildMetaDataType } from "./build-meta";

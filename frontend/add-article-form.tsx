@@ -1,10 +1,10 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
+import { useToastTrigger } from "@bgord/frontend";
 
 import * as api from "./api";
 import { ArticleType } from "./types";
-import { useToastTrigger } from "./toasts-context";
 
 export function AddArticleForm() {
   const queryClient = useQueryClient();

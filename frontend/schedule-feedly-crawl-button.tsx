@@ -1,8 +1,8 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
+import { useToastTrigger } from "@bgord/frontend";
 
 import * as api from "./api";
-import { useToastTrigger } from "./toasts-context";
 
 export function ScheduleFeedlyCrawlButton(
   props: h.JSX.IntrinsicElements["button"]

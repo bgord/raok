@@ -1,10 +1,10 @@
 import { h } from "preact";
+import { useToastsContext } from "@bgord/frontend";
 
 import { AnimaList, Anima, useAnimaList } from "./anima";
-import { useToasts } from "./toasts-context";
 
 export function Toasts() {
-  const [_toasts] = useToasts();
+  const [_toasts] = useToastsContext();
   const toasts = useAnimaList(_toasts, "tail");
 
   return (

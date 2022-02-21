@@ -1,11 +1,10 @@
 import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
 import prettyBytes from "pretty-bytes-es5";
-import { useFile, UseFileState } from "@bgord/frontend";
+import { useFile, UseFileState, useToastTrigger } from "@bgord/frontend";
 
 import * as api from "./api";
 import { Header } from "./ui";
-import { useToastTrigger } from "./toasts-context";
 
 export function SendArbitraryFile() {
   const notify = useToastTrigger();

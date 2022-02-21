@@ -1,13 +1,11 @@
 import { h } from "preact";
 import { useQueryClient, useQuery, useMutation } from "react-query";
-import { useExpandableList } from "@bgord/frontend";
+import { useExpandableList, useToastTrigger } from "@bgord/frontend";
 
 import * as api from "./api";
 import * as UI from "./ui";
 import { ArticleType, NewspaperType } from "./types";
 import { Anima, AnimaList, useAnimaList } from "./anima";
-
-import { useToastTrigger } from "./toasts-context";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
   const _articles = useQuery(

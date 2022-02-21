@@ -1,9 +1,9 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
+import { useToastTrigger } from "@bgord/frontend";
 
 import * as api from "./api";
 import { ArticleType, NewspaperType } from "./types";
-import { useToastTrigger } from "./toasts-context";
 
 type FavouriteUnfavouriteType = {
   id: ArticleType["id"];
