@@ -2,13 +2,13 @@ import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 
 import * as api from "./api";
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 
 export function ScheduleFeedlyCrawlButton(
   props: h.JSX.IntrinsicElements["button"]
 ) {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   const scheduleFeedlyArticlesCrawl = useMutation(
     api.scheduleFeedlyArticlesCrawl,

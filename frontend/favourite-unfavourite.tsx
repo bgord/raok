@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 
 import * as api from "./api";
 import { ArticleType, NewspaperType } from "./types";
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 
 type FavouriteUnfavouriteType = {
   id: ArticleType["id"];
@@ -59,7 +59,7 @@ export function FavouriteUnfavourite(props: FavouriteUnfavouriteType) {
 
 function useAddArticleToFavourites(id: ArticleType["id"]) {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   return useMutation(api.addArticleToFavourites, {
     onSuccess: () => {
@@ -87,7 +87,7 @@ function useAddArticleToFavourites(id: ArticleType["id"]) {
 
 function useDeleteArticleFromFavourites(id: ArticleType["id"]) {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   return useMutation(api.deleteArticleFromFavourites, {
     onSuccess: () => {

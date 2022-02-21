@@ -58,7 +58,7 @@ export type SettingsType = {
   isArticlesToReviewNotificationEnabled: boolean;
 };
 
-export type NotificationType = {
+export type ToastType = {
   id: string;
   type: string;
   message: string;

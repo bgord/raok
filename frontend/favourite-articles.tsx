@@ -7,7 +7,7 @@ import * as UI from "./ui";
 import { ArticleType, NewspaperType } from "./types";
 import { Anima, AnimaList, useAnimaList } from "./anima";
 
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 
 export function FavouriteArticles(props: { initialData: ArticleType[] }) {
   const _articles = useQuery(
@@ -111,7 +111,7 @@ export function FavouriteArticles(props: { initialData: ArticleType[] }) {
 
 function useDeleteArticleFromFavourites() {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   return useMutation(api.deleteArticleFromFavourites, {
     onSuccess: (_response, articleId) => {

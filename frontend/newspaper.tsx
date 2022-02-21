@@ -6,7 +6,7 @@ import * as UI from "./ui";
 import * as api from "./api";
 import { Anima } from "./anima";
 import { NewspaperType } from "./types";
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 import { hasNewspaperStalled } from "../policies/common";
 import { NewspaperArticle } from "./newspaper-article";
 
@@ -186,7 +186,7 @@ function ArchiveNewspaper(props: {
 }) {
   const { id, ...rest } = props;
 
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
   const queryClient = useQueryClient();
 
   const archiveNewspaper = useMutation(api.archiveNewspaper, {
@@ -216,7 +216,7 @@ function CancelNewspaper(props: {
 }) {
   const { id, ...rest } = props;
 
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
   const queryClient = useQueryClient();
 
   const cancelNewspaper = useMutation(api.cancelNewspaper, {
@@ -243,7 +243,7 @@ function CancelNewspaper(props: {
 
 function useResendNewspaper() {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   return useMutation(api.resendNewspaper, {
     onSuccess: () => {

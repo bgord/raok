@@ -1,12 +1,11 @@
 import { h } from "preact";
 
 import { AnimaList, Anima, useAnimaList } from "./anima";
-import { useNotifications } from "./notifications-context";
+import { useToasts } from "./toasts-context";
 
-export function Notifications() {
-  const [_notifications] = useNotifications();
-
-  const notifications = useAnimaList(_notifications, "tail");
+export function Toasts() {
+  const [_toasts] = useToasts();
+  const toasts = useAnimaList(_toasts, "tail");
 
   return (
     <AnimaList
@@ -18,10 +17,10 @@ export function Notifications() {
       data-width="100%"
       style={{ maxWidth: "290px" }}
     >
-      {notifications.items.map((notification) => (
-        <Anima style="opacity" {...notification.props}>
+      {toasts.items.map((toast) => (
+        <Anima style="opacity" {...toast.props}>
           <li
-            key={notification.item.id}
+            key={toast.item.id}
             aria-live="polite"
             data-display="flex"
             data-cross="center"
@@ -33,7 +32,7 @@ export function Notifications() {
             data-bg="gray-200"
             data-br="2"
           >
-            {notification.item.message}
+            {toast.item.message}
           </li>
         </Anima>
       ))}

@@ -7,7 +7,7 @@ import * as Icons from "./icons";
 import * as api from "./api";
 import { ArticleType } from "./types";
 import { getAnimaProps } from "./anima";
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 
 export function Article(
   props: ArticleType &
@@ -15,7 +15,7 @@ export function Article(
     h.JSX.IntrinsicElements["li"]
 ) {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => {

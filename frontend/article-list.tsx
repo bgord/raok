@@ -6,7 +6,7 @@ import * as UI from "./ui";
 import * as api from "./api";
 import { ArticleType } from "./types";
 import { AnimaList, useAnimaList, Anima } from "./anima";
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";
@@ -151,7 +151,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
 function useCreateNewspaper(callback?: VoidFunction) {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   return useMutation(api.createNewspaper, {
     onSuccess: () => {

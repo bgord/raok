@@ -4,11 +4,11 @@ import { useMutation, useQueryClient } from "react-query";
 
 import * as api from "./api";
 import { ArticleType } from "./types";
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 
 export function AddArticleForm() {
   const queryClient = useQueryClient();
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   const [url, setUrl] = useState<ArticleType["url"]>("");
 

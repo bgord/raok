@@ -5,10 +5,10 @@ import { useFile, UseFileState } from "@bgord/frontend";
 
 import * as api from "./api";
 import { Header } from "./ui";
-import { useNotificationTrigger } from "./notifications-context";
+import { useToastTrigger } from "./toasts-context";
 
 export function SendArbitraryFile() {
-  const notify = useNotificationTrigger();
+  const notify = useToastTrigger();
 
   const fileUpload = useMutation(api.sendArbitraryFile, {
     onSuccess: () => notify({ type: "success", message: "File sent" }),

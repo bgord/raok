@@ -2,8 +2,8 @@ import Router from "preact-router";
 import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import { NotificationsContextProvider } from "./notifications-context";
-import { Notifications } from "./notifications";
+import { ToastsContextProvider } from "./toasts-context";
+import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
 import { BuildMeta, BuildMetaDataType } from "./build-meta";
 
@@ -40,7 +40,7 @@ export function App(props: InitialDataType) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NotificationsContextProvider>
+      <ToastsContextProvider>
         <Navigation />
 
         <Router url={props.url}>
@@ -56,10 +56,10 @@ export function App(props: InitialDataType) {
           <Settings path="/settings" settings={settings} />
         </Router>
 
-        <Notifications />
+        <Toasts />
 
         <BuildMeta BUILD_VERSION={BUILD_VERSION} BUILD_DATE={BUILD_DATE} />
-      </NotificationsContextProvider>
+      </ToastsContextProvider>
     </QueryClientProvider>
   );
 }
