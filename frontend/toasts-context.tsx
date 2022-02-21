@@ -2,17 +2,17 @@ import { createContext, h } from "preact";
 import { useContext } from "preact/hooks";
 import { useList } from "@bgord/frontend";
 
+type ToastsConfigType = {
+  timeout?: number;
+};
+
 export type BaseToastType = {
   id: string;
   type: string;
   message: string;
 };
 
-type ToastsConfigType = {
-  timeout?: number;
-};
-
-type UseToastsReturnType = [
+type ToastsContextDataType = [
   BaseToastType[],
   {
     add: (toast: Omit<BaseToastType, "id">) => void;
@@ -21,14 +21,16 @@ type UseToastsReturnType = [
   }
 ];
 
-const ToastsContext = createContext<UseToastsReturnType | undefined>(undefined);
+const ToastsContext = createContext<ToastsContextDataType | undefined>(
+  undefined
+);
 
 export function ToastsContextProvider(
   props: {
     children: h.JSX.Element | h.JSX.Element[];
   } & ToastsConfigType
 ) {
-  function useToastsImplementation(): UseToastsReturnType {
+  function useToastsImplementation(): ToastsContextDataType {
     const timeout = props?.timeout ?? 5000;
 
     const [toasts, actions] = useList<BaseToastType>({
