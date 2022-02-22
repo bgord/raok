@@ -32,7 +32,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
             data-width="100%"
             data-ml={props.status === "processed" && "12"}
             data-transform="truncate"
-            title={props.title}
+            title={String(props.title)}
           >
             {props.title}
           </div>

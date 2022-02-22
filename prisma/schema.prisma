@@ -30,7 +30,7 @@ model Article {
   source       String
   status       String
   createdAt    Int
-  title        String     @default("-")
+  title        String?    @default("-")
   newspaperId  String?
   favourite    Boolean    @default(false)
   favouritedAt Int        @default(0)

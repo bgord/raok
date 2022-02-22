@@ -20,7 +20,6 @@ export class ArticleRepository {
         url: true,
         source: true,
         title: true,
-        status: true,
       },
     });
   }

@@ -9,7 +9,7 @@ import { ArticleType } from "./types";
 
 type ArticlePropsType = ArticleType &
   bg.UseListActionsType<ArticleType["id"]> &
-  h.JSX.IntrinsicElements["li"];
+  Omit<h.JSX.IntrinsicElements["li"], "title">;
 
 export function Article(props: ArticlePropsType) {
   const queryClient = useQueryClient();
@@ -55,7 +55,7 @@ export function Article(props: ArticlePropsType) {
             data-md-mb="0"
             data-md-fs="14"
             data-transform="truncate"
-            title={props.title}
+            title={String(props.title)}
           >
             {props.title}
           </div>

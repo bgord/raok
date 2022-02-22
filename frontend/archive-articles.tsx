@@ -31,7 +31,7 @@ export function ArchiveArticles(
   const createdAt = useTimestampFilter({ defaultValue: "last_week" });
 
   const articles = (archiveArticles.data ?? [])
-    .filter((article) => search.filterFn(article.title))
+    .filter((article) => search.filterFn(String(article.title)))
     .filter((article) => sourceFilter.filterFn(article.source))
     .filter((article) => statusFilter.filterFn(article.status))
     .filter((article) => createdAt.filterFn(article.createdAt));
@@ -194,7 +194,7 @@ export function ArchiveArticles(
 
       <datalist id="articles">
         {archiveArticles.data?.map((article) => (
-          <option value={article.title} />
+          <option value={String(article.title)} />
         ))}
       </datalist>
 

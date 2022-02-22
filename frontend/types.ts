@@ -18,14 +18,14 @@ export enum NewspaperStatusEnum {
 export type ArticleType = {
   id: string;
   url: string;
-  status: string;
   source: string;
-  title: string;
+  title: string | null;
 };
 
 export type ArchiveArticleType = ArticleType & {
   createdAt: number;
   favourite: boolean;
+  status: string;
 };
 
 export type FavouriteArticleType = Pick<ArticleType, "id" | "url" | "title">;
@@ -34,6 +34,7 @@ export type ArticlePayloadType = { url: ArticleType["url"] };
 
 export type NewspaperArticleType = ArticleType & {
   favourite: boolean;
+  status: string;
 };
 
 export type NewspaperType = {
