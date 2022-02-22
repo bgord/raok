@@ -1,5 +1,10 @@
 import type { Article } from "@prisma/client";
 
+import type { ArticleRepository } from "../repositories/article-repository";
+import type { NewspaperRepository } from "../repositories/newspaper-repository";
+import type { StatsRepository } from "../repositories/stats-repository";
+import type { SettingsRepository } from "../repositories/settings-repository";
+
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",
@@ -18,46 +23,29 @@ export enum NewspaperStatusEnum {
 }
 
 export type ArticlePayloadType = Pick<Article, "url">;
-export type ArticleType = Pick<Article, "id" | "url" | "title" | "source">;
+export type ArticleType = AsyncReturnType<
+  typeof ArticleRepository["getAllNonProcessed"]
+>[0];
 
-export type ArchiveArticleType = Pick<
-  Article,
-  "id" | "url" | "title" | "createdAt" | "favourite" | "status" | "source"
->;
+export type ArchiveArticleType = AsyncReturnType<
+  typeof ArticleRepository["getAll"]
+>[0];
 
-export type FavouriteArticleType = Pick<Article, "id" | "url" | "title">;
+export type FavouriteArticleType = AsyncReturnType<
+  typeof ArticleRepository["getFavourite"]
+>[0];
 
-export type NewspaperArticleType = Pick<
-  Article,
-  "id" | "url" | "title" | "favourite" | "status" | "source"
->;
+export type NewspaperType = AsyncReturnType<
+  typeof NewspaperRepository["getAllNonArchived"]
+>[0];
 
-export type NewspaperType = {
-  id: string;
-  title: string;
-  status: string;
-  sentAt: {
-    raw: number;
-    formatted: string | null;
-  };
-  scheduledAt: number;
-  duration: string;
-  articles: NewspaperArticleType[];
-};
+export type StatsType = AsyncReturnType<typeof StatsRepository["getAll"]>;
+export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
 
-export type StatsType = {
-  createdArticles: number;
-  sentNewspapers: number;
-  lastFeedlyImport: string | null;
-};
-
-type Hour = {
-  value: number;
-  label: string;
-};
-
-export type SettingsType = {
-  hours: Hour[];
-  articlesToReviewNotificationHour: Hour;
-  isArticlesToReviewNotificationEnabled: boolean;
-};
+export type AsyncReturnType<T extends (...args: any) => any> = T extends (
+  ...args: any
+) => Promise<infer U>
+  ? U
+  : T extends (...args: any) => infer U
+  ? U
+  : any;
