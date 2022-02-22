@@ -1,3 +1,5 @@
+import type { Article } from "@prisma/client";
+
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",
@@ -15,27 +17,20 @@ export enum NewspaperStatusEnum {
   "error" = "error",
 }
 
-export type ArticleType = {
-  id: string;
-  url: string;
-  source: string;
-  title: string | null;
-};
+export type ArticlePayloadType = Pick<Article, "url">;
+export type ArticleType = Pick<Article, "id" | "url" | "title" | "source">;
 
-export type ArchiveArticleType = ArticleType & {
-  createdAt: number;
-  favourite: boolean;
-  status: string;
-};
+export type ArchiveArticleType = Pick<
+  Article,
+  "id" | "url" | "title" | "createdAt" | "favourite" | "status" | "source"
+>;
 
-export type FavouriteArticleType = Pick<ArticleType, "id" | "url" | "title">;
+export type FavouriteArticleType = Pick<Article, "id" | "url" | "title">;
 
-export type ArticlePayloadType = { url: ArticleType["url"] };
-
-export type NewspaperArticleType = ArticleType & {
-  favourite: boolean;
-  status: string;
-};
+export type NewspaperArticleType = Pick<
+  Article,
+  "id" | "url" | "title" | "favourite" | "status" | "source"
+>;
 
 export type NewspaperType = {
   id: string;

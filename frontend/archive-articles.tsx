@@ -6,16 +6,12 @@ import { useSearch } from "@bgord/frontend";
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
+import * as types from "./types";
 import { useFilter, useTimestampFilter } from "./hooks";
-import {
-  ArchiveArticleType,
-  ArticleSourceEnum,
-  ArticleStatusEnum,
-} from "./types";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {
-  archiveArticles: ArchiveArticleType[];
+  archiveArticles: types.ArchiveArticleType[];
 };
 
 export function ArchiveArticles(
@@ -26,8 +22,8 @@ export function ArchiveArticles(
   });
 
   const search = useSearch();
-  const sourceFilter = useFilter({ enum: ArticleSourceEnum });
-  const statusFilter = useFilter({ enum: ArticleStatusEnum });
+  const sourceFilter = useFilter({ enum: types.ArticleSourceEnum });
+  const statusFilter = useFilter({ enum: types.ArticleStatusEnum });
   const createdAt = useTimestampFilter({ defaultValue: "last_week" });
 
   const articles = (archiveArticles.data ?? [])
