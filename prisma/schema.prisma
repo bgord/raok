@@ -31,7 +31,6 @@ model Article {
   status       String
   createdAt    Int
   title        String?
-  image        String?
   newspaperId  String?
   favourite    Boolean    @default(false)
   favouritedAt Int        @default(0)
