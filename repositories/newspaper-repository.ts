@@ -18,7 +18,22 @@ export class NewspaperRepository {
         },
       },
       orderBy: { scheduledAt: "desc" },
-      include: { articles: true },
+      select: {
+        id: true,
+        status: true,
+        scheduledAt: true,
+        sentAt: true,
+        articles: {
+          select: {
+            favourite: true,
+            id: true,
+            source: true,
+            status: true,
+            title: true,
+            url: true,
+          },
+        },
+      },
     });
 
     return result.map(NewspaperRepository._mapper);
