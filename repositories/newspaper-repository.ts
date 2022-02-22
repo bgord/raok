@@ -98,7 +98,6 @@ export class NewspaperRepository {
       articles: newspaper.articles.map((article) => ({
         ...article,
         title: article.title ?? "-",
-        description: article.description ?? "-",
       })),
     };
   }

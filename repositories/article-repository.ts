@@ -24,7 +24,6 @@ export class ArticleRepository {
     return articles.map((article) => ({
       ...article,
       title: article?.title ?? "-",
-      description: article?.description ?? "-",
     }));
   }
 
@@ -51,7 +50,6 @@ export class ArticleRepository {
     source: VO.ArticleType["source"];
     createdAt: VO.ArticleType["createdAt"];
     title: VO.ArticleMetatagsType["title"];
-    description: VO.ArticleMetatagsType["description"];
     favourite: VO.ArticleType["favourite"];
   }) {
     return prisma.article.create({
@@ -112,10 +110,6 @@ export class ArticleRepository {
   }
 
   static _mapper(article: Article) {
-    return {
-      ...article,
-      title: article.title ?? "-",
-      description: article.description ?? "-",
-    };
+    return { ...article, title: article.title ?? "-" };
   }
 }

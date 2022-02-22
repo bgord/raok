@@ -21,7 +21,6 @@ export type ArticleType = {
   status: string;
   source: string;
   title: string;
-  description: string;
   favourite: boolean;
   createdAt: number;
 };

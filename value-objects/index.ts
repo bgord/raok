@@ -8,7 +8,6 @@ export * from "./article-favourite";
 
 export * from "./article-metatags";
 export * from "./article-title";
-export * from "./article-description";
 
 export * from "./feedly-article";
 export * from "./feedly-article-id";
