@@ -28,7 +28,22 @@ export class NewspaperRepository {
     const result = await prisma.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { scheduledAt: "desc" },
-      include: { articles: true },
+      select: {
+        id: true,
+        status: true,
+        scheduledAt: true,
+        sentAt: true,
+        articles: {
+          select: {
+            favourite: true,
+            id: true,
+            source: true,
+            status: true,
+            title: true,
+            url: true,
+          },
+        },
+      },
     });
 
     return result.map(NewspaperRepository._mapper);
@@ -75,7 +90,11 @@ export class NewspaperRepository {
     });
   }
 
-  static _mapper(newspaper: Newspaper & { articles: Article[] }) {
+  static _mapper(
+    newspaper: Newspaper & {
+      articles: Omit<Article, "createdAt" | "newspaperId" | "favouritedAt">[];
+    }
+  ) {
     const sentAtRaw = newspaper.sentAt ?? 0;
 
     const sentAtFormatted = formatDistanceToNow(sentAtRaw, {
