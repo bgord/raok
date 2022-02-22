@@ -57,7 +57,7 @@ export function Article(props: ArticlePropsType) {
             data-transform="truncate"
             title={props.title}
           >
-            {props.title ?? "-"}
+            {props.title}
           </div>
           <UI.OutboundLink
             href={props.url}

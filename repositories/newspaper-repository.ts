@@ -1,5 +1,4 @@
 import { PrismaClient, Newspaper, Article } from "@prisma/client";
-import { Schema } from "@bgord/node";
 import { format, formatDistanceToNow, formatDistanceStrict } from "date-fns";
 
 import * as VO from "../value-objects";
@@ -94,11 +93,6 @@ export class NewspaperRepository {
       duration: formatDistanceStrict(sentAtRaw, newspaper.scheduledAt),
 
       title: `Newspaper ${format(newspaper.scheduledAt, "yyyy-MM-dd-hh-mm")}`,
-
-      articles: newspaper.articles.map((article) => ({
-        ...article,
-        title: article.title ?? "-",
-      })),
     };
   }
 }

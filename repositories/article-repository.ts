@@ -1,4 +1,4 @@
-import { PrismaClient, Article } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import _ from "lodash";
 
 import * as VO from "../value-objects";
@@ -7,24 +7,15 @@ const prisma = new PrismaClient();
 
 export class ArticleRepository {
   static async getAll() {
-    const result = await prisma.article.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
+    return prisma.article.findMany({
+      orderBy: { createdAt: "desc" },
     });
-
-    return result.map(ArticleRepository._mapper);
   }
 
   static async getAllNonProcessed() {
-    const articles = await prisma.article.findMany({
+    return prisma.article.findMany({
       where: { status: VO.ArticleStatusEnum.ready },
     });
-
-    return articles.map((article) => ({
-      ...article,
-      title: article?.title ?? "-",
-    }));
   }
 
   static async getNumberOfNonProcessed() {
@@ -34,14 +25,11 @@ export class ArticleRepository {
   }
 
   static async getFavourite() {
-    const result = await prisma.article.findMany({
+    return prisma.article.findMany({
       where: { favourite: true },
       orderBy: { favouritedAt: "asc" },
+      select: { id: true, url: true, title: true },
     });
-
-    return result
-      .map(ArticleRepository._mapper)
-      .map((article) => _.pick(article, "id", "url", "title"));
   }
 
   static async create(article: {
@@ -107,9 +95,5 @@ export class ArticleRepository {
     return prisma.article.count({
       where: { url: articleUrl, source: VO.ArticleSourceEnum.feedly },
     });
-  }
-
-  static _mapper(article: Article) {
-    return { ...article, title: article.title ?? "-" };
   }
 }

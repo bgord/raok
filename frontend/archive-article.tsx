@@ -34,7 +34,7 @@ export function ArchiveArticle(props: ArticleType) {
             data-transform="truncate"
             title={props.title}
           >
-            {props.title ?? "-"}
+            {props.title}
           </div>
         </div>
         <UI.OutboundLink
