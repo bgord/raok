@@ -22,8 +22,9 @@ export type ArticleType = {
   source: string;
   title: string;
   favourite: boolean;
-  createdAt: number;
 };
+
+export type ArchiveArticleType = ArticleType & { createdAt: number };
 
 export type FavouriteArticleType = Pick<ArticleType, "id" | "url" | "title">;
 

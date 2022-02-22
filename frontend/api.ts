@@ -1,5 +1,6 @@
 import {
   ArticleType,
+  ArchiveArticleType,
   ArticlePayloadType,
   NewspaperType,
   StatsType,
@@ -112,7 +113,7 @@ export async function scheduleFeedlyArticlesCrawl() {
   return _api("/schedule-feedly-articles-crawl", { method: "POST" });
 }
 
-export async function getArchiveArticles(): Promise<ArticleType[]> {
+export async function getArchiveArticles(): Promise<ArchiveArticleType[]> {
   return _api("/articles/archive", { method: "GET" }).then((response) =>
     response.ok ? response.json() : []
   );

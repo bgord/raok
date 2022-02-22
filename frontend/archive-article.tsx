@@ -1,10 +1,10 @@
 import { h } from "preact";
 
 import * as UI from "./ui";
-import { ArticleType } from "./types";
+import { ArchiveArticleType } from "./types";
 import { FavouriteUnfavourite } from "./favourite-unfavourite";
 
-export function ArchiveArticle(props: ArticleType) {
+export function ArchiveArticle(props: ArchiveArticleType) {
   return (
     <li
       data-display="flex"

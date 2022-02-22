@@ -7,11 +7,15 @@ import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import { useFilter, useTimestampFilter } from "./hooks";
-import { ArticleType, ArticleSourceEnum, ArticleStatusEnum } from "./types";
+import {
+  ArchiveArticleType,
+  ArticleSourceEnum,
+  ArticleStatusEnum,
+} from "./types";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {
-  archiveArticles: ArticleType[];
+  archiveArticles: ArchiveArticleType[];
 };
 
 export function ArchiveArticles(
