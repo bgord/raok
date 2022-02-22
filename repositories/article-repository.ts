@@ -9,6 +9,15 @@ export class ArticleRepository {
   static async getAll() {
     return prisma.article.findMany({
       orderBy: { createdAt: "desc" },
+      select: {
+        id: true,
+        url: true,
+        source: true,
+        title: true,
+        createdAt: true,
+        favourite: true,
+        status: true,
+      },
     });
   }
 
