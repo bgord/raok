@@ -3,7 +3,11 @@ import express from "express";
 import * as bg from "@bgord/node";
 
 import { Home } from "./routes/home";
+
 import { Dashboard } from "./routes/dashboard";
+import { ArticlesArchive } from "./routes/articles-archive";
+import { NewspapersArchive } from "./routes/newspapers-archive";
+
 import { AddArticle } from "./routes/add-article";
 import { DeleteArticle } from "./routes/delete-article";
 import { CreateNewspaper } from "./routes/create-newspaper";
@@ -132,8 +136,8 @@ app.post(
   bg.Route(SetArticlesToReviewNotificationHour)
 );
 
-app.get("/archive/articles", AuthShield.verify, bg.Route(Dashboard));
-app.get("/archive/newspapers", AuthShield.verify, bg.Route(Dashboard));
+app.get("/archive/articles", AuthShield.verify, bg.Route(ArticlesArchive));
+app.get("/archive/newspapers", AuthShield.verify, bg.Route(NewspapersArchive));
 
 app.post(
   "/schedule-feedly-articles-crawl",

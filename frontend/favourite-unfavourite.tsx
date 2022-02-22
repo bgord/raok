@@ -7,6 +7,7 @@ import { ArticleType, NewspaperType } from "./types";
 
 type FavouriteUnfavouriteType = {
   id: ArticleType["id"];
+  /* eslint-disable react/boolean-prop-naming */
   favourite: boolean;
 };
 
