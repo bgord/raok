@@ -21,14 +21,20 @@ export type ArticleType = {
   status: string;
   source: string;
   title: string;
-  favourite: boolean;
 };
 
-export type ArchiveArticleType = ArticleType & { createdAt: number };
+export type ArchiveArticleType = ArticleType & {
+  createdAt: number;
+  favourite: boolean;
+};
 
 export type FavouriteArticleType = Pick<ArticleType, "id" | "url" | "title">;
 
 export type ArticlePayloadType = { url: ArticleType["url"] };
+
+export type NewspaperArticleType = ArticleType & {
+  favourite: boolean;
+};
 
 export type NewspaperType = {
   id: string;
@@ -40,7 +46,7 @@ export type NewspaperType = {
   };
   scheduledAt: number;
   duration: string;
-  articles: ArticleType[];
+  articles: NewspaperArticleType[];
 };
 
 export type StatsType = {

@@ -1,10 +1,10 @@
 import { h } from "preact";
 
 import * as UI from "./ui";
-import { ArticleType } from "./types";
+import { NewspaperArticleType } from "./types";
 import { FavouriteUnfavourite } from "./favourite-unfavourite";
 
-export function NewspaperArticle(props: ArticleType) {
+export function NewspaperArticle(props: NewspaperArticleType) {
   return (
     <li
       data-display="flex"

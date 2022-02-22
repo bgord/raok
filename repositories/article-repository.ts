@@ -21,7 +21,6 @@ export class ArticleRepository {
         source: true,
         title: true,
         status: true,
-        favourite: true,
       },
     });
   }

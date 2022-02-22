@@ -7,7 +7,7 @@ import { ArticleType, NewspaperType } from "./types";
 
 type FavouriteUnfavouriteType = {
   id: ArticleType["id"];
-  favourite: ArticleType["favourite"];
+  favourite: boolean;
 };
 
 export function FavouriteUnfavourite(props: FavouriteUnfavouriteType) {
