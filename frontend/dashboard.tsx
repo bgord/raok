@@ -44,11 +44,15 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
 
       <section
         data-grow="1"
+        data-pt="12"
         data-px="24"
         data-md-px="0"
         data-width="100%"
-        data-md-max-width="unset"
         data-max-width="528"
+        data-md-max-width="unset"
+        data-position="sticky"
+        data-top="0"
+        style="height: 100%;"
       >
         <FavouriteArticles initialData={props.favouriteArticles} />
         <SendArbitraryFile />
