@@ -23,12 +23,12 @@ export function Article(props: ArticlePropsType) {
   });
 
   return (
-    // TODO: Decrease spacing on mobile
     <li
       data-display="flex"
       data-md-direction="column"
       data-wrap="nowrap"
       data-mb="24"
+      data-md-mb="12"
       data-md-mx="6"
       {...bg.getAnimaProps(props)}
     >
@@ -76,11 +76,12 @@ export function Article(props: ArticlePropsType) {
         data-md-direction="row"
         data-cross="center"
         data-ml="auto"
-        data-md-mt="6"
+        data-md-mt="3"
       >
         <UI.Badge>{props.source}</UI.Badge>
 
         <form
+          data-ml="auto"
           data-md-ml="6"
           onSubmit={(event) => {
             event.preventDefault();
