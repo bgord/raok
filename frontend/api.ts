@@ -12,7 +12,9 @@ export const _api: typeof fetch = (input, init) =>
     mode: "same-origin",
     headers: {
       "Content-Type": "application/json",
+
       "time-zone-offset": new Date().getTimezoneOffset().toString(),
+      locale: navigator.language || "en",
     },
     redirect: "follow",
     ...init,
