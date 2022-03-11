@@ -14,7 +14,6 @@ export const _api: typeof fetch = (input, init) =>
       "Content-Type": "application/json",
 
       "time-zone-offset": new Date().getTimezoneOffset().toString(),
-      locale: navigator.language || "en",
     },
     redirect: "follow",
     ...init,

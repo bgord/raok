@@ -53,6 +53,7 @@ const session = new bg.Session({
 session.applyTo(app);
 
 AuthShield.applyTo(app);
+bg.Language.applyTo(app, "translations");
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
