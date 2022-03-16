@@ -176,7 +176,7 @@ function useAutoUpdateNewspaper(
       );
 
       if (updated.status === "delivered") {
-        queryClient.invalidateQueries(["articles"]);
+        queryClient.invalidateQueries("articles");
         callback();
       }
     },

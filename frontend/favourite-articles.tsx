@@ -116,7 +116,7 @@ function useDeleteArticleFromFavourites() {
     onSuccess: (_response, articleId) => {
       notify({ message: "Deleted from favourites" });
 
-      queryClient.invalidateQueries(["favourite-articles"]);
+      queryClient.invalidateQueries("favourite-articles");
 
       queryClient.setQueryData<NewspaperType[]>(
         "newspapers",
