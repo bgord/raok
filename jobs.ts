@@ -36,7 +36,7 @@ const ArtclesToReviewNotifierTask = new AsyncTask(
         await notification.send();
         Reporter.success("Articles to review notification sent");
       } catch (error) {
-        Reporter.raw("artcles to review notification sent", error);
+        Reporter.raw("ArtclesToReviewNotifierTask", error);
       }
     }
   }
