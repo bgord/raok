@@ -1,6 +1,11 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { Anima, AnimaList, useAnimaList } from "@bgord/frontend";
+import {
+  Anima,
+  AnimaList,
+  useAnimaList,
+  useTranslations,
+} from "@bgord/frontend";
 
 import * as api from "./api";
 import { Header } from "./ui";
@@ -8,6 +13,8 @@ import { NewspaperType } from "./types";
 import { Newspaper } from "./newspaper";
 
 export function NewspaperList(props: { initialData: NewspaperType[] }) {
+  const t = useTranslations();
+
   const _newspapers = useQuery(["newspapers"], api.getNewspapers, props);
 
   const newspapers = useAnimaList(_newspapers.data ?? [], "head");
@@ -29,7 +36,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
           alt=""
           data-mr="12"
         />
-        Newspapers
+        <span data-transform="upper-first">{t("app.newspapers")}</span>
       </Header>
 
       {newspapers.count === 0 && (
@@ -39,8 +46,9 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
           data-md-px="12"
           data-mt="24"
           data-ml="6"
+          data-transform="upper-first"
         >
-          No newspapers added at the moment
+          {t("dashboard.no_newspapers_available")}
         </small>
       )}
 

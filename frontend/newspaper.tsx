@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { useToggle, useToastTrigger, Anima } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -11,7 +11,9 @@ import { NewspaperArticle } from "./newspaper-article";
 type NewspaperProps = NewspaperType & h.JSX.IntrinsicElements["li"];
 
 export function Newspaper(props: NewspaperProps) {
-  const details = useToggle();
+  const t = bg.useTranslations();
+
+  const details = bg.useToggle();
   useAutoUpdateNewspaper(props, details.enable);
 
   const resendNewspaper = useResendNewspaper();
@@ -95,7 +97,7 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       </div>
 
-      <Anima
+      <bg.Anima
         visible={details.on && props.status === "delivered"}
         effect="opacity"
       >
@@ -110,7 +112,7 @@ export function Newspaper(props: NewspaperProps) {
               }}
             >
               <button type="submit" class="c-button" data-variant="secondary">
-                Resend
+                {t("newspaper.resend")}
               </button>
             </form>
           )}
@@ -125,7 +127,7 @@ export function Newspaper(props: NewspaperProps) {
               data-mr="auto"
             >
               <button type="button" class="c-button" data-variant="bare">
-                Read online
+                {t("newspaper.read_online")}
               </button>
             </UI.OutboundLink>
           )}
@@ -134,15 +136,15 @@ export function Newspaper(props: NewspaperProps) {
             Processed in {props.duration}
           </span>
         </div>
-      </Anima>
+      </bg.Anima>
 
-      <Anima visible={details.on} effect="opacity">
+      <bg.Anima visible={details.on} effect="opacity">
         <ul data-mt="6" data-max-width="100%">
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />
           ))}
         </ul>
-      </Anima>
+      </bg.Anima>
     </li>
   );
 }
@@ -159,10 +161,13 @@ function useAutoUpdateNewspaper(
 
   useQuery(["newspapers", props.id], () => api.getSingleNewspaper(props.id), {
     initialData: props,
+
     enabled:
       !["delivered", "archived", "error"].includes(props.status) &&
       !hasCutoffPassed,
+
     refetchInterval: 1000,
+
     onSuccess(updated) {
       queryClient.setQueryData<NewspaperType[]>(
         "newspapers",
@@ -181,15 +186,17 @@ function useAutoUpdateNewspaper(
 function ArchiveNewspaper(props: {
   id: NewspaperType["id"] & h.JSX.IntrinsicElements["form"];
 }) {
+  const t = bg.useTranslations();
+
   const { id, ...rest } = props;
 
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
   const archiveNewspaper = useMutation(api.archiveNewspaper, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["newspapers"]);
-      notify({ message: "Newspaper archived" });
+      queryClient.invalidateQueries("newspapers");
+      notify({ message: t("newspaper.archived") });
     },
   });
 
@@ -202,7 +209,7 @@ function ArchiveNewspaper(props: {
       {...rest}
     >
       <button type="submit" class="c-button" data-variant="secondary">
-        Archive
+        {t("newspaper.archive")}
       </button>
     </form>
   );
@@ -213,13 +220,14 @@ function CancelNewspaper(props: {
 }) {
   const { id, ...rest } = props;
 
-  const notify = useToastTrigger();
+  const t = bg.useTranslations();
+  const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
   const cancelNewspaper = useMutation(api.cancelNewspaper, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["newspapers"]);
-      notify({ message: "Newspaper cancelled" });
+      queryClient.invalidateQueries("newspapers");
+      notify({ message: t("newspaper.cancelled") });
     },
   });
 
@@ -232,23 +240,24 @@ function CancelNewspaper(props: {
       {...rest}
     >
       <button type="submit" class="c-button" data-variant="secondary">
-        Cancel
+        {t("newspaper.cancel")}
       </button>
     </form>
   );
 }
 
 function useResendNewspaper() {
+  const t = bg.useTranslations();
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   return useMutation(api.resendNewspaper, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["newspapers"]);
-      queryClient.invalidateQueries(["articles"]);
-      queryClient.invalidateQueries(["stats"]);
+      queryClient.invalidateQueries("newspapers");
+      queryClient.invalidateQueries("articles");
+      queryClient.invalidateQueries("stats");
 
-      notify({ message: "Newspaper resent" });
+      notify({ message: t("newspaper.resent") });
     },
   });
 }

@@ -13,5 +13,13 @@
   "dashboard.deselect_all": "deselect all",
   "dashboard.select_min_1_article": "select min. 1 article",
   "dashboard.create_newspaper": "create newspaper",
-  "dashboard.no_articles_available": "no articles available at the moment"
+  "dashboard.no_articles_available": "no articles available at the moment",
+  "dashboard.no_newspapers_available": "no newspapers added at the moment",
+  "newspaper.archive": "archive",
+  "newspaper.archived": "archived",
+  "newspaper.cancel": "cancel",
+  "newspaper.cancelled": "newspaper has been cancelled",
+  "newspaper.resend": "resend",
+  "newspaper.resent": "resent",
+  "newspaper.read_online": "read online"
 }
