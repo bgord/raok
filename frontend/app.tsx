@@ -2,6 +2,7 @@ import Router from "preact-router";
 import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastsContextProvider } from "@bgord/frontend";
+import type { Schema } from "@bgord/node";
 
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
@@ -24,6 +25,7 @@ export type InitialDataType = InitialDashboardDataType &
   InitialSettingsDataType &
   BuildMetaDataType & {
     url: string;
+    language: Schema.LanguageNameType;
   };
 
 const queryClient = new QueryClient();
@@ -35,6 +37,7 @@ export function App(props: InitialDataType) {
     settings,
     BUILD_DATE,
     BUILD_VERSION,
+    language,
     ...rest
   } = props;
 

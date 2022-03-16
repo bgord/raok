@@ -7,12 +7,13 @@ import * as Repos from "../repositories";
 import { App } from "../frontend/app";
 
 export async function NewspapersArchive(
-  _request: express.Request,
+  request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
   const state = {
     ...Repos.BuildRepository.getAll(),
+    language: request.language,
     archiveArticles: [],
     archiveNewspapers: await Repos.NewspaperRepository.getAll(),
     articles: [],

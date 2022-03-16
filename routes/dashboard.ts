@@ -13,6 +13,7 @@ export async function Dashboard(
 ) {
   const state = {
     ...Repos.BuildRepository.getAll(),
+    language: request.language,
     archiveArticles: [],
     archiveNewspapers: [],
     articles: await Repos.ArticleRepository.getAllNonProcessed(),
