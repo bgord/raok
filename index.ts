@@ -37,14 +37,9 @@ import { Env } from "./env";
 
 const app = express();
 
-const AuthShield = new bg.EnvUserAuthShield({
-  ADMIN_USERNAME: Env.ADMIN_USERNAME,
-  ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
-});
-
 bg.addExpressEssentials(app, { helmet: { contentSecurityPolicy: false } });
-
-new bg.Handlebars().applyTo(app);
+bg.Handlebars.applyTo(app);
+bg.Language.applyTo(app, "translations");
 
 const session = new bg.Session({
   secret: Env.COOKIE_SECRET,
@@ -52,8 +47,11 @@ const session = new bg.Session({
 });
 session.applyTo(app);
 
+const AuthShield = new bg.EnvUserAuthShield({
+  ADMIN_USERNAME: Env.ADMIN_USERNAME,
+  ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
+});
 AuthShield.applyTo(app);
-bg.Language.applyTo(app, "translations");
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Home));
 
