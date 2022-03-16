@@ -1,11 +1,13 @@
 {
-  "app.name": "RAOK",
   "app.articles": "articles",
+  "app.logout": "logout",
+  "app.name": "RAOK",
   "app.newspapers": "newspapers",
   "app.settings": "settings",
-  "app.logout": "logout",
+  "dashboard.add_article": "add",
+  "dashboard.adding_article": "adding...",
+  "dashboard.could_not_schedule": "couldn't schedule",
   "dashboard.schedule_feedly_crawl": "schedule Feedly crawl",
-  "dashboard.scheduling": "scheduling...",
   "dashboard.scheduled": "scheduled!",
-  "dashboard.could_not_schedule": "couldn't schedule"
+  "dashboard.scheduling": "scheduling..."
 }

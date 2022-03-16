@@ -1,12 +1,14 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
-import { useToastTrigger } from "@bgord/frontend";
+import { useToastTrigger, useTranslations } from "@bgord/frontend";
 
 import * as api from "./api";
 import { ArticleType } from "./types";
 
 export function AddArticleForm() {
+  const t = useTranslations();
+
   const queryClient = useQueryClient();
   const notify = useToastTrigger();
 
@@ -53,7 +55,9 @@ export function AddArticleForm() {
         disabled={addArticleRequest.isLoading}
         style={{ minWidth: "60px" }}
       >
-        {addArticleRequest.isLoading ? "Adding..." : "Add"}
+        {addArticleRequest.isLoading
+          ? t("dashboard.add_article")
+          : t("dashboard.adding_article")}
       </button>
     </form>
   );
