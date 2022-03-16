@@ -3,5 +3,9 @@
   "app.articles": "articles",
   "app.newspapers": "newspapers",
   "app.settings": "settings",
-  "app.logout": "logout"
+  "app.logout": "logout",
+  "dashboard.schedule_feedly_crawl": "schedule Feedly crawl",
+  "dashboard.scheduling": "scheduling...",
+  "dashboard.scheduled": "scheduled!",
+  "dashboard.could_not_schedule": "couldn't schedule"
 }

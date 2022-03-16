@@ -1,12 +1,14 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
-import { useToastTrigger } from "@bgord/frontend";
+import { useToastTrigger, useTranslations } from "@bgord/frontend";
 
 import * as api from "./api";
 
 export function ScheduleFeedlyCrawlButton(
   props: h.JSX.IntrinsicElements["button"]
 ) {
+  const t = useTranslations();
+
   const queryClient = useQueryClient();
   const notify = useToastTrigger();
 
@@ -33,10 +35,11 @@ export function ScheduleFeedlyCrawlButton(
       data-variant="bare"
       {...props}
     >
-      {scheduleFeedlyArticlesCrawl.isIdle && "Schedule Feedly crawl"}
-      {scheduleFeedlyArticlesCrawl.isLoading && "Scheduling..."}
-      {scheduleFeedlyArticlesCrawl.isSuccess && "Scheduled!"}
-      {scheduleFeedlyArticlesCrawl.isError && "Couldn't schedule"}
+      {scheduleFeedlyArticlesCrawl.isIdle &&
+        t("dashboard.schedule_feedly_crawl")}
+      {scheduleFeedlyArticlesCrawl.isLoading && t("dashboard.scheduling")}
+      {scheduleFeedlyArticlesCrawl.isSuccess && t("dashboard.scheduled")}
+      {scheduleFeedlyArticlesCrawl.isError && t("dashboard.could_not_schedule")}
     </button>
   );
 }
