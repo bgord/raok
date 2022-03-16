@@ -13,26 +13,28 @@ export function Navigation() {
 }
 
 function NavigationDesktop() {
+  const t = bg.useTranslations();
+
   return (
     <nav data-display="flex" data-p="12" data-bg="gray-800">
       <NavigationLogo />
 
       <NavigationLink href="/archive/articles" data-mr="24">
-        Articles
+        {t("app.articles")}
       </NavigationLink>
 
       <NavigationLink href="/archive/newspapers" data-mr="24">
-        Newspapers
+        {t("app.newspapers")}
       </NavigationLink>
 
-      <NavigationLink href="/settings">Settings</NavigationLink>
+      <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
 
       <strong data-mx="36" data-color="white">
         admin
       </strong>
 
       <NavigationLink data-mr="24" href="/logout">
-        Logout
+        {t("app.logout")}
       </NavigationLink>
     </nav>
   );
@@ -40,6 +42,7 @@ function NavigationDesktop() {
 
 function NavigationMobile() {
   const navigation = bg.useToggle();
+  const t = bg.useTranslations();
 
   bg.useScrollLock(navigation.on);
 
@@ -97,27 +100,27 @@ function NavigationMobile() {
               href="/archive/articles"
               data-mb="24"
             >
-              Articles
+              {t("app.articles")}
             </NavigationLink>
             <NavigationLink
               onClick={navigation.disable}
               href="/archive/newspapers"
               data-mb="24"
             >
-              Newspapers
+              {t("app.newspapers")}
             </NavigationLink>
             <NavigationLink
               onClick={navigation.disable}
               href="/settings"
               data-mb="24"
             >
-              Settings
+              {t("app.settings")}
             </NavigationLink>
             <strong data-color="white" data-mb="24">
               admin
             </strong>
             <NavigationLink onClick={navigation.disable} href="/logout">
-              Logout
+              {t("app.logout")}
             </NavigationLink>
           </div>
         </nav>
@@ -139,6 +142,7 @@ function NavigationLink(props: h.JSX.HTMLAttributes) {
     <Link
       activeClassName="c-link--active"
       class="c-link"
+      data-transform="capitalize"
       data-color="white"
       data-variant="bare"
       {...props}

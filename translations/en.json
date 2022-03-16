@@ -1,3 +1,7 @@
 {
-  "app.name": "RAOK"
+  "app.name": "RAOK",
+  "app.articles": "articles",
+  "app.newspapers": "newspapers",
+  "app.settings": "settings",
+  "app.logout": "logout"
 }
