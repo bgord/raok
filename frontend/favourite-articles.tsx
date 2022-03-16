@@ -9,8 +9,10 @@ import { FavouriteArticleType, NewspaperType } from "./types";
 export function FavouriteArticles(props: {
   initialData: FavouriteArticleType[];
 }) {
+  const t = bg.useTranslations();
+
   const _articles = useQuery(
-    ["favourite-articles"],
+    "favourite-articles",
     api.getFavouriteArticles,
     props
   );
@@ -36,12 +38,12 @@ export function FavouriteArticles(props: {
           alt=""
           data-mr="12"
         />
-        Favourite articles
+        <span data-transform="upper-first">{t("article.favourites")}</span>
       </UI.Header>
 
       {articles.count === 0 && (
-        <small data-fs="14" data-color="gray-600">
-          Your favourite sent articles will appear here
+        <small data-fs="14" data-color="gray-600" data-transform="upper-first">
+          {t("article.favourites_empty")}
         </small>
       )}
 
@@ -74,7 +76,7 @@ export function FavouriteArticles(props: {
                   data-variant="bare"
                   data-ml="12"
                 >
-                  Remove
+                  {t("article.favourites_remove")}
                 </button>
               </form>
             </li>
@@ -101,7 +103,7 @@ export function FavouriteArticles(props: {
           data-variant="bare"
           onClick={list.showLess}
         >
-          Show less
+          {t("dashboard.show_less")}
         </button>
       )}
     </div>
@@ -109,12 +111,13 @@ export function FavouriteArticles(props: {
 }
 
 function useDeleteArticleFromFavourites() {
+  const t = bg.useTranslations();
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
   return useMutation(api.deleteArticleFromFavourites, {
     onSuccess: (_response, articleId) => {
-      notify({ message: "Deleted from favourites" });
+      notify({ message: t("article.favourites_deleted") });
 
       queryClient.invalidateQueries("favourite-articles");
 

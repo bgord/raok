@@ -56,8 +56,8 @@ export function AddArticleForm() {
         style={{ minWidth: "60px" }}
       >
         {addArticleRequest.isLoading
-          ? t("dashboard.add_article")
-          : t("dashboard.adding_article")}
+          ? t("article.adding_article")
+          : t("article.add")}
       </button>
     </form>
   );

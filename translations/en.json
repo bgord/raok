@@ -4,10 +4,15 @@
   "app.name": "RAOK",
   "app.newspapers": "newspapers",
   "app.settings": "settings",
-  "dashboard.add_article": "add",
-  "dashboard.adding_article": "adding...",
+
+  "article.add": "add",
+  "article.adding_article": "adding...",
+  "article.favourites": "favourite articles",
+  "article.favourites_deleted": "deleted from favourites",
+  "article.favourites_empty": "your favourite sent articles will appear here",
+  "article.favourites_remove": "remove",
+
   "dashboard.could_not_schedule": "couldn't schedule",
-  "dashboard.create_newspaper": "create newspaper",
   "dashboard.deselect_all": "deselect all",
   "dashboard.no_articles_available": "no articles available at the moment",
   "dashboard.no_newspapers_available": "no newspapers added at the moment",
@@ -15,10 +20,13 @@
   "dashboard.scheduled": "scheduled!",
   "dashboard.select_all": "select all",
   "dashboard.select_min_1_article": "select min. 1 article",
+  "dashboard.show_less": "show less",
+
   "newspaper.archive": "archive",
-  "newspaper.archived": "archived",
+  "newspaper.archived": "newspaper has been archived",
   "newspaper.cancel": "cancel",
   "newspaper.cancelled": "newspaper has been cancelled",
+  "newspaper.create": "create newspaper",
   "newspaper.read_online": "read online",
   "newspaper.resend": "resend",
   "newspaper.resent": "resent"

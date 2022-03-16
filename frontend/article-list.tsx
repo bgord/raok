@@ -125,7 +125,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             )}
 
             <button type="submit" class="c-button" data-variant="primary">
-              {t("dashboard.create_newspaper")}
+              {t("newspaper.create")}
             </button>
           </form>
         </div>
