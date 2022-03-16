@@ -9,5 +9,9 @@
   "dashboard.could_not_schedule": "couldn't schedule",
   "dashboard.schedule_feedly_crawl": "schedule Feedly crawl",
   "dashboard.scheduled": "scheduled!",
-  "dashboard.scheduling": "scheduling..."
+  "dashboard.select_all": "select all",
+  "dashboard.deselect_all": "deselect all",
+  "dashboard.select_min_1_article": "select min. 1 article",
+  "dashboard.create_newspaper": "create newspaper",
+  "dashboard.no_articles_available": "no articles available at the moment"
 }

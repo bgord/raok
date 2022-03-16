@@ -11,6 +11,8 @@ import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
 export function ArticleList(props: { initialData: ArticleType[] }) {
+  const t = bg.useTranslations();
+
   const [selectedArticleIds, actions] = bg.useList<ArticleType["id"]>();
   const emptyNewspaperError = bg.useToggle();
 
@@ -29,7 +31,11 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
         data-p="12"
         data-pt="6"
       >
-        <UI.Header data-display="flex" data-cross="center">
+        <UI.Header
+          data-display="flex"
+          data-cross="center"
+          data-transform="upper-first"
+        >
           <img
             loading="eager"
             height="20"
@@ -38,7 +44,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             alt=""
             data-mr="12"
           />
-          Articles
+          {t("app.articles")}
           <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
 
@@ -53,7 +59,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               data-variant="secondary"
               data-mr="12"
             >
-              Select all
+              {t("dashboard.select_all")}
             </button>
 
             <button
@@ -62,7 +68,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               class="c-button"
               data-variant="secondary"
             >
-              Deselect all
+              {t("dashboard.deselect_all")}
             </button>
 
             <button
@@ -112,13 +118,14 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
                 data-my="auto"
                 data-color="gray-600"
                 data-fs="14"
+                data-transform="upper-first"
               >
-                Select min. 1 article
+                {t("dashboard.select_min_1_article")}
               </div>
             )}
 
             <button type="submit" class="c-button" data-variant="primary">
-              Create newspaper
+              {t("dashboard.create_newspaper")}
             </button>
           </form>
         </div>
@@ -131,8 +138,9 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           data-md-px="12"
           data-mt="24"
           data-ml="6"
+          data-transform="upper-first"
         >
-          No articles available at the moment
+          {t("dashboard.no_articles_available")}
         </small>
       )}
 
