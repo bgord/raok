@@ -1,5 +1,6 @@
 import express from "express";
 import render from "preact-render-to-string";
+import { Language } from "@bgord/node";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
@@ -11,9 +12,15 @@ export async function NewspapersArchive(
   response: express.Response,
   _next: express.NextFunction
 ) {
+  const translations = await Language.getTranslations(
+    request.language,
+    request.translationsPath
+  );
+
   const state = {
     ...Repos.BuildRepository.getAll(),
     language: request.language,
+    translations,
     archiveArticles: [],
     archiveNewspapers: await Repos.NewspaperRepository.getAll(),
     articles: [],
@@ -24,7 +31,6 @@ export async function NewspapersArchive(
   };
 
   const frontend = render(App({ ...state, url: "/archive/articles" }));
-
   const html = Services.Html.process({ frontend, state });
 
   return response.send(html);

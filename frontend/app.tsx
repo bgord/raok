@@ -1,8 +1,11 @@
 import Router from "preact-router";
 import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ToastsContextProvider } from "@bgord/frontend";
-import type { Schema } from "@bgord/node";
+import {
+  ToastsContextProvider,
+  TranslationsContextProvider,
+} from "@bgord/frontend";
+import type { Schema, TranslationsType } from "@bgord/node";
 
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
@@ -25,7 +28,8 @@ export type InitialDataType = InitialDashboardDataType &
   InitialSettingsDataType &
   BuildMetaDataType & {
     url: string;
-    language: Schema.LanguageNameType;
+    language: Schema.LanguageType;
+    translations: TranslationsType;
   };
 
 const queryClient = new QueryClient();
@@ -38,31 +42,34 @@ export function App(props: InitialDataType) {
     BUILD_DATE,
     BUILD_VERSION,
     language,
+    translations,
     ...rest
   } = props;
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ToastsContextProvider>
-        <Navigation />
+      <TranslationsContextProvider translations={translations}>
+        <ToastsContextProvider>
+          <Navigation />
 
-        <Router url={props.url}>
-          <ArchiveArticles
-            path="/archive/articles"
-            archiveArticles={archiveArticles}
-          />
-          <ArchiveNewspapers
-            path="/archive/newspapers"
-            archiveNewspapers={archiveNewspapers}
-          />
-          <Dashboard path="/dashboard" {...rest} />
-          <Settings path="/settings" settings={settings} />
-        </Router>
+          <Router url={props.url}>
+            <ArchiveArticles
+              path="/archive/articles"
+              archiveArticles={archiveArticles}
+            />
+            <ArchiveNewspapers
+              path="/archive/newspapers"
+              archiveNewspapers={archiveNewspapers}
+            />
+            <Dashboard path="/dashboard" {...rest} />
+            <Settings path="/settings" settings={settings} />
+          </Router>
 
-        <Toasts />
+          <Toasts />
 
-        <BuildMeta BUILD_VERSION={BUILD_VERSION} BUILD_DATE={BUILD_DATE} />
-      </ToastsContextProvider>
+          <BuildMeta BUILD_VERSION={BUILD_VERSION} BUILD_DATE={BUILD_DATE} />
+        </ToastsContextProvider>
+      </TranslationsContextProvider>
     </QueryClientProvider>
   );
 }

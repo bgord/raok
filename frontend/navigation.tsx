@@ -147,6 +147,8 @@ function NavigationLink(props: h.JSX.HTMLAttributes) {
 }
 
 function NavigationLogo(props: h.JSX.HTMLAttributes) {
+  const t = bg.useTranslations();
+
   return (
     <NavigationLink
       href="/dashboard"
@@ -157,7 +159,7 @@ function NavigationLogo(props: h.JSX.HTMLAttributes) {
       data-mr="auto"
       {...props}
     >
-      RAOK
+      {t("app.name")}
     </NavigationLink>
   );
 }
