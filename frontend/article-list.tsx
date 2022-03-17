@@ -31,11 +31,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
         data-p="12"
         data-pt="6"
       >
-        <UI.Header
-          data-display="flex"
-          data-cross="center"
-          data-transform="upper-first"
-        >
+        <UI.Header data-display="flex" data-cross="center">
           <img
             loading="eager"
             height="20"
@@ -44,7 +40,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
             alt=""
             data-mr="12"
           />
-          {t("app.articles")}
+          <span data-transform="upper-first">{t("app.articles")}</span>
           <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
 
