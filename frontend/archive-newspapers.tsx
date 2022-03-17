@@ -1,11 +1,12 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
+import { useClientFilter } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
-import { useTimestampFilter, useFilter } from "./hooks";
+import { useTimestampFilter, TimestampFiltersEnum } from "./hooks";
 
 import { Newspaper } from "./newspaper";
 
@@ -22,8 +23,10 @@ export function ArchiveNewspapers(
     { initialData: props.archiveNewspapers }
   );
 
-  const statusFilter = useFilter({ enum: NewspaperStatusEnum });
-  const sentAtFilter = useTimestampFilter({ defaultValue: "last_3_days" });
+  const statusFilter = useClientFilter({ enum: NewspaperStatusEnum });
+  const sentAtFilter = useTimestampFilter({
+    defaultQuery: TimestampFiltersEnum.last_3_days,
+  });
 
   const newspapers = (archiveNewspapers.data ?? [])
     .filter((newspaper) => statusFilter.filterFn(newspaper.status))

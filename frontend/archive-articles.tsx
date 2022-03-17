@@ -1,13 +1,13 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useClientSearch } from "@bgord/frontend";
+import { useClientSearch, useClientFilter } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
-import { useFilter, useTimestampFilter } from "./hooks";
+import { useTimestampFilter, TimestampFiltersEnum } from "./hooks";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {
@@ -22,9 +22,11 @@ export function ArchiveArticles(
   });
 
   const search = useClientSearch();
-  const sourceFilter = useFilter({ enum: types.ArticleSourceEnum });
-  const statusFilter = useFilter({ enum: types.ArticleStatusEnum });
-  const createdAt = useTimestampFilter({ defaultValue: "last_week" });
+  const sourceFilter = useClientFilter({ enum: types.ArticleSourceEnum });
+  const statusFilter = useClientFilter({ enum: types.ArticleStatusEnum });
+  const createdAt = useTimestampFilter({
+    defaultQuery: TimestampFiltersEnum.last_week,
+  });
 
   const articles = (archiveArticles.data ?? [])
     .filter((article) => search.filterFn(String(article.title)))

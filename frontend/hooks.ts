@@ -1,57 +1,18 @@
-import { h } from "preact";
-import { useState } from "preact/hooks";
+import { useClientFilter } from "@bgord/frontend";
 
-type UseFilterValueType = string;
-
-export function useFilter<T = string>(config: {
-  enum: { [key: string]: UseFilterValueType };
-  defaultValue?: UseFilterValueType;
-  filterFn?: (value: T) => boolean;
-}) {
-  const defaultValue = config.defaultValue ?? "all";
-
-  const [query, setValue] = useState<UseFilterValueType>(defaultValue);
-
-  function clear() {
-    setValue(defaultValue);
-  }
-
-  function onChange(event: h.JSX.TargetedEvent<HTMLSelectElement, Event>) {
-    const { value } = event.currentTarget;
-
-    if (value !== "all" && !Boolean(config.enum[String(value)])) return;
-    else setValue(value);
-  }
-
-  function filterFn(value: T) {
-    if (query === "all") return true;
-
-    return query === String(value);
-  }
-
-  const options = Object.keys(config.enum);
-
-  return {
-    query,
-    clear,
-    onChange,
-    filterFn: config.filterFn ?? filterFn,
-    options,
-  };
-}
-
-enum TimestampFiltersEnum {
+export enum TimestampFiltersEnum {
   today = "today",
   last_3_days = "last_3_days",
   last_week = "last_week",
   last_30_days = "last_30_days",
 }
+
 export function useTimestampFilter(config?: {
-  defaultValue: Parameters<typeof useFilter>[0]["defaultValue"];
+  defaultQuery: TimestampFiltersEnum;
 }) {
-  const timestamp = useFilter<number | null | undefined>({
+  const timestamp = useClientFilter<number | null | undefined>({
     enum: TimestampFiltersEnum,
-    defaultValue: config?.defaultValue ?? "all",
+    defaultQuery: config?.defaultQuery ?? "all",
     filterFn: (value) => {
       if (timestamp.query === "all") return true;
 
