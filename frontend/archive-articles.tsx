@@ -144,10 +144,8 @@ export function ArchiveArticles(
             src="/icon-search.svg"
             alt=""
             data-position="absolute"
-            data-top="0"
-            data-right="0"
             data-p="6"
-            data-bg="white"
+            style="top: 1px; right: 1px; background: white;"
           />
         </div>
 
