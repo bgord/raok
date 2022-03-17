@@ -51,7 +51,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
       <div
         data-display="flex"
         data-direction="column"
-        data-cross="center"
+        data-cross="end"
         data-ml="auto"
       >
         <UI.Badge data-mb="6">{props.status}</UI.Badge>
