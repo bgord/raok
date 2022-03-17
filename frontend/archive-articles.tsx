@@ -40,7 +40,8 @@ export function ArchiveArticles(
       data-direction="column"
       data-mt="24"
       data-mx="auto"
-      data-md-px="12"
+      data-md-pl="6"
+      data-md-pr="3"
       data-max-width="768"
       data-md-max-width="100%"
       data-width="100%"
@@ -140,11 +141,11 @@ export function ArchiveArticles(
             sourceFilter.clear();
           }}
         >
-          Reset
+          Reset filters
         </button>
       </div>
 
-      <div data-display="flex" data-mt="24" data-max-width="100%">
+      <div data-display="flex" data-my="24" data-max-width="100%">
         <div data-position="relative">
           <input
             list="articles"
@@ -192,7 +193,7 @@ export function ArchiveArticles(
         ))}
       </datalist>
 
-      <ul data-display="flex" data-direction="column" data-mt="24" data-pb="24">
+      <ul data-display="flex" data-direction="column" data-max-width="100%">
         {articles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />
         ))}

@@ -11,7 +11,6 @@ export function ArchiveArticle(props: ArchiveArticleType) {
       data-cross="center"
       data-wrap="nowrap"
       data-mb="24"
-      data-md-px="6"
       data-max-width="768"
       data-width="100%"
     >
@@ -19,6 +18,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
         data-display="flex"
         data-direction="column"
         data-mr="12"
+        data-md-mr="0"
         data-overflow="hidden"
       >
         <div
@@ -30,7 +30,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
           {props.status === "processed" && <FavouriteUnfavourite {...props} />}
           <div
             data-width="100%"
-            data-ml={props.status === "processed" && "12"}
+            data-ml={props.status === "processed" && "6"}
             data-transform="truncate"
             title={String(props.title)}
           >
@@ -40,6 +40,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
         <UI.OutboundLink
           href={props.url}
           data-mr="12"
+          data-md-mr="0"
           data-width="100%"
           data-fs="14"
           title={props.url}
@@ -50,6 +51,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
 
       <div
         data-display="flex"
+        data-md-display="none"
         data-direction="column"
         data-cross="end"
         data-ml="auto"
