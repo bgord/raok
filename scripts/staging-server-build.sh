@@ -90,6 +90,16 @@ fi
 
 # ==========================================================
 
+if test -d translations
+then
+  cp -r translations $OUT_DIR
+  info "Copied translations"
+else
+  info "translations/ directory doesn't exist, step skipped"
+fi
+
+# ==========================================================
+
 mkdir $OUT_DIR/newspapers
 info "Created newspapers directory"
 
