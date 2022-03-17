@@ -43,22 +43,12 @@ export function ArchiveArticles(
       data-max-width="768"
       data-width="100%"
     >
-      <div
-        data-display="flex"
-        data-cross="center"
-        data-mt="24"
-        data-mb="36"
-        data-bwt="4"
-        data-bct="gray-100"
-        data-pt="12"
-      >
+      <div data-display="flex" data-cross="center" data-mb="24" data-pt="12">
         <h2 data-fs="20" data-color="gray-800" data-fw="500">
           Archive Articles
         </h2>
 
-        <UI.Badge data-ml="12" data-p="3">
-          {numberOfArticles}
-        </UI.Badge>
+        <UI.Badge data-ml="12">{numberOfArticles}</UI.Badge>
       </div>
 
       <div data-display="flex" data-cross="end" data-mb="24">
@@ -66,69 +56,61 @@ export function ArchiveArticles(
           <label class="c-label" for="created-at">
             Created at
           </label>
-          <div class="c-select-wrapper">
-            <select
-              id="created-at"
-              name="created-at"
-              class="c-select"
-              value={createdAt.query}
-              onInput={createdAt.onChange}
-            >
-              <option selected value="all">
-                All
-              </option>
+          <UI.Select
+            id="created-at"
+            name="created-at"
+            value={createdAt.query}
+            onInput={createdAt.onChange}
+          >
+            <option selected value="all">
+              All
+            </option>
 
-              {createdAt.options.map((option) => (
-                <option value={option}>{option}</option>
-              ))}
-            </select>
-          </div>
+            {createdAt.options.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
+          </UI.Select>
         </div>
 
         <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" for="status">
             Status
           </label>
-          <div class="c-select-wrapper">
-            <select
-              id="status"
-              name="status"
-              class="c-select"
-              value={statusFilter.query}
-              onInput={statusFilter.onChange}
-            >
-              <option selected value="all">
-                All
-              </option>
+          <UI.Select
+            id="status"
+            name="status"
+            value={statusFilter.query}
+            onInput={statusFilter.onChange}
+          >
+            <option selected value="all">
+              All
+            </option>
 
-              {statusFilter.options.map((status) => (
-                <option value={status}>{status}</option>
-              ))}
-            </select>
-          </div>
+            {statusFilter.options.map((status) => (
+              <option value={status}>{status}</option>
+            ))}
+          </UI.Select>
         </div>
 
         <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" for="source">
             Source
           </label>
-          <div class="c-select-wrapper">
-            <select
-              id="source"
-              name="source"
-              class="c-select"
-              value={sourceFilter.query}
-              onInput={sourceFilter.onChange}
-            >
-              <option selected value="all">
-                All
-              </option>
+          <UI.Select
+            id="source"
+            name="source"
+            class="c-select"
+            value={sourceFilter.query}
+            onInput={sourceFilter.onChange}
+          >
+            <option selected value="all">
+              All
+            </option>
 
-              {sourceFilter.options.map((source) => (
-                <option value={source}>{source}</option>
-              ))}
-            </select>
-          </div>
+            {sourceFilter.options.map((source) => (
+              <option value={source}>{source}</option>
+            ))}
+          </UI.Select>
         </div>
 
         <button

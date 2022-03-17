@@ -37,3 +37,11 @@ export function Header(props: h.JSX.IntrinsicElements["h2"]) {
   /* eslint-disable jsx-a11y/heading-has-content */
   return <h2 data-fs="16" data-color="gray-700" data-fw="500" {...props} />;
 }
+
+export function Select(props: h.JSX.IntrinsicElements["select"]) {
+  return (
+    <div class="c-select-wrapper">
+      <select class="c-select" {...props} />
+    </div>
+  );
+}
