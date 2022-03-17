@@ -38,12 +38,14 @@ export function ArchiveArticles(
     <main
       data-display="flex"
       data-direction="column"
-      data-mx="auto"
       data-mt="24"
+      data-mx="auto"
+      data-md-px="12"
       data-max-width="768"
+      data-md-max-width="100%"
       data-width="100%"
     >
-      <div data-display="flex" data-cross="center" data-mb="24" data-pt="12">
+      <div data-display="flex" data-cross="center">
         <h2 data-fs="20" data-color="gray-800" data-fw="500">
           Archive Articles
         </h2>
@@ -51,8 +53,13 @@ export function ArchiveArticles(
         <UI.Badge data-ml="12">{numberOfArticles}</UI.Badge>
       </div>
 
-      <div data-display="flex" data-cross="end" data-mb="24">
-        <div data-display="flex" data-direction="column" data-mr="24">
+      <div data-display="flex" data-cross="end" data-mt="12">
+        <div
+          data-display="flex"
+          data-direction="column"
+          data-mt="12"
+          data-mr="24"
+        >
           <label class="c-label" for="created-at">
             Created at
           </label>
@@ -72,7 +79,12 @@ export function ArchiveArticles(
           </UI.Select>
         </div>
 
-        <div data-display="flex" data-direction="column" data-mr="24">
+        <div
+          data-display="flex"
+          data-direction="column"
+          data-mt="12"
+          data-mr="24"
+        >
           <label class="c-label" for="status">
             Status
           </label>
@@ -92,7 +104,12 @@ export function ArchiveArticles(
           </UI.Select>
         </div>
 
-        <div data-display="flex" data-direction="column" data-mr="24">
+        <div
+          data-display="flex"
+          data-direction="column"
+          data-mt="12"
+          data-mr="24"
+        >
           <label class="c-label" for="source">
             Source
           </label>
@@ -127,7 +144,7 @@ export function ArchiveArticles(
         </button>
       </div>
 
-      <div data-display="flex" data-mb="24" data-mt="12">
+      <div data-display="flex" data-mt="24" data-max-width="100%">
         <div data-position="relative">
           <input
             list="articles"
@@ -135,7 +152,8 @@ export function ArchiveArticles(
             value={search.query}
             class="c-input"
             placeholder="Search for an article..."
-            style="min-width: 280px; padding-right: 36px"
+            style="padding-right: 36px"
+            data-width="100%"
           />
           <img
             loading="eager"
