@@ -80,7 +80,7 @@ info "Copied staging-server-start script"
 
 # ==========================================================
 
-if test -d prisma
+if test -d views
 then
   cp -r views $OUT_DIR
   info "Copied Handlebars views"
