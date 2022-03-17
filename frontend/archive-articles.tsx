@@ -1,7 +1,7 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useSearch } from "@bgord/frontend";
+import { useClientSearch } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
@@ -21,7 +21,7 @@ export function ArchiveArticles(
     initialData: props.archiveArticles,
   });
 
-  const search = useSearch();
+  const search = useClientSearch();
   const sourceFilter = useFilter({ enum: types.ArticleSourceEnum });
   const statusFilter = useFilter({ enum: types.ArticleStatusEnum });
   const createdAt = useTimestampFilter({ defaultValue: "last_week" });
