@@ -7,6 +7,7 @@ import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
+import { TimestampFiltersEnum } from "./filters";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {
@@ -201,12 +202,4 @@ export function ArchiveArticles(
       </ul>
     </main>
   );
-}
-
-enum TimestampFiltersEnum {
-  today = "today",
-  last_3_days = "last_3_days",
-  last_week = "last_week",
-  last_30_days = "last_30_days",
-  all = "all",
 }
