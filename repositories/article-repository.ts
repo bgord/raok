@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import _ from "lodash";
 
 import * as VO from "../value-objects";
@@ -6,7 +6,7 @@ import * as VO from "../value-objects";
 const prisma = new PrismaClient();
 
 export class ArticleRepository {
-  static async getAll() {
+  static async getAll(filters?: Prisma.ArticleWhereInput) {
     return prisma.article.findMany({
       orderBy: { createdAt: "desc" },
       select: {
@@ -18,6 +18,7 @@ export class ArticleRepository {
         favourite: true,
         status: true,
       },
+      where: filters,
     });
   }
 
