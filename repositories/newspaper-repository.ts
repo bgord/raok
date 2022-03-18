@@ -1,15 +1,21 @@
-import { PrismaClient, Newspaper, Article } from "@prisma/client";
+import * as z from "zod";
+import { Prisma, PrismaClient, Newspaper, Article } from "@prisma/client";
 import { format, formatDistanceToNow, formatDistanceStrict } from "date-fns";
 
 import * as VO from "../value-objects";
+import { Filter } from "../services/filter";
 
 const prisma = new PrismaClient();
 
+export const ArchiveNewspaperFilter = new Filter(
+  z.object({ status: VO.NewspaperStatus.optional() })
+);
+
 export class NewspaperRepository {
-  static async getAll() {
+  static async getAll(filters?: Prisma.NewspaperWhereInput) {
     const result = await prisma.newspaper.findMany({
       where: {
-        status: {
+        status: filters?.status ?? {
           in: [
             VO.NewspaperStatusEnum.delivered,
             VO.NewspaperStatusEnum.error,
