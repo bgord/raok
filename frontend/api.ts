@@ -1,3 +1,5 @@
+import { FilterUrl, FilterType } from "@bgord/frontend";
+
 import {
   ArticleType,
   ArchiveArticleType,
@@ -130,30 +132,4 @@ export async function getSettings(): Promise<SettingsType> {
   return _api("/account/settings", { method: "GET" }).then((response) =>
     response.json()
   );
-}
-
-type FilterType = Record<string, unknown> | undefined;
-
-class FilterUrl {
-  value: string;
-
-  constructor(url: string, filters?: Record<string, unknown> | undefined) {
-    const query = new URLSearchParams(this.getNonEmptyFilters(filters));
-
-    if (query.toString() === "") {
-      this.value = url;
-
-      return;
-    }
-
-    this.value = `${url}?${query.toString()}`;
-  }
-
-  private getNonEmptyFilters(filters: Record<string, unknown> | undefined) {
-    if (filters === undefined) return {};
-
-    return Object.fromEntries(
-      Object.entries(filters).filter(([_key, value]) => value !== undefined)
-    ) as Record<string, string>;
-  }
 }
