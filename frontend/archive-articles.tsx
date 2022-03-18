@@ -17,10 +17,6 @@ export type InitialArchiveArticlesDataType = {
 export function ArchiveArticles(
   props: InitialArchiveArticlesDataType & RoutableProps
 ) {
-  const archiveArticles = useQuery("archive-articles", api.getArchiveArticles, {
-    initialData: props.archiveArticles,
-  });
-
   const search = useClientSearch();
   const sourceFilter = useClientFilter({ enum: types.ArticleSourceEnum });
   const statusFilter = useClientFilter({ enum: types.ArticleStatusEnum });
@@ -28,10 +24,16 @@ export function ArchiveArticles(
     defaultQuery: TimestampFiltersEnum.last_week,
   });
 
+  const filters = { status: statusFilter.query, source: sourceFilter.query };
+
+  const archiveArticles = useQuery(
+    ["archive-articles", filters],
+    () => api.getArchiveArticles(filters),
+    { initialData: props.archiveArticles }
+  );
+
   const articles = (archiveArticles.data ?? [])
     .filter((article) => search.filterFn(String(article.title)))
-    .filter((article) => sourceFilter.filterFn(article.source))
-    .filter((article) => statusFilter.filterFn(article.status))
     .filter((article) => createdAt.filterFn(article.createdAt));
 
   const numberOfArticles = articles.length;

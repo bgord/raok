@@ -1,3 +1,5 @@
+import type { Prisma } from "@prisma/client";
+
 import {
   ArticleType,
   ArchiveArticleType,
@@ -114,9 +116,13 @@ export async function scheduleFeedlyArticlesCrawl() {
   return _api("/schedule-feedly-articles-crawl", { method: "POST" });
 }
 
-export async function getArchiveArticles(): Promise<ArchiveArticleType[]> {
-  return _api("/articles/archive", { method: "GET" }).then((response) =>
-    response.ok ? response.json() : []
+export async function getArchiveArticles(
+  filters?: Prisma.ArticleWhereInput
+): Promise<ArchiveArticleType[]> {
+  const query = new URLSearchParams(nonEmptyFilters(filters));
+
+  return _api(`/articles/archive?${query.toString()}`, { method: "GET" }).then(
+    (response) => (response.ok ? response.json() : [])
   );
 }
 
@@ -124,4 +130,12 @@ export async function getSettings(): Promise<SettingsType> {
   return _api("/account/settings", { method: "GET" }).then((response) =>
     response.json()
   );
+}
+
+function nonEmptyFilters(filters: Record<string, unknown> | undefined) {
+  if (filters === undefined) return {};
+
+  return Object.fromEntries(
+    Object.entries(filters).filter(([_key, value]) => value !== undefined)
+  ) as Record<string, string>;
 }
