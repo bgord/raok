@@ -8,11 +8,16 @@ import { Filter } from "../services/filter";
 const prisma = new PrismaClient();
 
 export const ArchiveNewspaperFilter = new Filter(
-  z.object({ status: VO.NewspaperStatus.optional() })
+  z.object({
+    status: VO.NewspaperStatus.optional(),
+    sentAt: VO.TimeStampFilter,
+  })
 );
 
 export class NewspaperRepository {
   static async getAll(filters?: Prisma.NewspaperWhereInput) {
+    const { status, ...rest } = filters ?? {};
+
     const result = await prisma.newspaper.findMany({
       where: {
         status: filters?.status ?? {
@@ -22,6 +27,7 @@ export class NewspaperRepository {
             VO.NewspaperStatusEnum.archived,
           ],
         },
+        ...rest,
       },
       orderBy: { scheduledAt: "desc" },
       select: {

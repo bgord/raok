@@ -6,7 +6,7 @@ import { useClientFilter } from "@bgord/frontend";
 import * as UI from "./ui";
 import * as api from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
-import { useTimestampFilter, TimestampFiltersEnum } from "./hooks";
+import { TimestampFiltersEnum } from "./filters";
 
 import { Newspaper } from "./newspaper";
 
@@ -18,11 +18,12 @@ export function ArchiveNewspapers(
   props: InitialArchiveNewspapersDataType & RoutableProps
 ) {
   const statusFilter = useClientFilter({ enum: NewspaperStatusEnum });
-  const sentAtFilter = useTimestampFilter({
+  const sentAtFilter = useClientFilter({
+    enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
   });
 
-  const filters = { status: statusFilter.query };
+  const filters = { status: statusFilter.query, sentAt: sentAtFilter.query };
 
   const archiveNewspapers = useQuery(
     ["archive-newspapers", filters],
@@ -30,10 +31,7 @@ export function ArchiveNewspapers(
     { initialData: props.archiveNewspapers }
   );
 
-  const newspapers = (archiveNewspapers.data ?? []).filter((newspaper) =>
-    sentAtFilter.filterFn(newspaper.sentAt.raw)
-  );
-
+  const newspapers = archiveNewspapers.data ?? [];
   const numberOfNewspapers = newspapers.length;
 
   return (
@@ -76,8 +74,6 @@ export function ArchiveNewspapers(
               value={sentAtFilter.query}
               onInput={sentAtFilter.onChange}
             >
-              <option selected>All</option>
-
               {sentAtFilter.options.map((sentAtOption) => (
                 <option value={sentAtOption}>{sentAtOption}</option>
               ))}
