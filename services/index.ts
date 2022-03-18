@@ -7,7 +7,6 @@ export * from "./epub-to-mobi";
 export * from "./estimated-reading-time-calculator";
 export * from "./feedly";
 export * from "./feedly-articles-crawler";
-export * from "./filter";
 export * from "./html";
 export * from "./html-to-epub";
 export * from "./newspaper-file";

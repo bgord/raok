@@ -1,13 +1,13 @@
 import * as z from "zod";
+import * as bg from "@bgord/node";
 import { Prisma, PrismaClient, Newspaper, Article } from "@prisma/client";
 import { format, formatDistanceToNow, formatDistanceStrict } from "date-fns";
 
 import * as VO from "../value-objects";
-import { Filter } from "../services/filter";
 
 const prisma = new PrismaClient();
 
-export const ArchiveNewspaperFilter = new Filter(
+export const ArchiveNewspaperFilter = new bg.Filter(
   z.object({
     status: VO.NewspaperStatus.optional(),
     sentAt: VO.TimeStampFilter,

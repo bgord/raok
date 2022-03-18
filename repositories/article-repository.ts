@@ -1,13 +1,13 @@
 import * as z from "zod";
+import * as bg from "@bgord/node";
 import { Prisma, PrismaClient } from "@prisma/client";
 import _ from "lodash";
 
 import * as VO from "../value-objects";
-import { Filter } from "../services/filter";
 
 const prisma = new PrismaClient();
 
-export const ArchiveArticlesFilter = new Filter(
+export const ArchiveArticlesFilter = new bg.Filter(
   z.object({
     status: VO.ArticleStatus.optional(),
     source: VO.ArticleSource.optional(),
