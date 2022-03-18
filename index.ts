@@ -1,35 +1,7 @@
 import express from "express";
-
 import * as bg from "@bgord/node";
 
-import { Home } from "./routes/home";
-
-import { Dashboard } from "./routes/dashboard";
-import { ArticlesArchive } from "./routes/articles-archive";
-import { NewspapersArchive } from "./routes/newspapers-archive";
-
-import { AddArticle } from "./routes/add-article";
-import { DeleteArticle } from "./routes/delete-article";
-import { CreateNewspaper } from "./routes/create-newspaper";
-import { ArchiveNewspaper } from "./routes/archive-newspaper";
-import { CancelNewspaper } from "./routes/cancel-newspaper";
-import { ResendNewspaper } from "./routes/resend-newspaper";
-import { Articles } from "./routes/articles";
-import { Newspapers } from "./routes/newspapers";
-import { SingleNewspaper } from "./routes/single-newspaper";
-import { NewspaperRead } from "./routes/newspaper-read";
-import { Stats } from "./routes/stats";
-import { SendArbitraryFile } from "./routes/send-arbitrary-file";
-import { FavouriteArticles } from "./routes/favourite-articles";
-import { AddArticleToFavourites } from "./routes/add-article-to-favourites";
-import { DeleteArticleFromFavourites } from "./routes/delete-article-from-favourites";
-import { Settings } from "./routes/settings";
-import { DisableArticlesToReviewNotification } from "./routes/disable-articles-to-review-notification";
-import { EnableArticlesToReviewNotification } from "./routes/enable-articles-to-review-notification";
-import { SetArticlesToReviewNotificationHour } from "./routes/set-articles-to-review-notification-hour";
-import { ArchiveArticles } from "./routes/archive-articles";
-import { ArchiveNewspapers } from "./routes/archive-newspapers";
-import { ScheduleFeedlyArticlesCrawl } from "./routes/schedule-feedly-articles-crawl";
+import * as Routes from "./routes";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -53,56 +25,72 @@ const AuthShield = new bg.EnvUserAuthShield({
 });
 AuthShield.applyTo(app);
 
-app.get("/", bg.CsrfShield.attach, bg.Route(Home));
+app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
-app.get("/articles", AuthShield.verify, bg.Route(Articles));
-app.get("/articles/favourite", AuthShield.verify, bg.Route(FavouriteArticles));
-app.get("/articles/archive", AuthShield.verify, bg.Route(ArchiveArticles));
+app.get("/articles", AuthShield.verify, bg.Route(Routes.Articles));
+app.get(
+  "/articles/favourite",
+  AuthShield.verify,
+  bg.Route(Routes.FavouriteArticles)
+);
+app.get(
+  "/articles/archive",
+  AuthShield.verify,
+  bg.Route(Routes.ArchiveArticles)
+);
 
-app.post("/add-article", AuthShield.verify, bg.Route(AddArticle));
+app.post("/add-article", AuthShield.verify, bg.Route(Routes.AddArticle));
 app.post(
   "/delete-article/:articleId",
   AuthShield.verify,
-  bg.Route(DeleteArticle)
+  bg.Route(Routes.DeleteArticle)
 );
 app.post(
   "/article/:articleId/favourite",
   AuthShield.verify,
-  bg.Route(AddArticleToFavourites)
+  bg.Route(Routes.AddArticleToFavourites)
 );
 app.post(
   "/article/:articleId/unfavourite",
   AuthShield.verify,
-  bg.Route(DeleteArticleFromFavourites)
+  bg.Route(Routes.DeleteArticleFromFavourites)
 );
 
-app.get("/newspapers", AuthShield.verify, bg.Route(Newspapers));
-app.get("/newspapers/archive", AuthShield.verify, bg.Route(ArchiveNewspapers));
+app.get("/newspapers", AuthShield.verify, bg.Route(Routes.Newspapers));
+app.get(
+  "/newspapers/archive",
+  AuthShield.verify,
+  bg.Route(Routes.ArchiveNewspapers)
+);
 app.get(
   "/newspaper/:newspaperId",
   AuthShield.verify,
-  bg.Route(SingleNewspaper)
+  bg.Route(Routes.SingleNewspaper)
 );
 app.get(
   "/newspaper/:newspaperId/read",
   AuthShield.verify,
-  bg.Route(NewspaperRead)
+  bg.Route(Routes.NewspaperRead)
 );
-app.post("/create-newspaper", AuthShield.verify, bg.Route(CreateNewspaper));
+app.post(
+  "/create-newspaper",
+  AuthShield.verify,
+  bg.Route(Routes.CreateNewspaper)
+);
 app.post(
   "/archive-newspaper/:newspaperId",
   AuthShield.verify,
-  bg.Route(ArchiveNewspaper)
+  bg.Route(Routes.ArchiveNewspaper)
 );
 app.post(
   "/cancel-newspaper/:newspaperId",
   AuthShield.verify,
-  bg.Route(CancelNewspaper)
+  bg.Route(Routes.CancelNewspaper)
 );
 app.post(
   "/resend-newspaper/:newspaperId",
   AuthShield.verify,
-  bg.Route(ResendNewspaper)
+  bg.Route(Routes.ResendNewspaper)
 );
 
 app.post(
@@ -112,36 +100,44 @@ app.post(
     autoClean: false,
     maxFilesSize: 5_000_000, // 5 MB
   }).handle(),
-  bg.Route(SendArbitraryFile)
+  bg.Route(Routes.SendArbitraryFile)
 );
 
-app.get("/stats", AuthShield.verify, bg.Route(Stats));
-app.get("/settings", AuthShield.verify, bg.Route(Dashboard));
-app.get("/account/settings", AuthShield.verify, bg.Route(Settings));
+app.get("/stats", AuthShield.verify, bg.Route(Routes.Stats));
+app.get("/settings", AuthShield.verify, bg.Route(Routes.Dashboard));
+app.get("/account/settings", AuthShield.verify, bg.Route(Routes.Settings));
 
 app.post(
   "/disable-articles-to-review-notification",
   AuthShield.verify,
-  bg.Route(DisableArticlesToReviewNotification)
+  bg.Route(Routes.DisableArticlesToReviewNotification)
 );
 app.post(
   "/enable-articles-to-review-notification",
   AuthShield.verify,
-  bg.Route(EnableArticlesToReviewNotification)
+  bg.Route(Routes.EnableArticlesToReviewNotification)
 );
 app.post(
   "/set-articles-to-review-notification-hour",
   AuthShield.verify,
-  bg.Route(SetArticlesToReviewNotificationHour)
+  bg.Route(Routes.SetArticlesToReviewNotificationHour)
 );
 
-app.get("/archive/articles", AuthShield.verify, bg.Route(ArticlesArchive));
-app.get("/archive/newspapers", AuthShield.verify, bg.Route(NewspapersArchive));
+app.get(
+  "/archive/articles",
+  AuthShield.verify,
+  bg.Route(Routes.ArticlesArchive)
+);
+app.get(
+  "/archive/newspapers",
+  AuthShield.verify,
+  bg.Route(Routes.NewspapersArchive)
+);
 
 app.post(
   "/schedule-feedly-articles-crawl",
   AuthShield.verify,
-  bg.Route(ScheduleFeedlyArticlesCrawl)
+  bg.Route(Routes.ScheduleFeedlyArticlesCrawl)
 );
 
 app.post(
@@ -155,9 +151,9 @@ app.get("/logout", (request, response) => {
   return response.redirect("/");
 });
 
-app.get("/dashboard", AuthShield.verify, bg.Route(Dashboard));
+app.get("/dashboard", AuthShield.verify, bg.Route(Routes.Dashboard));
 
-app.get("*", (_request, response) => response.redirect("/"));
+app.get("*", (_, response) => response.redirect("/"));
 app.use(ErrorHandler.handle);
 
 const server = app.listen(Env.PORT, () =>
