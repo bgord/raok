@@ -17,20 +17,22 @@ export type InitialArchiveNewspapersDataType = {
 export function ArchiveNewspapers(
   props: InitialArchiveNewspapersDataType & RoutableProps
 ) {
-  const archiveNewspapers = useQuery(
-    "archive-newspapers",
-    api.getArchiveNewspapers,
-    { initialData: props.archiveNewspapers }
-  );
-
   const statusFilter = useClientFilter({ enum: NewspaperStatusEnum });
   const sentAtFilter = useTimestampFilter({
     defaultQuery: TimestampFiltersEnum.last_3_days,
   });
 
-  const newspapers = (archiveNewspapers.data ?? [])
-    .filter((newspaper) => statusFilter.filterFn(newspaper.status))
-    .filter((newspaper) => sentAtFilter.filterFn(newspaper.sentAt.raw));
+  const filters = { status: statusFilter.query };
+
+  const archiveNewspapers = useQuery(
+    ["archive-newspapers", filters],
+    () => api.getArchiveNewspapers(filters),
+    { initialData: props.archiveNewspapers }
+  );
+
+  const newspapers = (archiveNewspapers.data ?? []).filter((newspaper) =>
+    sentAtFilter.filterFn(newspaper.sentAt.raw)
+  );
 
   const numberOfNewspapers = newspapers.length;
 

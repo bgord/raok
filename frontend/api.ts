@@ -27,10 +27,12 @@ export async function getNewspapers(): Promise<NewspaperType[]> {
   );
 }
 
-export async function getArchiveNewspapers(): Promise<NewspaperType[]> {
-  return _api("/newspapers/archive").then((response) =>
-    response.ok ? response.json() : []
-  );
+export async function getArchiveNewspapers(
+  filters?: Prisma.NewspaperWhereInput
+): Promise<NewspaperType[]> {
+  const url = new FilterUrl("/newspapers/archive", filters).value;
+
+  return _api(url).then((response) => (response.ok ? response.json() : []));
 }
 
 export async function getSingleNewspaper(
@@ -135,7 +137,7 @@ export async function getSettings(): Promise<SettingsType> {
 class FilterUrl {
   value: string;
 
-  constructor(url: string, filters: Record<string, unknown> | undefined) {
+  constructor(url: string, filters?: Record<string, unknown> | undefined) {
     const query = new URLSearchParams(this.getNonEmptyFilters(filters));
 
     if (query.toString() === "") {

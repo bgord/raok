@@ -3,11 +3,12 @@ import express from "express";
 import * as Repos from "../repositories";
 
 export async function ArchiveNewspapers(
-  _request: express.Request,
+  request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const newspapers = await Repos.NewspaperRepository.getAll();
+  const filters = Repos.ArchiveNewspaperFilter.parse(request.query);
+  const newspapers = await Repos.NewspaperRepository.getAll(filters);
 
   return response.send(newspapers);
 }

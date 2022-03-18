@@ -22,7 +22,9 @@ export async function NewspapersArchive(
     language: request.language,
     translations,
     archiveArticles: [],
-    archiveNewspapers: await Repos.NewspaperRepository.getAll(),
+    archiveNewspapers: await Repos.NewspaperRepository.getAll(
+      Repos.ArchiveNewspaperFilter.default()
+    ),
     articles: [],
     favouriteArticles: [],
     newspapers: [],
