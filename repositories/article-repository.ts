@@ -3,11 +3,11 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import _ from "lodash";
 
 import * as VO from "../value-objects";
-import * as Services from "../services";
+import { Filter } from "../services/filter";
 
 const prisma = new PrismaClient();
 
-export const ArchiveArticlesFilter = new Services.Filter(
+export const ArchiveArticlesFilter = new Filter(
   z.object({
     status: VO.ArticleStatus.optional(),
     source: VO.ArticleSource.optional(),

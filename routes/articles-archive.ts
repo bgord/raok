@@ -21,7 +21,9 @@ export async function ArticlesArchive(
     ...Repos.BuildRepository.getAll(),
     language: request.language,
     translations,
-    archiveArticles: await Repos.ArticleRepository.getAll(),
+    archiveArticles: await Repos.ArticleRepository.getAll(
+      Repos.ArchiveArticlesFilter.default()
+    ),
     archiveNewspapers: [],
     articles: [],
     favouriteArticles: [],
