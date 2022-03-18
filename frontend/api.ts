@@ -119,10 +119,10 @@ export async function scheduleFeedlyArticlesCrawl() {
 export async function getArchiveArticles(
   filters?: Prisma.ArticleWhereInput
 ): Promise<ArchiveArticleType[]> {
-  const query = new URLSearchParams(nonEmptyFilters(filters));
+  const url = new FilterUrl("/articles/archive", filters).value;
 
-  return _api(`/articles/archive?${query.toString()}`, { method: "GET" }).then(
-    (response) => (response.ok ? response.json() : [])
+  return _api(url, { method: "GET" }).then((response) =>
+    response.ok ? response.json() : []
   );
 }
 
@@ -132,10 +132,26 @@ export async function getSettings(): Promise<SettingsType> {
   );
 }
 
-function nonEmptyFilters(filters: Record<string, unknown> | undefined) {
-  if (filters === undefined) return {};
+class FilterUrl {
+  value: string;
 
-  return Object.fromEntries(
-    Object.entries(filters).filter(([_key, value]) => value !== undefined)
-  ) as Record<string, string>;
+  constructor(url: string, filters: Record<string, unknown> | undefined) {
+    const query = new URLSearchParams(this.getNonEmptyFilters(filters));
+
+    if (query.toString() === "") {
+      this.value = url;
+
+      return;
+    }
+
+    this.value = `${url}?${query.toString()}`;
+  }
+
+  private getNonEmptyFilters(filters: Record<string, unknown> | undefined) {
+    if (filters === undefined) return {};
+
+    return Object.fromEntries(
+      Object.entries(filters).filter(([_key, value]) => value !== undefined)
+    ) as Record<string, string>;
+  }
 }
