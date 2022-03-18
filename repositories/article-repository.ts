@@ -11,6 +11,7 @@ export const ArchiveArticlesFilter = new Filter(
   z.object({
     status: VO.ArticleStatus.optional(),
     source: VO.ArticleSource.optional(),
+    createdAt: VO.TimeStampFilter,
   })
 );
 

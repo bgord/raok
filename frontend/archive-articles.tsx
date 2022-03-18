@@ -7,7 +7,6 @@ import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
-import { useTimestampFilter, TimestampFiltersEnum } from "./hooks";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {
@@ -18,13 +17,19 @@ export function ArchiveArticles(
   props: InitialArchiveArticlesDataType & RoutableProps
 ) {
   const search = useClientSearch();
+
   const sourceFilter = useClientFilter({ enum: types.ArticleSourceEnum });
   const statusFilter = useClientFilter({ enum: types.ArticleStatusEnum });
-  const createdAt = useTimestampFilter({
-    defaultQuery: TimestampFiltersEnum.last_week,
+  const createdAt = useClientFilter({
+    enum: TimestampFiltersEnum,
+    defaultQuery: TimestampFiltersEnum.last_3_days,
   });
 
-  const filters = { status: statusFilter.query, source: sourceFilter.query };
+  const filters = {
+    status: statusFilter.query,
+    source: sourceFilter.query,
+    createdAt: createdAt.query,
+  };
 
   const archiveArticles = useQuery(
     ["archive-articles", filters],
@@ -32,9 +37,9 @@ export function ArchiveArticles(
     { initialData: props.archiveArticles }
   );
 
-  const articles = (archiveArticles.data ?? [])
-    .filter((article) => search.filterFn(String(article.title)))
-    .filter((article) => createdAt.filterFn(article.createdAt));
+  const articles = (archiveArticles.data ?? []).filter((article) =>
+    search.filterFn(String(article.title))
+  );
 
   const numberOfArticles = articles.length;
 
@@ -74,8 +79,6 @@ export function ArchiveArticles(
             value={createdAt.query}
             onInput={createdAt.onChange}
           >
-            <option selected>All</option>
-
             {createdAt.options.map((option) => (
               <option value={option}>{option}</option>
             ))}
@@ -198,4 +201,12 @@ export function ArchiveArticles(
       </ul>
     </main>
   );
+}
+
+enum TimestampFiltersEnum {
+  today = "today",
+  last_3_days = "last_3_days",
+  last_week = "last_week",
+  last_30_days = "last_30_days",
+  all = "all",
 }
