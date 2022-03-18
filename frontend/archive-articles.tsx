@@ -72,9 +72,7 @@ export function ArchiveArticles(
             value={createdAt.query}
             onInput={createdAt.onChange}
           >
-            <option selected value="all">
-              All
-            </option>
+            <option selected>All</option>
 
             {createdAt.options.map((option) => (
               <option value={option}>{option}</option>
@@ -97,9 +95,7 @@ export function ArchiveArticles(
             value={statusFilter.query}
             onInput={statusFilter.onChange}
           >
-            <option selected value="all">
-              All
-            </option>
+            <option selected>All</option>
 
             {statusFilter.options.map((status) => (
               <option value={status}>{status}</option>
@@ -123,9 +119,7 @@ export function ArchiveArticles(
             value={sourceFilter.query}
             onInput={sourceFilter.onChange}
           >
-            <option selected value="all">
-              All
-            </option>
+            <option selected>All</option>
 
             {sourceFilter.options.map((source) => (
               <option value={source}>{source}</option>
