@@ -1,5 +1,3 @@
-import type { Prisma } from "@prisma/client";
-
 import {
   ArticleType,
   ArchiveArticleType,
@@ -28,7 +26,7 @@ export async function getNewspapers(): Promise<NewspaperType[]> {
 }
 
 export async function getArchiveNewspapers(
-  filters?: Prisma.NewspaperWhereInput
+  filters?: FilterType
 ): Promise<NewspaperType[]> {
   const url = new FilterUrl("/newspapers/archive", filters).value;
 
@@ -119,7 +117,7 @@ export async function scheduleFeedlyArticlesCrawl() {
 }
 
 export async function getArchiveArticles(
-  filters?: Prisma.ArticleWhereInput
+  filters?: FilterType
 ): Promise<ArchiveArticleType[]> {
   const url = new FilterUrl("/articles/archive", filters).value;
 
@@ -133,6 +131,8 @@ export async function getSettings(): Promise<SettingsType> {
     response.json()
   );
 }
+
+type FilterType = Record<string, unknown> | undefined;
 
 class FilterUrl {
   value: string;
