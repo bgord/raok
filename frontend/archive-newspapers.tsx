@@ -74,9 +74,8 @@ export function ArchiveNewspapers(
               value={sentAtFilter.query}
               onInput={sentAtFilter.onChange}
             >
-              <option selected value="all">
-                All
-              </option>
+              <option selected>All</option>
+
               {sentAtFilter.options.map((sentAtOption) => (
                 <option value={sentAtOption}>{sentAtOption}</option>
               ))}
@@ -95,9 +94,7 @@ export function ArchiveNewspapers(
               value={statusFilter.query}
               onInput={statusFilter.onChange}
             >
-              <option selected value="all">
-                All
-              </option>
+              <option selected>All</option>
 
               {statusFilter.options.map((status) => (
                 <option value={status}>{status}</option>
