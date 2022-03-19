@@ -1,13 +1,13 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useClientSearch } from "@bgord/frontend";
+import { useUrlFilter, useClientSearch } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
-import { TimestampFiltersEnum, useUrlFilter } from "./filters";
+import { TimestampFiltersEnum } from "./filters";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {

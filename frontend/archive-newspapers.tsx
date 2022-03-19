@@ -1,11 +1,12 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
+import { useUrlFilter } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
-import { TimestampFiltersEnum, useUrlFilter } from "./filters";
+import { TimestampFiltersEnum } from "./filters";
 
 import { Newspaper } from "./newspaper";
 
