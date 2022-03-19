@@ -7,7 +7,7 @@ import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
-import { TimestampFiltersEnum } from "./filters";
+import { TimestampFiltersEnum, useUrlFilter } from "./filters";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {
@@ -19,33 +19,20 @@ export function ArchiveArticles(
 ) {
   const search = useClientSearch();
 
-  const sourceFilter = useClientFilter({
+  const sourceFilter = useUrlFilter({
     enum: types.ArticleSourceEnum,
-    defaultQuery:
-      new URLSearchParams(window.location.search).get("source") ?? undefined,
-    onUpdate: (current, previous) => {
-      const url = new URL(window.location.toString());
-      const params = new URLSearchParams(url.search);
-
-      if (current === undefined) {
-        params.delete("source");
-      } else {
-        params.set("source", current);
-      }
-
-      if (current === previous) return;
-
-      if (current !== previous) {
-        url.search = params.toString();
-        history.pushState({}, "", url.toString());
-      }
-    },
+    label: "source",
   });
 
-  const statusFilter = useClientFilter({ enum: types.ArticleStatusEnum });
-  const createdAt = useClientFilter({
+  const statusFilter = useUrlFilter({
+    enum: types.ArticleStatusEnum,
+    label: "status",
+  });
+
+  const createdAt = useUrlFilter({
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
+    label: "createdAt",
   });
 
   const filters = {

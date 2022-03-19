@@ -22,7 +22,6 @@ export function useUrlFilter<T>(
     new URLSearchParams(window?.location.search).get(config.label) ?? undefined;
 
   return useClientFilter({
-    ...config,
     defaultQuery,
     onUpdate: (current, previous) => {
       if (!window) return;
@@ -43,5 +42,6 @@ export function useUrlFilter<T>(
         history.pushState({}, "", url.toString());
       }
     },
+    ...config,
   });
 }
