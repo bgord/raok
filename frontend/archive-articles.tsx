@@ -1,7 +1,7 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useClientSearch, useClientFilter } from "@bgord/frontend";
+import { useClientFilter, useClientSearch } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
@@ -19,7 +19,29 @@ export function ArchiveArticles(
 ) {
   const search = useClientSearch();
 
-  const sourceFilter = useClientFilter({ enum: types.ArticleSourceEnum });
+  const sourceFilter = useClientFilter({
+    enum: types.ArticleSourceEnum,
+    defaultQuery:
+      new URLSearchParams(window.location.search).get("source") ?? undefined,
+    onUpdate: (current, previous) => {
+      const url = new URL(window.location.toString());
+      const params = new URLSearchParams(url.search);
+
+      if (current === undefined) {
+        params.delete("source");
+      } else {
+        params.set("source", current);
+      }
+
+      if (current === previous) return;
+
+      if (current !== previous) {
+        url.search = params.toString();
+        history.pushState({}, "", url.toString());
+      }
+    },
+  });
+
   const statusFilter = useClientFilter({ enum: types.ArticleStatusEnum });
   const createdAt = useClientFilter({
     enum: TimestampFiltersEnum,
