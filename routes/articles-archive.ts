@@ -22,7 +22,7 @@ export async function ArticlesArchive(
     language: request.language,
     translations,
     archiveArticles: await Repos.ArticleRepository.getAll(
-      Repos.ArchiveArticlesFilter.default()
+      Repos.ArchiveArticlesFilter.parse(request.query)
     ),
     archiveNewspapers: [],
     articles: [],
