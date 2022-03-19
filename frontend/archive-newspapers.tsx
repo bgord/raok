@@ -1,12 +1,11 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useClientFilter } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
-import { TimestampFiltersEnum } from "./filters";
+import { TimestampFiltersEnum, useUrlFilter } from "./filters";
 
 import { Newspaper } from "./newspaper";
 
@@ -17,10 +16,15 @@ export type InitialArchiveNewspapersDataType = {
 export function ArchiveNewspapers(
   props: InitialArchiveNewspapersDataType & RoutableProps
 ) {
-  const statusFilter = useClientFilter({ enum: NewspaperStatusEnum });
-  const sentAtFilter = useClientFilter({
+  const statusFilter = useUrlFilter({
+    enum: NewspaperStatusEnum,
+    label: "status",
+  });
+
+  const sentAtFilter = useUrlFilter({
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
+    label: "sentAt",
   });
 
   const filters = { status: statusFilter.query, sentAt: sentAtFilter.query };

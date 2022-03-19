@@ -1,7 +1,7 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useClientFilter, useClientSearch } from "@bgord/frontend";
+import { useClientSearch } from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
