@@ -31,7 +31,11 @@ export async function Dashboard(
   };
 
   const frontend = render(App({ ...state, url: request.url }));
-  const html = Services.Html.process({ frontend, state });
+  const html = Services.Html.process({
+    frontend,
+    state,
+    language: request.language,
+  });
 
   return response.send(html);
 }

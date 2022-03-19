@@ -1,8 +1,10 @@
+import * as bg from "@bgord/node";
 import serialize from "serialize-javascript";
 
 type HtmlConfigType = {
   frontend: string;
   state: Record<string, unknown>;
+  language: bg.Schema.LanguageType;
 };
 
 export class Html {
@@ -10,7 +12,7 @@ export class Html {
     const serializedState = Html.serializeState(config.state);
 
     return /* HTML */ `
-      <html lang="en">
+      <html lang="${config.language}">
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
