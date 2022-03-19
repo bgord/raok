@@ -18,11 +18,10 @@ export function useUrlFilter<T>(
 ) {
   const window = getWindow();
 
-  const defaultQuery =
+  const currentQuery =
     new URLSearchParams(window?.location.search).get(config.label) ?? undefined;
 
   return useClientFilter({
-    defaultQuery,
     onUpdate: (current, previous) => {
       if (!window) return;
 
@@ -43,5 +42,6 @@ export function useUrlFilter<T>(
       }
     },
     ...config,
+    defaultQuery: currentQuery ?? config.defaultQuery,
   });
 }
