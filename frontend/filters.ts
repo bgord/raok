@@ -1,4 +1,4 @@
-import { UseFilterConfigType, useClientFilter } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 export enum TimestampFiltersEnum {
   today = "today",
@@ -8,20 +8,15 @@ export enum TimestampFiltersEnum {
   all = "all",
 }
 
-function getWindow() {
-  if (typeof window === "undefined") return undefined;
-  return window;
-}
-
 export function useUrlFilter<T>(
-  config: UseFilterConfigType<T> & { label: string }
+  config: bg.UseFilterConfigType<T> & { label: string }
 ) {
-  const window = getWindow();
+  const window = bg.getSafeWindow();
 
   const currentQuery =
     new URLSearchParams(window?.location.search).get(config.label) ?? undefined;
 
-  return useClientFilter({
+  return bg.useClientFilter({
     onUpdate: (current, previous) => {
       if (!window) return;
 
