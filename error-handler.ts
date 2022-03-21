@@ -1,6 +1,8 @@
 import express from "express";
 import { Errors } from "@bgord/node";
 
+import * as Policies from "./policies";
+
 export class ErrorHandler {
   /* eslint-disable max-params */
   static handle: express.ErrorRequestHandler = async (
@@ -18,6 +20,10 @@ export class ErrorHandler {
 
     if (error instanceof Errors.AccessDeniedError) {
       return response.redirect("/");
+    }
+
+    if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
+      return response.status(400).send({ message: "article.error.not_unique" });
     }
 
     return next(error);

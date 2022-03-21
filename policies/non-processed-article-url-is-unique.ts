@@ -3,7 +3,7 @@ import { Policy } from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 
-class NonProcessedArticleUrlIsNotUniqueError extends Error {
+export class NonProcessedArticleUrlIsNotUniqueError extends Error {
   constructor() {
     super();
     Object.setPrototypeOf(

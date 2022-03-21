@@ -11,6 +11,7 @@
   "article.favourites_deleted": "deleted from favourites",
   "article.favourites_empty": "your favourite sent articles will appear here",
   "article.favourites_remove": "remove",
+  "article.error.not_unique": "article is not unique",
 
   "dashboard.could_not_schedule": "couldn't schedule",
   "dashboard.deselect_all": "deselect all",
