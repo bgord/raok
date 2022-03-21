@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { useToastTrigger, useTranslations } from "@bgord/frontend";
 
 import * as api from "./api";
+import { ServerError } from "./server-error";
 import { ArticleType } from "./types";
 
 export function AddArticleForm() {
@@ -21,6 +22,7 @@ export function AddArticleForm() {
       queryClient.invalidateQueries("stats");
       notify({ message: "Article added" });
     },
+    onError: (error: ServerError) => notify({ message: t(error.message) }),
   });
 
   return (

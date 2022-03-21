@@ -1,4 +1,5 @@
 import { FilterUrl, FilterType } from "@bgord/frontend";
+import { ServerError } from "./server-error";
 
 import {
   ArticleType,
@@ -19,7 +20,9 @@ export const _api: typeof fetch = (input, init) =>
     },
     redirect: "follow",
     ...init,
-  });
+  })
+    .then(ServerError.extract)
+    .catch(ServerError.handle);
 
 export async function getNewspapers(): Promise<NewspaperType[]> {
   return _api("/newspapers").then((response) =>

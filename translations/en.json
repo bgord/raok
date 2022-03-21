@@ -4,6 +4,7 @@
   "app.name": "RAOK",
   "app.newspapers": "newspapers",
   "app.settings": "settings",
+  "app.error.general": "something went wrong",
 
   "article.add": "add",
   "article.adding_article": "adding...",
