@@ -23,7 +23,9 @@ export class ErrorHandler {
     }
 
     if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
-      return response.status(400).send({ message: "article.error.not_unique" });
+      return response
+        .status(400)
+        .send({ message: "article.error.not_unique", _server: true });
     }
 
     return next(error);
