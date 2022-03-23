@@ -24,3 +24,4 @@ export * from "./set-articles-to-review-notification-hour";
 export * from "./settings";
 export * from "./single-newspaper";
 export * from "./stats";
+export * from "./undelete-article";
