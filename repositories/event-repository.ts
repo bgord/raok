@@ -7,20 +7,21 @@ const prisma = new PrismaClient();
 
 type AcceptedEvent =
   | typeof Events.ArticleAddedEvent
+  | typeof Events.ArticleAddedToFavouritesEvent
   | typeof Events.ArticleDeletedEvent
+  | typeof Events.ArticleDeletedFromFavouritesEvent
   | typeof Events.ArticleLockedEvent
   | typeof Events.ArticleProcessedEvent
-  | typeof Events.ArticleAddedToFavouritesEvent
-  | typeof Events.ArticleDeletedFromFavouritesEvent
+  | typeof Events.ArticleUndeleteEvent
+  | typeof Events.ArticlesToReviewNotificationHourSetEvent
+  | typeof Events.ArticlesToReviewNotificationsDisabledEvent
+  | typeof Events.ArticlesToReviewNotificationsEnabledEvent
+  | typeof Events.FeedlyArticlesCrawlingScheduledEvent
   | typeof Events.NewspaperArchivedEvent
   | typeof Events.NewspaperFailedEvent
   | typeof Events.NewspaperGenerateEvent
   | typeof Events.NewspaperScheduledEvent
-  | typeof Events.NewspaperSentEvent
-  | typeof Events.ArticlesToReviewNotificationsDisabledEvent
-  | typeof Events.ArticlesToReviewNotificationsEnabledEvent
-  | typeof Events.ArticlesToReviewNotificationHourSetEvent
-  | typeof Events.FeedlyArticlesCrawlingScheduledEvent;
+  | typeof Events.NewspaperSentEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {

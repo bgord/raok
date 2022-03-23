@@ -57,6 +57,16 @@ export const ArticleProcessedEvent = EventDraft.merge(
 );
 export type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
 
+export const ARTICLE_UNDELETE_EVENT = "ARTICLE_UNDELETE_EVENT";
+export const ArticleUndeleteEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_UNDELETE_EVENT),
+    version: z.literal(1),
+    payload: z.object({ articleId: VO.ArticleId }),
+  })
+);
+export type ArticleUndeleteEventType = z.infer<typeof ArticleUndeleteEvent>;
+
 export const ARTICLE_ADDED_TO_FAVOURITES = "ARTICLE_ADDED_TO_FAVOURITES";
 export const ArticleAddedToFavouritesEvent = EventDraft.merge(
   z.object({
@@ -217,6 +227,7 @@ export const emittery = new Emittery<{
   ARTICLE_PROCESSED_EVENT: ArticleProcessedEventType;
   ARTICLE_ADDED_TO_FAVOURITES: ArticleAddedToFavouritesEventType;
   ARTICLE_DELETED_FROM_FAVOURITES: ArticleDeletedFromFavouritesEventType;
+  ARTICLE_UNDELETE_EVENT: ArticleUndeleteEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
   NEWSPAPER_GENERATED_EVENT: NewspaperGenerateEventType;
   NEWSPAPER_SENT_EVENT: NewspaperSentEventType;
@@ -268,6 +279,8 @@ emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
     VO.ArticleStatusEnum.processed
   );
 });
+
+emittery.on(ARTICLE_UNDELETE_EVENT, async (event) => {});
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   await NewspaperRepository.create({

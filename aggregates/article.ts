@@ -27,6 +27,7 @@ export class Article {
         Events.ArticleProcessedEvent,
         Events.ArticleAddedToFavouritesEvent,
         Events.ArticleDeletedFromFavouritesEvent,
+        Events.ArticleUndeleteEvent,
       ],
       Article.getStream(this.id)
     );
