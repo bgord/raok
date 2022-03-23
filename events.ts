@@ -250,7 +250,10 @@ emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
 });
 
 emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
-  await ArticleRepository.delete(event.payload.articleId);
+  await ArticleRepository.updateStatus(
+    event.payload.articleId,
+    VO.ArticleStatusEnum.deleted
+  );
 });
 
 emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {

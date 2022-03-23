@@ -40,7 +40,8 @@ export class Article {
           break;
 
         case Events.ARTICLE_DELETED_EVENT:
-          this.entity = null;
+          if (!this.entity) continue;
+          this.entity.status = VO.ArticleStatusEnum.deleted;
           break;
 
         case Events.ARTICLE_LOCKED_EVENT:

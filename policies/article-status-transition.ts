@@ -16,12 +16,13 @@ type ArticleStatusTransitionConfigType = {
 
 class ArticleStatusTransitionFactory extends Policy<ArticleStatusTransitionConfigType> {
   async fails(config: ArticleStatusTransitionConfigType) {
-    const enums = VO.ArticleStatusEnum;
+    const status = VO.ArticleStatusEnum;
 
     const transitions: Record<VO.ArticleStatusType, VO.ArticleStatusType[]> = {
-      [enums.ready]: [enums.in_progress],
-      [enums.in_progress]: [enums.processed],
-      [enums.processed]: [enums.in_progress],
+      [status.ready]: [status.in_progress, status.deleted],
+      [status.in_progress]: [status.processed],
+      [status.processed]: [status.in_progress],
+      [status.deleted]: [status.ready],
     };
 
     return !transitions[config.from].includes(config.to);

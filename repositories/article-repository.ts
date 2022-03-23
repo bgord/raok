@@ -28,7 +28,9 @@ export class ArticleRepository {
         favourite: true,
         status: true,
       },
-      where: filters,
+      where: _.merge(filters, {
+        status: { not: VO.ArticleStatusEnum.deleted },
+      }),
     });
   }
 
@@ -52,7 +54,7 @@ export class ArticleRepository {
 
   static async getFavourite() {
     return prisma.article.findMany({
-      where: { favourite: true },
+      where: { favourite: true, status: { not: VO.ArticleStatusEnum.deleted } },
       orderBy: { favouritedAt: "asc" },
       select: { id: true, url: true, title: true },
     });
