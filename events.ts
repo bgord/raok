@@ -256,6 +256,13 @@ emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
   );
 });
 
+emittery.on(ARTICLE_UNDELETE_EVENT, async (event) => {
+  await ArticleRepository.updateStatus(
+    event.payload.articleId,
+    VO.ArticleStatusEnum.ready
+  );
+});
+
 emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
   await ArticleRepository.updateStatus(
     event.payload.articleId,

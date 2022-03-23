@@ -64,6 +64,11 @@ export class Article {
           this.entity.favourite = VO.ArticleFavourite.parse(false);
           break;
 
+        case Events.ARTICLE_UNDELETE_EVENT:
+          if (!this.entity) continue;
+          this.entity.status = VO.ArticleStatusEnum.ready;
+          break;
+
         default:
           continue;
       }
@@ -185,6 +190,24 @@ export class Article {
     await Repos.EventRepository.save(
       Events.ArticleDeletedFromFavouritesEvent.parse({
         name: Events.ARTICLE_DELETED_FROM_FAVOURITES,
+        stream: this.stream,
+        version: 1,
+        payload: { articleId: this.id },
+      })
+    );
+  }
+
+  async undelete() {
+    if (!this.entity) return;
+
+    await Policies.ArticleStatusTransition.perform({
+      from: this.entity.status,
+      to: VO.ArticleStatusEnum.ready,
+    });
+
+    await Repos.EventRepository.save(
+      Events.ArticleUndeleteEvent.parse({
+        name: Events.ARTICLE_UNDELETE_EVENT,
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
