@@ -100,6 +100,10 @@ export async function deleteArticle(articleId: ArticleType["id"]) {
   return _api(`/delete-article/${articleId}`, { method: "POST" });
 }
 
+export async function undeleteArticle(articleId: ArticleType["id"]) {
+  return _api(`/undelete-article/${articleId}`, { method: "POST" });
+}
+
 export async function addArticleToFavourites(articleId: ArticleType["id"]) {
   return _api(`/article/${articleId}/favourite`, { method: "POST" });
 }
