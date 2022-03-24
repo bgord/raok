@@ -31,10 +31,9 @@ export class ServerError {
 
     const error = await response.json();
 
-    const message =
-      error?._server && typeof error?.message === "string"
-        ? error.message
-        : "app.error.general";
+    const message = ServerError.isServerError(error)
+      ? error.message
+      : "app.error.general";
 
     throw new ServerError({ message });
   }
