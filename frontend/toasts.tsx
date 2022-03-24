@@ -16,7 +16,7 @@ export function Toasts() {
   });
 
   const [_toasts] = bg.useToastsContext<types.ToastType>();
-  const toasts = bg.useAnimaList(_toasts, "tail");
+  const toasts = bg.useAnimaList(_toasts, { direction: "tail" });
 
   return (
     <bg.AnimaList

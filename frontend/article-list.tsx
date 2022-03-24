@@ -19,7 +19,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
   const createNewspaper = useCreateNewspaper(actions.clear);
 
   const _articles = useQuery("articles", api.getArticles, props);
-  const articles = bg.useAnimaList(_articles.data ?? [], "tail");
+  const articles = bg.useAnimaList(_articles.data ?? [], { direction: "tail" });
 
   return (
     // TODO: Decrease spacing on mobile

@@ -23,7 +23,7 @@ export function FavouriteArticles(props: {
   });
 
   const favouriteArticles = _articles.data ?? [];
-  const articles = bg.useAnimaList(favouriteArticles, "tail");
+  const articles = bg.useAnimaList(favouriteArticles, { direction: "tail" });
 
   const deleteArticleFromFavourites = useDeleteArticleFromFavourites();
 
