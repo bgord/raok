@@ -1,8 +1,21 @@
 import { h } from "preact";
+import { useQueryClient, useMutation } from "react-query";
 import * as bg from "@bgord/frontend";
 
+import * as api from "./api";
+import * as types from "./types";
+
 export function Toasts() {
-  const [_toasts] = bg.useToastsContext();
+  const t = bg.useTranslations();
+
+  const queryClient = useQueryClient();
+  const undeleteArticle = useMutation(api.undeleteArticle, {
+    onSuccess: () => {
+      setTimeout(() => queryClient.invalidateQueries("articles"), 5000);
+    },
+  });
+
+  const [_toasts] = bg.useToastsContext<types.ToastType>();
   const toasts = bg.useAnimaList(_toasts, "tail");
 
   return (
@@ -29,8 +42,24 @@ export function Toasts() {
             data-color="gray-700"
             data-bg="gray-200"
             data-br="2"
+            data-transform="upper-first"
           >
-            {toast.item.message}
+            {t(toast.item.message)}
+
+            {toast.item.message === "article.deleted" && (
+              <button
+                type="button"
+                class="c-button"
+                data-variant="bare"
+                data-ml="auto"
+                onClick={() => {
+                  if (!toast.item.articleId) return;
+                  undeleteArticle.mutate(toast.item.articleId);
+                }}
+              >
+                {undeleteArticle.isLoading ? "..." : "undo"}
+              </button>
+            )}
           </li>
         </bg.Anima>
       ))}

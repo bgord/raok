@@ -5,20 +5,20 @@ import * as bg from "@bgord/frontend";
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
-import { ArticleType } from "./types";
+import * as types from "./types";
 
-type ArticlePropsType = ArticleType &
-  bg.UseListActionsType<ArticleType["id"]> &
+type ArticlePropsType = types.ArticleType &
+  bg.UseListActionsType<types.ArticleType["id"]> &
   Omit<h.JSX.IntrinsicElements["li"], "title">;
 
 export function Article(props: ArticlePropsType) {
   const queryClient = useQueryClient();
-  const notify = bg.useToastTrigger();
+  const notify = bg.useToastTrigger<types.ToastType>();
 
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries("articles");
-      notify({ message: "article.deleted" });
+      notify({ message: "article.deleted", articleId: props.id });
     },
   });
 
