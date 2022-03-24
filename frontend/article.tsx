@@ -61,7 +61,8 @@ export function Article(props: ArticlePropsType) {
           </div>
           <UI.OutboundLink
             href={props.url}
-            data-width="100%"
+            data-mr="auto"
+            data-max-width="100%"
             data-fs="14"
             data-md-fs="12"
           >
