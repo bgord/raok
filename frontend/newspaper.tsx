@@ -196,7 +196,7 @@ function ArchiveNewspaper(props: {
   const archiveNewspaper = useMutation(api.archiveNewspaper, {
     onSuccess: () => {
       queryClient.invalidateQueries("newspapers");
-      notify({ message: t("newspaper.archived") });
+      notify({ message: "newspaper.archived" });
     },
   });
 
@@ -227,7 +227,7 @@ function CancelNewspaper(props: {
   const cancelNewspaper = useMutation(api.cancelNewspaper, {
     onSuccess: () => {
       queryClient.invalidateQueries("newspapers");
-      notify({ message: t("newspaper.cancelled") });
+      notify({ message: "newspaper.cancelled" });
     },
   });
 
@@ -247,7 +247,6 @@ function CancelNewspaper(props: {
 }
 
 function useResendNewspaper() {
-  const t = bg.useTranslations();
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
@@ -257,7 +256,7 @@ function useResendNewspaper() {
       queryClient.invalidateQueries("articles");
       queryClient.invalidateQueries("stats");
 
-      notify({ message: t("newspaper.resent") });
+      notify({ message: "newspaper.resent" });
     },
   });
 }

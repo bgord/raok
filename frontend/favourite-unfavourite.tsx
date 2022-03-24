@@ -81,7 +81,7 @@ function useAddArticleToFavourites(id: ArticleType["id"]) {
           }))
       );
 
-      notify({ message: "Article added to favourites" });
+      notify({ message: "article.favourites_added" });
     },
   });
 }

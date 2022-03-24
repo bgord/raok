@@ -20,7 +20,7 @@ export function AddArticleForm() {
       setUrl("");
       queryClient.invalidateQueries("articles");
       queryClient.invalidateQueries("stats");
-      notify({ message: "Article added" });
+      notify({ message: "article.added" });
     },
     onError: (error: ServerError) => notify({ message: t(error.message) }),
   });

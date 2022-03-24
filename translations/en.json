@@ -8,7 +8,10 @@
 
   "article.add": "add",
   "article.adding_article": "adding...",
+  "article.added": "article added",
+  "article.deleted": "article deleted",
   "article.favourites": "favourite articles",
+  "article.favourites_added": "deleted from favourites",
   "article.favourites_deleted": "deleted from favourites",
   "article.favourites_empty": "your favourite sent articles will appear here",
   "article.favourites_remove": "remove",

@@ -158,7 +158,7 @@ function useCreateNewspaper(callback?: VoidFunction) {
   return useMutation(api.createNewspaper, {
     onSuccess: () => {
       queryClient.invalidateQueries("newspapers");
-      notify({ message: "Newspaper scheduled" });
+      notify({ message: "newspaper.scheduled" });
       setTimeout(() => queryClient.invalidateQueries("articles"), 500);
       callback?.();
     },

@@ -10,7 +10,7 @@ export function SendArbitraryFile() {
   const notify = useToastTrigger();
 
   const fileUpload = useMutation(api.sendArbitraryFile, {
-    onSuccess: () => notify({ message: "File sent" }),
+    onSuccess: () => notify({ message: "file.sent" }),
   });
 
   const maxFileSizeInBytes = 5_000_000;
