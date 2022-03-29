@@ -57,7 +57,9 @@ export function Toasts() {
                   undeleteArticle.mutate(toast.item.articleId);
                 }}
               >
-                {undeleteArticle.isLoading ? "..." : "undo"}
+                {undeleteArticle.isIdle && "undo"}
+                {undeleteArticle.isLoading && "..."}
+                {undeleteArticle.isSuccess && "✓"}
               </button>
             )}
           </li>
