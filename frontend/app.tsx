@@ -21,6 +21,7 @@ import {
   InitialArchiveNewspapersDataType,
 } from "./archive-newspapers";
 import { Settings, InitialSettingsDataType } from "./settings";
+import { Review } from "./review";
 
 export type InitialDataType = InitialDashboardDataType &
   InitialArchiveArticlesDataType &
@@ -63,6 +64,7 @@ export function App(props: InitialDataType) {
             />
             <Dashboard path="/dashboard" {...rest} />
             <Settings path="/settings" settings={settings} />
+            <Review path="/review" articles={rest.articles} />
           </Router>
 
           <Toasts />

@@ -19,6 +19,10 @@ function NavigationDesktop() {
     <nav data-display="flex" data-p="12" data-bg="gray-800">
       <NavigationLogo />
 
+      <NavigationLink href="/review" data-mr="24">
+        {t("app.review")}
+      </NavigationLink>
+
       <NavigationLink href="/archive/articles" data-mr="24">
         {t("app.articles")}
       </NavigationLink>
@@ -97,11 +101,20 @@ function NavigationMobile() {
           >
             <NavigationLink
               onClick={navigation.disable}
+              href="/review"
+              data-mb="24"
+            >
+              {t("app.review")}
+            </NavigationLink>
+
+            <NavigationLink
+              onClick={navigation.disable}
               href="/archive/articles"
               data-mb="24"
             >
               {t("app.articles")}
             </NavigationLink>
+
             <NavigationLink
               onClick={navigation.disable}
               href="/archive/newspapers"
