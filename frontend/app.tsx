@@ -9,7 +9,7 @@ import type { Schema, TranslationsType } from "@bgord/node";
 
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
-import { BuildMeta, BuildMetaDataType } from "./build-meta";
+import { BuildMetaDataType } from "./build-meta";
 
 import { Dashboard, InitialDashboardDataType } from "./dashboard";
 import {
@@ -68,8 +68,6 @@ export function App(props: InitialDataType) {
           </Router>
 
           <Toasts />
-
-          <BuildMeta BUILD_VERSION={BUILD_VERSION} BUILD_DATE={BUILD_DATE} />
         </ToastsContextProvider>
       </TranslationsContextProvider>
     </QueryClientProvider>

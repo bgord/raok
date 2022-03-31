@@ -3,7 +3,6 @@ import { useRef } from "preact/hooks";
 import { RoutableProps } from "preact-router";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import useStateMachine, { t as typed } from "@cassiozen/usestatemachine";
-import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
 import * as ui from "./ui";
@@ -37,16 +36,12 @@ export function Review(props: RoutableProps & InitialReviewDataType) {
 }
 
 function Reviewer(props: { articles: types.ArticleType[] }) {
-  const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
   const articles = useRef<types.ArticleType[]>(props.articles);
 
   const deleteArticle = useMutation(api.deleteArticle, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("articles");
-      notify({ message: "article.deleted" });
-    },
+    onSuccess: () => queryClient.invalidateQueries("articles"),
   });
 
   const [state, send] = useStateMachine({
@@ -129,7 +124,7 @@ function Reviewer(props: { articles: types.ArticleType[] }) {
           data-max-width="768"
           data-md-max-width="100%"
         >
-          <div>
+          <div data-fs="14" data-color="gray-600">
             Reviewing articles {currentIndex + 1}/{numberOfArticles}
           </div>
 
@@ -150,17 +145,24 @@ function Reviewer(props: { articles: types.ArticleType[] }) {
           data-mt="36"
           data-max-width="100%"
         >
-          <div data-mb="6">{title}</div>
+          <div data-mb="6" style={{ height: "100px" }}>
+            {title}
+          </div>
 
-          <ui.Link data-max-width="100%" href={url} title={title ?? undefined}>
+          <ui.Link
+            data-max-width="100%"
+            data-fs="14"
+            href={url}
+            title={title ?? undefined}
+          >
             {url}
           </ui.Link>
 
-          <div data-bg="gray-200" data-mt="24">
+          <div data-mt="24">
             <button
               type="button"
               class="c-button"
-              data-variant="bare"
+              data-variant="secondary"
               data-bg="gray-200"
               data-mr="24"
               onClick={() => send("ACCEPTED")}
@@ -172,7 +174,7 @@ function Reviewer(props: { articles: types.ArticleType[] }) {
             <button
               type="button"
               class="c-button"
-              data-variant="bare"
+              data-variant="primary"
               onClick={() => send({ type: "DECLINED", id })}
               style={{ width: "calc(50% - 12px)" }}
             >
