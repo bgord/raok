@@ -75,10 +75,12 @@ function NavigationMobile() {
         <nav
           data-display="flex"
           data-direction="column"
-          data-bg="gray-800"
+          data-wrap="nowrap"
+          data-overflow="auto"
           data-position="fixed"
           data-inset="0"
           data-z="1"
+          data-bg="gray-800"
         >
           <div data-display="flex" data-cross="center" data-py="6" data-px="12">
             <NavigationLogo onClick={navigation.disable} />
@@ -97,7 +99,7 @@ function NavigationMobile() {
             data-display="flex"
             data-direction="column"
             data-cross="center"
-            data-mt="48"
+            data-my="24"
           >
             <NavigationLink
               onClick={navigation.disable}
