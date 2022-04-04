@@ -137,6 +137,12 @@ export function SendArbitraryFile() {
           Please, try again.
         </div>
       )}
+
+      {fileUpload.isLoading && (
+        <div data-mt="24" data-fs="14" data-color="gray-600">
+          Loading...
+        </div>
+      )}
     </form>
   );
 }
