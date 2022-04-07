@@ -94,7 +94,8 @@ function Reviewer(props: { articles: types.ArticleType[] }) {
     return (
       <div>
         <div data-display="flex" data-mb="12">
-          You have {props.articles.length} articles to review
+          You have <strong data-mx="6">{props.articles.length}</strong> articles
+          to review
         </div>
         <button
           type="button"
