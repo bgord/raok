@@ -1,13 +1,17 @@
 import express from "express";
+import * as bg from "@bgord/node";
 
 import * as Repos from "../repositories";
 
 export async function Articles(
-  _request: express.Request,
+  request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const articles = await Repos.ArticleRepository.getAllNonProcessed();
+  const pagination = bg.Pagination.parse(request.query);
+  const articles = await Repos.ArticleRepository.pagedGetAllNonProcessed(
+    pagination
+  );
 
   return response.send(articles);
 }

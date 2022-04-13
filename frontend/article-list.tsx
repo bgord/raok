@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
 import * as UI from "./ui";
@@ -18,8 +18,22 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
   const createNewspaper = useCreateNewspaper(actions.clear);
 
-  const _articles = useQuery("articles", api.getArticles, props);
-  const articles = bg.useAnimaList(_articles.data ?? [], { direction: "tail" });
+  const _articles = useInfiniteQuery(
+    "articles",
+    ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
+    {
+      getNextPageParam: (last, all) =>
+        last.length > 0 ? all.length + 1 : undefined,
+      initialData: {
+        pages: [props.initialData],
+        pageParams: [1],
+      },
+    }
+  );
+
+  const articles = bg.useAnimaList(_articles.data?.pages.flat() ?? [], {
+    direction: "tail",
+  });
 
   return (
     // TODO: Decrease spacing on mobile
@@ -147,6 +161,20 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           </bg.Anima>
         ))}
       </bg.AnimaList>
+
+      {_articles.hasNextPage && (
+        <div data-display="flex">
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            data-mx="auto"
+            onClick={() => _articles.fetchNextPage()}
+          >
+            Load more
+          </button>
+        </div>
+      )}
     </section>
   );
 }

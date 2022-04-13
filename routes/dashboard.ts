@@ -1,6 +1,6 @@
 import express from "express";
 import render from "preact-render-to-string";
-import { Language } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
@@ -12,10 +12,12 @@ export async function Dashboard(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const translations = await Language.getTranslations(
+  const translations = await bg.Language.getTranslations(
     request.language,
     request.translationsPath
   );
+
+  const pagination = bg.Pagination.parse(request.query);
 
   const state = {
     ...Repos.BuildRepository.getAll(),
@@ -23,7 +25,7 @@ export async function Dashboard(
     translations,
     archiveArticles: [],
     archiveNewspapers: [],
-    articles: await Repos.ArticleRepository.getAllNonProcessed(),
+    articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
     favouriteArticles: await Repos.ArticleRepository.getFavourite(),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),

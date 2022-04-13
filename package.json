@@ -44,7 +44,7 @@
   "dependencies": {
     "@bgord/design": "^0.27.28",
     "@bgord/frontend": "github:bgord/bgord-frontend",
-    "@bgord/node": "^0.58.31",
+    "@bgord/node": "^0.58.32",
     "@cassiozen/usestatemachine": "^1.0.1",
     "@mozilla/readability": "^0.4.1",
     "@prisma/client": "^3.7.0",

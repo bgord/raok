@@ -1,5 +1,6 @@
 import { FilterUrl, FilterType } from "@bgord/frontend";
 import { ServerError } from "./server-error";
+import type { PageType } from "@bgord/node";
 
 import {
   ArticleType,
@@ -74,6 +75,12 @@ export async function getStats(): Promise<StatsType> {
 
   return _api("/stats", { method: "GET" }).then((response) =>
     response.ok ? response.json() : defaultStats
+  );
+}
+
+export async function getPagedArticles(page: PageType): Promise<ArticleType[]> {
+  return _api(`/articles?page=${page}`, { method: "GET" }).then((response) =>
+    response.ok ? response.json() : []
   );
 }
 

@@ -37,12 +37,15 @@ export class ArticleRepository {
   static async getAllNonProcessed() {
     return prisma.article.findMany({
       where: { status: VO.ArticleStatusEnum.ready },
-      select: {
-        id: true,
-        url: true,
-        source: true,
-        title: true,
-      },
+      select: { id: true, url: true, source: true, title: true },
+    });
+  }
+
+  static async pagedGetAllNonProcessed(pagination?: bg.PaginationType) {
+    return prisma.article.findMany({
+      where: { status: VO.ArticleStatusEnum.ready },
+      select: { id: true, url: true, source: true, title: true },
+      ...pagination,
     });
   }
 

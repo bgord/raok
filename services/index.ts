@@ -10,6 +10,5 @@ export * from "./feedly-articles-crawler";
 export * from "./html";
 export * from "./html-to-epub";
 export * from "./newspaper-file";
-export * from "./pagination";
 export * from "./readable-article-content-generator";
 export * from "./uploaded-file";
