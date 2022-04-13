@@ -23,6 +23,7 @@
   "dashboard.no_articles_available": "no articles available at the moment",
   "dashboard.no_newspapers_available": "no newspapers added at the moment",
   "dashboard.schedule_feedly_crawl": "schedule Feedly crawl",
+  "dashboard.scheduling": "scheduling...",
   "dashboard.scheduled": "scheduled!",
   "dashboard.select_all": "select all",
   "dashboard.select_min_1_article": "select min. 1 article",
