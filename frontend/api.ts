@@ -132,6 +132,10 @@ export async function scheduleFeedlyArticlesCrawl() {
   return _api("/schedule-feedly-articles-crawl", { method: "POST" });
 }
 
+export async function deleteOldArticles() {
+  return _api("/articles/old/delete", { method: "POST" });
+}
+
 export async function getArchiveArticles(
   filters?: FilterType
 ): Promise<ArchiveArticleType[]> {
