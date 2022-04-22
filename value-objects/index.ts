@@ -5,6 +5,7 @@ export * from "./article-source";
 export * from "./article-status";
 export * from "./article-content";
 export * from "./article-favourite";
+export * from "./article-old-marker";
 
 export * from "./article-metatags";
 export * from "./article-title";
