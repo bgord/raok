@@ -4,11 +4,7 @@ import Emittery from "emittery";
 
 import * as VO from "./value-objects";
 import * as Services from "./services";
-
-import { ArticleRepository } from "./repositories/article-repository";
-import { NewspaperRepository } from "./repositories/newspaper-repository";
-import { StatsRepository } from "./repositories/stats-repository";
-
+import * as Repos from "./repositories";
 import { Article } from "./aggregates/article";
 import { Newspaper } from "./aggregates/newspaper";
 
@@ -252,50 +248,50 @@ export const emittery = new Emittery<{
 }>();
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
-  await ArticleRepository.create(event.payload);
-  await StatsRepository.incrementCreatedArticles();
+  await Repos.ArticleRepository.create(event.payload);
+  await Repos.StatsRepository.incrementCreatedArticles();
 
   if (event.payload.source === VO.ArticleSourceEnum.feedly) {
-    await StatsRepository.updateLastFeedlyImport(event.payload.createdAt);
+    await Repos.StatsRepository.updateLastFeedlyImport(event.payload.createdAt);
   }
 });
 
 emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
-  await ArticleRepository.updateStatus(
+  await Repos.ArticleRepository.updateStatus(
     event.payload.articleId,
     VO.ArticleStatusEnum.deleted
   );
 });
 
 emittery.on(ARTICLE_UNDELETE_EVENT, async (event) => {
-  await ArticleRepository.updateStatus(
+  await Repos.ArticleRepository.updateStatus(
     event.payload.articleId,
     VO.ArticleStatusEnum.ready
   );
 });
 
 emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
-  await ArticleRepository.updateStatus(
+  await Repos.ArticleRepository.updateStatus(
     event.payload.articleId,
     VO.ArticleStatusEnum.in_progress
   );
 
-  await ArticleRepository.assignToNewspaper(
+  await Repos.ArticleRepository.assignToNewspaper(
     event.payload.articleId,
     event.payload.newspaperId
   );
 });
 
 emittery.on(ARTICLE_ADDED_TO_FAVOURITES, async (event) => {
-  await ArticleRepository.addToFavourites(event.payload.articleId);
+  await Repos.ArticleRepository.addToFavourites(event.payload.articleId);
 });
 
 emittery.on(ARTICLE_DELETED_FROM_FAVOURITES, async (event) => {
-  await ArticleRepository.deleteFromFavourites(event.payload.articleId);
+  await Repos.ArticleRepository.deleteFromFavourites(event.payload.articleId);
 });
 
 emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
-  await ArticleRepository.updateStatus(
+  await Repos.ArticleRepository.updateStatus(
     event.payload.articleId,
     VO.ArticleStatusEnum.processed
   );
@@ -304,7 +300,7 @@ emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
 emittery.on(ARTICLE_UNDELETE_EVENT, async (event) => {});
 
 emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
-  await NewspaperRepository.create({
+  await Repos.NewspaperRepository.create({
     id: event.payload.id,
     scheduledAt: event.payload.createdAt,
     status: VO.NewspaperStatusEnum.scheduled,
@@ -321,7 +317,7 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
-  await NewspaperRepository.updateStatus(
+  await Repos.NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.ready_to_send
   );
@@ -331,14 +327,14 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
-  await StatsRepository.incrementSentNewspapers();
+  await Repos.StatsRepository.incrementSentNewspapers();
 
-  await NewspaperRepository.updateStatus(
+  await Repos.NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.delivered
   );
 
-  await NewspaperRepository.updateSentAt(
+  await Repos.NewspaperRepository.updateSentAt(
     event.payload.newspaperId,
     event.payload.sentAt
   );
@@ -352,14 +348,14 @@ emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_ARCHIVED_EVENT, async (event) => {
-  await NewspaperRepository.updateStatus(
+  await Repos.NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.archived
   );
 });
 
 emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
-  await NewspaperRepository.updateStatus(
+  await Repos.NewspaperRepository.updateStatus(
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.error
   );

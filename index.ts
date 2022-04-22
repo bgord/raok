@@ -51,6 +51,11 @@ app.post(
   bg.Route(Routes.UndeleteArticle)
 );
 app.post(
+  "/articles/old/delete",
+  AuthShield.verify,
+  bg.Route(Routes.DeleteOldArticles)
+);
+app.post(
   "/article/:articleId/favourite",
   AuthShield.verify,
   bg.Route(Routes.AddArticleToFavourites)
