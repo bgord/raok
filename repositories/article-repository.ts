@@ -41,12 +41,9 @@ export class ArticleRepository {
     });
   }
 
-  static async getOld(payload: {
-    marker: VO.ArticleOldMarkerType;
-    now: number;
-  }) {
+  static async getOld(marker: VO.ArticleOldMarkerType) {
     return ArticleRepository.getAllNonProcessed({
-      createdAt: { lte: payload.now - payload.marker },
+      createdAt: { lte: marker },
     });
   }
 

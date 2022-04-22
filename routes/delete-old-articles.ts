@@ -16,7 +16,7 @@ export async function DeleteOldArticles(
       name: Events.DELETE_OLD_ARTICLES_EVENT,
       stream: String(now),
       version: 1,
-      payload: { now, marker: Article.OLD_ARTICLE_MARKER_MS },
+      payload: { marker: now - Article.OLD_ARTICLE_MARKER_MS },
     })
   );
   return response.send();

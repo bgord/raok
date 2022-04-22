@@ -219,7 +219,7 @@ export const DeleteOldArticlesEvent = EventDraft.merge(
   z.object({
     name: z.literal(DELETE_OLD_ARTICLES_EVENT),
     version: z.literal(1),
-    payload: z.object({ now: Schema.Timestamp, marker: VO.ArticleOldMarker }),
+    payload: z.object({ marker: VO.ArticleOldMarker }),
   })
 );
 export type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
@@ -383,7 +383,9 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
 });
 
 emittery.on(DELETE_OLD_ARTICLES_EVENT, async (event) => {
-  const oldArticles = await Repos.ArticleRepository.getOld(event.payload);
+  const oldArticles = await Repos.ArticleRepository.getOld(
+    event.payload.marker
+  );
 
   if (!oldArticles.length) return;
 
