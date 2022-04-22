@@ -218,6 +218,16 @@ export type FeedlyArticlesCrawlingScheduledEventType = z.infer<
   typeof FeedlyArticlesCrawlingScheduledEvent
 >;
 
+export const DELETE_OLD_ARTICLES_EVENT = "DELETE_OLD_ARTICLES_EVENT";
+export const DeleteOldArticlesEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(DELETE_OLD_ARTICLES_EVENT),
+    version: z.literal(1),
+    payload: z.object({ now: Schema.Timestamp, marker: VO.ArticleOldMarker }),
+  })
+);
+export type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
@@ -238,6 +248,7 @@ export const emittery = new Emittery<{
   ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: ArticlesToReviewNotificationsEnabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: ArticlesToReviewNotificationHourSetEventType;
   FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT: FeedlyArticlesCrawlingScheduledEventType;
+  DELETE_OLD_ARTICLES_EVENT: DeleteOldArticlesEventType;
 }>();
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
