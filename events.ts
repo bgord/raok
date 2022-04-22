@@ -381,3 +381,17 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
     await new Services.UploadedFile(file).delete();
   }
 });
+
+emittery.on(DELETE_OLD_ARTICLES_EVENT, async (event) => {
+  const oldArticles = await Repos.ArticleRepository.getOld(event.payload);
+
+  if (!oldArticles.length) return;
+
+  Reporter.info(`${oldArticles.length} old articles to delete`);
+
+  for (const { id } of oldArticles) {
+    const articleId = VO.ArticleId.parse(id);
+    const article = await new Article(articleId).build();
+    await article.delete();
+  }
+});

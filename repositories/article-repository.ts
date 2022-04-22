@@ -34,10 +34,19 @@ export class ArticleRepository {
     });
   }
 
-  static async getAllNonProcessed() {
+  static async getAllNonProcessed(filters?: Prisma.ArticleWhereInput) {
     return prisma.article.findMany({
-      where: { status: VO.ArticleStatusEnum.ready },
+      where: _.merge(filters, { status: VO.ArticleStatusEnum.ready }),
       select: { id: true, url: true, source: true, title: true },
+    });
+  }
+
+  static async getOld(payload: {
+    marker: VO.ArticleOldMarkerType;
+    now: number;
+  }) {
+    return ArticleRepository.getAllNonProcessed({
+      createdAt: { lte: payload.now - payload.marker },
     });
   }
 
