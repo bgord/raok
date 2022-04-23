@@ -14,7 +14,7 @@ export class Article {
   entity: VO.ArticleType | null = null;
 
   static OLD_ARTICLE_MARKER_MS: VO.ArticleOldMarkerType =
-    7 * 24 * 60 * 60 * 1000; // 7 days
+    3 * 24 * 60 * 60 * 1000; // 3 days
 
   constructor(id: VO.ArticleType["id"]) {
     this.id = id;
