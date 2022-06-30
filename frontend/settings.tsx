@@ -3,7 +3,7 @@ import { RoutableProps } from "preact-router";
 import { useQuery } from "react-query";
 
 import * as api from "./api";
-import { SettingsType } from "./types";
+import { SettingsType, HourType } from "./types";
 
 export type InitialSettingsDataType = {
   settings: SettingsType;
@@ -89,7 +89,7 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
           data-mt="36"
         >
           <label class="c-label" for="hour" data-mr="12">
-            Hour
+            Hour (UTC)
           </label>
           <select id="hour" name="hour" class="c-select">
             {hours.map((option) => (
@@ -116,9 +116,23 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
 
         <small data-fs="14" data-color="gray-400" data-mt="24">
           Notification will be sent at {articlesToReviewNotificationHour.label}{" "}
-          UTC+0 every day.
+          UTC+0 every day, which is{" "}
+          {formatUtcHourToLocal(articlesToReviewNotificationHour.value).label}{" "}
+          your time.
         </small>
       </section>
     </main>
   );
+}
+
+function formatUtcHourToLocal(hour: HourType) {
+  const minutes = hour * 60;
+  const timeZoneOffsetInMins = new Date().getTimezoneOffset();
+
+  const localMinutes = minutes - timeZoneOffsetInMins;
+  const localHour = localMinutes / 60;
+
+  const formattedLocalHour = `${String(localHour).padStart(2, "0")}:00`;
+
+  return { value: localHour, label: formattedLocalHour };
 }

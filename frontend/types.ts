@@ -7,6 +7,8 @@ import type { NewspaperRepository } from "../repositories/newspaper-repository";
 import type { StatsRepository } from "../repositories/stats-repository";
 import type { SettingsRepository } from "../repositories/settings-repository";
 
+export type { HourType } from "../value-objects/hour";
+
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",

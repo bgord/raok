@@ -8,7 +8,7 @@ const HourSchema = z
   .number()
   .refine((value) => hours.includes(value), { message: "invalid_hour" });
 
-export type HourType = Brand<"hour", z.infer<typeof HourSchema>>;
+export type HourType = z.infer<typeof HourSchema>;
 
 export const hour = toBrand<HourType>(HourSchema);
 
