@@ -14,7 +14,7 @@ export class ArbitraryFileSender {
     file: Pick<Schema.UploadedFileType, "originalFilename" | "path">
   ) {
     return mailer.send({
-      from: Env.SMTP_USER,
+      from: Env.EMAIL_FROM,
       to: Env.EMAIL_TO_DELIVER_TO,
       subject: file.originalFilename,
       text: "Sent from raok.",

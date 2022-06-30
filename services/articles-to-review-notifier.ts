@@ -44,7 +44,7 @@ export class ArticlesToReviewNotifier {
 
   async send() {
     return mailer.send({
-      from: Env.SMTP_USER,
+      from: Env.EMAIL_FROM,
       to: Env.EMAIL_FOR_NOTIFICATIONS,
       subject: `[raok] - ${this.numberOfArticlesToReview} articles to review`,
       html: `
