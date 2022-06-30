@@ -27,13 +27,14 @@ export function AddArticleForm() {
 
   return (
     <form
+      data-display="flex"
+      data-gap="12"
+      data-mt="12"
+      data-md-mt="24"
       onSubmit={(event) => {
         event.preventDefault();
         addArticleRequest.mutate({ url });
       }}
-      data-display="flex"
-      data-mt="12"
-      data-md-mt="24"
     >
       <input
         id="url"
@@ -45,8 +46,6 @@ export function AddArticleForm() {
         disabled={addArticleRequest.isLoading}
         placeholder="https://example.com/blogpost"
         class="c-input"
-        data-mr="12"
-        data-md-mr="6"
         data-grow="1"
       />
 

@@ -16,30 +16,26 @@ function NavigationDesktop() {
   const t = bg.useTranslations();
 
   return (
-    <nav data-display="flex" data-p="12" data-bg="gray-800">
+    <nav data-display="flex" data-gap="24" data-p="12" data-bg="gray-800">
       <NavigationLogo />
 
-      <NavigationLink href="/review" data-mr="24">
-        {t("app.review")}
-      </NavigationLink>
+      <NavigationLink href="/review">{t("app.review")}</NavigationLink>
 
-      <NavigationLink href="/archive/articles" data-mr="24">
+      <NavigationLink href="/archive/articles">
         {t("app.articles")}
       </NavigationLink>
 
-      <NavigationLink href="/archive/newspapers" data-mr="24">
+      <NavigationLink href="/archive/newspapers">
         {t("app.newspapers")}
       </NavigationLink>
 
       <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
 
-      <strong data-mx="36" data-color="white">
+      <strong data-mx="12" data-color="white">
         admin
       </strong>
 
-      <NavigationLink data-mr="24" href="/logout">
-        {t("app.logout")}
-      </NavigationLink>
+      <NavigationLink href="/logout">{t("app.logout")}</NavigationLink>
     </nav>
   );
 }
@@ -99,20 +95,16 @@ function NavigationMobile() {
             data-display="flex"
             data-direction="column"
             data-cross="center"
+            data-gap="24"
             data-my="24"
           >
-            <NavigationLink
-              onClick={navigation.disable}
-              href="/review"
-              data-mb="24"
-            >
+            <NavigationLink onClick={navigation.disable} href="/review">
               {t("app.review")}
             </NavigationLink>
 
             <NavigationLink
               onClick={navigation.disable}
               href="/archive/articles"
-              data-mb="24"
             >
               {t("app.articles")}
             </NavigationLink>
@@ -120,20 +112,16 @@ function NavigationMobile() {
             <NavigationLink
               onClick={navigation.disable}
               href="/archive/newspapers"
-              data-mb="24"
             >
               {t("app.newspapers")}
             </NavigationLink>
-            <NavigationLink
-              onClick={navigation.disable}
-              href="/settings"
-              data-mb="24"
-            >
+
+            <NavigationLink onClick={navigation.disable} href="/settings">
               {t("app.settings")}
             </NavigationLink>
-            <strong data-color="white" data-mb="24">
-              admin
-            </strong>
+
+            <strong data-color="white">admin</strong>
+
             <NavigationLink onClick={navigation.disable} href="/logout">
               {t("app.logout")}
             </NavigationLink>

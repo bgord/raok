@@ -53,17 +53,18 @@ export function FavouriteArticles(props: {
             <li
               key={article.item.id}
               data-display="flex"
+              data-main="between"
               data-cross="center"
+              data-gap="6"
+              data-mb="6"
               data-overflow="hidden"
               data-wrap="nowrap"
-              data-mb="6"
             >
               <UI.OutboundLink href={article.item.url} data-fs="14">
                 {article.item.title || article.item.url}
               </UI.OutboundLink>
 
               <form
-                data-ml="auto"
                 onSubmit={(event) => {
                   event.preventDefault();
                   deleteArticleFromFavourites.mutate(article.item.id);
@@ -74,7 +75,6 @@ export function FavouriteArticles(props: {
                   type="submit"
                   class="c-button"
                   data-variant="bare"
-                  data-ml="12"
                 >
                   {t("article.favourites_remove")}
                 </button>

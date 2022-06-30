@@ -114,7 +114,7 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
           </button>
         </form>
 
-        <small data-fs="14" data-color="gray-400" data-mt="24">
+        <small data-fs="14" data-color="gray-400" data-mt="12">
           Notification will be sent at {articlesToReviewNotificationHour.label}{" "}
           UTC+0 every day, which is{" "}
           {formatUtcHourToLocal(articlesToReviewNotificationHour.value).label}{" "}

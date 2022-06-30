@@ -62,13 +62,12 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
         <AddArticleForm />
 
         <div data-display="flex" data-cross="end">
-          <div data-display="flex" data-mt="24">
+          <div data-display="flex" data-gap="12" data-mt="24">
             <button
               onClick={() => actions.add(articles.items.map((x) => x.item.id))}
               type="button"
               class="c-button"
               data-variant="secondary"
-              data-mr="12"
             >
               {t("dashboard.select_all")}
             </button>
@@ -87,7 +86,6 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               type="button"
               class="c-button"
               data-variant="bare"
-              data-ml="12"
             >
               <img
                 loading="eager"
@@ -108,6 +106,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
 
           <form
             data-display="flex"
+            data-gap="12"
             data-mt="24"
             data-ml="auto"
             onSubmit={(event) => {
@@ -125,7 +124,6 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
           >
             {emptyNewspaperError.on && (
               <div
-                data-mr="12"
                 data-my="auto"
                 data-color="gray-600"
                 data-fs="14"
