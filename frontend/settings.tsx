@@ -14,6 +14,14 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
     initialData: props.settings,
   });
 
+  if (!settings.isSuccess) return <div data-p="24">Preparing settings...</div>;
+
+  const {
+    isArticlesToReviewNotificationEnabled,
+    hours,
+    articlesToReviewNotificationHour,
+  } = settings.data;
+
   return (
     <main
       data-display="flex"
@@ -45,16 +53,14 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
             data-fs="12"
             data-mr="12"
           >
-            {settings.data?.isArticlesToReviewNotificationEnabled
-              ? "Enabled"
-              : "Disabled"}
+            {isArticlesToReviewNotificationEnabled ? "Enabled" : "Disabled"}
           </strong>
 
           <h3 data-fs="16" data-color="gray-600" data-mr="36">
             Articles to review notifications
           </h3>
 
-          {settings.data?.isArticlesToReviewNotificationEnabled && (
+          {isArticlesToReviewNotificationEnabled && (
             <form
               method="POST"
               action="/disable-articles-to-review-notification"
@@ -65,7 +71,7 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
             </form>
           )}
 
-          {!settings.data?.isArticlesToReviewNotificationEnabled && (
+          {!isArticlesToReviewNotificationEnabled && (
             <form
               method="POST"
               action="/enable-articles-to-review-notification"
@@ -86,12 +92,11 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
             Hour
           </label>
           <select id="hour" name="hour" class="c-select">
-            {settings.data?.hours.map((option) => (
+            {hours.map((option) => (
               <option
                 value={option.value}
                 selected={
-                  option.value ===
-                  settings.data?.articlesToReviewNotificationHour.value
+                  option.value === articlesToReviewNotificationHour.value
                 }
               >
                 {option.label}
@@ -99,7 +104,7 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
             ))}
           </select>
           <button
-            disabled={!settings.data?.isArticlesToReviewNotificationEnabled}
+            disabled={!isArticlesToReviewNotificationEnabled}
             type="submit"
             class="c-button"
             data-variant="secondary"
@@ -110,9 +115,8 @@ export function Settings(props: RoutableProps & InitialSettingsDataType) {
         </form>
 
         <small data-fs="14" data-color="gray-400" data-mt="24">
-          Notification will be sent at{" "}
-          {settings.data?.articlesToReviewNotificationHour.label} UTC+0 every
-          day.
+          Notification will be sent at {articlesToReviewNotificationHour.label}{" "}
+          UTC+0 every day.
         </small>
       </section>
     </main>
