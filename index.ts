@@ -158,10 +158,9 @@ app.post(
   AuthShield.attach,
   (_request, response) => response.redirect("/dashboard")
 );
-app.get("/logout", (request, response) => {
-  request.logout();
-  return response.redirect("/");
-});
+app.get("/logout", AuthShield.detach, (request, response) =>
+  response.redirect("/")
+);
 
 app.get("/dashboard", AuthShield.verify, bg.Route(Routes.Dashboard));
 
