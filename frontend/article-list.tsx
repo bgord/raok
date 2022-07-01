@@ -24,6 +24,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
     "articles",
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
     {
+      refetchOnMount: false,
       getNextPageParam: (last, all) =>
         last.length > 0 ? all.length + 1 : undefined,
       initialData: {

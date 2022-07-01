@@ -16,7 +16,10 @@ import { Newspaper } from "./newspaper";
 export function NewspaperList(props: { initialData: NewspaperType[] }) {
   const t = useTranslations();
 
-  const _newspapers = useQuery(["newspapers"], api.getNewspapers, props);
+  const _newspapers = useQuery(["newspapers"], api.getNewspapers, {
+    ...props,
+    refetchOnMount: false,
+  });
 
   const newspapers = useAnimaList(_newspapers.data ?? [], {
     direction: "head",

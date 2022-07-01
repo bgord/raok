@@ -12,11 +12,10 @@ export function FavouriteArticles(props: {
 }) {
   const t = bg.useTranslations();
 
-  const _articles = useQuery(
-    "favourite-articles",
-    api.getFavouriteArticles,
-    props
-  );
+  const _articles = useQuery("favourite-articles", api.getFavouriteArticles, {
+    ...props,
+    refetchOnMount: false,
+  });
 
   const list = bg.useExpandableList({
     max: 5,
