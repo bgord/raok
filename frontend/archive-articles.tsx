@@ -2,6 +2,7 @@ import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
 import { useUrlFilter, useClientSearch } from "@bgord/frontend";
+import { Search } from "iconoir-react";
 
 import * as UI from "./ui";
 import * as Icons from "./icons";
@@ -167,12 +168,9 @@ export function ArchiveArticles(
             style="padding-right: 36px"
             data-width="100%"
           />
-          <img
-            loading="eager"
+          <Search
             height="34"
             width="34"
-            src="/icon-search.svg"
-            alt=""
             data-position="absolute"
             data-p="6"
             style="top: 1px; right: 1px; background: white;"

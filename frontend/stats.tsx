@@ -1,5 +1,6 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
+import { StatsSquareUp } from "iconoir-react";
 
 import * as api from "./api";
 import { Header } from "./ui";
@@ -21,14 +22,7 @@ export function Stats(props: { initialData: StatsType }) {
       data-bct="gray-200"
     >
       <Header data-display="flex" data-mb="24">
-        <img
-          loading="eager"
-          height="20"
-          width="20"
-          src="/icon-stats.svg"
-          alt=""
-          data-mr="12"
-        />
+        <StatsSquareUp data-mr="12" />
         Statistics
       </Header>
 

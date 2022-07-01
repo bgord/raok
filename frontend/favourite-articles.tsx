@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useQueryClient, useQuery, useMutation } from "react-query";
 import * as bg from "@bgord/frontend";
+import { StarOutline } from "iconoir-react";
 
 import * as api from "./api";
 import * as UI from "./ui";
@@ -30,14 +31,7 @@ export function FavouriteArticles(props: {
   return (
     <div data-bg="gray-100" data-p="12" data-bw="4" data-bct="gray-200">
       <UI.Header data-display="flex" data-mb="24">
-        <img
-          loading="eager"
-          height="20"
-          width="20"
-          src="/icon-star.svg"
-          alt=""
-          data-mr="12"
-        />
+        <StarOutline data-mr="12" />
         <span data-transform="upper-first">{t("article.favourites")}</span>
       </UI.Header>
 

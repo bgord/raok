@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useMutation, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
+import { Notes, Refresh } from "iconoir-react";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -47,14 +48,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
         data-pt="6"
       >
         <UI.Header data-display="flex" data-cross="center">
-          <img
-            loading="eager"
-            height="20"
-            width="20"
-            src="/icon-article.svg"
-            alt=""
-            data-mr="12"
-          />
+          <Notes data-mr="12" />
           <span data-transform="upper-first">{t("app.articles")}</span>
           <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
@@ -87,14 +81,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
               class="c-button"
               data-variant="bare"
             >
-              <img
-                loading="eager"
-                height="20"
-                width="20"
-                src="/icon-refresh.svg"
-                alt=""
-                data-anima-effect={_articles.isRefetching && "rotate"}
-              />
+              <Refresh data-anima-effect={_articles.isRefetching && "rotate"} />
             </button>
           </div>
 

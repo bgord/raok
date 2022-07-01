@@ -2,6 +2,7 @@ import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
 import prettyBytes from "pretty-bytes-es5";
 import { useFile, UseFileState, useToastTrigger } from "@bgord/frontend";
+import { Book } from "iconoir-react";
 
 import * as api from "./api";
 import { Header } from "./ui";
@@ -36,14 +37,7 @@ export function SendArbitraryFile() {
       }}
     >
       <Header data-display="flex" data-mb="24">
-        <img
-          loading="eager"
-          height="20"
-          width="20"
-          src="/icon-book.svg"
-          alt=""
-          data-mr="12"
-        />
+        <Book data-mr="12" />
         Send a book
       </Header>
 

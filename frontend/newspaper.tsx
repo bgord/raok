@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
+import { NavArrowUp, NavArrowDown } from "iconoir-react";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -73,25 +74,8 @@ export function Newspaper(props: NewspaperProps) {
               data-mx="6"
               onClick={details.toggle}
             >
-              {details.off && (
-                <img
-                  loading="eager"
-                  height="16"
-                  width="16"
-                  src="/arrow-down-icon.svg"
-                  alt=""
-                />
-              )}
-
-              {details.on && (
-                <img
-                  loading="eager"
-                  height="16"
-                  width="16"
-                  src="/arrow-up-icon.svg"
-                  alt=""
-                />
-              )}
+              {details.off && <NavArrowDown height="24" width="24" />}
+              {details.on && <NavArrowUp height="24" width="24" />}
             </button>
           )}
         </div>

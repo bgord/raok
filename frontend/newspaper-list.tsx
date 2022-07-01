@@ -6,6 +6,7 @@ import {
   useAnimaList,
   useTranslations,
 } from "@bgord/frontend";
+import { BookStack } from "iconoir-react";
 
 import * as api from "./api";
 import { Header } from "./ui";
@@ -30,14 +31,7 @@ export function NewspaperList(props: { initialData: NewspaperType[] }) {
         data-bwt="4"
         data-p="12"
       >
-        <img
-          loading="eager"
-          height="20"
-          width="20"
-          src="/icon-newspaper.svg"
-          alt=""
-          data-mr="12"
-        />
+        <BookStack data-mr="12" />
         <span data-transform="upper-first">{t("app.newspapers")}</span>
       </Header>
 

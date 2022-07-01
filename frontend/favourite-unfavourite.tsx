@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import { useToastTrigger } from "@bgord/frontend";
+import { StarOutline } from "iconoir-react";
 
 import * as api from "./api";
 import { ArticleType, NewspaperType } from "./types";
@@ -36,23 +37,9 @@ export function FavouriteUnfavourite(props: FavouriteUnfavouriteType) {
         }
       >
         {props.favourite && (
-          <img
-            loading="eager"
-            height="20"
-            width="20"
-            src="/icon-star-filled.svg"
-            alt=""
-          />
+          <StarOutline style="fill: black" height="20" width="20" />
         )}
-        {!props.favourite && (
-          <img
-            loading="eager"
-            height="20"
-            width="20"
-            src="/icon-star.svg"
-            alt=""
-          />
-        )}
+        {!props.favourite && <StarOutline height="20" width="20" />}
       </button>
     </form>
   );
