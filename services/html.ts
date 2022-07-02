@@ -12,6 +12,7 @@ export class Html {
     const serializedState = Html.serializeState(config.state);
 
     return /* HTML */ `
+      <!DOCTYPE html>
       <html lang="${config.language}">
         <head>
           <meta charset="utf-8" />
