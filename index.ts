@@ -163,7 +163,12 @@ app.get("/logout", AuthShield.detach, (request, response) =>
   response.redirect("/")
 );
 
-app.get("/dashboard", AuthShield.verify, bg.Route(Routes.Dashboard));
+app.get(
+  "/dashboard",
+  AuthShield.verify,
+  bg.Cache.handle(bg.CacheStrategy.never),
+  bg.Route(Routes.Dashboard)
+);
 
 app.get("*", (_, response) => response.redirect("/"));
 app.use(ErrorHandler.handle);
