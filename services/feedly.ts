@@ -3,6 +3,7 @@ import { z } from "zod";
 import axios from "axios";
 
 import * as VO from "../value-objects";
+import * as Services from "../services";
 import { Env } from "../env";
 
 export class Feedly {
@@ -27,6 +28,7 @@ export class Feedly {
         .filter(Feedly.isNonTwitterUrl);
     } catch (error) {
       Reporter.raw("Feedly#getArticles", error);
+      await Services.FeedlyTokenExpiredNotifier.send();
       return [];
     }
   }
