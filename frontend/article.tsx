@@ -68,6 +68,14 @@ export function Article(props: ArticlePropsType) {
           >
             {props.url}
           </UI.OutboundLink>
+
+          <small
+            data-fs="12"
+            data-color="gray-500"
+            title={new Date(props.createdAt.raw).toLocaleString()}
+          >
+            {props.createdAt.formatted}
+          </small>
         </div>
       </div>
 

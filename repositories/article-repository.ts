@@ -2,6 +2,7 @@ import * as z from "zod";
 import * as bg from "@bgord/node";
 import { Prisma, PrismaClient } from "@prisma/client";
 import _ from "lodash";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 import * as VO from "../value-objects";
 
@@ -35,10 +36,24 @@ export class ArticleRepository {
   }
 
   static async getAllNonProcessed(filters?: Prisma.ArticleWhereInput) {
-    return prisma.article.findMany({
+    const articles = await prisma.article.findMany({
       where: _.merge(filters, { status: VO.ArticleStatusEnum.ready }),
-      select: { id: true, url: true, source: true, title: true },
+      select: {
+        id: true,
+        url: true,
+        source: true,
+        title: true,
+        createdAt: true,
+      },
     });
+
+    return articles.map((article) => ({
+      ...article,
+      createdAt: {
+        raw: article.createdAt,
+        formatted: formatDistanceToNow(article.createdAt, { addSuffix: true }),
+      },
+    }));
   }
 
   static async getOld(marker: VO.ArticleOldMarkerType) {
@@ -48,11 +63,28 @@ export class ArticleRepository {
   }
 
   static async pagedGetAllNonProcessed(pagination?: bg.PaginationType) {
-    return prisma.article.findMany({
+    const articles = await prisma.article.findMany({
       where: { status: VO.ArticleStatusEnum.ready },
-      select: { id: true, url: true, source: true, title: true },
+      select: {
+        id: true,
+        url: true,
+        source: true,
+        title: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
       ...pagination,
     });
+
+    return articles.map((article) => ({
+      ...article,
+      createdAt: {
+        raw: article.createdAt,
+        formatted: formatDistanceToNow(article.createdAt, { addSuffix: true }),
+      },
+    }));
   }
 
   static async getNumberOfNonProcessed() {
