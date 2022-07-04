@@ -7,9 +7,10 @@ import * as Services from "../services";
 import { Env } from "../env";
 
 export class Feedly {
-  private static auth = {
+  private static api = axios.create({
+    baseURL: "https://cloud.feedly.com/v3",
     headers: { Authorization: `Bearer ${Env.FEEDLY_TOKEN}` },
-  };
+  });
 
   static async getArticles(): Promise<NonNullable<VO.FeedlyArticleType>[]> {
     const streamId = encodeURIComponent(
@@ -17,9 +18,8 @@ export class Feedly {
     );
 
     try {
-      const response = await axios.get(
-        `https://cloud.feedly.com/v3/streams/${streamId}/contents?unreadOnly=true`,
-        Feedly.auth
+      const response = await Feedly.api.get(
+        `/streams/${streamId}/contents?unreadOnly=true`
       );
 
       return z
@@ -34,11 +34,11 @@ export class Feedly {
   }
 
   static async markArticlesAsRead(articleIds: VO.FeedlyArticleType["id"][]) {
-    return axios.post(
-      "https://cloud.feedly.com/v3/markers",
-      { action: "markAsRead", type: "entries", entryIds: articleIds },
-      Feedly.auth
-    );
+    return Feedly.api.post("/markers", {
+      action: "markAsRead",
+      type: "entries",
+      entryIds: articleIds,
+    });
   }
 
   private static isNonTwitterUrl(
