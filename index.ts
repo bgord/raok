@@ -1,5 +1,6 @@
 import express from "express";
 import * as bg from "@bgord/node";
+import { extname } from "path";
 
 import * as Routes from "./routes";
 
@@ -9,7 +10,26 @@ import { Env } from "./env";
 
 const app = express();
 
-bg.addExpressEssentials(app, { helmet: { contentSecurityPolicy: false } });
+bg.addExpressEssentials(app, {
+  helmet: { contentSecurityPolicy: false },
+  staticFiles: {
+    serveStatic: {
+      setHeaders(response, path) {
+        const extension = extname(path);
+
+        const DAY = 60 * 60 * 24;
+        const WEEK = DAY * 7;
+
+        if (extension === ".png") {
+          response.setHeader(
+            "Cache-Control",
+            `max-age=${WEEK}, stale-while-revalidate=${DAY}`
+          );
+        }
+      },
+    },
+  },
+});
 bg.Handlebars.applyTo(app);
 bg.Language.applyTo(app, "translations");
 bg.ServerTiming.applyTo(app);
