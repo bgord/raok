@@ -109,6 +109,7 @@ npx gzip build/static/*.js --extension=gz --extension=br
 npx gzip build/static/*.css --extension=gz --extension=br
 npx gzip build/static/*.png --extension=gz --extension=br
 npx gzip build/static/*.html --extension=gz --extension=br
+npx gzip build/static/*.ico --extension=gz --extension=br
 info "Compressing static files"
 
 # ==========================================================
