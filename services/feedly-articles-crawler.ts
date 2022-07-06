@@ -1,7 +1,9 @@
 import { Reporter } from "@bgord/node";
 
-import { Feedly } from "./feedly";
 import * as VO from "../value-objects";
+import * as Policies from "../policies";
+import { Settings } from "../aggregates/settings";
+import { Feedly } from "./feedly";
 import { Env } from "../env";
 
 import { Article } from "../aggregates/article";
@@ -12,6 +14,14 @@ export class FeedlyArticlesCrawler {
 
     if (Env.SUPRESS_FEEDLY_CRAWLING === "yes") {
       Reporter.info("Suppressing Feedly crawling due to feature flag");
+      return;
+    }
+
+    const settings = await new Settings().build();
+    if (Policies.ShouldCrawlFeedly.fails({ settings })) {
+      Reporter.info(
+        "Suppressing Feedly crawling due to settings.isFeedlyCrawlingStopped"
+      );
       return;
     }
 

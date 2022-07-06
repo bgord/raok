@@ -28,6 +28,12 @@ export class ErrorHandler {
         .send({ message: "article.error.not_unique", _known: true });
     }
 
+    if (error instanceof Policies.ShouldCrawlFeedlyError) {
+      return response
+        .status(400)
+        .send({ message: "crawling.stopped", _known: true });
+    }
+
     return next(error);
   };
 }
