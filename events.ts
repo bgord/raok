@@ -224,7 +224,7 @@ export const DeleteOldArticlesEvent = EventDraft.merge(
 );
 export type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
 
-export const STOP_FEEDLY_CRAWLING_EVENT = "STOP_FEEDLY_CRAWLING";
+export const STOP_FEEDLY_CRAWLING_EVENT = "STOP_FEEDLY_CRAWLING_EVENT";
 export const StopFeedlyCrawlingEvent = EventDraft.merge(
   z.object({
     name: z.literal(STOP_FEEDLY_CRAWLING_EVENT),
@@ -236,7 +236,7 @@ export type StopFeedlyCrawlingEventType = z.infer<
   typeof StopFeedlyCrawlingEvent
 >;
 
-export const RESTORE_FEEDLY_CRAWLING_EVENT = "RESTORE_FEEDLY_CRAWLING";
+export const RESTORE_FEEDLY_CRAWLING_EVENT = "RESTORE_FEEDLY_CRAWLING_EVENT";
 export const RestoreFeedlyCrawlingEvent = EventDraft.merge(
   z.object({
     name: z.literal(RESTORE_FEEDLY_CRAWLING_EVENT),
@@ -269,6 +269,8 @@ export const emittery = new Emittery<{
   ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: ArticlesToReviewNotificationHourSetEventType;
   FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT: FeedlyArticlesCrawlingScheduledEventType;
   DELETE_OLD_ARTICLES_EVENT: DeleteOldArticlesEventType;
+  STOP_FEEDLY_CRAWLING_EVENT: StopFeedlyCrawlingEventType;
+  RESTORE_FEEDLY_CRAWLING_EVENT: RestoreFeedlyCrawlingEventType;
 }>();
 
 emittery.on(ARTICLE_ADDED_EVENT, async (event) => {

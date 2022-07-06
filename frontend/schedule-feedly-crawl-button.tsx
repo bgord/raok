@@ -20,7 +20,10 @@ export function ScheduleFeedlyCrawlButton(
         notify({ message: "Feedly crawl scheduled" });
         queryClient.invalidateQueries("stats");
       },
-      onError: (error: ServerError) => notify({ message: t(error.message) }),
+      onError: (error: ServerError) => {
+        setTimeout(scheduleFeedlyArticlesCrawl.reset, 5000);
+        notify({ message: t(error.message) });
+      },
     }
   );
 

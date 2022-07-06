@@ -16,7 +16,7 @@ type ShouldCrawlFeedlyConfigType = {
 
 class ShouldCrawlFeedlyFactory extends Policy<ShouldCrawlFeedlyConfigType> {
   fails(config: ShouldCrawlFeedlyConfigType) {
-    return config.settings.isFeedlyCrawlingStopped === false;
+    return config.settings.isFeedlyCrawlingStopped === true;
   }
 
   error = ShouldCrawlFeedlyError;
