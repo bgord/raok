@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
-import { useToastTrigger, useTranslations } from "@bgord/frontend";
+import { useToastTrigger, useTranslations, ServerError } from "@bgord/frontend";
 
 import * as api from "./api";
 
@@ -20,6 +20,7 @@ export function ScheduleFeedlyCrawlButton(
         notify({ message: "Feedly crawl scheduled" });
         queryClient.invalidateQueries("stats");
       },
+      onError: (error: ServerError) => notify({ message: t(error.message) }),
     }
   );
 
