@@ -2,6 +2,7 @@ import * as Events from "../events";
 
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
+import * as Policies from "../policies";
 
 export class Settings {
   stream: Events.StreamType;
@@ -9,6 +10,8 @@ export class Settings {
   isArticlesToReviewNotificationEnabled = true;
 
   articlesToReviewNotificationHour: VO.HourType = VO.hour.parse(8);
+
+  isFeedlyCrawlingStopped = false;
 
   constructor() {
     this.stream = Settings.getStream();
@@ -20,6 +23,8 @@ export class Settings {
         Events.ArticlesToReviewNotificationsDisabledEvent,
         Events.ArticlesToReviewNotificationsEnabledEvent,
         Events.ArticlesToReviewNotificationHourSetEvent,
+        Events.StopFeedlyCrawlingEvent,
+        Events.RestoreFeedlyCrawlingEvent,
       ],
       this.stream
     );
@@ -36,6 +41,14 @@ export class Settings {
 
         case Events.ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT:
           this.articlesToReviewNotificationHour = event.payload.hour;
+          break;
+
+        case Events.STOP_FEEDLY_CRAWLING_EVENT:
+          this.isFeedlyCrawlingStopped = true;
+          break;
+
+        case Events.RESTORE_FEEDLY_CRAWLING_EVENT:
+          this.isFeedlyCrawlingStopped = false;
           break;
 
         default:
@@ -83,6 +96,32 @@ export class Settings {
         version: 1,
         stream: this.stream,
         payload: { hour },
+      })
+    );
+  }
+
+  async stopFeedlyCrawling() {
+    await Policies.StopFeedlyCrawling.perform({ settings: this });
+
+    await Repos.EventRepository.save(
+      Events.StopFeedlyCrawlingEvent.parse({
+        name: Events.STOP_FEEDLY_CRAWLING_EVENT,
+        version: 1,
+        stream: this.stream,
+        payload: {},
+      })
+    );
+  }
+
+  async restoreFeedlyCrawling() {
+    await Policies.RestoreFeedlyCrawling.perform({ settings: this });
+
+    await Repos.EventRepository.save(
+      Events.RestoreFeedlyCrawlingEvent.parse({
+        name: Events.RESTORE_FEEDLY_CRAWLING_EVENT,
+        version: 1,
+        stream: this.stream,
+        payload: {},
       })
     );
   }

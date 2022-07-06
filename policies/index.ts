@@ -10,3 +10,5 @@ export * from "./no-empty-newspaper";
 export * from "./has-newspaper-stalled";
 export * from "./favourite-article";
 export * from "./unfavourite-article";
+export * from "./stop-feedly-crawling";
+export * from "./restore-feedly-crawling";
