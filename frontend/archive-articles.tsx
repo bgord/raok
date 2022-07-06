@@ -15,9 +15,7 @@ export type InitialArchiveArticlesDataType = {
   archiveArticles: types.ArchiveArticleType[];
 };
 
-export function ArchiveArticles(
-  props: InitialArchiveArticlesDataType & RoutableProps
-) {
+export function ArchiveArticles(props: RoutableProps) {
   const search = useClientSearch();
 
   const sourceFilter = useUrlFilter({
@@ -42,10 +40,8 @@ export function ArchiveArticles(
     createdAt: createdAt.query,
   };
 
-  const archiveArticles = useQuery(
-    ["archive-articles", filters],
-    () => api.getArchiveArticles(filters),
-    { initialData: props.archiveArticles }
+  const archiveArticles = useQuery(["archive-articles", filters], () =>
+    api.getArchiveArticles(filters)
   );
 
   const articles = (archiveArticles.data ?? []).filter((article) =>

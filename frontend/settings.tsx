@@ -9,10 +9,8 @@ export type InitialSettingsDataType = {
   settings: SettingsType;
 };
 
-export function Settings(props: RoutableProps & InitialSettingsDataType) {
-  const settings = useQuery("settings", api.getSettings, {
-    initialData: props.settings,
-  });
+export function Settings(props: RoutableProps) {
+  const settings = useQuery("settings", api.getSettings);
 
   if (!settings.isSuccess) return <div data-p="24">Preparing settings...</div>;
 

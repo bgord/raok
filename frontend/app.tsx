@@ -38,17 +38,6 @@ const queryClient = new QueryClient({
 });
 
 export function App(props: InitialDataType) {
-  const {
-    archiveArticles,
-    archiveNewspapers,
-    settings,
-    BUILD_DATE,
-    BUILD_VERSION,
-    language,
-    translations,
-    ...rest
-  } = props;
-
   queryClient.setQueryData("articles", {
     pages: [props.articles],
     pageParams: [1],
@@ -56,25 +45,22 @@ export function App(props: InitialDataType) {
   queryClient.setQueryData("newspapers", props.newspapers);
   queryClient.setQueryData("favourite-articles", props.favouriteArticles);
   queryClient.setQueryData("stats", props.stats);
+  queryClient.setQueryData("archive-articles", props.archiveArticles);
+  queryClient.setQueryData("archive-newspapers", props.archiveNewspapers);
+  queryClient.setQueryData("settings", props.settings);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TranslationsContextProvider translations={translations}>
+      <TranslationsContextProvider translations={props.translations}>
         <ToastsContextProvider>
           <Navigation />
 
           <Router url={props.url}>
-            <ArchiveArticles
-              path="/archive/articles"
-              archiveArticles={archiveArticles}
-            />
-            <ArchiveNewspapers
-              path="/archive/newspapers"
-              archiveNewspapers={archiveNewspapers}
-            />
+            <ArchiveArticles path="/archive/articles" />
+            <ArchiveNewspapers path="/archive/newspapers" />
             <Dashboard path="/dashboard" />
-            <Settings path="/settings" settings={settings} />
-            <Review path="/review" articles={rest.articles} />
+            <Settings path="/settings" />
+            <Review path="/review" articles={props.articles} />
           </Router>
 
           <Toasts />

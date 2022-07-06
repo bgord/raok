@@ -14,9 +14,7 @@ export type InitialArchiveNewspapersDataType = {
   archiveNewspapers: NewspaperType[];
 };
 
-export function ArchiveNewspapers(
-  props: InitialArchiveNewspapersDataType & RoutableProps
-) {
+export function ArchiveNewspapers(props: RoutableProps) {
   const statusFilter = useUrlFilter({
     enum: NewspaperStatusEnum,
     label: "status",
@@ -30,10 +28,8 @@ export function ArchiveNewspapers(
 
   const filters = { status: statusFilter.query, sentAt: sentAtFilter.query };
 
-  const archiveNewspapers = useQuery(
-    ["archive-newspapers", filters],
-    () => api.getArchiveNewspapers(filters),
-    { initialData: props.archiveNewspapers }
+  const archiveNewspapers = useQuery(["archive-newspapers", filters], () =>
+    api.getArchiveNewspapers(filters)
   );
 
   const newspapers = archiveNewspapers.data ?? [];
