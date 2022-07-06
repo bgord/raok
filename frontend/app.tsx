@@ -47,6 +47,8 @@ export function App(props: InitialDataType) {
     ...rest
   } = props;
 
+  queryClient.setQueryData("stats", props.stats);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TranslationsContextProvider translations={translations}>

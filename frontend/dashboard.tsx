@@ -56,7 +56,7 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
       >
         <FavouriteArticles initialData={props.favouriteArticles} />
         <SendArbitraryFile />
-        <Stats initialData={props.stats} />
+        <Stats />
       </section>
     </main>
   );
