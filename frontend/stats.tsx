@@ -7,7 +7,7 @@ import { Header } from "./ui";
 import { StatsType } from "./types";
 
 export function Stats() {
-  const stats = useQuery(["stats"], api.getStats, { refetchOnMount: false });
+  const stats = useQuery(["stats"], api.getStats);
 
   const createdArticles = stats.data?.createdArticles ?? "-";
   const sentNewspapers = stats.data?.sentNewspapers ?? "-";

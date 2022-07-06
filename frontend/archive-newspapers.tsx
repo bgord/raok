@@ -33,7 +33,7 @@ export function ArchiveNewspapers(
   const archiveNewspapers = useQuery(
     ["archive-newspapers", filters],
     () => api.getArchiveNewspapers(filters),
-    { initialData: props.archiveNewspapers, refetchOnMount: false }
+    { initialData: props.archiveNewspapers }
   );
 
   const newspapers = archiveNewspapers.data ?? [];

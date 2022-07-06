@@ -33,7 +33,9 @@ export type InitialDataType = InitialDashboardDataType &
     translations: TranslationsType;
   };
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnMount: false } },
+});
 
 export function App(props: InitialDataType) {
   const {

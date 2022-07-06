@@ -10,9 +10,7 @@ import { FavouriteArticleType, NewspaperType } from "./types";
 export function FavouriteArticles() {
   const t = bg.useTranslations();
 
-  const _articles = useQuery("favourite-articles", api.getFavouriteArticles, {
-    refetchOnMount: false,
-  });
+  const _articles = useQuery("favourite-articles", api.getFavouriteArticles);
 
   const list = bg.useExpandableList({
     max: 5,
