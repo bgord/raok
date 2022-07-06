@@ -38,7 +38,7 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
         data-px="24"
         data-md-px="0"
       >
-        <ArticleList initialData={props.articles} />
+        <ArticleList />
         <NewspaperList initialData={props.newspapers} />
       </section>
 

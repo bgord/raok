@@ -47,6 +47,11 @@ export function App(props: InitialDataType) {
     ...rest
   } = props;
 
+  queryClient.setQueryData("articles", {
+    pages: [props.articles],
+    pageParams: [1],
+  });
+
   queryClient.setQueryData("stats", props.stats);
 
   return (

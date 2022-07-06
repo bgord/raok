@@ -12,7 +12,7 @@ import { DeleteOldArticles } from "./archive-old-articles";
 import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
-export function ArticleList(props: { initialData: ArticleType[] }) {
+export function ArticleList() {
   const t = bg.useTranslations();
 
   const [selectedArticleIds, actions] = bg.useList<ArticleType["id"]>();
@@ -27,10 +27,6 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
       refetchOnMount: false,
       getNextPageParam: (last, all) =>
         last.length > 0 ? all.length + 1 : undefined,
-      initialData: {
-        pages: [props.initialData],
-        pageParams: [1],
-      },
     }
   );
 
