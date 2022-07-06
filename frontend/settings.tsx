@@ -18,6 +18,7 @@ export function Settings(props: RoutableProps) {
     isArticlesToReviewNotificationEnabled,
     hours,
     articlesToReviewNotificationHour,
+    isFeedlyCrawlingStopped,
   } = settings.data;
 
   return (
@@ -118,6 +119,50 @@ export function Settings(props: RoutableProps) {
           {formatUtcHourToLocal(articlesToReviewNotificationHour.value).label}{" "}
           your time.
         </small>
+      </section>
+
+      <section
+        data-display="flex"
+        data-direction="column"
+        data-mt="12"
+        data-pb="24"
+        data-bwb="1"
+        data-bcb="gray-200"
+      >
+        <div data-display="flex" data-cross="center" data-mt="24">
+          <strong
+            data-transform="uppercase"
+            data-color="gray-600"
+            data-bg="gray-200"
+            data-px="6"
+            data-br="4"
+            data-ls="1"
+            data-fs="12"
+            data-mr="12"
+          >
+            {isFeedlyCrawlingStopped ? "Stopped" : "Active"}
+          </strong>
+
+          <h3 data-fs="16" data-color="gray-600" data-mr="36">
+            Feedly crawling
+          </h3>
+
+          {isFeedlyCrawlingStopped && (
+            <form method="POST" action="/restore-feedly-crawling">
+              <button type="submit" class="c-button" data-variant="primary">
+                Restore
+              </button>
+            </form>
+          )}
+
+          {!isFeedlyCrawlingStopped && (
+            <form method="POST" action="/stop-feedly-crawling">
+              <button type="submit" class="c-button" data-variant="primary">
+                Stop
+              </button>
+            </form>
+          )}
+        </div>
       </section>
     </main>
   );
