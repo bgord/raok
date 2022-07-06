@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
-import { useToastTrigger, useTranslations } from "@bgord/frontend";
+import { useToastTrigger, useTranslations, useField } from "@bgord/frontend";
 
 import * as api from "./api";
 import { ServerError } from "./server-error";
@@ -13,11 +13,11 @@ export function AddArticleForm() {
   const queryClient = useQueryClient();
   const notify = useToastTrigger();
 
-  const [url, setUrl] = useState<ArticleType["url"]>("");
+  const url = useField<ArticleType["url"]>("");
 
   const addArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {
-      setUrl("");
+      url.clear();
       queryClient.invalidateQueries("articles");
       queryClient.invalidateQueries("stats");
       notify({ message: "article.added" });
@@ -33,7 +33,7 @@ export function AddArticleForm() {
       data-md-mt="24"
       onSubmit={(event) => {
         event.preventDefault();
-        addArticleRequest.mutate({ url });
+        addArticleRequest.mutate({ url: url.value });
       }}
     >
       <input
@@ -41,8 +41,8 @@ export function AddArticleForm() {
         name="url"
         type="url"
         required
-        value={url}
-        onInput={(event) => setUrl(event.currentTarget.value)}
+        value={url.value}
+        onInput={(event) => url.set(event.currentTarget.value)}
         disabled={addArticleRequest.isLoading}
         placeholder="https://example.com/blogpost"
         class="c-input"
