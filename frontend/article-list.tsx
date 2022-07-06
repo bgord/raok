@@ -34,9 +34,7 @@ export function ArticleList(props: { initialData: ArticleType[] }) {
     }
   );
 
-  const articles = bg.useAnimaList(_articles.data?.pages?.flat() ?? [], {
-    direction: "tail",
-  });
+  const articles = bg.useAnimaList(_articles.data?.pages?.flat() ?? []);
 
   return (
     // TODO: Decrease spacing on mobile
