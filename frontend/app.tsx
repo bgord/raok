@@ -52,6 +52,7 @@ export function App(props: InitialDataType) {
     pageParams: [1],
   });
   queryClient.setQueryData("newspapers", props.newspapers);
+  queryClient.setQueryData("favourite-articles", props.favouriteArticles);
   queryClient.setQueryData("stats", props.stats);
 
   return (
@@ -69,7 +70,7 @@ export function App(props: InitialDataType) {
               path="/archive/newspapers"
               archiveNewspapers={archiveNewspapers}
             />
-            <Dashboard path="/dashboard" {...rest} />
+            <Dashboard path="/dashboard" />
             <Settings path="/settings" settings={settings} />
             <Review path="/review" articles={rest.articles} />
           </Router>

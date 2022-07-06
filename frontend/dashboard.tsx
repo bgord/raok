@@ -21,7 +21,7 @@ export type InitialDashboardDataType = {
   favouriteArticles: FavouriteArticleType[];
 };
 
-export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
+export function Dashboard(props: RoutableProps) {
   return (
     <main
       data-display="flex"
@@ -54,7 +54,7 @@ export function Dashboard(props: InitialDashboardDataType & RoutableProps) {
         data-top="0"
         style="height: 100%;"
       >
-        <FavouriteArticles initialData={props.favouriteArticles} />
+        <FavouriteArticles />
         <SendArbitraryFile />
         <Stats />
       </section>

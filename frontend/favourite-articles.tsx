@@ -7,13 +7,10 @@ import * as api from "./api";
 import * as UI from "./ui";
 import { FavouriteArticleType, NewspaperType } from "./types";
 
-export function FavouriteArticles(props: {
-  initialData: FavouriteArticleType[];
-}) {
+export function FavouriteArticles() {
   const t = bg.useTranslations();
 
   const _articles = useQuery("favourite-articles", api.getFavouriteArticles, {
-    ...props,
     refetchOnMount: false,
   });
 
