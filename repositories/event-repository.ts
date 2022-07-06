@@ -22,7 +22,9 @@ type AcceptedEvent =
   | typeof Events.NewspaperGenerateEvent
   | typeof Events.NewspaperScheduledEvent
   | typeof Events.NewspaperSentEvent
-  | typeof Events.DeleteOldArticlesEvent;
+  | typeof Events.DeleteOldArticlesEvent
+  | typeof Events.StopFeedlyCrawlingEvent
+  | typeof Events.RestoreFeedlyCrawlingEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {

@@ -224,6 +224,30 @@ export const DeleteOldArticlesEvent = EventDraft.merge(
 );
 export type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
 
+export const STOP_FEEDLY_CRAWLING_EVENT = "STOP_FEEDLY_CRAWLING";
+export const StopFeedlyCrawlingEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(STOP_FEEDLY_CRAWLING_EVENT),
+    version: z.literal(1),
+    payload: z.object({}),
+  })
+);
+export type StopFeedlyCrawlingEventType = z.infer<
+  typeof StopFeedlyCrawlingEvent
+>;
+
+export const RESTORE_FEEDLY_CRAWLING_EVENT = "RESTORE_FEEDLY_CRAWLING";
+export const RestoreFeedlyCrawlingEvent = EventDraft.merge(
+  z.object({
+    name: z.literal(RESTORE_FEEDLY_CRAWLING_EVENT),
+    version: z.literal(1),
+    payload: z.object({}),
+  })
+);
+export type RestoreFeedlyCrawlingEventType = z.infer<
+  typeof RestoreFeedlyCrawlingEvent
+>;
+
 Emittery.isDebugEnabled = true;
 
 export const emittery = new Emittery<{
