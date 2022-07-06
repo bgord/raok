@@ -154,6 +154,17 @@ app.post(
   bg.Route(Routes.SetArticlesToReviewNotificationHour)
 );
 
+app.post(
+  "/stop-feedly-crawling",
+  AuthShield.verify,
+  bg.Route(Routes.StopFeedlyCrawling)
+);
+app.post(
+  "/restore-feedly-crawling",
+  AuthShield.verify,
+  bg.Route(Routes.RestoreFeedlyCrawling)
+);
+
 app.get(
   "/archive/articles",
   AuthShield.verify,

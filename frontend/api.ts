@@ -151,3 +151,11 @@ export async function getSettings(): Promise<SettingsType> {
     response.json()
   );
 }
+
+export async function stopFeedlyCrawling() {
+  return _api("/stop-feedly-crawling", { method: "POST" });
+}
+
+export async function restoreFeedlyCrawling() {
+  return _api("/restore-feedly-crawling", { method: "POST" });
+}
