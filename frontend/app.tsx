@@ -51,7 +51,7 @@ export function App(props: InitialDataType) {
     pages: [props.articles],
     pageParams: [1],
   });
-
+  queryClient.setQueryData("newspapers", props.newspapers);
   queryClient.setQueryData("stats", props.stats);
 
   return (

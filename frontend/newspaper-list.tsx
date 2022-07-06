@@ -13,11 +13,10 @@ import { Header } from "./ui";
 import { NewspaperType } from "./types";
 import { Newspaper } from "./newspaper";
 
-export function NewspaperList(props: { initialData: NewspaperType[] }) {
+export function NewspaperList() {
   const t = useTranslations();
 
-  const _newspapers = useQuery(["newspapers"], api.getNewspapers, {
-    ...props,
+  const _newspapers = useQuery("newspapers", api.getNewspapers, {
     refetchOnMount: false,
   });
 
