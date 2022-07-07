@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { ArticleRepository } from "./article-repository";
 
 const prisma = new PrismaClient();
 
@@ -17,6 +18,9 @@ export class StatsRepository {
       where: { key: "lastFeedlyImport" },
     });
 
+    const nonProcessedArticles =
+      await ArticleRepository.getNumberOfNonProcessed();
+
     return {
       lastFeedlyImport: lastFeedlyImport?.value
         ? formatDistanceToNow(lastFeedlyImport?.value, { addSuffix: true })
@@ -25,6 +29,8 @@ export class StatsRepository {
       createdArticles: createdArticles?.value ?? 0,
 
       sentNewspapers: sentNewspapers?.value ?? 0,
+
+      nonProcessedArticles,
     };
   }
 
