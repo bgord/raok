@@ -44,8 +44,11 @@ export function ArticleList() {
       >
         <UI.Header data-display="flex" data-cross="center">
           <Notes data-mr="12" />
+
           <span data-transform="upper-first">{t("app.articles")}</span>
-          <span data-fs="14">{numberOfNonProcessedArticles ?? null}</span>
+          <span data-bg="gray-200" data-fs="14" data-px="6" data-br="4">
+            {numberOfNonProcessedArticles ?? null}
+          </span>
 
           <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
