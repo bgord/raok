@@ -19,8 +19,6 @@ function NavigationDesktop() {
     <nav data-display="flex" data-gap="24" data-p="12" data-bg="gray-800">
       <NavigationLogo />
 
-      <NavigationLink href="/review">{t("app.review")}</NavigationLink>
-
       <NavigationLink href="/archive/articles">
         {t("app.articles")}
       </NavigationLink>
@@ -98,10 +96,6 @@ function NavigationMobile() {
             data-gap="24"
             data-my="24"
           >
-            <NavigationLink onClick={navigation.disable} href="/review">
-              {t("app.review")}
-            </NavigationLink>
-
             <NavigationLink
               onClick={navigation.disable}
               href="/archive/articles"

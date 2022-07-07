@@ -190,8 +190,6 @@ app.post(
   bg.Route(Routes.ScheduleFeedlyArticlesCrawl)
 );
 
-app.get("/review", AuthShield.verify, bg.Route(Routes.Review));
-
 app.post(
   "/login",
   bg.CsrfShield.verify,

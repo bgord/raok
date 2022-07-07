@@ -20,7 +20,6 @@ export * from "./newspapers";
 export * from "./newspapers-archive";
 export * from "./resend-newspaper";
 export * from "./restore-feedly-crawling";
-export * from "./review";
 export * from "./schedule-feedly-articles-crawl";
 export * from "./send-arbitrary-file";
 export * from "./set-articles-to-review-notification-hour";
