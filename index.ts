@@ -19,11 +19,19 @@ bg.addExpressEssentials(app, {
 
         const DAY = 60 * 60 * 24;
         const WEEK = DAY * 7;
+        const YEAR = DAY * 365;
 
         if (extension === ".png") {
           response.setHeader(
             "Cache-Control",
             `max-age=${WEEK}, stale-while-revalidate=${DAY}`
+          );
+        }
+
+        if (extension === ".ico") {
+          response.setHeader(
+            "Cache-Control",
+            `public, max-age=${YEAR}, immutable`
           );
         }
       },
