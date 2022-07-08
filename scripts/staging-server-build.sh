@@ -30,6 +30,10 @@ info "Copied CSS"
 
 # ==========================================================
 
+./bgord-scripts/css:purge.sh
+
+# ==========================================================
+
 npx tsc --strict --esModuleInterop --outDir $OUT_DIR
 info "Compiled TypeScript"
 
