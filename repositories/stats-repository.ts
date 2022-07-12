@@ -27,8 +27,8 @@ export class StatsRepository {
     return {
       lastFeedlyImport: lastFeedlyImport?.value
         ? {
-            raw: lastFeedlyImport.value ?? null,
-            formatted: formatDistanceToNow(lastFeedlyImport?.value, {
+            raw: lastFeedlyImport.value,
+            formatted: formatDistanceToNow(lastFeedlyImport.value, {
               addSuffix: true,
             }),
           }
