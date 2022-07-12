@@ -3,6 +3,7 @@ import * as bg from "@bgord/node";
 import { Prisma, PrismaClient } from "@prisma/client";
 import _ from "lodash";
 
+import * as Services from "../services";
 import * as VO from "../value-objects";
 
 const prisma = new PrismaClient();
@@ -48,10 +49,7 @@ export class ArticleRepository {
 
     return articles.map((article) => ({
       ...article,
-      createdAt: {
-        raw: article.createdAt,
-        relative: bg.DateFormatters.relative(article.createdAt),
-      },
+      createdAt: bg.ComplexDate.truthy(article.createdAt),
     }));
   }
 
@@ -79,10 +77,7 @@ export class ArticleRepository {
 
     return articles.map((article) => ({
       ...article,
-      createdAt: {
-        raw: article.createdAt,
-        relative: bg.DateFormatters.relative(article.createdAt),
-      },
+      createdAt: bg.ComplexDate.truthy(article.createdAt),
     }));
   }
 

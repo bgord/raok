@@ -23,17 +23,9 @@ export class StatsRepository {
       await ArticleRepository.getNumberOfNonProcessed();
 
     return {
-      lastFeedlyImport: lastFeedlyImport?.value
-        ? {
-            raw: lastFeedlyImport.value,
-            relative: bg.DateFormatters.relative(lastFeedlyImport.value),
-          }
-        : null,
-
+      lastFeedlyImport: bg.ComplexDate.falsy(lastFeedlyImport?.value),
       createdArticles: createdArticles?.value ?? 0,
-
       sentNewspapers: sentNewspapers?.value ?? 0,
-
       nonProcessedArticles,
     };
   }

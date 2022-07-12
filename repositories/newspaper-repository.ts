@@ -124,18 +124,10 @@ export class NewspaperRepository {
   ) {
     const sentAtRaw = newspaper.sentAt ?? 0;
 
-    const sentAtRelative = bg.DateFormatters.relative(sentAtRaw);
-
     return {
       ...newspaper,
-
-      sentAt: {
-        raw: sentAtRaw,
-        relative: sentAtRaw === 0 ? null : sentAtRelative,
-      },
-
+      sentAt: bg.ComplexDate.falsy(newspaper.sentAt),
       duration: formatDistanceStrict(sentAtRaw, newspaper.scheduledAt),
-
       title: `Newspaper ${format(newspaper.scheduledAt, "yyyy-MM-dd-hh-mm")}`,
     };
   }

@@ -19,7 +19,7 @@ export function Newspaper(props: NewspaperProps) {
 
   const resendNewspaper = useResendNewspaper();
 
-  const sentAtRelative = props.sentAt.relative ?? "-";
+  const sentAtRelative = props.sentAt?.relative ?? "-";
 
   const isStalled = hasNewspaperStalled({
     status: props.status,
@@ -56,7 +56,7 @@ export function Newspaper(props: NewspaperProps) {
               data-md-display="none"
               data-fs="14"
               data-color="gray-400"
-              title={bg.DateFormatter.datetime(props.sentAt.raw)}
+              title={bg.DateFormatter.datetime(props.sentAt?.raw)}
             >
               Sent {sentAtRelative}
             </span>
