@@ -1,8 +1,6 @@
 import * as bg from "@bgord/node";
 import { PrismaClient } from "@prisma/client";
-import { format } from "date-fns";
 
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { ArticleRepository } from "./article-repository";
 
 const prisma = new PrismaClient();
@@ -28,9 +26,7 @@ export class StatsRepository {
       lastFeedlyImport: lastFeedlyImport?.value
         ? {
             raw: lastFeedlyImport.value,
-            formatted: formatDistanceToNow(lastFeedlyImport.value, {
-              addSuffix: true,
-            }),
+            relative: bg.DateFormatters.relative(lastFeedlyImport.value),
           }
         : null,
 

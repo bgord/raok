@@ -74,7 +74,7 @@ export function Article(props: ArticlePropsType) {
             data-color="gray-500"
             title={bg.DateFormatter.datetime(props.createdAt.raw)}
           >
-            {props.createdAt.formatted}
+            {props.createdAt.relative}
           </small>
         </div>
       </div>

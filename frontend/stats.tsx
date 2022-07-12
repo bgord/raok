@@ -14,7 +14,7 @@ export function Stats() {
   const sentNewspapers = stats.data?.sentNewspapers ?? "-";
 
   const lastFeedlyImportFormatted =
-    stats.data?.lastFeedlyImport?.formatted ?? "N/A";
+    stats.data?.lastFeedlyImport?.relative ?? "N/A";
 
   return (
     <div

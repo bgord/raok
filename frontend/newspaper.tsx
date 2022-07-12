@@ -19,7 +19,7 @@ export function Newspaper(props: NewspaperProps) {
 
   const resendNewspaper = useResendNewspaper();
 
-  const sentAtRelative = props.sentAt.formatted ?? "-";
+  const sentAtRelative = props.sentAt.relative ?? "-";
 
   const isStalled = hasNewspaperStalled({
     status: props.status,

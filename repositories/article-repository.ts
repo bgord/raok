@@ -2,7 +2,6 @@ import * as z from "zod";
 import * as bg from "@bgord/node";
 import { Prisma, PrismaClient } from "@prisma/client";
 import _ from "lodash";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 import * as VO from "../value-objects";
 
@@ -51,7 +50,7 @@ export class ArticleRepository {
       ...article,
       createdAt: {
         raw: article.createdAt,
-        formatted: formatDistanceToNow(article.createdAt, { addSuffix: true }),
+        relative: bg.DateFormatters.relative(article.createdAt),
       },
     }));
   }
@@ -82,7 +81,7 @@ export class ArticleRepository {
       ...article,
       createdAt: {
         raw: article.createdAt,
-        formatted: formatDistanceToNow(article.createdAt, { addSuffix: true }),
+        relative: bg.DateFormatters.relative(article.createdAt),
       },
     }));
   }

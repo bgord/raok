@@ -1,7 +1,7 @@
 import * as z from "zod";
 import * as bg from "@bgord/node";
 import { Prisma, PrismaClient, Newspaper, Article } from "@prisma/client";
-import { format, formatDistanceToNow, formatDistanceStrict } from "date-fns";
+import { format, formatDistanceStrict } from "date-fns";
 
 import * as VO from "../value-objects";
 
@@ -124,16 +124,14 @@ export class NewspaperRepository {
   ) {
     const sentAtRaw = newspaper.sentAt ?? 0;
 
-    const sentAtFormatted = formatDistanceToNow(sentAtRaw, {
-      addSuffix: true,
-    });
+    const sentAtRelative = bg.DateFormatters.relative(sentAtRaw);
 
     return {
       ...newspaper,
 
       sentAt: {
         raw: sentAtRaw,
-        formatted: sentAtRaw === 0 ? null : sentAtFormatted,
+        relative: sentAtRaw === 0 ? null : sentAtRelative,
       },
 
       duration: formatDistanceStrict(sentAtRaw, newspaper.scheduledAt),
