@@ -29,7 +29,9 @@ export async function ArticlesArchive(
     favouriteArticles: [],
     newspapers: [],
     settings: await Repos.SettingsRepository.getAll(),
-    stats: await Repos.StatsRepository.getAll(),
+    stats: await Repos.StatsRepository.getAll(
+      request.timeZoneOffset.miliseconds
+    ),
   };
 
   const frontend = render(App({ ...state, url: "/archive/articles" }));

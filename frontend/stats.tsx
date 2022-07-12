@@ -11,7 +11,13 @@ export function Stats() {
 
   const createdArticles = stats.data?.createdArticles ?? "-";
   const sentNewspapers = stats.data?.sentNewspapers ?? "-";
-  const lastFeedlyImport = stats.data?.lastFeedlyImport ?? "N/A";
+
+  const lastFeedlyImportFormatted =
+    stats.data?.lastFeedlyImport?.formatted ?? "N/A";
+
+  const lastFeedlyImportRaw = stats.data?.lastFeedlyImport?.raw
+    ? new Date(stats.data?.lastFeedlyImport?.raw).toString()
+    : "N/A";
 
   return (
     <div
@@ -36,8 +42,13 @@ export function Stats() {
         newspapers sent overall
       </div>
 
-      <div data-fs="12" data-color="gray-400" data-mt="12">
-        Last Feedly import performed {lastFeedlyImport}
+      <div
+        data-fs="12"
+        data-color="gray-400"
+        data-mt="12"
+        title={lastFeedlyImportRaw}
+      >
+        Last Feedly import performed {lastFeedlyImportFormatted}
       </div>
     </div>
   );

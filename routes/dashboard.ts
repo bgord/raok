@@ -29,7 +29,9 @@ export async function Dashboard(
     favouriteArticles: await Repos.ArticleRepository.getFavourite(),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
-    stats: await Repos.StatsRepository.getAll(),
+    stats: await Repos.StatsRepository.getAll(
+      request.timeZoneOffset.miliseconds
+    ),
   };
 
   const frontend = render(App({ ...state, url: request.url }));
