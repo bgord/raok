@@ -46,7 +46,14 @@ export function ArticleList() {
           <Notes data-mr="12" />
 
           <span data-transform="upper-first">{t("app.articles")}</span>
-          <span data-bg="gray-200" data-fs="14" data-px="6" data-br="4">
+
+          <span
+            data-ml="6"
+            data-bg="gray-200"
+            data-fs="14"
+            data-px="6"
+            data-br="4"
+          >
             {numberOfNonProcessedArticles ?? null}
           </span>
 
