@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useQuery } from "react-query";
 import { StatsSquareUp } from "iconoir-react";
 
+import * as bg from "@bgord/frontend";
 import * as api from "./api";
 import { Header } from "./ui";
 import { StatsType } from "./types";
@@ -14,10 +15,6 @@ export function Stats() {
 
   const lastFeedlyImportFormatted =
     stats.data?.lastFeedlyImport?.formatted ?? "N/A";
-
-  const lastFeedlyImportRaw = stats.data?.lastFeedlyImport?.raw
-    ? new Date(stats.data?.lastFeedlyImport?.raw).toString()
-    : "N/A";
 
   return (
     <div
@@ -46,7 +43,7 @@ export function Stats() {
         data-fs="12"
         data-color="gray-400"
         data-mt="12"
-        title={lastFeedlyImportRaw}
+        title={bg.DateFormatter.datetime(stats.data?.lastFeedlyImport?.raw)}
       >
         Last Feedly import performed {lastFeedlyImportFormatted}
       </div>

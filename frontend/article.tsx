@@ -72,7 +72,7 @@ export function Article(props: ArticlePropsType) {
           <small
             data-fs="12"
             data-color="gray-500"
-            title={new Date(props.createdAt.raw).toLocaleString()}
+            title={bg.DateFormatter.datetime(props.createdAt.raw)}
           >
             {props.createdAt.formatted}
           </small>
