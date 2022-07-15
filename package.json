@@ -50,6 +50,7 @@
     "@bgord/node": "^0.58.41",
     "@mozilla/readability": "^0.4.1",
     "@prisma/client": "^3.7.0",
+    "@reach/skip-nav": "^0.17.0",
     "axios": "^0.24.0",
     "emittery": "^0.10.0",
     "execa": "^5.1.1",

@@ -6,6 +6,7 @@ import {
   TranslationsContextProvider,
 } from "@bgord/frontend";
 import type { Schema, TranslationsType } from "@bgord/node";
+import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
 
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
@@ -52,7 +53,9 @@ export function App(props: InitialDataType) {
     <QueryClientProvider client={queryClient}>
       <TranslationsContextProvider translations={props.translations}>
         <ToastsContextProvider>
+          <SkipNavLink as="a" />
           <Navigation />
+          <SkipNavContent as="div" />
 
           <Router url={props.url}>
             <ArchiveArticles path="/archive/articles" />

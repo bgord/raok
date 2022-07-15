@@ -44,6 +44,34 @@ export class Html {
               animation: rotate 330ms linear infinite;
             }
 
+            :root {
+              --reach-skip-nav: 1;
+            }
+
+            [data-reach-skip-nav-link] {
+              border: 0;
+              clip: rect(0 0 0 0);
+              height: 1px;
+              width: 1px;
+              margin: -1px;
+              padding: 0;
+              overflow: hidden;
+              position: absolute;
+            }
+
+            [data-reach-skip-nav-link]:focus {
+              padding: 12px;
+              position: fixed;
+              top: 12px;
+              left: 12px;
+              background: #f3f4f6;
+              color: #1f2937;
+              z-index: 1;
+              width: auto;
+              height: auto;
+              clip: auto;
+            }
+
             .c-link--active {
               text-decoration: underline !important;
             }
