@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { EventDraft as _EventDraft, Schema, Reporter } from "@bgord/node";
 import Emittery from "emittery";
+import * as fs from "fs/promises";
 
 import * as VO from "./value-objects";
 import * as Services from "./services";
@@ -401,6 +402,8 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   } catch (error) {
     Reporter.raw("Mailer error", error);
     Reporter.error(`File not sent [name=${file.originalFilename}]`);
+  } finally {
+    await fs.unlink(file.path);
   }
 });
 
