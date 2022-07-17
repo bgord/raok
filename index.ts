@@ -3,6 +3,7 @@ import * as bg from "@bgord/node";
 import { extname } from "path";
 
 import * as Routes from "./routes";
+import * as VO from "./value-objects";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -137,7 +138,7 @@ app.post(
   AuthShield.verify,
   ...new bg.FileUploader({
     autoClean: false,
-    maxFilesSize: 50_000_000, // 50 MB
+    maxFilesSize: VO.MAX_UPLOADED_FILE_SIZE,
   }).handle(),
   bg.Route(Routes.SendArbitraryFile)
 );
