@@ -8,7 +8,7 @@ import * as Repos from "./repositories";
 import { Article } from "./aggregates/article";
 import { Newspaper } from "./aggregates/newspaper";
 
-const Stream = z.string().nonempty();
+const Stream = z.string().min(1);
 export type StreamType = z.infer<typeof Stream>;
 
 const EventDraft = _EventDraft.merge(z.object({ stream: Stream }));
