@@ -6,7 +6,6 @@ import * as VO from "../value-objects";
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";
 
-import { EpubToMobiConverter } from "./epub-to-mobi";
 import { HtmlToEpubConverter } from "./html-to-epub";
 
 type NewspaperFileCreatorConfigType = {
@@ -32,7 +31,6 @@ export class NewspaperFile {
       await fs.writeFile(paths.html, content);
 
       await HtmlToEpubConverter.convert(paths.html, paths.epub);
-      await EpubToMobiConverter.convert(paths.epub, paths.mobi);
     } catch (error) {
       Reporter.raw("NewspaperFile#create", error);
     }
@@ -80,7 +78,6 @@ export class NewspaperFile {
 
     try {
       await fs.unlink(paths.epub);
-      await fs.unlink(paths.mobi);
     } catch (error) {
       Reporter.raw("NewspaperFile#delete", error);
     }
@@ -92,14 +89,13 @@ export class NewspaperFile {
     return {
       html: `${base}/${newspaperId}.html`,
       epub: `${base}/${newspaperId}.epub`,
-      mobi: `${base}/${newspaperId}.mobi`,
     };
   }
 
   static getAttachment(id: VO.NewspaperType["id"]) {
-    const { mobi } = NewspaperFile.getPaths(id);
+    const { epub } = NewspaperFile.getPaths(id);
 
-    return { path: mobi, originalFilename: "newspaper" };
+    return { path: epub, originalFilename: "newspaper" };
   }
 
   static async read(id: VO.NewspaperType["id"]): Promise<string | null> {

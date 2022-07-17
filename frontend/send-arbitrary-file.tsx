@@ -44,7 +44,7 @@ export function SendArbitraryFile() {
       <input
         id="file"
         name="file"
-        accept=".txt,.html,.epub,.mobi"
+        accept=".txt,.html,.epub"
         type="file"
         onInput={file.actions.selectFile}
         data-overflow="hidden"

@@ -1,6 +1,6 @@
 import express from "express";
+import * as bg from "@bgord/node";
 
-import * as Services from "../services";
 import * as Events from "../events";
 
 export async function SendArbitraryFile(
@@ -8,7 +8,7 @@ export async function SendArbitraryFile(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const { file } = new Services.UploadedFile(request.body?.file);
+  const file = bg.Schema.UploadedFile.parse(request.body?.file);
 
   Events.emittery.emit(
     Events.ARBITRARY_FILE_SCHEDULED_EVENT,
