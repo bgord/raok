@@ -137,7 +137,7 @@ app.post(
   AuthShield.verify,
   ...new bg.FileUploader({
     autoClean: false,
-    maxFilesSize: 5_000_000, // 5 MB
+    maxFilesSize: 50_000_000, // 50 MB
   }).handle(),
   bg.Route(Routes.SendArbitraryFile)
 );
