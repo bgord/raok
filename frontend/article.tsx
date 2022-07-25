@@ -18,6 +18,7 @@ export function Article(props: ArticlePropsType) {
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries("articles");
+      queryClient.invalidateQueries("stats");
       notify({ message: "article.deleted", articleId: props.id });
     },
   });
