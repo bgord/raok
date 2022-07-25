@@ -35,7 +35,6 @@ export function ArticleList() {
   });
 
   return (
-    // TODO: Decrease spacing on mobile
     <section>
       <div
         data-bg="gray-100"
