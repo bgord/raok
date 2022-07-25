@@ -30,7 +30,9 @@ export function ArticleList() {
     }
   );
 
-  const articles = bg.useAnimaList(_articles.data?.pages?.flat() ?? []);
+  const articles = bg.useAnimaList(_articles.data?.pages?.flat() ?? [], {
+    direction: "tail",
+  });
 
   return (
     // TODO: Decrease spacing on mobile
