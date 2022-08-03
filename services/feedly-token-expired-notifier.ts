@@ -50,7 +50,7 @@ export class FeedlyTokenExpiredNotifier {
       from: Env.EMAIL_FROM,
       to: Env.EMAIL_FOR_NOTIFICATIONS,
       subject: `[raok] - feedly token has expired`,
-      html: `Check https://feedly.com/v3/auth/dev to generate it.`,
+      html: `Check https://feedly.com/v3/auth/dev to generate it, remember to change the env files.`,
     });
   }
 }
