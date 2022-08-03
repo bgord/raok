@@ -1,7 +1,6 @@
 import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Time } from "@bgord/node";
 import { NavArrowUp, NavArrowDown } from "iconoir-react";
 
 import * as UI from "./ui";
@@ -136,7 +135,7 @@ function useAutoUpdateNewspaper(
 ) {
   const queryClient = useQueryClient();
 
-  const cutoff = new Time.Minutes(3).toMs();
+  const cutoff = new bg.Time.Minutes(3).toMs();
   const now = Date.now();
   const hasCutoffPassed = now - props.scheduledAt > cutoff;
 
@@ -147,7 +146,7 @@ function useAutoUpdateNewspaper(
       !["delivered", "archived", "error"].includes(props.status) &&
       !hasCutoffPassed,
 
-    refetchInterval: new Time.Seconds(1).toMs(),
+    refetchInterval: new bg.Time.Seconds(1).toMs(),
 
     onSuccess(updated) {
       queryClient.setQueryData<NewspaperType[]>(

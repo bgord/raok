@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { RoutableProps } from "preact-router";
 import { useQuery } from "react-query";
-import { Time } from "@bgord/node";
+import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
 import { SettingsType, HourType } from "./types";
@@ -170,7 +170,7 @@ export function Settings(props: RoutableProps) {
 }
 
 function formatUtcHourToLocal(hour: HourType) {
-  const minutes = new Time.Hours(hour).toMinutes();
+  const minutes = new bg.Time.Hours(hour).toMinutes();
   const timeZoneOffsetInMins = new Date().getTimezoneOffset();
 
   const localMinutes = minutes - timeZoneOffsetInMins;
