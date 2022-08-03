@@ -23,7 +23,7 @@ export class StatsRepository {
       await ArticleRepository.getNumberOfNonProcessed();
 
     const lastFeedlyTokenExpiredError = await prisma.statsKeyValue.findFirst({
-      where: { key: "lastFeedlyImport" },
+      where: { key: "lastFeedlyTokenExpiredError" },
     });
 
     return {
