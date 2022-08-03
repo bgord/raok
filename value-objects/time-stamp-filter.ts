@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { Time } from "../services/time";
 
 export enum TimestampFiltersEnum {
   today = "today",
@@ -14,10 +15,10 @@ export const TimeStampFilter = z
   .transform((value) => {
     const now = Date.now();
 
-    const DAY = 24 * 60 * 60 * 1000;
-    const THREE_DAYS = 3 * DAY;
-    const WEEK = 7 * DAY;
-    const THIRTY_DAYS = 30 * DAY;
+    const DAY = new Time.Days(1).toMs();
+    const THREE_DAYS = new Time.Days(3).toMs();
+    const WEEK = new Time.Days(7).toMs();
+    const THIRTY_DAYS = new Time.Days(30).toMs();
 
     if (value === TimestampFiltersEnum.today) {
       return { gte: now - DAY };

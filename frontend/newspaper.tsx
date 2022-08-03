@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 import { NavArrowUp, NavArrowDown } from "iconoir-react";
+import { Time } from "../services/time";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -135,7 +136,7 @@ function useAutoUpdateNewspaper(
 ) {
   const queryClient = useQueryClient();
 
-  const cutoff = 3 * 60 * 1000; // 3 minutes
+  const cutoff = new Time.Minutes(3).toMs();
   const now = Date.now();
   const hasCutoffPassed = now - props.scheduledAt > cutoff;
 

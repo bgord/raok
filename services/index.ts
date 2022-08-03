@@ -10,3 +10,4 @@ export * from "./html";
 export * from "./html-to-epub";
 export * from "./newspaper-file";
 export * from "./readable-article-content-generator";
+export * from "./time";

@@ -1,9 +1,11 @@
+import { Time } from "../services/time";
+
 export function hasNewspaperStalled(config: {
   status: string;
   scheduledAt: number;
 }) {
   const now = Date.now();
-  const cutoff = 10 * 60 * 1000; // 10 minutes
+  const cutoff = new Time.Minutes(10).toMs();
 
   const hasCutoffPassed = now - config.scheduledAt > cutoff;
 
