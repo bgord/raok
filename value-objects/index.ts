@@ -11,6 +11,7 @@ export * from "./article-url";
 export * from "./feedly-article";
 export * from "./feedly-article-id";
 export * from "./feedly-crawling-interval-hours";
+export * from "./feedly-token-expiration-days";
 export * from "./hour";
 export * from "./max-uploaded-file-size";
 export * from "./newspaper";

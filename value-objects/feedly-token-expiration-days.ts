@@ -1,0 +1,1 @@
+export const FEEDLY_TOKEN_EXPIRATION_DAYS = 30;
