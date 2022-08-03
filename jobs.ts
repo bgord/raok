@@ -43,7 +43,7 @@ const ArtclesToReviewNotifierTask = new AsyncTask(
 );
 
 const FeedlyArticlesCrawlerJob = new SimpleIntervalJob(
-  { hours: 2, runImmediately: false },
+  { hours: VO.FEEDLY_CRAWLING_INTERVAL_HOURS, runImmediately: false },
   FeedlyArticlesCrawlerTask
 );
 
