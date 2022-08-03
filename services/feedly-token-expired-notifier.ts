@@ -1,6 +1,7 @@
 import { Mailer } from "@bgord/node";
 import { AxiosError } from "axios";
 
+import * as Repos from "../repositories";
 import { Env } from "../env";
 
 const mailer = new Mailer({
@@ -24,6 +25,9 @@ export class FeedlyTokenExpiredNotifier {
 
   static async send(error: unknown) {
     if (!FeedlyTokenExpiredNotifier.shouldBeSent(error)) return;
+
+    const now = Date.now();
+    await Repos.StatsRepository.updateLastFeedlyTokenExpiredError(now);
 
     return mailer.send({
       from: Env.EMAIL_FROM,

@@ -6,7 +6,7 @@ import { ArticleRepository } from "./article-repository";
 const prisma = new PrismaClient();
 
 export class StatsRepository {
-  static async getAll(timeZoneOffset: bg.Schema.TimeZoneOffsetType) {
+  static async getAll() {
     const createdArticles = await prisma.statsKeyValue.findFirst({
       where: { key: "createdArticles" },
     });
@@ -22,11 +22,16 @@ export class StatsRepository {
     const nonProcessedArticles =
       await ArticleRepository.getNumberOfNonProcessed();
 
+    const lastFeedlyTokenExpiredError = await prisma.statsKeyValue.findFirst({
+      where: { key: "lastFeedlyImport" },
+    });
+
     return {
       lastFeedlyImport: bg.ComplexDate.falsy(lastFeedlyImport?.value),
       createdArticles: createdArticles?.value ?? 0,
       sentNewspapers: sentNewspapers?.value ?? 0,
       nonProcessedArticles,
+      lastFeedlyTokenExpiredError: lastFeedlyTokenExpiredError?.value ?? null,
     };
   }
 
@@ -51,6 +56,14 @@ export class StatsRepository {
       where: { key: "lastFeedlyImport" },
       update: { value: timestamp },
       create: { key: "lastFeedlyImport", value: timestamp },
+    });
+  }
+
+  static async updateLastFeedlyTokenExpiredError(timestamp: number) {
+    return prisma.statsKeyValue.upsert({
+      where: { key: "lastFeedlyTokenExpiredError" },
+      update: { value: timestamp },
+      create: { key: "lastFeedlyTokenExpiredError", value: timestamp },
     });
   }
 }
