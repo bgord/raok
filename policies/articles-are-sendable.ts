@@ -1,7 +1,7 @@
 import { Policy } from "@bgord/node";
 
 import * as VO from "../value-objects";
-import { Article } from "../aggregates/article";
+import * as Aggregates from "../aggregates";
 
 class ArticlesAreNotSendableError extends Error {
   constructor() {
@@ -11,7 +11,7 @@ class ArticlesAreNotSendableError extends Error {
 }
 
 type ArticlesAreSendableConfigType = {
-  articles: Article[];
+  articles: Aggregates.Article[];
 };
 
 class ArticlesAreSendableFactory extends Policy<ArticlesAreSendableConfigType> {

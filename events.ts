@@ -6,8 +6,7 @@ import * as fs from "fs/promises";
 import * as VO from "./value-objects";
 import * as Services from "./services";
 import * as Repos from "./repositories";
-import { Article } from "./aggregates/article";
-import { Newspaper } from "./aggregates/newspaper";
+import * as Aggregates from "./aggregates";
 
 const Stream = z.string().min(1);
 export type StreamType = z.infer<typeof Stream>;
@@ -334,11 +333,11 @@ emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
   });
 
   for (const entity of event.payload.articles) {
-    const article = await new Article(entity.id).build();
+    const article = await new Aggregates.Article(entity.id).build();
     await article.lock(event.payload.id);
   }
 
-  const newspaper = await new Newspaper(event.payload.id).build();
+  const newspaper = await new Aggregates.Newspaper(event.payload.id).build();
 
   await newspaper.generate();
 });
@@ -349,7 +348,9 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
     VO.NewspaperStatusEnum.ready_to_send
   );
 
-  const newspaper = await new Newspaper(event.payload.newspaperId).build();
+  const newspaper = await new Aggregates.Newspaper(
+    event.payload.newspaperId
+  ).build();
   await newspaper.send();
 });
 
@@ -367,7 +368,7 @@ emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
   );
 
   for (const entity of event.payload.articles) {
-    const article = await new Article(entity.id).build();
+    const article = await new Aggregates.Article(entity.id).build();
     await article.markAsProcessed();
   }
 
@@ -418,7 +419,7 @@ emittery.on(DELETE_OLD_ARTICLES_EVENT, async (event) => {
 
   for (const { id } of oldArticles) {
     const articleId = VO.ArticleId.parse(id);
-    const article = await new Article(articleId).build();
+    const article = await new Aggregates.Article(articleId).build();
     await article.delete();
   }
 });

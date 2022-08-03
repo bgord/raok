@@ -1,7 +1,7 @@
 import express from "express";
 
 import * as VO from "../value-objects";
-import { Article } from "../aggregates/article";
+import * as Aggregates from "../aggregates";
 
 export async function AddArticle(
   request: express.Request,
@@ -10,7 +10,7 @@ export async function AddArticle(
 ) {
   const articleUrl = VO.ArticleUrl.parse(request.body.url);
 
-  await Article.add({ url: articleUrl });
+  await Aggregates.Article.add({ url: articleUrl });
 
   return response.send();
 }

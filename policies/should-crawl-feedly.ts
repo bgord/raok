@@ -1,6 +1,6 @@
 import { Policy } from "@bgord/node";
 
-import { Settings } from "../aggregates/settings";
+import * as Aggregates from "../aggregates";
 import * as VO from "../value-objects";
 
 export class ShouldCrawlFeedlyError extends Error {
@@ -11,7 +11,7 @@ export class ShouldCrawlFeedlyError extends Error {
 }
 
 type ShouldCrawlFeedlyConfigType = {
-  settings: Settings;
+  settings: Aggregates.Settings;
 };
 
 class ShouldCrawlFeedlyFactory extends Policy<ShouldCrawlFeedlyConfigType> {

@@ -1,7 +1,7 @@
 import express from "express";
 
 import * as VO from "../value-objects";
-import { Settings } from "../aggregates/settings";
+import * as Aggregates from "../aggregates";
 
 export async function SetArticlesToReviewNotificationHour(
   request: express.Request,
@@ -10,7 +10,7 @@ export async function SetArticlesToReviewNotificationHour(
 ): Promise<void> {
   const hour = VO.hour.parse(Number(request.body.hour));
 
-  const settings = await new Settings().build();
+  const settings = await new Aggregates.Settings().build();
   await settings.setArticlesToReviewNotificationHour(hour);
 
   return response.redirect("/settings");

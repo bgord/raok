@@ -1,6 +1,6 @@
 import { Mailer } from "@bgord/node";
 
-import { Settings } from "../aggregates/settings";
+import * as Aggregates from "../aggregates";
 
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
@@ -18,7 +18,7 @@ export class ArticlesToReviewNotifier {
 
   numberOfArticlesToReview = 0;
 
-  constructor(settings: Settings) {
+  constructor(settings: Aggregates.Settings) {
     this.UTC_HOUR = settings.articlesToReviewNotificationHour;
   }
 

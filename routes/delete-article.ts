@@ -1,7 +1,7 @@
 import express from "express";
 
 import * as VO from "../value-objects";
-import { Article } from "../aggregates/article";
+import * as Aggregates from "../aggregates";
 
 export async function DeleteArticle(
   request: express.Request,
@@ -10,7 +10,7 @@ export async function DeleteArticle(
 ) {
   const articleId = VO.ArticleId.parse(request.params.articleId);
 
-  const article = await new Article(articleId).build();
+  const article = await new Aggregates.Article(articleId).build();
   await article.delete();
 
   return response.send();

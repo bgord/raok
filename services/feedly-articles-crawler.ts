@@ -2,11 +2,9 @@ import { Reporter } from "@bgord/node";
 
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
-import { Settings } from "../aggregates/settings";
+import * as Aggregates from "../aggregates";
 import { Feedly } from "./feedly";
 import { Env } from "../env";
-
-import { Article } from "../aggregates/article";
 
 export class FeedlyArticlesCrawler {
   static async run() {
@@ -17,7 +15,7 @@ export class FeedlyArticlesCrawler {
       return;
     }
 
-    const settings = await new Settings().build();
+    const settings = await new Aggregates.Settings().build();
     if (Policies.ShouldCrawlFeedly.fails({ settings })) {
       Reporter.info(
         "Suppressing Feedly crawling due to settings.isFeedlyCrawlingStopped"
@@ -36,7 +34,7 @@ export class FeedlyArticlesCrawler {
       if (!article.canonicalUrl) continue;
 
       try {
-        await Article.add({
+        await Aggregates.Article.add({
           url: article.canonicalUrl,
           source: VO.ArticleSourceEnum.feedly,
         });

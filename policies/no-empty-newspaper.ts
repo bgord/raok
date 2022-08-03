@@ -1,6 +1,6 @@
 import { Policy } from "@bgord/node";
 
-import { Article } from "../aggregates/article";
+import * as Aggregates from "../aggregates";
 
 class EmptyNewspaperError extends Error {
   constructor() {
@@ -9,7 +9,7 @@ class EmptyNewspaperError extends Error {
   }
 }
 type NoEmptyNewspaperConfigType = {
-  articles: Article[];
+  articles: Aggregates.Article[];
 };
 
 class NoEmptyNewspaperFactory extends Policy<NoEmptyNewspaperConfigType> {

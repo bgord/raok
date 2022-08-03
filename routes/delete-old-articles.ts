@@ -1,6 +1,6 @@
 import express from "express";
 
-import { Article } from "../aggregates/article";
+import * as Aggregates from "../aggregates";
 import * as Events from "../events";
 import * as Repos from "../repositories";
 
@@ -16,7 +16,7 @@ export async function DeleteOldArticles(
       name: Events.DELETE_OLD_ARTICLES_EVENT,
       stream: String(now),
       version: 1,
-      payload: { marker: now - Article.OLD_ARTICLE_MARKER_MS },
+      payload: { marker: now - Aggregates.Article.OLD_ARTICLE_MARKER_MS },
     })
   );
   return response.send();

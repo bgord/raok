@@ -3,14 +3,14 @@ import express from "express";
 import * as Events from "../events";
 import * as Repos from "../repositories";
 import * as Policies from "../policies";
-import { Settings } from "../aggregates/settings";
+import * as Aggregates from "../aggregates";
 
 export async function ScheduleFeedlyArticlesCrawl(
   _request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const settings = await new Settings().build();
+  const settings = await new Aggregates.Settings().build();
 
   await Policies.ShouldCrawlFeedly.perform({ settings });
 

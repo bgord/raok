@@ -1,6 +1,6 @@
 import { Policy } from "@bgord/node";
 
-import { Article } from "../aggregates/article";
+import * as Aggregates from "../aggregates";
 
 class TooManyArticlesInNewspaperError extends Error {
   constructor() {
@@ -9,7 +9,7 @@ class TooManyArticlesInNewspaperError extends Error {
   }
 }
 type MaximumNewspaperArticleNumberConfigType = {
-  articles: Article[];
+  articles: Aggregates.Article[];
   max: number;
 };
 
