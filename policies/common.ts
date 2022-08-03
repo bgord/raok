@@ -1,4 +1,4 @@
-import { Time } from "../services/time";
+import { Time } from "@bgord/node";
 
 export function hasNewspaperStalled(config: {
   status: string;

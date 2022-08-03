@@ -1,4 +1,4 @@
-import { UUID } from "@bgord/node";
+import { UUID, Time } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -13,8 +13,9 @@ export class Article {
 
   entity: VO.ArticleType | null = null;
 
-  static OLD_ARTICLE_MARKER_MS: VO.ArticleOldMarkerType =
-    new Services.Time.Days(3).toMs();
+  static OLD_ARTICLE_MARKER_MS: VO.ArticleOldMarkerType = new Time.Days(
+    3
+  ).toMs();
 
   constructor(id: VO.ArticleType["id"]) {
     this.id = id;

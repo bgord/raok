@@ -1,5 +1,5 @@
 import * as z from "zod";
-import { Time } from "../services/time";
+import { Time } from "@bgord/node";
 
 export enum TimestampFiltersEnum {
   today = "today",

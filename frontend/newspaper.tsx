@@ -1,8 +1,8 @@
 import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
+import { Time } from "@bgord/node";
 import { NavArrowUp, NavArrowDown } from "iconoir-react";
-import { Time } from "../services/time";
 
 import * as UI from "./ui";
 import * as api from "./api";

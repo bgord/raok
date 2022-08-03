@@ -7,9 +7,7 @@ export async function Stats(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const stats = await Repos.StatsRepository.getAll(
-    request.timeZoneOffset.miliseconds
-  );
+  const stats = await Repos.StatsRepository.getAll();
 
   return response.send(stats);
 }

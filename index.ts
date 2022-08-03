@@ -4,7 +4,6 @@ import { extname } from "path";
 
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
-import { Time } from "./services";
 
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
@@ -19,9 +18,9 @@ bg.addExpressEssentials(app, {
       setHeaders(response, path) {
         const extension = extname(path);
 
-        const DAY = new Time.Days(1).toSeconds();
-        const WEEK = new Time.Days(7).toSeconds();
-        const YEAR = new Time.Days(365).toSeconds();
+        const DAY = new bg.Time.Days(1).toSeconds();
+        const WEEK = new bg.Time.Days(7).toSeconds();
+        const YEAR = new bg.Time.Days(365).toSeconds();
 
         if (extension === ".png") {
           response.setHeader(
@@ -46,7 +45,7 @@ bg.ServerTiming.applyTo(app);
 
 const session = new bg.Session({
   secret: Env.COOKIE_SECRET,
-  store: bg.SessionFileStore.build({ ttl: new Time.Days(3).toSeconds() }),
+  store: bg.SessionFileStore.build({ ttl: new bg.Time.Days(3).toSeconds() }),
 });
 session.applyTo(app);
 
