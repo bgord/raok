@@ -147,7 +147,7 @@ function useAutoUpdateNewspaper(
       !["delivered", "archived", "error"].includes(props.status) &&
       !hasCutoffPassed,
 
-    refetchInterval: 1000,
+    refetchInterval: new Time.Seconds(1).toMs(),
 
     onSuccess(updated) {
       queryClient.setQueryData<NewspaperType[]>(
