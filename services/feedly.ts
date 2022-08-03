@@ -28,7 +28,7 @@ export class Feedly {
         .filter(Feedly.isNonTwitterUrl);
     } catch (error) {
       Reporter.raw("Feedly#getArticles", error);
-      await Services.FeedlyTokenExpiredNotifier.send();
+      await Services.FeedlyTokenExpiredNotifier.send(error);
       return [];
     }
   }
