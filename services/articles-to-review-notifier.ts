@@ -1,4 +1,4 @@
-import { Mailer } from "@bgord/node";
+import { Mailer, Reporter } from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 
@@ -29,7 +29,7 @@ export class ArticlesToReviewNotifier {
     return this;
   }
 
-  shouldBeSent() {
+  private shouldBeSent() {
     if (this.numberOfArticlesToReview === 0) return false;
 
     const now = new Date();
@@ -43,7 +43,9 @@ export class ArticlesToReviewNotifier {
   }
 
   async send() {
-    return mailer.send({
+    if (!this.shouldBeSent()) return;
+
+    await mailer.send({
       from: Env.EMAIL_FROM,
       to: Env.EMAIL_FOR_NOTIFICATIONS,
       subject: `[raok] - ${this.numberOfArticlesToReview} articles to review`,
@@ -56,5 +58,7 @@ export class ArticlesToReviewNotifier {
         </a>
       `,
     });
+
+    Reporter.success("Articles to review notification sent");
   }
 }

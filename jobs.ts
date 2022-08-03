@@ -31,13 +31,10 @@ const ArtclesToReviewNotifierTask = new AsyncTask(
       settings
     ).build();
 
-    if (notification.shouldBeSent()) {
-      try {
-        await notification.send();
-        Reporter.success("Articles to review notification sent");
-      } catch (error) {
-        Reporter.raw("ArtclesToReviewNotifierTask", error);
-      }
+    try {
+      await notification.send();
+    } catch (error) {
+      Reporter.raw("ArtclesToReviewNotifierTask", error);
     }
   }
 );
