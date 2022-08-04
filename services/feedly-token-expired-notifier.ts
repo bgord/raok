@@ -30,8 +30,7 @@ export class FeedlyTokenExpiredNotifier {
     const msSinceLastError = now - lastFeedlyTokenExpiredError;
 
     const hasLastErrorHappenedBeforeCurrentTokenLifespan =
-      msSinceLastError >
-      new bg.Time.Days(VO.FEEDLY_TOKEN_EXPIRATION_DAYS).toMs();
+      msSinceLastError > bg.Time.Days(VO.FEEDLY_TOKEN_EXPIRATION_DAYS).toMs();
 
     return hasLastErrorHappenedBeforeCurrentTokenLifespan;
   }

@@ -13,9 +13,7 @@ export class Article {
 
   entity: VO.ArticleType | null = null;
 
-  static OLD_ARTICLE_MARKER_MS: VO.ArticleOldMarkerType = new Time.Days(
-    3
-  ).toMs();
+  static OLD_ARTICLE_MARKER_MS: VO.ArticleOldMarkerType = Time.Days(3).toMs();
 
   constructor(id: VO.ArticleType["id"]) {
     this.id = id;
