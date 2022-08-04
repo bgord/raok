@@ -125,12 +125,12 @@ export function Settings(props: RoutableProps) {
       <section
         data-display="flex"
         data-direction="column"
-        data-mt="12"
+        data-mt="24"
         data-pb="24"
         data-bwb="1"
         data-bcb="gray-200"
       >
-        <div data-display="flex" data-cross="center" data-mt="24">
+        <div data-display="flex" data-cross="center">
           <strong
             data-transform="uppercase"
             data-color="gray-600"
