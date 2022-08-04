@@ -8,7 +8,7 @@ import * as api from "./api";
 import { ArticleType, StatsType } from "./types";
 
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
-import { DeleteOldArticles } from "./archive-old-articles";
+import { DeleteOldArticles } from "./delete-old-articles";
 import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
