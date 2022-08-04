@@ -48,4 +48,5 @@ export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
 
 export type ToastType = BaseToastType & {
   articleId?: ArticleType["id"] | null;
+  articleTitle?: ArticleType["title"] | null;
 };
