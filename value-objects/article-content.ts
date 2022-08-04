@@ -6,6 +6,6 @@ export type ArticleContentType = Brand<
   z.infer<typeof ArticleContentSchema>
 >;
 
-const ArticleContentSchema = z.string().max(100000);
+const ArticleContentSchema = z.string().min(1);
 
 export const ArticleContent = toBrand<ArticleContentType>(ArticleContentSchema);
