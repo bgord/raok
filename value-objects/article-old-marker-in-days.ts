@@ -1,0 +1,1 @@
+export const ARTICLE_OLD_MARKER_IN_DAYS = 3;

@@ -1,4 +1,5 @@
 import express from "express";
+import { Time } from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 import * as Events from "../events";
@@ -16,7 +17,10 @@ export async function DeleteOldArticles(
       name: Events.DELETE_OLD_ARTICLES_EVENT,
       stream: String(now),
       version: 1,
-      payload: { marker: now - Aggregates.Article.OLD_ARTICLE_MARKER_MS },
+      payload: {
+        marker:
+          now - Time.Days(Aggregates.Article.ARTICLE_OLD_MARKER_IN_DAYS).toMs(),
+      },
     })
   );
   return response.send();
