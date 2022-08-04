@@ -30,9 +30,7 @@ export function ArticleList() {
     }
   );
 
-  const articles = bg.useAnimaList(_articles.data?.pages?.flat() ?? [], {
-    direction: "tail",
-  });
+  const articles = _articles.data?.pages?.flat() ?? [];
 
   return (
     <section>
@@ -66,7 +64,7 @@ export function ArticleList() {
         <div data-display="flex" data-cross="end">
           <div data-display="flex" data-gap="12" data-mt="24">
             <button
-              onClick={() => actions.add(articles.items.map((x) => x.item.id))}
+              onClick={() => actions.add(articles.map((x) => x.id))}
               type="button"
               class="c-button"
               data-variant="secondary"
@@ -135,9 +133,9 @@ export function ArticleList() {
         </div>
       </div>
 
-      <DeleteOldArticles data-mt="12" data-ml="12" />
+      <DeleteOldArticles data-mt="12" data-mb="24" data-ml="12" />
 
-      {articles.count === 0 && (
+      {articles.length === 0 && (
         <small
           data-fs="14"
           data-color="gray-600"
@@ -150,13 +148,9 @@ export function ArticleList() {
         </small>
       )}
 
-      <bg.AnimaList data-mt="24">
-        {articles.items.map((article) => (
-          <bg.Anima key={article.item.id} effect="opacity" {...article.props}>
-            <Article {...article.item} {...actions} />
-          </bg.Anima>
-        ))}
-      </bg.AnimaList>
+      {articles.map((article) => (
+        <Article key={article.id} {...article} {...actions} />
+      ))}
 
       {_articles.hasNextPage && (
         <div data-display="flex">
