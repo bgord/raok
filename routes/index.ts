@@ -8,6 +8,7 @@ export * from "./articles-archive";
 export * from "./cancel-newspaper";
 export * from "./create-newspaper";
 export * from "./dashboard";
+export * from "./delete-all-articles";
 export * from "./delete-article";
 export * from "./delete-article-from-favourites";
 export * from "./delete-old-articles";

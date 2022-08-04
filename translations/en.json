@@ -22,6 +22,11 @@
   "articles.old.deleted": "old articles deleted",
   "articles.old.could_not_delete": "could not delete",
 
+  "articles.all.delete": "delete all articles",
+  "articles.all.deleting": "deleting all articles",
+  "articles.all.deleted": "all articles deleted",
+  "articles.all.could_not_delete": "could not delete",
+
   "dashboard.could_not_schedule": "couldn't schedule",
   "dashboard.deselect_all": "deselect all",
   "dashboard.no_articles_available": "no articles available at the moment",

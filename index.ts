@@ -81,6 +81,11 @@ app.post(
   bg.Route(Routes.UndeleteArticle)
 );
 app.post(
+  "/articles/all/delete",
+  AuthShield.verify,
+  bg.Route(Routes.DeleteAllArticles)
+);
+app.post(
   "/articles/old/delete",
   AuthShield.verify,
   bg.Route(Routes.DeleteOldArticles)

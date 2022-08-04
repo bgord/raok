@@ -9,6 +9,7 @@ import { ArticleType, StatsType } from "./types";
 
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { DeleteOldArticles } from "./delete-old-articles";
+import { DeleteAllArticles } from "./delete-all-articles";
 import { AddArticleForm } from "./add-article-form";
 import { Article } from "./article";
 
@@ -133,7 +134,10 @@ export function ArticleList() {
         </div>
       </div>
 
-      <DeleteOldArticles data-mt="12" data-mb="24" data-ml="12" />
+      <div data-display="flex" data-gap="24" data-mt="12" data-mb="24">
+        <DeleteOldArticles />
+        <DeleteAllArticles />
+      </div>
 
       {articles.length === 0 && (
         <small

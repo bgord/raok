@@ -138,6 +138,10 @@ export async function deleteOldArticles() {
   return _api("/articles/old/delete", { method: "POST" });
 }
 
+export async function deleteAllArticles() {
+  return _api("/articles/all/delete", { method: "POST" });
+}
+
 export async function getArchiveArticles(
   filters?: FilterType
 ): Promise<ArchiveArticleType[]> {
