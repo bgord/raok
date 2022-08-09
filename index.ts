@@ -11,7 +11,7 @@ import { Env } from "./env";
 
 const app = express();
 
-bg.addExpressEssentials(app, { helmet: { contentSecurityPolicy: false } });
+bg.addExpressEssentials(app);
 bg.Handlebars.applyTo(app);
 bg.Language.applyTo(app, "translations");
 
