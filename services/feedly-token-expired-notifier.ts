@@ -29,10 +29,10 @@ export class FeedlyTokenExpiredNotifier {
     const now = Date.now();
     const msSinceLastError = now - lastFeedlyTokenExpiredError;
 
-    const hasLastErrorHappenedBeforeCurrentTokenLifespan =
-      msSinceLastError > bg.Time.Days(VO.FEEDLY_TOKEN_EXPIRATION_DAYS).toMs();
-
-    return hasLastErrorHappenedBeforeCurrentTokenLifespan;
+    // Has last error happened before current token lifespan
+    return (
+      msSinceLastError > bg.Time.Days(VO.FEEDLY_TOKEN_EXPIRATION_DAYS).toMs()
+    );
   }
 
   private static isAxiosError(error: unknown): error is AxiosError {
