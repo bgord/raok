@@ -1,7 +1,6 @@
 import { h, Fragment } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Dialog } from "./dialog";
 
 import * as api from "./api";
 
@@ -41,7 +40,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
         {deleteAllArticles.isError && t("articles.all.could_not_delete")}
       </button>
 
-      <Dialog {...dialog} data-gap="24">
+      <bg.Dialog {...dialog} data-gap="24">
         <div>Are you sure you want to delete all articles?</div>
 
         <div data-display="flex" data-gap="48" data-mx="auto">
@@ -63,7 +62,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
             Cancel
           </button>
         </div>
-      </Dialog>
+      </bg.Dialog>
     </>
   );
 }
