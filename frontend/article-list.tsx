@@ -134,7 +134,13 @@ export function ArticleList() {
         </div>
       </div>
 
-      <div data-display="flex" data-gap="24" data-mt="12" data-mb="24">
+      <div
+        data-display="flex"
+        data-md-main="center"
+        data-gap="24"
+        data-mt="12"
+        data-mb="24"
+      >
         <DeleteOldArticles />
         <DeleteAllArticles />
       </div>
