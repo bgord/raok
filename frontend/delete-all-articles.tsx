@@ -15,6 +15,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
   const deleteAllArticles = useMutation(api.deleteAllArticles, {
     onSuccess() {
       setTimeout(deleteAllArticles.reset, 5000);
+      dialog.disable();
       notify({ message: "articles.all.deleted" });
       queryClient.invalidateQueries("articles");
     },
@@ -40,7 +41,29 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
         {deleteAllArticles.isError && t("articles.all.could_not_delete")}
       </button>
 
-      <Dialog {...dialog}>dialog</Dialog>
+      <Dialog {...dialog} data-gap="24">
+        <div>Are you sure you want to delete all articles?</div>
+
+        <div data-display="flex" data-gap="48" data-mx="auto">
+          <button
+            type="button"
+            class="c-button"
+            data-variant="primary"
+            onClick={() => deleteAllArticles.mutate()}
+          >
+            Delete
+          </button>
+
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            onClick={dialog.disable}
+          >
+            Cancel
+          </button>
+        </div>
+      </Dialog>
     </>
   );
 }
