@@ -14,7 +14,6 @@ const app = express();
 bg.addExpressEssentials(app, { helmet: { contentSecurityPolicy: false } });
 bg.Handlebars.applyTo(app);
 bg.Language.applyTo(app, "translations");
-bg.ServerTiming.applyTo(app);
 
 const session = new bg.Session({
   secret: Env.COOKIE_SECRET,
