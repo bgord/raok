@@ -11,34 +11,7 @@ import { Env } from "./env";
 
 const app = express();
 
-bg.addExpressEssentials(app, {
-  helmet: { contentSecurityPolicy: false },
-  staticFiles: {
-    serveStatic: {
-      setHeaders(response, path) {
-        const extension = extname(path);
-
-        const DAY = bg.Time.Days(1).toSeconds();
-        const WEEK = bg.Time.Days(7).toSeconds();
-        const YEAR = bg.Time.Days(365).toSeconds();
-
-        if (extension === ".png") {
-          response.setHeader(
-            "Cache-Control",
-            `max-age=${WEEK}, stale-while-revalidate=${DAY}`
-          );
-        }
-
-        if (extension === ".ico") {
-          response.setHeader(
-            "Cache-Control",
-            `public, max-age=${YEAR}, immutable`
-          );
-        }
-      },
-    },
-  },
-});
+bg.addExpressEssentials(app, { helmet: { contentSecurityPolicy: false } });
 bg.Handlebars.applyTo(app);
 bg.Language.applyTo(app, "translations");
 bg.ServerTiming.applyTo(app);
