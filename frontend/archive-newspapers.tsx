@@ -64,7 +64,7 @@ export function ArchiveNewspapers(props: RoutableProps) {
 
       <div data-display="flex" data-cross="end" data-mb="24">
         <div data-display="flex" data-direction="column" data-mr="24">
-          <label class="c-label" for="sent-at">
+          <label class="c-label" htmlFor="sent-at">
             Sent at
           </label>
           <div class="c-select-wrapper">
@@ -82,7 +82,7 @@ export function ArchiveNewspapers(props: RoutableProps) {
           </div>
         </div>
         <div data-display="flex" data-direction="column" data-mr="24">
-          <label class="c-label" for="status">
+          <label class="c-label" htmlFor="status">
             Status
           </label>
           <div class="c-select-wrapper">

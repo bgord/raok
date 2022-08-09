@@ -45,7 +45,7 @@ export class FeedlyTokenExpiredNotifier {
     const now = Date.now();
     await Repos.StatsRepository.updateLastFeedlyTokenExpiredError(now);
 
-    return mailer.send({
+    await mailer.send({
       from: Env.EMAIL_FROM,
       to: Env.EMAIL_FOR_NOTIFICATIONS,
       subject: `[raok] - feedly token has expired`,

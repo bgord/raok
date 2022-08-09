@@ -88,7 +88,7 @@ export function Settings(props: RoutableProps) {
           action="/set-articles-to-review-notification-hour"
           data-mt="36"
         >
-          <label class="c-label" for="hour" data-mr="12">
+          <label class="c-label" htmlFor="hour" data-mr="12">
             Hour (UTC)
           </label>
           <select id="hour" name="hour" class="c-select">

@@ -61,7 +61,7 @@ export function SendArbitraryFile() {
         class="c-button"
         data-variant="secondary"
       >
-        <label for="file">File explorer</label>
+        <label htmlFor="file">File explorer</label>
       </button>
 
       {file.state === UseFileState.selected && !fileUpload.isSuccess && (

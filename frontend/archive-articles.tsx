@@ -77,7 +77,7 @@ export function ArchiveArticles(props: RoutableProps) {
           data-mt="12"
           data-mr="24"
         >
-          <label class="c-label" for="created-at">
+          <label class="c-label" htmlFor="created-at">
             Created at
           </label>
           <UI.Select
@@ -98,7 +98,7 @@ export function ArchiveArticles(props: RoutableProps) {
           data-mt="12"
           data-mr="24"
         >
-          <label class="c-label" for="status">
+          <label class="c-label" htmlFor="status">
             Status
           </label>
           <UI.Select
@@ -121,7 +121,7 @@ export function ArchiveArticles(props: RoutableProps) {
           data-mt="12"
           data-mr="24"
         >
-          <label class="c-label" for="source">
+          <label class="c-label" htmlFor="source">
             Source
           </label>
           <UI.Select
