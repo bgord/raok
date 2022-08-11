@@ -19,9 +19,6 @@ export class StatsRepository {
       where: { key: "lastFeedlyImport" },
     });
 
-    const nonProcessedArticles =
-      await ArticleRepository.getNumberOfNonProcessed();
-
     const lastFeedlyTokenExpiredError = await prisma.statsKeyValue.findFirst({
       where: { key: "lastFeedlyTokenExpiredError" },
     });
@@ -30,7 +27,6 @@ export class StatsRepository {
       lastFeedlyImport: bg.ComplexDate.falsy(lastFeedlyImport?.value),
       createdArticles: createdArticles?.value ?? 0,
       sentNewspapers: sentNewspapers?.value ?? 0,
-      nonProcessedArticles,
       lastFeedlyTokenExpiredError: lastFeedlyTokenExpiredError?.value ?? null,
     };
   }

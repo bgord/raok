@@ -19,7 +19,6 @@ export function ArticleList() {
   const [selectedArticleIds, actions] = bg.useList<ArticleType["id"]>();
   const emptyNewspaperError = bg.useToggle();
 
-  const numberOfNonProcessedArticles = useNumberOfNonProcessedArticles();
   const createNewspaper = useCreateNewspaper(actions.clear);
 
   const _articles = useInfiniteQuery(
@@ -54,7 +53,7 @@ export function ArticleList() {
             data-px="6"
             data-br="4"
           >
-            {numberOfNonProcessedArticles ?? null}
+            {articles.length}
           </span>
 
           <ScheduleFeedlyCrawlButton data-ml="auto" />
@@ -191,12 +190,4 @@ function useCreateNewspaper(callback?: VoidFunction) {
       callback?.();
     },
   });
-}
-
-function useNumberOfNonProcessedArticles() {
-  const queryClient = useQueryClient();
-
-  const stats = queryClient.getQueryData<StatsType>("stats");
-
-  return stats?.nonProcessedArticles;
 }
