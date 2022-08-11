@@ -40,11 +40,18 @@ export function Settings(props: RoutableProps) {
         data-display="flex"
         data-direction="column"
         data-mt="48"
+        data-md-mt="12"
         data-pb="24"
         data-bwb="1"
         data-bcb="gray-200"
       >
-        <div data-display="flex" data-cross="center" data-mt="24">
+        <div
+          data-display="flex"
+          data-cross="center"
+          data-gap="12"
+          data-mt="24"
+          data-md-px="6"
+        >
           <strong
             data-transform="uppercase"
             data-color="gray-600"
@@ -53,12 +60,11 @@ export function Settings(props: RoutableProps) {
             data-br="4"
             data-ls="1"
             data-fs="12"
-            data-mr="12"
           >
             {isArticlesToReviewNotificationEnabled ? "Enabled" : "Disabled"}
           </strong>
 
-          <h3 data-fs="16" data-color="gray-600" data-mr="36">
+          <h3 data-fs="16" data-md-fs="14" data-color="gray-600">
             Articles to review notifications
           </h3>
 
@@ -66,6 +72,8 @@ export function Settings(props: RoutableProps) {
             <form
               method="POST"
               action="/disable-articles-to-review-notification"
+              data-ml="12"
+              data-md-ml="0"
             >
               <button type="submit" class="c-button" data-variant="primary">
                 Disable
@@ -77,6 +85,8 @@ export function Settings(props: RoutableProps) {
             <form
               method="POST"
               action="/enable-articles-to-review-notification"
+              data-ml="12"
+              data-md-ml="0"
             >
               <button type="submit" class="c-button" data-variant="primary">
                 Enable
