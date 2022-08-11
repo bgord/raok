@@ -44,6 +44,7 @@ export function ArchiveNewspapers(props: RoutableProps) {
       data-direction="column"
       data-mx="auto"
       data-my="24"
+      data-md-px="6"
       data-max-width="768"
       data-width="100%"
     >
