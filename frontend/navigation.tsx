@@ -16,24 +16,28 @@ function NavigationDesktop() {
   const t = bg.useTranslations();
 
   return (
-    <nav data-display="flex" data-gap="24" data-p="12" data-bg="gray-800">
+    <nav data-display="flex" data-main="between" data-p="12" data-bg="gray-800">
       <NavigationLogo />
 
-      <NavigationLink href="/archive/articles">
-        {t("app.articles")}
-      </NavigationLink>
+      <OfflineIndicator />
 
-      <NavigationLink href="/archive/newspapers">
-        {t("app.newspapers")}
-      </NavigationLink>
+      <div data-display="flex" data-gap="24">
+        <NavigationLink href="/archive/articles">
+          {t("app.articles")}
+        </NavigationLink>
 
-      <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
+        <NavigationLink href="/archive/newspapers">
+          {t("app.newspapers")}
+        </NavigationLink>
 
-      <strong data-mx="12" data-color="white">
-        admin
-      </strong>
+        <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
 
-      <NavigationLink href="/logout">{t("app.logout")}</NavigationLink>
+        <strong data-mx="12" data-color="white">
+          admin
+        </strong>
+
+        <NavigationLink href="/logout">{t("app.logout")}</NavigationLink>
+      </div>
     </nav>
   );
 }
@@ -48,12 +52,15 @@ function NavigationMobile() {
     <Fragment>
       <nav
         data-display="flex"
+        data-main="between"
         data-cross="center"
         data-py="6"
         data-px="12"
         data-bg="gray-800"
       >
         <NavigationLogo />
+
+        <OfflineIndicator data-fs="14" />
 
         <button
           type="button"
@@ -76,7 +83,13 @@ function NavigationMobile() {
           data-z="1"
           data-bg="gray-800"
         >
-          <div data-display="flex" data-cross="center" data-py="6" data-px="12">
+          <div
+            data-display="flex"
+            data-main="between"
+            data-cross="center"
+            data-py="6"
+            data-px="12"
+          >
             <NavigationLogo onClick={navigation.disable} />
 
             <button
@@ -157,10 +170,26 @@ function NavigationLogo(props: h.JSX.HTMLAttributes) {
       data-ls="2"
       data-color="gray-100"
       data-fw="500"
-      data-mr="auto"
       {...props}
     >
       {t("app.name")}
     </NavigationLink>
+  );
+}
+
+function OfflineIndicator(props: h.JSX.IntrinsicElements["div"]) {
+  return (
+    <bg.OfflineIndicator>
+      <div
+        class="c-link"
+        data-transform="upper-first,center"
+        data-color="white"
+        data-variant="bare"
+        data-mx="auto"
+        {...props}
+      >
+        No internet connection
+      </div>
+    </bg.OfflineIndicator>
   );
 }
