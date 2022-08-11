@@ -1,6 +1,8 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
+import * as bg from "@bgord/frontend";
 
+import * as hooks from "./hooks";
 import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
@@ -22,6 +24,8 @@ export type InitialDashboardDataType = {
 };
 
 export function Dashboard(props: RoutableProps) {
+  hooks.useLeavingPrompt();
+
   return (
     <main
       data-display="flex"

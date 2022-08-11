@@ -1,9 +1,10 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useUrlFilter, useClientSearch } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 import { Search } from "iconoir-react";
 
+import * as hooks from "./hooks";
 import * as UI from "./ui";
 import * as Icons from "./icons";
 import * as api from "./api";
@@ -16,19 +17,20 @@ export type InitialArchiveArticlesDataType = {
 };
 
 export function ArchiveArticles(props: RoutableProps) {
-  const search = useClientSearch();
+  hooks.useLeavingPrompt();
+  const search = bg.useClientSearch();
 
-  const sourceFilter = useUrlFilter({
+  const sourceFilter = bg.useUrlFilter({
     enum: types.ArticleSourceEnum,
     label: "source",
   });
 
-  const statusFilter = useUrlFilter({
+  const statusFilter = bg.useUrlFilter({
     enum: types.ArticleStatusEnum,
     label: "status",
   });
 
-  const createdAt = useUrlFilter({
+  const createdAt = bg.useUrlFilter({
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
     label: "createdAt",

@@ -1,16 +1,18 @@
 import { h } from "preact";
+import { useEffect } from "preact/hooks";
 import { RoutableProps } from "preact-router";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
+import * as hooks from "./hooks";
 import { SettingsType, HourType } from "./types";
 
-export type InitialSettingsDataType = {
-  settings: SettingsType;
-};
+export type InitialSettingsDataType = { settings: SettingsType };
 
 export function Settings(props: RoutableProps) {
+  hooks.useLeavingPrompt();
+
   const settings = useQuery("settings", api.getSettings);
 
   if (!settings.isSuccess) return <div data-p="24">Preparing settings...</div>;

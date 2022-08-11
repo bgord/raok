@@ -1,8 +1,9 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { useUrlFilter } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
+import * as hooks from "./hooks";
 import * as UI from "./ui";
 import * as api from "./api";
 import { NewspaperType, NewspaperStatusEnum } from "./types";
@@ -15,12 +16,14 @@ export type InitialArchiveNewspapersDataType = {
 };
 
 export function ArchiveNewspapers(props: RoutableProps) {
-  const statusFilter = useUrlFilter({
+  hooks.useLeavingPrompt();
+
+  const statusFilter = bg.useUrlFilter({
     enum: NewspaperStatusEnum,
     label: "status",
   });
 
-  const sentAtFilter = useUrlFilter({
+  const sentAtFilter = bg.useUrlFilter({
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
     label: "sentAt",
