@@ -1,5 +1,5 @@
 import express from "express";
-import { Errors } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Policies from "./policies";
 
@@ -14,11 +14,11 @@ export class ErrorHandler {
     /* eslint-disable no-console */
     console.error(error);
 
-    if (error instanceof Errors.InvalidCredentialsError) {
+    if (error instanceof bg.Errors.InvalidCredentialsError) {
       return response.redirect("/");
     }
 
-    if (error instanceof Errors.AccessDeniedError) {
+    if (error instanceof bg.Errors.AccessDeniedError) {
       return response.redirect("/");
     }
 
