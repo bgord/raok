@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EventDraft as _EventDraft, Schema, Reporter } from "@bgord/node";
+import { EventDraft, Schema, Reporter } from "@bgord/node";
 import Emittery from "emittery";
 import * as fs from "fs/promises";
 
@@ -7,11 +7,6 @@ import * as VO from "./value-objects";
 import * as Services from "./services";
 import * as Repos from "./repositories";
 import * as Aggregates from "./aggregates";
-
-const Stream = z.string().min(1);
-export type StreamType = z.infer<typeof Stream>;
-
-const EventDraft = _EventDraft.merge(z.object({ stream: Stream }));
 
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
 export const ArticleAddedEvent = EventDraft.merge(

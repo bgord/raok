@@ -1,4 +1,4 @@
-import { UUID, Reporter } from "@bgord/node";
+import { UUID, Reporter, EventType } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -11,7 +11,7 @@ import { Article } from "./article";
 export class Newspaper {
   id: VO.NewspaperType["id"];
 
-  stream: Events.StreamType;
+  stream: EventType["stream"];
 
   status: VO.NewspaperType["status"] = VO.NewspaperStatusEnum.undetermined;
 

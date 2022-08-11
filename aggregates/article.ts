@@ -1,4 +1,4 @@
-import { UUID, Time } from "@bgord/node";
+import { UUID, Time, EventType } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -9,7 +9,7 @@ import * as Repos from "../repositories";
 export class Article {
   id: VO.ArticleType["id"];
 
-  stream: Events.StreamType;
+  stream: EventType["stream"];
 
   entity: VO.ArticleType | null = null;
 
