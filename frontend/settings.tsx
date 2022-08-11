@@ -31,6 +31,7 @@ export function Settings(props: RoutableProps) {
       data-mx="auto"
       data-mt="48"
       data-max-width="768"
+      data-md-px="6"
     >
       <h2 data-fs="24" data-fw="400">
         Settings
@@ -45,18 +46,12 @@ export function Settings(props: RoutableProps) {
         data-bwb="1"
         data-bcb="gray-200"
       >
-        <div
-          data-display="flex"
-          data-cross="center"
-          data-gap="12"
-          data-mt="24"
-          data-md-px="6"
-        >
+        <div data-display="flex" data-cross="center" data-gap="12" data-mt="24">
           <strong
+            data-px="6"
             data-transform="uppercase"
             data-color="gray-600"
             data-bg="gray-200"
-            data-px="6"
             data-br="4"
             data-ls="1"
             data-fs="12"
@@ -156,7 +151,7 @@ export function Settings(props: RoutableProps) {
             {isFeedlyCrawlingStopped ? "Stopped" : "Active"}
           </strong>
 
-          <h3 data-fs="16" data-color="gray-600" data-mr="36">
+          <h3 data-fs="16" data-md-fs="14" data-color="gray-600" data-mr="36">
             Feedly crawling
           </h3>
 
