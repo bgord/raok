@@ -18,8 +18,12 @@ export class ArticlesToReviewNotifier {
 
   numberOfArticlesToReview = 0;
 
+  isArticlesToReviewNotificationEnabled = false;
+
   constructor(settings: Aggregates.Settings) {
     this.UTC_HOUR = settings.articlesToReviewNotificationHour;
+    this.isArticlesToReviewNotificationEnabled =
+      settings.isArticlesToReviewNotificationEnabled;
   }
 
   async build() {
@@ -31,6 +35,8 @@ export class ArticlesToReviewNotifier {
 
   private shouldBeSent() {
     if (this.numberOfArticlesToReview === 0) return false;
+
+    if (!this.isArticlesToReviewNotificationEnabled) return false;
 
     const now = new Date();
 
