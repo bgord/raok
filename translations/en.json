@@ -3,6 +3,7 @@
   "app.logout": "logout",
   "app.name": "RAOK",
   "app.newspapers": "newspapers",
+  "app.files": "files",
   "app.settings": "settings",
   "app.error.general": "something went wrong",
 

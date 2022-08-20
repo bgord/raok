@@ -30,6 +30,8 @@ function NavigationDesktop() {
           {t("app.newspapers")}
         </NavigationLink>
 
+        <NavigationLink href="/archive/files">{t("app.files")}</NavigationLink>
+
         <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
 
         <strong data-mx="12" data-color="white">
@@ -121,6 +123,10 @@ function NavigationMobile() {
               href="/archive/newspapers"
             >
               {t("app.newspapers")}
+            </NavigationLink>
+
+            <NavigationLink onClick={navigation.disable} href="/archive/files">
+              {t("app.files")}
             </NavigationLink>
 
             <NavigationLink onClick={navigation.disable} href="/settings">
