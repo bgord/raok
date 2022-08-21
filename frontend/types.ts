@@ -6,6 +6,7 @@ import type { ArticleRepository } from "../repositories/article-repository";
 import type { NewspaperRepository } from "../repositories/newspaper-repository";
 import type { StatsRepository } from "../repositories/stats-repository";
 import type { SettingsRepository } from "../repositories/settings-repository";
+import type { FilesRepository } from "../repositories/files-repository";
 
 export type { HourType } from "../value-objects/hour";
 
@@ -50,3 +51,7 @@ export type ToastType = BaseToastType & {
   articleId?: ArticleType["id"] | null;
   articleTitle?: ArticleType["title"] | null;
 };
+
+export type ArchiveFileType = AsyncReturnType<
+  typeof FilesRepository["getAll"]
+>[0];

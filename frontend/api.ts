@@ -2,14 +2,7 @@ import { FilterUrl, FilterType } from "@bgord/frontend";
 import { ServerError } from "./server-error";
 import type { PageType } from "@bgord/node";
 
-import {
-  ArticleType,
-  ArchiveArticleType,
-  ArticlePayloadType,
-  NewspaperType,
-  StatsType,
-  SettingsType,
-} from "./types";
+import * as types from "./types";
 
 export const _api: typeof fetch = (input, init) =>
   fetch(input, {
@@ -25,7 +18,7 @@ export const _api: typeof fetch = (input, init) =>
     .then(ServerError.extract)
     .catch(ServerError.handle);
 
-export async function getNewspapers(): Promise<NewspaperType[]> {
+export async function getNewspapers(): Promise<types.NewspaperType[]> {
   return _api("/newspapers").then((response) =>
     response.ok ? response.json() : []
   );
@@ -33,41 +26,41 @@ export async function getNewspapers(): Promise<NewspaperType[]> {
 
 export async function getArchiveNewspapers(
   filters?: FilterType
-): Promise<NewspaperType[]> {
+): Promise<types.NewspaperType[]> {
   const url = new FilterUrl("/newspapers/archive", filters).value;
 
   return _api(url).then((response) => (response.ok ? response.json() : []));
 }
 
 export async function getSingleNewspaper(
-  id: NewspaperType["id"]
-): Promise<NewspaperType> {
+  id: types.NewspaperType["id"]
+): Promise<types.NewspaperType> {
   return _api(`/newspaper/${id}`).then((response) =>
     response.ok ? response.json() : []
   );
 }
 
-export async function createNewspaper(articleIds: ArticleType["id"][]) {
+export async function createNewspaper(articleIds: types.ArticleType["id"][]) {
   return _api("/create-newspaper", {
     method: "POST",
     body: JSON.stringify({ articleIds }),
   });
 }
 
-export async function archiveNewspaper(id: NewspaperType["id"]) {
+export async function archiveNewspaper(id: types.NewspaperType["id"]) {
   return _api(`/archive-newspaper/${id}`, { method: "POST" });
 }
 
-export async function cancelNewspaper(id: NewspaperType["id"]) {
+export async function cancelNewspaper(id: types.NewspaperType["id"]) {
   return _api(`/cancel-newspaper/${id}`, { method: "POST" });
 }
 
-export async function resendNewspaper(id: NewspaperType["id"]) {
+export async function resendNewspaper(id: types.NewspaperType["id"]) {
   return _api(`/resend-newspaper/${id}`, { method: "POST" });
 }
 
-export async function getStats(): Promise<StatsType> {
-  const defaultStats: StatsType = {
+export async function getStats(): Promise<types.StatsType> {
+  const defaultStats: types.StatsType = {
     createdArticles: 0,
     sentNewspapers: 0,
     lastFeedlyImport: null,
@@ -79,45 +72,49 @@ export async function getStats(): Promise<StatsType> {
   );
 }
 
-export async function getPagedArticles(page: PageType): Promise<ArticleType[]> {
+export async function getPagedArticles(
+  page: PageType
+): Promise<types.ArticleType[]> {
   return _api(`/articles?page=${page}`, { method: "GET" }).then((response) =>
     response.ok ? response.json() : []
   );
 }
 
-export async function getArticles(): Promise<ArticleType[]> {
+export async function getArticles(): Promise<types.ArticleType[]> {
   return _api("/articles", { method: "GET" }).then((response) =>
     response.ok ? response.json() : []
   );
 }
 
-export async function getFavouriteArticles(): Promise<ArticleType[]> {
+export async function getFavouriteArticles(): Promise<types.ArticleType[]> {
   return _api("/articles/favourite", { method: "GET" }).then((response) =>
     response.ok ? response.json() : []
   );
 }
 
-export async function addArticle(article: ArticlePayloadType) {
+export async function addArticle(article: types.ArticlePayloadType) {
   return _api("/add-article", {
     method: "POST",
     body: JSON.stringify(article),
   });
 }
 
-export async function deleteArticle(articleId: ArticleType["id"]) {
+export async function deleteArticle(articleId: types.ArticleType["id"]) {
   return _api(`/delete-article/${articleId}`, { method: "POST" });
 }
 
-export async function undeleteArticle(articleId: ArticleType["id"]) {
+export async function undeleteArticle(articleId: types.ArticleType["id"]) {
   return _api(`/undelete-article/${articleId}`, { method: "POST" });
 }
 
-export async function addArticleToFavourites(articleId: ArticleType["id"]) {
+export async function addArticleToFavourites(
+  articleId: types.ArticleType["id"]
+) {
   return _api(`/article/${articleId}/favourite`, { method: "POST" });
 }
 
 export async function deleteArticleFromFavourites(
-  articleId: ArticleType["id"]
+  articleId: types.ArticleType["id"]
 ) {
   return _api(`/article/${articleId}/unfavourite`, { method: "POST" });
 }
@@ -143,7 +140,7 @@ export async function deleteAllArticles() {
 
 export async function getArchiveArticles(
   filters?: FilterType
-): Promise<ArchiveArticleType[]> {
+): Promise<types.ArchiveArticleType[]> {
   const url = new FilterUrl("/articles/archive", filters).value;
 
   return _api(url, { method: "GET" }).then((response) =>
@@ -151,7 +148,17 @@ export async function getArchiveArticles(
   );
 }
 
-export async function getSettings(): Promise<SettingsType> {
+export async function getArchiveFiles(
+  filters?: FilterType
+): Promise<types.ArchiveFileType[]> {
+  const url = new FilterUrl("/articles/files", filters).value;
+
+  return _api(url, { method: "GET" }).then((response) =>
+    response.ok ? response.json() : []
+  );
+}
+
+export async function getSettings(): Promise<types.SettingsType> {
   return _api("/account/settings", { method: "GET" }).then((response) =>
     response.json()
   );
