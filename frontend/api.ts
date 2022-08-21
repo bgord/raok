@@ -151,7 +151,7 @@ export async function getArchiveArticles(
 export async function getArchiveFiles(
   filters?: FilterType
 ): Promise<types.ArchiveFileType[]> {
-  const url = new FilterUrl("/articles/files", filters).value;
+  const url = new FilterUrl("/files/archive", filters).value;
 
   return _api(url, { method: "GET" }).then((response) =>
     response.ok ? response.json() : []

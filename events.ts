@@ -395,6 +395,7 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
     await Services.ArbitraryFileSender.send(file);
 
     Reporter.success(`File sent [name=${file.originalFilename}]`);
+    await Repos.FilesRepository.add(file);
   } catch (error) {
     Reporter.raw("Mailer error", error);
     Reporter.error(`File not sent [name=${file.originalFilename}]`);

@@ -7,7 +7,7 @@ import * as Repos from "../repositories";
 
 import { App } from "../frontend/app";
 
-export async function ArticlesArchive(
+export async function FilesArchive(
   request: express.Request,
   response: express.Response,
   _next: express.NextFunction
@@ -21,11 +21,13 @@ export async function ArticlesArchive(
     ...Repos.BuildRepository.getAll(),
     language: request.language,
     translations,
-    archiveArticles: await Repos.ArticleRepository.getAll(
-      Repos.ArchiveArticlesFilter.parse(request.query)
+    archiveArticles: [],
+    archiveNewspapers: await Repos.NewspaperRepository.getAll(
+      Repos.ArchiveNewspaperFilter.parse(request.query)
     ),
-    archiveNewspapers: [],
-    archiveFiles: [],
+    archiveFiles: await Repos.FilesRepository.getAll(
+      Repos.ArchiveFilesFilter.parse(request.query)
+    ),
     articles: [],
     favouriteArticles: [],
     newspapers: [],

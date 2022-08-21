@@ -16,11 +16,9 @@ export class FilesRepository {
     return prisma.files.findMany({ where: filters });
   }
 
-  static async add(
-    file: Pick<bg.Schema.UploadedFileType, "path" | "originalFilename" | "size">
-  ) {
+  static async add(file: bg.Schema.UploadedFileType) {
     return prisma.files.create({
-      data: { ...file, name: file.originalFilename },
+      data: { name: file.originalFilename, size: file.size, path: file.path },
     });
   }
 }

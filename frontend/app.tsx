@@ -22,11 +22,13 @@ import {
   InitialArchiveNewspapersDataType,
 } from "./archive-newspapers";
 import { Settings, InitialSettingsDataType } from "./settings";
+import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
 
 export type InitialDataType = InitialDashboardDataType &
   InitialArchiveArticlesDataType &
   InitialArchiveNewspapersDataType &
   InitialSettingsDataType &
+  InitialArchiveFilesDataType &
   BuildMetaDataType & {
     url: string;
     language: Schema.LanguageType;
@@ -47,6 +49,7 @@ export function App(props: InitialDataType) {
   queryClient.setQueryData("stats", props.stats);
   queryClient.setQueryData("archive-articles", props.archiveArticles);
   queryClient.setQueryData("archive-newspapers", props.archiveNewspapers);
+  queryClient.setQueryData("archive-files", props.archiveFiles);
   queryClient.setQueryData("settings", props.settings);
 
   return (
@@ -60,6 +63,7 @@ export function App(props: InitialDataType) {
           <Router url={props.url}>
             <ArchiveArticles path="/archive/articles" />
             <ArchiveNewspapers path="/archive/newspapers" />
+            <ArchiveFiles path="/archive/files" />
             <Dashboard path="/dashboard" />
             <Settings path="/settings" />
           </Router>

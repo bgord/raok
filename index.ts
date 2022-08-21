@@ -119,6 +119,7 @@ app.post(
   }),
   bg.Route(Routes.SendArbitraryFile)
 );
+app.get("/files/archive", AuthShield.verify, bg.Route(Routes.ArchiveFiles));
 
 app.get("/stats", AuthShield.verify, bg.Route(Routes.Stats));
 app.get("/settings", AuthShield.verify, bg.Route(Routes.Dashboard));
@@ -161,6 +162,7 @@ app.get(
   AuthShield.verify,
   bg.Route(Routes.NewspapersArchive)
 );
+app.get("/archive/files", AuthShield.verify, bg.Route(Routes.FilesArchive));
 
 app.post(
   "/schedule-feedly-articles-crawl",

@@ -4,5 +4,5 @@ CREATE TABLE "Files" (
     "name" TEXT NOT NULL,
     "size" INTEGER NOT NULL,
     "path" TEXT NOT NULL,
-    "sentAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "sentAt" INTEGER
 );

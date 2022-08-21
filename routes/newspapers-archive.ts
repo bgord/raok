@@ -25,6 +25,7 @@ export async function NewspapersArchive(
     archiveNewspapers: await Repos.NewspaperRepository.getAll(
       Repos.ArchiveNewspaperFilter.parse(request.query)
     ),
+    archiveFiles: [],
     articles: [],
     favouriteArticles: [],
     newspapers: [],

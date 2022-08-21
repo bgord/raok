@@ -16,6 +16,7 @@ export * from "./delete-old-articles";
 export * from "./disable-articles-to-review-notification";
 export * from "./enable-articles-to-review-notification";
 export * from "./favourite-articles";
+export * from "./files-archive";
 export * from "./home";
 export * from "./newspaper-read";
 export * from "./newspapers";

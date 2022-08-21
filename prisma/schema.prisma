@@ -42,7 +42,7 @@ model Files {
   name   String
   size   Int
   path   String
-  sentAt DateTime @default(now())
+  sentAt      Int?
 }
 
 model StatsKeyValue {
