@@ -1,6 +1,7 @@
 export * from "./add-article";
 export * from "./add-article-to-favourites";
 export * from "./archive-articles";
+export * from "./archive-files";
 export * from "./archive-newspaper";
 export * from "./archive-newspapers";
 export * from "./articles";
