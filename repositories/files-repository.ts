@@ -1,11 +1,19 @@
+import z from "zod";
 import * as bg from "@bgord/node";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
+import * as VO from "../value-objects";
 
 const prisma = new PrismaClient();
 
+export const ArchiveFilesFilter = new bg.Filter(
+  z.object({
+    sentAt: VO.TimeStampFilter,
+  })
+);
+
 export class FilesRepository {
-  static async getAll() {
-    return prisma.files.findMany();
+  static async getAll(filters?: Prisma.FilesWhereInput) {
+    return prisma.files.findMany({ where: filters });
   }
 
   static async add(
