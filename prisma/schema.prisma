@@ -37,6 +37,14 @@ model Article {
   Newspaper    Newspaper? @relation(fields: [newspaperId], references: [id])
 }
 
+model Files {
+  id     String   @id @default(uuid())
+  name   String
+  size   Int
+  path   String
+  sentAt DateTime @default(now())
+}
+
 model StatsKeyValue {
   id    String  @id @default(uuid())
   key   String? @unique(map: "sqlite_autoindex_StatsKeyValue_2")
