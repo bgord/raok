@@ -11,7 +11,12 @@ export const ArchiveFilesFilter = new bg.Filter(
 
 export class FilesRepository {
   static async getAll(filters?: Prisma.FilesWhereInput) {
-    return prisma.files.findMany({ where: filters });
+    const files = await prisma.files.findMany({ where: filters });
+
+    return files.map((file) => ({
+      ...file,
+      sentAt: bg.ComplexDate.falsy(file.sentAt),
+    }));
   }
 
   static async add(file: bg.Schema.UploadedFileType) {

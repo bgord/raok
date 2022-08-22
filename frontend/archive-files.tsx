@@ -141,12 +141,7 @@ export function ArchiveFiles(props: RoutableProps) {
         data-max-width="100%"
       >
         {files.map((file) => (
-          <li
-            data-fs="14"
-            data-display="flex"
-            data-gap="24"
-            data-max-width="100%"
-          >
+          <li data-fs="14" data-display="flex" data-max-width="100%">
             <strong
               data-transform="truncate"
               title={file.name}
@@ -154,8 +149,10 @@ export function ArchiveFiles(props: RoutableProps) {
             >
               {file.name}
             </strong>
-            <span data-ml="auto">{prettyBytes(file.size)}</span>
-            <span data-color="gray-400">{file.sentAt ?? "-"}</span>
+            <span data-ml="auto" data-mr="24" data-color="gray-400">
+              {file.sentAt?.relative}
+            </span>
+            <span>{prettyBytes(file.size)}</span>
           </li>
         ))}
       </ul>
