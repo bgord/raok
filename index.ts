@@ -116,6 +116,7 @@ app.post(
   ...bg.FileUploader.handle({
     autoClean: false,
     maxFilesSize: VO.MAX_UPLOADED_FILE_SIZE,
+    uploadDir: "files",
   }),
   bg.Route(Routes.SendArbitraryFile)
 );
