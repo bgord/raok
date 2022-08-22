@@ -1,6 +1,7 @@
 import z from "zod";
 import * as bg from "@bgord/node";
 import { Prisma, PrismaClient } from "@prisma/client";
+
 import * as VO from "../value-objects";
 
 const prisma = new PrismaClient();
@@ -17,6 +18,10 @@ export class FilesRepository {
       ...file,
       sentAt: bg.ComplexDate.falsy(file.sentAt),
     }));
+  }
+
+  static async getSingle(id: VO.FileIdType) {
+    return prisma.files.findFirst({ where: { id } });
   }
 
   static async add(file: bg.Schema.UploadedFileType) {
