@@ -399,8 +399,6 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   } catch (error) {
     Reporter.raw("Mailer error", error);
     Reporter.error(`File not sent [name=${file.originalFilename}]`);
-  } finally {
-    await fs.unlink(file.path);
   }
 });
 
