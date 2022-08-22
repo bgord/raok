@@ -134,12 +134,29 @@ export function ArchiveFiles(props: RoutableProps) {
         ))}
       </datalist>
 
-      <ul data-display="flex" data-direction="column" data-max-width="100%">
+      <ul
+        data-display="flex"
+        data-direction="column"
+        data-gap="12"
+        data-max-width="100%"
+      >
         {files.map((file) => (
-          <div data-display="flex" data-main="between">
-            <strong data-color="gray-600">{file.name}</strong>
-            <span>{prettyBytes(file.size)}</span>
-          </div>
+          <li
+            data-fs="14"
+            data-display="flex"
+            data-gap="24"
+            data-max-width="100%"
+          >
+            <strong
+              data-transform="truncate"
+              title={file.name}
+              data-color="gray-600"
+            >
+              {file.name}
+            </strong>
+            <span data-ml="auto">{prettyBytes(file.size)}</span>
+            <span data-color="gray-400">{file.sentAt ?? "-"}</span>
+          </li>
         ))}
       </ul>
     </main>
