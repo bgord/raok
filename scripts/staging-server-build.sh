@@ -109,6 +109,11 @@ info "Created newspapers directory"
 
 # ==========================================================
 
+mkdir $OUT_DIR/files
+info "Created files directory"
+
+# ==========================================================
+
 npx gzip build/static/*.js --extension=gz --extension=br
 npx gzip build/static/*.css --extension=gz --extension=br
 npx gzip build/static/*.png --extension=gz --extension=br
