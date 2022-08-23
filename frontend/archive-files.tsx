@@ -3,7 +3,7 @@ import prettyBytes from "pretty-bytes-es5";
 import { h } from "preact";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Search } from "iconoir-react";
+import { Search, Download } from "iconoir-react";
 
 import * as hooks from "./hooks";
 import * as UI from "./ui";
@@ -18,6 +18,7 @@ export type InitialArchiveFilesDataType = {
 
 export function ArchiveFiles(props: RoutableProps) {
   hooks.useLeavingPrompt();
+  const t = bg.useTranslations();
   const search = bg.useClientSearch();
 
   const sentAt = bg.useUrlFilter({
@@ -142,11 +143,12 @@ export function ArchiveFiles(props: RoutableProps) {
       >
         {files.map((file) => (
           <li
-            data-fs="14"
             data-display="flex"
-            data-max-width="100%"
+            data-cross="center"
             data-wrap="nowrap"
             data-md-wrap="wrap"
+            data-max-width="100%"
+            data-fs="14"
           >
             <strong
               data-transform="truncate"
@@ -159,6 +161,18 @@ export function ArchiveFiles(props: RoutableProps) {
               {file.sentAt?.relative}
             </span>
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
+
+            <bg.OutboundLink
+              href={`/files/archive/${file.id}/download`}
+              data-variant="bare"
+              class="c-link"
+              data-color="black"
+              data-transform="uppercase"
+              data-ml="12"
+              data-fw="700"
+            >
+              {t("app.download")}
+            </bg.OutboundLink>
           </li>
         ))}
       </ul>
