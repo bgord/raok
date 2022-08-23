@@ -161,7 +161,6 @@ export function ArchiveFiles(props: RoutableProps) {
               {file.sentAt?.relative}
             </span>
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
-
             <bg.OutboundLink
               href={`/files/archive/${file.id}/download`}
               data-variant="bare"

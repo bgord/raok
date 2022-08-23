@@ -11,16 +11,16 @@ export async function DownloadFile(
   _next: express.NextFunction
 ) {
   const fileId = bg.Schema.UUID.safeParse(request.params.fileId);
-  if (!fileId.success) return response.status(404).send("File doesn't exist");
+  if (!fileId.success) throw new bg.Errors.FileNotFoundError();
 
   const file = await Repos.FilesRepository.getSingle(fileId.data);
-  if (!file) return response.status(404).send("File doesn't exist");
+  if (!file) throw new bg.Errors.FileNotFoundError();
 
   try {
     const content = await fs.readFile(path.resolve(file.path));
 
     return response.download(content.toString());
   } catch (error) {
-    return response.status(404).send("File doesn't exist");
+    throw new bg.Errors.FileNotFoundError();
   }
 }

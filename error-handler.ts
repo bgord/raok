@@ -22,6 +22,10 @@ export class ErrorHandler {
       return response.redirect("/");
     }
 
+    if (error instanceof bg.Errors.FileNotFoundError) {
+      return response.status(404).send("File not found");
+    }
+
     if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
       return response
         .status(400)
