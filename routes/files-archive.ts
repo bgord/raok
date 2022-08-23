@@ -28,9 +28,9 @@ export async function FilesArchive(
     archiveFiles: await Repos.FilesRepository.getAll(
       Repos.ArchiveFilesFilter.parse(request.query)
     ),
-    articles: [],
+    articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(),
     favouriteArticles: [],
-    newspapers: [],
+    newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
     stats: await Repos.StatsRepository.getAll(),
   };
