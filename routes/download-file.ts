@@ -20,7 +20,7 @@ export async function DownloadFile(
     const filePath = path.resolve(file.path);
     await fs.access(filePath);
 
-    return response.download(filePath);
+    return response.download(filePath, file.name);
   } catch (error) {
     throw new bg.Errors.FileNotFoundError();
   }
