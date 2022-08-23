@@ -17,9 +17,10 @@ export async function DownloadFile(
   if (!file) throw new bg.Errors.FileNotFoundError();
 
   try {
-    const content = await fs.readFile(path.resolve(file.path));
+    const filePath = path.resolve(file.path);
+    await fs.access(filePath);
 
-    return response.download(content.toString());
+    return response.download(filePath);
   } catch (error) {
     throw new bg.Errors.FileNotFoundError();
   }
