@@ -58,18 +58,26 @@ export class ArticleRepository {
   }
 
   static async pagedGetAllNonProcessed(pagination?: bg.PaginationType) {
-    const articles = await prisma.article.findMany({
-      where: { status: VO.ArticleStatusEnum.ready },
-      select: {
-        id: true,
-        url: true,
-        source: true,
-        title: true,
-        createdAt: true,
-      },
-      orderBy: { createdAt: "desc" },
-      ...pagination,
-    });
+    const where = { status: VO.ArticleStatusEnum.ready };
+
+    const [total, articles] = await Promise.all([
+      prisma.article.count({ where }),
+      prisma.article.findMany({
+        where,
+        select: {
+          id: true,
+          url: true,
+          source: true,
+          title: true,
+          createdAt: true,
+        },
+        orderBy: { createdAt: "desc" },
+        ...pagination?.values,
+      }),
+    ]);
+
+    const exhausted = bg.Pagination.isExhausted({ total, pagination });
+    console.log({ exhausted });
 
     return articles.map((article) => ({
       ...article,
