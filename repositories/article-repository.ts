@@ -54,9 +54,7 @@ export class ArticleRepository {
   }
 
   static async getOld(marker: VO.ArticleOldMarkerType) {
-    return ArticleRepository.getAllNonProcessed({
-      createdAt: { lte: marker },
-    });
+    return ArticleRepository.getAllNonProcessed({ createdAt: { lte: marker } });
   }
 
   static async pagedGetAllNonProcessed(pagination?: bg.PaginationType) {
@@ -69,9 +67,7 @@ export class ArticleRepository {
         title: true,
         createdAt: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
       ...pagination,
     });
 
