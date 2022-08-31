@@ -5,6 +5,7 @@ import _ from "lodash";
 
 import * as Services from "../services";
 import * as VO from "../value-objects";
+import * as WIP from "../pagination";
 
 const prisma = new PrismaClient();
 
@@ -57,7 +58,7 @@ export class ArticleRepository {
     return ArticleRepository.getAllNonProcessed({ createdAt: { lte: marker } });
   }
 
-  static async pagedGetAllNonProcessed(pagination?: bg.PaginationType) {
+  static async pagedGetAllNonProcessed(pagination: WIP.PaginationType) {
     const where = { status: VO.ArticleStatusEnum.ready };
 
     const [total, articles] = await Promise.all([
@@ -72,7 +73,7 @@ export class ArticleRepository {
           createdAt: true,
         },
         orderBy: { createdAt: "desc" },
-        ...pagination?.values,
+        ...pagination.values,
       }),
     ]);
 
@@ -81,7 +82,7 @@ export class ArticleRepository {
       createdAt: bg.ComplexDate.truthy(article.createdAt),
     }));
 
-    return bg.Pagination.prepare({ total, pagination, result });
+    return WIP.Pagination.prepare({ total, pagination, result });
   }
 
   static async getNumberOfNonProcessed() {
