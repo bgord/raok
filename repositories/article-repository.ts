@@ -76,14 +76,12 @@ export class ArticleRepository {
       }),
     ]);
 
-    const exhausted = bg.Pagination.isExhausted({ total, pagination });
-
     const result = articles.map((article) => ({
       ...article,
       createdAt: bg.ComplexDate.truthy(article.createdAt),
     }));
 
-    return { result, exhausted };
+    return bg.Pagination.prepare({ total, pagination, result });
   }
 
   static async getNumberOfNonProcessed() {
