@@ -1,6 +1,6 @@
 import express from "express";
 import render from "preact-render-to-string";
-import { Language } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
@@ -12,7 +12,7 @@ export async function ArticlesArchive(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const translations = await Language.getTranslations(
+  const translations = await bg.Language.getTranslations(
     request.language,
     request.translationsPath
   );
@@ -26,7 +26,7 @@ export async function ArticlesArchive(
     ),
     archiveNewspapers: [],
     archiveFiles: [],
-    articles: { result: [], exhausted: true },
+    articles: bg.Pagination.empty,
     favouriteArticles: [],
     newspapers: [],
     settings: await Repos.SettingsRepository.getAll(),
