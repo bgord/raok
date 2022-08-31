@@ -4,6 +4,7 @@ import * as bg from "@bgord/node";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
+import * as WIP from "../pagination";
 
 import { App } from "../frontend/app";
 
@@ -26,7 +27,7 @@ export async function ArticlesArchive(
     ),
     archiveNewspapers: [],
     archiveFiles: [],
-    articles: bg.Pagination.empty,
+    articles: WIP.Pagination.empty,
     favouriteArticles: [],
     newspapers: [],
     settings: await Repos.SettingsRepository.getAll(),

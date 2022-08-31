@@ -2,13 +2,14 @@ import express from "express";
 import * as bg from "@bgord/node";
 
 import * as Repos from "../repositories";
+import * as WIP from "../pagination";
 
 export async function Articles(
   request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const pagination = bg.Pagination.parse(request.query);
+  const pagination = WIP.Pagination.parse(request.query);
   const articles = await Repos.ArticleRepository.pagedGetAllNonProcessed(
     pagination
   );

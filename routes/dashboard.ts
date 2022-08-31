@@ -4,6 +4,7 @@ import * as bg from "@bgord/node";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
+import * as WIP from "../pagination";
 
 import { App } from "../frontend/app";
 
@@ -17,7 +18,7 @@ export async function Dashboard(
     request.translationsPath
   );
 
-  const pagination = bg.Pagination.parse(request.query);
+  const pagination = WIP.Pagination.parse(request.query);
 
   const state = {
     ...Repos.BuildRepository.getAll(),

@@ -4,6 +4,7 @@ import { Language } from "@bgord/node";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
+import * as WIP from "../pagination";
 
 import { App } from "../frontend/app";
 
@@ -28,7 +29,9 @@ export async function FilesArchive(
     archiveFiles: await Repos.FilesRepository.getAll(
       Repos.ArchiveFilesFilter.parse(request.query)
     ),
-    articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(),
+    articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(
+      WIP.Pagination.getFirstPage({ take: 10 })
+    ),
     favouriteArticles: [],
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
