@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { Schema } from "@bgord/node";
 
-const Take = z.number().int().positive().default(10);
+const Take = z.number().int().positive();
 type TakeType = z.infer<typeof Take>;
 
 const Skip = z.number().int().positive();
@@ -32,7 +32,7 @@ export type PaginationPrepareConfigType<T> = {
 };
 
 export class Pagination {
-  static parse(values: PaginationValuesType, _take?: TakeType): PaginationType {
+  static parse(values: PaginationValuesType, _take: TakeType): PaginationType {
     const page = Page.parse(values.page);
     const take = Take.parse(_take);
 
