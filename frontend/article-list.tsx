@@ -24,13 +24,10 @@ export function ArticleList() {
   const _articles = useInfiniteQuery(
     "articles",
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
-    {
-      getNextPageParam: (last, all) =>
-        last.length > 0 ? all.length + 1 : undefined,
-    }
+    { getNextPageParam: (last) => last.meta.nextPage }
   );
 
-  const articles = _articles.data?.pages?.flat() ?? [];
+  const articles = bg.Pagination.extract(_articles);
 
   return (
     <section>
@@ -106,13 +103,11 @@ export function ArticleList() {
               event.preventDefault();
 
               if (selectedArticleIds.length === 0) {
-                emptyNewspaperError.enable();
-                return;
+                return emptyNewspaperError.enable();
               }
 
               emptyNewspaperError.disable();
-
-              createNewspaper.mutate(selectedArticleIds);
+              return createNewspaper.mutate(selectedArticleIds);
             }}
           >
             {emptyNewspaperError.on && (

@@ -57,7 +57,7 @@ export class ArticleRepository {
     return ArticleRepository.getAllNonProcessed({ createdAt: { lte: marker } });
   }
 
-  static async pagedGetAllNonProcessed(pagination?: bg.PaginationType) {
+  static async pagedGetAllNonProcessed(pagination: bg.PaginationType) {
     const where = { status: VO.ArticleStatusEnum.ready };
 
     const [total, articles] = await Promise.all([
@@ -72,17 +72,16 @@ export class ArticleRepository {
           createdAt: true,
         },
         orderBy: { createdAt: "desc" },
-        ...pagination?.values,
+        ...pagination.values,
       }),
     ]);
 
-    const exhausted = bg.Pagination.isExhausted({ total, pagination });
-    console.log({ exhausted });
-
-    return articles.map((article) => ({
+    const result = articles.map((article) => ({
       ...article,
       createdAt: bg.ComplexDate.truthy(article.createdAt),
     }));
+
+    return bg.Pagination.prepare({ total, pagination, result });
   }
 
   static async getNumberOfNonProcessed() {

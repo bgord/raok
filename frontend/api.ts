@@ -1,4 +1,4 @@
-import { FilterUrl, FilterType } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 import { ServerError } from "./server-error";
 import type { PageType } from "@bgord/node";
 
@@ -25,9 +25,9 @@ export async function getNewspapers(): Promise<types.NewspaperType[]> {
 }
 
 export async function getArchiveNewspapers(
-  filters?: FilterType
+  filters?: bg.FilterType
 ): Promise<types.NewspaperType[]> {
-  const url = new FilterUrl("/newspapers/archive", filters).value;
+  const url = new bg.FilterUrl("/newspapers/archive", filters).value;
 
   return _api(url).then((response) => (response.ok ? response.json() : []));
 }
@@ -74,9 +74,9 @@ export async function getStats(): Promise<types.StatsType> {
 
 export async function getPagedArticles(
   page: PageType
-): Promise<types.ArticleType[]> {
+): Promise<bg.Paged<types.ArticleType>> {
   return _api(`/articles?page=${page}`, { method: "GET" }).then((response) =>
-    response.ok ? response.json() : []
+    response.ok ? response.json() : bg.Pagination.empty
   );
 }
 
@@ -139,9 +139,9 @@ export async function deleteAllArticles() {
 }
 
 export async function getArchiveArticles(
-  filters?: FilterType
+  filters?: bg.FilterType
 ): Promise<types.ArchiveArticleType[]> {
-  const url = new FilterUrl("/articles/archive", filters).value;
+  const url = new bg.FilterUrl("/articles/archive", filters).value;
 
   return _api(url, { method: "GET" }).then((response) =>
     response.ok ? response.json() : []
@@ -149,9 +149,9 @@ export async function getArchiveArticles(
 }
 
 export async function getArchiveFiles(
-  filters?: FilterType
+  filters?: bg.FilterType
 ): Promise<types.ArchiveFileType[]> {
-  const url = new FilterUrl("/files/archive", filters).value;
+  const url = new bg.FilterUrl("/files/archive", filters).value;
 
   return _api(url, { method: "GET" }).then((response) =>
     response.ok ? response.json() : []

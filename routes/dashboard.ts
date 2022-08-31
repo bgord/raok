@@ -2,6 +2,7 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
+import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Repos from "../repositories";
 
@@ -17,7 +18,7 @@ export async function Dashboard(
     request.translationsPath
   );
 
-  const pagination = bg.Pagination.parse(request.query);
+  const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
 
   const state = {
     ...Repos.BuildRepository.getAll(),

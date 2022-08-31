@@ -18,7 +18,7 @@ import {
 
 export type InitialDashboardDataType = {
   stats: StatsType;
-  articles: ArticleType[];
+  articles: bg.Paged<ArticleType>;
   newspapers: NewspaperType[];
   favouriteArticles: FavouriteArticleType[];
 };

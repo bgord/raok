@@ -30,7 +30,7 @@ export enum NewspaperStatusEnum {
 export type ArticlePayloadType = Pick<Article, "url">;
 export type ArticleType = AsyncReturnType<
   typeof ArticleRepository["pagedGetAllNonProcessed"]
->[0];
+>["result"][0];
 
 export type ArchiveArticleType = AsyncReturnType<
   typeof ArticleRepository["getAll"]
