@@ -2,7 +2,6 @@ import { h } from "preact";
 import { useMutation, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 import { Notes, Refresh } from "iconoir-react";
-import { Paged } from "../pagination";
 
 import * as UI from "./ui";
 import * as api from "./api";

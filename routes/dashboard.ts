@@ -5,7 +5,6 @@ import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Repos from "../repositories";
-import * as WIP from "../pagination";
 
 import { App } from "../frontend/app";
 
@@ -19,7 +18,7 @@ export async function Dashboard(
     request.translationsPath
   );
 
-  const pagination = WIP.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
+  const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
 
   const state = {
     ...Repos.BuildRepository.getAll(),

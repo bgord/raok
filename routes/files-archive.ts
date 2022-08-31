@@ -1,11 +1,10 @@
 import express from "express";
 import render from "preact-render-to-string";
-import { Language } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Repos from "../repositories";
-import * as WIP from "../pagination";
 
 import { App } from "../frontend/app";
 
@@ -14,7 +13,7 @@ export async function FilesArchive(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const translations = await Language.getTranslations(
+  const translations = await bg.Language.getTranslations(
     request.language,
     request.translationsPath
   );
@@ -31,7 +30,7 @@ export async function FilesArchive(
       Repos.ArchiveFilesFilter.parse(request.query)
     ),
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(
-      WIP.Pagination.getFirstPage({ take: VO.ARTICLES_PER_PAGE })
+      bg.Pagination.getFirstPage({ take: VO.ARTICLES_PER_PAGE })
     ),
     favouriteArticles: [],
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),

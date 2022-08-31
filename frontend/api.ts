@@ -1,7 +1,6 @@
 import * as bg from "@bgord/frontend";
 import { ServerError } from "./server-error";
 import type { PageType } from "@bgord/node";
-import type { Paged } from "../pagination";
 
 import * as types from "./types";
 
@@ -75,7 +74,7 @@ export async function getStats(): Promise<types.StatsType> {
 
 export async function getPagedArticles(
   page: PageType
-): Promise<Paged<types.ArticleType>> {
+): Promise<bg.Paged<types.ArticleType>> {
   return _api(`/articles?page=${page}`, { method: "GET" }).then((response) =>
     response.ok ? response.json() : bg.Pagination.empty
   );
