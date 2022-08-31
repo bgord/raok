@@ -26,7 +26,7 @@ export function ArticleList() {
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
     {
       getNextPageParam: (last, all) =>
-        last.exhausted ? undefined : all.length + 1,
+        last.meta.exhausted ? undefined : all.length + 1,
     }
   );
 
