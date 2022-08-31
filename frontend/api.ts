@@ -74,9 +74,9 @@ export async function getStats(): Promise<types.StatsType> {
 
 export async function getPagedArticles(
   page: PageType
-): Promise<types.ArticleType[]> {
+): Promise<{ result: types.ArticleType[]; exhausted: boolean }> {
   return _api(`/articles?page=${page}`, { method: "GET" }).then((response) =>
-    response.ok ? response.json() : []
+    response.ok ? response.json() : { result: [], exhausted: true }
   );
 }
 

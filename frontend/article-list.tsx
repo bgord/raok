@@ -26,11 +26,15 @@ export function ArticleList() {
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
     {
       getNextPageParam: (last, all) =>
-        last.length > 0 ? all.length + 1 : undefined,
+        last.exhausted ? undefined : all.length + 1,
     }
   );
 
-  const articles = _articles.data?.pages?.flat() ?? [];
+  const articles =
+    _articles.data?.pages
+      ?.flat()
+      .map((data) => data.result)
+      .flat() ?? [];
 
   return (
     <section>
@@ -106,8 +110,7 @@ export function ArticleList() {
               event.preventDefault();
 
               if (selectedArticleIds.length === 0) {
-                emptyNewspaperError.enable();
-                return;
+                return emptyNewspaperError.enable();
               }
 
               emptyNewspaperError.disable();

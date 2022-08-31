@@ -18,7 +18,7 @@ import {
 
 export type InitialDashboardDataType = {
   stats: StatsType;
-  articles: ArticleType[];
+  articles: { result: ArticleType[]; exhausted: boolean };
   newspapers: NewspaperType[];
   favouriteArticles: FavouriteArticleType[];
 };
