@@ -41,20 +41,29 @@ export class Pagination {
     return { values: { take, skip }, page };
   }
 
-  static prepare<T>(config: PaginationPrepareConfigType<T>) {
+  static prepare<T>(config: PaginationPrepareConfigType<T>): Paged<T> {
     const exhausted = Pagination.isExhausted(config);
+
+    const currentPage = config.pagination.page;
+    const lastPage = Pagination.getLastPage(config);
+
+    const nextPage = currentPage < lastPage ? currentPage + 1 : undefined;
 
     return {
       result: config.result,
-      meta: { exhausted, currentPage: config.pagination.page },
+      meta: { exhausted, currentPage, nextPage, lastPage },
     };
   }
 
   static isExhausted(config: PaginationExhaustedConfig): ExhaustedType {
-    const lastPage = Math.ceil(config.total / config.pagination.values.take);
+    const lastPage = Pagination.getLastPage(config);
     const currentPage = config.pagination.page;
 
     return lastPage <= currentPage;
+  }
+
+  private static getLastPage(config: PaginationExhaustedConfig): PageType {
+    return Math.ceil(config.total / config.pagination.values.take);
   }
 
   static empty = { result: [], meta: { exhausted: true } };
@@ -64,4 +73,12 @@ export class Pagination {
   }
 }
 
-export type Paged<T> = { result: T[]; meta: { exhausted: ExhaustedType } };
+export type Paged<T> = {
+  result: T[];
+  meta: {
+    exhausted: ExhaustedType;
+    currentPage: PageType;
+    nextPage: PageType | undefined;
+    lastPage: PageType;
+  };
+};

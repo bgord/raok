@@ -24,10 +24,7 @@ export function ArticleList() {
   const _articles = useInfiniteQuery(
     "articles",
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
-    {
-      getNextPageParam: (last, all) =>
-        last.meta.exhausted ? undefined : all.length + 1,
-    }
+    { getNextPageParam: (last) => last.meta.nextPage }
   );
 
   const articles =
