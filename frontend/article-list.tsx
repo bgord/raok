@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useMutation, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 import { Notes, Refresh } from "iconoir-react";
+import { Paged } from "../pagination";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -27,11 +28,7 @@ export function ArticleList() {
     { getNextPageParam: (last) => last.meta.nextPage }
   );
 
-  const articles =
-    _articles.data?.pages
-      ?.flat()
-      .map((data) => data.result)
-      .flat() ?? [];
+  const articles = bg.Pagination.extract(_articles);
 
   return (
     <section>
@@ -111,8 +108,7 @@ export function ArticleList() {
               }
 
               emptyNewspaperError.disable();
-
-              createNewspaper.mutate(selectedArticleIds);
+              return createNewspaper.mutate(selectedArticleIds);
             }}
           >
             {emptyNewspaperError.on && (
