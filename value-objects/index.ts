@@ -9,6 +9,7 @@ export * from "./article-source";
 export * from "./article-status";
 export * from "./article-title";
 export * from "./article-url";
+export * from "./articles-per-page";
 export * from "./feedly-article";
 export * from "./feedly-article-id";
 export * from "./feedly-crawling-interval-hours";
