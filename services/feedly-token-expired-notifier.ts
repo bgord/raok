@@ -48,8 +48,8 @@ export class FeedlyTokenExpiredNotifier {
     await mailer.send({
       from: Env.EMAIL_FROM,
       to: Env.EMAIL_FOR_NOTIFICATIONS,
-      subject: `[raok] - feedly token has expired`,
-      html: `Check https://feedly.com/v3/auth/dev to generate it, remember to change the env files.`,
+      subject: `[raok] - FEEDLY_TOKEN has expired`,
+      html: `Check out scripts/feedly-token:regenerate.sh to regenerate the FEEDLY_TOKEN.`,
     });
   }
 }
