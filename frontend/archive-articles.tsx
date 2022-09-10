@@ -2,11 +2,10 @@ import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Search } from "iconoir-react";
+import { Search, Cancel } from "iconoir-react";
 
 import * as hooks from "./hooks";
 import * as UI from "./ui";
-import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
 import { TimestampFiltersEnum } from "./filters";
@@ -184,7 +183,7 @@ export function ArchiveArticles(props: RoutableProps) {
           data-ml="6"
           data-mr="auto"
         >
-          <Icons.Close />
+          <Cancel width="24" height="24" />
         </button>
       </div>
 

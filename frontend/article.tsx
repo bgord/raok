@@ -1,9 +1,9 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
+import { RemoveSquare } from "iconoir-react";
 
 import * as UI from "./ui";
-import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
 
@@ -103,7 +103,7 @@ export function Article(props: ArticlePropsType) {
           }}
         >
           <button type="submit" class="c-button" data-variant="bare">
-            <Icons.Trash />
+            <RemoveSquare width="24" height="24" />
           </button>
         </form>
       </div>

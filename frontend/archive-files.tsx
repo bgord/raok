@@ -3,11 +3,10 @@ import prettyBytes from "pretty-bytes-es5";
 import { h } from "preact";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Search, Download } from "iconoir-react";
+import { Search, Download, Cancel } from "iconoir-react";
 
 import * as hooks from "./hooks";
 import * as UI from "./ui";
-import * as Icons from "./icons";
 import * as api from "./api";
 import * as types from "./types";
 import { TimestampFiltersEnum } from "./filters";
@@ -125,7 +124,7 @@ export function ArchiveFiles(props: RoutableProps) {
             data-ml="6"
             data-mr="auto"
           >
-            <Icons.Close />
+            <Cancel width="24" height="24" />
           </button>
         </div>
       </div>
