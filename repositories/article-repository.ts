@@ -58,7 +58,7 @@ export class ArticleRepository {
   static async pagedGetAllNonProcessed(pagination: bg.PaginationType) {
     const where = { status: VO.ArticleStatusEnum.ready };
 
-    const [total, articles] = await Promise.all([
+    const [total, articles] = await db.$transaction([
       db.article.count({ where }),
       db.article.findMany({
         where,
