@@ -2,7 +2,7 @@ import * as z from "zod";
 import * as bg from "@bgord/node";
 import { format, formatDistanceStrict } from "date-fns";
 
-import { Prisma, db } from "../db";
+import { Prisma, db, Newspaper, Article } from "../db";
 import * as VO from "../value-objects";
 
 export const ArchiveNewspaperFilter = new bg.Filter(
