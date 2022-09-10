@@ -1,10 +1,8 @@
 import z from "zod";
 import * as bg from "@bgord/node";
-import { Prisma, PrismaClient } from "@prisma/client";
+import { db, Prisma } from "../db";
 
 import * as VO from "../value-objects";
-
-const prisma = new PrismaClient();
 
 export const ArchiveFilesFilter = new bg.Filter(
   z.object({ sentAt: VO.TimeStampFilter })
@@ -12,7 +10,7 @@ export const ArchiveFilesFilter = new bg.Filter(
 
 export class FilesRepository {
   static async getAll(filters?: Prisma.FilesWhereInput) {
-    const files = await prisma.files.findMany({ where: filters });
+    const files = await db.files.findMany({ where: filters });
 
     return files.map((file) => ({
       ...file,
@@ -21,11 +19,11 @@ export class FilesRepository {
   }
 
   static async getSingle(id: VO.FileIdType) {
-    return prisma.files.findFirst({ where: { id } });
+    return db.files.findFirst({ where: { id } });
   }
 
   static async add(file: bg.Schema.UploadedFileType) {
-    return prisma.files.create({
+    return db.files.create({
       data: {
         name: file.originalFilename,
         size: file.size,

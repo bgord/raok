@@ -1,11 +1,9 @@
 import * as z from "zod";
 import * as bg from "@bgord/node";
-import { Prisma, PrismaClient, Newspaper, Article } from "@prisma/client";
 import { format, formatDistanceStrict } from "date-fns";
 
+import { Prisma, db } from "../db";
 import * as VO from "../value-objects";
-
-const prisma = new PrismaClient();
 
 export const ArchiveNewspaperFilter = new bg.Filter(
   z.object({
@@ -18,7 +16,7 @@ export class NewspaperRepository {
   static async getAll(filters?: Prisma.NewspaperWhereInput) {
     const { status, ...rest } = filters ?? {};
 
-    const result = await prisma.newspaper.findMany({
+    const result = await db.newspaper.findMany({
       where: {
         status: filters?.status ?? {
           in: [
@@ -52,7 +50,7 @@ export class NewspaperRepository {
   }
 
   static async getAllNonArchived() {
-    const result = await prisma.newspaper.findMany({
+    const result = await db.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { scheduledAt: "desc" },
       select: {
@@ -77,7 +75,7 @@ export class NewspaperRepository {
   }
 
   static async getById(newspaperId: VO.NewspaperIdType) {
-    const result = await prisma.newspaper.findFirst({
+    const result = await db.newspaper.findFirst({
       where: { id: newspaperId },
       include: { articles: true },
     });
@@ -90,7 +88,7 @@ export class NewspaperRepository {
     status: VO.NewspaperType["status"];
     scheduledAt: VO.NewspaperType["scheduledAt"];
   }) {
-    return prisma.newspaper.upsert({
+    return db.newspaper.upsert({
       create: newspaper,
       update: { status: newspaper.status },
       where: { id: newspaper.id },
@@ -101,7 +99,7 @@ export class NewspaperRepository {
     newspaperId: VO.NewspaperType["id"],
     status: VO.NewspaperType["status"]
   ) {
-    return prisma.newspaper.updateMany({
+    return db.newspaper.updateMany({
       where: { id: newspaperId },
       data: { status },
     });
@@ -111,7 +109,7 @@ export class NewspaperRepository {
     newspaperId: VO.NewspaperType["id"],
     sentAt: VO.NewspaperType["sentAt"]
   ) {
-    return prisma.newspaper.updateMany({
+    return db.newspaper.updateMany({
       where: { id: newspaperId },
       data: { sentAt },
     });

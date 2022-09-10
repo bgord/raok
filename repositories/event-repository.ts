@@ -1,10 +1,8 @@
 import { z } from "zod";
-import { PrismaClient } from "@prisma/client";
 import { EventType } from "@bgord/node";
+import { db } from "../db";
 
 import * as Events from "../events";
-
-const prisma = new PrismaClient();
 
 type AcceptedEvent =
   | typeof Events.ArticleAddedEvent
@@ -37,7 +35,7 @@ export class EventRepository {
       (acceptedEvent) => acceptedEvent._def.shape().name._def.value
     );
 
-    const events = await prisma.event.findMany({
+    const events = await db.event.findMany({
       where: { name: { in: acceptedEventNames }, stream },
       orderBy: { createdAt: "asc" },
     });
@@ -61,7 +59,7 @@ export class EventRepository {
   }
 
   static async save(event: AcceptedEventType) {
-    await prisma.event.create({
+    await db.event.create({
       data: { ...event, payload: JSON.stringify(event.payload) },
     });
 

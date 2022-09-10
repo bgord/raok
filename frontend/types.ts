@@ -1,4 +1,4 @@
-import type { Article } from "@prisma/client";
+import type { Article } from "../db";
 import type { AsyncReturnType } from "@bgord/node";
 import type { BaseToastType } from "@bgord/frontend";
 

@@ -1,25 +1,23 @@
 import * as bg from "@bgord/node";
-import { PrismaClient } from "@prisma/client";
+import { db } from "../db";
 
 import { ArticleRepository } from "./article-repository";
 
-const prisma = new PrismaClient();
-
 export class StatsRepository {
   static async getAll() {
-    const createdArticles = await prisma.statsKeyValue.findFirst({
+    const createdArticles = await db.statsKeyValue.findFirst({
       where: { key: "createdArticles" },
     });
 
-    const sentNewspapers = await prisma.statsKeyValue.findFirst({
+    const sentNewspapers = await db.statsKeyValue.findFirst({
       where: { key: "sentNewspapers" },
     });
 
-    const lastFeedlyImport = await prisma.statsKeyValue.findFirst({
+    const lastFeedlyImport = await db.statsKeyValue.findFirst({
       where: { key: "lastFeedlyImport" },
     });
 
-    const lastFeedlyTokenExpiredError = await prisma.statsKeyValue.findFirst({
+    const lastFeedlyTokenExpiredError = await db.statsKeyValue.findFirst({
       where: { key: "lastFeedlyTokenExpiredError" },
     });
 
@@ -32,7 +30,7 @@ export class StatsRepository {
   }
 
   static async incrementCreatedArticles() {
-    return prisma.statsKeyValue.upsert({
+    return db.statsKeyValue.upsert({
       where: { key: "createdArticles" },
       update: { value: { increment: 1 } },
       create: { key: "createdArticles", value: 1 },
@@ -40,7 +38,7 @@ export class StatsRepository {
   }
 
   static async incrementSentNewspapers() {
-    return prisma.statsKeyValue.upsert({
+    return db.statsKeyValue.upsert({
       where: { key: "sentNewspapers" },
       update: { value: { increment: 1 } },
       create: { key: "sentNewspapers", value: 1 },
@@ -48,7 +46,7 @@ export class StatsRepository {
   }
 
   static async updateLastFeedlyImport(timestamp: number) {
-    return prisma.statsKeyValue.upsert({
+    return db.statsKeyValue.upsert({
       where: { key: "lastFeedlyImport" },
       update: { value: timestamp },
       create: { key: "lastFeedlyImport", value: timestamp },
@@ -56,7 +54,7 @@ export class StatsRepository {
   }
 
   static async updateLastFeedlyTokenExpiredError(timestamp: number) {
-    return prisma.statsKeyValue.upsert({
+    return db.statsKeyValue.upsert({
       where: { key: "lastFeedlyTokenExpiredError" },
       update: { value: timestamp },
       create: { key: "lastFeedlyTokenExpiredError", value: timestamp },
