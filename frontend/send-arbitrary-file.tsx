@@ -5,7 +5,7 @@ import { useFile, UseFileState, useToastTrigger } from "@bgord/frontend";
 import { Book } from "iconoir-react";
 
 import * as api from "./api";
-import { MAX_UPLOADED_FILE_SIZE } from "../value-objects/max-uploaded-file-size";
+import { MAX_UPLOADED_FILE_SIZE_BYTES } from "../value-objects/max-uploaded-file-size";
 import { Header } from "./ui";
 
 export function SendArbitraryFile() {
@@ -15,7 +15,7 @@ export function SendArbitraryFile() {
     onSuccess: () => notify({ message: "file.sent" }),
   });
 
-  const file = useFile({ maxSize: MAX_UPLOADED_FILE_SIZE });
+  const file = useFile({ maxSize: MAX_UPLOADED_FILE_SIZE_BYTES });
 
   return (
     <form
@@ -99,7 +99,8 @@ export function SendArbitraryFile() {
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
         file.state === UseFileState.idle && (
           <small data-mt="24" data-fs="14" data-color="gray-600">
-            Select a file to send, up to {prettyBytes(MAX_UPLOADED_FILE_SIZE)}
+            Select a file to send, up to{" "}
+            {prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES)}
           </small>
         )}
       {fileUpload.isIdle && file.state === UseFileState.selected && (

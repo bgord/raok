@@ -1,1 +1,1 @@
-export const MAX_UPLOADED_FILE_SIZE = 50_000_000; // 50 MB
+export const MAX_UPLOADED_FILE_SIZE_BYTES = 50_000_000; // 50 MB

@@ -115,7 +115,7 @@ app.post(
   AuthShield.verify,
   ...bg.FileUploader.handle({
     autoClean: false,
-    maxFilesSize: VO.MAX_UPLOADED_FILE_SIZE,
+    maxFilesSize: VO.MAX_UPLOADED_FILE_SIZE_BYTES,
     uploadDir: "files",
   }),
   bg.Route(Routes.SendArbitraryFile)
