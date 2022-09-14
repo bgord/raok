@@ -27,6 +27,33 @@ export function Article(props: ArticlePropsType) {
     },
   });
 
+  type CopyTextType = string;
+  type OnCopyFailureType = (error?: unknown) => void;
+  type OnCopySuccessType = VoidFunction;
+
+  const defaultOnCopyFailure: OnCopyFailureType = (error) =>
+    console.warn("Copying to clipboard not supported");
+
+  type CopyOptionsType = {
+    text: string;
+    onFailure?: OnCopyFailureType;
+    onSuccess?: OnCopySuccessType;
+  };
+
+  async function copy(options: CopyOptionsType) {
+    const onFailure = options.onFailure ?? defaultOnCopyFailure;
+    const onSuccess = options.onSuccess ?? bg.noop;
+
+    if (!navigator.clipboard) onFailure();
+
+    try {
+      await navigator.clipboard.writeText(options.text);
+      onSuccess();
+    } catch (error) {
+      onFailure(error);
+    }
+  }
+
   return (
     <li
       data-display="flex"
@@ -100,7 +127,12 @@ export function Article(props: ArticlePropsType) {
             class="c-button"
             data-variant="bare"
             data-mr="6"
-            onClick={() => console.log("xd")}
+            onClick={() =>
+              copy({
+                text: props.url,
+                onSuccess: () => notify({ message: "article.url.copied" }),
+              })
+            }
           >
             <Copy width="24" height="24" />
           </button>
