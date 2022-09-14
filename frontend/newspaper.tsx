@@ -83,18 +83,18 @@ export function Newspaper(props: NewspaperProps) {
       >
         <div data-display="flex" data-mt="12" data-mb="6">
           {["delivered", "error"].includes(props.status) && (
-            <form
+            <button
+              type="submit"
+              class="c-button"
+              data-variant="secondary"
               data-mr="12"
-              onSubmit={(event) => {
-                event.preventDefault();
+              onClick={() => {
                 resendNewspaper.mutate(props.id);
                 details.disable();
               }}
             >
-              <button type="submit" class="c-button" data-variant="secondary">
-                {t("newspaper.resend")}
-              </button>
-            </form>
+              {t("newspaper.resend")}
+            </button>
           )}
 
           {["delivered", "error"].includes(props.status) && (
@@ -164,7 +164,7 @@ function useAutoUpdateNewspaper(
 }
 
 function ArchiveNewspaper(props: {
-  id: NewspaperType["id"] & h.JSX.IntrinsicElements["form"];
+  id: NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
 }) {
   const t = bg.useTranslations();
 
@@ -181,22 +181,19 @@ function ArchiveNewspaper(props: {
   });
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        archiveNewspaper.mutate(id);
-      }}
-      {...rest}
+    <button
+      type="submit"
+      class="c-button"
+      data-variant="secondary"
+      onClick={() => archiveNewspaper.mutate(id)}
     >
-      <button type="submit" class="c-button" data-variant="secondary">
-        {t("newspaper.archive")}
-      </button>
-    </form>
+      {t("newspaper.archive")}
+    </button>
   );
 }
 
 function CancelNewspaper(props: {
-  id: NewspaperType["id"] & h.JSX.IntrinsicElements["form"];
+  id: NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
 }) {
   const { id, ...rest } = props;
 
@@ -212,17 +209,15 @@ function CancelNewspaper(props: {
   });
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        cancelNewspaper.mutate(id);
-      }}
+    <button
+      type="submit"
+      class="c-button"
+      data-variant="secondary"
+      onClick={() => cancelNewspaper.mutate(id)}
       {...rest}
     >
-      <button type="submit" class="c-button" data-variant="secondary">
-        {t("newspaper.cancel")}
-      </button>
-    </form>
+      {t("newspaper.cancel")}
+    </button>
   );
 }
 

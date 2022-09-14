@@ -94,18 +94,16 @@ export function Article(props: ArticlePropsType) {
       >
         <UI.Badge>{props.source}</UI.Badge>
 
-        <form
+        <button
+          type="submit"
+          class="c-button"
+          data-variant="bare"
           data-ml="auto"
           data-md-ml="6"
-          onSubmit={(event) => {
-            event.preventDefault();
-            deleteArticle.mutate(props.id);
-          }}
+          onClick={() => deleteArticle.mutate(props.id)}
         >
-          <button type="submit" class="c-button" data-variant="bare">
-            <RemoveSquare width="24" height="24" />
-          </button>
-        </form>
+          <RemoveSquare width="24" height="24" />
+        </button>
       </div>
     </li>
   );
