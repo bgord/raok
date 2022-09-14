@@ -1,10 +1,7 @@
 import Router from "preact-router";
 import { h } from "preact";
 import { QueryClient, QueryClientProvider } from "react-query";
-import {
-  ToastsContextProvider,
-  TranslationsContextProvider,
-} from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 import type { Schema, TranslationsType } from "@bgord/node";
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
 
@@ -54,8 +51,8 @@ export function App(props: InitialDataType) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TranslationsContextProvider translations={props.translations}>
-        <ToastsContextProvider>
+      <bg.TranslationsContextProvider translations={props.translations}>
+        <bg.ToastsContextProvider>
           <SkipNavLink as="a" />
           <Navigation />
           <SkipNavContent as="div" />
@@ -69,8 +66,8 @@ export function App(props: InitialDataType) {
           </Router>
 
           <Toasts />
-        </ToastsContextProvider>
-      </TranslationsContextProvider>
+        </bg.ToastsContextProvider>
+      </bg.TranslationsContextProvider>
     </QueryClientProvider>
   );
 }

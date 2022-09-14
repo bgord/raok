@@ -1,19 +1,19 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
-import { useToastTrigger, useTranslations, useField } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
 import { ServerError } from "./server-error";
 import { ArticleType } from "./types";
 
 export function AddArticleForm() {
-  const t = useTranslations();
+  const t = bg.useTranslations();
 
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
-  const url = useField<ArticleType["url"]>("");
+  const url = bg.useField<ArticleType["url"]>("");
 
   const addArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {

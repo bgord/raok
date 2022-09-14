@@ -1,11 +1,11 @@
-import { Time } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 export function hasNewspaperStalled(config: {
   status: string;
   scheduledAt: number;
 }) {
   const now = Date.now();
-  const cutoff = new Time.Minutes(10).toMs();
+  const cutoff = new bg.Time.Minutes(10).toMs();
 
   const hasCutoffPassed = now - config.scheduledAt > cutoff;
 

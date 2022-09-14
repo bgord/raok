@@ -1,6 +1,6 @@
 import type { Article } from "../db";
 import type { AsyncReturnType } from "@bgord/node";
-import type { BaseToastType } from "@bgord/frontend";
+import type * as bg from "@bgord/frontend";
 
 import type { ArticleRepository } from "../repositories/article-repository";
 import type { NewspaperRepository } from "../repositories/newspaper-repository";
@@ -47,7 +47,7 @@ export type NewspaperType = AsyncReturnType<
 export type StatsType = AsyncReturnType<typeof StatsRepository["getAll"]>;
 export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
 
-export type ToastType = BaseToastType & {
+export type ToastType = bg.BaseToastType & {
   articleId?: ArticleType["id"] | null;
   articleTitle?: ArticleType["title"] | null;
 };

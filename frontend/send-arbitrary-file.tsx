@@ -1,7 +1,7 @@
 import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
 import prettyBytes from "pretty-bytes-es5";
-import { useFile, UseFileState, useToastTrigger } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 import { Book } from "iconoir-react";
 
 import * as api from "./api";
@@ -9,13 +9,13 @@ import { MAX_UPLOADED_FILE_SIZE_BYTES } from "../value-objects/max-uploaded-file
 import { Header } from "./ui";
 
 export function SendArbitraryFile() {
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   const fileUpload = useMutation(api.sendArbitraryFile, {
     onSuccess: () => notify({ message: "file.sent" }),
   });
 
-  const file = useFile({ maxSize: MAX_UPLOADED_FILE_SIZE_BYTES });
+  const file = bg.useFile({ maxSize: MAX_UPLOADED_FILE_SIZE_BYTES });
 
   return (
     <form
@@ -28,7 +28,7 @@ export function SendArbitraryFile() {
         event.preventDefault();
 
         if (fileUpload.isLoading) return;
-        if (file.state !== UseFileState.selected) return;
+        if (file.state !== bg.UseFileState.selected) return;
 
         const form = new FormData();
         form.append("file", file.data);
@@ -56,7 +56,7 @@ export function SendArbitraryFile() {
       <button
         id="file-explorer"
         name="file-explorer"
-        disabled={file.state === UseFileState.selected}
+        disabled={file.state === bg.UseFileState.selected}
         type="button"
         class="c-button"
         data-variant="secondary"
@@ -64,7 +64,7 @@ export function SendArbitraryFile() {
         <label htmlFor="file">File explorer</label>
       </button>
 
-      {file.state === UseFileState.selected && !fileUpload.isSuccess && (
+      {file.state === bg.UseFileState.selected && !fileUpload.isSuccess && (
         <button
           type="submit"
           class="c-button"
@@ -75,7 +75,9 @@ export function SendArbitraryFile() {
         </button>
       )}
 
-      {[UseFileState.selected, UseFileState.error].includes(file.state) && (
+      {[bg.UseFileState.selected, bg.UseFileState.error].includes(
+        file.state
+      ) && (
         <button
           type="button"
           class="c-button"
@@ -90,20 +92,20 @@ export function SendArbitraryFile() {
         </button>
       )}
 
-      {file.state === UseFileState.error && (
+      {file.state === bg.UseFileState.error && (
         <div data-fs="14" data-mt="24" data-color="gray-600">
           This file is too big, please select another file
         </div>
       )}
 
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
-        file.state === UseFileState.idle && (
+        file.state === bg.UseFileState.idle && (
           <small data-mt="24" data-fs="14" data-color="gray-600">
             Select a file to send, up to{" "}
             {prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES)}
           </small>
         )}
-      {fileUpload.isIdle && file.state === UseFileState.selected && (
+      {fileUpload.isIdle && file.state === bg.UseFileState.selected && (
         <Fragment>
           <div
             data-mt="24"
@@ -122,7 +124,7 @@ export function SendArbitraryFile() {
           </div>
         </Fragment>
       )}
-      {fileUpload.isSuccess && file.state === UseFileState.selected && (
+      {fileUpload.isSuccess && file.state === bg.UseFileState.selected && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
           File has been sent!
         </div>

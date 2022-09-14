@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
-import { useToastTrigger } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 import { StarOutline } from "iconoir-react";
 
 import * as api from "./api";
@@ -47,7 +47,7 @@ export function FavouriteUnfavourite(props: FavouriteUnfavouriteType) {
 
 function useAddArticleToFavourites(id: ArticleType["id"]) {
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   return useMutation(api.addArticleToFavourites, {
     onSuccess: () => {
@@ -75,7 +75,7 @@ function useAddArticleToFavourites(id: ArticleType["id"]) {
 
 function useDeleteArticleFromFavourites(id: ArticleType["id"]) {
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   return useMutation(api.deleteArticleFromFavourites, {
     onSuccess: () => {

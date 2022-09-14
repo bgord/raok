@@ -1,16 +1,16 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
-import { useToastTrigger, useTranslations, ServerError } from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
 
 export function ScheduleFeedlyCrawlButton(
   props: h.JSX.IntrinsicElements["button"]
 ) {
-  const t = useTranslations();
+  const t = bg.useTranslations();
 
   const queryClient = useQueryClient();
-  const notify = useToastTrigger();
+  const notify = bg.useToastTrigger();
 
   const scheduleFeedlyArticlesCrawl = useMutation(
     api.scheduleFeedlyArticlesCrawl,
@@ -20,7 +20,7 @@ export function ScheduleFeedlyCrawlButton(
         notify({ message: "Feedly crawl scheduled" });
         queryClient.invalidateQueries("stats");
       },
-      onError: (error: ServerError) => {
+      onError: (error: bg.ServerError) => {
         setTimeout(scheduleFeedlyArticlesCrawl.reset, 5000);
         notify({ message: t(error.message) });
       },

@@ -1,11 +1,6 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
-import {
-  Anima,
-  AnimaList,
-  useAnimaList,
-  useTranslations,
-} from "@bgord/frontend";
+import * as bg from "@bgord/frontend";
 import { BookStack } from "iconoir-react";
 
 import * as api from "./api";
@@ -14,11 +9,11 @@ import { NewspaperType } from "./types";
 import { Newspaper } from "./newspaper";
 
 export function NewspaperList() {
-  const t = useTranslations();
+  const t = bg.useTranslations();
 
   const _newspapers = useQuery("newspapers", api.getNewspapers);
 
-  const newspapers = useAnimaList(_newspapers.data ?? [], {
+  const newspapers = bg.useAnimaList(_newspapers.data ?? [], {
     direction: "head",
   });
 
@@ -48,13 +43,17 @@ export function NewspaperList() {
         </small>
       )}
 
-      <AnimaList data-mt="24">
+      <bg.AnimaList data-mt="24">
         {newspapers.items.map((newspaper) => (
-          <Anima key={newspaper.item.id} effect="opacity" {...newspaper.props}>
+          <bg.Anima
+            key={newspaper.item.id}
+            effect="opacity"
+            {...newspaper.props}
+          >
             <Newspaper {...newspaper.item} />
-          </Anima>
+          </bg.Anima>
         ))}
-      </AnimaList>
+      </bg.AnimaList>
     </section>
   );
 }
