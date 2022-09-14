@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import { RemoveSquare } from "iconoir-react";
+import { RemoveSquare, Copy } from "iconoir-react";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -33,7 +33,7 @@ export function Article(props: ArticlePropsType) {
       data-md-direction="column"
       data-wrap="nowrap"
       data-mb="24"
-      data-md-mb="12"
+      data-md-mb="24"
       data-md-mx="6"
       {...bg.getAnimaProps(props)}
     >
@@ -89,21 +89,31 @@ export function Article(props: ArticlePropsType) {
         data-direction="column"
         data-md-direction="row"
         data-cross="center"
+        data-gap="6"
         data-ml="auto"
-        data-md-mt="3"
       >
         <UI.Badge>{props.source}</UI.Badge>
 
-        <button
-          type="submit"
-          class="c-button"
-          data-variant="bare"
-          data-ml="auto"
-          data-md-ml="6"
-          onClick={() => deleteArticle.mutate(props.id)}
-        >
-          <RemoveSquare width="24" height="24" />
-        </button>
+        <div data-display="flex" data-wrap="nowrap">
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            data-mr="6"
+            onClick={() => console.log("xd")}
+          >
+            <Copy width="24" height="24" />
+          </button>
+
+          <button
+            type="submit"
+            class="c-button"
+            data-variant="bare"
+            onClick={() => deleteArticle.mutate(props.id)}
+          >
+            <RemoveSquare width="24" height="24" />
+          </button>
+        </div>
       </div>
     </li>
   );
