@@ -1,6 +1,9 @@
-import { z } from "zod";
 import * as bg from "@bgord/node";
+import { z } from "zod";
+import { Brand, toBrand } from "../brand";
 
-export const FileId = bg.Schema.UUID;
+export type FileIdType = Brand<"file-id", z.infer<typeof FileIdSchema>>;
 
-export type FileIdType = z.infer<typeof FileId>;
+const FileIdSchema = bg.Schema.UUID;
+
+export const FileId = toBrand<FileIdType>(FileIdSchema);

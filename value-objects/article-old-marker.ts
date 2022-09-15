@@ -1,6 +1,14 @@
 import { z } from "zod";
 import { Schema } from "@bgord/node";
+import { Brand, toBrand } from "../brand";
 
-export const ArticleOldMarker = Schema.Timestamp;
+export type ArticleOldMarkerType = Brand<
+  "article-old-marker",
+  z.infer<typeof ArticleOldMarkerSchema>
+>;
 
-export type ArticleOldMarkerType = z.infer<typeof ArticleOldMarker>;
+export const ArticleOldMarkerSchema = Schema.Timestamp;
+
+export const ArticleOldMarker = toBrand<ArticleOldMarkerType>(
+  ArticleOldMarkerSchema
+);
