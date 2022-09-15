@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useEffect } from "preact/hooks";
 import { RoutableProps } from "preact-router";
-import { useQuery } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
@@ -12,8 +12,26 @@ export type InitialSettingsDataType = { settings: SettingsType };
 
 export function Settings(props: RoutableProps) {
   hooks.useLeavingPrompt();
+  const notify = bg.useToastTrigger();
+  const queryClient = useQueryClient();
 
-  const settings = useQuery("settings", api.getSettings);
+  const settings = useQuery("settings", api.Settings.getSettings);
+
+  const restoreFeedlyCrawling = useMutation(
+    api.Settings.restoreFeedlyCrawling,
+    {
+      onSuccess: () => {
+        notify({ message: "feedly.crawling.restored" });
+        queryClient.invalidateQueries("settings");
+      },
+    }
+  );
+  const stopFeedlyCrawling = useMutation(api.Settings.stopFeedlyCrawling, {
+    onSuccess: () => {
+      notify({ message: "feedly.crawling.stopped" });
+      queryClient.invalidateQueries("settings");
+    },
+  });
 
   if (!settings.isSuccess) return <div data-p="24">Preparing settings...</div>;
 
@@ -156,19 +174,25 @@ export function Settings(props: RoutableProps) {
           </h3>
 
           {isFeedlyCrawlingStopped && (
-            <form method="POST" action="/restore-feedly-crawling">
-              <button type="submit" class="c-button" data-variant="primary">
-                Restore
-              </button>
-            </form>
+            <button
+              type="submit"
+              class="c-button"
+              data-variant="primary"
+              onClick={() => restoreFeedlyCrawling.mutate()}
+            >
+              Restore
+            </button>
           )}
 
           {!isFeedlyCrawlingStopped && (
-            <form method="POST" action="/stop-feedly-crawling">
-              <button type="submit" class="c-button" data-variant="primary">
-                Stop
-              </button>
-            </form>
+            <button
+              type="submit"
+              class="c-button"
+              data-variant="primary"
+              onClick={() => stopFeedlyCrawling.mutate()}
+            >
+              Stop
+            </button>
           )}
         </div>
       </section>

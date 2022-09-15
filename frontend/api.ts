@@ -158,16 +158,18 @@ export async function getArchiveFiles(
   );
 }
 
-export async function getSettings(): Promise<types.SettingsType> {
-  return _api("/account/settings", { method: "GET" }).then((response) =>
-    response.json()
-  );
-}
+export class Settings {
+  static async getSettings(): Promise<types.SettingsType> {
+    return _api("/account/settings", { method: "GET" }).then((response) =>
+      response.json()
+    );
+  }
 
-export async function stopFeedlyCrawling() {
-  return _api("/stop-feedly-crawling", { method: "POST" });
-}
+  static async stopFeedlyCrawling() {
+    return _api("/stop-feedly-crawling", { method: "POST" });
+  }
 
-export async function restoreFeedlyCrawling() {
-  return _api("/restore-feedly-crawling", { method: "POST" });
+  static async restoreFeedlyCrawling() {
+    return _api("/restore-feedly-crawling", { method: "POST" });
+  }
 }
