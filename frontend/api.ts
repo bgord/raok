@@ -180,4 +180,11 @@ export class Settings {
   static async disableArticlesToReviewNotification() {
     return _api("/disable-articles-to-review-notification", { method: "POST" });
   }
+
+  static async setArticlesToReviewNotificationHour(hour: types.HourType) {
+    return _api("/set-articles-to-review-notification-hour", {
+      method: "POST",
+      body: JSON.stringify({ hour }),
+    });
+  }
 }

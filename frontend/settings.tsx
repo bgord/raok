@@ -6,9 +6,9 @@ import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
 import * as hooks from "./hooks";
-import { SettingsType, HourType } from "./types";
+import * as types from "./types";
 
-export type InitialSettingsDataType = { settings: SettingsType };
+export type InitialSettingsDataType = { settings: types.SettingsType };
 
 export function Settings(props: RoutableProps) {
   hooks.useLeavingPrompt();
@@ -47,6 +47,16 @@ export function Settings(props: RoutableProps) {
     {
       onSuccess: () => {
         notify({ message: "articles-to-review-notification.disabled" });
+        queryClient.invalidateQueries("settings");
+      },
+    }
+  );
+
+  const setArticlesToReviewNotificationHour = useMutation(
+    api.Settings.setArticlesToReviewNotificationHour,
+    {
+      onSuccess: () => {
+        notify({ message: "articles-to-review-notification.hour.set" });
         queryClient.invalidateQueries("settings");
       },
     }
@@ -128,8 +138,14 @@ export function Settings(props: RoutableProps) {
         </div>
 
         <form
-          method="POST"
-          action="/set-articles-to-review-notification-hour"
+          onSubmit={(event) => {
+            event.preventDefault();
+
+            const form = new FormData(event.target as HTMLFormElement);
+            const hour = Number(form.get("hour"));
+
+            setArticlesToReviewNotificationHour.mutate(hour);
+          }}
           data-mt="36"
         >
           <label class="c-label" htmlFor="hour" data-mr="12">
@@ -219,7 +235,7 @@ export function Settings(props: RoutableProps) {
   );
 }
 
-function formatUtcHourToLocal(hour: HourType) {
+function formatUtcHourToLocal(hour: types.HourType) {
   const minutes = new bg.Time.Hours(hour).toMinutes();
   const timeZoneOffsetInMins = new Date().getTimezoneOffset();
 
