@@ -34,7 +34,10 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
 
   const undeleteArticle = useMutation(api.undeleteArticle, {
     onSuccess: () => {
-      setTimeout(() => queryClient.invalidateQueries("articles"), 5000);
+      setTimeout(() => {
+        queryClient.invalidateQueries("articles");
+        queryClient.invalidateQueries("stats");
+      }, 2000);
     },
   });
 

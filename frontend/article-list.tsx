@@ -1,5 +1,10 @@
 import { h } from "preact";
-import { useMutation, useInfiniteQuery, useQueryClient } from "react-query";
+import {
+  useQuery,
+  useMutation,
+  useInfiniteQuery,
+  useQueryClient,
+} from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
@@ -20,6 +25,9 @@ export function ArticleList() {
   const emptyNewspaperError = bg.useToggle();
 
   const createNewspaper = useCreateNewspaper(actions.clear);
+
+  const stats = useQuery("stats", api.getStats);
+  const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
 
   const _articles = useInfiniteQuery(
     "articles",
@@ -50,7 +58,7 @@ export function ArticleList() {
             data-px="6"
             data-br="4"
           >
-            {articles.length}
+            {numberOfNonProcessedArticles}
           </span>
 
           <ScheduleFeedlyCrawlButton data-ml="auto" />

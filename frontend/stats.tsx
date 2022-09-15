@@ -8,7 +8,7 @@ import * as UI from "./ui";
 import * as types from "./types";
 
 export function Stats() {
-  const stats = useQuery(["stats"], api.getStats);
+  const stats = useQuery("stats", api.getStats);
 
   const createdArticles = stats.data?.createdArticles ?? "-";
   const sentNewspapers = stats.data?.sentNewspapers ?? "-";

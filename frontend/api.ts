@@ -65,6 +65,7 @@ export async function getStats(): Promise<types.StatsType> {
     sentNewspapers: 0,
     lastFeedlyImport: null,
     lastFeedlyTokenExpiredError: null,
+    numberOfNonProcessedArticles: 0,
   };
 
   return _api("/stats", { method: "GET" }).then((response) =>

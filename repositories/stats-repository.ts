@@ -21,11 +21,15 @@ export class StatsRepository {
       where: { key: "lastFeedlyTokenExpiredError" },
     });
 
+    const numberOfNonProcessedArticles =
+      await ArticleRepository.getNumberOfNonProcessed();
+
     return {
       lastFeedlyImport: bg.ComplexDate.falsy(lastFeedlyImport?.value),
       createdArticles: createdArticles?.value ?? 0,
       sentNewspapers: sentNewspapers?.value ?? 0,
       lastFeedlyTokenExpiredError: lastFeedlyTokenExpiredError?.value ?? null,
+      numberOfNonProcessedArticles,
     };
   }
 
