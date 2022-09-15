@@ -187,6 +187,7 @@ function ArchiveNewspaper(props: {
       class="c-button"
       data-variant="secondary"
       onClick={() => archiveNewspaper.mutate(id)}
+      {...rest}
     >
       {t("newspaper.archive")}
     </button>
