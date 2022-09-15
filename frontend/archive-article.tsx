@@ -1,10 +1,14 @@
 import { h } from "preact";
+import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
-import { ArchiveArticleType } from "./types";
+import * as types from "./types";
 import { FavouriteUnfavourite } from "./favourite-unfavourite";
 
-export function ArchiveArticle(props: ArchiveArticleType) {
+export function ArchiveArticle(props: types.ArchiveArticleType) {
+  const notify = bg.useToastTrigger();
+
   return (
     <li
       data-display="flex"
@@ -57,11 +61,26 @@ export function ArchiveArticle(props: ArchiveArticleType) {
         data-direction="column"
         data-cross="end"
         data-ml="auto"
+        data-mr="6"
       >
         <UI.Badge data-mb="6">{props.status}</UI.Badge>
 
         <UI.Badge>{props.source}</UI.Badge>
       </div>
+
+      <button
+        type="button"
+        class="c-button"
+        data-variant="bare"
+        onClick={() =>
+          bg.copyToClipboard({
+            text: props.url,
+            onSuccess: () => notify({ message: "article.url.copied" }),
+          })
+        }
+      >
+        <Icons.Copy width="24" height="24" />
+      </button>
     </li>
   );
 }
