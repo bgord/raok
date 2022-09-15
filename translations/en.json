@@ -6,7 +6,6 @@
   "app.files": "files",
   "app.settings": "settings",
   "app.error.general": "something went wrong",
-  "app.download": "download",
 
   "article.add": "add",
   "article.adding_article": "adding...",

@@ -3,7 +3,7 @@ import prettyBytes from "pretty-bytes-es5";
 import { h } from "preact";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Search, Download, Cancel } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as hooks from "./hooks";
 import * as UI from "./ui";
@@ -106,7 +106,7 @@ export function ArchiveFiles(props: RoutableProps) {
               style="padding-right: 36px"
               data-width="100%"
             />
-            <Search
+            <Icons.Search
               height="34"
               width="34"
               data-position="absolute"
@@ -124,7 +124,7 @@ export function ArchiveFiles(props: RoutableProps) {
             data-ml="6"
             data-mr="auto"
           >
-            <Cancel width="24" height="24" />
+            <Icons.Cancel width="24" height="24" />
           </button>
         </div>
       </div>
@@ -164,20 +164,23 @@ export function ArchiveFiles(props: RoutableProps) {
             >
               {file.name}
             </strong>
+
             <span data-ml="auto" data-mr="24" data-color="gray-400">
               {file.sentAt?.relative}
             </span>
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
+
             <bg.OutboundLink
               href={`/files/archive/${file.id}/download`}
-              data-variant="bare"
               class="c-link"
+              data-variant="bare"
+              data-display="flex"
+              data-ml="12"
               data-color="black"
               data-transform="uppercase"
-              data-ml="12"
               data-fw="700"
             >
-              {t("app.download")}
+              <Icons.Download width="24" height="24" />
             </bg.OutboundLink>
           </li>
         ))}
