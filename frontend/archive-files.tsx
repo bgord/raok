@@ -173,19 +173,12 @@ export function ArchiveFiles(props: RoutableProps) {
 
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
 
-            <button
-              type="button"
-              class="c-button"
-              data-variant="bare"
-              onClick={() => {
-                bg.copyToClipboard({
-                  text: getFileDownloadUrl(file.id),
-                  onSuccess: () => notify({ message: "file.url.copied" }),
-                });
+            <UI.CopyButton
+              options={{
+                text: getFileDownloadUrl(file.id),
+                onSuccess: () => notify({ message: "file.url.copied" }),
               }}
-            >
-              <Icons.Copy width="24" height="22" />
-            </button>
+            />
 
             <bg.OutboundLink
               href={getFileDownloadUrl(file.id)}

@@ -1,5 +1,6 @@
 import { h } from "preact";
 import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
 
 export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
   return (
@@ -43,5 +44,25 @@ export function Select(props: h.JSX.IntrinsicElements["select"]) {
     <div class="c-select-wrapper">
       <select class="c-select" {...props} />
     </div>
+  );
+}
+
+export function CopyButton(
+  props: h.JSX.IntrinsicElements["button"] & {
+    options: bg.CopyToClipboardOptionsType;
+  }
+) {
+  const { options, ...rest } = props;
+
+  return (
+    <button
+      type="button"
+      class="c-button"
+      data-variant="bare"
+      onClick={() => bg.copyToClipboard(options)}
+      {...rest}
+    >
+      <Icons.Copy width="24" height="24" />
+    </button>
   );
 }

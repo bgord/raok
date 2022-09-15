@@ -68,19 +68,12 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
         <UI.Badge>{props.source}</UI.Badge>
       </div>
 
-      <button
-        type="button"
-        class="c-button"
-        data-variant="bare"
-        onClick={() =>
-          bg.copyToClipboard({
-            text: props.url,
-            onSuccess: () => notify({ message: "article.url.copied" }),
-          })
-        }
-      >
-        <Icons.Copy width="24" height="24" />
-      </button>
+      <UI.CopyButton
+        options={{
+          text: props.url,
+          onSuccess: () => notify({ message: "article.url.copied" }),
+        }}
+      />
     </li>
   );
 }

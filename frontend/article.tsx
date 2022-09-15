@@ -95,20 +95,13 @@ export function Article(props: ArticlePropsType) {
         <UI.Badge>{props.source}</UI.Badge>
 
         <div data-display="flex" data-wrap="nowrap">
-          <button
-            type="button"
-            class="c-button"
-            data-variant="bare"
+          <UI.CopyButton
             data-mr="6"
-            onClick={() =>
-              bg.copyToClipboard({
-                text: props.url,
-                onSuccess: () => notify({ message: "article.url.copied" }),
-              })
-            }
-          >
-            <Copy width="24" height="24" />
-          </button>
+            options={{
+              text: props.url,
+              onSuccess: () => notify({ message: "article.url.copied" }),
+            }}
+          />
 
           <button
             type="submit"
