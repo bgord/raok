@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 
 class FavouriteArticleError extends Error {
@@ -13,7 +12,7 @@ type FavouriteArticleConfigType = {
   entity: VO.ArticleType;
 };
 
-class FavouriteArticleFactory extends Policy<FavouriteArticleConfigType> {
+class FavouriteArticleFactory extends bg.Policy<FavouriteArticleConfigType> {
   fails(config: FavouriteArticleConfigType) {
     return (
       config.entity.status !== VO.ArticleStatusEnum.processed ||

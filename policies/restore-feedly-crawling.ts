@@ -1,7 +1,6 @@
-import { Policy } from "@bgord/node";
-
-import * as Aggregates from "../aggregates";
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
+import * as Aggregates from "../aggregates";
 
 class RestoreFeedlyCrawlingError extends Error {
   constructor() {
@@ -14,7 +13,7 @@ type RestoreFeedlyCrawlingConfigType = {
   settings: Aggregates.Settings;
 };
 
-class RestoreFeedlyCrawlingFactory extends Policy<RestoreFeedlyCrawlingConfigType> {
+class RestoreFeedlyCrawlingFactory extends bg.Policy<RestoreFeedlyCrawlingConfigType> {
   fails(config: RestoreFeedlyCrawlingConfigType) {
     return config.settings.isFeedlyCrawlingStopped === false;
   }

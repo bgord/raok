@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 
 class UnfavouriteArticleError extends Error {
@@ -13,7 +12,7 @@ type UnfavouriteArticleConfigType = {
   entity: VO.ArticleType;
 };
 
-class UnfavouriteArticleFactory extends Policy<UnfavouriteArticleConfigType> {
+class UnfavouriteArticleFactory extends bg.Policy<UnfavouriteArticleConfigType> {
   fails(config: UnfavouriteArticleConfigType) {
     return (
       !config.entity.favourite ||

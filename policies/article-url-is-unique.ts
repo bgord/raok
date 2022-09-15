@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 
@@ -14,7 +13,7 @@ type ArticleUrlIsUniqueConfigType = {
   articleUrl: VO.ArticleType["url"];
 };
 
-class ArticleUrlIsUniqueFactory extends Policy<ArticleUrlIsUniqueConfigType> {
+class ArticleUrlIsUniqueFactory extends bg.Policy<ArticleUrlIsUniqueConfigType> {
   async fails(config: ArticleUrlIsUniqueConfigType) {
     const numbersOfArticlesWithUrl =
       await Repos.ArticleRepository.getNumbersOfArticlesWithUrl(

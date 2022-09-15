@@ -1,5 +1,5 @@
+import * as bg from "@bgord/node";
 import express from "express";
-import { Time } from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 import * as Events from "../events";
@@ -19,7 +19,8 @@ export async function DeleteOldArticles(
       version: 1,
       payload: {
         marker:
-          now - Time.Days(Aggregates.Article.ARTICLE_OLD_MARKER_IN_DAYS).toMs(),
+          now -
+          bg.Time.Days(Aggregates.Article.ARTICLE_OLD_MARKER_IN_DAYS).toMs(),
       },
     })
   );

@@ -1,5 +1,5 @@
-import { z } from "zod";
 import * as bg from "@bgord/node";
+import { z } from "zod";
 
 export type ArticleTitleType = bg.Brand<
   "article-title",

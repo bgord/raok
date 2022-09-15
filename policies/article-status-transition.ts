@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 
 class InvalidArticleStatusTransition extends Error {
@@ -14,7 +13,7 @@ type ArticleStatusTransitionConfigType = {
   to: VO.ArticleStatusType;
 };
 
-class ArticleStatusTransitionFactory extends Policy<ArticleStatusTransitionConfigType> {
+class ArticleStatusTransitionFactory extends bg.Policy<ArticleStatusTransitionConfigType> {
   async fails(config: ArticleStatusTransitionConfigType) {
     const status = VO.ArticleStatusEnum;
 

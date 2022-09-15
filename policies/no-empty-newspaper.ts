@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as Aggregates from "../aggregates";
 
 class EmptyNewspaperError extends Error {
@@ -12,7 +11,7 @@ type NoEmptyNewspaperConfigType = {
   articles: Aggregates.Article[];
 };
 
-class NoEmptyNewspaperFactory extends Policy<NoEmptyNewspaperConfigType> {
+class NoEmptyNewspaperFactory extends bg.Policy<NoEmptyNewspaperConfigType> {
   async fails(config: NoEmptyNewspaperConfigType) {
     return config.articles.length === 0;
   }

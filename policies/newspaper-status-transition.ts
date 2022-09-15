@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 
 class InvalidNewspaperStatusTransition extends Error {
@@ -14,7 +13,7 @@ type NewspaperStatusTransitionConfigType = {
   to: VO.NewspaperType["status"];
 };
 
-class NewspaperStatusTransitionFactory extends Policy<NewspaperStatusTransitionConfigType> {
+class NewspaperStatusTransitionFactory extends bg.Policy<NewspaperStatusTransitionConfigType> {
   async fails(config: NewspaperStatusTransitionConfigType) {
     const enums = VO.NewspaperStatusEnum;
 

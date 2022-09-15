@@ -1,7 +1,7 @@
-import { Policy } from "@bgord/node";
+import * as bg from "@bgord/node";
+import * as Aggregates from "../aggregates";
 
 import { hasNewspaperStalled } from "./common";
-import * as Aggregates from "../aggregates";
 
 class NewspaperHasNotStalledError extends Error {
   constructor() {
@@ -15,7 +15,7 @@ type NoEmptyNewspaperConfigType = {
   scheduledAt: Aggregates.Newspaper["scheduledAt"];
 };
 
-class HasNewspaperStalledFactory extends Policy<NoEmptyNewspaperConfigType> {
+class HasNewspaperStalledFactory extends bg.Policy<NoEmptyNewspaperConfigType> {
   async fails(config: NoEmptyNewspaperConfigType) {
     return !hasNewspaperStalled({
       status: config.status,

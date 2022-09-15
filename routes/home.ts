@@ -1,5 +1,5 @@
 import express from "express";
-import { CsrfShield } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 export async function Home(
   request: express.Request,
@@ -9,7 +9,7 @@ export async function Home(
   if (request.isAuthenticated()) return response.redirect("/dashboard");
 
   const vars = {
-    ...CsrfShield.extract(request),
+    ...bg.CsrfShield.extract(request),
   };
 
   return response.render("home", vars);
