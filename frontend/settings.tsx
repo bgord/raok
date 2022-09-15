@@ -240,7 +240,8 @@ function formatUtcHourToLocal(hour: types.HourType) {
   const timeZoneOffsetInMins = new Date().getTimezoneOffset();
 
   const localMinutes = minutes - timeZoneOffsetInMins;
-  const localHour = localMinutes / 60;
+
+  const localHour = (localMinutes / 60) % 24;
 
   const formattedLocalHour = `${String(localHour).padStart(2, "0")}:00`;
 
