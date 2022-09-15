@@ -106,7 +106,7 @@ export function Settings(props: RoutableProps) {
             {isArticlesToReviewNotificationEnabled ? "Enabled" : "Disabled"}
           </strong>
 
-          <h3 data-fs="16" data-md-fs="14" data-color="gray-600">
+          <h3 data-fs="16" data-md-fs="14" data-color="gray-600" data-mr="12">
             Articles to review notifications
           </h3>
 
@@ -115,8 +115,6 @@ export function Settings(props: RoutableProps) {
               type="submit"
               class="c-button"
               data-variant="primary"
-              data-ml="12"
-              data-md-ml="0"
               onClick={() => disableArticlesToReviewNotification.mutate()}
             >
               Disable
@@ -128,8 +126,6 @@ export function Settings(props: RoutableProps) {
               type="submit"
               class="c-button"
               data-variant="primary"
-              data-ml="12"
-              data-md-ml="0"
               onClick={() => enableArticlesToReviewNotification.mutate()}
             >
               Enable
