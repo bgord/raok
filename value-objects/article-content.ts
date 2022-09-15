@@ -1,11 +1,12 @@
+import * as bg from "@bgord/node";
 import { z } from "zod";
-import { Brand, toBrand } from "@bgord/node";
 
-export type ArticleContentType = Brand<
+export type ArticleContentType = bg.Brand<
   "article-content",
   z.infer<typeof ArticleContentSchema>
 >;
 
 const ArticleContentSchema = z.string().trim().min(1);
 
-export const ArticleContent = toBrand<ArticleContentType>(ArticleContentSchema);
+export const ArticleContent =
+  bg.toBrand<ArticleContentType>(ArticleContentSchema);

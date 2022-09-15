@@ -1,5 +1,4 @@
 /* eslint-ignore */
-
 import { z } from "zod";
 
 export enum ArticleStatusEnum {

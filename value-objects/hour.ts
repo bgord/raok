@@ -1,6 +1,6 @@
+import * as bg from "@bgord/node";
 import _ from "lodash";
 import { z } from "zod";
-import { Brand, toBrand } from "@bgord/node";
 
 const hours = _.range(0, 24);
 
@@ -8,9 +8,9 @@ const HourSchema = z
   .number()
   .refine((value) => hours.includes(value), { message: "invalid_hour" });
 
-export type HourType = Brand<"hour", z.infer<typeof HourSchema>>;
+export type HourType = bg.Brand<"hour", z.infer<typeof HourSchema>>;
 
-export const hour = toBrand<HourType>(HourSchema);
+export const hour = bg.toBrand<HourType>(HourSchema);
 
 export class Hour {
   static hours: HourType[] = z.array(hour).parse(hours);

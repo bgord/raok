@@ -1,7 +1,7 @@
+import * as bg from "@bgord/node";
 import { z } from "zod";
-import { Brand, toBrand } from "@bgord/node";
 
-export type ReadableArticleReadingTimeType = Brand<
+export type ReadableArticleReadingTimeType = bg.Brand<
   "readable-article-reading-time",
   z.infer<typeof ReadableArticleReadingTimeSchema>
 >;
@@ -9,4 +9,4 @@ export type ReadableArticleReadingTimeType = Brand<
 const ReadableArticleReadingTimeSchema = z.number().int().positive();
 
 export const ReadableArticleReadingTime =
-  toBrand<ReadableArticleReadingTimeType>(ReadableArticleReadingTimeSchema);
+  bg.toBrand<ReadableArticleReadingTimeType>(ReadableArticleReadingTimeSchema);
