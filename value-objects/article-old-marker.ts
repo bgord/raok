@@ -1,6 +1,13 @@
+import * as bg from "@bgord/node";
 import { z } from "zod";
-import { Schema } from "@bgord/node";
 
-export const ArticleOldMarker = Schema.Timestamp;
+export type ArticleOldMarkerType = bg.Brand<
+  "article-old-marker",
+  z.infer<typeof ArticleOldMarkerSchema>
+>;
 
-export type ArticleOldMarkerType = z.infer<typeof ArticleOldMarker>;
+export const ArticleOldMarkerSchema = bg.Schema.Timestamp;
+
+export const ArticleOldMarker = bg.toBrand<ArticleOldMarkerType>(
+  ArticleOldMarkerSchema
+);

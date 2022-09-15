@@ -1,4 +1,4 @@
-import { EventType } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -6,7 +6,7 @@ import * as Repos from "../repositories";
 import * as Policies from "../policies";
 
 export class Settings {
-  stream: EventType["stream"];
+  stream: bg.EventType["stream"];
 
   isArticlesToReviewNotificationEnabled = true;
 

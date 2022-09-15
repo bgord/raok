@@ -1,4 +1,4 @@
-import { Policy } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 
@@ -13,7 +13,7 @@ type MaximumNewspaperArticleNumberConfigType = {
   max: number;
 };
 
-class MaximumNewspaperArticleNumberFactory extends Policy<MaximumNewspaperArticleNumberConfigType> {
+class MaximumNewspaperArticleNumberFactory extends bg.Policy<MaximumNewspaperArticleNumberConfigType> {
   async fails(config: MaximumNewspaperArticleNumberConfigType) {
     return config.articles.length > config.max;
   }

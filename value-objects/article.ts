@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Schema } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import { ArticleId } from "./article-id";
 import { ArticleUrl } from "./article-url";
@@ -9,7 +9,7 @@ import { ArticleFavourite } from "./article-favourite";
 
 export const Article = z.object({
   id: ArticleId,
-  createdAt: Schema.Timestamp,
+  createdAt: bg.Schema.Timestamp,
   url: ArticleUrl,
   source: ArticleSource,
   status: ArticleStatus,

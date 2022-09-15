@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 
@@ -17,7 +16,7 @@ type NonProcessedArticleUrlIsUniqueConfigType = {
   articleUrl: VO.ArticleType["url"];
 };
 
-class NonProcessedArticleUrlIsUniqueFactory extends Policy<NonProcessedArticleUrlIsUniqueConfigType> {
+class NonProcessedArticleUrlIsUniqueFactory extends bg.Policy<NonProcessedArticleUrlIsUniqueConfigType> {
   async fails(
     config: NonProcessedArticleUrlIsUniqueConfigType
   ): Promise<boolean> {

@@ -1,4 +1,4 @@
-import { Reporter } from "@bgord/node";
+import * as bg from "@bgord/node";
 import { z } from "zod";
 import axios from "axios";
 
@@ -25,7 +25,7 @@ export class Feedly {
         .parse(response.data?.items)
         .filter(Feedly.isNonTwitterUrl);
     } catch (error) {
-      Reporter.raw("Feedly#getArticles", error);
+      bg.Reporter.raw("Feedly#getArticles", error);
       await Services.FeedlyTokenExpiredNotifier.send(error);
       return [];
     }

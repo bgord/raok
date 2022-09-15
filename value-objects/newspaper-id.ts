@@ -1,11 +1,11 @@
+import * as bg from "@bgord/node";
 import { z } from "zod";
-import { Schema, Brand, toBrand } from "@bgord/node";
 
-export type NewspaperIdType = Brand<
+export type NewspaperIdType = bg.Brand<
   "newspaper-id",
   z.infer<typeof NewspaperIdSchema>
 >;
 
-const NewspaperIdSchema = Schema.UUID;
+const NewspaperIdSchema = bg.Schema.UUID;
 
-export const NewspaperId = toBrand<NewspaperIdType>(NewspaperIdSchema);
+export const NewspaperId = bg.toBrand<NewspaperIdType>(NewspaperIdSchema);

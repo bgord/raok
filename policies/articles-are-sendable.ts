@@ -1,5 +1,4 @@
-import { Policy } from "@bgord/node";
-
+import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Aggregates from "../aggregates";
 
@@ -14,7 +13,7 @@ type ArticlesAreSendableConfigType = {
   articles: Aggregates.Article[];
 };
 
-class ArticlesAreSendableFactory extends Policy<ArticlesAreSendableConfigType> {
+class ArticlesAreSendableFactory extends bg.Policy<ArticlesAreSendableConfigType> {
   fails(config: ArticlesAreSendableConfigType): boolean {
     return config.articles
       .map((article) => article.entity)

@@ -1,4 +1,4 @@
-import { Reporter } from "@bgord/node";
+import * as bg from "@bgord/node";
 import path from "path";
 import { promises as fs } from "fs";
 
@@ -32,7 +32,7 @@ export class NewspaperFile {
 
       await HtmlToEpubConverter.convert(paths.html, paths.epub);
     } catch (error) {
-      Reporter.raw("NewspaperFile#create", error);
+      bg.Reporter.raw("NewspaperFile#create", error);
     }
   }
 
@@ -79,7 +79,7 @@ export class NewspaperFile {
     try {
       await fs.unlink(paths.epub);
     } catch (error) {
-      Reporter.raw("NewspaperFile#delete", error);
+      bg.Reporter.raw("NewspaperFile#delete", error);
     }
   }
 
@@ -105,7 +105,7 @@ export class NewspaperFile {
       const file = await fs.readFile(html);
       return file.toString();
     } catch (error) {
-      Reporter.raw("NewspaperFile#read", error);
+      bg.Reporter.raw("NewspaperFile#read", error);
       return null;
     }
   }

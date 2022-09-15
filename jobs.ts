@@ -1,4 +1,4 @@
-import { Reporter } from "@bgord/node";
+import * as bg from "@bgord/node";
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
 import * as Services from "./services";
@@ -34,7 +34,7 @@ const ArtclesToReviewNotifierTask = new AsyncTask(
     try {
       await notification.send();
     } catch (error) {
-      Reporter.raw("ArtclesToReviewNotifierTask", error);
+      bg.Reporter.raw("ArtclesToReviewNotifierTask", error);
     }
   }
 );

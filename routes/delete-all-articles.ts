@@ -1,5 +1,4 @@
 import express from "express";
-import { Time } from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 import * as Events from "../events";
