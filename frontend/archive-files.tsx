@@ -155,6 +155,7 @@ export function ArchiveFiles(props: RoutableProps) {
             data-cross="center"
             data-wrap="nowrap"
             data-md-wrap="wrap"
+            data-gap="12"
             data-max-width="100%"
             data-fs="14"
           >
@@ -166,16 +167,16 @@ export function ArchiveFiles(props: RoutableProps) {
               {file.name}
             </strong>
 
-            <span data-ml="auto" data-mr="24" data-color="gray-400">
+            <span data-ml="auto" data-color="gray-400">
               {file.sentAt?.relative}
             </span>
+
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
 
             <button
               type="button"
               class="c-button"
               data-variant="bare"
-              data-ml="12"
               onClick={() => {
                 bg.copyToClipboard({
                   text: getFileDownloadUrl(file.id),
@@ -191,7 +192,6 @@ export function ArchiveFiles(props: RoutableProps) {
               class="c-link"
               data-variant="bare"
               data-display="flex"
-              data-ml="12"
               data-color="black"
               data-transform="uppercase"
               data-fw="700"
