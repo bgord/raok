@@ -18,6 +18,7 @@ export type InitialArchiveFilesDataType = {
 export function ArchiveFiles(props: RoutableProps) {
   hooks.useLeavingPrompt();
   const t = bg.useTranslations();
+  const notify = bg.useToastTrigger();
   const search = bg.useClientSearch();
 
   const sentAt = bg.useUrlFilter({
@@ -169,6 +170,21 @@ export function ArchiveFiles(props: RoutableProps) {
               {file.sentAt?.relative}
             </span>
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
+
+            <button
+              type="button"
+              class="c-button"
+              data-variant="bare"
+              data-ml="12"
+              onClick={() => {
+                bg.copyToClipboard({
+                  text: getFileDownloadUrl(file.id),
+                  onSuccess: () => notify({ message: "file.url.copied" }),
+                });
+              }}
+            >
+              <Icons.Copy width="24" height="22" />
+            </button>
 
             <bg.OutboundLink
               href={getFileDownloadUrl(file.id)}
