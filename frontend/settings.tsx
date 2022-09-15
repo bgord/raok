@@ -190,52 +190,50 @@ export function Settings(props: RoutableProps) {
 
       <section
         data-display="flex"
-        data-direction="column"
+        data-cross="center"
+        data-gap="24"
         data-mt="24"
         data-pb="24"
         data-bwb="1"
         data-bcb="gray-200"
       >
-        <div data-display="flex" data-cross="center">
-          <strong
-            data-transform="uppercase"
-            data-color="gray-600"
-            data-bg="gray-200"
-            data-px="6"
-            data-br="4"
-            data-ls="1"
-            data-fs="12"
-            data-mr="12"
+        <strong
+          data-transform="uppercase"
+          data-color="gray-600"
+          data-bg="gray-200"
+          data-px="6"
+          data-br="4"
+          data-ls="1"
+          data-fs="12"
+        >
+          {isFeedlyCrawlingStopped ? "Stopped" : "Active"}
+        </strong>
+
+        <h3 data-fs="16" data-md-fs="14" data-color="gray-600" data-mr="12">
+          Feedly crawling
+        </h3>
+
+        {isFeedlyCrawlingStopped && (
+          <button
+            type="submit"
+            class="c-button"
+            data-variant="primary"
+            onClick={() => restoreFeedlyCrawling.mutate()}
           >
-            {isFeedlyCrawlingStopped ? "Stopped" : "Active"}
-          </strong>
+            Restore
+          </button>
+        )}
 
-          <h3 data-fs="16" data-md-fs="14" data-color="gray-600" data-mr="36">
-            Feedly crawling
-          </h3>
-
-          {isFeedlyCrawlingStopped && (
-            <button
-              type="submit"
-              class="c-button"
-              data-variant="primary"
-              onClick={() => restoreFeedlyCrawling.mutate()}
-            >
-              Restore
-            </button>
-          )}
-
-          {!isFeedlyCrawlingStopped && (
-            <button
-              type="submit"
-              class="c-button"
-              data-variant="primary"
-              onClick={() => stopFeedlyCrawling.mutate()}
-            >
-              Stop
-            </button>
-          )}
-        </div>
+        {!isFeedlyCrawlingStopped && (
+          <button
+            type="submit"
+            class="c-button"
+            data-variant="primary"
+            onClick={() => stopFeedlyCrawling.mutate()}
+          >
+            Stop
+          </button>
+        )}
       </section>
     </main>
   );

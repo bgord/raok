@@ -28,6 +28,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
           data-max-width="100%"
         >
           {props.status === "processed" && <FavouriteUnfavourite {...props} />}
+
           <div
             data-width="100%"
             data-ml={props.status === "processed" && "6"}
@@ -37,6 +38,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
             {props.title}
           </div>
         </div>
+
         <UI.OutboundLink
           href={props.url}
           data-mr="12"
@@ -57,6 +59,7 @@ export function ArchiveArticle(props: ArchiveArticleType) {
         data-ml="auto"
       >
         <UI.Badge data-mb="6">{props.status}</UI.Badge>
+
         <UI.Badge>{props.source}</UI.Badge>
       </div>
     </li>
