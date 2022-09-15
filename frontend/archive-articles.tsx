@@ -2,7 +2,7 @@ import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Search, Cancel } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as hooks from "./hooks";
 import * as UI from "./ui";
@@ -165,7 +165,7 @@ export function ArchiveArticles(props: RoutableProps) {
             style="padding-right: 36px"
             data-width="100%"
           />
-          <Search
+          <Icons.Search
             height="34"
             width="34"
             data-position="absolute"
@@ -183,7 +183,7 @@ export function ArchiveArticles(props: RoutableProps) {
           data-ml="6"
           data-mr="auto"
         >
-          <Cancel width="24" height="24" />
+          <Icons.Cancel width="24" height="24" />
         </button>
       </div>
 

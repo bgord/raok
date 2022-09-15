@@ -1,11 +1,11 @@
 import { h } from "preact";
 import { useMutation, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import { Notes, Refresh } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
 import * as api from "./api";
-import { ArticleType, StatsType } from "./types";
+import * as types from "./types";
 
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { DeleteOldArticles } from "./delete-old-articles";
@@ -16,7 +16,7 @@ import { Article } from "./article";
 export function ArticleList() {
   const t = bg.useTranslations();
 
-  const [selectedArticleIds, actions] = bg.useList<ArticleType["id"]>();
+  const [selectedArticleIds, actions] = bg.useList<types.ArticleType["id"]>();
   const emptyNewspaperError = bg.useToggle();
 
   const createNewspaper = useCreateNewspaper(actions.clear);
@@ -39,7 +39,7 @@ export function ArticleList() {
         data-pt="6"
       >
         <UI.Header data-display="flex" data-cross="center">
-          <Notes data-mr="12" />
+          <Icons.Notes data-mr="12" />
 
           <span data-transform="upper-first">{t("app.articles")}</span>
 
@@ -84,7 +84,9 @@ export function ArticleList() {
               class="c-button"
               data-variant="bare"
             >
-              <Refresh data-anima-effect={_articles.isRefetching && "rotate"} />
+              <Icons.Refresh
+                data-anima-effect={_articles.isRefetching && "rotate"}
+              />
             </button>
           </div>
 

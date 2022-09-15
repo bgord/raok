@@ -1,11 +1,11 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
-import { StatsSquareUp } from "iconoir-react";
-
 import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
+
 import * as api from "./api";
-import { Header } from "./ui";
-import { StatsType } from "./types";
+import * as UI from "./ui";
+import * as types from "./types";
 
 export function Stats() {
   const stats = useQuery(["stats"], api.getStats);
@@ -24,10 +24,10 @@ export function Stats() {
       data-bw="4"
       data-bct="gray-200"
     >
-      <Header data-display="flex" data-mb="24">
-        <StatsSquareUp data-mr="12" />
+      <UI.Header data-display="flex" data-mb="24">
+        <Icons.StatsSquareUp data-mr="12" />
         Statistics
-      </Header>
+      </UI.Header>
 
       <div data-fs="14" data-color="gray-600">
         <strong>{createdArticles} </strong>

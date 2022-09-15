@@ -47,11 +47,11 @@ export function Select(props: h.JSX.IntrinsicElements["select"]) {
   );
 }
 
-export function CopyButton(
-  props: h.JSX.IntrinsicElements["button"] & {
-    options: bg.CopyToClipboardOptionsType;
-  }
-) {
+type CopyButtonPropsType = h.JSX.IntrinsicElements["button"] & {
+  options: bg.CopyToClipboardOptionsType;
+};
+
+export function CopyButton(props: CopyButtonPropsType) {
   const { options, ...rest } = props;
 
   return (

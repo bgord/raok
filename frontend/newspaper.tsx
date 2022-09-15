@@ -1,15 +1,16 @@
 import { h } from "preact";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import { NavArrowUp, NavArrowDown } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
 import * as api from "./api";
-import { NewspaperType } from "./types";
+import * as types from "./types";
+
 import { hasNewspaperStalled } from "../policies/common";
 import { NewspaperArticle } from "./newspaper-article";
 
-type NewspaperProps = NewspaperType & h.JSX.IntrinsicElements["li"];
+type NewspaperProps = types.NewspaperType & h.JSX.IntrinsicElements["li"];
 
 export function Newspaper(props: NewspaperProps) {
   const t = bg.useTranslations();
@@ -70,8 +71,8 @@ export function Newspaper(props: NewspaperProps) {
               data-mx="6"
               onClick={details.toggle}
             >
-              {details.off && <NavArrowDown height="24" width="24" />}
-              {details.on && <NavArrowUp height="24" width="24" />}
+              {details.off && <Icons.NavArrowDown height="24" width="24" />}
+              {details.on && <Icons.NavArrowUp height="24" width="24" />}
             </button>
           )}
         </div>
@@ -130,7 +131,7 @@ export function Newspaper(props: NewspaperProps) {
 }
 
 function useAutoUpdateNewspaper(
-  props: NewspaperType,
+  props: types.NewspaperType,
   callback: VoidFunction = () => {}
 ) {
   const queryClient = useQueryClient();
@@ -149,7 +150,7 @@ function useAutoUpdateNewspaper(
     refetchInterval: new bg.Time.Seconds(1).toMs(),
 
     onSuccess(updated) {
-      queryClient.setQueryData<NewspaperType[]>(
+      queryClient.setQueryData<types.NewspaperType[]>(
         "newspapers",
         (newspapers = []) =>
           newspapers.map((x) => (x.id === updated.id ? updated : x))
@@ -164,7 +165,7 @@ function useAutoUpdateNewspaper(
 }
 
 function ArchiveNewspaper(props: {
-  id: NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
+  id: types.NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
 }) {
   const t = bg.useTranslations();
 
@@ -193,7 +194,7 @@ function ArchiveNewspaper(props: {
 }
 
 function CancelNewspaper(props: {
-  id: NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
+  id: types.NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
 }) {
   const { id, ...rest } = props;
 

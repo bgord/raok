@@ -6,20 +6,20 @@ import * as bg from "@bgord/frontend";
 import * as hooks from "./hooks";
 import * as UI from "./ui";
 import * as api from "./api";
-import { NewspaperType, NewspaperStatusEnum } from "./types";
+import * as types from "./types";
 import { TimestampFiltersEnum } from "./filters";
 
 import { Newspaper } from "./newspaper";
 
 export type InitialArchiveNewspapersDataType = {
-  archiveNewspapers: NewspaperType[];
+  archiveNewspapers: types.NewspaperType[];
 };
 
 export function ArchiveNewspapers(props: RoutableProps) {
   hooks.useLeavingPrompt();
 
   const statusFilter = bg.useUrlFilter({
-    enum: NewspaperStatusEnum,
+    enum: types.NewspaperStatusEnum,
     label: "status",
   });
 

@@ -1,13 +1,13 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import { StarOutline } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as api from "./api";
-import { ArticleType, NewspaperType } from "./types";
+import * as types from "./types";
 
 type FavouriteUnfavouriteType = {
-  id: ArticleType["id"];
+  id: types.ArticleType["id"];
   /* eslint-disable react/boolean-prop-naming */
   favourite: boolean;
 };
@@ -37,15 +37,15 @@ export function FavouriteUnfavourite(props: FavouriteUnfavouriteType) {
         }
       >
         {props.favourite && (
-          <StarOutline style="fill: black" height="20" width="20" />
+          <Icons.StarOutline style="fill: black" height="20" width="20" />
         )}
-        {!props.favourite && <StarOutline height="20" width="20" />}
+        {!props.favourite && <Icons.StarOutline height="20" width="20" />}
       </button>
     </form>
   );
 }
 
-function useAddArticleToFavourites(id: ArticleType["id"]) {
+function useAddArticleToFavourites(id: types.ArticleType["id"]) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
@@ -54,7 +54,7 @@ function useAddArticleToFavourites(id: ArticleType["id"]) {
       queryClient.invalidateQueries("favourite-articles");
       queryClient.invalidateQueries("archive-articles");
 
-      queryClient.setQueryData<NewspaperType[]>(
+      queryClient.setQueryData<types.NewspaperType[]>(
         "newspapers",
         (newspapers = []) =>
           newspapers.map((newspaper) => ({
@@ -73,7 +73,7 @@ function useAddArticleToFavourites(id: ArticleType["id"]) {
   });
 }
 
-function useDeleteArticleFromFavourites(id: ArticleType["id"]) {
+function useDeleteArticleFromFavourites(id: types.ArticleType["id"]) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
@@ -82,7 +82,7 @@ function useDeleteArticleFromFavourites(id: ArticleType["id"]) {
       queryClient.invalidateQueries("favourite-articles");
       queryClient.invalidateQueries("archive-articles");
 
-      queryClient.setQueryData<NewspaperType[]>(
+      queryClient.setQueryData<types.NewspaperType[]>(
         "newspapers",
         (newspapers = []) =>
           newspapers.map((newspaper) => ({

@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
+import * as types from "./types";
 import { ServerError } from "./server-error";
-import { ArticleType } from "./types";
 
 export function AddArticleForm() {
   const t = bg.useTranslations();
@@ -13,7 +13,7 @@ export function AddArticleForm() {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
-  const url = bg.useField<ArticleType["url"]>("");
+  const url = bg.useField<types.ArticleType["url"]>("");
 
   const addArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {

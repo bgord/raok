@@ -1,11 +1,11 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
-import { BookStack } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as api from "./api";
-import { Header } from "./ui";
-import { NewspaperType } from "./types";
+import * as UI from "./ui";
+
 import { Newspaper } from "./newspaper";
 
 export function NewspaperList() {
@@ -19,16 +19,16 @@ export function NewspaperList() {
 
   return (
     <section data-mt="48" data-mb="72" data-md-mb="36">
-      <Header
+      <UI.Header
         data-display="flex"
         data-bg="gray-100"
         data-bct="gray-200"
         data-bwt="4"
         data-p="12"
       >
-        <BookStack data-mr="12" />
+        <Icons.BookStack data-mr="12" />
         <span data-transform="upper-first">{t("app.newspapers")}</span>
-      </Header>
+      </UI.Header>
 
       {newspapers.count === 0 && (
         <small

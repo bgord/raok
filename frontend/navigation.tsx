@@ -1,7 +1,7 @@
 import { Link } from "preact-router/match";
 import { h, Fragment } from "preact";
 import * as bg from "@bgord/frontend";
-import { Menu, Cancel } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 export function Navigation() {
   const { width } = bg.useWindowDimensions();
@@ -69,7 +69,7 @@ function NavigationMobile() {
           data-variant="bare"
           onClick={navigation.enable}
         >
-          <Menu />
+          <Icons.Menu />
         </button>
       </nav>
 
@@ -99,7 +99,7 @@ function NavigationMobile() {
               data-variant="bare"
               onClick={navigation.disable}
             >
-              <Cancel data-color="white" height="30" width="30" />
+              <Icons.Cancel data-color="white" height="30" width="30" />
             </button>
           </div>
 

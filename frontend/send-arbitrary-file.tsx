@@ -2,11 +2,11 @@ import { h, Fragment } from "preact";
 import { useMutation } from "react-query";
 import prettyBytes from "pretty-bytes-es5";
 import * as bg from "@bgord/frontend";
-import { Book } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as api from "./api";
+import * as UI from "./ui";
 import { MAX_UPLOADED_FILE_SIZE_BYTES } from "../value-objects/max-uploaded-file-size";
-import { Header } from "./ui";
 
 export function SendArbitraryFile() {
   const notify = bg.useToastTrigger();
@@ -36,10 +36,10 @@ export function SendArbitraryFile() {
         fileUpload.mutate(form);
       }}
     >
-      <Header data-display="flex" data-mb="24">
-        <Book data-mr="12" />
+      <UI.Header data-display="flex" data-mb="24">
+        <Icons.Book data-mr="12" />
         Send a book
-      </Header>
+      </UI.Header>
 
       <input
         id="file"

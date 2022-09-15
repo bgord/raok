@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import { RemoveSquare, Copy } from "iconoir-react";
+import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -109,7 +109,7 @@ export function Article(props: ArticlePropsType) {
             data-variant="bare"
             onClick={() => deleteArticle.mutate(props.id)}
           >
-            <RemoveSquare width="24" height="24" />
+            <Icons.RemoveSquare width="24" height="24" />
           </button>
         </div>
       </div>
