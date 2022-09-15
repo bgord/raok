@@ -86,17 +86,17 @@ export class Settings {
     );
   }
 
-  async setArticlesToReviewNotificationHour(hour: VO.HourType) {
+  async setArticlesToReviewNotificationHour(utcHour: VO.HourType) {
     if (!this.isArticlesToReviewNotificationEnabled) return;
 
-    if (this.articlesToReviewNotificationHour === hour) return;
+    if (this.articlesToReviewNotificationHour === utcHour) return;
 
     await Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationHourSetEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT,
         version: 1,
         stream: this.stream,
-        payload: { hour },
+        payload: { hour: utcHour },
       })
     );
   }

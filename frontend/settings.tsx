@@ -149,19 +149,25 @@ export function Settings(props: RoutableProps) {
           data-mt="36"
         >
           <label class="c-label" htmlFor="hour" data-mr="12">
-            Hour (UTC)
+            Hour
           </label>
           <select id="hour" name="hour" class="c-select">
-            {hours.map((option) => (
-              <option
-                value={option.value}
-                selected={
-                  option.value === articlesToReviewNotificationHour.value
-                }
-              >
-                {option.label}
-              </option>
-            ))}
+            {hours
+              .map((hour) => ({
+                ...hour,
+                local: formatUtcHourToLocal(hour.value).label,
+              }))
+              .sort((a, b) => (a.local > b.local ? 1 : -1))
+              .map((option) => (
+                <option
+                  value={option.value}
+                  selected={
+                    option.value === articlesToReviewNotificationHour.value
+                  }
+                >
+                  {option.local}
+                </option>
+              ))}
           </select>
           <button
             disabled={!isArticlesToReviewNotificationEnabled}
@@ -175,10 +181,10 @@ export function Settings(props: RoutableProps) {
         </form>
 
         <small data-fs="14" data-color="gray-400" data-mt="12">
-          Notification will be sent at {articlesToReviewNotificationHour.label}{" "}
-          UTC+0 every day, which is{" "}
+          Notifications will be sent at{" "}
           {formatUtcHourToLocal(articlesToReviewNotificationHour.value).label}{" "}
-          your time.
+          your time every day, which is {articlesToReviewNotificationHour.label}{" "}
+          UTC+0.
         </small>
       </section>
 
