@@ -6,7 +6,7 @@ export type ReadableArticleContentType = Brand<
   z.infer<typeof ReadableArticleContentSchema>
 >;
 
-const ReadableArticleContentSchema = z.string().max(100000);
+const ReadableArticleContentSchema = z.string().trim().min(1);
 
 export const ReadableArticleContent = toBrand<ReadableArticleContentType>(
   ReadableArticleContentSchema
