@@ -33,6 +33,25 @@ export function Settings(props: RoutableProps) {
     },
   });
 
+  const enableArticlesToReviewNotification = useMutation(
+    api.Settings.enableArticlesToReviewNotification,
+    {
+      onSuccess: () => {
+        notify({ message: "articles-to-review-notification.enabled" });
+        queryClient.invalidateQueries("settings");
+      },
+    }
+  );
+  const disableArticlesToReviewNotification = useMutation(
+    api.Settings.disableArticlesToReviewNotification,
+    {
+      onSuccess: () => {
+        notify({ message: "articles-to-review-notification.disabled" });
+        queryClient.invalidateQueries("settings");
+      },
+    }
+  );
+
   if (!settings.isSuccess) return <div data-p="24">Preparing settings...</div>;
 
   const {
@@ -82,29 +101,29 @@ export function Settings(props: RoutableProps) {
           </h3>
 
           {isArticlesToReviewNotificationEnabled && (
-            <form
-              method="POST"
-              action="/disable-articles-to-review-notification"
+            <button
+              type="submit"
+              class="c-button"
+              data-variant="primary"
               data-ml="12"
               data-md-ml="0"
+              onClick={() => disableArticlesToReviewNotification.mutate()}
             >
-              <button type="submit" class="c-button" data-variant="primary">
-                Disable
-              </button>
-            </form>
+              Disable
+            </button>
           )}
 
           {!isArticlesToReviewNotificationEnabled && (
-            <form
-              method="POST"
-              action="/enable-articles-to-review-notification"
+            <button
+              type="submit"
+              class="c-button"
+              data-variant="primary"
               data-ml="12"
               data-md-ml="0"
+              onClick={() => enableArticlesToReviewNotification.mutate()}
             >
-              <button type="submit" class="c-button" data-variant="primary">
-                Enable
-              </button>
-            </form>
+              Enable
+            </button>
           )}
         </div>
 

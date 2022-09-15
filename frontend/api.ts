@@ -172,4 +172,12 @@ export class Settings {
   static async restoreFeedlyCrawling() {
     return _api("/restore-feedly-crawling", { method: "POST" });
   }
+
+  static async enableArticlesToReviewNotification() {
+    return _api("/enable-articles-to-review-notification", { method: "POST" });
+  }
+
+  static async disableArticlesToReviewNotification() {
+    return _api("/disable-articles-to-review-notification", { method: "POST" });
+  }
 }
