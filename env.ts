@@ -13,8 +13,8 @@ const EnvironmentSchema = z.object({
   EMAIL_FROM: Schema.Email,
   EMAIL_TO_DELIVER_TO: Schema.Email,
   EMAIL_FOR_NOTIFICATIONS: Schema.Email,
-  FEEDLY_TOKEN: z.string().min(1),
-  FEEDLY_STREAM_ID: z.string().min(1),
+  FEEDLY_TOKEN: z.string().trim().min(1),
+  FEEDLY_STREAM_ID: z.string().trim().min(1),
   SUPRESS_FEEDLY_CRAWLING: Schema.FeatureFlag,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;

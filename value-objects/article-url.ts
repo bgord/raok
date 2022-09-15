@@ -6,6 +6,6 @@ export type ArticleUrlType = Brand<
   z.infer<typeof ArticleUrlSchema>
 >;
 
-const ArticleUrlSchema = z.string().url();
+const ArticleUrlSchema = z.string().trim().url();
 
 export const ArticleUrl = toBrand<ArticleUrlType>(ArticleUrlSchema);

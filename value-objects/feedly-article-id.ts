@@ -6,7 +6,7 @@ export type FeedlyArticleIdType = Brand<
   z.infer<typeof FeedlyArticleIdSchema>
 >;
 
-const FeedlyArticleIdSchema = z.string().min(1);
+const FeedlyArticleIdSchema = z.string().trim().min(1);
 
 export const FeedlyArticleId = toBrand<FeedlyArticleIdType>(
   FeedlyArticleIdSchema

@@ -6,6 +6,6 @@ export type ArticleTitleType = Brand<
   z.infer<typeof ArticleTitleSchema>
 >;
 
-const ArticleTitleSchema = z.string().nullish().default("-");
+const ArticleTitleSchema = z.string().trim().nullish().default("-");
 
 export const ArticleTitle = toBrand<ArticleTitleType>(ArticleTitleSchema);

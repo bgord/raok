@@ -6,7 +6,7 @@ export type ReadableArticleTitleType = Brand<
   z.infer<typeof ReadableArticleTitleSchema>
 >;
 
-const ReadableArticleTitleSchema = z.string().max(256);
+const ReadableArticleTitleSchema = z.string().trim().max(256);
 
 export const ReadableArticleTitle = toBrand<ReadableArticleTitleType>(
   ReadableArticleTitleSchema
