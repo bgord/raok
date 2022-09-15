@@ -171,7 +171,7 @@ export function ArchiveFiles(props: RoutableProps) {
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
 
             <bg.OutboundLink
-              href={`/files/archive/${file.id}/download`}
+              href={getFileDownloadUrl(file.id)}
               class="c-link"
               data-variant="bare"
               data-display="flex"
@@ -187,4 +187,10 @@ export function ArchiveFiles(props: RoutableProps) {
       </ul>
     </main>
   );
+}
+
+function getFileDownloadUrl(id: types.ArchiveFileType["id"]) {
+  const safeWindow = bg.getSafeWindow();
+
+  return `${safeWindow?.location.host}/files/archive/${id}/download`;
 }
