@@ -33,9 +33,10 @@ export function Newspaper(props: NewspaperProps) {
       data-direction="column"
       data-my="12"
       data-md-pl="3"
+      data-max-width="100%"
       {...props}
     >
-      <div data-display="flex" data-cross="center">
+      <div data-display="flex" data-cross="center" data-max-width="100%">
         <UI.Badge
           data-bg="gray-600"
           data-color="gray-100"

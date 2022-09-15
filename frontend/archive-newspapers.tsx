@@ -44,7 +44,7 @@ export function ArchiveNewspapers(props: RoutableProps) {
       data-direction="column"
       data-mx="auto"
       data-my="24"
-      data-md-px="6"
+      data-md-px="3"
       data-max-width="768"
       data-width="100%"
     >
@@ -131,6 +131,9 @@ export function ArchiveNewspapers(props: RoutableProps) {
         data-mt="24"
         data-bg="gray-100"
         data-px="12"
+        data-md-px="0"
+        data-max-width="768"
+        data-width="100%"
       >
         {newspapers.map((newspaper) => (
           <Newspaper key={newspaper.id} {...newspaper} />
