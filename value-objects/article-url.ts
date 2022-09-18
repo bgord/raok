@@ -1,11 +1,5 @@
-import * as bg from "@bgord/node";
 import { z } from "zod";
 
-export type ArticleUrlType = bg.Brand<
-  "article-url",
-  z.infer<typeof ArticleUrlSchema>
->;
+export const ArticleUrl = z.string().trim().url().brand<"article-url">();
 
-const ArticleUrlSchema = z.string().trim().url();
-
-export const ArticleUrl = bg.toBrand<ArticleUrlType>(ArticleUrlSchema);
+export type ArticleUrlType = z.infer<typeof ArticleUrl>;

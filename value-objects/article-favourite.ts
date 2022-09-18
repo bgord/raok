@@ -1,13 +1,8 @@
-import * as bg from "@bgord/node";
 import { z } from "zod";
 
-export type ArticleFavouriteType = bg.Brand<
-  "article-favourite",
-  z.infer<typeof ArticleFavouriteSchema>
->;
+export const ArticleFavourite = z
+  .boolean()
+  .default(false)
+  .brand<"article-favourite">();
 
-const ArticleFavouriteSchema = z.boolean().default(false);
-
-export const ArticleFavourite = bg.toBrand<ArticleFavouriteType>(
-  ArticleFavouriteSchema
-);
+export type ArticleFavouriteType = z.infer<typeof ArticleFavourite>;

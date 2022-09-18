@@ -1,12 +1,9 @@
-import * as bg from "@bgord/node";
 import { z } from "zod";
 
-export type ArticleContentType = bg.Brand<
-  "article-content",
-  z.infer<typeof ArticleContentSchema>
->;
+export const ArticleContent = z
+  .string()
+  .trim()
+  .min(1)
+  .brand<"article-content">();
 
-const ArticleContentSchema = z.string().trim().min(1);
-
-export const ArticleContent =
-  bg.toBrand<ArticleContentType>(ArticleContentSchema);
+export type ArticleContentType = z.infer<typeof ArticleContent>;

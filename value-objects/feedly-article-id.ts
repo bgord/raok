@@ -1,13 +1,9 @@
-import * as bg from "@bgord/node";
 import { z } from "zod";
 
-export type FeedlyArticleIdType = bg.Brand<
-  "feedly-article-id",
-  z.infer<typeof FeedlyArticleIdSchema>
->;
+export const FeedlyArticleId = z
+  .string()
+  .trim()
+  .min(1)
+  .brand<"feedly-article-id">();
 
-const FeedlyArticleIdSchema = z.string().trim().min(1);
-
-export const FeedlyArticleId = bg.toBrand<FeedlyArticleIdType>(
-  FeedlyArticleIdSchema
-);
+export type FeedlyArticleIdType = z.infer<typeof FeedlyArticleId>;

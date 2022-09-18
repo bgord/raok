@@ -1,11 +1,6 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
-export type ArticleIdType = bg.Brand<
-  "article-id",
-  z.infer<typeof ArticleIdSchema>
->;
+export const ArticleId = bg.Schema.UUID.brand<"article-id">();
 
-const ArticleIdSchema = bg.Schema.UUID;
-
-export const ArticleId = bg.toBrand<ArticleIdType>(ArticleIdSchema);
+export type ArticleIdType = z.infer<typeof ArticleId>;

@@ -1,13 +1,9 @@
-import * as bg from "@bgord/node";
 import { z } from "zod";
 
-export type ReadableArticleTitleType = bg.Brand<
-  "readable-article-title",
-  z.infer<typeof ReadableArticleTitleSchema>
->;
+export const ReadableArticleTitle = z
+  .string()
+  .trim()
+  .max(256)
+  .brand<"readable-article-title">();
 
-const ReadableArticleTitleSchema = z.string().trim().max(256);
-
-export const ReadableArticleTitle = bg.toBrand<ReadableArticleTitleType>(
-  ReadableArticleTitleSchema
-);
+export type ReadableArticleTitleType = z.infer<typeof ReadableArticleTitle>;
