@@ -42,31 +42,23 @@ export function ArchiveNewspapers(props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
+      data-mt="24"
       data-mx="auto"
-      data-my="24"
-      data-md-px="3"
+      data-md-pl="6"
+      data-md-pr="3"
       data-max-width="768"
+      data-md-max-width="100%"
       data-width="100%"
     >
-      <div
-        data-display="flex"
-        data-cross="center"
-        data-mt="24"
-        data-mb="36"
-        data-bwt="4"
-        data-bct="gray-100"
-        data-pt="12"
-      >
+      <div data-display="flex" data-cross="center">
         <h2 data-fs="20" data-color="gray-800" data-fw="500">
           Archive Newspapers
         </h2>
 
-        <UI.Badge data-ml="12" data-p="3">
-          {numberOfNewspapers}
-        </UI.Badge>
+        <UI.Badge data-ml="12">{numberOfNewspapers}</UI.Badge>
       </div>
 
-      <div data-display="flex" data-cross="end" data-mb="24">
+      <div data-display="flex" data-cross="end" data-my="24">
         <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" htmlFor="sent-at">
             Sent at

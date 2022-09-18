@@ -71,7 +71,7 @@ export function ArchiveArticles(props: RoutableProps) {
         <UI.Badge data-ml="12">{numberOfArticles}</UI.Badge>
       </div>
 
-      <div data-display="flex" data-cross="end" data-mt="12">
+      <div data-display="flex" data-cross="end" data-my="12">
         <div
           data-display="flex"
           data-direction="column"
