@@ -51,7 +51,9 @@ export function App(props: InitialDataType) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <bg.TranslationsContextProvider translations={props.translations}>
+      <bg.TranslationsContextProvider
+        value={{ translations: props.translations, language: props.language }}
+      >
         <bg.ToastsContextProvider>
           <SkipNavLink as="a" />
           <Navigation />
