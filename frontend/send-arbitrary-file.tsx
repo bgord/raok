@@ -9,6 +9,7 @@ import * as UI from "./ui";
 import { MAX_UPLOADED_FILE_SIZE_BYTES } from "../value-objects/max-uploaded-file-size";
 
 export function SendArbitraryFile() {
+  const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
 
   const fileUpload = useMutation(api.sendArbitraryFile, {
@@ -38,7 +39,7 @@ export function SendArbitraryFile() {
     >
       <UI.Header data-display="flex" data-mb="24">
         <Icons.Book data-mr="12" />
-        Send a book
+        <span data-transform="upper-first">{t("app.send_a_book")}</span>
       </UI.Header>
 
       <input
@@ -61,7 +62,7 @@ export function SendArbitraryFile() {
         class="c-button"
         data-variant="secondary"
       >
-        <label htmlFor="file">File explorer</label>
+        <label htmlFor="file">{t("app.file_explorer")}</label>
       </button>
 
       {file.state === bg.UseFileState.selected && !fileUpload.isSuccess && (
@@ -101,10 +102,12 @@ export function SendArbitraryFile() {
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
         file.state === bg.UseFileState.idle && (
           <small data-mt="24" data-fs="14" data-color="gray-600">
-            Select a file to send, up to{" "}
-            {prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES)}
+            {`Select a file to send, up to ${prettyBytes(
+              MAX_UPLOADED_FILE_SIZE_BYTES
+            )}`}
           </small>
         )}
+
       {fileUpload.isIdle && file.state === bg.UseFileState.selected && (
         <Fragment>
           <div
@@ -124,6 +127,7 @@ export function SendArbitraryFile() {
           </div>
         </Fragment>
       )}
+
       {fileUpload.isSuccess && file.state === bg.UseFileState.selected && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
           File has been sent!

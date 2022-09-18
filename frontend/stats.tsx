@@ -8,7 +8,9 @@ import * as UI from "./ui";
 import * as types from "./types";
 
 export function Stats() {
+  const t = bg.useTranslations();
   const pluralize = bg.usePluralize();
+
   const stats = useQuery("stats", api.getStats);
 
   const createdArticles = stats.data?.createdArticles ?? 0;
@@ -25,9 +27,9 @@ export function Stats() {
       data-bw="4"
       data-bct="gray-200"
     >
-      <UI.Header data-display="flex" data-mb="24">
+      <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.StatsSquareUp data-mr="12" />
-        Statistics
+        <span data-transform="upper-first">{t("app.statistics")}</span>
       </UI.Header>
 
       <div data-fs="14" data-color="gray-600">
