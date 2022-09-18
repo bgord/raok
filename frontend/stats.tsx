@@ -8,10 +8,11 @@ import * as UI from "./ui";
 import * as types from "./types";
 
 export function Stats() {
+  const pluralize = bg.usePluralize();
   const stats = useQuery("stats", api.getStats);
 
-  const createdArticles = stats.data?.createdArticles ?? "-";
-  const sentNewspapers = stats.data?.sentNewspapers ?? "-";
+  const createdArticles = stats.data?.createdArticles ?? 0;
+  const sentNewspapers = stats.data?.sentNewspapers ?? 0;
 
   const lastFeedlyImportFormatted =
     stats.data?.lastFeedlyImport?.relative ?? "N/A";
@@ -31,12 +32,14 @@ export function Stats() {
 
       <div data-fs="14" data-color="gray-600">
         <strong>{createdArticles} </strong>
-        articles added overall
+        {pluralize({ value: createdArticles, singular: "article" })} added
+        overall
       </div>
 
       <div data-fs="14" data-color="gray-600" data-mt="6">
         <strong>{sentNewspapers} </strong>
-        newspapers sent overall
+        {pluralize({ value: createdArticles, singular: "newspaper" })} sent
+        overall
       </div>
 
       <div
