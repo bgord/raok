@@ -54,16 +54,19 @@ export function SendArbitraryFile() {
         style={{ width: "0.1px", height: "0.1px", opacity: "0" }}
       />
 
-      <button
-        id="file-explorer"
-        name="file-explorer"
-        disabled={file.state === bg.UseFileState.selected}
-        type="button"
-        class="c-button"
-        data-variant="secondary"
-      >
-        <label htmlFor="file">{t("app.file_explorer")}</label>
-      </button>
+      <label htmlFor="file" data-cursor="pointer">
+        <button
+          id="file-explorer"
+          name="file-explorer"
+          disabled={file.state === bg.UseFileState.selected}
+          type="button"
+          class="c-button"
+          data-variant="secondary"
+          style={{ pointerEvents: "none" }}
+        >
+          {t("app.file_explorer")}
+        </button>
+      </label>
 
       {file.state === bg.UseFileState.selected && !fileUpload.isSuccess && (
         <button
