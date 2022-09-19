@@ -62,7 +62,7 @@ export function SendArbitraryFile() {
           type="button"
           class="c-button"
           data-variant="secondary"
-          style={{ pointerEvents: "none" }}
+          data-pointer-events="none"
         >
           {t("app.file_explorer")}
         </button>
