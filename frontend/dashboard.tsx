@@ -9,18 +9,13 @@ import { Stats } from "./stats";
 import { SendArbitraryFile } from "./send-arbitrary-file";
 import { FavouriteArticles } from "./favourite-articles";
 
-import {
-  StatsType,
-  ArticleType,
-  FavouriteArticleType,
-  NewspaperType,
-} from "./types";
+import * as types from "./types";
 
 export type InitialDashboardDataType = {
-  stats: StatsType;
-  articles: bg.Paged<ArticleType>;
-  newspapers: NewspaperType[];
-  favouriteArticles: FavouriteArticleType[];
+  stats: types.StatsType;
+  articles: bg.Paged<types.ArticleType>;
+  newspapers: types.NewspaperType[];
+  favouriteArticles: types.FavouriteArticleType[];
 };
 
 export function Dashboard(props: RoutableProps) {
