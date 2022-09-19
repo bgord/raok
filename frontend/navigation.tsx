@@ -69,7 +69,7 @@ function NavigationMobile() {
           data-variant="bare"
           onClick={navigation.enable}
         >
-          <Icons.Menu />
+          <Icons.Menu data-color="white" height="24" width="24" />
         </button>
       </nav>
 
