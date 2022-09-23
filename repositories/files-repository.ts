@@ -10,7 +10,10 @@ export const ArchiveFilesFilter = new bg.Filter(
 
 export class FilesRepository {
   static async getAll(filters?: Prisma.FilesWhereInput) {
-    const files = await db.files.findMany({ where: filters });
+    const files = await db.files.findMany({
+      where: filters,
+      orderBy: { sentAt: "desc" },
+    });
 
     return files.map((file) => ({
       ...file,
