@@ -14,7 +14,7 @@ press_enter_to_continue
 info "Copy-paste .env.staging from Keeper to your local machine"
 press_enter_to_continue
 
-info "Copy-paste the FEEDLY_TOKEN variable fro .env.staging to .env.local"
+info "Copy-paste the FEEDLY_TOKEN variable from .env.staging to .env.local"
 press_enter_to_continue
 
 info "Update ENV_STAGING variable in https://github.com/bgord/raok/settings/secrets/actions"
