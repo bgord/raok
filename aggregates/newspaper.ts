@@ -1,4 +1,4 @@
-import { UUID, Reporter, EventType } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -11,7 +11,7 @@ import { Article } from "./article";
 export class Newspaper {
   id: VO.NewspaperType["id"];
 
-  stream: EventType["stream"];
+  stream: bg.EventType["stream"];
 
   status: VO.NewspaperType["status"] = VO.NewspaperStatusEnum.undetermined;
 
@@ -88,7 +88,7 @@ export class Newspaper {
 
     await Policies.ArticlesAreSendable.perform({ articles });
 
-    const newspaperId = VO.NewspaperId.parse(UUID.generate());
+    const newspaperId = VO.NewspaperId.parse(bg.UUID.generate());
 
     await Repos.EventRepository.save(
       Events.NewspaperScheduledEvent.parse({
@@ -124,7 +124,7 @@ export class Newspaper {
         })
       );
     } catch (error) {
-      Reporter.raw("Newspaper#generate", error);
+      bg.Reporter.raw("Newspaper#generate", error);
       await Repos.EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
@@ -160,7 +160,7 @@ export class Newspaper {
         })
       );
     } catch (error) {
-      Reporter.raw("newspaper_error", error);
+      bg.Reporter.raw("newspaper_error", error);
       await Repos.EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,

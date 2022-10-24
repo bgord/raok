@@ -7,6 +7,7 @@ import * as Icons from "iconoir-react";
 import * as api from "./api";
 import * as UI from "./ui";
 import { MAX_UPLOADED_FILE_SIZE_BYTES } from "../value-objects/max-uploaded-file-size";
+import { FileMimeTypes } from "../value-objects/file-mime-types";
 
 export function SendArbitraryFile() {
   const t = bg.useTranslations();
@@ -45,7 +46,7 @@ export function SendArbitraryFile() {
       <input
         id="file"
         name="file"
-        accept=".txt,.html,.epub"
+        accept={FileMimeTypes.form()}
         type="file"
         onInput={file.actions.selectFile}
         data-overflow="hidden"

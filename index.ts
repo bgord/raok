@@ -1,6 +1,5 @@
 import express from "express";
 import * as bg from "@bgord/node";
-import { extname } from "path";
 
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
@@ -13,7 +12,7 @@ const app = express();
 
 bg.addExpressEssentials(app);
 bg.Handlebars.applyTo(app);
-bg.Language.applyTo(app, "translations");
+bg.Language.applyTo(app, bg.Schema.Path.parse("translations"));
 
 const session = new bg.Session({
   secret: Env.COOKIE_SECRET,
@@ -117,6 +116,7 @@ app.post(
     autoClean: false,
     maxFilesSize: VO.MAX_UPLOADED_FILE_SIZE_BYTES,
     uploadDir: "files",
+    mimeTypes: VO.FileMimeTypes.value,
   }),
   bg.Route(Routes.SendArbitraryFile)
 );

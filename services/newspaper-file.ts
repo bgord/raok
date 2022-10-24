@@ -95,7 +95,12 @@ export class NewspaperFile {
   static getAttachment(id: VO.NewspaperType["id"]) {
     const { epub } = NewspaperFile.getPaths(id);
 
-    return { path: epub, originalFilename: "newspaper" };
+    return {
+      path: bg.Schema.Path.parse(epub),
+      originalFilename: bg.Schema.UploadedFile._def
+        .shape()
+        .originalFilename.parse("newspaper"),
+    };
   }
 
   static async read(id: VO.NewspaperType["id"]): Promise<string | null> {
