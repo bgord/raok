@@ -1,5 +1,4 @@
 import * as bg from "@bgord/node";
-import * as fs from "fs/promises";
 import { z } from "zod";
 import Emittery from "emittery";
 
