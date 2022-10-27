@@ -18,7 +18,7 @@ export type InitialDashboardDataType = {
   favouriteArticles: types.FavouriteArticleType[];
 };
 
-export function Dashboard(props: RoutableProps) {
+export function Dashboard(_: RoutableProps) {
   hooks.useLeavingPrompt();
 
   return (
@@ -43,7 +43,6 @@ export function Dashboard(props: RoutableProps) {
 
       <section
         data-grow="1"
-        data-pt="12"
         data-px="24"
         data-md-px="0"
         data-width="100%"
