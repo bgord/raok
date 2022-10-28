@@ -29,11 +29,6 @@ app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
 app.get("/articles", AuthShield.verify, bg.Route(Routes.Articles));
 app.get(
-  "/articles/favourite",
-  AuthShield.verify,
-  bg.Route(Routes.FavouriteArticles)
-);
-app.get(
   "/articles/archive",
   AuthShield.verify,
   bg.Route(Routes.ArchiveArticles)
@@ -59,16 +54,6 @@ app.post(
   "/articles/old/delete",
   AuthShield.verify,
   bg.Route(Routes.DeleteOldArticles)
-);
-app.post(
-  "/article/:articleId/favourite",
-  AuthShield.verify,
-  bg.Route(Routes.AddArticleToFavourites)
-);
-app.post(
-  "/article/:articleId/unfavourite",
-  AuthShield.verify,
-  bg.Route(Routes.DeleteArticleFromFavourites)
 );
 
 app.get("/newspapers", AuthShield.verify, bg.Route(Routes.Newspapers));
@@ -181,9 +166,7 @@ app.post(
   AuthShield.attach,
   (_request, response) => response.redirect("/dashboard")
 );
-app.get("/logout", AuthShield.detach, (request, response) =>
-  response.redirect("/")
-);
+app.get("/logout", AuthShield.detach, (_, response) => response.redirect("/"));
 
 app.get(
   "/dashboard",
