@@ -1,4 +1,4 @@
-import { Reporter } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
@@ -8,23 +8,23 @@ import { Env } from "../env";
 
 export class FeedlyArticlesCrawler {
   static async run() {
-    Reporter.info("Crawling Feedly articles...");
+    bg.Reporter.info("Crawling Feedly articles...");
 
     if (Env.SUPRESS_FEEDLY_CRAWLING === "yes") {
-      Reporter.info("Suppressing Feedly crawling due to feature flag");
+      bg.Reporter.info("Suppressing Feedly crawling due to feature flag");
       return;
     }
 
     const settings = await new Aggregates.Settings().build();
     if (Policies.ShouldCrawlFeedly.fails({ settings })) {
-      Reporter.info(
+      bg.Reporter.info(
         "Suppressing Feedly crawling due to settings.isFeedlyCrawlingStopped"
       );
       return;
     }
 
     const articles = await Feedly.getArticles();
-    Reporter.info(`Got ${articles.length} unread article(s).`);
+    bg.Reporter.info(`Got ${articles.length} unread article(s).`);
 
     if (articles.length === 0) return;
 
@@ -40,11 +40,11 @@ export class FeedlyArticlesCrawler {
         });
         insertedArticlesFeedlyIds.push(article.id);
 
-        Reporter.success(
+        bg.Reporter.success(
           `Added article from Feedly [url=${article.canonicalUrl}]`
         );
       } catch (error) {
-        Reporter.error(`Article not added [url=${article.canonicalUrl}]`);
+        bg.Reporter.error(`Article not added [url=${article.canonicalUrl}]`);
       }
     }
 
@@ -52,11 +52,11 @@ export class FeedlyArticlesCrawler {
       if (insertedArticlesFeedlyIds.length === 0) return;
 
       await Feedly.markArticlesAsRead(insertedArticlesFeedlyIds);
-      Reporter.success(
+      bg.Reporter.success(
         `Marked Feedly articles as read [ids=${insertedArticlesFeedlyIds}]`
       );
     } catch (error) {
-      Reporter.error("Failed to mark Feedly articles as read");
+      bg.Reporter.error("Failed to mark Feedly articles as read");
     }
   }
 }

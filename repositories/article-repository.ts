@@ -86,27 +86,21 @@ export class ArticleRepository {
     });
   }
 
-  // FIX
-  static async create(article: {
-    id: VO.ArticleType["id"];
-    url: VO.ArticleType["url"];
-    source: VO.ArticleType["source"];
-    createdAt: VO.ArticleType["createdAt"];
-    title: VO.ArticleMetatagsType["title"];
-  }) {
+  static async create(
+    article: Pick<VO.ArticleType, "id" | "url" | "source" | "createdAt"> & {
+      title: VO.ArticleMetatagsType["title"];
+    }
+  ) {
     return db.article.create({
       data: { ...article, status: VO.ArticleStatusEnum.ready },
     });
   }
 
   static async updateStatus(
-    articleId: VO.ArticleType["id"],
+    id: VO.ArticleType["id"],
     status: VO.ArticleType["status"]
   ) {
-    return db.article.updateMany({
-      where: { id: articleId },
-      data: { status },
-    });
+    return db.article.updateMany({ where: { id }, data: { status } });
   }
 
   static async assignToNewspaper(
@@ -119,21 +113,21 @@ export class ArticleRepository {
     });
   }
 
-  static async delete(articleId: VO.ArticleType["id"]) {
-    return db.article.delete({ where: { id: articleId } });
+  static async delete(id: VO.ArticleType["id"]) {
+    return db.article.delete({ where: { id } });
   }
 
   static async getNumbersOfNonProcessedArticlesWithUrl(
-    articleUrl: VO.ArticleType["url"]
+    url: VO.ArticleType["url"]
   ) {
     return db.article.count({
-      where: { url: articleUrl, status: VO.ArticleStatusEnum.ready },
+      where: { url, status: VO.ArticleStatusEnum.ready },
     });
   }
 
-  static async getNumbersOfArticlesWithUrl(articleUrl: VO.ArticleType["url"]) {
+  static async getNumbersOfArticlesWithUrl(url: VO.ArticleType["url"]) {
     return db.article.count({
-      where: { url: articleUrl, source: VO.ArticleSourceEnum.feedly },
+      where: { url, source: VO.ArticleSourceEnum.feedly },
     });
   }
 }

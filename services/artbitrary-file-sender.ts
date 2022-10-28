@@ -1,8 +1,8 @@
-import { Schema, Mailer } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import { Env } from "../env";
 
-const mailer = new Mailer({
+const mailer = new bg.Mailer({
   SMTP_HOST: Env.SMTP_HOST,
   SMTP_PORT: Env.SMTP_PORT,
   SMTP_USER: Env.SMTP_USER,
@@ -11,7 +11,7 @@ const mailer = new Mailer({
 
 export class ArbitraryFileSender {
   static send(
-    file: Pick<Schema.UploadedFileType, "originalFilename" | "path">
+    file: Pick<bg.Schema.UploadedFileType, "originalFilename" | "path">
   ) {
     return mailer.send({
       from: Env.EMAIL_FROM,

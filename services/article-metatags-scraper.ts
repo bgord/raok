@@ -1,4 +1,4 @@
-import { Reporter } from "@bgord/node";
+import * as bg from "@bgord/node";
 import og from "open-graph-scraper";
 
 import * as VO from "../value-objects";
@@ -16,7 +16,7 @@ export class ArticleMetatagsScraper {
 
       return VO.ArticleMetatags.parse(emptyMetatags);
     } catch (error) {
-      Reporter.raw("ArticleMetatagsScraper#get", error);
+      bg.Reporter.raw("ArticleMetatagsScraper#get", error);
 
       return VO.ArticleMetatags.parse(emptyMetatags);
     }

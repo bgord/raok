@@ -1,4 +1,4 @@
-import { UUID, EventType } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -9,7 +9,7 @@ import * as Repos from "../repositories";
 export class Article {
   id: VO.ArticleType["id"];
 
-  stream: EventType["stream"];
+  stream: bg.EventType["stream"];
 
   entity: VO.ArticleType | null = null;
 
@@ -71,7 +71,7 @@ export class Article {
     source?: VO.ArticleSourceEnum;
   }) {
     const newArticleSource = newArticle.source ?? VO.ArticleSourceEnum.web;
-    const newArticleId = VO.ArticleId.parse(UUID.generate());
+    const newArticleId = VO.ArticleId.parse(bg.UUID.generate());
 
     if (newArticleSource === VO.ArticleSourceEnum.web) {
       await Policies.NonProcessedArticleUrlIsUnique.perform({

@@ -1,5 +1,6 @@
+import * as bg from "@bgord/node";
 import { z } from "zod";
-import { EventType } from "@bgord/node";
+
 import { db } from "../db";
 
 import * as Events from "../events";
@@ -27,7 +28,7 @@ type AcceptedEventType = z.infer<AcceptedEvent>;
 export class EventRepository {
   static async find<T extends AcceptedEvent[]>(
     acceptedEvents: T,
-    stream?: EventType["stream"]
+    stream?: bg.EventType["stream"]
   ): Promise<z.infer<T[0]>[]> {
     const acceptedEventNames = acceptedEvents.map(
       (acceptedEvent) => acceptedEvent._def.shape().name._def.value

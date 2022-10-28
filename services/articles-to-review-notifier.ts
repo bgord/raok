@@ -1,12 +1,11 @@
-import { Mailer, Reporter } from "@bgord/node";
+import * as bg from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
-
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
 import { Env } from "../env";
 
-const mailer = new Mailer({
+const mailer = new bg.Mailer({
   SMTP_HOST: Env.SMTP_HOST,
   SMTP_PORT: Env.SMTP_PORT,
   SMTP_USER: Env.SMTP_USER,
@@ -65,6 +64,6 @@ export class ArticlesToReviewNotifier {
       `,
     });
 
-    Reporter.success("Articles to review notification sent");
+    bg.Reporter.success("Articles to review notification sent");
   }
 }
