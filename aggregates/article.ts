@@ -1,4 +1,4 @@
-import { UUID, Time, EventType } from "@bgord/node";
+import { UUID, EventType } from "@bgord/node";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -27,8 +27,6 @@ export class Article {
         Events.ArticleDeletedEvent,
         Events.ArticleLockedEvent,
         Events.ArticleProcessedEvent,
-        Events.ArticleAddedToFavouritesEvent,
-        Events.ArticleDeletedFromFavouritesEvent,
         Events.ArticleUndeleteEvent,
       ],
       Article.getStream(this.id)
@@ -38,7 +36,6 @@ export class Article {
       switch (event.name) {
         case Events.ARTICLE_ADDED_EVENT:
           this.entity = event.payload;
-          this.entity.favourite = VO.ArticleFavourite.parse(false);
           break;
 
         case Events.ARTICLE_DELETED_EVENT:
@@ -54,16 +51,6 @@ export class Article {
         case Events.ARTICLE_PROCESSED_EVENT:
           if (!this.entity) continue;
           this.entity.status = VO.ArticleStatusEnum.processed;
-          break;
-
-        case Events.ARTICLE_ADDED_TO_FAVOURITES:
-          if (!this.entity) continue;
-          this.entity.favourite = VO.ArticleFavourite.parse(true);
-          break;
-
-        case Events.ARTICLE_DELETED_FROM_FAVOURITES:
-          if (!this.entity) continue;
-          this.entity.favourite = VO.ArticleFavourite.parse(false);
           break;
 
         case Events.ARTICLE_UNDELETE_EVENT:
@@ -162,36 +149,6 @@ export class Article {
     await Repos.EventRepository.save(
       Events.ArticleProcessedEvent.parse({
         name: Events.ARTICLE_PROCESSED_EVENT,
-        stream: this.stream,
-        version: 1,
-        payload: { articleId: this.id },
-      })
-    );
-  }
-
-  async addToFavourites() {
-    if (!this.entity) return;
-
-    await Policies.FavouriteArticle.perform({ entity: this.entity });
-
-    await Repos.EventRepository.save(
-      Events.ArticleAddedToFavouritesEvent.parse({
-        name: Events.ARTICLE_ADDED_TO_FAVOURITES,
-        stream: this.stream,
-        version: 1,
-        payload: { articleId: this.id },
-      })
-    );
-  }
-
-  async deleteFromFavourites() {
-    if (!this.entity) return;
-
-    await Policies.UnfavouriteArticle.perform({ entity: this.entity });
-
-    await Repos.EventRepository.save(
-      Events.ArticleDeletedFromFavouritesEvent.parse({
-        name: Events.ARTICLE_DELETED_FROM_FAVOURITES,
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },

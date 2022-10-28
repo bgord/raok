@@ -28,7 +28,6 @@ export async function Dashboard(
     archiveNewspapers: [],
     archiveFiles: [],
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
-    favouriteArticles: await Repos.ArticleRepository.getFavourite(),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
     stats: await Repos.StatsRepository.getAll(),

@@ -3,7 +3,6 @@ import * as bg from "@bgord/node";
 import _ from "lodash";
 
 import { Prisma, db } from "../db";
-import * as Services from "../services";
 import * as VO from "../value-objects";
 
 export const ArchiveArticlesFilter = new bg.Filter(
@@ -24,7 +23,6 @@ export class ArticleRepository {
         source: true,
         title: true,
         createdAt: true,
-        favourite: true,
         status: true,
       },
       where: _.merge(filters, {
@@ -88,21 +86,13 @@ export class ArticleRepository {
     });
   }
 
-  static async getFavourite() {
-    return db.article.findMany({
-      where: { favourite: true, status: { not: VO.ArticleStatusEnum.deleted } },
-      orderBy: { favouritedAt: "asc" },
-      select: { id: true, url: true, title: true },
-    });
-  }
-
+  // FIX
   static async create(article: {
     id: VO.ArticleType["id"];
     url: VO.ArticleType["url"];
     source: VO.ArticleType["source"];
     createdAt: VO.ArticleType["createdAt"];
     title: VO.ArticleMetatagsType["title"];
-    favourite: VO.ArticleType["favourite"];
   }) {
     return db.article.create({
       data: { ...article, status: VO.ArticleStatusEnum.ready },
@@ -116,20 +106,6 @@ export class ArticleRepository {
     return db.article.updateMany({
       where: { id: articleId },
       data: { status },
-    });
-  }
-
-  static async addToFavourites(articleId: VO.ArticleType["id"]) {
-    return db.article.update({
-      where: { id: articleId },
-      data: { favourite: true, favouritedAt: Date.now() },
-    });
-  }
-
-  static async deleteFromFavourites(articleId: VO.ArticleType["id"]) {
-    return db.article.update({
-      where: { id: articleId },
-      data: { favourite: false },
     });
   }
 

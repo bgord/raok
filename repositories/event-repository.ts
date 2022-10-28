@@ -6,9 +6,7 @@ import * as Events from "../events";
 
 type AcceptedEvent =
   | typeof Events.ArticleAddedEvent
-  | typeof Events.ArticleAddedToFavouritesEvent
   | typeof Events.ArticleDeletedEvent
-  | typeof Events.ArticleDeletedFromFavouritesEvent
   | typeof Events.ArticleLockedEvent
   | typeof Events.ArticleProcessedEvent
   | typeof Events.ArticleUndeleteEvent

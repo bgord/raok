@@ -8,8 +8,6 @@ export * from "./maximum-newspaper-article-number";
 export * from "./newspaper-status-transition";
 export * from "./no-empty-newspaper";
 export * from "./has-newspaper-stalled";
-export * from "./favourite-article";
-export * from "./unfavourite-article";
 export * from "./stop-feedly-crawling";
 export * from "./restore-feedly-crawling";
 export * from "./should-crawl-feedly";

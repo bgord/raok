@@ -35,7 +35,6 @@ export class NewspaperRepository {
         sentAt: true,
         articles: {
           select: {
-            favourite: true,
             id: true,
             source: true,
             status: true,
@@ -60,7 +59,6 @@ export class NewspaperRepository {
         sentAt: true,
         articles: {
           select: {
-            favourite: true,
             id: true,
             source: true,
             status: true,

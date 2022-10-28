@@ -32,7 +32,6 @@ model Article {
   createdAt    Int
   title        String?    @default("-")
   newspaperId  String?
-  favourite    Boolean    @default(false)
   favouritedAt Int        @default(0)
   Newspaper    Newspaper? @relation(fields: [newspaperId], references: [id])
 }
