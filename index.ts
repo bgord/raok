@@ -14,11 +14,10 @@ bg.addExpressEssentials(app);
 bg.Handlebars.applyTo(app);
 bg.Language.applyTo(app, bg.Schema.Path.parse("translations"));
 
-const session = new bg.Session({
+new bg.Session({
   secret: Env.COOKIE_SECRET,
   store: bg.SessionFileStore.build({ ttl: bg.Time.Days(3).toSeconds() }),
-});
-session.applyTo(app);
+}).applyTo(app);
 
 const AuthShield = new bg.EnvUserAuthShield({
   ADMIN_USERNAME: Env.ADMIN_USERNAME,
