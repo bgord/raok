@@ -42,7 +42,6 @@ export function App(props: InitialDataType) {
     pageParams: [1],
   });
   queryClient.setQueryData("newspapers", props.newspapers);
-  queryClient.setQueryData("favourite-articles", props.favouriteArticles);
   queryClient.setQueryData("stats", props.stats);
   queryClient.setQueryData("archive-articles", props.archiveArticles);
   queryClient.setQueryData("archive-newspapers", props.archiveNewspapers);

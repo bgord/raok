@@ -87,12 +87,6 @@ export async function getArticles(): Promise<types.ArticleType[]> {
   );
 }
 
-export async function getFavouriteArticles(): Promise<types.ArticleType[]> {
-  return _api("/articles/favourite", { method: "GET" }).then((response) =>
-    response.ok ? response.json() : []
-  );
-}
-
 export async function addArticle(article: types.ArticlePayloadType) {
   return _api("/add-article", {
     method: "POST",
@@ -106,18 +100,6 @@ export async function deleteArticle(articleId: types.ArticleType["id"]) {
 
 export async function undeleteArticle(articleId: types.ArticleType["id"]) {
   return _api(`/undelete-article/${articleId}`, { method: "POST" });
-}
-
-export async function addArticleToFavourites(
-  articleId: types.ArticleType["id"]
-) {
-  return _api(`/article/${articleId}/favourite`, { method: "POST" });
-}
-
-export async function deleteArticleFromFavourites(
-  articleId: types.ArticleType["id"]
-) {
-  return _api(`/article/${articleId}/unfavourite`, { method: "POST" });
 }
 
 export async function sendArbitraryFile(form: FormData) {

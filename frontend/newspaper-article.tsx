@@ -3,7 +3,6 @@ import * as bg from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as types from "./types";
-import { FavouriteUnfavourite } from "./favourite-unfavourite";
 
 export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
   const t = bg.useTranslations();
@@ -19,8 +18,6 @@ export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
       data-mb="12"
       data-md-ml="3"
     >
-      {props.status === "processed" && <FavouriteUnfavourite {...props} />}
-
       <UI.OutboundLink href={props.url} data-fs="14">
         {props.url}
       </UI.OutboundLink>

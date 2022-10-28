@@ -21,7 +21,6 @@ export function SendArbitraryFile() {
 
   return (
     <form
-      data-mt="48"
       data-bg="gray-100"
       data-p="12"
       data-bw="4"

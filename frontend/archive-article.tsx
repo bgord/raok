@@ -1,10 +1,8 @@
 import { h } from "preact";
 import * as bg from "@bgord/frontend";
-import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
 import * as types from "./types";
-import { FavouriteUnfavourite } from "./favourite-unfavourite";
 
 export function ArchiveArticle(props: types.ArchiveArticleType) {
   const notify = bg.useToastTrigger();
@@ -31,8 +29,6 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
           data-wrap="nowrap"
           data-max-width="100%"
         >
-          {props.status === "processed" && <FavouriteUnfavourite {...props} />}
-
           <div
             data-width="100%"
             data-ml={props.status === "processed" && "6"}

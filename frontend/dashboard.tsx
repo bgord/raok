@@ -7,7 +7,6 @@ import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
 import { SendArbitraryFile } from "./send-arbitrary-file";
-import { FavouriteArticles } from "./favourite-articles";
 
 import * as types from "./types";
 
@@ -15,7 +14,6 @@ export type InitialDashboardDataType = {
   stats: types.StatsType;
   articles: bg.Paged<types.ArticleType>;
   newspapers: types.NewspaperType[];
-  favouriteArticles: types.FavouriteArticleType[];
 };
 
 export function Dashboard(_: RoutableProps) {
@@ -52,7 +50,6 @@ export function Dashboard(_: RoutableProps) {
         data-top="0"
         style="height: 100%;"
       >
-        <FavouriteArticles />
         <SendArbitraryFile />
         <Stats />
       </section>
