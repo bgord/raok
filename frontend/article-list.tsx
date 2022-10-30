@@ -32,7 +32,10 @@ export function ArticleList() {
   const _articles = useInfiniteQuery(
     "articles",
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
-    { getNextPageParam: (last) => last.meta.nextPage }
+    {
+      getNextPageParam: (last) => last.meta.nextPage,
+      onSuccess: () => stats.refetch(),
+    }
   );
 
   const articles = bg.Pagination.extract(_articles);
