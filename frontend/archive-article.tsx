@@ -24,19 +24,11 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
         data-overflow="hidden"
       >
         <div
-          data-display="flex"
-          data-cross="center"
-          data-wrap="nowrap"
-          data-max-width="100%"
+          data-width="100%"
+          data-transform="truncate"
+          title={String(props.title)}
         >
-          <div
-            data-width="100%"
-            data-ml={props.status === "processed" && "6"}
-            data-transform="truncate"
-            title={String(props.title)}
-          >
-            {props.title}
-          </div>
+          {props.title}
         </div>
 
         <UI.OutboundLink
