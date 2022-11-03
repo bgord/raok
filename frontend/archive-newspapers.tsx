@@ -15,8 +15,9 @@ export type InitialArchiveNewspapersDataType = {
   archiveNewspapers: types.NewspaperType[];
 };
 
-export function ArchiveNewspapers(props: RoutableProps) {
+export function ArchiveNewspapers(_props: RoutableProps) {
   hooks.useLeavingPrompt();
+  const t = bg.useTranslations();
 
   const statusFilter = bg.useUrlFilter({
     enum: types.NewspaperStatusEnum,
@@ -63,39 +64,33 @@ export function ArchiveNewspapers(props: RoutableProps) {
           <label class="c-label" htmlFor="sent-at">
             Sent at
           </label>
-          <div class="c-select-wrapper">
-            <select
-              id="sent-at"
-              name="sent-at"
-              class="c-select"
-              value={sentAtFilter.query}
-              onInput={sentAtFilter.onChange}
-            >
-              {sentAtFilter.options.map((sentAtOption) => (
-                <option value={sentAtOption}>{sentAtOption}</option>
-              ))}
-            </select>
-          </div>
+          <UI.Select
+            id="sent-at"
+            name="sent-at"
+            value={sentAtFilter.query}
+            onInput={sentAtFilter.onChange}
+          >
+            {sentAtFilter.options.map((sentAtOption) => (
+              <option value={sentAtOption}>{t(sentAtOption)}</option>
+            ))}
+          </UI.Select>
         </div>
+
         <div data-display="flex" data-direction="column" data-mr="24">
           <label class="c-label" htmlFor="status">
             Status
           </label>
-          <div class="c-select-wrapper">
-            <select
-              id="status"
-              name="status"
-              class="c-select"
-              value={statusFilter.query}
-              onInput={statusFilter.onChange}
-            >
-              <option selected>All</option>
-
-              {statusFilter.options.map((status) => (
-                <option value={status}>{status}</option>
-              ))}
-            </select>
-          </div>
+          <UI.Select
+            id="status"
+            name="status"
+            value={statusFilter.query}
+            onInput={statusFilter.onChange}
+          >
+            <option selected>{t("all")}</option>
+            {statusFilter.options.map((status) => (
+              <option value={status}>{t(status)}</option>
+            ))}
+          </UI.Select>
         </div>
 
         <button

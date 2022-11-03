@@ -15,8 +15,9 @@ export type InitialArchiveArticlesDataType = {
   archiveArticles: types.ArchiveArticleType[];
 };
 
-export function ArchiveArticles(props: RoutableProps) {
+export function ArchiveArticles(_props: RoutableProps) {
   hooks.useLeavingPrompt();
+  const t = bg.useTranslations();
   const search = bg.useClientSearch();
 
   const sourceFilter = bg.useUrlFilter({
@@ -88,7 +89,7 @@ export function ArchiveArticles(props: RoutableProps) {
             onInput={createdAt.onChange}
           >
             {createdAt.options.map((option) => (
-              <option value={option}>{option}</option>
+              <option value={option}>{t(option)}</option>
             ))}
           </UI.Select>
         </div>
@@ -108,10 +109,10 @@ export function ArchiveArticles(props: RoutableProps) {
             value={statusFilter.query}
             onInput={statusFilter.onChange}
           >
-            <option selected>All</option>
+            <option selected>{t("all")}</option>
 
             {statusFilter.options.map((status) => (
-              <option value={status}>{status}</option>
+              <option value={status}>{t(status)}</option>
             ))}
           </UI.Select>
         </div>
@@ -132,10 +133,10 @@ export function ArchiveArticles(props: RoutableProps) {
             value={sourceFilter.query}
             onInput={sourceFilter.onChange}
           >
-            <option selected>All</option>
+            <option selected>{t("all")}</option>
 
             {sourceFilter.options.map((source) => (
-              <option value={source}>{source}</option>
+              <option value={source}>{t(source)}</option>
             ))}
           </UI.Select>
         </div>

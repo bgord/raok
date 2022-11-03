@@ -15,7 +15,7 @@ export type InitialArchiveFilesDataType = {
   archiveFiles: types.ArchiveFileType[];
 };
 
-export function ArchiveFiles(props: RoutableProps) {
+export function ArchiveFiles(_props: RoutableProps) {
   hooks.useLeavingPrompt();
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
@@ -81,7 +81,7 @@ export function ArchiveFiles(props: RoutableProps) {
               onInput={sentAt.onChange}
             >
               {sentAt.options.map((option) => (
-                <option value={option}>{option}</option>
+                <option value={option}>{t(option)}</option>
               ))}
             </UI.Select>
           </div>

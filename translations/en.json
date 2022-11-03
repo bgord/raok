@@ -50,5 +50,18 @@
   "newspaper.create": "create newspaper",
   "newspaper.read_online": "read online",
   "newspaper.resend": "resend",
-  "newspaper.resent": "resent"
+  "newspaper.resent": "resent",
+
+  "all": "all",
+
+  "last_30_days": "last 30 days",
+  "last_3_days": "last 3 days",
+  "last_week": "last week",
+
+  "ready": "ready",
+  "in_progress": "in progress",
+  "processed": "processed",
+
+  "web": "web",
+  "feedly": "feedly"
 }
