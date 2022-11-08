@@ -43,6 +43,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
+      data-gap="24"
       data-mt="24"
       data-mx="auto"
       data-md-pl="6"
@@ -51,16 +52,16 @@ export function ArchiveNewspapers(_props: RoutableProps) {
       data-md-max-width="100%"
       data-width="100%"
     >
-      <div data-display="flex" data-cross="center">
+      <div data-display="flex" data-gap="12" data-cross="center">
         <h2 data-fs="20" data-color="gray-800" data-fw="500">
           Archive Newspapers
         </h2>
 
-        <UI.Badge data-ml="12">{numberOfNewspapers}</UI.Badge>
+        <UI.Badge>{numberOfNewspapers}</UI.Badge>
       </div>
 
-      <div data-display="flex" data-cross="end" data-my="24">
-        <div data-display="flex" data-direction="column" data-mr="24">
+      <div data-display="flex" data-cross="end" data-gap="24">
+        <div data-display="flex" data-direction="column">
           <label class="c-label" htmlFor="sent-at">
             Sent at
           </label>
@@ -76,7 +77,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
           </UI.Select>
         </div>
 
-        <div data-display="flex" data-direction="column" data-mr="24">
+        <div data-display="flex" data-direction="column">
           <label class="c-label" htmlFor="status">
             Status
           </label>
@@ -115,7 +116,6 @@ export function ArchiveNewspapers(_props: RoutableProps) {
       <ul
         data-display="flex"
         data-direction="column"
-        data-mt="24"
         data-bg="gray-100"
         data-px="12"
         data-md-px="0"
