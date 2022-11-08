@@ -113,10 +113,6 @@ export class ArticleRepository {
     });
   }
 
-  static async delete(id: VO.ArticleType["id"]) {
-    return db.article.delete({ where: { id } });
-  }
-
   static async getNumbersOfNonProcessedArticlesWithUrl(
     url: VO.ArticleType["url"]
   ) {
