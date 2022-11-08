@@ -25,9 +25,7 @@ export class ArticleRepository {
         createdAt: true,
         status: true,
       },
-      where: _.merge(filters, {
-        status: { not: VO.ArticleStatusEnum.deleted },
-      }),
+      where: filters,
     });
   }
 

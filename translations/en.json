@@ -61,6 +61,7 @@
   "ready": "ready",
   "in_progress": "in progress",
   "processed": "processed",
+  "deleted": "deleted",
 
   "web": "web",
   "feedly": "feedly"
