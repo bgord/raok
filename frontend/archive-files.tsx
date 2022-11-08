@@ -42,6 +42,7 @@ export function ArchiveFiles(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
+      data-gap="24"
       data-mt="24"
       data-mx="auto"
       data-md-pl="6"
@@ -50,12 +51,12 @@ export function ArchiveFiles(_props: RoutableProps) {
       data-md-max-width="100%"
       data-width="100%"
     >
-      <div data-display="flex" data-cross="center">
+      <div data-display="flex" data-gap="12" data-cross="center">
         <h2 data-fs="20" data-color="gray-800" data-fw="500">
           Archive files
         </h2>
 
-        <UI.Badge data-ml="12">{numberOfFiles}</UI.Badge>
+        <UI.Badge>{numberOfFiles}</UI.Badge>
       </div>
 
       <div
@@ -64,13 +65,8 @@ export function ArchiveFiles(_props: RoutableProps) {
         data-cross="end"
         data-gap="24"
       >
-        <div data-display="flex" data-cross="end" data-mt="12">
-          <div
-            data-display="flex"
-            data-direction="column"
-            data-mt="12"
-            data-mr="24"
-          >
+        <div data-display="flex" data-cross="end" data-gap="24">
+          <div data-display="flex" data-direction="column">
             <label class="c-label" htmlFor="sent-at">
               Sent at
             </label>
@@ -95,43 +91,46 @@ export function ArchiveFiles(_props: RoutableProps) {
             Reset filter
           </button>
         </div>
+      </div>
 
-        <div data-display="flex" data-max-width="100%">
-          <div data-position="relative">
-            <input
-              list="files"
-              onInput={search.onChange}
-              value={search.query}
-              class="c-input"
-              placeholder="Search for a file..."
-              style="padding-right: 36px"
-              data-width="100%"
-            />
-            <Icons.Search
-              height="34"
-              width="34"
-              data-position="absolute"
-              data-p="6"
-              style="top: 1px; right: 1px; background: white;"
-            />
-          </div>
-
-          <button
-            type="button"
-            onClick={search.clear}
-            class="c-button"
-            data-variant="bare"
-            data-px="3"
-            data-ml="6"
-            data-mr="auto"
-          >
-            <Icons.Cancel width="24" height="24" />
-          </button>
+      <div
+        data-display="flex"
+        data-wrap="nowrap"
+        data-gap="12"
+        data-max-width="100%"
+      >
+        <div data-position="relative" data-width="100%">
+          <input
+            list="files"
+            onInput={search.onChange}
+            value={search.query}
+            class="c-input"
+            placeholder="Search for a file..."
+            style="padding-right: 36px"
+            data-width="100%"
+          />
+          <Icons.Search
+            height="34"
+            width="34"
+            data-position="absolute"
+            data-p="6"
+            style="top: 1px; right: 1px; background: white;"
+          />
         </div>
+
+        <button
+          type="button"
+          onClick={search.clear}
+          class="c-button"
+          data-variant="bare"
+          data-px="3"
+        >
+          <Icons.Cancel width="24" height="24" />
+        </button>
       </div>
 
       {archiveFiles.isSuccess && archiveFiles.data.length === 0 && (
-        <div data-fs="14" data-color="gray-700" data-mt="48">
+        <div data-fs="14" data-color="gray-700">
           No archive files.
         </div>
       )}
@@ -147,7 +146,6 @@ export function ArchiveFiles(_props: RoutableProps) {
         data-direction="column"
         data-gap="12"
         data-max-width="100%"
-        data-mt="48"
       >
         {files.map((file) => (
           <li
