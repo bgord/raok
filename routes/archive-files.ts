@@ -8,7 +8,7 @@ export async function ArchiveFiles(
   _next: express.NextFunction
 ) {
   const filters = Repos.ArchiveFilesFilter.parse(request.query);
-  const files = await Repos.FilesRepository.getAll();
+  const files = await Repos.FilesRepository.getAll(filters);
 
   return response.send(files);
 }
