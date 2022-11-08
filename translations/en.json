@@ -9,6 +9,7 @@
   "app.name": "RAOK",
   "app.newspaper": "newspaper",
   "app.newspapers": "newspapers",
+  "app.reset": "reset",
   "app.settings": "settings",
   "app.send_a_book": "send a book",
   "app.statistics": "statistics",

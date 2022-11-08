@@ -43,7 +43,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
-      data-gap="24"
+      data-gap="36"
       data-mt="24"
       data-mx="auto"
       data-md-pl="6"
@@ -103,7 +103,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
             statusFilter.clear();
           }}
         >
-          Reset
+          {t("app.reset")}
         </button>
       </div>
 

@@ -56,7 +56,7 @@ export function ArchiveArticles(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
-      data-gap="24"
+      data-gap="36"
       data-mt="24"
       data-mx="auto"
       data-md-pl="6"
@@ -137,7 +137,7 @@ export function ArchiveArticles(_props: RoutableProps) {
             sourceFilter.clear();
           }}
         >
-          Reset filters
+          {t("app.reset")}
         </button>
       </div>
 
