@@ -56,6 +56,7 @@ export function ArchiveArticles(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
+      data-gap="24"
       data-mt="24"
       data-mx="auto"
       data-md-pl="6"
@@ -64,21 +65,16 @@ export function ArchiveArticles(_props: RoutableProps) {
       data-md-max-width="100%"
       data-width="100%"
     >
-      <div data-display="flex" data-cross="center">
+      <div data-display="flex" data-gap="12" data-cross="center">
         <h2 data-fs="20" data-color="gray-800" data-fw="500">
           Archive Articles
         </h2>
 
-        <UI.Badge data-ml="12">{numberOfArticles}</UI.Badge>
+        <UI.Badge>{numberOfArticles}</UI.Badge>
       </div>
 
-      <div data-display="flex" data-cross="end" data-my="12">
-        <div
-          data-display="flex"
-          data-direction="column"
-          data-mt="12"
-          data-mr="24"
-        >
+      <div data-display="flex" data-cross="end" data-gap="24" data-md-gap="12">
+        <div data-display="flex" data-direction="column">
           <label class="c-label" htmlFor="created-at">
             Created at
           </label>
@@ -94,12 +90,7 @@ export function ArchiveArticles(_props: RoutableProps) {
           </UI.Select>
         </div>
 
-        <div
-          data-display="flex"
-          data-direction="column"
-          data-mt="12"
-          data-mr="24"
-        >
+        <div data-display="flex" data-direction="column">
           <label class="c-label" htmlFor="status">
             Status
           </label>
@@ -117,12 +108,7 @@ export function ArchiveArticles(_props: RoutableProps) {
           </UI.Select>
         </div>
 
-        <div
-          data-display="flex"
-          data-direction="column"
-          data-mt="12"
-          data-mr="24"
-        >
+        <div data-display="flex" data-direction="column">
           <label class="c-label" htmlFor="source">
             Source
           </label>
@@ -155,8 +141,8 @@ export function ArchiveArticles(_props: RoutableProps) {
         </button>
       </div>
 
-      <div data-display="flex" data-my="24" data-max-width="100%">
-        <div data-position="relative">
+      <div data-display="flex" data-wrap="nowrap" data-max-width="100%">
+        <div data-position="relative" data-width="100%">
           <input
             list="articles"
             onInput={search.onChange}
@@ -181,8 +167,6 @@ export function ArchiveArticles(_props: RoutableProps) {
           class="c-button"
           data-variant="bare"
           data-px="3"
-          data-ml="6"
-          data-mr="auto"
         >
           <Icons.Cancel width="24" height="24" />
         </button>
