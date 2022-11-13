@@ -15,6 +15,7 @@
   "app.statistics": "statistics",
 
   "article.add": "add",
+  "article.readded": "readded",
   "article.added": "article added",
   "article.adding_article": "adding...",
   "article.deleted": "article deleted",

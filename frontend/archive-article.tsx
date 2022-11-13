@@ -1,11 +1,27 @@
 import { h } from "preact";
+import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
 
+import * as api from "./api";
 import * as UI from "./ui";
 import * as types from "./types";
+import { ServerError } from "./server-error";
 
 export function ArchiveArticle(props: types.ArchiveArticleType) {
+  const t = bg.useTranslations();
+  const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
+
+  const readdArticleRequest = useMutation(api.addArticle, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("articles");
+      queryClient.invalidateQueries("archive-articles");
+      queryClient.invalidateQueries("stats");
+      notify({ message: "article.readded" });
+    },
+    onError: (error: ServerError) => notify({ message: t(error.message) }),
+  });
 
   return (
     <li
@@ -56,12 +72,24 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
         <UI.Badge>{props.source}</UI.Badge>
       </div>
 
-      <UI.CopyButton
-        options={{
-          text: props.url,
-          onSuccess: () => notify({ message: "article.url.copied" }),
-        }}
-      />
+      <div data-display="flex" data-direction="column" data-self="start">
+        <UI.CopyButton
+          options={{
+            text: props.url,
+            onSuccess: () => notify({ message: "article.url.copied" }),
+          }}
+        />
+        {props.status !== types.ArticleStatusEnum.ready && (
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            onClick={() => readdArticleRequest.mutate({ url: props.url })}
+          >
+            <Icons.RedoAction width="24" height="24" />
+          </button>
+        )}
+      </div>
     </li>
   );
 }
