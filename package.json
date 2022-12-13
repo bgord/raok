@@ -47,7 +47,7 @@
   "dependencies": {
     "@bgord/design": "^0.27.43",
     "@bgord/frontend": "github:bgord/bgord-frontend",
-    "@bgord/node": "^0.58.77",
+    "@bgord/node": "^0.58.84",
     "@mozilla/readability": "^0.4.1",
     "@prisma/client": "^3.7.0",
     "@reach/skip-nav": "^0.17.0",
@@ -69,6 +69,6 @@
     "serialize-javascript": "^6.0.0",
     "toad-scheduler": "^1.6.0",
     "typescript": "^4.7.4",
-    "zod": "^3.19.1"
+    "zod": "^3.20.2"
   }
 }
