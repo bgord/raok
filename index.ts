@@ -178,9 +178,17 @@ app.get(
 app.get("*", (_, response) => response.redirect("/"));
 app.use(ErrorHandler.handle);
 
-const server = app.listen(Env.PORT, () =>
-  bg.Reporter.info(`Server running on port: ${Env.PORT}`)
-);
+const server = app.listen(Env.PORT, async () => {
+  await bg.Prerequisites.check([
+    new bg.Prerequisite({
+      label: "pandoc",
+      binary: "pandoc",
+      strategy: bg.PrerequisitetrategyEnum.exists,
+    }),
+  ]);
+
+  bg.Reporter.info(`Server running on port: ${Env.PORT}`);
+});
 
 bg.GracefulShutdown.applyTo(server, () => {
   bg.Reporter.info("Shutting down job scheduler");
