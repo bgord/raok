@@ -1,5 +1,4 @@
 import * as bg from "@bgord/node";
-import { AxiosError } from "axios";
 
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
@@ -14,11 +13,9 @@ const mailer = new bg.Mailer({
 
 export class FeedlyTokenExpiredNotifier {
   private static async shouldBeSent(error: unknown): Promise<boolean> {
-    const hasTokenExpired =
-      FeedlyTokenExpiredNotifier.isAxiosError(error) &&
-      error.response?.status === 401;
+    const hasFeedlyTokenErrored = VO.FeedlyToken.hasErrored(error);
 
-    if (!hasTokenExpired) return false;
+    if (!hasFeedlyTokenErrored) return false;
 
     const stats = await Repos.StatsRepository.getAll();
     const lastFeedlyTokenExpiredError = stats.lastFeedlyTokenExpiredError;
@@ -31,12 +28,8 @@ export class FeedlyTokenExpiredNotifier {
 
     // Has last error happened before current token lifespan
     return (
-      msSinceLastError > bg.Time.Days(VO.FEEDLY_TOKEN_EXPIRATION_DAYS).toMs()
+      msSinceLastError > bg.Time.Days(VO.FeedlyToken.EXPIRATION_DAYS).toMs()
     );
-  }
-
-  private static isAxiosError(error: unknown): error is AxiosError {
-    return error instanceof Error && error && "isAxiosError" in error;
   }
 
   static async send(error: unknown) {

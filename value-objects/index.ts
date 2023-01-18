@@ -12,7 +12,7 @@ export * from "./articles-per-page";
 export * from "./feedly-article";
 export * from "./feedly-article-id";
 export * from "./feedly-crawling-interval-hours";
-export * from "./feedly-token-expiration-days";
+export * from "./feedly-token";
 export * from "./file-id";
 export * from "./file-mime-types";
 export * from "./hour";
