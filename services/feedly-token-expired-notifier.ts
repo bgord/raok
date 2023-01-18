@@ -20,7 +20,7 @@ export class FeedlyTokenExpiredNotifier {
     return VO.FeedlyToken.hasExpired();
   }
 
-  static async send(error: unknown) {
+  static async handle(error: unknown) {
     if (!(await FeedlyTokenExpiredNotifier.shouldBeSent(error))) return;
 
     const now = Date.now();
