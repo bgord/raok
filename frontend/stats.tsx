@@ -5,7 +5,6 @@ import * as Icons from "iconoir-react";
 
 import * as api from "./api";
 import * as UI from "./ui";
-import * as types from "./types";
 
 export function Stats() {
   const t = bg.useTranslations();

@@ -3,7 +3,7 @@ import express from "express";
 import * as Repos from "../repositories";
 
 export async function Stats(
-  request: express.Request,
+  _request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
