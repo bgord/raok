@@ -17,7 +17,9 @@ export class FeedlyTokenExpiredNotifier {
 
     if (!hasFeedlyTokenErrored) return false;
 
-    return VO.FeedlyToken.hasExpired();
+    const stats = await Repos.StatsRepository.getAll();
+
+    return VO.FeedlyToken.hasExpired(stats.lastFeedlyTokenExpiredError);
   }
 
   static async handle(error: unknown) {

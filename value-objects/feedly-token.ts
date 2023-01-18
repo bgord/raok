@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
 import * as bg from "@bgord/node";
-import { StatsRepository } from "../repositories/stats-repository";
 
 export class FeedlyToken {
   private static EXPIRATION_DAYS = 30;
@@ -9,9 +8,9 @@ export class FeedlyToken {
     return FeedlyToken.isAxiosError(error) && error.response?.status === 401;
   }
 
-  static async hasExpired(): Promise<boolean> {
-    const { lastFeedlyTokenExpiredError } = await StatsRepository.getAll();
-
+  static async hasExpired(
+    lastFeedlyTokenExpiredError: number | null
+  ): Promise<boolean> {
     // First lastFeedlyTokenExpiredError happening
     if (lastFeedlyTokenExpiredError === null) return true;
 
