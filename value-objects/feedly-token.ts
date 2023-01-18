@@ -9,10 +9,10 @@ export class FeedlyToken {
   }
 
   static async hasExpired(
-    lastFeedlyTokenExpiredError: number | null
+    lastFeedlyTokenExpiredError: bg.Falsy<number>
   ): Promise<boolean> {
     // First lastFeedlyTokenExpiredError happening
-    if (lastFeedlyTokenExpiredError === null) return true;
+    if (!lastFeedlyTokenExpiredError) return true;
 
     const now = Date.now();
     const msSinceLastError = now - lastFeedlyTokenExpiredError;
