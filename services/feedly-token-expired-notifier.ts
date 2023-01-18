@@ -17,19 +17,7 @@ export class FeedlyTokenExpiredNotifier {
 
     if (!hasFeedlyTokenErrored) return false;
 
-    const stats = await Repos.StatsRepository.getAll();
-    const lastFeedlyTokenExpiredError = stats.lastFeedlyTokenExpiredError;
-
-    // First lastFeedlyTokenExpiredError happening
-    if (lastFeedlyTokenExpiredError === null) return true;
-
-    const now = Date.now();
-    const msSinceLastError = now - lastFeedlyTokenExpiredError;
-
-    // Has last error happened before current token lifespan
-    return (
-      msSinceLastError > bg.Time.Days(VO.FeedlyToken.EXPIRATION_DAYS).toMs()
-    );
+    return VO.FeedlyToken.hasExpired();
   }
 
   static async send(error: unknown) {
