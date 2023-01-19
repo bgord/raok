@@ -1,4 +1,6 @@
 import * as bg from "@bgord/node";
+
+import * as VO from "../value-objects";
 import { db } from "../db";
 
 import { ArticleRepository } from "./article-repository";
@@ -29,6 +31,9 @@ export class StatsRepository {
       createdArticles: createdArticles?.value ?? 0,
       sentNewspapers: sentNewspapers?.value ?? 0,
       lastFeedlyTokenExpiredError: lastFeedlyTokenExpiredError?.value ?? null,
+      hasFeedlyTokenExpired: VO.FeedlyToken.hasExpired(
+        lastFeedlyTokenExpiredError?.value
+      ),
       numberOfNonProcessedArticles,
     };
   }
