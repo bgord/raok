@@ -51,6 +51,19 @@ export function Stats() {
       >
         Last Feedly import performed {lastFeedlyImportFormatted}
       </div>
+
+      {stats.data?.hasFeedlyTokenExpired && (
+        <div
+          data-display="flex"
+          data-cross="center"
+          data-fs="14"
+          data-mt="12"
+          data-color="red-400"
+        >
+          <Icons.WarningCircledOutline width="18" height="18" />
+          <span data-ml="6">Feedly token has expired</span>
+        </div>
+      )}
     </div>
   );
 }

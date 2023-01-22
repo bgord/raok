@@ -37,15 +37,15 @@ model Article {
 }
 
 model Files {
-  id     String   @id @default(uuid())
+  id     String @id @default(uuid())
   name   String
   size   Int
   path   String
-  sentAt      Int?
+  sentAt Int?
 }
 
 model StatsKeyValue {
   id    String  @id @default(uuid())
   key   String? @unique(map: "sqlite_autoindex_StatsKeyValue_2")
-  value Int
+  value Int?
 }

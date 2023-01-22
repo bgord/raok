@@ -4,6 +4,7 @@ import axios from "axios";
 
 import * as VO from "../value-objects";
 import * as Services from "../services";
+import * as Repos from "../repositories";
 import { Env } from "../env";
 
 export class Feedly {
@@ -19,6 +20,8 @@ export class Feedly {
       const response = await Feedly.api.get(
         `/streams/${streamId}/contents?unreadOnly=true`
       );
+
+      await Repos.StatsRepository.updateLastFeedlyTokenExpiredError(null);
 
       return z
         .array(VO.FeedlyArticle)

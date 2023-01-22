@@ -31,7 +31,7 @@ export class StatsRepository {
       createdArticles: createdArticles?.value ?? 0,
       sentNewspapers: sentNewspapers?.value ?? 0,
       lastFeedlyTokenExpiredError: lastFeedlyTokenExpiredError?.value ?? null,
-      hasFeedlyTokenExpired: VO.FeedlyToken.hasExpired(
+      hasFeedlyTokenExpired: VO.FeedlyToken.isExpired(
         lastFeedlyTokenExpiredError?.value
       ),
       numberOfNonProcessedArticles,
@@ -62,7 +62,7 @@ export class StatsRepository {
     });
   }
 
-  static async updateLastFeedlyTokenExpiredError(timestamp: number) {
+  static async updateLastFeedlyTokenExpiredError(timestamp: number | null) {
     return db.statsKeyValue.upsert({
       where: { key: "lastFeedlyTokenExpiredError" },
       update: { value: timestamp },
