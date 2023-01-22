@@ -61,7 +61,7 @@ export function Stats() {
           data-color="red-400"
         >
           <Icons.WarningCircledOutline width="18" height="18" />
-          <span data-ml="6">Feedly token has expired</span>
+          <span data-ml="6">Feedly token is not working</span>
         </div>
       )}
     </div>
