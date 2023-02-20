@@ -188,6 +188,12 @@ const server = app.listen(Env.PORT, async () => {
     }),
 
     new bg.Prerequisite({
+      label: "calibre",
+      binary: "ebook-convert",
+      strategy: bg.PrerequisiteStrategyEnum.exists,
+    }),
+
+    new bg.Prerequisite({
       label: "nodemailer",
       strategy: bg.PrerequisiteStrategyEnum.mailer,
       mailer: Service.Mailer,

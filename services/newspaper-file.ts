@@ -13,6 +13,12 @@ type NewspaperFileCreatorConfigType = {
   articles: VO.NewspaperType["articles"];
 };
 
+export type NewspaperFilePaths = {
+  html: bg.Schema.PathType;
+  epub: bg.Schema.PathType;
+  mobi: bg.Schema.PathType;
+};
+
 export class NewspaperFile {
   newspaperId: NewspaperFileCreatorConfigType["newspaperId"];
 
@@ -30,7 +36,7 @@ export class NewspaperFile {
       const content = await this.compose();
       await fs.writeFile(paths.html, content);
 
-      await HtmlToEpubConverter.convert(paths.html, paths.epub);
+      await HtmlToEpubConverter.convert(paths);
     } catch (error) {
       bg.Reporter.raw("NewspaperFile#create", error);
     }
@@ -83,12 +89,13 @@ export class NewspaperFile {
     }
   }
 
-  static getPaths(newspaperId: VO.NewspaperType["id"]) {
+  static getPaths(newspaperId: VO.NewspaperType["id"]): NewspaperFilePaths {
     const base = path.resolve(__dirname, "../newspapers");
 
     return {
-      html: `${base}/${newspaperId}.html`,
-      epub: `${base}/${newspaperId}.epub`,
+      html: bg.Schema.Path.parse(`${base}/${newspaperId}.html`),
+      epub: bg.Schema.Path.parse(`${base}/${newspaperId}.epub`),
+      mobi: bg.Schema.Path.parse(`${base}/${newspaperId}.mobi`),
     };
   }
 
