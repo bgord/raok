@@ -1,6 +1,7 @@
 import express from "express";
 import * as bg from "@bgord/node";
 
+import * as Service from "./services";
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
 
@@ -183,7 +184,13 @@ const server = app.listen(Env.PORT, async () => {
     new bg.Prerequisite({
       label: "pandoc",
       binary: "pandoc",
-      strategy: bg.PrerequisitetrategyEnum.exists,
+      strategy: bg.PrerequisiteStrategyEnum.exists,
+    }),
+
+    new bg.Prerequisite({
+      label: "nodemailer",
+      strategy: bg.PrerequisiteStrategyEnum.mailer,
+      mailer: Service.Mailer,
     }),
   ]);
 
