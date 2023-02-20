@@ -92,7 +92,9 @@ export function Article(props: ArticlePropsType) {
         data-gap="6"
         data-ml="auto"
       >
-        <UI.Badge data-self="start">{props.source}</UI.Badge>
+        <UI.Badge data-self="start" data-width="100%" data-md-width="auto">
+          {props.source}
+        </UI.Badge>
 
         <div data-display="flex" data-wrap="nowrap">
           <UI.CopyButton
