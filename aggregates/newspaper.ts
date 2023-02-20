@@ -88,7 +88,7 @@ export class Newspaper {
 
     await Policies.ArticlesAreSendable.perform({ articles });
 
-    const newspaperId = VO.NewspaperId.parse(bg.UUID.generate());
+    const newspaperId = VO.NewspaperId.parse(bg.NewUUID.generate());
 
     await Repos.EventRepository.save(
       Events.NewspaperScheduledEvent.parse({

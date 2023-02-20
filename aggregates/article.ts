@@ -71,7 +71,7 @@ export class Article {
     source?: VO.ArticleSourceEnum;
   }) {
     const newArticleSource = newArticle.source ?? VO.ArticleSourceEnum.web;
-    const newArticleId = VO.ArticleId.parse(bg.UUID.generate());
+    const newArticleId = VO.ArticleId.parse(bg.NewUUID.generate());
 
     if (newArticleSource === VO.ArticleSourceEnum.web) {
       await Policies.NonProcessedArticleUrlIsUnique.perform({
