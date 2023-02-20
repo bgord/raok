@@ -11,7 +11,7 @@
   "app.newspapers": "newspapers",
   "app.reset": "reset",
   "app.settings": "settings",
-  "app.send_a_book": "send a book",
+  "app.send_a_file": "send a file to your Kindle",
   "app.statistics": "statistics",
 
   "article.add": "add",

@@ -39,7 +39,7 @@ export function SendArbitraryFile() {
     >
       <UI.Header data-display="flex" data-mb="24">
         <Icons.Book data-mr="12" />
-        <span data-transform="upper-first">{t("app.send_a_book")}</span>
+        <span data-transform="upper-first">{t("app.send_a_file")}</span>
       </UI.Header>
 
       <input
