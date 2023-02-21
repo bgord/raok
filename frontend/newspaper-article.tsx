@@ -22,16 +22,23 @@ export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
         {props.url}
       </UI.OutboundLink>
 
-      <UI.Badge data-md-display="none" data-ml="auto">
-        {props.source}
-      </UI.Badge>
+      <div
+        data-display="flex"
+        data-wrap="nowrap"
+        data-cross="center"
+        data-ml="auto"
+        data-gap="6"
+        data-pr="3"
+      >
+        <UI.Badge data-md-display="none">{props.source}</UI.Badge>
 
-      <UI.CopyButton
-        options={{
-          text: props.url,
-          onSuccess: () => notify({ message: t("article.link.copied") }),
-        }}
-      />
+        <UI.CopyButton
+          options={{
+            text: props.url,
+            onSuccess: () => notify({ message: t("article.link.copied") }),
+          }}
+        />
+      </div>
     </li>
   );
 }
