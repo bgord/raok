@@ -84,8 +84,9 @@ export class NewspaperFile {
 
     try {
       await fs.unlink(paths.epub);
+      await fs.unlink(paths.mobi);
     } catch (error) {
-      bg.Reporter.raw("NewspaperFile#delete", error);
+      bg.Reporter.raw("NewspaperFile#clear", error);
     }
   }
 
@@ -106,7 +107,7 @@ export class NewspaperFile {
       path: bg.Schema.Path.parse(epub),
       originalFilename: bg.Schema.UploadedFile._def
         .shape()
-        .originalFilename.parse("newspaper"),
+        .originalFilename.parse(path.basename(epub)),
     };
   }
 

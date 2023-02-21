@@ -312,6 +312,8 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
+  bg.Reporter.success(`Newspaper ${event.payload.newspaperId} delivered`);
+
   await Repos.StatsRepository.incrementSentNewspapers();
 
   await Repos.NewspaperRepository.updateStatus(
