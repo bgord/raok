@@ -43,7 +43,7 @@ export function Newspaper(props: NewspaperProps) {
           data-px="6"
           data-mr="12"
         >
-          {props.status}
+          {t(`newspaper.status.${props.status}`)}
         </UI.Badge>
 
         <span data-md-fs="14">{props.title}</span>

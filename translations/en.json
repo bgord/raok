@@ -54,6 +54,13 @@
   "newspaper.resend": "resend",
   "newspaper.resent": "resent",
 
+  "newspaper.status.undetermined": "undetermined",
+  "newspaper.status.scheduled": "scheduled",
+  "newspaper.status.ready_to_send": "ready_to_send",
+  "newspaper.status.delivered": "delivered",
+  "newspaper.status.archived": "archived",
+  "newspaper.status.error": "error",
+
   "all": "all",
 
   "last_30_days": "last 30 days",
