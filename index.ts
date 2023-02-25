@@ -200,10 +200,17 @@ const server = app.listen(Env.PORT, async () => {
     }),
   ]);
 
-  bg.Reporter.info(`Server running on port: ${Env.PORT}`);
+  logger.info({
+    message: "Server has started",
+    operation: "server_startup",
+    metadata: { port: Env.PORT },
+  });
 });
 
 bg.GracefulShutdown.applyTo(server, () => {
-  bg.Reporter.info("Shutting down job scheduler");
+  logger.info({
+    message: "Shutting down job scheduler",
+    operation: "scheduler_shutdown",
+  });
   Scheduler.stop();
 });
