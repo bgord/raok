@@ -8,6 +8,7 @@ import * as VO from "./value-objects";
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
+import { logger } from "./logger";
 
 const app = express();
 
@@ -25,6 +26,46 @@ const AuthShield = new bg.EnvUserAuthShield({
   ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
 });
 AuthShield.applyTo(app);
+
+app.use((_request, response, next) => {
+  const oldJson = response.json;
+
+  response.json = (body) => {
+    response.locals.body = body;
+    return oldJson.call(response, body);
+  };
+
+  next();
+});
+
+app.use((request, response, next) => {
+  const client = {
+    ip: request.header("X-Real-IP") ?? request.ip,
+    userAgent: request.header("user-agent"),
+  };
+
+  logger.http({
+    operation: "http_request_before",
+    message: "request",
+    method: request.method,
+    url: `${request.header("host")}${request.url}`,
+    client,
+  });
+
+  response.on("finish", () => {
+    logger.http({
+      operation: "http_request_after",
+      message: "response",
+      method: request.method,
+      url: `${request.header("host")}${request.url}`,
+      responseCode: response.statusCode,
+      client,
+      metadata: { response: response.locals.body },
+    });
+  });
+
+  next();
+});
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
