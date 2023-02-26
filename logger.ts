@@ -78,7 +78,13 @@ class Logger {
         winston.format.json(),
         winston.format.prettyPrint()
       ),
-      transports: [new winston.transports.Console()],
+      transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({
+          filename: `${this.app}-${this.environment}.log`,
+          maxsize: 10485760, // 10 MB
+        }),
+      ],
     });
   }
 
