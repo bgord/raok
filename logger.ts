@@ -34,9 +34,28 @@ type LogFullType = {
   message: LogMessageType;
   operation: LogOperationType;
   metadata?: LogMetadataType;
+  method: string;
+  url: string;
+  responseCode?: number;
+  client: { ip: string; userAgent?: string };
 };
 
-type LogType = Omit<LogFullType, "app" | "environment" | "timestamp" | "level">;
+type LogInfoType = Omit<
+  LogFullType,
+  | "app"
+  | "environment"
+  | "timestamp"
+  | "level"
+  | "method"
+  | "url"
+  | "responseCode"
+  | "client"
+>;
+
+type LogHttpType = Omit<
+  LogFullType,
+  "app" | "environment" | "timestamp" | "level"
+>;
 
 class Logger {
   instance: winston.Logger;
@@ -74,6 +93,14 @@ class Logger {
   info(log: LogInfoType) {
     this.instance.info({
       level: LogLevelTypeEnum.info,
+      ...this.getBase(),
+      ...log,
+    });
+  }
+
+  http(log: LogHttpType) {
+    this.instance.http({
+      level: LogLevelTypeEnum.http,
       ...this.getBase(),
       ...log,
     });
