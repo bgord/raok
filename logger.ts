@@ -74,10 +74,7 @@ class Logger {
     this.instance = winston.createLogger({
       level: LogLevelTypeEnum.verbose,
       levels,
-      format: winston.format.combine(
-        winston.format.json(),
-        winston.format.prettyPrint()
-      ),
+      format: winston.format.combine(winston.format.json()),
       transports: [
         new winston.transports.Console(),
         new winston.transports.File({
