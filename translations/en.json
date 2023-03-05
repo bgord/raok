@@ -34,6 +34,8 @@
   "articles.old.deleted": "old articles deleted",
   "articles.old.deleting": "deleting old articles",
 
+  "articles-to-review-notification.enabled": "Articles to review notifications enabled",
+
   "dashboard.could_not_schedule": "couldn't schedule",
   "dashboard.deselect_all": "deselect all",
   "dashboard.no_articles_available": "no articles available at the moment",
