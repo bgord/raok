@@ -74,15 +74,20 @@ class Logger {
     this.instance = winston.createLogger({
       level: LogLevelTypeEnum.verbose,
       levels,
+      handleExceptions: true,
+      handleRejections: true,
       format: winston.format.combine(winston.format.json()),
-      transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({
-          filename: `${this.app}-${this.environment}.log`,
-          maxsize: 10485760, // 10 MB
-        }),
-      ],
+      transports: [new winston.transports.Console()],
     });
+
+    if (this.environment !== bg.Schema.NodeEnvironmentEnum.local) {
+      this.instance.add(
+        new winston.transports.File({
+          filename: `/var/log/${this.app}-${this.environment}.log`,
+          maxsize: 10485760, // 10 MB
+        })
+      );
+    }
   }
 
   private getBase() {
