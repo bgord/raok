@@ -66,3 +66,19 @@ export function CopyButton(props: CopyButtonPropsType) {
     </button>
   );
 }
+
+export function ClearButton(props: h.JSX.IntrinsicElements["button"]) {
+  return (
+    <button
+      type="button"
+      class="c-button"
+      data-variant="bare"
+      data-display="flex"
+      data-main="center"
+      data-cross="center"
+      {...props}
+    >
+      <Icons.Cancel width="24" height="24" />
+    </button>
+  );
+}

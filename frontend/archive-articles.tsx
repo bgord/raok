@@ -141,7 +141,12 @@ export function ArchiveArticles(_props: RoutableProps) {
         </button>
       </div>
 
-      <div data-display="flex" data-wrap="nowrap" data-max-width="100%">
+      <div
+        data-display="flex"
+        data-wrap="nowrap"
+        data-max-width="100%"
+        data-gap="6"
+      >
         <div data-position="relative" data-width="100%">
           <input
             list="articles"
@@ -161,15 +166,7 @@ export function ArchiveArticles(_props: RoutableProps) {
           />
         </div>
 
-        <button
-          type="button"
-          onClick={search.clear}
-          class="c-button"
-          data-variant="bare"
-          data-px="3"
-        >
-          <Icons.Cancel width="24" height="24" />
-        </button>
+        <UI.ClearButton onClick={search.clear} />
       </div>
 
       {archiveArticles.isSuccess && archiveArticles.data.length === 0 && (
