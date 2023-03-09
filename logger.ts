@@ -17,6 +17,7 @@ type LogEnvironmentType = string;
 type LogMessageType = string;
 type LogOperationType = string;
 type LogMetadataType = Record<string, any>;
+type LogRequestIdType = bg.Schema.RequestIdType;
 
 const levels: Record<LogLevelTypeEnum, number> = {
   error: 0,
@@ -33,11 +34,12 @@ type LogFullType = {
   level: LogLevelTypeEnum;
   message: LogMessageType;
   operation: LogOperationType;
-  metadata?: LogMetadataType;
   method: string;
   url: string;
-  responseCode?: number;
   client: { ip: string; userAgent?: string };
+  requestId?: LogRequestIdType;
+  responseCode?: number;
+  metadata?: LogMetadataType;
 };
 
 type LogInfoType = Omit<
@@ -50,6 +52,7 @@ type LogInfoType = Omit<
   | "url"
   | "responseCode"
   | "client"
+  | "requestId"
 >;
 
 type LogHttpType = Omit<

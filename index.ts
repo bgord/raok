@@ -35,6 +35,7 @@ app.use((request, response, next) => {
 
   logger.http({
     operation: "http_request_before",
+    requestId: request.requestId,
     message: "request",
     method: request.method,
     url: `${request.header("host")}${request.url}`,
@@ -44,6 +45,7 @@ app.use((request, response, next) => {
   response.on("finish", () => {
     logger.http({
       operation: "http_request_after",
+      requestId: request.requestId,
       message: "response",
       method: request.method,
       url: `${request.header("host")}${request.url}`,
