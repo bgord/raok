@@ -33,6 +33,13 @@ app.use((request, response, next) => {
     userAgent: request.header("user-agent"),
   };
 
+  const httpRequestBeforeMetadata = {
+    params: request.params,
+    headers: request.headers,
+    body: request.body,
+    query: request.query,
+  };
+
   logger.http({
     operation: "http_request_before",
     requestId: request.requestId,
@@ -40,9 +47,14 @@ app.use((request, response, next) => {
     method: request.method,
     url: `${request.header("host")}${request.url}`,
     client,
+    metadata: httpRequestBeforeMetadata,
   });
 
   response.on("finish", () => {
+    const httpRequestAfterMetadata = {
+      response: response.locals.body,
+    };
+
     logger.http({
       operation: "http_request_after",
       requestId: request.requestId,
@@ -51,7 +63,7 @@ app.use((request, response, next) => {
       url: `${request.header("host")}${request.url}`,
       responseCode: response.statusCode,
       client,
-      metadata: { response: response.locals.body },
+      metadata: httpRequestAfterMetadata,
     });
   });
 
