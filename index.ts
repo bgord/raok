@@ -27,17 +27,6 @@ const AuthShield = new bg.EnvUserAuthShield({
 });
 AuthShield.applyTo(app);
 
-app.use((_request, response, next) => {
-  const oldJson = response.json;
-
-  response.json = (body) => {
-    response.locals.body = body;
-    return oldJson.call(response, body);
-  };
-
-  next();
-});
-
 app.use((request, response, next) => {
   const client = {
     ip: request.header("X-Real-IP") ?? request.ip,
