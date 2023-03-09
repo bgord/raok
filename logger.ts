@@ -87,7 +87,10 @@ class Logger {
       this.instance.add(
         new winston.transports.File({
           filename: `/var/log/${this.app}-${this.environment}.log`,
-          maxsize: 10485760, // 10 MB
+          maxsize: bg.VO.FileSize.toBytes({
+            unit: bg.VO.FileSizeUnit.MB,
+            value: 10,
+          }),
         })
       );
     }
