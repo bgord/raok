@@ -118,15 +118,7 @@ export function ArchiveFiles(_props: RoutableProps) {
           />
         </div>
 
-        <button
-          type="button"
-          onClick={search.clear}
-          class="c-button"
-          data-variant="bare"
-          data-px="3"
-        >
-          <Icons.Cancel width="24" height="24" />
-        </button>
+        <UI.ClearButton onClick={search.clear} />
       </div>
 
       {archiveFiles.isSuccess && archiveFiles.data.length === 0 && (
