@@ -92,6 +92,7 @@ export function ArticleList() {
             <button
               onClick={() => _articles.refetch()}
               type="button"
+              title="Refresh article list"
               class="c-button"
               data-variant="bare"
             >

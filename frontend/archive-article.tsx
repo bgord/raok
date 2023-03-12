@@ -81,6 +81,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
         />
         {props.status !== types.ArticleStatusEnum.ready && (
           <button
+            title="Restore article"
             type="button"
             class="c-button"
             data-variant="bare"

@@ -66,6 +66,7 @@ export function Newspaper(props: NewspaperProps) {
 
           {["delivered", "archived"].includes(props.status) && (
             <button
+              title={details.on ? "Hide details" : "Show details"}
               type="button"
               class="c-button"
               data-variant="bare"
