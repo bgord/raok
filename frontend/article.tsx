@@ -107,6 +107,7 @@ export function Article(props: ArticlePropsType) {
 
           <button
             type="submit"
+            title="Delete article"
             class="c-button"
             data-variant="bare"
             onClick={() => deleteArticle.mutate(props.id)}

@@ -46,7 +46,7 @@
     "ts-node-dev": "^2.0.0"
   },
   "dependencies": {
-    "@bgord/design": "^0.27.43",
+    "@bgord/design": "^0.27.49",
     "@bgord/frontend": "github:bgord/bgord-frontend",
     "@bgord/node": "^0.58.95",
     "@mozilla/readability": "^0.4.1",

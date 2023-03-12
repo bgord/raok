@@ -59,6 +59,7 @@ export function CopyButton(props: CopyButtonPropsType) {
       type="button"
       class="c-button"
       data-variant="bare"
+      title="Copy link"
       onClick={() => bg.copyToClipboard(options)}
       {...rest}
     >
@@ -70,6 +71,7 @@ export function CopyButton(props: CopyButtonPropsType) {
 export function ClearButton(props: h.JSX.IntrinsicElements["button"]) {
   return (
     <button
+      title="Clear query"
       type="button"
       class="c-button"
       data-variant="bare"
