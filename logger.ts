@@ -42,6 +42,18 @@ type LogFullType = {
   metadata?: LogMetadataType;
 };
 
+type LogErrorType = Omit<
+  LogFullType,
+  | "timestamp"
+  | "app"
+  | "environment"
+  | "level"
+  | "method"
+  | "url"
+  | "client"
+  | "responseCode"
+>;
+
 type LogInfoType = Omit<
   LogFullType,
   | "app"
@@ -107,6 +119,14 @@ class Logger {
   info(log: LogInfoType) {
     this.instance.info({
       level: LogLevelTypeEnum.info,
+      ...this.getBase(),
+      ...log,
+    });
+  }
+
+  error(log: LogErrorType) {
+    this.instance.error({
+      level: LogLevelTypeEnum.error,
       ...this.getBase(),
       ...log,
     });
