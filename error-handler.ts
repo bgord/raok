@@ -1,5 +1,6 @@
 import express from "express";
 import * as bg from "@bgord/node";
+import { logger } from "./logger";
 
 import * as Policies from "./policies";
 
@@ -7,13 +8,10 @@ export class ErrorHandler {
   /* eslint-disable max-params */
   static handle: express.ErrorRequestHandler = async (
     error,
-    _request,
+    request,
     response,
     next
   ) => {
-    /* eslint-disable no-console */
-    console.error(error);
-
     if (error instanceof bg.Errors.InvalidCredentialsError) {
       return response.redirect("/");
     }
@@ -27,6 +25,12 @@ export class ErrorHandler {
     }
 
     if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
+      logger.error({
+        message: "Article URL is not unique",
+        operation: "error_handler",
+        requestId: request.requestId,
+      });
+
       return response
         .status(400)
         .send({ message: "article.error.not_unique", _known: true });
@@ -37,6 +41,9 @@ export class ErrorHandler {
         .status(400)
         .send({ message: "crawling.stopped", _known: true });
     }
+
+    /* eslint-disable no-console */
+    console.error(error);
 
     return next(error);
   };
