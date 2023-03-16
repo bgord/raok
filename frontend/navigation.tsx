@@ -68,6 +68,7 @@ function NavigationMobile() {
           class="c-button"
           data-variant="bare"
           onClick={navigation.enable}
+          title="Show menu"
         >
           <Icons.Menu data-color="white" height="24" width="24" />
         </button>
@@ -98,6 +99,7 @@ function NavigationMobile() {
               class="c-button"
               data-variant="bare"
               onClick={navigation.disable}
+              title="Close menu"
             >
               <Icons.Cancel data-color="white" height="30" width="30" />
             </button>
