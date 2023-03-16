@@ -1,13 +1,10 @@
 {
-  "app.added_overall": "added overall",
-  "app.article": "article",
   "app.articles": "articles",
   "app.error.general": "something went wrong",
   "app.files": "files",
   "app.file_explorer": "file explorer",
   "app.logout": "logout",
   "app.name": "RAOK",
-  "app.newspaper": "newspaper",
   "app.newspapers": "newspapers",
   "app.reset": "reset",
   "app.settings": "settings",
@@ -31,7 +28,7 @@
 
   "articles-to-review-notification.enabled": "Articles to review notifications enabled",
 
-  "dashboard.could_not_schedule": "couldn't schedule",
+  "dashboard.could_not_schedule": "could not schedule",
   "dashboard.deselect_all": "deselect all",
   "dashboard.no_articles_available": "no articles available at the moment",
   "dashboard.no_newspapers_available": "no newspapers added at the moment",
@@ -39,7 +36,6 @@
   "dashboard.scheduled": "scheduled!",
   "dashboard.scheduling": "scheduling...",
   "dashboard.select_min_1_article": "select min. 1 article",
-  "dashboard.show_less": "show less",
 
   "newspaper.archive": "archive",
   "newspaper.archived": "newspaper has been archived",
