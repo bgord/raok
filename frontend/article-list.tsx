@@ -72,15 +72,6 @@ export function ArticleList() {
         <div data-display="flex" data-cross="end">
           <div data-display="flex" data-gap="12" data-mt="24">
             <button
-              onClick={() => actions.add(articles.map((x) => x.id))}
-              type="button"
-              class="c-button"
-              data-variant="secondary"
-            >
-              {t("dashboard.select_all")}
-            </button>
-
-            <button
               onClick={actions.clear}
               type="button"
               class="c-button"
