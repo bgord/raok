@@ -27,7 +27,6 @@ export async function ArticlesArchive(
     archiveNewspapers: [],
     archiveFiles: [],
     articles: bg.Pagination.empty,
-    favouriteArticles: [],
     newspapers: [],
     settings: await Repos.SettingsRepository.getAll(),
     stats: await Repos.StatsRepository.getAll(),

@@ -95,7 +95,6 @@ export class Article {
           url: newArticle.url,
           source: newArticleSource,
           status: VO.ArticleStatusEnum.ready,
-          favourite: false,
           ...metatags,
         },
       })
