@@ -14,7 +14,7 @@ export function SendArbitraryFile() {
   const notify = bg.useToastTrigger();
 
   const fileUpload = useMutation(api.sendArbitraryFile, {
-    onSuccess: () => notify({ message: "file.sent" }),
+    onSuccess: () => notify({ message: "app.file.sent" }),
   });
 
   const file = bg.useFile({ maxSize: MAX_UPLOADED_FILE_SIZE_BYTES });
@@ -75,7 +75,7 @@ export function SendArbitraryFile() {
           data-variant="primary"
           data-ml="12"
         >
-          Upload file
+          {t("app.file.upload")}
         </button>
       )}
 
@@ -92,22 +92,27 @@ export function SendArbitraryFile() {
             fileUpload.reset();
           }}
         >
-          Clear
+          {t("app.clear")}
         </button>
       )}
 
       {file.state === bg.UseFileState.error && (
         <div data-fs="14" data-mt="24" data-color="gray-600">
-          This file is too big, please select another file
+          {t("app.file.errors.too_big")}
         </div>
       )}
 
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
         file.state === bg.UseFileState.idle && (
-          <small data-mt="24" data-fs="14" data-color="gray-600">
-            {`Select a file to send, up to ${prettyBytes(
-              MAX_UPLOADED_FILE_SIZE_BYTES
-            )}`}
+          <small
+            data-mt="24"
+            data-fs="14"
+            data-color="gray-600"
+            data-transform="upper-first"
+          >
+            {t("app.file.size.max", {
+              value: prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES),
+            })}
           </small>
         )}
 
@@ -117,34 +122,35 @@ export function SendArbitraryFile() {
             data-mt="24"
             data-pr="12"
             data-fs="14"
-            data-color="gray-600"
+            data-color="gray-500"
             data-transform="truncate"
             title={file.data.name}
           >
-            <strong data-color="gray-500">File: </strong>
-            {file.data.name}
+            <strong>{t("app.file.name", { name: file.data.name })}</strong>
           </div>
 
           <div data-fs="14" data-color="gray-500">
-            <strong>Size: </strong> {prettyBytes(file.data.size)}
+            <strong>
+              {t("app.file.size", { value: prettyBytes(file.data.size) })}
+            </strong>
           </div>
         </Fragment>
       )}
 
       {fileUpload.isSuccess && file.state === bg.UseFileState.selected && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
-          File has been sent!
+          {t("app.file.sent")}
         </div>
       )}
       {fileUpload.isError && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
-          Please, try again.
+          {t("app.file.try_again")}
         </div>
       )}
 
       {fileUpload.isLoading && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
-          Loading...
+          {t("app.file.loading")}
         </div>
       )}
     </form>

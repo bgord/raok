@@ -32,7 +32,6 @@ export async function FilesArchive(
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(
       bg.Pagination.getFirstPage({ take: VO.ARTICLES_PER_PAGE })
     ),
-    favouriteArticles: [],
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
     stats: await Repos.StatsRepository.getAll(),

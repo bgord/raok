@@ -52,8 +52,13 @@ export function ArchiveFiles(_props: RoutableProps) {
       data-width="100%"
     >
       <div data-display="flex" data-gap="12" data-cross="center">
-        <h2 data-fs="20" data-color="gray-800" data-fw="500">
-          Archive files
+        <h2
+          data-fs="20"
+          data-color="gray-800"
+          data-fw="500"
+          data-transform="upper-first"
+        >
+          {t("app.files.archive")}
         </h2>
 
         <UI.Badge>{numberOfFiles}</UI.Badge>
@@ -68,7 +73,7 @@ export function ArchiveFiles(_props: RoutableProps) {
         <div data-display="flex" data-cross="end" data-gap="24">
           <div data-display="flex" data-direction="column">
             <label class="c-label" htmlFor="sent-at">
-              Sent at
+              {t("app.sent_at")}
             </label>
             <UI.Select
               id="sent-at"
@@ -105,7 +110,7 @@ export function ArchiveFiles(_props: RoutableProps) {
             onInput={search.onChange}
             value={search.query}
             class="c-input"
-            placeholder="Search for a file..."
+            placeholder={t("app.files.archive.placeholder")}
             style="padding-right: 36px"
             data-width="100%"
           />
@@ -123,7 +128,7 @@ export function ArchiveFiles(_props: RoutableProps) {
 
       {archiveFiles.isSuccess && archiveFiles.data.length === 0 && (
         <div data-fs="14" data-color="gray-700">
-          No archive files.
+          {t("app.files.archive.empty")}
         </div>
       )}
 
@@ -178,6 +183,7 @@ export function ArchiveFiles(_props: RoutableProps) {
               data-color="black"
               data-transform="uppercase"
               data-fw="700"
+              title={t("app.file.download")}
             >
               <Icons.Download width="24" height="24" />
             </bg.OutboundLink>

@@ -12,6 +12,7 @@ type ArticlePropsType = types.ArticleType &
   Omit<h.JSX.IntrinsicElements["li"], "title">;
 
 export function Article(props: ArticlePropsType) {
+  const t = bg.useTranslations();
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger<types.ToastType>();
 
@@ -107,7 +108,7 @@ export function Article(props: ArticlePropsType) {
 
           <button
             type="submit"
-            title="Delete article"
+            title={t("article.delete")}
             class="c-button"
             data-variant="bare"
             onClick={() => deleteArticle.mutate(props.id)}

@@ -32,15 +32,17 @@ export function Stats() {
       </UI.Header>
 
       <div data-fs="14" data-color="gray-600">
-        <strong>{createdArticles} </strong>
-        {pluralize({ value: createdArticles, singular: "article" })} added
-        overall
+        {t("stats.articles_added", {
+          value: createdArticles,
+          noun: pluralize({ value: createdArticles, singular: "article" }),
+        })}
       </div>
 
       <div data-fs="14" data-color="gray-600" data-mt="6">
-        <strong>{sentNewspapers} </strong>
-        {pluralize({ value: createdArticles, singular: "newspaper" })} sent
-        overall
+        {t("stats.newspapers_sent", {
+          value: sentNewspapers,
+          noun: pluralize({ value: createdArticles, singular: "newspaper" }),
+        })}
       </div>
 
       <div
@@ -48,8 +50,9 @@ export function Stats() {
         data-color="gray-400"
         data-mt="12"
         title={bg.DateFormatter.datetime(stats.data?.lastFeedlyImport?.raw)}
+        data-transform="upper-first"
       >
-        Last Feedly import performed {lastFeedlyImportFormatted}
+        {t("dashboard.crawling.last", { when: lastFeedlyImportFormatted })}
       </div>
 
       {stats.data?.hasFeedlyTokenExpired && (
@@ -61,7 +64,7 @@ export function Stats() {
           data-color="red-400"
         >
           <Icons.WarningCircledOutline width="18" height="18" />
-          <span data-ml="6">Feedly token is not working</span>
+          <span data-ml="6">{t("dashboard.crawling.broken_token")}</span>
         </div>
       )}
     </div>

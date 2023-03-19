@@ -52,6 +52,7 @@ type CopyButtonPropsType = h.JSX.IntrinsicElements["button"] & {
 };
 
 export function CopyButton(props: CopyButtonPropsType) {
+  const t = bg.useTranslations();
   const { options, ...rest } = props;
 
   return (
@@ -59,7 +60,7 @@ export function CopyButton(props: CopyButtonPropsType) {
       type="button"
       class="c-button"
       data-variant="bare"
-      title="Copy link"
+      title={t("link.copy")}
       onClick={() => bg.copyToClipboard(options)}
       {...rest}
     >

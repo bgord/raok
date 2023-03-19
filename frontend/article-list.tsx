@@ -72,15 +72,6 @@ export function ArticleList() {
         <div data-display="flex" data-cross="end">
           <div data-display="flex" data-gap="12" data-mt="24">
             <button
-              onClick={() => actions.add(articles.map((x) => x.id))}
-              type="button"
-              class="c-button"
-              data-variant="secondary"
-            >
-              {t("dashboard.select_all")}
-            </button>
-
-            <button
               onClick={actions.clear}
               type="button"
               class="c-button"
@@ -92,7 +83,7 @@ export function ArticleList() {
             <button
               onClick={() => _articles.refetch()}
               type="button"
-              title="Refresh article list"
+              title={t("articles.refresh")}
               class="c-button"
               data-variant="bare"
             >
@@ -104,7 +95,10 @@ export function ArticleList() {
 
           <bg.Anima visible={selectedArticleIds.length > 0} effect="opacity">
             <div data-ml="auto" data-mb="6" data-color="gray-600" data-fs="14">
-              {selectedArticleIds.length}/5 articles
+              {t("articles.selected", {
+                selected: selectedArticleIds.length,
+                max: 5,
+              })}
             </div>
           </bg.Anima>
 

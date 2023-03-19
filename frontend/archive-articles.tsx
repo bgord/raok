@@ -67,7 +67,7 @@ export function ArchiveArticles(_props: RoutableProps) {
     >
       <div data-display="flex" data-gap="12" data-cross="center">
         <h2 data-fs="20" data-color="gray-800" data-fw="500">
-          Archive Articles
+          {t("articles.archive")}
         </h2>
 
         <UI.Badge>{numberOfArticles}</UI.Badge>
@@ -92,7 +92,7 @@ export function ArchiveArticles(_props: RoutableProps) {
 
         <div data-display="flex" data-direction="column">
           <label class="c-label" htmlFor="status">
-            Status
+            {t("app.status")}
           </label>
           <UI.Select
             id="status"
@@ -110,7 +110,7 @@ export function ArchiveArticles(_props: RoutableProps) {
 
         <div data-display="flex" data-direction="column">
           <label class="c-label" htmlFor="source">
-            Source
+            {t("article.source")}
           </label>
           <UI.Select
             id="source"
@@ -153,7 +153,7 @@ export function ArchiveArticles(_props: RoutableProps) {
             onInput={search.onChange}
             value={search.query}
             class="c-input"
-            placeholder="Search for an article..."
+            placeholder={t("article.search.placeholder")}
             style="padding-right: 36px"
             data-width="100%"
           />
@@ -171,7 +171,7 @@ export function ArchiveArticles(_props: RoutableProps) {
 
       {archiveArticles.isSuccess && archiveArticles.data.length === 0 && (
         <div data-fs="14" data-color="gray-700">
-          No archive articles.
+          {t("articles.archive.empty")}
         </div>
       )}
 

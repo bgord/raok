@@ -8,6 +8,7 @@ import * as VO from "./value-objects";
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
+import { logger } from "./logger";
 
 const app = express();
 
@@ -25,6 +26,49 @@ const AuthShield = new bg.EnvUserAuthShield({
   ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
 });
 AuthShield.applyTo(app);
+
+app.use((request, response, next) => {
+  const client = {
+    ip: request.header("X-Real-IP") ?? request.ip,
+    userAgent: request.header("user-agent"),
+  };
+
+  const httpRequestBeforeMetadata = {
+    params: request.params,
+    headers: request.headers,
+    body: request.body,
+    query: request.query,
+  };
+
+  logger.http({
+    operation: "http_request_before",
+    requestId: request.requestId,
+    message: "request",
+    method: request.method,
+    url: `${request.header("host")}${request.url}`,
+    client,
+    metadata: httpRequestBeforeMetadata,
+  });
+
+  response.on("finish", () => {
+    const httpRequestAfterMetadata = {
+      response: response.locals.body,
+    };
+
+    logger.http({
+      operation: "http_request_after",
+      requestId: request.requestId,
+      message: "response",
+      method: request.method,
+      url: `${request.header("host")}${request.url}`,
+      responseCode: response.statusCode,
+      client,
+      metadata: httpRequestAfterMetadata,
+    });
+  });
+
+  next();
+});
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
@@ -200,10 +244,17 @@ const server = app.listen(Env.PORT, async () => {
     }),
   ]);
 
-  bg.Reporter.info(`Server running on port: ${Env.PORT}`);
+  logger.info({
+    message: "Server has started",
+    operation: "server_startup",
+    metadata: { port: Env.PORT },
+  });
 });
 
 bg.GracefulShutdown.applyTo(server, () => {
-  bg.Reporter.info("Shutting down job scheduler");
+  logger.info({
+    message: "Shutting down job scheduler",
+    operation: "scheduler_shutdown",
+  });
   Scheduler.stop();
 });
