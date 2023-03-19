@@ -89,7 +89,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
           >
             <option selected>{t("all")}</option>
             {statusFilter.options.map((status) => (
-              <option value={status}>{t(status)}</option>
+              <option value={status}>{t(`newspaper.status.${status}`)}</option>
             ))}
           </UI.Select>
         </div>

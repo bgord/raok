@@ -56,7 +56,7 @@ export function Settings(props: RoutableProps) {
     api.Settings.setArticlesToReviewNotificationHour,
     {
       onSuccess: () => {
-        notify({ message: "articles-to-review-notification.hour.set" });
+        notify({ message: "articles-to-review-notification.hour.changed" });
         queryClient.invalidateQueries("settings");
       },
     }

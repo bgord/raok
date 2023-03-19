@@ -10,6 +10,12 @@
   "app.settings": "settings",
   "app.send_a_file": "send a file to your Kindle",
   "app.statistics": "statistics",
+  "app.file.sent": "File has been sent",
+  "app.file.try_again": "Please, try again.",
+  "app.file.loading": "Loading...",
+  "app.file.errors.too_big": "This file is too big, please select another file",
+  "app.file.upload": "Upload file",
+  "app.clear": "clear",
 
   "article.add": "add",
   "article.readded": "readded",
@@ -26,7 +32,9 @@
   "articles.old.deleted": "old articles deleted",
   "articles.old.deleting": "deleting old articles",
 
-  "articles-to-review-notification.enabled": "Articles to review notifications enabled",
+  "articles-to-review-notification.enabled": "articles to review notifications enabled",
+  "articles-to-review-notification.disabled": "articles to review notifications disabled",
+  "articles-to-review-notification.hour.changed": "articles to review notifications hour changed",
 
   "dashboard.could_not_schedule": "could not schedule",
   "dashboard.deselect_all": "deselect all",
@@ -45,6 +53,7 @@
   "newspaper.read_online": "read online",
   "newspaper.resend": "resend",
   "newspaper.resent": "resent",
+  "newspaper.scheduled": "newpspaper scheduled",
 
   "newspaper.status.undetermined": "undetermined",
   "newspaper.status.scheduled": "scheduled",
@@ -55,6 +64,7 @@
 
   "all": "all",
 
+  "today": "last 30 days",
   "last_30_days": "last 30 days",
   "last_3_days": "last 3 days",
   "last_week": "last week",
