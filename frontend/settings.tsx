@@ -157,7 +157,12 @@ export function Settings(_props: RoutableProps) {
           <label class="c-label" htmlFor="hour" data-mr="12">
             {t("app.hour")}
           </label>
-          <select id="hour" name="hour" class="c-select">
+          <select
+            id="hour"
+            name="hour"
+            class="c-select"
+            disabled={!isArticlesToReviewNotificationEnabled}
+          >
             {hours
               .map((hour) => ({
                 ...hour,
