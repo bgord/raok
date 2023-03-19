@@ -39,7 +39,7 @@ export class ErrorHandler {
     if (error instanceof Policies.ShouldCrawlFeedlyError) {
       return response
         .status(400)
-        .send({ message: "crawling.stopped", _known: true });
+        .send({ message: "dashboard.crawling.stopped", _known: true });
     }
 
     /* eslint-disable no-console */

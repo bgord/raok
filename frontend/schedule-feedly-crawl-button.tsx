@@ -17,7 +17,7 @@ export function ScheduleFeedlyCrawlButton(
     {
       onSuccess() {
         setTimeout(scheduleFeedlyArticlesCrawl.reset, 5000);
-        notify({ message: "Feedly crawl scheduled" });
+        notify({ message: "dashboard.crawling.scheduled" });
         queryClient.invalidateQueries("stats");
       },
       onError: (error: bg.ServerError) => {
@@ -43,7 +43,8 @@ export function ScheduleFeedlyCrawlButton(
         t("dashboard.schedule_feedly_crawl")}
       {scheduleFeedlyArticlesCrawl.isLoading && t("dashboard.scheduling")}
       {scheduleFeedlyArticlesCrawl.isSuccess && t("dashboard.scheduled")}
-      {scheduleFeedlyArticlesCrawl.isError && t("dashboard.could_not_schedule")}
+      {scheduleFeedlyArticlesCrawl.isError &&
+        t("dashboard.crawling.could_not_schedule")}
     </button>
   );
 }

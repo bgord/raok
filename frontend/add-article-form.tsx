@@ -43,7 +43,7 @@ export function AddArticleForm() {
         value={url.value}
         onInput={(event) => url.set(event.currentTarget.value)}
         disabled={addArticleRequest.isLoading}
-        placeholder="https://example.com/blogpost"
+        placeholder={t("article.placeholder")}
         class="c-input"
         data-grow="1"
       />

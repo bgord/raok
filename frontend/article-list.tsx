@@ -83,7 +83,7 @@ export function ArticleList() {
             <button
               onClick={() => _articles.refetch()}
               type="button"
-              title="Refresh article list"
+              title={t("articles.refresh")}
               class="c-button"
               data-variant="bare"
             >
@@ -95,7 +95,10 @@ export function ArticleList() {
 
           <bg.Anima visible={selectedArticleIds.length > 0} effect="opacity">
             <div data-ml="auto" data-mb="6" data-color="gray-600" data-fs="14">
-              {selectedArticleIds.length}/5 articles
+              {t("articles.selected", {
+                selected: selectedArticleIds.length,
+                max: 5,
+              })}
             </div>
           </bg.Anima>
 

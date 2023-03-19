@@ -68,7 +68,7 @@ function NavigationMobile() {
           class="c-button"
           data-variant="bare"
           onClick={navigation.enable}
-          title="Show menu"
+          title={t("app.menu.show")}
         >
           <Icons.Menu data-color="white" height="24" width="24" />
         </button>
@@ -99,7 +99,7 @@ function NavigationMobile() {
               class="c-button"
               data-variant="bare"
               onClick={navigation.disable}
-              title="Close menu"
+              title={t("app.menu.close")}
             >
               <Icons.Cancel data-color="white" height="30" width="30" />
             </button>
@@ -177,6 +177,7 @@ function NavigationLogo(props: h.JSX.HTMLAttributes) {
       data-ls="2"
       data-color="gray-100"
       data-fw="500"
+      data-transform="uppercase"
       {...props}
     >
       {t("app.name")}
@@ -185,6 +186,8 @@ function NavigationLogo(props: h.JSX.HTMLAttributes) {
 }
 
 function OfflineIndicator(props: h.JSX.IntrinsicElements["div"]) {
+  const t = bg.useTranslations();
+
   return (
     <bg.OfflineIndicator>
       <div
@@ -195,7 +198,7 @@ function OfflineIndicator(props: h.JSX.IntrinsicElements["div"]) {
         data-mx="auto"
         {...props}
       >
-        No internet connection
+        {t("app.no_internet_connection")}
       </div>
     </bg.OfflineIndicator>
   );

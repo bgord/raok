@@ -60,13 +60,17 @@ export function Newspaper(props: NewspaperProps) {
               data-color="gray-400"
               title={bg.DateFormatter.datetime(props.sentAt?.raw)}
             >
-              Sent {sentAtRelative}
+              {t("newspaper.sent_relative", { when: sentAtRelative })}
             </span>
           )}
 
           {["delivered", "archived"].includes(props.status) && (
             <button
-              title={details.on ? "Hide details" : "Show details"}
+              title={
+                details.on
+                  ? t("newspaper.details.hide")
+                  : t("newspaper.details.show")
+              }
               type="button"
               class="c-button"
               data-variant="bare"
@@ -116,7 +120,7 @@ export function Newspaper(props: NewspaperProps) {
           )}
 
           <span data-mt="6" data-fs="14" data-color="gray-400">
-            Processed in {props.duration}
+            {t("newspaper.processed_in", { duration: props.duration })}
           </span>
         </div>
       </bg.Anima>
@@ -220,7 +224,7 @@ function CancelNewspaper(props: {
       onClick={() => cancelNewspaper.mutate(id)}
       {...rest}
     >
-      {t("newspaper.cancel")}
+      {t("app.cancel")}
     </button>
   );
 }

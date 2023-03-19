@@ -104,10 +104,15 @@ export function SendArbitraryFile() {
 
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
         file.state === bg.UseFileState.idle && (
-          <small data-mt="24" data-fs="14" data-color="gray-600">
-            {`Select a file to send, up to ${prettyBytes(
-              MAX_UPLOADED_FILE_SIZE_BYTES
-            )}`}
+          <small
+            data-mt="24"
+            data-fs="14"
+            data-color="gray-600"
+            data-transform="upper-first"
+          >
+            {t("app.file.size.max", {
+              value: prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES),
+            })}
           </small>
         )}
 
@@ -117,16 +122,17 @@ export function SendArbitraryFile() {
             data-mt="24"
             data-pr="12"
             data-fs="14"
-            data-color="gray-600"
+            data-color="gray-500"
             data-transform="truncate"
             title={file.data.name}
           >
-            <strong data-color="gray-500">File: </strong>
-            {file.data.name}
+            <strong>{t("app.file.name", { name: file.data.name })}</strong>
           </div>
 
           <div data-fs="14" data-color="gray-500">
-            <strong>Size: </strong> {prettyBytes(file.data.size)}
+            <strong>
+              {t("app.file.size", { value: prettyBytes(file.data.size) })}
+            </strong>
           </div>
         </Fragment>
       )}

@@ -41,7 +41,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
       </button>
 
       <bg.Dialog {...dialog} data-gap="24">
-        <div>Are you sure you want to delete all articles?</div>
+        <div>{t("articles.all.delete.confirmation")}</div>
 
         <div data-display="flex" data-gap="48" data-mx="auto">
           <button
@@ -50,7 +50,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
             data-variant="primary"
             onClick={() => deleteAllArticles.mutate()}
           >
-            Delete
+            {t("app.delete")}
           </button>
 
           <button
@@ -59,7 +59,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
             data-variant="bare"
             onClick={dialog.disable}
           >
-            Cancel
+            {t("app.cancel")}
           </button>
         </div>
       </bg.Dialog>

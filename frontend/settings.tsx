@@ -1,5 +1,4 @@
 import { h } from "preact";
-import { useEffect } from "preact/hooks";
 import { RoutableProps } from "preact-router";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
@@ -10,8 +9,10 @@ import * as types from "./types";
 
 export type InitialSettingsDataType = { settings: types.SettingsType };
 
-export function Settings(props: RoutableProps) {
+export function Settings(_props: RoutableProps) {
   hooks.useLeavingPrompt();
+
+  const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
@@ -21,14 +22,14 @@ export function Settings(props: RoutableProps) {
     api.Settings.restoreFeedlyCrawling,
     {
       onSuccess: () => {
-        notify({ message: "feedly.crawling.restored" });
+        notify({ message: "dashboard.crawling.restored" });
         queryClient.invalidateQueries("settings");
       },
     }
   );
   const stopFeedlyCrawling = useMutation(api.Settings.stopFeedlyCrawling, {
     onSuccess: () => {
-      notify({ message: "feedly.crawling.stopped" });
+      notify({ message: "dashboard.crawling.stopped" });
       queryClient.invalidateQueries("settings");
     },
   });
@@ -62,7 +63,8 @@ export function Settings(props: RoutableProps) {
     }
   );
 
-  if (!settings.isSuccess) return <div data-p="24">Preparing settings...</div>;
+  if (!settings.isSuccess)
+    return <div data-p="24">{t("settings.preparing")}</div>;
 
   const {
     isArticlesToReviewNotificationEnabled,
@@ -80,8 +82,8 @@ export function Settings(props: RoutableProps) {
       data-max-width="768"
       data-md-px="6"
     >
-      <h2 data-fs="24" data-fw="400">
-        Settings
+      <h2 data-fs="24" data-fw="400" data-transform="upper-first">
+        {t("app.settings")}
       </h2>
 
       <section
@@ -103,11 +105,19 @@ export function Settings(props: RoutableProps) {
             data-ls="1"
             data-fs="12"
           >
-            {isArticlesToReviewNotificationEnabled ? "Enabled" : "Disabled"}
+            {isArticlesToReviewNotificationEnabled
+              ? t("app.enabled")
+              : t("app.disabled")}
           </strong>
 
-          <h3 data-fs="16" data-md-fs="14" data-color="gray-600" data-mr="12">
-            Articles to review notifications
+          <h3
+            data-fs="16"
+            data-md-fs="14"
+            data-color="gray-600"
+            data-mr="12"
+            data-transform="upper-first"
+          >
+            {t("articles-to-review-notification")}
           </h3>
 
           {isArticlesToReviewNotificationEnabled && (
@@ -117,7 +127,7 @@ export function Settings(props: RoutableProps) {
               data-variant="primary"
               onClick={() => disableArticlesToReviewNotification.mutate()}
             >
-              Disable
+              {t("app.disable")}
             </button>
           )}
 
@@ -128,7 +138,7 @@ export function Settings(props: RoutableProps) {
               data-variant="primary"
               onClick={() => enableArticlesToReviewNotification.mutate()}
             >
-              Enable
+              {t("app.enable")}
             </button>
           )}
         </div>
@@ -145,7 +155,7 @@ export function Settings(props: RoutableProps) {
           data-mt="36"
         >
           <label class="c-label" htmlFor="hour" data-mr="12">
-            Hour
+            {t("app.hour")}
           </label>
           <select id="hour" name="hour" class="c-select">
             {hours
@@ -172,15 +182,21 @@ export function Settings(props: RoutableProps) {
             data-variant="secondary"
             data-ml="24"
           >
-            Update
+            {t("app.update")}
           </button>
         </form>
 
-        <small data-fs="14" data-color="gray-400" data-mt="12">
-          Notifications will be sent at{" "}
-          {formatUtcHourToLocal(articlesToReviewNotificationHour.value).label}{" "}
-          your time every day, which is {articlesToReviewNotificationHour.label}{" "}
-          UTC+0.
+        <small
+          data-fs="14"
+          data-color="gray-400"
+          data-mt="12"
+          data-transform="upper-first"
+        >
+          {t("articles-to-review-notification.info", {
+            local: formatUtcHourToLocal(articlesToReviewNotificationHour.value)
+              .label,
+            utc_zero: articlesToReviewNotificationHour.label,
+          })}
         </small>
       </section>
 
@@ -202,11 +218,17 @@ export function Settings(props: RoutableProps) {
           data-ls="1"
           data-fs="12"
         >
-          {isFeedlyCrawlingStopped ? "Stopped" : "Active"}
+          {isFeedlyCrawlingStopped ? t("app.stopped") : t("app.active")}
         </strong>
 
-        <h3 data-fs="16" data-md-fs="14" data-color="gray-600" data-mr="12">
-          Feedly crawling
+        <h3
+          data-fs="16"
+          data-md-fs="14"
+          data-color="gray-600"
+          data-mr="12"
+          data-transform="upper-first"
+        >
+          {t("dashboard.crawling")}
         </h3>
 
         {isFeedlyCrawlingStopped && (
@@ -216,7 +238,7 @@ export function Settings(props: RoutableProps) {
             data-variant="primary"
             onClick={() => restoreFeedlyCrawling.mutate()}
           >
-            Restore
+            {t("app.restore")}
           </button>
         )}
 
@@ -227,7 +249,7 @@ export function Settings(props: RoutableProps) {
             data-variant="primary"
             onClick={() => stopFeedlyCrawling.mutate()}
           >
-            Stop
+            {t("app.stop")}
           </button>
         )}
       </section>
