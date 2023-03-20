@@ -72,7 +72,14 @@ export function ArticlesSearchForm() {
         <Icons.Search width="24" height="24" />
       </button>
 
-      <UI.ClearButton onClick={search.clear} />
+      <UI.ClearButton
+        onClick={() => {
+          search.clear();
+
+          // TODO: Fix this timeout
+          setTimeout(() => articleSearch.refetch(), 25);
+        }}
+      />
     </form>
   );
 }

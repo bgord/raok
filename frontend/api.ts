@@ -91,6 +91,8 @@ export async function getArticles(): Promise<types.ArticleType[]> {
 export async function searchArticles(
   query: types.ArticleSearchQueryType
 ): Promise<types.ArticleType[]> {
+  if (query.length === 0) return [];
+
   return _api(`/articles/search?query=${query}`, { method: "GET" }).then(
     (response) => (response.ok ? response.json() : [])
   );
