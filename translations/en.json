@@ -42,6 +42,7 @@
   "app.active": "active",
   "app.restore": "restore",
   "app.stop": "stop",
+  "app.load_more": "Load more",
 
   "article.add": "add",
   "article.added": "article added",

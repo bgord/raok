@@ -178,7 +178,7 @@ export function ArticleList() {
             data-mx="auto"
             onClick={() => _articles.fetchNextPage()}
           >
-            Load more
+            {t("app.load_more")}
           </button>
         </div>
       )}
