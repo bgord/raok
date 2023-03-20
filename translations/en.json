@@ -43,6 +43,7 @@
   "app.restore": "restore",
   "app.stop": "stop",
   "app.load_more": "Load more",
+  "app.search": "search",
 
   "article.add": "add",
   "article.added": "article added",

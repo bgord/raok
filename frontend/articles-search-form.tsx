@@ -58,14 +58,19 @@ export function ArticlesSearchForm() {
             }
           }}
         />
-        <Icons.Search
-          height="34"
-          width="34"
-          data-position="absolute"
-          data-p="6"
-          style="top: 1px; right: 1px; background: white;"
-        />
       </div>
+
+      <button
+        type="submit"
+        class="c-button"
+        data-variant="bare"
+        data-display="flex"
+        data-main="center"
+        data-cross="center"
+        title={t("app.search")}
+      >
+        <Icons.Search width="24" height="24" />
+      </button>
 
       <UI.ClearButton onClick={search.clear} />
     </form>
