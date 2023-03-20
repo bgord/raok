@@ -12,6 +12,7 @@ import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
 
+import { ArticlesSearchForm } from "./articles-search-form";
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { DeleteOldArticles } from "./delete-old-articles";
 import { DeleteAllArticles } from "./delete-all-articles";
@@ -149,39 +150,7 @@ export function ArticleList() {
         <DeleteAllArticles />
       </div>
 
-      <form
-        data-display="flex"
-        data-wrap="nowrap"
-        data-max-width="100%"
-        data-gap="6"
-        data-mb="48"
-        onSubmit={(event) => {
-          event.preventDefault();
-          console.log({ query: search.query });
-        }}
-      >
-        <div data-position="relative" data-width="100%">
-          <input
-            list="articles"
-            class="c-input"
-            placeholder="Search for an article..."
-            style="padding-right: 36px"
-            data-width="100%"
-            pattern=".{3,512}"
-            onChange={search.onChange}
-            value={search.query}
-          />
-          <Icons.Search
-            height="34"
-            width="34"
-            data-position="absolute"
-            data-p="6"
-            style="top: 1px; right: 1px; background: white;"
-          />
-        </div>
-
-        <UI.ClearButton />
-      </form>
+      <ArticlesSearchForm />
 
       {articles.length === 0 && (
         <small
