@@ -129,13 +129,39 @@ export class ArticleRepository {
     const isQueryAnUrlCheck = VO.ArticleUrl.safeParse(query);
 
     if (isQueryAnUrlCheck.success) {
-      return db.article.findMany({
+      const articles = await db.article.findMany({
         where: { status: VO.ArticleStatusEnum.ready, url: { contains: query } },
+        select: {
+          id: true,
+          url: true,
+          source: true,
+          title: true,
+          createdAt: true,
+        },
+        orderBy: { createdAt: "desc" },
       });
+
+      return articles.map((article) => ({
+        ...article,
+        createdAt: bg.ComplexDate.truthy(article.createdAt),
+      }));
     }
 
-    return db.article.findMany({
+    const articles = await db.article.findMany({
       where: { status: VO.ArticleStatusEnum.ready, title: { contains: query } },
+      select: {
+        id: true,
+        url: true,
+        source: true,
+        title: true,
+        createdAt: true,
+      },
+      orderBy: { createdAt: "desc" },
     });
+
+    return articles.map((article) => ({
+      ...article,
+      createdAt: bg.ComplexDate.truthy(article.createdAt),
+    }));
   }
 }
