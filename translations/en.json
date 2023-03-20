@@ -87,7 +87,7 @@
   "dashboard.crawling.could_not_schedule": "could not schedule",
   "dashboard.crawling.scheduled": "feedly crawl scheduled",
 
-  "dashboard.deselect_all": "deselect all",
+  "dashboard.unselect_all": "unselect all",
   "dashboard.no_articles_available": "no articles available at the moment",
   "dashboard.no_newspapers_available": "no newspapers added at the moment",
   "dashboard.schedule_feedly_crawl": "schedule feedly crawl",

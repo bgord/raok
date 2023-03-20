@@ -27,8 +27,6 @@ export function ArticleList() {
 
   const createNewspaper = useCreateNewspaper(actions.clear);
 
-  const search = bg.useClientSearch();
-
   const stats = useQuery("stats", api.getStats);
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
 
@@ -80,7 +78,7 @@ export function ArticleList() {
               class="c-button"
               data-variant="secondary"
             >
-              {t("dashboard.deselect_all")}
+              {t("dashboard.unselect_all")}
             </button>
 
             <button
