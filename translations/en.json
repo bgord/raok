@@ -76,6 +76,7 @@
   "articles.search.results": "showing {{count}} results for your search query",
   "article.search.min_length.error": "you should enter at least 3 characters",
   "article.search.max_length.error": "you should enter maximum 512 characters",
+  "article.search.empty": "no articles found",
 
   "articles-to-review-notification": "articles to review notifications",
   "articles-to-review-notification.enabled": "articles to review notifications enabled",

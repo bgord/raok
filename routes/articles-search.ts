@@ -10,5 +10,11 @@ export async function ArticlesSearch(
   const query = VO.ArticleSearchQuery.parse(request.query.query);
   const articles = await Repos.ArticleRepository.search(query);
 
+  if (articles.length === 0) {
+    return response
+      .status(404)
+      .send({ message: "article.search.empty", _known: true });
+  }
+
   return response.send(articles);
 }
