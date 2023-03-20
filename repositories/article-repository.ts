@@ -128,27 +128,11 @@ export class ArticleRepository {
   static async search(query: VO.ArticleSearchQueryType) {
     const isQueryAnUrlCheck = VO.ArticleUrl.safeParse(query);
 
-    if (isQueryAnUrlCheck.success) {
-      const articles = await db.article.findMany({
-        where: { status: VO.ArticleStatusEnum.ready, url: { contains: query } },
-        select: {
-          id: true,
-          url: true,
-          source: true,
-          title: true,
-          createdAt: true,
-        },
-        orderBy: { createdAt: "desc" },
-      });
-
-      return articles.map((article) => ({
-        ...article,
-        createdAt: bg.ComplexDate.truthy(article.createdAt),
-      }));
-    }
-
     const articles = await db.article.findMany({
-      where: { status: VO.ArticleStatusEnum.ready, title: { contains: query } },
+      where: {
+        status: VO.ArticleStatusEnum.ready,
+        [isQueryAnUrlCheck.success ? "url" : "title"]: { contains: query },
+      },
       select: {
         id: true,
         url: true,
