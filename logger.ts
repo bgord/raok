@@ -16,7 +16,7 @@ type LogAppType = string;
 type LogEnvironmentType = string;
 type LogMessageType = string;
 type LogOperationType = string;
-type LogMetadataType = Record<string, any>;
+type LogMetadataType = Record<string, unknown>;
 type LogRequestIdType = bg.Schema.RequestIdType;
 
 const levels: Record<LogLevelTypeEnum, number> = {
