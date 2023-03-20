@@ -70,6 +70,8 @@
   "articles.old.deleting": "deleting old articles",
   "articles.selected": "{{selected}} of {{max}} articles",
   "articles.refresh": "refresh article list",
+  "articles.search.placeholder": "Please type the URL or the article title",
+  "articles.search.validation": "You can enter from 3 to 512 characters",
 
   "articles-to-review-notification": "articles to review notifications",
   "articles-to-review-notification.enabled": "articles to review notifications enabled",
