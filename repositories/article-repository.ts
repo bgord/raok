@@ -124,4 +124,8 @@ export class ArticleRepository {
       where: { url, source: VO.ArticleSourceEnum.feedly },
     });
   }
+
+  static async search(query: VO.ArticleSearchQueryType) {
+    return [];
+  }
 }
