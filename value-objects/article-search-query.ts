@@ -5,8 +5,8 @@ import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "./article-search-query-max-leng
 
 export const ArticleSearchQuery = z
   .string()
-  .min(ARTICLE_SEARCH_QUERY_MAX_LENGTH)
-  .max(ARTICLE_SEARCH_QUERY_MIN_LENGTH)
+  .min(ARTICLE_SEARCH_QUERY_MIN_LENGTH)
+  .max(ARTICLE_SEARCH_QUERY_MAX_LENGTH)
   .brand<"article-search-query">();
 
 export type ArticleSearchQueryType = z.infer<typeof ArticleSearchQuery>;

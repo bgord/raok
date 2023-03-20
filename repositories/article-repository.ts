@@ -126,6 +126,14 @@ export class ArticleRepository {
   }
 
   static async search(query: VO.ArticleSearchQueryType) {
+    const isUrl = VO.ArticleUrl.safeParse(query);
+
+    if (isUrl.success) {
+      return db.article.findMany({
+        where: { status: VO.ArticleStatusEnum.ready, url: { contains: query } },
+      });
+    }
+
     return [];
   }
 }
