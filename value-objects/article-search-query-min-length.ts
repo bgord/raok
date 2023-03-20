@@ -1,0 +1,1 @@
+export const ARTICLE_SEARCH_QUERY_MIN_LENGTH = 3;
