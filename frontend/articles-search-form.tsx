@@ -1,8 +1,11 @@
 import { h } from "preact";
+import { useQuery } from "react-query";
 
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
+import * as types from "./types";
+import * as api from "./api";
 import * as UI from "./ui";
 import { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../value-objects/article-search-query-min-length";
 import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../value-objects/article-search-query-max-length";
@@ -10,6 +13,17 @@ import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../value-objects/article-search
 export function ArticlesSearchForm() {
   const t = bg.useTranslations();
   const search = bg.useClientSearch();
+  const notify = bg.useToastTrigger();
+
+  const articleSearch = useQuery(
+    "articles-search",
+    () => api.searchArticles(search.query as types.ArticleSearchQueryType),
+    {
+      enabled: false,
+      retry: false,
+      onError: (error: bg.ServerError) => notify({ message: t(error.message) }),
+    }
+  );
 
   return (
     <form
@@ -20,8 +34,7 @@ export function ArticlesSearchForm() {
       data-mb="36"
       onSubmit={(event) => {
         event.preventDefault();
-
-        console.log({ query: search.query });
+        articleSearch.refetch();
       }}
     >
       <div data-position="relative" data-width="100%">

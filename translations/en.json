@@ -73,6 +73,9 @@
   "articles.search.placeholder": "Please type the URL or the article title",
   "articles.search.validation": "You can enter from 3 to 512 characters",
 
+  "article.search.min_length.error": "you should enter at least 3 characters",
+  "article.search.max_length.error": "you should enter maximum 512 characters",
+
   "articles-to-review-notification": "articles to review notifications",
   "articles-to-review-notification.enabled": "articles to review notifications enabled",
   "articles-to-review-notification.disabled": "articles to review notifications disabled",
