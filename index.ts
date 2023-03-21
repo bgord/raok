@@ -26,49 +26,7 @@ const AuthShield = new bg.EnvUserAuthShield({
   ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
 });
 AuthShield.applyTo(app);
-
-app.use((request, response, next) => {
-  const client = {
-    ip: request.header("X-Real-IP") ?? request.ip,
-    userAgent: request.header("user-agent"),
-  };
-
-  const httpRequestBeforeMetadata = {
-    params: request.params,
-    headers: request.headers,
-    body: request.body,
-    query: request.query,
-  };
-
-  logger.http({
-    operation: "http_request_before",
-    requestId: request.requestId,
-    message: "request",
-    method: request.method,
-    url: `${request.header("host")}${request.url}`,
-    client,
-    metadata: httpRequestBeforeMetadata,
-  });
-
-  response.on("finish", () => {
-    const httpRequestAfterMetadata = {
-      response: response.locals.body,
-    };
-
-    logger.http({
-      operation: "http_request_after",
-      requestId: request.requestId,
-      message: "response",
-      method: request.method,
-      url: `${request.header("host")}${request.url}`,
-      responseCode: response.statusCode,
-      client,
-      metadata: httpRequestAfterMetadata,
-    });
-  });
-
-  next();
-});
+bg.HttpLogger.applyTo(app, logger);
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
