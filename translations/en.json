@@ -42,6 +42,7 @@
   "app.active": "active",
   "app.restore": "restore",
   "app.stop": "stop",
+  "app.clear_query": "clear query",
 
   "article.add": "add",
   "article.added": "article added",

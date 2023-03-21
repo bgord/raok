@@ -70,9 +70,11 @@ export function CopyButton(props: CopyButtonPropsType) {
 }
 
 export function ClearButton(props: h.JSX.IntrinsicElements["button"]) {
+  const t = bg.useTranslations();
+
   return (
     <button
-      title="Clear query"
+      title={t("app.clear_query")}
       type="button"
       class="c-button"
       data-variant="bare"
