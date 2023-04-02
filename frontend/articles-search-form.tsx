@@ -32,6 +32,7 @@ export function ArticlesSearchForm() {
       data-max-width="100%"
       data-gap="6"
       data-mb="36"
+      data-md-mx="6"
       onSubmit={(event) => {
         event.preventDefault();
         articleSearch.refetch();
