@@ -44,6 +44,7 @@
   "app.stop": "stop",
   "app.load_more": "Load more",
   "app.search": "search",
+  "app.clear_query": "clear query",
 
   "article.add": "add",
   "article.added": "article added",
