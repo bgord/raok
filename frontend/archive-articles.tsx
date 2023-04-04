@@ -66,12 +66,7 @@ export function ArchiveArticles(_props: RoutableProps) {
       data-width="100%"
     >
       <div data-display="flex" data-gap="12" data-cross="center">
-        <h2
-          data-fs="20"
-          data-color="gray-800"
-          data-fw="500"
-          data-transform="upper-first"
-        >
+        <h2 data-fs="20" data-color="gray-800" data-fw="500">
           {t("articles.archive")}
         </h2>
 
