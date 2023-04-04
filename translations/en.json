@@ -128,7 +128,7 @@
 
   "all": "all",
 
-  "today": "last 30 days",
+  "today": "today",
   "last_30_days": "last 30 days",
   "last_3_days": "last 3 days",
   "last_week": "last week",
