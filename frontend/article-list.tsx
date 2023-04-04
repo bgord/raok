@@ -159,16 +159,9 @@ export function ArticleList() {
 
       {searchModeEnabled && (
         <Fragment>
-          <small
-            data-fs="14"
-            data-color="gray-500"
-            data-md-px="12"
-            data-mb="24"
-            data-ml="6"
-            data-transform="upper-first"
-          >
+          <UI.Info data-md-px="12" data-mb="24" data-ml="6">
             {t("articles.search.results", { count: articlesSearchResults })}
-          </small>
+          </UI.Info>
 
           {articlesSearch.map((article) => (
             <Article key={article.id} {...article} {...actions} />

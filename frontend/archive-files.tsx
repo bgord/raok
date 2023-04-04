@@ -122,9 +122,7 @@ export function ArchiveFiles(_props: RoutableProps) {
       </div>
 
       {archiveFiles.isSuccess && files.length === 0 && (
-        <div data-fs="12" data-color="gray-400" data-transform="upper-first">
-          {t("app.files.archive.empty")}
-        </div>
+        <UI.Info>{t("app.files.archive.empty")}</UI.Info>
       )}
 
       <datalist id="files">

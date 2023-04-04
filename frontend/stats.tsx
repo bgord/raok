@@ -45,15 +45,12 @@ export function Stats() {
         })}
       </div>
 
-      <div
-        data-fs="12"
-        data-color="gray-400"
+      <UI.Info
         data-mt="12"
         title={bg.DateFormatter.datetime(stats.data?.lastFeedlyImport?.raw)}
-        data-transform="upper-first"
       >
         {t("dashboard.crawling.last", { when: lastFeedlyImportFormatted })}
-      </div>
+      </UI.Info>
 
       {stats.data?.hasFeedlyTokenExpired && (
         <div
