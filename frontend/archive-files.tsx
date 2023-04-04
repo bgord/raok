@@ -67,12 +67,12 @@ export function ArchiveFiles(_props: RoutableProps) {
       >
         <div data-display="flex" data-cross="end" data-gap="24">
           <div data-display="flex" data-direction="column">
-            <label class="c-label" htmlFor="sent-at">
+            <label class="c-label" htmlFor={sentAt.label}>
               {t("app.sent_at")}
             </label>
             <UI.Select
-              id="sent-at"
-              name="sent-at"
+              id={sentAt.label}
+              name={sentAt.label}
               value={sentAt.query}
               onInput={sentAt.onChange}
             >
@@ -121,8 +121,8 @@ export function ArchiveFiles(_props: RoutableProps) {
         <UI.ClearButton onClick={search.clear} />
       </div>
 
-      {archiveFiles.isSuccess && archiveFiles.data.length === 0 && (
-        <div data-fs="14" data-color="gray-700">
+      {archiveFiles.isSuccess && files.length === 0 && (
+        <div data-fs="12" data-color="gray-400" data-transform="upper-first">
           {t("app.files.archive.empty")}
         </div>
       )}
