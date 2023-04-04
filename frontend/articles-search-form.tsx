@@ -12,12 +12,12 @@ import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../value-objects/article-search
 
 export function ArticlesSearchForm() {
   const t = bg.useTranslations();
-  const search = bg.useClientSearch();
+  const search = bg.useField("");
   const notify = bg.useToastTrigger();
 
   const articleSearch = useQuery(
     "articles-search",
-    () => api.searchArticles(search.query as types.ArticleSearchQueryType),
+    () => api.searchArticles(search.value as types.ArticleSearchQueryType),
     {
       enabled: false,
       retry: false,
@@ -46,16 +46,19 @@ export function ArticlesSearchForm() {
           style="padding-right: 36px"
           data-width="100%"
           pattern={`.{${ARTICLE_SEARCH_QUERY_MIN_LENGTH},${ARTICLE_SEARCH_QUERY_MAX_LENGTH}}`}
-          onInvalid={(event) =>
-            // @ts-ignore
-            event.target.setCustomValidity(t("articles.search.validation"))
-          }
-          value={search.query}
-          onChange={(event) => {
-            search.onChange(event);
-            if (isSearchQueryValid(search.query)) {
+          onInvalid={(
+            event // @ts-ignore
+          ) => event.target.setCustomValidity(t("articles.search.validation"))}
+          value={search.value}
+          onInput={(event) => {
+            search.set(event.currentTarget.value);
+
+            if (isSearchQueryValid(event.currentTarget.value)) {
               // @ts-ignore
               event.target.setCustomValidity("");
+            } else {
+              // @ts-ignore
+              event.target.setCustomValidity(t("articles.search.validation"));
             }
           }}
         />
