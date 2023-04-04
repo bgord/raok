@@ -83,7 +83,7 @@
   "articles-to-review-notification.enabled": "articles to review notifications enabled",
   "articles-to-review-notification.disabled": "articles to review notifications disabled",
   "articles-to-review-notification.hour.changed": "articles to review notifications hour changed",
-  "articles-to-review-notification.info": "notifications will be sent at {{local}} your time every day, which is {{utc_zero}} utc+0.",
+  "articles-to-review-notification.info": "notifications will be sent at {{local}} your time every day, which is {{utc_zero}} UTC+0.",
 
   "dashboard.crawling": "feedly crawling",
   "dashboard.crawling.restored": "feedly crawling restored",
