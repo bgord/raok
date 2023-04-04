@@ -21,13 +21,13 @@ export function ArchiveFiles(_props: RoutableProps) {
   const notify = bg.useToastTrigger();
   const search = bg.useClientSearch();
 
-  const sentAt = bg.useUrlFilter({
+  const sentAtFilter = bg.useUrlFilter({
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
     label: "sentAt",
   });
 
-  const filters = { sentAt: sentAt.query };
+  const filters = { sentAt: sentAtFilter.query };
   const archiveFiles = useQuery(["archive-files", filters], () =>
     api.getArchiveFiles(filters)
   );
@@ -67,16 +67,16 @@ export function ArchiveFiles(_props: RoutableProps) {
       >
         <div data-display="flex" data-cross="end" data-gap="24">
           <div data-display="flex" data-direction="column">
-            <label class="c-label" htmlFor={sentAt.label}>
+            <label class="c-label" htmlFor={sentAtFilter.label}>
               {t("app.sent_at")}
             </label>
             <UI.Select
-              id={sentAt.label}
-              name={sentAt.label}
-              value={sentAt.query}
-              onInput={sentAt.onChange}
+              id={sentAtFilter.label}
+              name={sentAtFilter.label}
+              value={sentAtFilter.query}
+              onInput={sentAtFilter.onChange}
             >
-              {sentAt.options.map((option) => (
+              {sentAtFilter.options.map((option) => (
                 <option value={option}>{t(option)}</option>
               ))}
             </UI.Select>
@@ -86,7 +86,7 @@ export function ArchiveFiles(_props: RoutableProps) {
             type="button"
             class="c-button"
             data-variant="bare"
-            onClick={sentAt.clear}
+            onClick={sentAtFilter.clear}
           >
             {t("app.reset")}
           </button>

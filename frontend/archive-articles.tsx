@@ -30,7 +30,7 @@ export function ArchiveArticles(_props: RoutableProps) {
     label: "status",
   });
 
-  const createdAt = bg.useUrlFilter({
+  const createdAtFilter = bg.useUrlFilter({
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
     label: "createdAt",
@@ -39,7 +39,7 @@ export function ArchiveArticles(_props: RoutableProps) {
   const filters = {
     status: statusFilter.query,
     source: sourceFilter.query,
-    createdAt: createdAt.query,
+    createdAt: createdAtFilter.query,
   };
 
   const archiveArticles = useQuery(["archive-articles", filters], () =>
@@ -81,10 +81,10 @@ export function ArchiveArticles(_props: RoutableProps) {
           <UI.Select
             id="created-at"
             name="created-at"
-            value={createdAt.query}
-            onInput={createdAt.onChange}
+            value={createdAtFilter.query}
+            onInput={createdAtFilter.onChange}
           >
-            {createdAt.options.map((option) => (
+            {createdAtFilter.options.map((option) => (
               <option value={option}>{t(option)}</option>
             ))}
           </UI.Select>
@@ -132,7 +132,7 @@ export function ArchiveArticles(_props: RoutableProps) {
           class="c-button"
           data-variant="bare"
           onClick={() => {
-            createdAt.clear();
+            createdAtFilter.clear();
             statusFilter.clear();
             sourceFilter.clear();
           }}

@@ -62,12 +62,12 @@ export function ArchiveNewspapers(_props: RoutableProps) {
 
       <div data-display="flex" data-cross="end" data-gap="24">
         <div data-display="flex" data-direction="column">
-          <label class="c-label" htmlFor="sent-at">
+          <label class="c-label" htmlFor={sentAtFilter.label}>
             {t("app.sent_at")}
           </label>
           <UI.Select
-            id="sent-at"
-            name="sent-at"
+            id={sentAtFilter.label}
+            name={sentAtFilter.label}
             value={sentAtFilter.query}
             onInput={sentAtFilter.onChange}
           >
@@ -78,12 +78,12 @@ export function ArchiveNewspapers(_props: RoutableProps) {
         </div>
 
         <div data-display="flex" data-direction="column">
-          <label class="c-label" htmlFor="status">
+          <label class="c-label" htmlFor={statusFilter.label}>
             {t("app.status")}
           </label>
           <UI.Select
-            id="status"
-            name="status"
+            id={statusFilter.label}
+            name={statusFilter.label}
             value={statusFilter.query}
             onInput={statusFilter.onChange}
           >
