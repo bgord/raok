@@ -7,8 +7,6 @@ export async function ArticlesSearch(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  throw new Error();
-
   const query = VO.ArticleSearchQuery.parse(request.query.query);
   const articles = await Repos.ArticleRepository.search(query);
 
