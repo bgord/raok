@@ -64,7 +64,9 @@ export function Stats() {
           data-color="red-400"
         >
           <Icons.WarningCircledOutline width="18" height="18" />
-          <span data-ml="6">{t("dashboard.crawling.broken_token")}</span>
+          <span data-ml="6" data-transform="upper-first">
+            {t("dashboard.crawling.broken_token")}
+          </span>
         </div>
       )}
     </div>

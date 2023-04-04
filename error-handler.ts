@@ -1,7 +1,9 @@
+import z from "zod";
 import express from "express";
 import * as bg from "@bgord/node";
 import { logger } from "./logger";
 
+import * as VO from "./value-objects";
 import * as Policies from "./policies";
 
 export class ErrorHandler {
@@ -63,6 +65,32 @@ export class ErrorHandler {
       return response
         .status(400)
         .send({ message: "dashboard.crawling.stopped", _known: true });
+    }
+
+    if (error instanceof z.ZodError) {
+      if (
+        error.issues.find(
+          (issue) =>
+            issue.message === VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE
+        )
+      ) {
+        return response.status(400).send({
+          message: VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE,
+          _known: true,
+        });
+      }
+
+      if (
+        error.issues.find(
+          (issue) =>
+            issue.message === VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE
+        )
+      ) {
+        return response.status(400).send({
+          message: VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE,
+          _known: true,
+        });
+      }
     }
 
     logger.error({

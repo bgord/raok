@@ -5,6 +5,7 @@ export * from "./archive-newspaper";
 export * from "./archive-newspapers";
 export * from "./articles";
 export * from "./articles-archive";
+export * from "./articles-search";
 export * from "./cancel-newspaper";
 export * from "./create-newspaper";
 export * from "./dashboard";

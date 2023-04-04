@@ -1,4 +1,4 @@
-import { h } from "preact";
+import { h, Fragment } from "preact";
 import {
   useQuery,
   useMutation,
@@ -12,6 +12,7 @@ import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
 
+import { ArticlesSearchForm } from "./articles-search-form";
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { DeleteOldArticles } from "./delete-old-articles";
 import { DeleteAllArticles } from "./delete-all-articles";
@@ -20,6 +21,7 @@ import { Article } from "./article";
 
 export function ArticleList() {
   const t = bg.useTranslations();
+  const queryClient = useQueryClient();
 
   const [selectedArticleIds, actions] = bg.useList<types.ArticleType["id"]>();
   const emptyNewspaperError = bg.useToggle();
@@ -39,6 +41,12 @@ export function ArticleList() {
   );
 
   const articles = bg.Pagination.extract(_articles);
+
+  const articlesSearch =
+    queryClient.getQueryData<types.ArticleType[]>("articles-search") ?? [];
+  const articlesSearchResults = articlesSearch.length;
+
+  const searchModeEnabled = articlesSearchResults > 0;
 
   return (
     <section>
@@ -77,7 +85,7 @@ export function ArticleList() {
               class="c-button"
               data-variant="secondary"
             >
-              {t("dashboard.deselect_all")}
+              {t("dashboard.unselect_all")}
             </button>
 
             <button
@@ -147,35 +155,60 @@ export function ArticleList() {
         <DeleteAllArticles />
       </div>
 
-      {articles.length === 0 && (
-        <small
-          data-fs="14"
-          data-color="gray-600"
-          data-md-px="12"
-          data-mt="24"
-          data-ml="6"
-          data-transform="upper-first"
-        >
-          {t("dashboard.no_articles_available")}
-        </small>
+      <ArticlesSearchForm />
+
+      {searchModeEnabled && (
+        <Fragment>
+          <small
+            data-fs="14"
+            data-color="gray-500"
+            data-md-px="12"
+            data-mb="24"
+            data-ml="6"
+            data-transform="upper-first"
+          >
+            {t("articles.search.results", { count: articlesSearchResults })}
+          </small>
+
+          {articlesSearch.map((article) => (
+            <Article key={article.id} {...article} {...actions} />
+          ))}
+        </Fragment>
       )}
 
-      {articles.map((article) => (
-        <Article key={article.id} {...article} {...actions} />
-      ))}
+      {!searchModeEnabled && (
+        <Fragment>
+          {articles.length === 0 && (
+            <small
+              data-fs="14"
+              data-color="gray-600"
+              data-md-px="12"
+              data-mt="24"
+              data-ml="6"
+              data-transform="upper-first"
+            >
+              {t("dashboard.no_articles_available")}
+            </small>
+          )}
 
-      {_articles.hasNextPage && (
-        <div data-display="flex">
-          <button
-            type="button"
-            class="c-button"
-            data-variant="bare"
-            data-mx="auto"
-            onClick={() => _articles.fetchNextPage()}
-          >
-            Load more
-          </button>
-        </div>
+          {articles.map((article) => (
+            <Article key={article.id} {...article} {...actions} />
+          ))}
+
+          {_articles.hasNextPage && (
+            <div data-display="flex">
+              <button
+                type="button"
+                class="c-button"
+                data-variant="bare"
+                data-mx="auto"
+                onClick={() => _articles.fetchNextPage()}
+              >
+                {t("app.load_more")}
+              </button>
+            </div>
+          )}
+        </Fragment>
       )}
     </section>
   );
