@@ -1,1 +1,1 @@
-export const ARTICLE_URL_MAX_CHARS = 1024;
+export const ARTICLE_URL_MAX_CHARS = 512;

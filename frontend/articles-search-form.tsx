@@ -46,9 +46,15 @@ export function ArticlesSearchForm() {
           style="padding-right: 36px"
           data-width="100%"
           pattern={`.{${ARTICLE_SEARCH_QUERY_MIN_LENGTH},${ARTICLE_SEARCH_QUERY_MAX_LENGTH}}`}
-          onInvalid={(
-            event // @ts-ignore
-          ) => event.target.setCustomValidity(t("articles.search.validation"))}
+          onInvalid={(event) =>
+            // @ts-ignore
+            event.target.setCustomValidity(
+              t("articles.search.validation", {
+                from: ARTICLE_SEARCH_QUERY_MIN_LENGTH,
+                to: ARTICLE_SEARCH_QUERY_MAX_LENGTH,
+              })
+            )
+          }
           value={search.value}
           onInput={(event) => {
             search.set(event.currentTarget.value);
@@ -58,7 +64,12 @@ export function ArticlesSearchForm() {
               event.target.setCustomValidity("");
             } else {
               // @ts-ignore
-              event.target.setCustomValidity(t("articles.search.validation"));
+              event.target.setCustomValidity(
+                t("articles.search.validation", {
+                  from: ARTICLE_SEARCH_QUERY_MIN_LENGTH,
+                  to: ARTICLE_SEARCH_QUERY_MAX_LENGTH,
+                })
+              );
             }
           }}
         />
