@@ -1,5 +1,6 @@
 export * from "./article";
 export * from "./article-content";
+export * from "./article-content-max-chars";
 export * from "./article-id";
 export * from "./article-metatags";
 export * from "./article-old-marker";

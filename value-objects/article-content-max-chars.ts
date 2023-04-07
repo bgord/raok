@@ -1,0 +1,1 @@
+export const ARTICLE_CONTENT_MAX_CHARS = 1_000_000;
