@@ -13,6 +13,7 @@ export * from "./article-status";
 export * from "./article-title";
 export * from "./article-title-max-chars";
 export * from "./article-url";
+export * from "./article-url-max-chars";
 export * from "./articles-per-page";
 export * from "./feedly-article";
 export * from "./feedly-article-id";
