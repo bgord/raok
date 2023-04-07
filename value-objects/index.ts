@@ -11,6 +11,7 @@ export * from "./article-search-query-min-length";
 export * from "./article-source";
 export * from "./article-status";
 export * from "./article-title";
+export * from "./article-title-max-chars";
 export * from "./article-url";
 export * from "./articles-per-page";
 export * from "./feedly-article";

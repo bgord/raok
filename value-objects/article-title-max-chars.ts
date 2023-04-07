@@ -1,0 +1,1 @@
+export const ARTICLE_TITLE_MAX_CHARS = 512;
