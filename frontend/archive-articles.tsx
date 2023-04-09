@@ -170,9 +170,9 @@ export function ArchiveArticles(_props: RoutableProps) {
       </div>
 
       {archiveArticles.isSuccess && articles.length === 0 && (
-        <div data-fs="14" data-color="gray-700">
+        <UI.Info data-transform="upper-first">
           {t("articles.archive.empty")}
-        </div>
+        </UI.Info>
       )}
 
       <datalist id="articles">

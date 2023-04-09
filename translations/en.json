@@ -64,7 +64,7 @@
   "articles.all.deleted": "all articles deleted",
   "articles.all.deleting": "deleting all articles",
   "articles.archive": "Archive articles",
-  "articles.archive.empty": "no archive articles",
+  "articles.archive.empty": "no archive articles matching your query and filters",
   "articles.old.could_not_delete": "could not delete",
   "articles.old.delete": "delete old articles",
   "articles.old.delete.confirmation": "are you sure you want to delete old articles?",
