@@ -121,8 +121,10 @@ export function ArchiveFiles(_props: RoutableProps) {
         <UI.ClearButton onClick={search.clear} />
       </div>
 
-      {archiveFiles.isSuccess && files.length === 0 && (
-        <UI.Info>{t("app.files.archive.empty")}</UI.Info>
+      {archiveFiles.isSuccess && archiveFiles.data.length === 0 && (
+        <div data-fs="14" data-color="gray-700">
+          {t("app.files.archive.empty")}
+        </div>
       )}
 
       <datalist id="files">
