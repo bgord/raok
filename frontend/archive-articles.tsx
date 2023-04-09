@@ -169,7 +169,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         <UI.ClearButton onClick={search.clear} />
       </div>
 
-      {archiveArticles.isSuccess && archiveArticles.data.length === 0 && (
+      {archiveArticles.isSuccess && articles.length === 0 && (
         <div data-fs="14" data-color="gray-700">
           {t("articles.archive.empty")}
         </div>
