@@ -8,7 +8,7 @@
   "app.error.general": "something went wrong",
   "app.files": "files",
   "app.files.archive": "Archive files",
-  "app.files.archive.empty": "no archive files",
+  "app.files.archive.empty": "No archive files matching your query and filters",
   "app.files.archive.placeholder": "search for a file...",
   "app.file_explorer": "file explorer",
   "app.logout": "logout",
