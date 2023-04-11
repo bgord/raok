@@ -115,7 +115,7 @@
   "newspaper.sent_relative": "sent {{when}}",
   "newspaper.processed_in": "processed in {{duration}}",
   "newspapers.archive": "Archive newspapers",
-  "newspapers.archive.empty": "no archive newspapers",
+  "newspapers.archive.empty": "no archive newspapers matching your filters",
 
   "newspaper.status.undetermined": "undetermined",
   "newspaper.status.scheduled": "scheduled",
