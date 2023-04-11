@@ -108,9 +108,9 @@ export function ArchiveNewspapers(_props: RoutableProps) {
       </div>
 
       {archiveNewspapers.isSuccess && archiveNewspapers.data.length === 0 && (
-        <div data-fs="14" data-color="gray-700">
+        <UI.Info>
           {t("newspapers.archive.empty")}
-        </div>
+        </UI.Info>
       )}
 
       <ul
