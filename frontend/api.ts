@@ -82,12 +82,6 @@ export async function getPagedArticles(
   );
 }
 
-export async function getArticles(): Promise<types.ArticleType[]> {
-  return _api("/articles", { method: "GET" }).then((response) =>
-    response.ok ? response.json() : []
-  );
-}
-
 export async function searchArticles(
   query: types.ArticleSearchQueryType
 ): Promise<types.ArticleType[]> {

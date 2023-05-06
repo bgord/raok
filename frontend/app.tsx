@@ -1,6 +1,5 @@
 import Router from "preact-router";
 import { h } from "preact";
-import { useState, useLayoutEffect } from "preact/hooks";
 import { QueryClient, QueryClientProvider } from "react-query";
 import * as bg from "@bgord/frontend";
 import type { Schema, TranslationsType } from "@bgord/node";
@@ -9,7 +8,6 @@ import * as Icons from "iconoir-react";
 
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
-import { BuildMetaDataType } from "./build-meta";
 
 import { Dashboard, InitialDashboardDataType } from "./dashboard";
 import {
@@ -27,8 +25,7 @@ export type InitialDataType = InitialDashboardDataType &
   InitialArchiveArticlesDataType &
   InitialArchiveNewspapersDataType &
   InitialSettingsDataType &
-  InitialArchiveFilesDataType &
-  BuildMetaDataType & {
+  InitialArchiveFilesDataType & {
     url: string;
     language: Schema.LanguageType;
     translations: TranslationsType;

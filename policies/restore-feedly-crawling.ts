@@ -1,5 +1,4 @@
 import * as bg from "@bgord/node";
-import * as VO from "../value-objects";
 import * as Aggregates from "../aggregates";
 
 class RestoreFeedlyCrawlingError extends Error {

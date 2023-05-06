@@ -1,6 +1,5 @@
 import express from "express";
 
-import * as Aggregates from "../aggregates";
 import * as Events from "../events";
 import * as Repos from "../repositories";
 

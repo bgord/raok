@@ -3,7 +3,7 @@ import express from "express";
 import * as Aggregates from "../aggregates";
 
 export async function RestoreFeedlyCrawling(
-  request: express.Request,
+  _request: express.Request,
   response: express.Response,
   _next: express.NextFunction
 ) {
