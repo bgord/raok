@@ -16,6 +16,7 @@ const EnvironmentSchema = z.object({
   FEEDLY_TOKEN: z.string().trim().min(1),
   FEEDLY_STREAM_ID: z.string().trim().min(1),
   SUPRESS_FEEDLY_CRAWLING: bg.Schema.FeatureFlag,
+  LOGS_LEVEL: bg.Schema.LogLevel,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 
