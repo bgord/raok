@@ -119,12 +119,6 @@ export class ArticleRepository {
     });
   }
 
-  static async getNumbersOfArticlesWithUrl(url: VO.ArticleType["url"]) {
-    return db.article.count({
-      where: { url, source: VO.ArticleSourceEnum.feedly },
-    });
-  }
-
   static async search(query: VO.ArticleSearchQueryType) {
     const isQueryAnUrlCheck = VO.ArticleUrl.safeParse(query);
 

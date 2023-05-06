@@ -73,15 +73,9 @@ export class Article {
     const newArticleSource = newArticle.source ?? VO.ArticleSourceEnum.web;
     const newArticleId = VO.ArticleId.parse(bg.NewUUID.generate());
 
-    if (newArticleSource === VO.ArticleSourceEnum.web) {
-      await Policies.NonProcessedArticleUrlIsUnique.perform({
-        articleUrl: newArticle.url,
-      });
-    }
-
-    if (newArticleSource === VO.ArticleSourceEnum.feedly) {
-      await Policies.ArticleUrlIsUnique.perform({ articleUrl: newArticle.url });
-    }
+    await Policies.NonProcessedArticleUrlIsUnique.perform({
+      articleUrl: newArticle.url,
+    });
 
     const metatags = await Services.ArticleMetatagsScraper.get(newArticle.url);
 
