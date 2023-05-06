@@ -45,6 +45,7 @@
   "app.load_more": "Load more",
   "app.search": "search",
   "app.clear_query": "clear query",
+  "app.scroll_to_top": "scroll to top",
 
   "article.add": "add",
   "article.added": "article added",

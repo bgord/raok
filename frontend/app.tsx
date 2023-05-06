@@ -1,9 +1,11 @@
 import Router from "preact-router";
 import { h } from "preact";
+import { useState, useLayoutEffect } from "preact/hooks";
 import { QueryClient, QueryClientProvider } from "react-query";
 import * as bg from "@bgord/frontend";
 import type { Schema, TranslationsType } from "@bgord/node";
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
+import * as Icons from "iconoir-react";
 
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
@@ -67,9 +69,41 @@ export function App(props: InitialDataType) {
             <Settings path="/settings" />
           </Router>
 
+          <ScrollButton />
           <Toasts />
         </bg.ToastsContextProvider>
       </bg.TranslationsContextProvider>
     </QueryClientProvider>
+  );
+}
+
+function ScrollButton() {
+  const t = bg.useTranslations();
+  const scroll = bg.useScroll();
+
+  return (
+    <bg.Anima
+      visible={scroll.visible && scroll.position.hasChanged}
+      effect="opacity"
+    >
+      <button
+        type="button"
+        className="c-button"
+        data-variant="primary"
+        data-position="fixed"
+        data-bottom="0"
+        data-left="0"
+        data-display="flex"
+        data-main="center"
+        data-cross="center"
+        data-wrap="nowrap"
+        data-m="6"
+        data-md-m="3"
+        onClick={scroll.actions.goToTop}
+        title={t("app.scroll_to_top")}
+      >
+        <Icons.ArrowUp height="36" width="36" />
+      </button>
+    </bg.Anima>
   );
 }
