@@ -1,6 +1,8 @@
 import * as bg from "@bgord/node";
+import _ from "lodash";
 import path from "path";
 import { promises as fs } from "fs";
+import crypto from "crypto";
 
 import * as VO from "../value-objects";
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
@@ -23,6 +25,8 @@ export class NewspaperFile {
   newspaperId: NewspaperFileCreatorConfigType["newspaperId"];
 
   articles: NewspaperFileCreatorConfigType["articles"];
+
+  emptyLine = '<p style="page-break-after: always;">&nbsp;</p>';
 
   constructor(config: NewspaperFileCreatorConfigType) {
     this.newspaperId = config.newspaperId;
@@ -62,18 +66,46 @@ export class NewspaperFile {
       readableArticles.push(readableArticle);
     }
 
+    const totalReadingTime = readableArticles
+      .map((article) => article.readingTime)
+      .reduce(_.add, 0);
+
     let result = `
       <title>Newspaper</title>
       <meta name="author" content="RAOK">
       <meta name="description" content="RAOK newspaper">
+
+      <div>Total reading time: ${totalReadingTime} min</div>
     `;
+
+    result += "<h1>Table of content</h2>";
+    result += "<ul>";
 
     for (const readableArticle of readableArticles) {
       const readingTime = `(${readableArticle.readingTime} min)`;
 
-      result += `<h2 style="margin-top: 100px">${readableArticle.title} ${readingTime}</h2>`;
+      const hash = crypto
+        .createHash("sha256")
+        .update(readableArticle.title)
+        .digest("hex");
+
+      result += `<li style="margin-bottom: 25px"><a href="#${hash}">${readableArticle.title} ${readingTime}</a></li>`;
+    }
+
+    result += "</ul>";
+    result += this.emptyLine;
+
+    for (const readableArticle of readableArticles) {
+      const readingTime = `(${readableArticle.readingTime} min)`;
+
+      const hash = crypto
+        .createHash("sha256")
+        .update(readableArticle.title)
+        .digest("hex");
+
+      result += `<h2 id="${hash}" style="margin-top: 100px">${readableArticle.title} ${readingTime}</h2>`;
       result += readableArticle.content;
-      result += '<p style="page-break-after: always;">&nbsp;</p>';
+      result += this.emptyLine;
     }
 
     return result;
