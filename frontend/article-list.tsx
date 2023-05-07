@@ -1,10 +1,5 @@
 import { h, Fragment } from "preact";
-import {
-  useQuery,
-  useMutation,
-  useInfiniteQuery,
-  useQueryClient,
-} from "react-query";
+import { useQuery, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
@@ -24,11 +19,7 @@ export function ArticleList() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
 
-  const [selectedArticleIds, actions] = contexts.useNewspaperCreator();
-
-  const emptyNewspaperError = bg.useToggle();
-
-  const createNewspaper = useCreateNewspaper(actions.clear);
+  const [_selectedArticleIds, actions] = contexts.useNewspaperCreator();
 
   const stats = useQuery("stats", api.getStats);
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
@@ -93,38 +84,6 @@ export function ArticleList() {
               />
             </button>
           </div>
-
-          <form
-            data-display="flex"
-            data-gap="12"
-            data-mt="24"
-            data-ml="auto"
-            onSubmit={(event) => {
-              event.preventDefault();
-
-              if (selectedArticleIds.length === 0) {
-                return emptyNewspaperError.enable();
-              }
-
-              emptyNewspaperError.disable();
-              return createNewspaper.mutate(selectedArticleIds);
-            }}
-          >
-            {emptyNewspaperError.on && (
-              <div
-                data-my="auto"
-                data-color="gray-600"
-                data-fs="14"
-                data-transform="upper-first"
-              >
-                {t("dashboard.select_min_1_article")}
-              </div>
-            )}
-
-            <button type="submit" class="c-button" data-variant="primary">
-              {t("newspaper.create")}
-            </button>
-          </form>
         </div>
       </div>
 
@@ -189,18 +148,4 @@ export function ArticleList() {
       )}
     </section>
   );
-}
-
-function useCreateNewspaper(callback?: VoidFunction) {
-  const queryClient = useQueryClient();
-  const notify = bg.useToastTrigger();
-
-  return useMutation(api.createNewspaper, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("newspapers");
-      notify({ message: "newspaper.scheduled" });
-      setTimeout(() => queryClient.invalidateQueries("articles"), 500);
-      callback?.();
-    },
-  });
 }

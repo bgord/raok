@@ -1,8 +1,13 @@
 import { h } from "preact";
-import { useQueryClient, UseInfiniteQueryResult } from "react-query";
+import {
+  useQueryClient,
+  UseInfiniteQueryResult,
+  useMutation,
+} from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
+import * as api from "./api";
 import * as types from "./types";
 import * as contexts from "./contexts";
 import * as UI from "./ui";
@@ -13,6 +18,8 @@ export function CreateNewspaper() {
   const articles = useArticles();
 
   const [selectedArticleIds, actions] = contexts.useNewspaperCreator();
+
+  const createNewspaper = useCreateNewspaper(actions.clear);
 
   return (
     <div
@@ -55,8 +62,20 @@ export function CreateNewspaper() {
         })}
       </ul>
 
-      <div data-display="flex">
-        {selectedArticleIds.length > 0 && (
+      {selectedArticleIds.length > 0 && (
+        <div data-display="flex" data-gap="12">
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+
+              return createNewspaper.mutate(selectedArticleIds);
+            }}
+          >
+            <button type="submit" class="c-button" data-variant="primary">
+              {t("newspaper.create")}
+            </button>
+          </form>
+
           <button
             onClick={actions.clear}
             type="button"
@@ -65,8 +84,8 @@ export function CreateNewspaper() {
           >
             {t("dashboard.unselect_all")}
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -79,4 +98,18 @@ function useArticles() {
   } as UseInfiniteQueryResult<bg.Paged<types.ArticleType>>;
 
   return bg.Pagination.extract(_articles);
+}
+
+function useCreateNewspaper(callback: VoidFunction) {
+  const queryClient = useQueryClient();
+  const notify = bg.useToastTrigger();
+
+  return useMutation(api.createNewspaper, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("newspapers");
+      notify({ message: "newspaper.scheduled" });
+      setTimeout(() => queryClient.invalidateQueries("articles"), 500);
+      callback();
+    },
+  });
 }
