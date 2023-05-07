@@ -105,6 +105,8 @@
 
   "newspaper.archive": "archive",
   "newspaper.archived": "newspaper has been archived",
+  "newspaper.too_many_articles_in_newspaper_error": "Too many articles in the newspaper",
+  "newspaper.too_many_articles": "Max {{max}} articles allowed in a newspaper",
   "app.cancel": "cancel",
   "newspaper.cancelled": "newspaper has been cancelled",
   "newspaper.create": "create newspaper",

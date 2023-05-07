@@ -67,6 +67,21 @@ export class ErrorHandler {
         .send({ message: "dashboard.crawling.stopped", _known: true });
     }
 
+    if (error instanceof Policies.TooManyArticlesInNewspaperError) {
+      logger.error({
+        message: "Newspaper with too many articles attempted",
+        operation: "too_many_articles_in_newspaper_error",
+        requestId: request.requestId,
+      });
+
+      return response
+        .status(400)
+        .send({
+          message: "newspaper.too_many_articles_in_newspaper_error",
+          _known: true,
+        });
+    }
+
     if (error instanceof z.ZodError) {
       if (
         error.issues.find(

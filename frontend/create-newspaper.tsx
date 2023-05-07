@@ -7,11 +7,12 @@ import {
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
-import { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../value-objects/newspaper-max-articles-number";
 import * as api from "./api";
 import * as types from "./types";
 import * as contexts from "./contexts";
 import * as UI from "./ui";
+import { ServerError } from "./server-error";
+import { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../value-objects/newspaper-max-articles-number";
 
 export function CreateNewspaper() {
   const t = bg.useTranslations();
@@ -46,7 +47,7 @@ export function CreateNewspaper() {
 
       {selectedArticleIds.length === 0 && (
         <div data-color="gray-700" data-fs="14">
-          {t("articles.select_prompt", { max: 5 })}
+          {t("articles.select_prompt", { max: NEWSPAPER_MAX_ARTICLES_NUMBER })}
         </div>
       )}
 
@@ -63,30 +64,31 @@ export function CreateNewspaper() {
         })}
       </ul>
 
-      {selectedArticleIds.length > 0 && (
-        <div data-display="flex" data-gap="12">
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
+      {selectedArticleIds.length > 0 &&
+        selectedArticleIds.length <= NEWSPAPER_MAX_ARTICLES_NUMBER && (
+          <div data-display="flex" data-gap="12">
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
 
-              return createNewspaper.mutate(selectedArticleIds);
-            }}
-          >
-            <button type="submit" class="c-button" data-variant="primary">
-              {t("newspaper.create")}
+                return createNewspaper.mutate(selectedArticleIds);
+              }}
+            >
+              <button type="submit" class="c-button" data-variant="primary">
+                {t("newspaper.create")}
+              </button>
+            </form>
+
+            <button
+              onClick={actions.clear}
+              type="button"
+              class="c-button"
+              data-variant="secondary"
+            >
+              {t("dashboard.unselect_all")}
             </button>
-          </form>
-
-          <button
-            onClick={actions.clear}
-            type="button"
-            class="c-button"
-            data-variant="secondary"
-          >
-            {t("dashboard.unselect_all")}
-          </button>
-        </div>
-      )}
+          </div>
+        )}
     </div>
   );
 }
@@ -102,6 +104,7 @@ function useArticles() {
 }
 
 function useCreateNewspaper(callback: VoidFunction) {
+  const t = bg.useTranslations();
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
@@ -112,5 +115,7 @@ function useCreateNewspaper(callback: VoidFunction) {
       setTimeout(() => queryClient.invalidateQueries("articles"), 500);
       callback();
     },
+
+    onError: (error: ServerError) => notify({ message: t(error.message) }),
   });
 }

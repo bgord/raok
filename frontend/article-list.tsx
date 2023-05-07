@@ -19,7 +19,7 @@ export function ArticleList() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
 
-  const [_selectedArticleIds, actions] = contexts.useNewspaperCreator();
+  const [, actions] = contexts.useNewspaperCreator();
 
   const stats = useQuery("stats", api.getStats);
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;

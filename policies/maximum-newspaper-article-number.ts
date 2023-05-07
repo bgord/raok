@@ -2,7 +2,7 @@ import * as bg from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 
-class TooManyArticlesInNewspaperError extends Error {
+export class TooManyArticlesInNewspaperError extends Error {
   constructor() {
     super();
     Object.setPrototypeOf(this, TooManyArticlesInNewspaperError.prototype);
