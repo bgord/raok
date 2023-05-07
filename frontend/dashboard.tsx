@@ -7,6 +7,7 @@ import { ArticleList } from "./article-list";
 import { NewspaperList } from "./newspaper-list";
 import { Stats } from "./stats";
 import { SendArbitraryFile } from "./send-arbitrary-file";
+import { CreateNewspaper } from "./create-newspaper";
 
 import * as types from "./types";
 
@@ -51,6 +52,7 @@ export function Dashboard(_: RoutableProps) {
         style="height: 100%;"
       >
         <SendArbitraryFile />
+        <CreateNewspaper />
         <Stats />
       </section>
     </main>

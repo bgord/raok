@@ -18,6 +18,7 @@
   "app.settings": "settings",
   "app.send_a_file": "send a file to your kindle",
   "app.statistics": "statistics",
+  "app.create_newspaper": "Newspaper",
   "app.file.sent": "file has been sent",
   "app.file.download": "download file",
   "app.file.name": "file: {{name}}",
