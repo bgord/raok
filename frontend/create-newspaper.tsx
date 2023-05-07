@@ -2,10 +2,15 @@ import { h } from "preact";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
+import * as contexts from "./contexts";
 import * as UI from "./ui";
 
 export function CreateNewspaper() {
   const t = bg.useTranslations();
+
+  const [selectedIds, actions] = contexts.useNewspaperCreator();
+
+  console.log(selectedIds, actions);
 
   return (
     <div
