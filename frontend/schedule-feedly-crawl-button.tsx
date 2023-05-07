@@ -33,7 +33,8 @@ export function ScheduleFeedlyCrawlButton(
       onClick={() => scheduleFeedlyArticlesCrawl.mutate()}
       disabled={
         scheduleFeedlyArticlesCrawl.isLoading ||
-        scheduleFeedlyArticlesCrawl.isSuccess
+        scheduleFeedlyArticlesCrawl.isSuccess ||
+        scheduleFeedlyArticlesCrawl.isError
       }
       class="c-button"
       data-variant="bare"
