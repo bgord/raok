@@ -24,7 +24,7 @@ export function CreateNewspaper() {
 
   return (
     <div
-      data-mt="48"
+      data-mb="48"
       data-bg="gray-100"
       data-p="12"
       data-bw="4"

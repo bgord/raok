@@ -56,8 +56,8 @@ export function Dashboard(_: RoutableProps) {
           data-top="0"
           style="height: 100%;"
         >
-          <SendArbitraryFile />
           <CreateNewspaper />
+          <SendArbitraryFile />
           <Stats />
         </section>
       </main>
