@@ -21,7 +21,7 @@ export class Newspaper {
 
   sentAt: VO.NewspaperType["sentAt"] = null;
 
-  static MAX_NUMBER_OF_ARTICLES = 10;
+  static MAX_ARTICLES_NUMBER = VO.NEWSPAPER_MAX_ARTICLES_NUMBER;
 
   constructor(id: VO.NewspaperType["id"]) {
     this.id = id;
@@ -83,7 +83,7 @@ export class Newspaper {
 
     await Policies.MaximumNewspaperArticleNumber.perform({
       articles,
-      max: Newspaper.MAX_NUMBER_OF_ARTICLES,
+      max: Newspaper.MAX_ARTICLES_NUMBER,
     });
 
     await Policies.ArticlesAreSendable.perform({ articles });

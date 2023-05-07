@@ -26,6 +26,7 @@ export * from "./max-uploaded-file-size";
 export * from "./newspaper";
 export * from "./newspaper-id";
 export * from "./newspaper-status";
+export * from "./newspaper-max-articles-number";
 export * from "./readable-article";
 export * from "./readable-article-content";
 export * from "./readable-article-reading-time";

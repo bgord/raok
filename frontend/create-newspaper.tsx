@@ -7,6 +7,7 @@ import {
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
+import { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../value-objects/newspaper-max-articles-number";
 import * as api from "./api";
 import * as types from "./types";
 import * as contexts from "./contexts";
@@ -38,7 +39,7 @@ export function CreateNewspaper() {
         <div data-color="gray-700" data-fs="14">
           {t("articles.selected", {
             selected: selectedArticleIds.length,
-            max: 5,
+            max: NEWSPAPER_MAX_ARTICLES_NUMBER,
           })}
         </div>
       )}
