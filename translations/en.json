@@ -120,7 +120,7 @@
 
   "newspaper.status.undetermined": "undetermined",
   "newspaper.status.scheduled": "scheduled",
-  "newspaper.status.ready_to_send": "ready_to_send",
+  "newspaper.status.ready_to_send": "ready to send",
   "newspaper.status.delivered": "delivered",
   "newspaper.status.archived": "archived",
   "newspaper.status.error": "error",
