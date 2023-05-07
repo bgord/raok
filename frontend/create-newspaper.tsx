@@ -19,9 +19,8 @@ export function CreateNewspaper() {
 
   const articles = useArticles();
 
-  const [selectedArticleIds, actions] = contexts.useNewspaperCreator();
-
-  const createNewspaper = useCreateNewspaper(actions.clear);
+  const newspaperCreator = contexts.useNewspaperCreator();
+  const createNewspaper = useCreateNewspaper(newspaperCreator.actions.clear);
 
   return (
     <div
@@ -36,16 +35,16 @@ export function CreateNewspaper() {
         <span data-transform="upper-first">{t("app.create_newspaper")}</span>
       </UI.Header>
 
-      {selectedArticleIds.length > 0 && (
+      {newspaperCreator.selectedArticleIds.length > 0 && (
         <div data-color="gray-700" data-fs="14">
           {t("articles.selected", {
-            selected: selectedArticleIds.length,
+            selected: newspaperCreator.selectedArticleIds.length,
             max: NEWSPAPER_MAX_ARTICLES_NUMBER,
           })}
         </div>
       )}
 
-      {selectedArticleIds.length === 0 && (
+      {newspaperCreator.selectedArticleIds.length === 0 && (
         <div data-color="gray-700" data-fs="14">
           {t("articles.select_prompt", { max: NEWSPAPER_MAX_ARTICLES_NUMBER })}
         </div>
@@ -57,21 +56,24 @@ export function CreateNewspaper() {
         data-gap="12"
         data-my="12"
       >
-        {selectedArticleIds.map((id) => {
+        {newspaperCreator.selectedArticleIds.map((id) => {
           const article = articles.find((article) => article.id === id);
 
           return <li data-display="flex">{article?.title}</li>;
         })}
       </ul>
 
-      {selectedArticleIds.length > 0 &&
-        selectedArticleIds.length <= NEWSPAPER_MAX_ARTICLES_NUMBER && (
+      {newspaperCreator.selectedArticleIds.length > 0 &&
+        newspaperCreator.selectedArticleIds.length <=
+          NEWSPAPER_MAX_ARTICLES_NUMBER && (
           <div data-display="flex" data-gap="12">
             <form
               onSubmit={(event) => {
                 event.preventDefault();
 
-                return createNewspaper.mutate(selectedArticleIds);
+                return createNewspaper.mutate(
+                  newspaperCreator.selectedArticleIds
+                );
               }}
             >
               <button type="submit" class="c-button" data-variant="primary">
@@ -80,10 +82,10 @@ export function CreateNewspaper() {
             </form>
 
             <button
-              onClick={actions.clear}
+              onClick={newspaperCreator.actions.clear}
               type="button"
               class="c-button"
-              data-variant="secondary"
+              data-variant="bare"
             >
               {t("dashboard.unselect_all")}
             </button>

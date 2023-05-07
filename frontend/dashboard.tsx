@@ -22,10 +22,10 @@ export type InitialDashboardDataType = {
 export function Dashboard(_: RoutableProps) {
   hooks.useLeavingPrompt();
 
-  const newspaperCreator = bg.useList<types.ArticleType["id"]>();
+  const [selectedArticleIds, actions] = bg.useList<types.ArticleType["id"]>();
 
   return (
-    <contexts.NewspaperCreatorProvider state={newspaperCreator}>
+    <contexts.NewspaperCreatorProvider state={{ selectedArticleIds, actions }}>
       <main
         data-display="flex"
         data-main="center"

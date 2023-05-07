@@ -19,7 +19,7 @@ export function ArticleList() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
 
-  const [, actions] = contexts.useNewspaperCreator();
+  const newspaperCreator = contexts.useNewspaperCreator();
 
   const stats = useQuery("stats", api.getStats);
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
@@ -107,7 +107,11 @@ export function ArticleList() {
           </UI.Info>
 
           {articlesSearch.map((article) => (
-            <Article key={article.id} {...article} {...actions} />
+            <Article
+              key={article.id}
+              {...article}
+              {...newspaperCreator.actions}
+            />
           ))}
         </Fragment>
       )}
@@ -128,7 +132,11 @@ export function ArticleList() {
           )}
 
           {articles.map((article) => (
-            <Article key={article.id} {...article} {...actions} />
+            <Article
+              key={article.id}
+              {...article}
+              {...newspaperCreator.actions}
+            />
           ))}
 
           {_articles.hasNextPage && (

@@ -6,7 +6,10 @@ import { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../../value-objects/newspaper-max
 
 import * as types from "../types";
 
-type NewspaperCreatorState = bg.UseListReturnType<types.ArticleType["id"]>;
+type NewspaperCreatorState = {
+  selectedArticleIds: bg.UseListReturnType<types.ArticleType["id"]>[0];
+  actions: bg.UseListReturnType<types.ArticleType["id"]>[1];
+};
 
 const NewspaperCreatorContext = createContext<
   NewspaperCreatorState | undefined
@@ -21,13 +24,13 @@ export function NewspaperCreatorProvider(props: NewspaperCreatorProviderProps) {
   const notify = bg.useToastTrigger();
   const t = bg.useTranslations();
 
-  const [selectedArticleIds, _actions] = props.state;
-
   const actions = {
-    ..._actions,
+    ...props.state.actions,
     toggle: (payload: types.ArticleType["id"]) => {
-      if (selectedArticleIds.length < NEWSPAPER_MAX_ARTICLES_NUMBER) {
-        _actions.toggle(payload);
+      if (
+        props.state.selectedArticleIds.length < NEWSPAPER_MAX_ARTICLES_NUMBER
+      ) {
+        props.state.actions.toggle(payload);
       } else {
         notify({
           message: t("newspaper.too_many_articles", {
@@ -39,7 +42,9 @@ export function NewspaperCreatorProvider(props: NewspaperCreatorProviderProps) {
   };
 
   return (
-    <NewspaperCreatorContext.Provider value={[selectedArticleIds, actions]}>
+    <NewspaperCreatorContext.Provider
+      value={{ selectedArticleIds: props.state.selectedArticleIds, actions }}
+    >
       {props.children}
     </NewspaperCreatorContext.Provider>
   );
