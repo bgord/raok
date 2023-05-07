@@ -8,6 +8,7 @@ import {
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
+import * as contexts from "./contexts";
 import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
@@ -23,7 +24,8 @@ export function ArticleList() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
 
-  const [selectedArticleIds, actions] = bg.useList<types.ArticleType["id"]>();
+  const [selectedArticleIds, actions] = contexts.useNewspaperCreator();
+
   const emptyNewspaperError = bg.useToggle();
 
   const createNewspaper = useCreateNewspaper(actions.clear);
@@ -80,15 +82,6 @@ export function ArticleList() {
         <div data-display="flex" data-cross="end">
           <div data-display="flex" data-gap="12" data-mt="24">
             <button
-              onClick={actions.clear}
-              type="button"
-              class="c-button"
-              data-variant="secondary"
-            >
-              {t("dashboard.unselect_all")}
-            </button>
-
-            <button
               onClick={() => _articles.refetch()}
               type="button"
               title={t("articles.refresh")}
@@ -100,15 +93,6 @@ export function ArticleList() {
               />
             </button>
           </div>
-
-          <bg.Anima visible={selectedArticleIds.length > 0} effect="opacity">
-            <div data-ml="auto" data-mb="6" data-color="gray-600" data-fs="14">
-              {t("articles.selected", {
-                selected: selectedArticleIds.length,
-                max: 5,
-              })}
-            </div>
-          </bg.Anima>
 
           <form
             data-display="flex"
