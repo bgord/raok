@@ -3,7 +3,7 @@
   "app.enabled": "enabled",
   "app.disable": "disable",
   "app.disabled": "disabled",
-  "app.articles": "articles",
+  "app.articles": "Articles",
   "app.delete": "delete",
   "app.error.general": "something went wrong",
   "app.files": "files",

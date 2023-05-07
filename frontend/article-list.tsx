@@ -49,11 +49,12 @@ export function ArticleList() {
         data-bwt="4"
         data-p="12"
         data-pt="6"
+        data-mb="24"
       >
-        <UI.Header data-display="flex" data-cross="center">
-          <Icons.Notes data-mr="12" />
+        <UI.Header data-display="flex" data-cross="center" data-gap="12">
+          <Icons.Notes />
 
-          <span data-transform="upper-first">{t("app.articles")}</span>
+          <span>{t("app.articles")}</span>
 
           <span
             data-ml="6"
@@ -65,37 +66,36 @@ export function ArticleList() {
             {numberOfNonProcessedArticles}
           </span>
 
+          <button
+            onClick={() => _articles.refetch()}
+            type="button"
+            title={t("articles.refresh")}
+            class="c-button"
+            data-variant="bare"
+            data-display="flex"
+            data-main="center"
+            data-cross="center"
+            data-ml="12"
+          >
+            <Icons.Refresh
+              data-anima-effect={_articles.isRefetching && "rotate"}
+            />
+          </button>
+
           <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
 
         <AddArticleForm />
 
-        <div data-display="flex" data-cross="end">
-          <div data-display="flex" data-gap="12" data-mt="24">
-            <button
-              onClick={() => _articles.refetch()}
-              type="button"
-              title={t("articles.refresh")}
-              class="c-button"
-              data-variant="bare"
-            >
-              <Icons.Refresh
-                data-anima-effect={_articles.isRefetching && "rotate"}
-              />
-            </button>
-          </div>
+        <div
+          data-display="flex"
+          data-md-main="center"
+          data-gap="24"
+          data-mt="12"
+        >
+          <DeleteOldArticles />
+          <DeleteAllArticles />
         </div>
-      </div>
-
-      <div
-        data-display="flex"
-        data-md-main="center"
-        data-gap="24"
-        data-mt="12"
-        data-mb="24"
-      >
-        <DeleteOldArticles />
-        <DeleteAllArticles />
       </div>
 
       <ArticlesSearchForm />
