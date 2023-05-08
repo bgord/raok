@@ -53,13 +53,56 @@ export function CreateNewspaper() {
       <ul
         data-display="flex"
         data-direction="column"
+        data-wrap="nowrap"
         data-gap="12"
         data-my="12"
       >
         {newspaperCreator.selectedArticleIds.map((id) => {
           const article = articles.find((article) => article.id === id);
 
-          return <li data-display="flex">{article?.title}</li>;
+          if (!article) return null;
+
+          return (
+            <li
+              data-display="flex"
+              data-wrap="nowrap"
+              data-gap="12"
+              data-overflow="hidden"
+            >
+              <input
+                onClick={() => newspaperCreator.actions.toggle(article.id)}
+                checked={newspaperCreator.actions.isAdded(article.id)}
+                class="c-checkbox"
+                type="checkbox"
+                data-self="center"
+              />
+
+              <div
+                data-display="flex"
+                data-direction="column"
+                data-max-width="100%"
+                data-overflow="hidden"
+              >
+                <div
+                  data-fs="14"
+                  data-transform="truncate"
+                  data-width="100%"
+                  title={String(article.title)}
+                >
+                  {article.title}
+                </div>
+                <UI.OutboundLink
+                  href={article.url}
+                  data-fs="12"
+                  data-transform="truncate"
+                  data-width="100%"
+                  title={String(article.title)}
+                >
+                  {article.url}
+                </UI.OutboundLink>
+              </div>
+            </li>
+          );
         })}
       </ul>
 
