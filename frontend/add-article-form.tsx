@@ -40,6 +40,7 @@ export function AddArticleForm() {
         id="url"
         name="url"
         type="url"
+        inputMode="url"
         required
         value={url.value}
         max={ARTICLE_URL_MAX_CHARS}
