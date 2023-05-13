@@ -42,6 +42,19 @@ export class ErrorHandler {
       return response.status(404).send("File not found");
     }
 
+    if (error instanceof bg.Errors.TooManyRequestsError) {
+      logger.error({
+        message: "Too many requests",
+        operation: "too_many_requests",
+        requestId: request.requestId,
+        metadata: { remainingMs: error.remainingMs },
+      });
+
+      return response
+        .status(429)
+        .send({ message: "app.too_many_requests", _known: true });
+    }
+
     if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
       logger.error({
         message: "Article URL is not unique",

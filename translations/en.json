@@ -14,6 +14,7 @@
   "app.logout": "logout",
   "app.name": "raok",
   "app.newspapers": "newspapers",
+  "app.too_many_requests": "You can crawl once per 5 minutes",
   "app.reset": "reset",
   "app.settings": "Settings",
   "app.send_a_file": "send a file to Kindle",
@@ -100,7 +101,7 @@
   "dashboard.crawling.last": "Last feedly import performed {{when}}",
   "dashboard.crawling.stopped": "feedly crawling stopped",
   "dashboard.crawling.broken_token": "feedly token is not working",
-  "dashboard.crawling.could_not_schedule": "could not schedule",
+  "dashboard.crawling.could_not_schedule": "not scheduled",
   "dashboard.crawling.scheduled": "feedly crawl scheduled",
 
   "dashboard.unselect_all": "cancel",
