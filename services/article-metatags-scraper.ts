@@ -1,6 +1,7 @@
 import * as bg from "@bgord/node";
 import og from "open-graph-scraper";
 
+import { logger } from "../logger";
 import * as VO from "../value-objects";
 
 export class ArticleMetatagsScraper {
@@ -17,6 +18,15 @@ export class ArticleMetatagsScraper {
       return VO.ArticleMetatags.parse(emptyMetatags);
     } catch (error) {
       const response = error as og.ErrorResult;
+
+      logger.warn({
+        message: "Article scrapping error",
+        operation: "article_scrapping_error_warning",
+        metadata: {
+          error: response.result.error,
+          details: response.result.errorDetails,
+        },
+      });
 
       if (response.result.error === "Page not found") {
         throw new VO.ArticleNotFoundError();
