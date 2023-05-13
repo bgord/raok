@@ -32,7 +32,7 @@ export function ArticlesSearchForm() {
       data-max-width="100%"
       data-gap="6"
       data-mt="6"
-      data-mb="12"
+      data-mb="24"
       data-md-mx="6"
       onSubmit={(event) => {
         event.preventDefault();

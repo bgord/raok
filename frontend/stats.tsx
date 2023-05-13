@@ -21,7 +21,7 @@ export function Stats() {
   return (
     <div data-mt="48" data-bg="gray-100" data-p="12">
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
-        <Icons.StatsSquareUp data-mr="12" />
+        <Icons.StatsSquareUp height="20" width="20" data-mr="6" />
         <span data-transform="upper-first">{t("app.statistics")}</span>
       </UI.Header>
 

@@ -5,6 +5,7 @@ import * as Service from "./services";
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
 
+import { RateLimitShield } from "./rate-limit";
 import { Scheduler } from "./jobs";
 import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
@@ -164,6 +165,7 @@ app.get("/archive/files", AuthShield.verify, bg.Route(Routes.FilesArchive));
 
 app.post(
   "/schedule-feedly-articles-crawl",
+  RateLimitShield.build({ limitMs: bg.Time.Seconds(30).toMs() }),
   AuthShield.verify,
   bg.Route(Routes.ScheduleFeedlyArticlesCrawl)
 );
