@@ -106,6 +106,19 @@ export class ErrorHandler {
       });
     }
 
+    if (error instanceof VO.ArticleScrapingTimeoutError) {
+      logger.error({
+        message: "Article scraping timeout error",
+        operation: "article_scraping_timeout_error",
+        requestId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: "article.scraping_timeout_error",
+        _known: true,
+      });
+    }
+
     if (error instanceof z.ZodError) {
       if (
         error.issues.find(

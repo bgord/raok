@@ -19,3 +19,10 @@ export class ArticleIsNotHTML extends Error {
     Object.setPrototypeOf(this, ArticleIsNotHTML.prototype);
   }
 }
+
+export class ArticleScrapingTimeoutError extends Error {
+  constructor() {
+    super();
+    Object.setPrototypeOf(this, ArticleScrapingTimeoutError.prototype);
+  }
+}
