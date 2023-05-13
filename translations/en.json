@@ -16,7 +16,7 @@
   "app.newspapers": "newspapers",
   "app.reset": "reset",
   "app.settings": "Settings",
-  "app.send_a_file": "send a file to your Kindle",
+  "app.send_a_file": "send a file to Kindle",
   "app.statistics": "statistics",
   "app.create_newspaper": "Newspaper creator",
   "app.file.sent": "file has been sent",
@@ -60,7 +60,7 @@
   "article.error.not_unique": "article is not unique",
   "article.search.placeholder": "Search for an article...",
   "article.source": "source",
-  "article.placeholder": "https://example.com/blogpost-link",
+  "article.placeholder": "https://blog.com/post",
   "article.readded": "readded",
   "article.restore": "restore article",
   "article.not_found_during_metatags_scrapping_error": "article not available",
@@ -78,10 +78,10 @@
   "articles.old.delete.confirmation": "are you sure you want to delete old articles?",
   "articles.old.deleted": "old articles deleted",
   "articles.old.deleting": "deleting old articles",
-  "articles.selected": "Selected {{selected}} of {{max}} articles",
+  "articles.selected": "Selected {{selected}} out of {{max}} articles",
   "articles.select_prompt": "You can select up to {{max}} articles to create the newspaper",
   "articles.refresh": "refresh article list",
-  "articles.search.placeholder": "Please type the URL or the article title",
+  "articles.search.placeholder": "Search for an article by URL or title...",
   "articles.search.validation": "You can enter from {{from}} to {{to}} characters",
   "articles.search.results": "showing {{count}} results for your search query",
   "article.search.min_length.error": "you should enter at least 3 characters",
@@ -103,7 +103,7 @@
   "dashboard.crawling.could_not_schedule": "could not schedule",
   "dashboard.crawling.scheduled": "feedly crawl scheduled",
 
-  "dashboard.unselect_all": "unselect all",
+  "dashboard.unselect_all": "cancel",
   "dashboard.no_articles_available": "no articles available at the moment",
   "dashboard.no_newspapers_available": "no newspapers added at the moment",
   "dashboard.schedule_feedly_crawl": "feedly crawl",
@@ -154,6 +154,6 @@
 
   "settings.preparing": "preparing settings...",
 
-  "stats.articles_added": "{{value}} {{noun}} added overall",
-  "stats.newspapers_sent": "{{value}} {{noun}} sent overall"
+  "stats.articles_added": "{{noun}} added overall",
+  "stats.newspapers_sent": "{{noun}} sent overall"
 }

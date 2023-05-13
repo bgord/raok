@@ -23,6 +23,7 @@ export function SendArbitraryFile() {
     <form
       data-bg="gray-100"
       data-p="12"
+      data-shadow
       onSubmit={(event) => {
         event.preventDefault();
 

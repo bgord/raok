@@ -23,7 +23,7 @@ export function CreateNewspaper() {
   const createNewspaper = useCreateNewspaper(newspaperCreator.actions.clear);
 
   return (
-    <div data-mb="48" data-bg="gray-100" data-p="12" data-pb="0">
+    <div data-mb="48" data-bg="gray-100" data-p="12" data-pb="0" data-shadow>
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.BookStack width="20" height="20" data-mr="6" />
         <span data-transform="upper-first">{t("app.create_newspaper")}</span>

@@ -19,22 +19,28 @@ export function Stats() {
     stats.data?.lastFeedlyImport?.relative ?? "N/A";
 
   return (
-    <div data-mt="48" data-bg="gray-100" data-p="12">
+    <div data-mt="48" data-bg="gray-100" data-p="12" data-shadow>
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.StatsSquareUp height="20" width="20" data-mr="6" />
         <span data-transform="upper-first">{t("app.statistics")}</span>
       </UI.Header>
 
-      <div data-fs="14" data-color="gray-600">
+      <div data-display="flex" data-gap="6" data-fs="14" data-color="gray-600">
+        <strong>{createdArticles}</strong>
         {t("stats.articles_added", {
-          value: createdArticles,
           noun: pluralize({ value: createdArticles, singular: "article" }),
         })}
       </div>
 
-      <div data-fs="14" data-color="gray-600" data-mt="6">
+      <div
+        data-display="flex"
+        data-gap="6"
+        data-fs="14"
+        data-color="gray-600"
+        data-mt="6"
+      >
+        <strong>{sentNewspapers}</strong>
         {t("stats.newspapers_sent", {
-          value: sentNewspapers,
           noun: pluralize({ value: createdArticles, singular: "newspaper" }),
         })}
       </div>
