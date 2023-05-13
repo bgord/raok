@@ -41,16 +41,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
       >
         <UI.ArticleTitle title={String(props.title)} />
 
-        <UI.OutboundLink
-          href={props.url}
-          data-mr="12"
-          data-md-mr="0"
-          data-width="100%"
-          data-fs="14"
-          title={props.url}
-        >
-          {props.url}
-        </UI.OutboundLink>
+        <UI.ArticleUrl url={props.url} />
       </div>
 
       <div

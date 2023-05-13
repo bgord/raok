@@ -18,9 +18,7 @@ export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
       data-mb="12"
       data-md-ml="3"
     >
-      <UI.OutboundLink href={props.url} data-fs="14">
-        {props.url}
-      </UI.OutboundLink>
+      <UI.ArticleUrl url={props.url} />
 
       <div
         data-display="flex"

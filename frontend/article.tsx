@@ -34,7 +34,6 @@ export function Article(props: ArticlePropsType) {
       data-md-direction="column"
       data-wrap="nowrap"
       data-mb="24"
-      data-md-mb="24"
       data-md-mx="6"
       {...bg.getAnimaProps(props)}
     >
@@ -56,15 +55,7 @@ export function Article(props: ArticlePropsType) {
           data-md-mr="3"
         >
           <UI.ArticleTitle title={String(props.title)} />
-
-          <UI.OutboundLink
-            href={props.url}
-            data-mr="auto"
-            data-max-width="100%"
-            data-fs="12"
-          >
-            {props.url}
-          </UI.OutboundLink>
+          <UI.ArticleUrl url={props.url} />
 
           <small
             data-fs="12"

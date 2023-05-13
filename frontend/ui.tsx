@@ -108,3 +108,15 @@ export function ArticleTitle(props: h.JSX.IntrinsicElements["div"]) {
     </div>
   );
 }
+
+export function ArticleUrl(
+  props: h.JSX.IntrinsicElements["a"] & { url: types.ArticleType["url"] }
+) {
+  const { url, ...rest } = props;
+
+  return (
+    <OutboundLink href={props.url} data-max-width="100%" data-fs="12" {...rest}>
+      {props.url}
+    </OutboundLink>
+  );
+}
