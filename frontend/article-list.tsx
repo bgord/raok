@@ -42,14 +42,7 @@ export function ArticleList() {
 
   return (
     <section>
-      <div
-        data-bg="gray-100"
-        data-bct="gray-200"
-        data-bwt="4"
-        data-p="12"
-        data-pt="6"
-        data-mb="12"
-      >
+      <div data-bg="gray-100" data-p="12" data-pt="6" data-mb="12">
         <UI.Header data-display="flex" data-cross="center" data-gap="12">
           <Icons.Notes />
 

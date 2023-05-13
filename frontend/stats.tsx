@@ -19,13 +19,7 @@ export function Stats() {
     stats.data?.lastFeedlyImport?.relative ?? "N/A";
 
   return (
-    <div
-      data-mt="48"
-      data-bg="gray-100"
-      data-p="12"
-      data-bw="4"
-      data-bct="gray-200"
-    >
+    <div data-mt="48" data-bg="gray-100" data-p="12">
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.StatsSquareUp data-mr="12" />
         <span data-transform="upper-first">{t("app.statistics")}</span>
