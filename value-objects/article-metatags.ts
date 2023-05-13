@@ -12,3 +12,10 @@ export class ArticleNotFoundError extends Error {
     Object.setPrototypeOf(this, ArticleNotFoundError.prototype);
   }
 }
+
+export class ArticleIsNotHTML extends Error {
+  constructor() {
+    super();
+    Object.setPrototypeOf(this, ArticleIsNotHTML.prototype);
+  }
+}

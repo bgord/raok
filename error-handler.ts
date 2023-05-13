@@ -88,7 +88,20 @@ export class ErrorHandler {
       });
 
       return response.status(400).send({
-        message: "article.not_found_during_metatags_scrapping",
+        message: "article.not_found_during_metatags_scrapping_error",
+        _known: true,
+      });
+    }
+
+    if (error instanceof VO.ArticleIsNotHTML) {
+      logger.error({
+        message: "Article has incorrect format",
+        operation: "article_is_not_html_error",
+        requestId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: "article.is_not_html_error",
         _known: true,
       });
     }

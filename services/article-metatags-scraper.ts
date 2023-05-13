@@ -21,6 +21,10 @@ export class ArticleMetatagsScraper {
         throw new VO.ArticleNotFoundError();
       }
 
+      if (response.result.error === "Must scrape an HTML page") {
+        throw new VO.ArticleIsNotHTML();
+      }
+
       return VO.ArticleMetatags.parse(emptyMetatags);
     }
   }
