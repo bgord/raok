@@ -1,4 +1,3 @@
-import * as bg from "@bgord/node";
 import og from "open-graph-scraper";
 
 import * as VO from "../value-objects";
@@ -16,7 +15,11 @@ export class ArticleMetatagsScraper {
 
       return VO.ArticleMetatags.parse(emptyMetatags);
     } catch (error) {
-      bg.Reporter.raw("ArticleMetatagsScraper#get", error);
+      const response = error as og.ErrorResult;
+
+      if (response.result.error === "Page not found") {
+        throw new VO.ArticleNotFoundError();
+      }
 
       return VO.ArticleMetatags.parse(emptyMetatags);
     }

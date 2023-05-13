@@ -80,6 +80,19 @@ export class ErrorHandler {
       });
     }
 
+    if (error instanceof VO.ArticleNotFoundError) {
+      logger.error({
+        message: "Article not found during metatags scrapping",
+        operation: "article_not_found_during_metatags_scrapping_error",
+        requestId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: "article.not_found_during_metatags_scrapping",
+        _known: true,
+      });
+    }
+
     if (error instanceof z.ZodError) {
       if (
         error.issues.find(

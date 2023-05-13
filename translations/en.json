@@ -60,6 +60,7 @@
   "article.placeholder": "https://example.com/blogpost",
   "article.readded": "readded",
   "article.restore": "restore article",
+  "article.not_found_during_metatags_scrapping_error": "article not available",
   "articles.all.could_not_delete": "could not delete",
   "articles.all.delete": "delete all articles",
   "articles.all.delete.confirmation": "are you sure you want to delete all articles?",
