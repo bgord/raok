@@ -74,12 +74,10 @@ export class ErrorHandler {
         requestId: request.requestId,
       });
 
-      return response
-        .status(400)
-        .send({
-          message: "newspaper.too_many_articles_in_newspaper_error",
-          _known: true,
-        });
+      return response.status(400).send({
+        message: "newspaper.too_many_articles_in_newspaper_error",
+        _known: true,
+      });
     }
 
     if (error instanceof z.ZodError) {
@@ -112,7 +110,11 @@ export class ErrorHandler {
       message: "Unknown error",
       operation: "unknown_error",
       requestId: request.requestId,
-      metadata: { error },
+      metadata: {
+        message: (error as Error)?.message,
+        name: (error as Error)?.name,
+        stack: (error as Error)?.stack,
+      },
     });
 
     return next(error);
