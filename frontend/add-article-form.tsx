@@ -2,6 +2,7 @@ import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
+import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
 import { ServerError } from "./server-error";
@@ -62,6 +63,11 @@ export function AddArticleForm() {
           ? t("article.adding_article")
           : t("article.add")}
       </button>
+
+      <UI.ClearButton
+        onClick={url.clear}
+        disabled={addArticleRequest.isLoading}
+      />
     </form>
   );
 }
