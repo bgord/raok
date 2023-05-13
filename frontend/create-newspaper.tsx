@@ -77,14 +77,8 @@ export function CreateNewspaper() {
                 data-max-width="100%"
                 data-overflow="hidden"
               >
-                <div
-                  data-fs="14"
-                  data-transform="truncate"
-                  data-width="100%"
-                  title={String(article.title)}
-                >
-                  {article.title}
-                </div>
+                <UI.ArticleTitle title={String(article.title)} />
+
                 <UI.OutboundLink
                   href={article.url}
                   data-fs="12"

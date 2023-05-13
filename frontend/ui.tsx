@@ -2,6 +2,8 @@ import { h } from "preact";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
+import * as types from "./types";
+
 export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
   return (
     <strong
@@ -96,5 +98,13 @@ export function Info(props: h.JSX.IntrinsicElements["div"]) {
       data-transform="upper-first"
       {...props}
     />
+  );
+}
+
+export function ArticleTitle(props: h.JSX.IntrinsicElements["div"]) {
+  return (
+    <div data-fs="14" data-transform="truncate" data-width="100%" {...props}>
+      {props.title}
+    </div>
   );
 }

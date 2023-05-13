@@ -55,22 +55,13 @@ export function Article(props: ArticlePropsType) {
           data-mr="12"
           data-md-mr="3"
         >
-          <div
-            data-width="100%"
-            data-mb="3"
-            data-md-mb="0"
-            data-md-fs="14"
-            data-transform="truncate"
-            title={String(props.title)}
-          >
-            {props.title}
-          </div>
+          <UI.ArticleTitle title={String(props.title)} />
+
           <UI.OutboundLink
             href={props.url}
             data-mr="auto"
             data-max-width="100%"
-            data-fs="14"
-            data-md-fs="12"
+            data-fs="12"
           >
             {props.url}
           </UI.OutboundLink>
