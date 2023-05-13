@@ -39,8 +39,14 @@ export function CreateNewspaper() {
       )}
 
       {newspaperCreator.selectedArticleIds.length === 0 && (
-        <UI.Info>
-          {t("articles.select_prompt", { max: NEWSPAPER_MAX_ARTICLES_NUMBER })}
+        <UI.Info data-gap="6">
+          <Icons.InfoEmpty height="20" width="20" />
+
+          <span>
+            {t("articles.select_prompt", {
+              max: NEWSPAPER_MAX_ARTICLES_NUMBER,
+            })}
+          </span>
         </UI.Info>
       )}
 

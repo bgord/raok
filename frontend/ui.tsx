@@ -93,9 +93,10 @@ export function ClearButton(props: h.JSX.IntrinsicElements["button"]) {
 export function Info(props: h.JSX.IntrinsicElements["div"]) {
   return (
     <div
+      data-display="flex"
+      data-cross="center"
       data-fs="12"
       data-color="gray-400"
-      data-transform="upper-first"
       {...props}
     />
   );
