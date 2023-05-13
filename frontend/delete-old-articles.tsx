@@ -31,7 +31,7 @@ export function DeleteOldArticles(props: h.JSX.IntrinsicElements["button"]) {
         onClick={dialog.enable}
         disabled={deleteOldArticles.isLoading || deleteOldArticles.isSuccess}
         class="c-button"
-        data-variant="bare"
+        data-variant="secondary"
         {...props}
       >
         {deleteOldArticles.isIdle && t("articles.old.delete")}

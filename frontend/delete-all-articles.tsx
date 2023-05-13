@@ -31,7 +31,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
         onClick={dialog.enable}
         disabled={deleteAllArticles.isLoading || deleteAllArticles.isSuccess}
         class="c-button"
-        data-variant="bare"
+        data-variant="secondary"
         {...props}
       >
         {deleteAllArticles.isIdle && t("articles.all.delete")}

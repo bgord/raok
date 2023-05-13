@@ -48,6 +48,9 @@
   "app.clear_query": "clear query",
   "app.scroll_to_top": "scroll to top",
 
+  "article.actions": "actions",
+  "article.actions.show": "show article actions",
+  "article.actions.hide": "hide article actions",
   "article.add": "add",
   "article.added": "article added",
   "article.adding_article": "adding...",

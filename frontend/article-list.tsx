@@ -10,9 +10,8 @@ import * as types from "./types";
 
 import { ArticlesSearchForm } from "./articles-search-form";
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
-import { DeleteOldArticles } from "./delete-old-articles";
-import { DeleteAllArticles } from "./delete-all-articles";
 import { AddArticleForm } from "./add-article-form";
+import { ArticleActions } from "./article-actions";
 import { Article } from "./article";
 
 export function ArticleList() {
@@ -49,7 +48,7 @@ export function ArticleList() {
         data-bwt="4"
         data-p="12"
         data-pt="6"
-        data-mb="24"
+        data-mb="12"
       >
         <UI.Header data-display="flex" data-cross="center" data-gap="12">
           <Icons.Notes />
@@ -86,17 +85,9 @@ export function ArticleList() {
         </UI.Header>
 
         <AddArticleForm />
-
-        <div
-          data-display="flex"
-          data-md-main="center"
-          data-gap="24"
-          data-mt="12"
-        >
-          <DeleteOldArticles />
-          <DeleteAllArticles />
-        </div>
       </div>
+
+      <ArticleActions />
 
       <ArticlesSearchForm />
 
