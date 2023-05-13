@@ -103,16 +103,9 @@ export function ArticleList() {
       {!searchModeEnabled && (
         <Fragment>
           {articles.length === 0 && (
-            <small
-              data-fs="14"
-              data-color="gray-600"
-              data-md-px="12"
-              data-mt="24"
-              data-ml="6"
-              data-transform="upper-first"
-            >
+            <UI.Info data-md-px="12" data-mt="24" data-ml="6">
               {t("dashboard.no_articles_available")}
-            </small>
+            </UI.Info>
           )}
 
           {articles.map((article) => (

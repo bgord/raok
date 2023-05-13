@@ -23,7 +23,7 @@ export function CreateNewspaper() {
   const createNewspaper = useCreateNewspaper(newspaperCreator.actions.clear);
 
   return (
-    <div data-mb="48" data-bg="gray-100" data-p="12">
+    <div data-mb="48" data-bg="gray-100" data-p="12" data-pb="0">
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.BookStack data-mr="12" />
         <span data-transform="upper-first">{t("app.create_newspaper")}</span>
@@ -39,9 +39,9 @@ export function CreateNewspaper() {
       )}
 
       {newspaperCreator.selectedArticleIds.length === 0 && (
-        <div data-color="gray-700" data-fs="14">
+        <UI.Info>
           {t("articles.select_prompt", { max: NEWSPAPER_MAX_ARTICLES_NUMBER })}
-        </div>
+        </UI.Info>
       )}
 
       <ul
@@ -88,7 +88,7 @@ export function CreateNewspaper() {
       {newspaperCreator.selectedArticleIds.length > 0 &&
         newspaperCreator.selectedArticleIds.length <=
           NEWSPAPER_MAX_ARTICLES_NUMBER && (
-          <div data-display="flex" data-gap="12">
+          <div data-display="flex" data-gap="12" data-pb="12">
             <form
               onSubmit={(event) => {
                 event.preventDefault();

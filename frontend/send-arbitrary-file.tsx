@@ -102,16 +102,11 @@ export function SendArbitraryFile() {
 
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
         file.state === bg.UseFileState.idle && (
-          <small
-            data-mt="24"
-            data-fs="14"
-            data-color="gray-600"
-            data-transform="upper-first"
-          >
+          <UI.Info data-mt="24">
             {t("app.file.size.max", {
               value: prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES),
             })}
-          </small>
+          </UI.Info>
         )}
 
       {fileUpload.isIdle && file.state === bg.UseFileState.selected && (

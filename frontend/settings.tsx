@@ -3,6 +3,7 @@ import { RoutableProps } from "preact-router";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
+import * as UI from "./ui";
 import * as api from "./api";
 import * as hooks from "./hooks";
 import * as types from "./types";
@@ -78,19 +79,18 @@ export function Settings(_props: RoutableProps) {
       data-display="flex"
       data-direction="column"
       data-mx="auto"
-      data-mt="48"
+      data-mt="24"
       data-max-width="768"
       data-md-px="6"
     >
-      <h2 data-fs="24" data-fw="400" data-transform="upper-first">
+      <h2 data-fs="20" data-color="gray-800" data-fw="500">
         {t("app.settings")}
       </h2>
 
       <section
         data-display="flex"
         data-direction="column"
-        data-mt="48"
-        data-md-mt="12"
+        data-mt="12"
         data-pb="24"
         data-bwb="1"
         data-bcb="gray-200"
@@ -110,15 +110,14 @@ export function Settings(_props: RoutableProps) {
               : t("app.disabled")}
           </strong>
 
-          <h3
-            data-fs="16"
-            data-md-fs="14"
+          <div
+            data-fs="14"
             data-color="gray-600"
             data-mr="12"
             data-transform="upper-first"
           >
             {t("articles-to-review-notification")}
-          </h3>
+          </div>
 
           {isArticlesToReviewNotificationEnabled && (
             <button
@@ -191,18 +190,13 @@ export function Settings(_props: RoutableProps) {
           </button>
         </form>
 
-        <small
-          data-fs="14"
-          data-color="gray-400"
-          data-mt="12"
-          data-transform="upper-first"
-        >
+        <UI.Info data-mt="24">
           {t("articles-to-review-notification.info", {
             local: formatUtcHourToLocal(articlesToReviewNotificationHour.value)
               .label,
             utc_zero: articlesToReviewNotificationHour.label,
           })}
-        </small>
+        </UI.Info>
       </section>
 
       <section
@@ -226,15 +220,14 @@ export function Settings(_props: RoutableProps) {
           {isFeedlyCrawlingStopped ? t("app.stopped") : t("app.active")}
         </strong>
 
-        <h3
-          data-fs="16"
-          data-md-fs="14"
+        <div
+          data-fs="14"
           data-color="gray-600"
           data-mr="12"
           data-transform="upper-first"
         >
           {t("dashboard.crawling")}
-        </h3>
+        </div>
 
         {isFeedlyCrawlingStopped && (
           <button

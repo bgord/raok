@@ -46,7 +46,7 @@ export function Newspaper(props: NewspaperProps) {
           {t(`newspaper.status.${props.status}`)}
         </UI.Badge>
 
-        <span data-md-fs="14">{props.title}</span>
+        <span data-fs="14">{props.title}</span>
 
         <div data-display="flex" data-cross="center" data-ml="auto">
           {(isStalled || props.status === "error") && (
@@ -54,14 +54,13 @@ export function Newspaper(props: NewspaperProps) {
           )}
 
           {(props.status === "delivered" || sentAtRelative !== "-") && (
-            <span
+            <UI.Info
+              data-display="flex"
               data-md-display="none"
-              data-fs="14"
-              data-color="gray-400"
               title={bg.DateFormatter.datetime(props.sentAt?.raw)}
             >
               {t("newspaper.sent_relative", { when: sentAtRelative })}
-            </span>
+            </UI.Info>
           )}
 
           {["delivered", "archived"].includes(props.status) && (
@@ -119,9 +118,9 @@ export function Newspaper(props: NewspaperProps) {
             </UI.OutboundLink>
           )}
 
-          <span data-mt="6" data-fs="14" data-color="gray-400">
+          <UI.Info data-display="flex" data-mr="12" data-mt="6">
             {t("newspaper.processed_in", { duration: props.duration })}
-          </span>
+          </UI.Info>
         </div>
       </bg.Anima>
 

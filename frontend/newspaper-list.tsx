@@ -31,16 +31,9 @@ export function NewspaperList() {
       </UI.Header>
 
       {newspapers.count === 0 && (
-        <small
-          data-fs="14"
-          data-color="gray-600"
-          data-md-px="12"
-          data-mt="24"
-          data-ml="6"
-          data-transform="upper-first"
-        >
+        <UI.Info data-md-px="12" data-mt="24" data-ml="6">
           {t("dashboard.no_newspapers_available")}
-        </small>
+        </UI.Info>
       )}
 
       <bg.AnimaList data-mt="24">
