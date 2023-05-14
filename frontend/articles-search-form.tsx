@@ -1,5 +1,5 @@
 import { h } from "preact";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
@@ -14,6 +14,7 @@ export function ArticlesSearchForm() {
   const t = bg.useTranslations();
   const search = bg.useField("");
   const notify = bg.useToastTrigger();
+  const queryClient = useQueryClient();
 
   const articleSearch = useQuery(
     "articles-search",
@@ -21,7 +22,10 @@ export function ArticlesSearchForm() {
     {
       enabled: false,
       retry: false,
-      onError: (error: bg.ServerError) => notify({ message: t(error.message) }),
+      onError: (error: bg.ServerError) => {
+        notify({ message: t(error.message) });
+        queryClient.setQueryData("articles-search", []);
+      },
     }
   );
 
