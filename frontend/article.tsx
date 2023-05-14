@@ -75,7 +75,12 @@ export function Article(props: ArticlePropsType) {
         data-gap="6"
         data-ml="auto"
       >
-        <UI.Badge data-self="start" data-width="100%" data-md-width="auto">
+        <UI.Badge
+          data-self="start"
+          data-width="100%"
+          data-md-width="auto"
+          data-my="auto"
+        >
           {props.source}
         </UI.Badge>
 
