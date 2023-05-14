@@ -7,6 +7,8 @@ import * as VO from "./value-objects";
 import * as Repos from "./repositories";
 import * as Aggregates from "./aggregates";
 
+import { logger } from "./logger";
+
 export const Scheduler = new ToadScheduler();
 
 const FeedlyArticlesCrawlerTask = new AsyncTask(
@@ -34,7 +36,11 @@ const ArtclesToReviewNotifierTask = new AsyncTask(
     try {
       await notification.send();
     } catch (error) {
-      bg.Reporter.raw("ArtclesToReviewNotifierTask", error);
+      logger.error({
+        message: "ArtclesToReviewNotifierTask error",
+        operation: "artcles_to_review_notifier_task_error",
+        metadata: { error: JSON.stringify(error) },
+      });
     }
   }
 );

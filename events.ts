@@ -339,8 +339,6 @@ emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
 });
 
 emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
-  bg.Reporter.success(`Newspaper ${event.payload.newspaperId} delivered`);
-
   await Repos.StatsRepository.incrementSentNewspapers();
 
   await Repos.NewspaperRepository.updateStatus(
@@ -394,11 +392,22 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   try {
     await Services.ArbitraryFileSender.send(file);
 
-    bg.Reporter.success(`File sent [name=${file.originalFilename}]`);
+    logger.info({
+      message: "Mailer success",
+      operation: "mailer_success",
+      metadata: { filename: file.originalFilename },
+    });
+
     await Repos.FilesRepository.add(file);
   } catch (error) {
-    bg.Reporter.raw("Mailer error", error);
-    bg.Reporter.error(`File not sent [name=${file.originalFilename}]`);
+    logger.error({
+      message: "Mailer error while sending file",
+      operation: "mailer_error",
+      metadata: {
+        filename: file.originalFilename,
+        error: JSON.stringify(error),
+      },
+    });
   }
 });
 
@@ -409,7 +418,11 @@ emittery.on(DELETE_OLD_ARTICLES_EVENT, async (event) => {
 
   if (!oldArticles.length) return;
 
-  bg.Reporter.info(`${oldArticles.length} old articles to delete`);
+  logger.info({
+    message: "Deleting old articles",
+    operation: "old_articles_delete",
+    metadata: { count: oldArticles.length },
+  });
 
   for (const { id } of oldArticles) {
     const articleId = VO.ArticleId.parse(id);

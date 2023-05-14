@@ -6,6 +6,7 @@ import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Repos from "../repositories";
 import { Env } from "../env";
+import { logger } from "../logger";
 
 export class Feedly {
   private static api = axios.create({
@@ -28,8 +29,14 @@ export class Feedly {
         .parse(response.data?.items)
         .filter(Feedly.isNonTwitterUrl);
     } catch (error) {
-      bg.Reporter.raw("Feedly#getArticles", error);
+      logger.error({
+        message: "Feedly getArticles error",
+        operation: "feedly",
+        metadata: { error: JSON.stringify(error) },
+      });
+
       await Services.FeedlyTokenExpiredNotifier.handle(error);
+
       return [];
     }
   }

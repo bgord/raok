@@ -7,8 +7,8 @@ import crypto from "crypto";
 import * as VO from "../value-objects";
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";
-
 import { HtmlToEpubConverter } from "./html-to-epub";
+import { logger } from "../logger";
 
 type NewspaperFileCreatorConfigType = {
   newspaperId: VO.NewspaperType["id"];
@@ -42,7 +42,11 @@ export class NewspaperFile {
 
       await HtmlToEpubConverter.convert(paths);
     } catch (error) {
-      bg.Reporter.raw("NewspaperFile#create", error);
+      logger.error({
+        message: "NewspaperFile create error",
+        operation: "newspaper_file",
+        metadata: { error: JSON.stringify(error) },
+      });
     }
   }
 
@@ -118,7 +122,11 @@ export class NewspaperFile {
       await fs.unlink(paths.epub);
       await fs.unlink(paths.mobi);
     } catch (error) {
-      bg.Reporter.raw("NewspaperFile#clear", error);
+      logger.error({
+        message: "NewspaperFile clear error",
+        operation: "newspaper_file",
+        metadata: { error: JSON.stringify(error) },
+      });
     }
   }
 
@@ -150,7 +158,12 @@ export class NewspaperFile {
       const file = await fs.readFile(html);
       return file.toString();
     } catch (error) {
-      bg.Reporter.raw("NewspaperFile#read", error);
+      logger.error({
+        message: "NewspaperFile read error",
+        operation: "newspaper_file",
+        metadata: { error: JSON.stringify(error) },
+      });
+
       return null;
     }
   }

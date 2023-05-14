@@ -4,6 +4,7 @@ import * as Aggregates from "../aggregates";
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
 import { Env } from "../env";
+import { logger } from "../logger";
 
 const mailer = new bg.Mailer({
   SMTP_HOST: Env.SMTP_HOST,
@@ -64,6 +65,10 @@ export class ArticlesToReviewNotifier {
       `,
     });
 
-    bg.Reporter.success("Articles to review notification sent");
+    logger.info({
+      message: "Articles to review notification sent",
+      operation: "articles_to_review_notification_sent",
+      metadata: { count: this.numberOfArticlesToReview },
+    });
   }
 }

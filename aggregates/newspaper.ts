@@ -7,6 +7,7 @@ import * as Policies from "../policies";
 import * as Repos from "../repositories";
 
 import { Article } from "./article";
+import { logger } from "../logger";
 
 export class Newspaper {
   id: VO.NewspaperType["id"];
@@ -124,7 +125,12 @@ export class Newspaper {
         })
       );
     } catch (error) {
-      bg.Reporter.raw("Newspaper#generate", error);
+      logger.error({
+        message: "Newspaper generate error",
+        operation: "newspaper_error",
+        metadata: { error: JSON.stringify(error) },
+      });
+
       await Repos.EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
@@ -160,7 +166,12 @@ export class Newspaper {
         })
       );
     } catch (error) {
-      bg.Reporter.raw("newspaper_error", error);
+      logger.error({
+        message: "Newspaper send error",
+        operation: "newspaper_error",
+        metadata: { error: JSON.stringify(error) },
+      });
+
       await Repos.EventRepository.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
