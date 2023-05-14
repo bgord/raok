@@ -40,7 +40,7 @@ export function DeleteAllArticles(props: h.JSX.IntrinsicElements["button"]) {
         {deleteAllArticles.isError && t("articles.all.could_not_delete")}
       </button>
 
-      <bg.Dialog {...dialog} data-gap="24">
+      <bg.Dialog {...dialog} data-gap="24" data-mt="72">
         <div>{t("articles.all.delete.confirmation")}</div>
 
         <div data-display="flex" data-gap="48" data-mx="auto">
