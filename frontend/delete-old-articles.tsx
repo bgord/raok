@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
 import * as api from "./api";
+import { ARTICLE_OLD_MARKER_IN_DAYS } from "../value-objects/article-old-marker-in-days";
 
 export function DeleteOldArticles(props: h.JSX.IntrinsicElements["button"]) {
   const t = bg.useTranslations();
@@ -34,14 +35,19 @@ export function DeleteOldArticles(props: h.JSX.IntrinsicElements["button"]) {
         data-variant="secondary"
         {...props}
       >
-        {deleteOldArticles.isIdle && t("articles.old.delete")}
+        {deleteOldArticles.isIdle &&
+          t("articles.old.delete", { value: ARTICLE_OLD_MARKER_IN_DAYS })}
         {deleteOldArticles.isLoading && t("articles.old.deleting")}
         {deleteOldArticles.isSuccess && t("articles.old.deleted")}
         {deleteOldArticles.isError && t("articles.old.could_not_delete")}
       </button>
 
       <bg.Dialog {...dialog} data-gap="24" data-mt="72">
-        <div>{t("articles.old.delete.confirmation")}</div>
+        <div>
+          {t("articles.old.delete.confirmation", {
+            value: ARTICLE_OLD_MARKER_IN_DAYS,
+          })}
+        </div>
 
         <div data-display="flex" data-gap="48" data-mx="auto">
           <button
