@@ -72,9 +72,9 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
               undeleteArticle.mutate(props.item.articleId);
             }}
           >
-            {undeleteArticle.isIdle && t("undo")}
+            {undeleteArticle.isIdle && t("app.undo")}
             {undeleteArticle.isLoading && t("app.three_dots")}
-            {undeleteArticle.isSuccess && t("done")}
+            {undeleteArticle.isSuccess && t("app.done")}
           </button>
         )}
       </div>
