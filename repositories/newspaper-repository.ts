@@ -27,7 +27,7 @@ export class NewspaperRepository {
         },
         ...rest,
       },
-      orderBy: { scheduledAt: "desc" },
+      orderBy: { sentAt: "desc" },
       select: {
         id: true,
         status: true,
@@ -51,7 +51,7 @@ export class NewspaperRepository {
   static async getAllNonArchived() {
     const result = await db.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
-      orderBy: { scheduledAt: "desc" },
+      orderBy: { sentAt: "desc" },
       select: {
         id: true,
         status: true,
