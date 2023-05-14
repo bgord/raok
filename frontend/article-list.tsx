@@ -1,4 +1,4 @@
-import { h, Fragment } from "preact";
+import { h } from "preact";
 import { useQuery, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
@@ -92,11 +92,13 @@ export function ArticleList() {
       <ArticlesSearchForm />
 
       {searchModeEnabled && (
-        <Fragment>
-          <UI.Info data-md-px="12" data-mb="24" data-ml="6">
-            {t("articles.search.results", { count: articlesSearchResults })}
-          </UI.Info>
+        <UI.Info data-md-px="12" data-mb="24" data-ml="6">
+          {t("articles.search.results", { count: articlesSearchResults })}
+        </UI.Info>
+      )}
 
+      {searchModeEnabled && (
+        <ul>
           {articlesSearch.map((article) => (
             <Article
               key={article.id}
@@ -104,17 +106,17 @@ export function ArticleList() {
               {...newspaperCreator.actions}
             />
           ))}
-        </Fragment>
+        </ul>
+      )}
+
+      {!searchModeEnabled && articles.length === 0 && (
+        <UI.Info data-md-px="12" data-mt="24" data-ml="6">
+          {t("dashboard.no_articles_available")}
+        </UI.Info>
       )}
 
       {!searchModeEnabled && (
-        <Fragment>
-          {articles.length === 0 && (
-            <UI.Info data-md-px="12" data-mt="24" data-ml="6">
-              {t("dashboard.no_articles_available")}
-            </UI.Info>
-          )}
-
+        <ul>
           {articles.map((article) => (
             <Article
               key={article.id}
@@ -122,21 +124,21 @@ export function ArticleList() {
               {...newspaperCreator.actions}
             />
           ))}
+        </ul>
+      )}
 
-          {_articles.hasNextPage && (
-            <div data-display="flex">
-              <button
-                type="button"
-                class="c-button"
-                data-variant="bare"
-                data-mx="auto"
-                onClick={() => _articles.fetchNextPage()}
-              >
-                {t("app.load_more")}
-              </button>
-            </div>
-          )}
-        </Fragment>
+      {!searchModeEnabled && _articles.hasNextPage && (
+        <div data-display="flex">
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            data-mx="auto"
+            onClick={() => _articles.fetchNextPage()}
+          >
+            {t("app.load_more")}
+          </button>
+        </div>
       )}
     </section>
   );

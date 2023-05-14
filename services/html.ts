@@ -17,6 +17,7 @@ export class Html {
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="description" content="RAOK user dashboard" />
 
           <link as="style" rel="stylesheet preload" href="/normalize.min.css" />
           <link as="style" rel="stylesheet preload" href="/main.min.css" />

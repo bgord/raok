@@ -40,7 +40,9 @@ export function Article(props: ArticlePropsType) {
       {...bg.getAnimaProps(props)}
     >
       <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
+        <label htmlFor={props.id} />
         <input
+          id={props.id}
           onClick={() => props.toggle(props.id)}
           checked={props.isAdded(props.id)}
           class="c-checkbox"

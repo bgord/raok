@@ -5,7 +5,6 @@ import * as UI from "./ui";
 import * as types from "./types";
 
 export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
-  const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
 
   return (

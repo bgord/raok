@@ -134,7 +134,6 @@ function useArticles() {
 }
 
 function useCreateNewspaper(callback: VoidFunction) {
-  const t = bg.useTranslations();
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
