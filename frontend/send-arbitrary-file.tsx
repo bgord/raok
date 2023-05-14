@@ -96,9 +96,9 @@ export function SendArbitraryFile() {
       )}
 
       {file.state === bg.UseFileState.error && (
-        <div data-fs="14" data-mt="24" data-color="gray-600">
+        <UI.Info data-mt="24" data-color="red-400">
           {t("app.file.errors.too_big")}
-        </div>
+        </UI.Info>
       )}
 
       {(fileUpload.isIdle || fileUpload.isSuccess) &&
@@ -124,13 +124,13 @@ export function SendArbitraryFile() {
             data-transform="truncate"
             title={file.data.name}
           >
-            <strong>{t("app.file.name", { name: file.data.name })}</strong>
+            <strong>{t("app.file.name")}</strong>
+            {file.data.name}
           </div>
 
           <div data-fs="14" data-color="gray-500">
-            <strong>
-              {t("app.file.size", { value: prettyBytes(file.data.size) })}
-            </strong>
+            <strong>{t("app.file.size")}</strong>
+            {prettyBytes(file.data.size)}
           </div>
         </Fragment>
       )}
