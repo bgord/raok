@@ -83,6 +83,7 @@ export function Settings(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
+      data-gap="12"
       data-mx="auto"
       data-mt="24"
       data-max-width="768"
@@ -95,33 +96,35 @@ export function Settings(_props: RoutableProps) {
       <section
         data-display="flex"
         data-direction="column"
+        data-gap="24"
         data-mt="12"
-        data-pb="24"
         data-bwb="1"
         data-bcb="gray-200"
+        data-py="24"
       >
-        <div data-display="flex" data-cross="center" data-gap="12" data-mt="24">
-          <strong
-            data-px="6"
-            data-transform="uppercase"
-            data-color="gray-600"
-            data-bg="gray-200"
-            data-br="4"
-            data-ls="1"
-            data-fs="12"
-          >
-            {isArticlesToReviewNotificationEnabled
-              ? t("app.enabled")
-              : t("app.disabled")}
-          </strong>
+        <div data-display="flex" data-cross="center" data-gap="12">
+          <div data-display="flex" data-wrap="nowrap" data-gap="12">
+            <strong
+              data-px="6"
+              data-transform="uppercase"
+              data-color="gray-600"
+              data-bg="gray-200"
+              data-br="4"
+              data-ls="1"
+              data-fs="12"
+            >
+              {isArticlesToReviewNotificationEnabled
+                ? t("app.enabled")
+                : t("app.disabled")}
+            </strong>
 
-          <div
-            data-fs="14"
-            data-color="gray-600"
-            data-mr="12"
-            data-transform="upper-first"
-          >
-            {t("articles-to-review-notification")}
+            <div
+              data-fs="14"
+              data-color="gray-600"
+              data-transform="upper-first"
+            >
+              {t("articles-to-review-notification")}
+            </div>
           </div>
 
           {isArticlesToReviewNotificationEnabled && (
@@ -129,6 +132,7 @@ export function Settings(_props: RoutableProps) {
               type="submit"
               class="c-button"
               data-variant="primary"
+              data-ml="auto"
               onClick={() => disableArticlesToReviewNotification.mutate()}
             >
               {t("app.disable")}
@@ -140,6 +144,7 @@ export function Settings(_props: RoutableProps) {
               type="submit"
               class="c-button"
               data-variant="primary"
+              data-ml="auto"
               onClick={() => enableArticlesToReviewNotification.mutate()}
             >
               {t("app.enable")}
@@ -148,6 +153,9 @@ export function Settings(_props: RoutableProps) {
         </div>
 
         <form
+          data-display="flex"
+          data-cross="center"
+          data-gap="12"
           onSubmit={(event) => {
             event.preventDefault();
 
@@ -156,9 +164,8 @@ export function Settings(_props: RoutableProps) {
 
             setArticlesToReviewNotificationHour.mutate(hour);
           }}
-          data-mt="36"
         >
-          <label class="c-label" htmlFor="hour" data-mr="12">
+          <label class="c-label" htmlFor="hour">
             {t("app.hour")}
           </label>
           <select
@@ -189,13 +196,13 @@ export function Settings(_props: RoutableProps) {
             type="submit"
             class="c-button"
             data-variant="secondary"
-            data-ml="24"
+            data-ml="12"
           >
             {t("app.update")}
           </button>
         </form>
 
-        <UI.Info data-mt="24">
+        <UI.Info>
           {t("articles-to-review-notification.info", {
             local: formatUtcHourToLocal(articlesToReviewNotificationHour.value)
               .label,
@@ -207,11 +214,11 @@ export function Settings(_props: RoutableProps) {
       <section
         data-display="flex"
         data-cross="center"
-        data-gap="24"
-        data-mt="24"
-        data-pb="24"
+        data-gap="12"
         data-bwb="1"
         data-bcb="gray-200"
+        data-pt="12"
+        data-pb="24"
       >
         <strong
           data-transform="uppercase"
@@ -225,12 +232,7 @@ export function Settings(_props: RoutableProps) {
           {isFeedlyCrawlingStopped ? t("app.stopped") : t("app.active")}
         </strong>
 
-        <div
-          data-fs="14"
-          data-color="gray-600"
-          data-mr="12"
-          data-transform="upper-first"
-        >
+        <div data-fs="14" data-color="gray-600" data-transform="upper-first">
           {t("dashboard.crawling")}
         </div>
 
@@ -239,6 +241,7 @@ export function Settings(_props: RoutableProps) {
             type="submit"
             class="c-button"
             data-variant="primary"
+            data-ml="auto"
             onClick={() => restoreFeedlyCrawling.mutate()}
           >
             {t("app.restore")}
@@ -250,6 +253,7 @@ export function Settings(_props: RoutableProps) {
             type="submit"
             class="c-button"
             data-variant="primary"
+            data-ml="auto"
             onClick={() => stopFeedlyCrawling.mutate()}
           >
             {t("app.stop")}
