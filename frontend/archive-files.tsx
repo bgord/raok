@@ -122,9 +122,7 @@ export function ArchiveFiles(_props: RoutableProps) {
       </div>
 
       {archiveFiles.isSuccess && files.length === 0 && (
-        <UI.Info>
-          {t("app.files.archive.empty")}
-        </UI.Info>
+        <UI.Info>{t("app.files.archive.empty")}</UI.Info>
       )}
 
       <datalist id="files">
@@ -166,7 +164,7 @@ export function ArchiveFiles(_props: RoutableProps) {
             <UI.CopyButton
               options={{
                 text: getFileDownloadUrl(file.id),
-                onSuccess: () => notify({ message: "file.url.copied" }),
+                onSuccess: () => notify({ message: "app.file.url.copied" }),
               }}
             />
 
