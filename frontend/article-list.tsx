@@ -33,6 +33,14 @@ export function ArticleList() {
     }
   );
 
+  const refreshArticles = bg.useRateLimiter({
+    limitMs: new bg.Time.Seconds(10).toMs(),
+    action: () => {
+      _articles.refetch();
+      notify({ message: "articles.refreshed" });
+    },
+  });
+
   const articles = bg.Pagination.extract(_articles);
 
   const articlesSearch =
@@ -60,10 +68,7 @@ export function ArticleList() {
           </span>
 
           <button
-            onClick={() => {
-              _articles.refetch();
-              notify({ message: "articles.refreshed" });
-            }}
+            onClick={refreshArticles}
             type="button"
             title={t("articles.refresh")}
             class="c-button"
