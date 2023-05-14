@@ -105,8 +105,8 @@
   "dashboard.crawling.scheduled": "feedly crawl scheduled",
 
   "dashboard.unselect_all": "cancel",
-  "dashboard.no_articles_available": "no articles available at the moment",
-  "dashboard.no_newspapers_available": "no newspapers added at the moment",
+  "dashboard.no_articles_available": "No articles available at the moment",
+  "dashboard.no_newspapers_available": "No newspapers added at the moment",
   "dashboard.schedule_feedly_crawl": "feedly crawl",
   "dashboard.scheduled": "scheduled!",
   "dashboard.scheduling": "scheduling...",
