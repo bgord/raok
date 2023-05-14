@@ -1,4 +1,3 @@
-import * as bg from "@bgord/node";
 import { z } from "zod";
 import axios from "axios";
 

@@ -18,7 +18,7 @@ export class ErrorHandler {
       logger.error({
         message: "Invalid credentials",
         operation: "invalid_credentials_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
       return response.redirect("/");
     }
@@ -27,7 +27,7 @@ export class ErrorHandler {
       logger.error({
         message: "Access denied",
         operation: "access_denied_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
       return response.redirect("/");
     }
@@ -36,7 +36,7 @@ export class ErrorHandler {
       logger.error({
         message: "File not found",
         operation: "file_not_found_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
 
       return response.status(404).send("File not found");
@@ -46,7 +46,7 @@ export class ErrorHandler {
       logger.error({
         message: "Too many requests",
         operation: "too_many_requests",
-        requestId: request.requestId,
+        correlationId: request.requestId,
         metadata: { remainingMs: error.remainingMs },
       });
 
@@ -59,7 +59,7 @@ export class ErrorHandler {
       logger.error({
         message: "Article URL is not unique",
         operation: "non_processed_article_url_is_not_unique_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
         metadata: request.body,
       });
 
@@ -72,7 +72,7 @@ export class ErrorHandler {
       logger.error({
         message: "Feedly crawling stopped in the settings",
         operation: "should_crawl_feedly_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
 
       return response
@@ -84,7 +84,7 @@ export class ErrorHandler {
       logger.error({
         message: "Newspaper with too many articles attempted",
         operation: "too_many_articles_in_newspaper_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
 
       return response.status(400).send({
@@ -97,7 +97,7 @@ export class ErrorHandler {
       logger.error({
         message: "Article not found during metatags scrapping",
         operation: "article_not_found_during_metatags_scrapping_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
 
       return response.status(400).send({
@@ -110,7 +110,7 @@ export class ErrorHandler {
       logger.error({
         message: "Article has incorrect format",
         operation: "article_is_not_html_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
 
       return response.status(400).send({
@@ -123,7 +123,7 @@ export class ErrorHandler {
       logger.error({
         message: "Article scraping timeout error",
         operation: "article_scraping_timeout_error",
-        requestId: request.requestId,
+        correlationId: request.requestId,
       });
 
       return response.status(400).send({
@@ -161,7 +161,7 @@ export class ErrorHandler {
     logger.error({
       message: "Unknown error",
       operation: "unknown_error",
-      requestId: request.requestId,
+      correlationId: request.requestId,
       metadata: {
         message: (error as Error)?.message,
         name: (error as Error)?.name,
