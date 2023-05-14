@@ -37,6 +37,16 @@ export const ArticleLockedEvent = bg.EventDraft.merge(
 );
 export type ArticleLockedEventType = z.infer<typeof ArticleLockedEvent>;
 
+export const ARTICLE_UNLOCKED_EVENT = "ARTICLE_UNLOCKED_EVENT";
+export const ArticleUnlockedEvent = bg.EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_UNLOCKED_EVENT),
+    version: z.literal(1),
+    payload: z.object({ articleId: VO.ArticleId, newspaperId: VO.NewspaperId }),
+  })
+);
+export type ArticleUnlockedEventType = z.infer<typeof ArticleUnlockedEvent>;
+
 export const ARTICLE_PROCESSED_EVENT = "ARTICLE_PROCESSED_EVENT";
 export const ArticleProcessedEvent = bg.EventDraft.merge(
   z.object({
@@ -223,6 +233,7 @@ export const emittery = new Emittery<{
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
   ARTICLE_LOCKED_EVENT: ArticleLockedEventType;
+  ARTICLE_UNLOCKED_EVENT: ArticleUnlockedEventType;
   ARTICLE_PROCESSED_EVENT: ArticleProcessedEventType;
   ARTICLE_UNDELETE_EVENT: ArticleUndeleteEventType;
   NEWSPAPER_SCHEDULED_EVENT: NewspaperScheduledEventType;
@@ -274,6 +285,8 @@ emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
     event.payload.newspaperId
   );
 });
+
+emittery.on(ARTICLE_UNLOCKED_EVENT, async () => {});
 
 emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
   await Repos.ArticleRepository.updateStatus(

@@ -9,6 +9,7 @@ type AcceptedEvent =
   | typeof Events.ArticleAddedEvent
   | typeof Events.ArticleDeletedEvent
   | typeof Events.ArticleLockedEvent
+  | typeof Events.ArticleUnlockedEvent
   | typeof Events.ArticleProcessedEvent
   | typeof Events.ArticleUndeleteEvent
   | typeof Events.ArticlesToReviewNotificationHourSetEvent
