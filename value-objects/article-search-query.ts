@@ -19,6 +19,7 @@ export const ArticleSearchQuery = z
     ARTICLE_SEARCH_QUERY_MAX_LENGTH,
     ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE
   )
+  .refine((value) => decodeURIComponent(value))
   .brand<"article-search-query">();
 
 export type ArticleSearchQueryType = z.infer<typeof ArticleSearchQuery>;
