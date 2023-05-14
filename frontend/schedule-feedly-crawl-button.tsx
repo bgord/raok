@@ -22,7 +22,7 @@ export function ScheduleFeedlyCrawlButton(
       },
       onError: (error: bg.ServerError) => {
         setTimeout(scheduleFeedlyArticlesCrawl.reset, 5000);
-        notify({ message: t(error.message) });
+        notify({ message: error.message });
       },
     }
   );

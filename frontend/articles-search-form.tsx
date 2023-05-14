@@ -23,7 +23,7 @@ export function ArticlesSearchForm() {
       enabled: false,
       retry: false,
       onError: (error: bg.ServerError) => {
-        notify({ message: t(error.message) });
+        notify({ message: error.message });
         queryClient.setQueryData("articles-search", []);
       },
     }
