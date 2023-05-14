@@ -17,6 +17,7 @@ import { Article } from "./article";
 export function ArticleList() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
+  const notify = bg.useToastTrigger();
 
   const newspaperCreator = contexts.useNewspaperCreator();
 
@@ -59,7 +60,10 @@ export function ArticleList() {
           </span>
 
           <button
-            onClick={() => _articles.refetch()}
+            onClick={() => {
+              _articles.refetch();
+              notify({ message: "articles.refreshed" });
+            }}
             type="button"
             title={t("articles.refresh")}
             class="c-button"
@@ -69,9 +73,7 @@ export function ArticleList() {
             data-cross="center"
             data-ml="12"
           >
-            <Icons.Refresh
-              data-anima-effect={_articles.isRefetching && "rotate"}
-            />
+            <Icons.Refresh />
           </button>
 
           <ScheduleFeedlyCrawlButton data-ml="auto" />

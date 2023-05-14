@@ -31,19 +31,6 @@ export class Html {
           <link rel="manifest" href="/site.webmanifest" />
 
           <style>
-            @keyframes rotate {
-              from {
-                transform: rotate(0);
-              }
-              to {
-                transform: rotate(360deg);
-              }
-            }
-
-            *[data-anima-effect="rotate"] {
-              animation: rotate 330ms linear infinite;
-            }
-
             :root {
               --reach-skip-nav: 1;
             }
