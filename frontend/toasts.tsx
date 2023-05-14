@@ -17,7 +17,7 @@ export function Toasts() {
       data-mb="12"
       data-pt="12"
       data-width="100%"
-      style={{ maxWidth: "290px" }}
+      style={{ maxWidth: "290px", maxHeight: "300px" }}
     >
       {toasts.items.map((toast) => (
         <bg.Anima key={toast.item.id} effect="opacity" {...toast.props}>
@@ -51,6 +51,7 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
       data-color="gray-700"
       data-bg="gray-200"
       data-br="2"
+      box-shadow
     >
       <div
         data-display="flex"

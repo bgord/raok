@@ -155,7 +155,7 @@
   "web": "web",
   "feedly": "feedly",
 
-  "settings.preparing": "preparing settings...",
+  "settings.preparing": "Preparing settings...",
 
   "stats.articles_added": "{{noun}} added overall",
   "stats.newspapers_sent": "{{noun}} sent overall"
