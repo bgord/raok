@@ -23,7 +23,7 @@ export function AddArticleForm() {
       queryClient.invalidateQueries("stats");
       notify({ message: "article.added" });
     },
-    onError: (error: ServerError) => notify({ message: t(error.message) }),
+    onError: (error: ServerError) => notify({ message: error.message }),
   });
 
   return (

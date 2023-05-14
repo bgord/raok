@@ -146,6 +146,6 @@ function useCreateNewspaper(callback: VoidFunction) {
       callback();
     },
 
-    onError: (error: ServerError) => notify({ message: t(error.message) }),
+    onError: (error: ServerError) => notify({ message: error.message }),
   });
 }

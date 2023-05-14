@@ -26,6 +26,7 @@ export function Settings(_props: RoutableProps) {
         notify({ message: "dashboard.crawling.restored" });
         queryClient.invalidateQueries("settings");
       },
+      onError: (error: bg.ServerError) => notify({ message: error.message }),
     }
   );
   const stopFeedlyCrawling = useMutation(api.Settings.stopFeedlyCrawling, {
@@ -33,6 +34,7 @@ export function Settings(_props: RoutableProps) {
       notify({ message: "dashboard.crawling.stopped" });
       queryClient.invalidateQueries("settings");
     },
+    onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
   const enableArticlesToReviewNotification = useMutation(
@@ -42,6 +44,7 @@ export function Settings(_props: RoutableProps) {
         notify({ message: "articles-to-review-notification.enabled" });
         queryClient.invalidateQueries("settings");
       },
+      onError: (error: bg.ServerError) => notify({ message: error.message }),
     }
   );
   const disableArticlesToReviewNotification = useMutation(
@@ -51,6 +54,7 @@ export function Settings(_props: RoutableProps) {
         notify({ message: "articles-to-review-notification.disabled" });
         queryClient.invalidateQueries("settings");
       },
+      onError: (error: bg.ServerError) => notify({ message: error.message }),
     }
   );
 
@@ -61,6 +65,7 @@ export function Settings(_props: RoutableProps) {
         notify({ message: "articles-to-review-notification.hour.changed" });
         queryClient.invalidateQueries("settings");
       },
+      onError: (error: bg.ServerError) => notify({ message: error.message }),
     }
   );
 

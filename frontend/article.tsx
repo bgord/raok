@@ -27,7 +27,7 @@ export function Article(props: ArticlePropsType) {
         articleTitle: props.title,
       });
     },
-    onError: (error: bg.ServerError) => notify({ message: t(error.message) }),
+    onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
   return (

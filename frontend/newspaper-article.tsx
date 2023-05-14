@@ -33,7 +33,7 @@ export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
         <UI.CopyButton
           options={{
             text: props.url,
-            onSuccess: () => notify({ message: t("article.link.copied") }),
+            onSuccess: () => notify({ message: "article.link.copied" }),
           }}
         />
       </div>

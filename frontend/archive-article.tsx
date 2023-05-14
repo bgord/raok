@@ -20,7 +20,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
       queryClient.invalidateQueries("stats");
       notify({ message: "article.readded" });
     },
-    onError: (error: ServerError) => notify({ message: t(error.message) }),
+    onError: (error: ServerError) => notify({ message: error.message }),
   });
 
   return (
