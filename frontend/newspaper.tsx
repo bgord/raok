@@ -117,10 +117,6 @@ export function Newspaper(props: NewspaperProps) {
               </button>
             </UI.OutboundLink>
           )}
-
-          <UI.Info data-display="flex" data-mr="12" data-mt="6">
-            {t("newspaper.processed_in", { duration: props.duration })}
-          </UI.Info>
         </div>
       </bg.Anima>
 

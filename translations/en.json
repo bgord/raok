@@ -127,7 +127,6 @@
   "newspaper.resent": "resent",
   "newspaper.scheduled": "newpspaper scheduled",
   "newspaper.sent_relative": "sent {{when}}",
-  "newspaper.processed_in": "processed in {{duration}}",
   "newspapers.archive": "Archive newspapers",
   "newspapers.archive.empty": "No archive newspapers matching your filters",
 

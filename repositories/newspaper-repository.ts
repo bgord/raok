@@ -1,6 +1,6 @@
 import * as z from "zod";
 import * as bg from "@bgord/node";
-import { format, formatDistanceStrict } from "date-fns";
+import { format } from "date-fns";
 
 import { Prisma, db, Newspaper, Article } from "../db";
 import * as VO from "../value-objects";
@@ -118,12 +118,9 @@ export class NewspaperRepository {
       articles: Omit<Article, "createdAt" | "newspaperId" | "favouritedAt">[];
     }
   ) {
-    const sentAtRaw = newspaper.sentAt ?? 0;
-
     return {
       ...newspaper,
       sentAt: bg.ComplexDate.falsy(newspaper.sentAt),
-      duration: formatDistanceStrict(sentAtRaw, newspaper.scheduledAt),
       title: `Newspaper ${format(newspaper.scheduledAt, "yyyy-MM-dd-hh-mm")}`,
     };
   }
