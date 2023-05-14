@@ -41,59 +41,57 @@ export function SendArbitraryFile() {
         <span data-transform="upper-first">{t("app.send_a_file")}</span>
       </UI.Header>
 
-      <input
-        id="file"
-        name="file"
-        accept={FileMimeTypes.form()}
-        type="file"
-        onInput={file.actions.selectFile}
-        data-overflow="hidden"
-        data-position="absolute"
-        data-z="-1"
-        style={{ width: "0.1px", height: "0.1px", opacity: "0" }}
-      />
+      <div data-display="flex" data-gap="12">
+        <input
+          id="file"
+          name="file"
+          accept={FileMimeTypes.form()}
+          type="file"
+          onInput={file.actions.selectFile}
+          data-overflow="hidden"
+          data-position="absolute"
+          data-z="-1"
+          style={{ width: "0.1px", height: "0.1px", opacity: "0" }}
+        />
 
-      <label htmlFor="file" data-cursor="pointer">
-        <button
-          id="file-explorer"
-          name="file-explorer"
-          disabled={file.state === bg.UseFileState.selected}
-          type="button"
-          class="c-button"
-          data-variant="secondary"
-          data-pointer-events="none"
-        >
-          {t("app.file_explorer")}
-        </button>
-      </label>
+        <label htmlFor="file" data-cursor="pointer">
+          <button
+            id="file-explorer"
+            name="file-explorer"
+            disabled={file.state === bg.UseFileState.selected}
+            type="button"
+            class="c-button"
+            data-variant="secondary"
+            data-pointer-events="none"
+          >
+            {t("app.file_explorer")}
+          </button>
+        </label>
 
-      {file.state === bg.UseFileState.selected && !fileUpload.isSuccess && (
-        <button
-          type="submit"
-          class="c-button"
-          data-variant="primary"
-          data-ml="12"
-        >
-          {t("app.file.upload")}
-        </button>
-      )}
+        <div data-display="flex" data-wrap="nowrap" data-gap="12">
+          {file.state === bg.UseFileState.selected && !fileUpload.isSuccess && (
+            <button type="submit" class="c-button" data-variant="primary">
+              {t("app.file.upload")}
+            </button>
+          )}
 
-      {[bg.UseFileState.selected, bg.UseFileState.error].includes(
-        file.state
-      ) && (
-        <button
-          type="button"
-          class="c-button"
-          data-variant="secondary"
-          data-ml="12"
-          onClick={() => {
-            file.actions.clearFile();
-            fileUpload.reset();
-          }}
-        >
-          {t("app.clear")}
-        </button>
-      )}
+          {[bg.UseFileState.selected, bg.UseFileState.error].includes(
+            file.state
+          ) && (
+            <button
+              type="button"
+              class="c-button"
+              data-variant="secondary"
+              onClick={() => {
+                file.actions.clearFile();
+                fileUpload.reset();
+              }}
+            >
+              {t("app.clear")}
+            </button>
+          )}
+        </div>
+      </div>
 
       {file.state === bg.UseFileState.error && (
         <UI.Info data-mt="24" data-color="red-400">
