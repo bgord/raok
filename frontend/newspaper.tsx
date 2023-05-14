@@ -207,6 +207,7 @@ function CancelNewspaper(props: {
   const cancelNewspaper = useMutation(api.cancelNewspaper, {
     onSuccess: () => {
       queryClient.invalidateQueries("newspapers");
+      queryClient.invalidateQueries("articles");
       queryClient.invalidateQueries("archive-newspapers");
       notify({ message: "newspaper.cancelled" });
     },

@@ -26,6 +26,7 @@ export class Article {
         Events.ArticleAddedEvent,
         Events.ArticleDeletedEvent,
         Events.ArticleLockedEvent,
+        Events.ArticleUnlockedEvent,
         Events.ArticleProcessedEvent,
         Events.ArticleUndeleteEvent,
       ],
@@ -53,6 +54,7 @@ export class Article {
           this.entity.status = VO.ArticleStatusEnum.processed;
           break;
 
+        case Events.ARTICLE_UNLOCKED_EVENT:
         case Events.ARTICLE_UNDELETE_EVENT:
           if (!this.entity) continue;
           this.entity.status = VO.ArticleStatusEnum.ready;
@@ -127,6 +129,24 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, newspaperId },
+      })
+    );
+  }
+
+  async unlock() {
+    if (!this.entity) return;
+
+    await Policies.ArticleStatusTransition.perform({
+      from: this.entity.status,
+      to: VO.ArticleStatusEnum.ready,
+    });
+
+    await Repos.EventRepository.save(
+      Events.ArticleUnlockedEvent.parse({
+        name: Events.ARTICLE_UNLOCKED_EVENT,
+        stream: this.stream,
+        version: 1,
+        payload: { articleId: this.id },
       })
     );
   }

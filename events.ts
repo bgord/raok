@@ -6,6 +6,7 @@ import * as VO from "./value-objects";
 import * as Services from "./services";
 import * as Repos from "./repositories";
 import * as Aggregates from "./aggregates";
+import { logger } from "./logger";
 
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
 export const ArticleAddedEvent = bg.EventDraft.merge(
@@ -42,7 +43,7 @@ export const ArticleUnlockedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_UNLOCKED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId, newspaperId: VO.NewspaperId }),
+    payload: z.object({ articleId: VO.ArticleId }),
   })
 );
 export type ArticleUnlockedEventType = z.infer<typeof ArticleUnlockedEvent>;
@@ -275,18 +276,31 @@ emittery.on(ARTICLE_UNDELETE_EVENT, async (event) => {
 });
 
 emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
-  await Repos.ArticleRepository.updateStatus(
-    event.payload.articleId,
-    VO.ArticleStatusEnum.in_progress
-  );
+  try {
+    await Repos.ArticleRepository.updateStatus(
+      event.payload.articleId,
+      VO.ArticleStatusEnum.in_progress
+    );
 
-  await Repos.ArticleRepository.assignToNewspaper(
-    event.payload.articleId,
-    event.payload.newspaperId
-  );
+    await Repos.ArticleRepository.assignToNewspaper(
+      event.payload.articleId,
+      event.payload.newspaperId
+    );
+  } catch (error) {
+    logger.error({
+      message: "Article locked event handler error",
+      operation: "db_error",
+      metadata: { error: JSON.stringify(error) },
+    });
+  }
 });
 
-emittery.on(ARTICLE_UNLOCKED_EVENT, async () => {});
+emittery.on(ARTICLE_UNLOCKED_EVENT, async (event) => {
+  await Repos.ArticleRepository.updateStatus(
+    event.payload.articleId,
+    VO.ArticleStatusEnum.ready
+  );
+});
 
 emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
   await Repos.ArticleRepository.updateStatus(
@@ -359,6 +373,15 @@ emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
     event.payload.newspaperId,
     VO.NewspaperStatusEnum.error
   );
+
+  const newspaper = await new Aggregates.Newspaper(
+    event.payload.newspaperId
+  ).build();
+
+  for (const item of newspaper.articles) {
+    const article = await new Aggregates.Article(item.id).build();
+    await article.unlock();
+  }
 });
 
 emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {

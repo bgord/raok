@@ -45,7 +45,9 @@ export class NewspaperRepository {
       },
     });
 
-    return result.map(NewspaperRepository._mapper);
+    return result
+      .map(NewspaperRepository._mapper)
+      .filter((newspaper) => newspaper.articles.length > 0);
   }
 
   static async getAllNonArchived() {
