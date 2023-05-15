@@ -94,8 +94,7 @@ function ScrollButton() {
         data-main="center"
         data-cross="center"
         data-wrap="nowrap"
-        data-m="6"
-        data-md-m="3"
+        data-m="12"
         onClick={scroll.actions.goToTop}
         title={t("app.scroll_to_top")}
       >
