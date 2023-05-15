@@ -187,38 +187,53 @@ app.get(
 app.get("*", (_, response) => response.redirect("/"));
 app.use(ErrorHandler.handle);
 
-const server = app.listen(Env.PORT, async () => {
-  await bg.Prerequisites.check([
-    new bg.Prerequisite({
-      label: "pandoc",
-      binary: "pandoc",
-      strategy: bg.PrerequisiteStrategyEnum.exists,
-    }),
+(async function main() {
+  await bg.GracefulStartup.check({
+    port: Env.PORT,
+    callback: () => {
+      logger.error({
+        message: "Busy port",
+        operation: "server_startup_error",
+        metadata: { port: Env.PORT },
+      });
 
-    new bg.Prerequisite({
-      label: "calibre",
-      binary: "ebook-convert",
-      strategy: bg.PrerequisiteStrategyEnum.exists,
-    }),
-
-    new bg.Prerequisite({
-      label: "nodemailer",
-      strategy: bg.PrerequisiteStrategyEnum.mailer,
-      mailer: Service.Mailer,
-    }),
-  ]);
-
-  logger.info({
-    message: "Server has started",
-    operation: "server_startup",
-    metadata: { port: Env.PORT },
+      process.exit(1);
+    },
   });
-});
 
-bg.GracefulShutdown.applyTo(server, () => {
-  logger.info({
-    message: "Shutting down job scheduler",
-    operation: "scheduler_shutdown",
+  const server = app.listen(Env.PORT, async () => {
+    await bg.Prerequisites.check([
+      new bg.Prerequisite({
+        label: "pandoc",
+        binary: "pandoc",
+        strategy: bg.PrerequisiteStrategyEnum.exists,
+      }),
+
+      new bg.Prerequisite({
+        label: "calibre",
+        binary: "ebook-convert",
+        strategy: bg.PrerequisiteStrategyEnum.exists,
+      }),
+
+      new bg.Prerequisite({
+        label: "nodemailer",
+        strategy: bg.PrerequisiteStrategyEnum.mailer,
+        mailer: Service.Mailer,
+      }),
+    ]);
+
+    logger.info({
+      message: "Server has started",
+      operation: "server_startup",
+      metadata: { port: Env.PORT },
+    });
   });
-  Scheduler.stop();
-});
+
+  bg.GracefulShutdown.applyTo(server, () => {
+    logger.info({
+      message: "Shutting down job scheduler",
+      operation: "scheduler_shutdown",
+    });
+    Scheduler.stop();
+  });
+})();
