@@ -48,7 +48,6 @@ export function ArticlesSearchForm() {
           list="articles"
           class="c-input"
           placeholder={t("articles.search.placeholder")}
-          style="padding-right: 36px"
           data-width="100%"
           pattern={`.{${ARTICLE_SEARCH_QUERY_MIN_LENGTH},${ARTICLE_SEARCH_QUERY_MAX_LENGTH}}`}
           onInvalid={(event) =>

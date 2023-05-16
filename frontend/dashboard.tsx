@@ -55,7 +55,6 @@ export function Dashboard(_: RoutableProps) {
           data-md-max-width="unset"
           data-position="sticky"
           data-top="0"
-          style="height: 100%;"
         >
           <CreateNewspaper />
           <SendArbitraryFile />

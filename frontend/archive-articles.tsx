@@ -154,7 +154,6 @@ export function ArchiveArticles(_props: RoutableProps) {
             value={search.query}
             class="c-input"
             placeholder={t("article.search.placeholder")}
-            style="padding-right: 36px"
             data-width="100%"
           />
           <Icons.Search
@@ -162,7 +161,8 @@ export function ArchiveArticles(_props: RoutableProps) {
             width="34"
             data-position="absolute"
             data-p="6"
-            style="top: 1px; right: 1px; background: white;"
+            data-top="0"
+            data-right="0"
           />
         </div>
 
