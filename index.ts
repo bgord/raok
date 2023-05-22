@@ -31,11 +31,7 @@ bg.HttpLogger.applyTo(app, logger);
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
 app.get("/articles", AuthShield.verify, bg.Route(Routes.Articles));
-app.get(
-  "/articles/search",
-  // AuthShield.verify,
-  bg.Route(Routes.ArticlesSearch)
-);
+app.get("/articles/search", AuthShield.verify, bg.Route(Routes.ArticlesSearch));
 app.get(
   "/articles/archive",
   AuthShield.verify,
