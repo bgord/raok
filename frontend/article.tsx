@@ -72,14 +72,15 @@ export function Article(props: ArticlePropsType) {
         data-direction="column"
         data-md-direction="row"
         data-cross="center"
-        data-gap="6"
         data-ml="auto"
+        data-gap="3"
       >
         <UI.Badge
           data-self="start"
           data-width="100%"
           data-md-width="auto"
-          data-my="auto"
+          data-mt="3"
+          data-mr="3"
         >
           {props.source}
         </UI.Badge>
