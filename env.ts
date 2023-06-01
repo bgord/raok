@@ -17,6 +17,8 @@ const EnvironmentSchema = z.object({
   FEEDLY_STREAM_ID: z.string().trim().min(1),
   SUPRESS_FEEDLY_CRAWLING: bg.Schema.FeatureFlag,
   LOGS_LEVEL: bg.Schema.LogLevel,
+  BASIC_AUTH_USERNAME: bg.Schema.BasicAuthUsername,
+  BASIC_AUTH_PASSWORD: bg.Schema.BasicAuthPassword,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 

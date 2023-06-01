@@ -10,6 +10,26 @@ import { ErrorHandler } from "./error-handler";
 import { Env } from "./env";
 import { logger } from "./logger";
 
+const prerequisites = [
+  new bg.Prerequisite({
+    label: "pandoc",
+    binary: "pandoc",
+    strategy: bg.PrerequisiteStrategyEnum.exists,
+  }),
+
+  new bg.Prerequisite({
+    label: "calibre",
+    binary: "ebook-convert",
+    strategy: bg.PrerequisiteStrategyEnum.exists,
+  }),
+
+  new bg.Prerequisite({
+    label: "nodemailer",
+    strategy: bg.PrerequisiteStrategyEnum.mailer,
+    mailer: Service.Mailer,
+  }),
+];
+
 const app = express();
 
 bg.addExpressEssentials(app);
@@ -26,6 +46,12 @@ const AuthShield = new bg.EnvUserAuthShield({
   ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
 });
 AuthShield.applyTo(app);
+
+const BasicAuthShield = new bg.BasicAuthShield({
+  username: Env.BASIC_AUTH_USERNAME,
+  password: Env.BASIC_AUTH_PASSWORD,
+});
+
 bg.HttpLogger.applyTo(app, logger);
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
@@ -180,6 +206,18 @@ app.get(
   bg.Route(Routes.Dashboard)
 );
 
+app.get(
+  "/healthcheck",
+  BasicAuthShield.verify,
+  bg.Healthcheck.build([
+    ...prerequisites,
+    new bg.Prerequisite({
+      label: "api",
+      strategy: bg.PrerequisiteStrategyEnum.self,
+    }),
+  ])
+);
+
 app.get("*", (_, response) => response.redirect("/"));
 app.use(ErrorHandler.handle);
 
@@ -198,25 +236,7 @@ app.use(ErrorHandler.handle);
   });
 
   const server = app.listen(Env.PORT, async () => {
-    await bg.Prerequisites.check([
-      new bg.Prerequisite({
-        label: "pandoc",
-        binary: "pandoc",
-        strategy: bg.PrerequisiteStrategyEnum.exists,
-      }),
-
-      new bg.Prerequisite({
-        label: "calibre",
-        binary: "ebook-convert",
-        strategy: bg.PrerequisiteStrategyEnum.exists,
-      }),
-
-      new bg.Prerequisite({
-        label: "nodemailer",
-        strategy: bg.PrerequisiteStrategyEnum.mailer,
-        mailer: Service.Mailer,
-      }),
-    ]);
+    await bg.Prerequisites.check(prerequisites);
 
     logger.info({
       message: "Server has started",
