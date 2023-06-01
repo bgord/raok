@@ -30,28 +30,28 @@ const prerequisites = [
   }),
 ];
 
-const app = express();
-
-bg.addExpressEssentials(app);
-bg.Handlebars.applyTo(app);
-bg.Language.applyTo(app, bg.Schema.Path.parse("translations"));
-
-new bg.Session({
+const Session = new bg.Session({
   secret: Env.COOKIE_SECRET,
   store: bg.SessionFileStore.build({ ttl: bg.Time.Days(3).toSeconds() }),
-}).applyTo(app);
+});
 
 const AuthShield = new bg.EnvUserAuthShield({
   ADMIN_USERNAME: Env.ADMIN_USERNAME,
   ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
 });
-AuthShield.applyTo(app);
 
 const BasicAuthShield = new bg.BasicAuthShield({
   username: Env.BASIC_AUTH_USERNAME,
   password: Env.BASIC_AUTH_PASSWORD,
 });
 
+const app = express();
+
+bg.addExpressEssentials(app);
+bg.Handlebars.applyTo(app);
+bg.Language.applyTo(app, bg.Schema.Path.parse("translations"));
+Session.applyTo(app);
+AuthShield.applyTo(app);
 bg.HttpLogger.applyTo(app, logger);
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
