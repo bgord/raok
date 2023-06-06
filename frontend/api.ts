@@ -2,7 +2,6 @@ import * as bg from "@bgord/frontend";
 import type { PageType } from "@bgord/node";
 
 import * as types from "./types";
-import { ServerError } from "./server-error";
 
 export const _api: typeof fetch = (input, init) =>
   fetch(input, {
@@ -15,8 +14,8 @@ export const _api: typeof fetch = (input, init) =>
     redirect: "follow",
     ...init,
   })
-    .then(ServerError.extract)
-    .catch(ServerError.handle);
+    .then(bg.ServerError.extract)
+    .catch(bg.ServerError.handle);
 
 export async function getNewspapers(): Promise<types.NewspaperType[]> {
   return _api("/newspapers").then((response) =>
