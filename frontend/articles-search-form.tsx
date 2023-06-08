@@ -12,7 +12,7 @@ import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../value-objects/article-search
 
 export function ArticlesSearchForm() {
   const t = bg.useTranslations();
-  const search = bg.useField("");
+  const search = bg.useField("article-search", "");
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 

@@ -13,7 +13,7 @@ export function AddArticleForm() {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
-  const url = bg.useField<types.ArticleType["url"]>("");
+  const url = bg.useField<types.ArticleType["url"]>("article-url", "");
 
   const addArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {
@@ -37,8 +37,6 @@ export function AddArticleForm() {
       }}
     >
       <input
-        id="url"
-        name="url"
         type="url"
         inputMode="url"
         required
@@ -49,6 +47,7 @@ export function AddArticleForm() {
         placeholder={t("article.placeholder")}
         class="c-input"
         data-grow="1"
+        {...url.input.props}
       />
 
       <button
