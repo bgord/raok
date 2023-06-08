@@ -89,7 +89,10 @@ export class Settings {
   async setArticlesToReviewNotificationHour(utcHour: VO.HourType) {
     if (!this.isArticlesToReviewNotificationEnabled) return;
 
-    if (this.articlesToReviewNotificationHour === utcHour) return;
+    await Policies.NotificationHourShouldChange.perform({
+      current: this.articlesToReviewNotificationHour,
+      changed: utcHour,
+    });
 
     await Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationHourSetEvent.parse({

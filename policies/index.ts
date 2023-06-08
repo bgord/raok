@@ -1,4 +1,5 @@
 export * from "./article-should-exist";
+export * from "./notification-hour-should-change";
 export * from "./non-processed-article-url-is-unique";
 export * from "./article-was-not-processed";
 export * from "./articles-are-sendable";

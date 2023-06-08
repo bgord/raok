@@ -93,6 +93,19 @@ export class ErrorHandler {
       });
     }
 
+    if (error instanceof Policies.NotificationHourShouldChangeError) {
+      infra.logger.error({
+        message: "article to review notification hour not changed error",
+        operation: "article_to_review_notification_hour_not_changed_error",
+        correlationId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: "articles-to-review-notification.hour.change.error",
+        _known: true,
+      });
+    }
+
     if (error instanceof VO.ArticleNotFoundError) {
       infra.logger.error({
         message: "Article not found during metatags scrapping",
