@@ -56,7 +56,7 @@ export function Stats() {
         <div
           data-display="flex"
           data-cross="center"
-          data-fs="14"
+          data-fs="12"
           data-mt="12"
           data-color="red-400"
         >
