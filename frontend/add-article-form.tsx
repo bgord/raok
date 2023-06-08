@@ -5,7 +5,6 @@ import * as bg from "@bgord/frontend";
 import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
-import { ServerError } from "./server-error";
 import { ARTICLE_URL_MAX_CHARS } from "../value-objects/article-url-max-chars";
 
 export function AddArticleForm() {
@@ -23,7 +22,7 @@ export function AddArticleForm() {
       queryClient.invalidateQueries("stats");
       notify({ message: "article.added" });
     },
-    onError: (error: ServerError) => notify({ message: error.message }),
+    onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
   return (

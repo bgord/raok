@@ -11,7 +11,7 @@ import * as api from "./api";
 import * as types from "./types";
 import * as contexts from "./contexts";
 import * as UI from "./ui";
-import { ServerError } from "./server-error";
+
 import { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../value-objects/newspaper-max-articles-number";
 
 export function CreateNewspaper() {
@@ -145,6 +145,6 @@ function useCreateNewspaper(callback: VoidFunction) {
       callback();
     },
 
-    onError: (error: ServerError) => notify({ message: error.message }),
+    onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 }

@@ -6,7 +6,6 @@ import * as Icons from "iconoir-react";
 import * as api from "./api";
 import * as UI from "./ui";
 import * as types from "./types";
-import { ServerError } from "./server-error";
 
 export function ArchiveArticle(props: types.ArchiveArticleType) {
   const t = bg.useTranslations();
@@ -20,7 +19,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
       queryClient.invalidateQueries("stats");
       notify({ message: "article.readded" });
     },
-    onError: (error: ServerError) => notify({ message: error.message }),
+    onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
   return (
