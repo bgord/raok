@@ -202,7 +202,7 @@ app.get("/logout", AuthShield.detach, (_, response) => response.redirect("/"));
 app.get(
   "/dashboard",
   AuthShield.verify,
-  bg.Cache.handle(bg.CacheStrategy.never),
+  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
   bg.Route(Routes.Dashboard)
 );
 
