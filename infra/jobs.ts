@@ -1,10 +1,10 @@
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
-import * as Services from "./services";
-import * as Events from "./events";
-import * as VO from "./value-objects";
-import * as Repos from "./repositories";
-import * as Aggregates from "./aggregates";
+import * as Services from "../services";
+import * as Events from "../events";
+import * as VO from "../value-objects";
+import * as Repos from "../repositories";
+import * as Aggregates from "../aggregates";
 
 import { logger } from "./logger";
 

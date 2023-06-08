@@ -1,10 +1,10 @@
 import z from "zod";
 import express from "express";
 import * as bg from "@bgord/node";
-import { logger } from "./logger";
 
 import * as VO from "./value-objects";
 import * as Policies from "./policies";
+import * as infra from "./infra";
 
 export class ErrorHandler {
   /* eslint-disable max-params */
@@ -15,7 +15,7 @@ export class ErrorHandler {
     next
   ) => {
     if (error instanceof bg.Errors.InvalidCredentialsError) {
-      logger.error({
+      infra.logger.error({
         message: "Invalid credentials",
         operation: "invalid_credentials_error",
         correlationId: request.requestId,
@@ -24,7 +24,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof bg.Errors.AccessDeniedError) {
-      logger.error({
+      infra.logger.error({
         message: "Access denied",
         operation: "access_denied_error",
         correlationId: request.requestId,
@@ -33,7 +33,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof bg.Errors.FileNotFoundError) {
-      logger.error({
+      infra.logger.error({
         message: "File not found",
         operation: "file_not_found_error",
         correlationId: request.requestId,
@@ -43,7 +43,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof bg.Errors.TooManyRequestsError) {
-      logger.error({
+      infra.logger.error({
         message: "Too many requests",
         operation: "too_many_requests",
         correlationId: request.requestId,
@@ -56,7 +56,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
-      logger.error({
+      infra.logger.error({
         message: "Article URL is not unique",
         operation: "non_processed_article_url_is_not_unique_error",
         correlationId: request.requestId,
@@ -69,7 +69,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof Policies.ShouldCrawlFeedlyError) {
-      logger.error({
+      infra.logger.error({
         message: "Feedly crawling stopped in the settings",
         operation: "should_crawl_feedly_error",
         correlationId: request.requestId,
@@ -81,7 +81,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof Policies.TooManyArticlesInNewspaperError) {
-      logger.error({
+      infra.logger.error({
         message: "Newspaper with too many articles attempted",
         operation: "too_many_articles_in_newspaper_error",
         correlationId: request.requestId,
@@ -94,7 +94,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof VO.ArticleNotFoundError) {
-      logger.error({
+      infra.logger.error({
         message: "Article not found during metatags scrapping",
         operation: "article_not_found_during_metatags_scrapping_error",
         correlationId: request.requestId,
@@ -107,7 +107,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof VO.ArticleIsNotHTML) {
-      logger.error({
+      infra.logger.error({
         message: "Article has incorrect format",
         operation: "article_is_not_html_error",
         correlationId: request.requestId,
@@ -120,7 +120,7 @@ export class ErrorHandler {
     }
 
     if (error instanceof VO.ArticleScrapingTimeoutError) {
-      logger.error({
+      infra.logger.error({
         message: "Article scraping timeout error",
         operation: "article_scraping_timeout_error",
         correlationId: request.requestId,
@@ -158,7 +158,7 @@ export class ErrorHandler {
       }
     }
 
-    logger.error({
+    infra.logger.error({
       message: "Unknown error",
       operation: "unknown_error",
       correlationId: request.requestId,

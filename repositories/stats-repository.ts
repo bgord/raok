@@ -1,25 +1,25 @@
 import * as bg from "@bgord/node";
 
 import * as VO from "../value-objects";
-import { db } from "../db";
+import * as infra from "../infra";
 
 import { ArticleRepository } from "./article-repository";
 
 export class StatsRepository {
   static async getAll() {
-    const createdArticles = await db.statsKeyValue.findFirst({
+    const createdArticles = await infra.db.statsKeyValue.findFirst({
       where: { key: "createdArticles" },
     });
 
-    const sentNewspapers = await db.statsKeyValue.findFirst({
+    const sentNewspapers = await infra.db.statsKeyValue.findFirst({
       where: { key: "sentNewspapers" },
     });
 
-    const lastFeedlyImport = await db.statsKeyValue.findFirst({
+    const lastFeedlyImport = await infra.db.statsKeyValue.findFirst({
       where: { key: "lastFeedlyImport" },
     });
 
-    const lastFeedlyTokenExpiredError = await db.statsKeyValue.findFirst({
+    const lastFeedlyTokenExpiredError = await infra.db.statsKeyValue.findFirst({
       where: { key: "lastFeedlyTokenExpiredError" },
     });
 
@@ -39,7 +39,7 @@ export class StatsRepository {
   }
 
   static async incrementCreatedArticles() {
-    return db.statsKeyValue.upsert({
+    return infra.db.statsKeyValue.upsert({
       where: { key: "createdArticles" },
       update: { value: { increment: 1 } },
       create: { key: "createdArticles", value: 1 },
@@ -47,7 +47,7 @@ export class StatsRepository {
   }
 
   static async incrementSentNewspapers() {
-    return db.statsKeyValue.upsert({
+    return infra.db.statsKeyValue.upsert({
       where: { key: "sentNewspapers" },
       update: { value: { increment: 1 } },
       create: { key: "sentNewspapers", value: 1 },
@@ -55,7 +55,7 @@ export class StatsRepository {
   }
 
   static async updateLastFeedlyImport(timestamp: number) {
-    return db.statsKeyValue.upsert({
+    return infra.db.statsKeyValue.upsert({
       where: { key: "lastFeedlyImport" },
       update: { value: timestamp },
       create: { key: "lastFeedlyImport", value: timestamp },
@@ -63,7 +63,7 @@ export class StatsRepository {
   }
 
   static async updateLastFeedlyTokenExpiredError(timestamp: number | null) {
-    return db.statsKeyValue.upsert({
+    return infra.db.statsKeyValue.upsert({
       where: { key: "lastFeedlyTokenExpiredError" },
       update: { value: timestamp },
       create: { key: "lastFeedlyTokenExpiredError", value: timestamp },

@@ -2,13 +2,13 @@ import * as bg from "@bgord/node";
 
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
-import { Env } from "../env";
+import * as infra from "../infra";
 
 const mailer = new bg.Mailer({
-  SMTP_HOST: Env.SMTP_HOST,
-  SMTP_PORT: Env.SMTP_PORT,
-  SMTP_USER: Env.SMTP_USER,
-  SMTP_PASS: Env.SMTP_PASS,
+  SMTP_HOST: infra.Env.SMTP_HOST,
+  SMTP_PORT: infra.Env.SMTP_PORT,
+  SMTP_USER: infra.Env.SMTP_USER,
+  SMTP_PASS: infra.Env.SMTP_PASS,
 });
 
 export class FeedlyTokenExpiredNotifier {
@@ -29,8 +29,8 @@ export class FeedlyTokenExpiredNotifier {
     await Repos.StatsRepository.updateLastFeedlyTokenExpiredError(now);
 
     await mailer.send({
-      from: Env.EMAIL_FROM,
-      to: Env.EMAIL_FOR_NOTIFICATIONS,
+      from: infra.Env.EMAIL_FROM,
+      to: infra.Env.EMAIL_FOR_NOTIFICATIONS,
       subject: `[raok] - FEEDLY_TOKEN has expired`,
       html: `Check out scripts/feedly-token:regenerate.sh to regenerate the FEEDLY_TOKEN.`,
     });

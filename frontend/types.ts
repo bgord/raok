@@ -1,4 +1,4 @@
-import type { Article } from "../db";
+import type { Article } from "../infra/db";
 import type { AsyncReturnType } from "@bgord/node";
 import type * as bg from "@bgord/frontend";
 

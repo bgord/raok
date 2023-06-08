@@ -1,8 +1,7 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
-import { db } from "../db";
-
+import * as infra from "../infra";
 import * as Events from "../events";
 
 type AcceptedEvent =
@@ -35,7 +34,7 @@ export class EventRepository {
       (acceptedEvent) => acceptedEvent._def.shape().name._def.value
     );
 
-    const events = await db.event.findMany({
+    const events = await infra.db.event.findMany({
       where: { name: { in: acceptedEventNames }, stream },
       orderBy: { createdAt: "asc" },
     });
@@ -59,7 +58,7 @@ export class EventRepository {
   }
 
   static async save(event: AcceptedEventType) {
-    await db.event.create({
+    await infra.db.event.create({
       data: { ...event, payload: JSON.stringify(event.payload) },
     });
 

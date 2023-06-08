@@ -6,7 +6,7 @@ import * as VO from "./value-objects";
 import * as Services from "./services";
 import * as Repos from "./repositories";
 import * as Aggregates from "./aggregates";
-import { logger } from "./logger";
+import * as infra from "./infra";
 
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
 export const ArticleAddedEvent = bg.EventDraft.merge(
@@ -287,7 +287,7 @@ emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
       event.payload.newspaperId
     );
   } catch (error) {
-    logger.error({
+    infra.logger.error({
       message: "Article locked event handler error",
       operation: "db_error",
       metadata: { error: JSON.stringify(error) },
@@ -392,7 +392,7 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
   try {
     await Services.ArbitraryFileSender.send(file);
 
-    logger.info({
+    infra.logger.info({
       message: "Mailer success",
       operation: "mailer_success",
       metadata: { filename: file.originalFilename },
@@ -400,7 +400,7 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
 
     await Repos.FilesRepository.add(file);
   } catch (error) {
-    logger.error({
+    infra.logger.error({
       message: "Mailer error while sending file",
       operation: "mailer_error",
       metadata: {
@@ -418,7 +418,7 @@ emittery.on(DELETE_OLD_ARTICLES_EVENT, async (event) => {
 
   if (!oldArticles.length) return;
 
-  logger.info({
+  infra.logger.info({
     message: "Deleting old articles",
     operation: "old_articles_delete",
     metadata: { count: oldArticles.length },

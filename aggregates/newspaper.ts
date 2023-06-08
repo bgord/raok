@@ -5,9 +5,9 @@ import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Policies from "../policies";
 import * as Repos from "../repositories";
+import * as infra from "../infra";
 
 import { Article } from "./article";
-import { logger } from "../logger";
 
 export class Newspaper {
   id: VO.NewspaperType["id"];
@@ -125,7 +125,7 @@ export class Newspaper {
         })
       );
     } catch (error) {
-      logger.error({
+      infra.logger.error({
         message: "Newspaper generate error",
         operation: "newspaper_error",
         metadata: { error: JSON.stringify(error) },
@@ -166,7 +166,7 @@ export class Newspaper {
         })
       );
     } catch (error) {
-      logger.error({
+      infra.logger.error({
         message: "Newspaper send error",
         operation: "newspaper_error",
         metadata: { error: JSON.stringify(error) },

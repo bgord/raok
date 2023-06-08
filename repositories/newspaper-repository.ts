@@ -2,8 +2,8 @@ import * as z from "zod";
 import * as bg from "@bgord/node";
 import { format } from "date-fns";
 
-import { Prisma, db, Newspaper, Article } from "../db";
 import * as VO from "../value-objects";
+import * as infra from "../infra";
 
 export const ArchiveNewspaperFilter = new bg.Filter(
   z.object({
@@ -13,10 +13,10 @@ export const ArchiveNewspaperFilter = new bg.Filter(
 );
 
 export class NewspaperRepository {
-  static async getAll(filters?: Prisma.NewspaperWhereInput) {
+  static async getAll(filters?: infra.Prisma.NewspaperWhereInput) {
     const { status, ...rest } = filters ?? {};
 
-    const result = await db.newspaper.findMany({
+    const result = await infra.db.newspaper.findMany({
       where: {
         status: filters?.status ?? {
           in: [
@@ -51,7 +51,7 @@ export class NewspaperRepository {
   }
 
   static async getAllNonArchived() {
-    const result = await db.newspaper.findMany({
+    const result = await infra.db.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { sentAt: "desc" },
       select: {
@@ -75,7 +75,7 @@ export class NewspaperRepository {
   }
 
   static async getById(newspaperId: VO.NewspaperIdType) {
-    const result = await db.newspaper.findFirst({
+    const result = await infra.db.newspaper.findFirst({
       where: { id: newspaperId },
       include: { articles: true },
     });
@@ -88,7 +88,7 @@ export class NewspaperRepository {
     status: VO.NewspaperType["status"];
     scheduledAt: VO.NewspaperType["scheduledAt"];
   }) {
-    return db.newspaper.upsert({
+    return infra.db.newspaper.upsert({
       create: newspaper,
       update: { status: newspaper.status },
       where: { id: newspaper.id },
@@ -99,7 +99,7 @@ export class NewspaperRepository {
     newspaperId: VO.NewspaperType["id"],
     status: VO.NewspaperType["status"]
   ) {
-    return db.newspaper.updateMany({
+    return infra.db.newspaper.updateMany({
       where: { id: newspaperId },
       data: { status },
     });
@@ -109,15 +109,18 @@ export class NewspaperRepository {
     newspaperId: VO.NewspaperType["id"],
     sentAt: VO.NewspaperType["sentAt"]
   ) {
-    return db.newspaper.updateMany({
+    return infra.db.newspaper.updateMany({
       where: { id: newspaperId },
       data: { sentAt },
     });
   }
 
   static _mapper(
-    newspaper: Newspaper & {
-      articles: Omit<Article, "createdAt" | "newspaperId" | "favouritedAt">[];
+    newspaper: infra.Newspaper & {
+      articles: Omit<
+        infra.Article,
+        "createdAt" | "newspaperId" | "favouritedAt"
+      >[];
     }
   ) {
     return {

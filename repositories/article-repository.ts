@@ -2,8 +2,8 @@ import * as z from "zod";
 import * as bg from "@bgord/node";
 import _ from "lodash";
 
-import { Prisma, db } from "../db";
 import * as VO from "../value-objects";
+import * as infra from "../infra";
 
 export const ArchiveArticlesFilter = new bg.Filter(
   z.object({
@@ -14,8 +14,8 @@ export const ArchiveArticlesFilter = new bg.Filter(
 );
 
 export class ArticleRepository {
-  static async getAll(filters?: Prisma.ArticleWhereInput) {
-    return db.article.findMany({
+  static async getAll(filters?: infra.Prisma.ArticleWhereInput) {
+    return infra.db.article.findMany({
       orderBy: { createdAt: "desc" },
       select: {
         id: true,
@@ -29,8 +29,8 @@ export class ArticleRepository {
     });
   }
 
-  static async getAllNonProcessed(filters?: Prisma.ArticleWhereInput) {
-    const articles = await db.article.findMany({
+  static async getAllNonProcessed(filters?: infra.Prisma.ArticleWhereInput) {
+    const articles = await infra.db.article.findMany({
       where: _.merge(filters, { status: VO.ArticleStatusEnum.ready }),
       select: {
         id: true,
@@ -54,9 +54,9 @@ export class ArticleRepository {
   static async pagedGetAllNonProcessed(pagination: bg.PaginationType) {
     const where = { status: VO.ArticleStatusEnum.ready };
 
-    const [total, articles] = await db.$transaction([
-      db.article.count({ where }),
-      db.article.findMany({
+    const [total, articles] = await infra.db.$transaction([
+      infra.db.article.count({ where }),
+      infra.db.article.findMany({
         where,
         select: {
           id: true,
@@ -79,7 +79,7 @@ export class ArticleRepository {
   }
 
   static async getNumberOfNonProcessed() {
-    return db.article.count({
+    return infra.db.article.count({
       where: { status: VO.ArticleStatusEnum.ready },
     });
   }
@@ -89,7 +89,7 @@ export class ArticleRepository {
       title: VO.ArticleMetatagsType["title"];
     }
   ) {
-    return db.article.create({
+    return infra.db.article.create({
       data: { ...article, status: VO.ArticleStatusEnum.ready },
     });
   }
@@ -98,14 +98,14 @@ export class ArticleRepository {
     id: VO.ArticleType["id"],
     status: VO.ArticleType["status"]
   ) {
-    return db.article.updateMany({ where: { id }, data: { status } });
+    return infra.db.article.updateMany({ where: { id }, data: { status } });
   }
 
   static async assignToNewspaper(
     articleId: VO.ArticleType["id"],
     newspaperId: VO.NewspaperType["id"]
   ) {
-    return db.article.update({
+    return infra.db.article.update({
       where: { id: articleId },
       data: { newspaperId },
     });
@@ -114,7 +114,7 @@ export class ArticleRepository {
   static async getNumbersOfNonProcessedArticlesWithUrl(
     url: VO.ArticleType["url"]
   ) {
-    return db.article.count({
+    return infra.db.article.count({
       where: { url, status: VO.ArticleStatusEnum.ready },
     });
   }
@@ -122,7 +122,7 @@ export class ArticleRepository {
   static async search(query: VO.ArticleSearchQueryType) {
     const isQueryAnUrlCheck = VO.ArticleUrl.safeParse(query);
 
-    const articles = await db.article.findMany({
+    const articles = await infra.db.article.findMany({
       where: {
         status: VO.ArticleStatusEnum.ready,
         [isQueryAnUrlCheck.success ? "url" : "title"]: { contains: query },

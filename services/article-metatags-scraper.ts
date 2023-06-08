@@ -1,7 +1,7 @@
 import * as bg from "@bgord/node";
 import og from "open-graph-scraper";
 
-import { logger } from "../logger";
+import * as infra from "../infra";
 import * as VO from "../value-objects";
 
 export class ArticleMetatagsScraper {
@@ -19,7 +19,7 @@ export class ArticleMetatagsScraper {
     } catch (error) {
       const response = error as og.ErrorResult;
 
-      logger.warn({
+      infra.logger.warn({
         message: "Article scrapping error",
         operation: "article_scrapping_error_warning",
         metadata: {

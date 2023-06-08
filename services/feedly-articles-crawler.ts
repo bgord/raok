@@ -3,22 +3,22 @@ import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
 import * as Aggregates from "../aggregates";
+import * as infra from "../infra";
+
 import { Feedly } from "./feedly";
-import { Env } from "../env";
-import { logger } from "../logger";
 
 export class FeedlyArticlesCrawler {
   static async run() {
     const correlationId = bg.Schema.CorrelationId.parse(bg.NewUUID.generate());
 
-    logger.info({
+    infra.logger.info({
       message: "Crawling Feedly articles",
       operation: "feedly_crawl_start",
       correlationId,
     });
 
-    if (Env.SUPRESS_FEEDLY_CRAWLING === "yes") {
-      logger.info({
+    if (infra.Env.SUPRESS_FEEDLY_CRAWLING === "yes") {
+      infra.logger.info({
         message: "Suppressing Feedly crawling stopped",
         operation: "feedly_crawl_suppressed",
         metadata: { reason: "feature flag" },
@@ -30,7 +30,7 @@ export class FeedlyArticlesCrawler {
 
     const settings = await new Aggregates.Settings().build();
     if (Policies.ShouldCrawlFeedly.fails({ settings })) {
-      logger.info({
+      infra.logger.info({
         message: "Suppressing Feedly crawling stopped",
         operation: "feedly_crawl_suppressed",
         metadata: { reason: "settings" },
@@ -41,7 +41,7 @@ export class FeedlyArticlesCrawler {
     }
 
     const articles = await Feedly.getArticles();
-    logger.info({
+    infra.logger.info({
       message: `Crawled ${articles.length} unread articles`,
       operation: "feedly_crawl_report",
       correlationId,
@@ -61,14 +61,14 @@ export class FeedlyArticlesCrawler {
         });
         insertedArticlesFeedlyIds.push(article.id);
 
-        logger.info({
+        infra.logger.info({
           message: `Added article from Feedly`,
           operation: "feedly_crawl_article_added",
           metadata: { id: article.canonicalUrl },
           correlationId,
         });
       } catch (error) {
-        logger.error({
+        infra.logger.error({
           message: `Article not added`,
           operation: "feedly_crawl_article_add_error",
           metadata: { id: article.canonicalUrl },
@@ -82,14 +82,14 @@ export class FeedlyArticlesCrawler {
 
       await Feedly.markArticlesAsRead(insertedArticlesFeedlyIds);
 
-      logger.info({
+      infra.logger.info({
         message: "Marked Feedly articles as read",
         operation: "feedly_crawl_mark_as_read_success",
         metadata: { ids: insertedArticlesFeedlyIds },
         correlationId,
       });
     } catch (error) {
-      logger.error({
+      infra.logger.error({
         message: "Failed to mark Feedly articles as read",
         operation: "feedly_crawl_mark_as_read_error",
         metadata: { ids: insertedArticlesFeedlyIds },

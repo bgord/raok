@@ -3,14 +3,13 @@ import * as bg from "@bgord/node";
 import * as Aggregates from "../aggregates";
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
-import { Env } from "../env";
-import { logger } from "../logger";
+import * as infra from "../infra";
 
 const mailer = new bg.Mailer({
-  SMTP_HOST: Env.SMTP_HOST,
-  SMTP_PORT: Env.SMTP_PORT,
-  SMTP_USER: Env.SMTP_USER,
-  SMTP_PASS: Env.SMTP_PASS,
+  SMTP_HOST: infra.Env.SMTP_HOST,
+  SMTP_PORT: infra.Env.SMTP_PORT,
+  SMTP_USER: infra.Env.SMTP_USER,
+  SMTP_PASS: infra.Env.SMTP_PASS,
 });
 
 export class ArticlesToReviewNotifier {
@@ -52,8 +51,8 @@ export class ArticlesToReviewNotifier {
     if (!this.shouldBeSent()) return;
 
     await mailer.send({
-      from: Env.EMAIL_FROM,
-      to: Env.EMAIL_FOR_NOTIFICATIONS,
+      from: infra.Env.EMAIL_FROM,
+      to: infra.Env.EMAIL_FOR_NOTIFICATIONS,
       subject: `[raok] - ${this.numberOfArticlesToReview} articles to review`,
       html: `
         You've ${this.numberOfArticlesToReview} articles to review on raok.
@@ -65,7 +64,7 @@ export class ArticlesToReviewNotifier {
       `,
     });
 
-    logger.info({
+    infra.logger.info({
       message: "Articles to review notification sent",
       operation: "articles_to_review_notification_sent",
       metadata: { count: this.numberOfArticlesToReview },

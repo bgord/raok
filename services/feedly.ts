@@ -4,17 +4,16 @@ import axios from "axios";
 import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Repos from "../repositories";
-import { Env } from "../env";
-import { logger } from "../logger";
+import * as infra from "../infra";
 
 export class Feedly {
   private static api = axios.create({
     baseURL: "https://cloud.feedly.com/v3",
-    headers: { Authorization: `Bearer ${Env.FEEDLY_TOKEN}` },
+    headers: { Authorization: `Bearer ${infra.Env.FEEDLY_TOKEN}` },
   });
 
   static async getArticles(): Promise<NonNullable<VO.FeedlyArticleType>[]> {
-    const streamId = encodeURIComponent(Env.FEEDLY_STREAM_ID);
+    const streamId = encodeURIComponent(infra.Env.FEEDLY_STREAM_ID);
 
     try {
       const response = await Feedly.api.get(
@@ -28,7 +27,7 @@ export class Feedly {
         .parse(response.data?.items)
         .filter(Feedly.isNonTwitterUrl);
     } catch (error) {
-      logger.error({
+      infra.logger.error({
         message: "Feedly getArticles error",
         operation: "feedly",
         metadata: { error: JSON.stringify(error) },
