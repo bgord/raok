@@ -173,7 +173,7 @@ export const ArticlesToReviewNotificationHourSetEvent = bg.EventDraft.merge(
     name: z.literal(ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT),
     version: z.literal(1),
     payload: z.object({
-      hour: VO.hour,
+      hour: VO.HourSchema,
     }),
   })
 );

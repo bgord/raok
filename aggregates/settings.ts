@@ -10,7 +10,7 @@ export class Settings {
 
   isArticlesToReviewNotificationEnabled = true;
 
-  articlesToReviewNotificationHour: VO.HourType = VO.hour.parse(8);
+  articlesToReviewNotificationHour: VO.HourType = VO.HourSchema.parse(8);
 
   isFeedlyCrawlingStopped = false;
 

@@ -8,7 +8,7 @@ export async function SetArticlesToReviewNotificationHour(
   response: express.Response,
   _next: express.NextFunction
 ): Promise<void> {
-  const utcHour = VO.hour.parse(Number(request.body.hour));
+  const utcHour = VO.HourSchema.parse(Number(request.body.hour));
 
   const settings = await new Aggregates.Settings().build();
   await settings.setArticlesToReviewNotificationHour(utcHour);

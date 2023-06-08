@@ -1,24 +1,21 @@
-import * as bg from "@bgord/node";
 import _ from "lodash";
 import { z } from "zod";
 
 const hours = _.range(0, 24);
 
-const HourSchema = z
+export const HourSchema = z
   .number()
   .refine((value) => hours.includes(value), { message: "invalid_hour" });
 
-export type HourType = bg.WeakBrand<"hour", z.infer<typeof HourSchema>>;
-
-export const hour = bg.toBrand<HourType>(HourSchema);
+export type HourType = z.infer<typeof HourSchema>;
 
 export class Hour {
-  static hours: HourType[] = z.array(hour).parse(hours);
+  static hours: HourType[] = z.array(HourSchema).parse(hours);
 
   value: HourType;
 
   constructor(value: number) {
-    this.value = hour.parse(value);
+    this.value = HourSchema.parse(value);
   }
 
   equals(anotherHour: Hour) {
