@@ -19,6 +19,16 @@ export function Settings(_props: RoutableProps) {
 
   const settings = useQuery("settings", api.Settings.getSettings);
 
+  const notificationHour = bg.useField<types.HourType | undefined>(
+    "notification-hour",
+    settings.data?.articlesToReviewNotificationHour.value
+  );
+
+  const notificationHourChangeDisabled: boolean =
+    !settings.data?.isArticlesToReviewNotificationEnabled ||
+    notificationHour.value ===
+      settings.data.articlesToReviewNotificationHour.value;
+
   const restoreFeedlyCrawling = useMutation(
     api.Settings.restoreFeedlyCrawling,
     {
@@ -159,20 +169,22 @@ export function Settings(_props: RoutableProps) {
           onSubmit={(event) => {
             event.preventDefault();
 
-            const form = new FormData(event.target as HTMLFormElement);
-            const hour = Number(form.get("hour"));
-
-            setArticlesToReviewNotificationHour.mutate(hour);
+            setArticlesToReviewNotificationHour.mutate(
+              Number(notificationHour.value)
+            );
           }}
         >
           <label class="c-label" htmlFor="hour">
             {t("app.hour")}
           </label>
+
           <select
             id="hour"
             name="hour"
             class="c-select"
-            disabled={!isArticlesToReviewNotificationEnabled}
+            onInput={(event) =>
+              notificationHour.set(Number(event.currentTarget.value))
+            }
           >
             {hours
               .map((hour) => ({
@@ -192,7 +204,7 @@ export function Settings(_props: RoutableProps) {
               ))}
           </select>
           <button
-            disabled={!isArticlesToReviewNotificationEnabled}
+            disabled={notificationHourChangeDisabled}
             type="submit"
             class="c-button"
             data-variant="secondary"
