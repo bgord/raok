@@ -1,7 +1,6 @@
 import express from "express";
 import * as bg from "@bgord/node";
 
-import * as Service from "./services";
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
 import * as infra from "./infra";
@@ -22,7 +21,7 @@ const prerequisites = [
   new bg.Prerequisite({
     label: "nodemailer",
     strategy: bg.PrerequisiteStrategyEnum.mailer,
-    mailer: Service.Mailer,
+    mailer: infra.Mailer,
   }),
 ];
 
