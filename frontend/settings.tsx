@@ -277,7 +277,7 @@ export function Settings(_props: RoutableProps) {
 }
 
 function formatUtcHourToLocal(hour: types.HourType) {
-  const minutes = new bg.Time.Hours(hour).toMinutes();
+  const minutes = bg.Time.Hours(hour).toMinutes();
   const timeZoneOffsetInMins = new Date().getTimezoneOffset();
 
   const localMinutes = minutes - timeZoneOffsetInMins;
