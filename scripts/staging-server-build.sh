@@ -30,7 +30,7 @@ info "Copied CSS"
 
 # ==========================================================
 
-./bgord-scripts/css:purge.sh
+./bgord-scripts/css-purge.sh
 
 # ==========================================================
 
@@ -48,7 +48,7 @@ info "Installed packages"
 
 # ==========================================================
 
-./bgord-scripts/frontend:build.sh
+./bgord-scripts/frontend-build.sh
 info "Built frontend"
 
 # ==========================================================
