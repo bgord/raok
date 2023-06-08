@@ -2,9 +2,9 @@ import z from "zod";
 import express from "express";
 import * as bg from "@bgord/node";
 
-import * as VO from "./value-objects";
-import * as Policies from "./policies";
-import * as infra from "./infra";
+import * as VO from "../value-objects";
+import * as Policies from "../policies";
+import * as infra from "../infra";
 
 export class ErrorHandler {
   /* eslint-disable max-params */

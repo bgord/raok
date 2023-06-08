@@ -6,8 +6,6 @@ import * as Routes from "./routes";
 import * as VO from "./value-objects";
 import * as infra from "./infra";
 
-import { ErrorHandler } from "./error-handler";
-
 const prerequisites = [
   new bg.Prerequisite({
     label: "pandoc",
@@ -219,7 +217,7 @@ app.get(
 );
 
 app.get("*", (_, response) => response.redirect("/"));
-app.use(ErrorHandler.handle);
+app.use(Routes.ErrorHandler.handle);
 
 (async function main() {
   await bg.GracefulStartup.check({

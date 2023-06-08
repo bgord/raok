@@ -30,3 +30,5 @@ export * from "./single-newspaper";
 export * from "./stats";
 export * from "./stop-feedly-crawling";
 export * from "./undelete-article";
+
+export * from "./error-handler";
