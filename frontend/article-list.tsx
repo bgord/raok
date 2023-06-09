@@ -24,6 +24,10 @@ export function ArticleList() {
   const stats = useQuery("stats", api.getStats);
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
 
+  bg.useDocumentTitle(
+    `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`
+  );
+
   const _articles = useInfiniteQuery(
     "articles",
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
