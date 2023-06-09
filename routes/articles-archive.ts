@@ -2,8 +2,8 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
-import * as Services from "../services";
 import * as Repos from "../repositories";
+import * as infra from "../infra";
 
 import { App } from "../frontend/app";
 
@@ -33,7 +33,7 @@ export async function ArticlesArchive(
   };
 
   const frontend = render(App({ ...state, url: "/archive/articles" }));
-  const html = Services.Html.process({
+  const html = infra.Html.process({
     frontend,
     state,
     language: request.language,
