@@ -290,7 +290,7 @@ emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
     infra.logger.error({
       message: "Article locked event handler error",
       operation: "db_error",
-      metadata: { error: JSON.stringify(error) },
+      metadata: infra.logger.formatError(error),
     });
   }
 });
@@ -405,7 +405,7 @@ emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
       operation: "mailer_error",
       metadata: {
         filename: file.originalFilename,
-        error: JSON.stringify(error),
+        error: infra.logger.formatError(error),
       },
     });
   }

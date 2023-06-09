@@ -46,7 +46,7 @@ export class NewspaperFile {
       infra.logger.error({
         message: "NewspaperFile create error",
         operation: "newspaper_file",
-        metadata: { error: JSON.stringify(error) },
+        metadata: infra.logger.formatError(error),
       });
     }
   }
@@ -126,7 +126,7 @@ export class NewspaperFile {
       infra.logger.error({
         message: "NewspaperFile clear error",
         operation: "newspaper_file",
-        metadata: { error: JSON.stringify(error) },
+        metadata: infra.logger.formatError(error),
       });
     }
   }
@@ -162,7 +162,7 @@ export class NewspaperFile {
       infra.logger.error({
         message: "NewspaperFile read error",
         operation: "newspaper_file",
-        metadata: { error: JSON.stringify(error) },
+        metadata: infra.logger.formatError(error),
       });
 
       return null;

@@ -30,7 +30,7 @@ export class Feedly {
       infra.logger.error({
         message: "Feedly getArticles error",
         operation: "feedly",
-        metadata: { error: JSON.stringify(error) },
+        metadata: infra.logger.formatError(error),
       });
 
       await Services.FeedlyTokenExpiredNotifier.handle(error);

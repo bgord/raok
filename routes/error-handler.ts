@@ -175,11 +175,7 @@ export class ErrorHandler {
       message: "Unknown error",
       operation: "unknown_error",
       correlationId: request.requestId,
-      metadata: {
-        message: (error as Error)?.message,
-        name: (error as Error)?.name,
-        stack: (error as Error)?.stack,
-      },
+      metadata: infra.logger.formatError(error),
     });
 
     return next(error);

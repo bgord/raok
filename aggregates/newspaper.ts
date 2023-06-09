@@ -128,7 +128,7 @@ export class Newspaper {
       infra.logger.error({
         message: "Newspaper generate error",
         operation: "newspaper_error",
-        metadata: { error: JSON.stringify(error) },
+        metadata: infra.logger.formatError(error),
       });
 
       await Repos.EventRepository.save(
@@ -169,7 +169,7 @@ export class Newspaper {
       infra.logger.error({
         message: "Newspaper send error",
         operation: "newspaper_error",
-        metadata: { error: JSON.stringify(error) },
+        metadata: infra.logger.formatError(error),
       });
 
       await Repos.EventRepository.save(
