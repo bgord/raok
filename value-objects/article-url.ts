@@ -7,6 +7,24 @@ export const ArticleUrl = z
   .url()
   .min(1)
   .max(ARTICLE_URL_MAX_CHARS)
+  .transform((value) => {
+    const MARKETING_PARAMS = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+    ];
+
+    const url = new URL(value);
+    const params = url.searchParams;
+
+    MARKETING_PARAMS.forEach((param) => params.delete(param));
+
+    url.search = params.toString();
+
+    return url.toString();
+  })
   .brand<"article-url">();
 
 export type ArticleUrlType = z.infer<typeof ArticleUrl>;
