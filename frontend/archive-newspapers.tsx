@@ -121,6 +121,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
         data-md-px="0"
         data-max-width="768"
         data-width="100%"
+        data-mb="24"
       >
         {newspapers.map((newspaper) => (
           <Newspaper key={newspaper.id} {...newspaper} />
