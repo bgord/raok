@@ -1,7 +1,6 @@
 import * as bg from "@bgord/node";
 
 import * as Events from "../events";
-import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 import * as Policies from "../policies";
 
@@ -10,7 +9,8 @@ export class Settings {
 
   isArticlesToReviewNotificationEnabled = true;
 
-  articlesToReviewNotificationHour: VO.HourType = VO.HourSchema.parse(8);
+  articlesToReviewNotificationHour: bg.Schema.HourType =
+    bg.Schema.Hour.parse(8);
 
   isFeedlyCrawlingStopped = false;
 
@@ -86,7 +86,7 @@ export class Settings {
     );
   }
 
-  async setArticlesToReviewNotificationHour(utcHour: VO.HourType) {
+  async setArticlesToReviewNotificationHour(utcHour: bg.Schema.HourType) {
     if (!this.isArticlesToReviewNotificationEnabled) return;
 
     await Policies.NotificationHourShouldChange.perform({

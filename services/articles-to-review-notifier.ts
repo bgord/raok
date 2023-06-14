@@ -2,7 +2,6 @@ import * as bg from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 import * as Repos from "../repositories";
-import * as VO from "../value-objects";
 import * as infra from "../infra";
 
 const mailer = new bg.Mailer({
@@ -13,7 +12,7 @@ const mailer = new bg.Mailer({
 });
 
 export class ArticlesToReviewNotifier {
-  UTC_HOUR: VO.HourType;
+  UTC_HOUR: bg.Schema.HourType;
 
   numberOfArticlesToReview = 0;
 

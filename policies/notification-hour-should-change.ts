@@ -1,7 +1,5 @@
 import * as bg from "@bgord/node";
 
-import * as VO from "../value-objects";
-
 export class NotificationHourShouldChangeError extends Error {
   constructor() {
     super();
@@ -10,8 +8,8 @@ export class NotificationHourShouldChangeError extends Error {
 }
 
 type NotificationHourShouldChangeConfigType = {
-  current: VO.HourType;
-  changed: VO.HourType;
+  current: bg.Schema.HourType;
+  changed: bg.Schema.HourType;
 };
 
 class NotificationHourShouldChangeFactory extends bg.Policy<NotificationHourShouldChangeConfigType> {

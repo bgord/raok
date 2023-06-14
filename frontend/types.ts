@@ -8,8 +8,8 @@ import type { StatsRepository } from "../repositories/stats-repository";
 import type { SettingsRepository } from "../repositories/settings-repository";
 import type { FilesRepository } from "../repositories/files-repository";
 
+export type { HourType } from "@bgord/node/dist/schema";
 export type { ArticleSearchQueryType } from "../value-objects/article-search-query";
-export type { HourType } from "../value-objects/hour";
 
 export enum ArticleSourceEnum {
   web = "web",
