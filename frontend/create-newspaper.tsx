@@ -78,7 +78,7 @@ export function CreateNewspaper() {
               data-overflow="hidden"
             >
               <input
-                onClick={() => newspaperCreator.actions.toggle(article.id)}
+                onClick={() => newspaperCreator.actions.remove(article.id)}
                 checked={newspaperCreator.actions.isAdded(article.id)}
                 class="c-checkbox"
                 type="checkbox"
