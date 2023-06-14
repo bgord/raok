@@ -8,6 +8,8 @@ import * as Repos from "./repositories";
 import * as Aggregates from "./aggregates";
 import * as infra from "./infra";
 
+const EventHandler = new bg.EventHandler(infra.logger);
+
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
 export const ArticleAddedEvent = bg.EventDraft.merge(
   z.object({
@@ -172,9 +174,7 @@ export const ArticlesToReviewNotificationHourSetEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT),
     version: z.literal(1),
-    payload: z.object({
-      hour: VO.HourSchema,
-    }),
+    payload: z.object({ hour: bg.Schema.Hour }),
   })
 );
 export type ArticlesToReviewNotificationHourSetEventType = z.infer<
@@ -252,181 +252,225 @@ export const emittery = new Emittery<{
   RESTORE_FEEDLY_CRAWLING_EVENT: RestoreFeedlyCrawlingEventType;
 }>();
 
-emittery.on(ARTICLE_ADDED_EVENT, async (event) => {
-  await Repos.ArticleRepository.create(event.payload);
-  await Repos.StatsRepository.incrementCreatedArticles();
+emittery.on(
+  ARTICLE_ADDED_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.ArticleRepository.create(event.payload);
+    await Repos.StatsRepository.incrementCreatedArticles();
 
-  if (event.payload.source === VO.ArticleSourceEnum.feedly) {
-    await Repos.StatsRepository.updateLastFeedlyImport(event.payload.createdAt);
-  }
-});
+    if (event.payload.source === VO.ArticleSourceEnum.feedly) {
+      await Repos.StatsRepository.updateLastFeedlyImport(
+        event.payload.createdAt
+      );
+    }
+  })
+);
 
-emittery.on(ARTICLE_DELETED_EVENT, async (event) => {
-  await Repos.ArticleRepository.updateStatus(
-    event.payload.articleId,
-    VO.ArticleStatusEnum.deleted
-  );
-});
-
-emittery.on(ARTICLE_UNDELETE_EVENT, async (event) => {
-  await Repos.ArticleRepository.updateStatus(
-    event.payload.articleId,
-    VO.ArticleStatusEnum.ready
-  );
-});
-
-emittery.on(ARTICLE_LOCKED_EVENT, async (event) => {
-  try {
+emittery.on(
+  ARTICLE_DELETED_EVENT,
+  EventHandler.handle(async (event) => {
     await Repos.ArticleRepository.updateStatus(
       event.payload.articleId,
-      VO.ArticleStatusEnum.in_progress
+      VO.ArticleStatusEnum.deleted
     );
+  })
+);
 
-    await Repos.ArticleRepository.assignToNewspaper(
+emittery.on(
+  ARTICLE_UNDELETE_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.ArticleRepository.updateStatus(
       event.payload.articleId,
-      event.payload.newspaperId
+      VO.ArticleStatusEnum.ready
     );
-  } catch (error) {
-    infra.logger.error({
-      message: "Article locked event handler error",
-      operation: "db_error",
-      metadata: infra.logger.formatError(error),
+  })
+);
+
+emittery.on(
+  ARTICLE_LOCKED_EVENT,
+  EventHandler.handle(async (event) => {
+    try {
+      await Repos.ArticleRepository.updateStatus(
+        event.payload.articleId,
+        VO.ArticleStatusEnum.in_progress
+      );
+
+      await Repos.ArticleRepository.assignToNewspaper(
+        event.payload.articleId,
+        event.payload.newspaperId
+      );
+    } catch (error) {
+      infra.logger.error({
+        message: "Article locked event handler error",
+        operation: "db_error",
+        metadata: infra.logger.formatError(error),
+      });
+    }
+  })
+);
+
+emittery.on(
+  ARTICLE_UNLOCKED_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.ArticleRepository.updateStatus(
+      event.payload.articleId,
+      VO.ArticleStatusEnum.ready
+    );
+  })
+);
+
+emittery.on(
+  ARTICLE_PROCESSED_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.ArticleRepository.updateStatus(
+      event.payload.articleId,
+      VO.ArticleStatusEnum.processed
+    );
+  })
+);
+
+emittery.on(
+  NEWSPAPER_SCHEDULED_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.NewspaperRepository.create({
+      id: event.payload.id,
+      scheduledAt: event.payload.createdAt,
+      status: VO.NewspaperStatusEnum.scheduled,
     });
-  }
-});
 
-emittery.on(ARTICLE_UNLOCKED_EVENT, async (event) => {
-  await Repos.ArticleRepository.updateStatus(
-    event.payload.articleId,
-    VO.ArticleStatusEnum.ready
-  );
-});
+    for (const entity of event.payload.articles) {
+      const article = await new Aggregates.Article(entity.id).build();
+      await article.lock(event.payload.id);
+    }
 
-emittery.on(ARTICLE_PROCESSED_EVENT, async (event) => {
-  await Repos.ArticleRepository.updateStatus(
-    event.payload.articleId,
-    VO.ArticleStatusEnum.processed
-  );
-});
+    const newspaper = await new Aggregates.Newspaper(event.payload.id).build();
 
-emittery.on(NEWSPAPER_SCHEDULED_EVENT, async (event) => {
-  await Repos.NewspaperRepository.create({
-    id: event.payload.id,
-    scheduledAt: event.payload.createdAt,
-    status: VO.NewspaperStatusEnum.scheduled,
-  });
+    await newspaper.generate();
+  })
+);
 
-  for (const entity of event.payload.articles) {
-    const article = await new Aggregates.Article(entity.id).build();
-    await article.lock(event.payload.id);
-  }
+emittery.on(
+  NEWSPAPER_GENERATED_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.NewspaperRepository.updateStatus(
+      event.payload.newspaperId,
+      VO.NewspaperStatusEnum.ready_to_send
+    );
 
-  const newspaper = await new Aggregates.Newspaper(event.payload.id).build();
+    const newspaper = await new Aggregates.Newspaper(
+      event.payload.newspaperId
+    ).build();
+    await newspaper.send();
+  })
+);
 
-  await newspaper.generate();
-});
+emittery.on(
+  NEWSPAPER_SENT_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.StatsRepository.incrementSentNewspapers();
 
-emittery.on(NEWSPAPER_GENERATED_EVENT, async (event) => {
-  await Repos.NewspaperRepository.updateStatus(
-    event.payload.newspaperId,
-    VO.NewspaperStatusEnum.ready_to_send
-  );
+    await Repos.NewspaperRepository.updateStatus(
+      event.payload.newspaperId,
+      VO.NewspaperStatusEnum.delivered
+    );
 
-  const newspaper = await new Aggregates.Newspaper(
-    event.payload.newspaperId
-  ).build();
-  await newspaper.send();
-});
+    await Repos.NewspaperRepository.updateSentAt(
+      event.payload.newspaperId,
+      event.payload.sentAt
+    );
 
-emittery.on(NEWSPAPER_SENT_EVENT, async (event) => {
-  await Repos.StatsRepository.incrementSentNewspapers();
+    for (const entity of event.payload.articles) {
+      const article = await new Aggregates.Article(entity.id).build();
+      await article.markAsProcessed();
+    }
 
-  await Repos.NewspaperRepository.updateStatus(
-    event.payload.newspaperId,
-    VO.NewspaperStatusEnum.delivered
-  );
+    await Services.NewspaperFile.clear(event.payload.newspaperId);
+  })
+);
 
-  await Repos.NewspaperRepository.updateSentAt(
-    event.payload.newspaperId,
-    event.payload.sentAt
-  );
+emittery.on(
+  NEWSPAPER_ARCHIVED_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.NewspaperRepository.updateStatus(
+      event.payload.newspaperId,
+      VO.NewspaperStatusEnum.archived
+    );
+  })
+);
 
-  for (const entity of event.payload.articles) {
-    const article = await new Aggregates.Article(entity.id).build();
-    await article.markAsProcessed();
-  }
+emittery.on(
+  NEWSPAPER_FAILED_EVENT,
+  EventHandler.handle(async (event) => {
+    await Repos.NewspaperRepository.updateStatus(
+      event.payload.newspaperId,
+      VO.NewspaperStatusEnum.error
+    );
 
-  await Services.NewspaperFile.clear(event.payload.newspaperId);
-});
+    const newspaper = await new Aggregates.Newspaper(
+      event.payload.newspaperId
+    ).build();
 
-emittery.on(NEWSPAPER_ARCHIVED_EVENT, async (event) => {
-  await Repos.NewspaperRepository.updateStatus(
-    event.payload.newspaperId,
-    VO.NewspaperStatusEnum.archived
-  );
-});
+    for (const item of newspaper.articles) {
+      const article = await new Aggregates.Article(item.id).build();
+      await article.unlock();
+    }
+  })
+);
 
-emittery.on(NEWSPAPER_FAILED_EVENT, async (event) => {
-  await Repos.NewspaperRepository.updateStatus(
-    event.payload.newspaperId,
-    VO.NewspaperStatusEnum.error
-  );
+emittery.on(
+  FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT,
+  EventHandler.handle(async () => {
+    await Services.FeedlyArticlesCrawler.run();
+  })
+);
 
-  const newspaper = await new Aggregates.Newspaper(
-    event.payload.newspaperId
-  ).build();
+emittery.on(
+  ARBITRARY_FILE_SCHEDULED_EVENT,
+  EventHandler.handle(async (event) => {
+    const file = event.payload;
 
-  for (const item of newspaper.articles) {
-    const article = await new Aggregates.Article(item.id).build();
-    await article.unlock();
-  }
-});
+    try {
+      await Services.ArbitraryFileSender.send(file);
 
-emittery.on(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT, async () => {
-  await Services.FeedlyArticlesCrawler.run();
-});
+      infra.logger.info({
+        message: "Mailer success",
+        operation: "mailer_success",
+        metadata: { filename: file.originalFilename },
+      });
 
-emittery.on(ARBITRARY_FILE_SCHEDULED_EVENT, async (event) => {
-  const file = event.payload;
+      await Repos.FilesRepository.add(file);
+    } catch (error) {
+      infra.logger.error({
+        message: "Mailer error while sending file",
+        operation: "mailer_error",
+        metadata: {
+          filename: file.originalFilename,
+          error: infra.logger.formatError(error),
+        },
+      });
+    }
+  })
+);
 
-  try {
-    await Services.ArbitraryFileSender.send(file);
+emittery.on(
+  DELETE_OLD_ARTICLES_EVENT,
+  EventHandler.handle(async (event) => {
+    const oldArticles = await Repos.ArticleRepository.getOld(
+      event.payload.marker
+    );
+
+    if (!oldArticles.length) return;
 
     infra.logger.info({
-      message: "Mailer success",
-      operation: "mailer_success",
-      metadata: { filename: file.originalFilename },
+      message: "Deleting old articles",
+      operation: "old_articles_delete",
+      metadata: { count: oldArticles.length },
     });
 
-    await Repos.FilesRepository.add(file);
-  } catch (error) {
-    infra.logger.error({
-      message: "Mailer error while sending file",
-      operation: "mailer_error",
-      metadata: {
-        filename: file.originalFilename,
-        error: infra.logger.formatError(error),
-      },
-    });
-  }
-});
-
-emittery.on(DELETE_OLD_ARTICLES_EVENT, async (event) => {
-  const oldArticles = await Repos.ArticleRepository.getOld(
-    event.payload.marker
-  );
-
-  if (!oldArticles.length) return;
-
-  infra.logger.info({
-    message: "Deleting old articles",
-    operation: "old_articles_delete",
-    metadata: { count: oldArticles.length },
-  });
-
-  for (const { id } of oldArticles) {
-    const articleId = VO.ArticleId.parse(id);
-    const article = await new Aggregates.Article(articleId).build();
-    await article.delete();
-  }
-});
+    for (const { id } of oldArticles) {
+      const articleId = VO.ArticleId.parse(id);
+      const article = await new Aggregates.Article(articleId).build();
+      await article.delete();
+    }
+  })
+);
