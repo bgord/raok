@@ -1,21 +1,16 @@
+import * as bg from "@bgord/node";
 import _ from "lodash";
 import { z } from "zod";
 
-const hours = _.range(0, 24);
-
-export const HourSchema = z
-  .number()
-  .refine((value) => hours.includes(value), { message: "invalid_hour" });
-
-export type HourType = z.infer<typeof HourSchema>;
-
 export class Hour {
-  static hours: HourType[] = z.array(HourSchema).parse(hours);
+  static hours: bg.Schema.HourType[] = z
+    .array(bg.Schema.Hour)
+    .parse(bg.Schema.hours);
 
-  value: HourType;
+  value: bg.Schema.HourType;
 
   constructor(value: number) {
-    this.value = HourSchema.parse(value);
+    this.value = bg.Schema.Hour.parse(value);
   }
 
   equals(anotherHour: Hour) {
@@ -30,7 +25,7 @@ export class Hour {
     return Hour.hours.map(Hour.format);
   }
 
-  static format(value: HourType): { value: number; label: string } {
+  static format(value: bg.Schema.HourType): { value: number; label: string } {
     return {
       value,
       label: `${String(value).padStart(2, "0")}:00`,
