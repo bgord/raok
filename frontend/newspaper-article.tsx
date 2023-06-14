@@ -1,8 +1,10 @@
-import { h } from "preact";
 import * as bg from "@bgord/frontend";
+import { h } from "preact";
 
 import * as UI from "./ui";
 import * as types from "./types";
+
+import { ArticleReadd } from "./article-readd";
 
 export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
   const notify = bg.useToastTrigger();
@@ -35,6 +37,8 @@ export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
             onSuccess: () => notify({ message: "article.link.copied" }),
           }}
         />
+
+        <ArticleReadd {...props} />
       </div>
     </li>
   );
