@@ -28,6 +28,8 @@ class NonProcessedArticleUrlIsUniqueFactory extends bg.Policy<NonProcessedArticl
     return numbersOfNonProcessedArticlesWithUrl > 0;
   }
 
+  message = "article.error.not_unique";
+
   error = NonProcessedArticleUrlIsNotUniqueError;
 }
 

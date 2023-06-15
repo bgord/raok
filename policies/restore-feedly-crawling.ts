@@ -17,6 +17,8 @@ class RestoreFeedlyCrawlingFactory extends bg.Policy<RestoreFeedlyCrawlingConfig
     return config.settings.isFeedlyCrawlingStopped === false;
   }
 
+  message = "dashboard.crawling.restore.error";
+
   error = RestoreFeedlyCrawlingError;
 }
 

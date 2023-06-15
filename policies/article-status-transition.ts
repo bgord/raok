@@ -27,6 +27,8 @@ class ArticleStatusTransitionFactory extends bg.Policy<ArticleStatusTransitionCo
     return !transitions[config.from].includes(config.to);
   }
 
+  message = "article.status.transition.error";
+
   error = InvalidArticleStatusTransition;
 
   async perform(config: ArticleStatusTransitionConfigType) {

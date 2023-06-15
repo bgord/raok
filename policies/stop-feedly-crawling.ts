@@ -17,6 +17,8 @@ class StopFeedlyCrawlingFactory extends bg.Policy<StopFeedlyCrawlingConfigType> 
     return config.settings.isFeedlyCrawlingStopped === true;
   }
 
+  message = "dashboard.crawling.error";
+
   error = StopFeedlyCrawlingError;
 }
 

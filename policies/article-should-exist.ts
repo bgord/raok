@@ -17,6 +17,8 @@ class ArticleShouldExistFactory extends bg.Policy<ArticleShouldExistConfigType> 
     return config.entity === null;
   }
 
+  message = "article.exists.error";
+
   error = ArticleDoesNotExistError;
 }
 

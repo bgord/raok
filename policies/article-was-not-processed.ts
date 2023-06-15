@@ -17,6 +17,8 @@ export class ArticleWasNotProcessedFactory extends bg.Policy<ArticleWasNotProces
     return config.entity.status !== VO.ArticleStatusEnum.ready;
   }
 
+  message = "article.not-processed.error";
+
   error = ArticleInProcessingError;
 }
 

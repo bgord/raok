@@ -17,6 +17,8 @@ class NotificationHourShouldChangeFactory extends bg.Policy<NotificationHourShou
     return config.current === config.changed;
   }
 
+  message = "articles-to-review-notification.hour.change.error";
+
   error = NotificationHourShouldChangeError;
 }
 

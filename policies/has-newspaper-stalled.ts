@@ -23,6 +23,8 @@ class HasNewspaperStalledFactory extends bg.Policy<NoEmptyNewspaperConfigType> {
     });
   }
 
+  message = "newspaper.stalled.error";
+
   error = NewspaperHasNotStalledError;
 }
 

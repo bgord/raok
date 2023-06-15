@@ -17,6 +17,8 @@ class ShouldCrawlFeedlyFactory extends bg.Policy<ShouldCrawlFeedlyConfigType> {
     return config.settings.isFeedlyCrawlingStopped === true;
   }
 
+  message = "dashboard.crawling.stopped";
+
   error = ShouldCrawlFeedlyError;
 }
 

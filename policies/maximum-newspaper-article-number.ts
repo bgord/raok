@@ -18,6 +18,8 @@ class MaximumNewspaperArticleNumberFactory extends bg.Policy<MaximumNewspaperArt
     return config.articles.length > config.max;
   }
 
+  message = "newspaper.too_many_articles_in_newspaper_error";
+
   error = TooManyArticlesInNewspaperError;
 }
 

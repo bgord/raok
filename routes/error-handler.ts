@@ -58,37 +58,38 @@ export class ErrorHandler {
     if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
       infra.logger.error({
         message: "Article URL is not unique",
-        operation: "non_processed_article_url_is_not_unique_error",
+        operation: Policies.NonProcessedArticleUrlIsUnique.message,
         correlationId: request.requestId,
         metadata: request.body,
       });
 
-      return response
-        .status(400)
-        .send({ message: "article.error.not_unique", _known: true });
+      return response.status(400).send({
+        message: Policies.NonProcessedArticleUrlIsUnique.message,
+        _known: true,
+      });
     }
 
     if (error instanceof Policies.ShouldCrawlFeedlyError) {
       infra.logger.error({
         message: "Feedly crawling stopped in the settings",
-        operation: "should_crawl_feedly_error",
+        operation: Policies.ShouldCrawlFeedly.message,
         correlationId: request.requestId,
       });
 
       return response
         .status(400)
-        .send({ message: "dashboard.crawling.stopped", _known: true });
+        .send({ message: Policies.ShouldCrawlFeedly.message, _known: true });
     }
 
     if (error instanceof Policies.TooManyArticlesInNewspaperError) {
       infra.logger.error({
         message: "Newspaper with too many articles attempted",
-        operation: "too_many_articles_in_newspaper_error",
+        operation: Policies.MaximumNewspaperArticleNumber.message,
         correlationId: request.requestId,
       });
 
       return response.status(400).send({
-        message: "newspaper.too_many_articles_in_newspaper_error",
+        message: Policies.MaximumNewspaperArticleNumber.message,
         _known: true,
       });
     }
@@ -96,12 +97,12 @@ export class ErrorHandler {
     if (error instanceof Policies.NotificationHourShouldChangeError) {
       infra.logger.error({
         message: "article to review notification hour not changed error",
-        operation: "article_to_review_notification_hour_not_changed_error",
+        operation: Policies.NotificationHourShouldChange.message,
         correlationId: request.requestId,
       });
 
       return response.status(400).send({
-        message: "articles-to-review-notification.hour.change.error",
+        message: Policies.NotificationHourShouldChange.message,
         _known: true,
       });
     }

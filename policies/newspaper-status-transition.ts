@@ -32,6 +32,8 @@ class NewspaperStatusTransitionFactory extends bg.Policy<NewspaperStatusTransiti
     return !transitions[config.from].includes(config.to);
   }
 
+  message = "newspaper.status-transition.error";
+
   error = InvalidNewspaperStatusTransition;
 
   async perform(config: NewspaperStatusTransitionConfigType) {

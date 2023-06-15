@@ -16,6 +16,8 @@ class NoEmptyNewspaperFactory extends bg.Policy<NoEmptyNewspaperConfigType> {
     return config.articles.length === 0;
   }
 
+  message = "newspaper.empty.error";
+
   error = EmptyNewspaperError;
 }
 

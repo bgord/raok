@@ -20,6 +20,8 @@ class ArticlesAreSendableFactory extends bg.Policy<ArticlesAreSendableConfigType
       .some((article) => article?.status !== VO.ArticleStatusEnum.ready);
   }
 
+  message = "article.sending.error";
+
   error = ArticlesAreNotSendableError;
 }
 
