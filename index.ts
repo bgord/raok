@@ -44,7 +44,7 @@ const app = express();
 
 bg.addExpressEssentials(app);
 bg.Handlebars.applyTo(app);
-bg.Language.applyTo(app, bg.Schema.Path.parse("infra/translations"));
+bg.I18n.applyTo(app);
 Session.applyTo(app);
 AuthShield.applyTo(app);
 bg.HttpLogger.applyTo(app, infra.logger);
