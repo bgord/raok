@@ -98,7 +98,7 @@ fi
 
 if test -d infra/translations
 then
-  cp -r infra/translations $OUT_DIR
+  cp -r infra/translations $OUT_DIR/infra
   info "Copied infra/translations"
 else
   info "infra/translations/ directory doesn't exist, step skipped"
