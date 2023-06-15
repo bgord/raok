@@ -9,6 +9,7 @@ import * as Aggregates from "./aggregates";
 import * as infra from "./infra";
 
 const EventHandler = new bg.EventHandler(infra.logger);
+const EventLogger = new bg.EventLogger(infra.logger);
 
 export const ARTICLE_ADDED_EVENT = "ARTICLE_ADDED_EVENT";
 export const ArticleAddedEvent = bg.EventDraft.merge(
@@ -228,8 +229,6 @@ export type RestoreFeedlyCrawlingEventType = z.infer<
   typeof RestoreFeedlyCrawlingEvent
 >;
 
-Emittery.isDebugEnabled = true;
-
 export const emittery = new Emittery<{
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
   ARTICLE_DELETED_EVENT: ArticleDeletedEventType;
@@ -250,7 +249,13 @@ export const emittery = new Emittery<{
   DELETE_OLD_ARTICLES_EVENT: DeleteOldArticlesEventType;
   STOP_FEEDLY_CRAWLING_EVENT: StopFeedlyCrawlingEventType;
   RESTORE_FEEDLY_CRAWLING_EVENT: RestoreFeedlyCrawlingEventType;
-}>();
+}>({
+  debug: {
+    enabled: true,
+    name: "infra/logger",
+    logger: EventLogger.handle,
+  },
+});
 
 emittery.on(
   ARTICLE_ADDED_EVENT,
