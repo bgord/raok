@@ -22,6 +22,10 @@ export type InitialDashboardDataType = {
 export function Dashboard(_: RoutableProps) {
   hooks.useLeavingPrompt();
 
+  const scroll = bg.useScroll();
+
+  const displayNonEssentialPanes = scroll.position.value <= 150;
+
   const [selectedArticleIds, actions] = bg.useList<types.ArticleType["id"]>();
 
   return (
@@ -55,8 +59,8 @@ export function Dashboard(_: RoutableProps) {
           data-md-max-width="unset"
         >
           <CreateNewspaper />
-          <SendArbitraryFile />
-          <Stats />
+          {displayNonEssentialPanes && <SendArbitraryFile />}
+          {displayNonEssentialPanes && <Stats />}
         </section>
       </main>
     </contexts.NewspaperCreatorProvider>
