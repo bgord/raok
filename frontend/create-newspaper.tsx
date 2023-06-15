@@ -30,7 +30,7 @@ export function CreateNewspaper() {
       data-pb="0"
       data-shadow="big"
       data-position="sticky"
-      data-top="0"
+      data-top="3"
     >
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.BookStack width="20" height="20" data-mr="6" />
