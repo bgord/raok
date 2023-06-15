@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import * as bg from "@bgord/frontend";
 import type { Schema, TranslationsType } from "@bgord/node";
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
-import * as Icons from "iconoir-react";
 
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
@@ -20,6 +19,7 @@ import {
 } from "./archive-newspapers";
 import { Settings, InitialSettingsDataType } from "./settings";
 import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
+import { ScrollButton } from "./scroll-button";
 
 export type InitialDataType = InitialDashboardDataType &
   InitialArchiveArticlesDataType &
@@ -71,35 +71,5 @@ export function App(props: InitialDataType) {
         </bg.ToastsContextProvider>
       </bg.TranslationsContextProvider>
     </QueryClientProvider>
-  );
-}
-
-function ScrollButton() {
-  const t = bg.useTranslations();
-  const scroll = bg.useScroll();
-
-  return (
-    <bg.Anima
-      visible={scroll.visible && scroll.position.hasChanged}
-      effect="opacity"
-    >
-      <button
-        type="button"
-        className="c-button"
-        data-variant="primary"
-        data-position="fixed"
-        data-bottom="0"
-        data-left="0"
-        data-display="flex"
-        data-main="center"
-        data-cross="center"
-        data-wrap="nowrap"
-        data-m="12"
-        onClick={scroll.actions.goToTop}
-        title={t("app.scroll_to_top")}
-      >
-        <Icons.ArrowUp height="36" width="36" />
-      </button>
-    </bg.Anima>
   );
 }
