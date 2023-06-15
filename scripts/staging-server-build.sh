@@ -96,12 +96,12 @@ fi
 
 # ==========================================================
 
-if test -d translations
+if test -d infra/translations
 then
-  cp -r translations $OUT_DIR
-  info "Copied translations"
+  cp -r infra/translations $OUT_DIR
+  info "Copied infra/translations"
 else
-  info "translations/ directory doesn't exist, step skipped"
+  info "infra/translations/ directory doesn't exist, step skipped"
 fi
 
 # ==========================================================
