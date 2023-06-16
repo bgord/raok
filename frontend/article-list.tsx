@@ -38,7 +38,7 @@ export function ArticleList() {
   );
 
   const refreshArticles = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(10).toMs(),
+    limitMs: bg.Time.Seconds(2).toMs(),
     action: () => {
       _articles.refetch();
       notify({ message: "articles.refreshed" });
