@@ -21,7 +21,7 @@ export async function Dashboard(
   const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
 
   const state = {
-    ...Repos.BuildRepository.getAll(),
+    ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
     translations,
     archiveArticles: [],

@@ -18,7 +18,7 @@ export async function NewspapersArchive(
   );
 
   const state = {
-    ...Repos.BuildRepository.getAll(),
+    ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
     translations,
     archiveArticles: [],

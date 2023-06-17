@@ -18,7 +18,7 @@ export async function ArticlesArchive(
   );
 
   const state = {
-    ...Repos.BuildRepository.getAll(),
+    ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
     translations,
     archiveArticles: await Repos.ArticleRepository.getAll(
