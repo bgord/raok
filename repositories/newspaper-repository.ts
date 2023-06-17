@@ -125,7 +125,7 @@ export class NewspaperRepository {
   ) {
     return {
       ...newspaper,
-      sentAt: bg.ComplexDate.falsy(newspaper.sentAt),
+      sentAt: bg.RelativeDate.to.now.falsy(newspaper.sentAt),
       title: `Newspaper ${format(newspaper.scheduledAt, "yyyy-MM-dd-hh-mm")}`,
     };
   }

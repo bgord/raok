@@ -17,7 +17,7 @@ export class FilesRepository {
 
     return files.map((file) => ({
       ...file,
-      sentAt: bg.ComplexDate.falsy(file.sentAt),
+      sentAt: bg.RelativeDate.to.now.falsy(file.sentAt),
     }));
   }
 
