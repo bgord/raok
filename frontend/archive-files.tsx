@@ -19,7 +19,13 @@ export function ArchiveFiles(_props: RoutableProps) {
   hooks.useLeavingPrompt();
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
+
   const search = bg.useClientSearch();
+
+  const fileUrlCopied = bg.useRateLimiter({
+    limitMs: bg.Time.Seconds(2).toMs(),
+    action: () => notify({ message: "app.file.url.copied" }),
+  });
 
   const sentAtFilter = bg.useUrlFilter({
     enum: TimestampFiltersEnum,
@@ -164,7 +170,7 @@ export function ArchiveFiles(_props: RoutableProps) {
             <UI.CopyButton
               options={{
                 text: getFileDownloadUrl(file.id),
-                onSuccess: () => notify({ message: "app.file.url.copied" }),
+                onSuccess: fileUrlCopied,
               }}
             />
 

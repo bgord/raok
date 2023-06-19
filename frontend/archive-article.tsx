@@ -9,6 +9,11 @@ import { ArticleReadd } from "./article-readd";
 export function ArchiveArticle(props: types.ArchiveArticleType) {
   const notify = bg.useToastTrigger();
 
+  const articleUrlCopied = bg.useRateLimiter({
+    limitMs: bg.Time.Seconds(2).toMs(),
+    action: () => notify({ message: "article.url.copied" }),
+  });
+
   return (
     <li
       data-display="flex"
@@ -45,10 +50,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
 
       <div data-display="flex" data-direction="column" data-self="start">
         <UI.CopyButton
-          options={{
-            text: props.url,
-            onSuccess: () => notify({ message: "article.url.copied" }),
-          }}
+          options={{ text: props.url, onSuccess: articleUrlCopied }}
         />
         {props.status !== types.ArticleStatusEnum.ready && (
           <ArticleReadd {...props} />

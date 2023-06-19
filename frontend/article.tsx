@@ -16,6 +16,11 @@ export function Article(props: ArticlePropsType) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger<types.ToastType>();
 
+  const articleUrlCopied = bg.useRateLimiter({
+    limitMs: bg.Time.Seconds(2).toMs(),
+    action: () => notify({ message: "article.url.copied" }),
+  });
+
   const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries("articles");
@@ -88,10 +93,7 @@ export function Article(props: ArticlePropsType) {
         <div data-display="flex" data-wrap="nowrap">
           <UI.CopyButton
             data-mr="6"
-            options={{
-              text: props.url,
-              onSuccess: () => notify({ message: "article.url.copied" }),
-            }}
+            options={{ text: props.url, onSuccess: articleUrlCopied }}
           />
 
           <button
