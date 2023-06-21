@@ -149,7 +149,6 @@ export function ArchiveFiles(_props: RoutableProps) {
             data-cross="center"
             data-wrap="nowrap"
             data-md-wrap="wrap"
-            data-gap="12"
             data-max-width="100%"
             data-fs="14"
           >
@@ -157,38 +156,48 @@ export function ArchiveFiles(_props: RoutableProps) {
               data-transform="truncate"
               title={file.name}
               data-color="gray-600"
+              data-mr="12"
             >
               {file.name}
             </strong>
 
-            <UI.Info
-              data-ml="auto"
-              title={bg.DateFormatter.datetime(file.sentAt?.raw)}
-            >
-              {file.sentAt?.relative}
-            </UI.Info>
-
-            <span data-transform="nowrap">{prettyBytes(file.size)}</span>
-
-            <UI.CopyButton
-              options={{
-                text: getFileDownloadUrl(file.id),
-                onSuccess: fileUrlCopied,
-              }}
-            />
-
-            <bg.OutboundLink
-              href={getFileDownloadUrl(file.id)}
-              class="c-link"
-              data-variant="bare"
+            <div
               data-display="flex"
-              data-color="black"
-              data-transform="uppercase"
-              data-fw="700"
-              title={t("app.file.download")}
+              data-gap="12"
+              data-cross="center"
+              data-wrap="nowrap"
+              data-ml="auto"
             >
-              <Icons.Download width="24" height="24" />
-            </bg.OutboundLink>
+              <UI.Info
+                data-ml="auto"
+                title={bg.DateFormatter.datetime(file.sentAt?.raw)}
+              >
+                {file.sentAt?.relative}
+              </UI.Info>
+
+              <span data-transform="nowrap">{prettyBytes(file.size)}</span>
+
+              <UI.CopyButton
+                options={{
+                  text: getFileDownloadUrl(file.id),
+                  onSuccess: fileUrlCopied,
+                }}
+              />
+
+              <bg.OutboundLink
+                href={getFileDownloadUrl(file.id)}
+                class="c-link"
+                data-variant="bare"
+                data-display="flex"
+                data-color="black"
+                data-transform="uppercase"
+                data-fw="700"
+                data-mb="3"
+                title={t("app.file.download")}
+              >
+                <Icons.Download width="24" height="24" />
+              </bg.OutboundLink>
+            </div>
           </li>
         ))}
       </ul>
