@@ -5,6 +5,8 @@ import * as Routes from "./routes";
 import * as VO from "./value-objects";
 import * as infra from "./infra";
 
+import { Scheduler } from "./jobs";
+
 const app = express();
 
 bg.addExpressEssentials(app);
@@ -230,6 +232,6 @@ app.use(Routes.ErrorHandler.handle);
       message: "Shutting down job scheduler",
       operation: "scheduler_shutdown",
     });
-    infra.Scheduler.stop();
+    Scheduler.stop();
   });
 })();

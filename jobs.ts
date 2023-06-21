@@ -1,12 +1,11 @@
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
-import * as Services from "../services";
-import * as Events from "../events";
-import * as VO from "../value-objects";
-import * as Repos from "../repositories";
-import * as Aggregates from "../aggregates";
-
-import { logger } from "./logger";
+import * as Services from "./services";
+import * as Events from "./events";
+import * as VO from "./value-objects";
+import * as Repos from "./repositories";
+import * as Aggregates from "./aggregates";
+import * as infra from "./infra";
 
 export const Scheduler = new ToadScheduler();
 
@@ -26,16 +25,15 @@ const FeedlyArticlesCrawlerTask = new AsyncTask(
 const ArtclesToReviewNotifierTask = new AsyncTask(
   "artcles to review notifier",
   async () => {
-    const settings = await new Aggregates.Settings().build();
-
-    const notification = await new Services.ArticlesToReviewNotifier(
-      settings
-    ).build();
-
     try {
+      const settings = await new Aggregates.Settings().build();
+
+      const notification = await new Services.ArticlesToReviewNotifier(
+        settings
+      ).build();
       await notification.send();
     } catch (error) {
-      logger.error({
+      infra.logger.error({
         message: "ArtclesToReviewNotifierTask error",
         operation: "artcles_to_review_notifier_task_error",
         metadata: { error: JSON.stringify(error) },
