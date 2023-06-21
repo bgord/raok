@@ -161,9 +161,12 @@ export function ArchiveFiles(_props: RoutableProps) {
               {file.name}
             </strong>
 
-            <span data-ml="auto" data-color="gray-400">
+            <UI.Info
+              data-ml="auto"
+              title={bg.DateFormatter.datetime(file.sentAt?.raw)}
+            >
               {file.sentAt?.relative}
-            </span>
+            </UI.Info>
 
             <span data-transform="nowrap">{prettyBytes(file.size)}</span>
 
