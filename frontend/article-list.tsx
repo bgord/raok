@@ -12,11 +12,11 @@ import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";
 import { ArticleActions } from "./article-actions";
 import { Article } from "./article";
+import { ArticleListRefresh } from "./article-list-refresh";
 
 export function ArticleList() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
-  const notify = bg.useToastTrigger();
 
   const newspaperCreator = contexts.useNewspaperCreator();
 
@@ -35,14 +35,6 @@ export function ArticleList() {
       onSuccess: () => stats.refetch(),
     }
   );
-
-  const refreshArticles = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(2).toMs(),
-    action: () => {
-      _articles.refetch();
-      notify({ message: "articles.refreshed" });
-    },
-  });
 
   const articles = bg.Pagination.extract(_articles);
 
@@ -70,19 +62,7 @@ export function ArticleList() {
             {numberOfNonProcessedArticles}
           </span>
 
-          <button
-            onClick={refreshArticles}
-            type="button"
-            title={t("articles.refresh")}
-            class="c-button"
-            data-variant="bare"
-            data-display="flex"
-            data-main="center"
-            data-cross="center"
-            data-ml="12"
-          >
-            <Icons.Refresh />
-          </button>
+          <ArticleListRefresh />
 
           <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
