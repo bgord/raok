@@ -2,6 +2,8 @@ import * as bg from "@bgord/frontend";
 import { h } from "preact";
 
 import * as Icons from "iconoir-react";
+
+import { ArticlesSearchForm } from "./articles-search-form";
 import { DeleteOldArticles } from "./delete-old-articles";
 import { DeleteAllArticles } from "./delete-all-articles";
 
@@ -10,7 +12,7 @@ export function ArticleActions() {
   const toggle = bg.useToggle();
 
   return (
-    <div data-display="flex" data-direction="column">
+    <div data-display="flex" data-direction="column" data-mb="12">
       <button
         title={
           toggle.on ? t("article.actions.hide") : t("article.actions.show")
@@ -44,6 +46,8 @@ export function ArticleActions() {
           <DeleteAllArticles />
         </div>
       )}
+
+      {toggle.on && <ArticlesSearchForm />}
     </div>
   );
 }

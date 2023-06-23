@@ -8,7 +8,6 @@ import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
 
-import { ArticlesSearchForm } from "./articles-search-form";
 import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";
 import { ArticleActions } from "./article-actions";
@@ -92,8 +91,6 @@ export function ArticleList() {
       </div>
 
       <ArticleActions />
-
-      <ArticlesSearchForm />
 
       {searchModeEnabled && (
         <UI.Info data-md-px="12" data-mb="24" data-ml="6">
