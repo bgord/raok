@@ -12,7 +12,7 @@ export function ArticleActions() {
   const toggle = bg.useToggle();
 
   return (
-    <div data-display="flex" data-direction="column" data-mb="12">
+    <div data-display="flex" data-direction="column">
       <button
         title={
           toggle.on ? t("article.actions.hide") : t("article.actions.show")

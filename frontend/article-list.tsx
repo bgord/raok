@@ -46,7 +46,7 @@ export function ArticleList() {
 
   return (
     <section>
-      <div data-bg="gray-100" data-p="12" data-pt="6" data-mb="12" data-shadow>
+      <div data-bg="gray-100" data-p="12" data-pt="6" data-mb="6" data-shadow>
         <UI.Header data-display="flex" data-cross="center" data-gap="6">
           <Icons.Notes height="20px" width="20px" />
 
@@ -71,6 +71,15 @@ export function ArticleList() {
       </div>
 
       <ArticleActions />
+
+      {!searchModeEnabled && (
+        <UI.Info data-md-px="12" data-mb="24" data-ml="6">
+          {t("articles.list.results", {
+            current: articles.length,
+            max: Number(numberOfNonProcessedArticles),
+          })}
+        </UI.Info>
+      )}
 
       {searchModeEnabled && (
         <UI.Info data-md-px="12" data-mb="24" data-ml="6">
