@@ -34,15 +34,15 @@ export function Dashboard(_: RoutableProps) {
         data-display="flex"
         data-main="center"
         data-mx="auto"
-        data-mt="24"
+        data-mt="12"
         data-mb="48"
-        data-md-mt="12"
         data-md-mb="72"
         data-max-width="1296"
       >
         <section
           data-max-width="768"
           data-width="100%"
+          data-mt="6"
           data-px="24"
           data-md-px="0"
         >
@@ -52,6 +52,7 @@ export function Dashboard(_: RoutableProps) {
 
         <section
           data-grow="1"
+          data-mt="6"
           data-px="24"
           data-md-px="0"
           data-width="100%"
