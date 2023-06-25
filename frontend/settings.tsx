@@ -189,7 +189,7 @@ export function Settings(_props: RoutableProps) {
             {hours
               .map((hour) => ({
                 ...hour,
-                local: formatUtcHourToLocal(hour.value).label,
+                local: bg.HourFormatter.convertUtcToLocal(hour.value).label,
               }))
               .sort((a, b) => (a.local > b.local ? 1 : -1))
               .map((option) => (
@@ -216,8 +216,9 @@ export function Settings(_props: RoutableProps) {
 
         <UI.Info>
           {t("articles-to-review-notification.info", {
-            local: formatUtcHourToLocal(articlesToReviewNotificationHour.value)
-              .label,
+            local: bg.HourFormatter.convertUtcToLocal(
+              articlesToReviewNotificationHour.value
+            ).label,
             utc_zero: articlesToReviewNotificationHour.label,
           })}
         </UI.Info>
@@ -274,17 +275,4 @@ export function Settings(_props: RoutableProps) {
       </section>
     </main>
   );
-}
-
-function formatUtcHourToLocal(hour: types.HourType) {
-  const minutes = bg.Time.Hours(hour).toMinutes();
-  const timeZoneOffsetInMins = new Date().getTimezoneOffset();
-
-  const localMinutes = minutes - timeZoneOffsetInMins;
-
-  const localHour = (localMinutes / 60) % 24;
-
-  const formattedLocalHour = `${String(localHour).padStart(2, "0")}:00`;
-
-  return { value: localHour, label: formattedLocalHour };
 }
