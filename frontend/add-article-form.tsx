@@ -37,6 +37,7 @@ export function AddArticleForm() {
       }}
     >
       <input
+        autofocus
         type="url"
         inputMode="url"
         required
