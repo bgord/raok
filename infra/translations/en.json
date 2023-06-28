@@ -60,6 +60,7 @@
   "article.delete": "delete article",
   "article.deleted": "article deleted",
   "article.error.not_unique": "article is not unique",
+  "article.homepage": "article homepage",
   "article.search.placeholder": "Search for an article...",
   "article.source": "source",
   "article.placeholder": "https://blog.com/post",

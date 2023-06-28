@@ -7,6 +7,8 @@ import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
 
+import { ArticleHomepage } from "./article-homepage";
+
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]> &
   Omit<h.JSX.IntrinsicElements["li"], "title">;
@@ -89,11 +91,12 @@ export function Article(props: ArticlePropsType) {
           {props.source}
         </UI.Badge>
 
-        <div data-display="flex" data-wrap="nowrap">
+        <div data-display="flex" data-wrap="nowrap" data-gap="3">
           <UI.CopyButton
-            data-mr="6"
             options={{ text: props.url, onSuccess: articleUrlCopied }}
           />
+
+          <ArticleHomepage {...props} />
 
           <button
             type="submit"
