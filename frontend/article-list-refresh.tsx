@@ -18,7 +18,7 @@ export function ArticleListRefresh() {
 
   return (
     <button
-      onClick={refreshArticles}
+      onClick={() => refreshArticles()}
       type="button"
       title={t("articles.refresh")}
       class="c-button"

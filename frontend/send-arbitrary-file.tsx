@@ -82,10 +82,7 @@ export function SendArbitraryFile() {
               type="button"
               class="c-button"
               data-variant="secondary"
-              onClick={() => {
-                file.actions.clearFile();
-                fileUpload.reset();
-              }}
+              onClick={bg.exec([file.actions.clearFile, fileUpload.reset])}
             >
               {t("app.clear")}
             </button>

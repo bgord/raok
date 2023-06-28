@@ -131,11 +131,11 @@ export function ArchiveArticles(_props: RoutableProps) {
           type="button"
           class="c-button"
           data-variant="bare"
-          onClick={() => {
-            createdAtFilter.clear();
-            statusFilter.clear();
-            sourceFilter.clear();
-          }}
+          onClick={bg.exec([
+            createdAtFilter.clear,
+            statusFilter.clear,
+            sourceFilter.clear,
+          ])}
         >
           {t("app.reset")}
         </button>
