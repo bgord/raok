@@ -138,7 +138,7 @@ function useArticles() {
     data: queryClient.getQueryData("articles"),
   } as UseInfiniteQueryResult<bg.Paged<types.ArticleType>>;
 
-  return bg.Pagination.extract(_articles);
+  return bg.Pagination.infinite(_articles);
 }
 
 function useCreateNewspaper(callback: VoidFunction) {

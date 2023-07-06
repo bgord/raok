@@ -1,5 +1,4 @@
 import * as bg from "@bgord/frontend";
-import type { PageType } from "@bgord/node";
 
 import * as types from "./types";
 
@@ -60,7 +59,7 @@ export async function getStats(): Promise<types.StatsType> {
 }
 
 export async function getPagedArticles(
-  page: PageType
+  page: bg.PageType
 ): Promise<bg.Paged<types.ArticleType>> {
   return bg
     .API(`/articles?page=${page}`, { method: "GET" })

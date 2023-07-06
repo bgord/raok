@@ -31,12 +31,12 @@ export function ArticleList() {
     "articles",
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
     {
-      getNextPageParam: (last) => last.meta.nextPage,
+      getNextPageParam: (page) => page.meta.nextPage,
       onSuccess: () => stats.refetch(),
     }
   );
 
-  const articles = bg.Pagination.extract(_articles);
+  const articles = bg.Pagination.infinite(_articles);
 
   const articlesSearch =
     queryClient.getQueryData<types.ArticleType[]>("articles-search") ?? [];
