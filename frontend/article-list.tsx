@@ -33,6 +33,7 @@ export function ArticleList() {
     {
       getNextPageParam: (page) => page.meta.nextPage,
       onSuccess: () => stats.refetch(),
+      refetchOnMount: true,
     }
   );
 
