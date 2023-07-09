@@ -55,12 +55,13 @@ export function ArticleList() {
 
           <span
             data-ml="6"
-            data-bg="gray-500"
+            data-bg="gray-600"
             data-color="white"
             data-fs="12"
             data-ls="0.5"
             data-px="6"
             data-br="4"
+            style={bg.Rhythm.base().times(2).minWidth}
           >
             {numberOfNonProcessedArticles}
           </span>
