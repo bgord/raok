@@ -55,8 +55,10 @@ export function ArticleList() {
 
           <span
             data-ml="6"
-            data-bg="gray-300"
+            data-bg="gray-500"
+            data-color="white"
             data-fs="12"
+            data-ls="0.5"
             data-px="6"
             data-br="4"
           >
