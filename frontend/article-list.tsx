@@ -53,18 +53,16 @@ export function ArticleList() {
 
           <span data-mr="6">{t("app.articles")}</span>
 
-          <span
+          <div
+            class="c-badge"
             data-ml="6"
             data-bg="gray-600"
             data-color="white"
-            data-fs="12"
-            data-ls="0.5"
-            data-px="6"
-            data-br="4"
+            data-fw="500"
             style={bg.Rhythm.base().times(2).minWidth}
           >
             {numberOfNonProcessedArticles}
-          </span>
+          </div>
 
           <ArticleListRefresh />
 
