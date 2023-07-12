@@ -45,13 +45,10 @@ export function SendArbitraryFile() {
         <input
           id="file"
           name="file"
+          class="c-file-explorer"
           accept={FileMimeTypes.form()}
           type="file"
           onInput={file.actions.selectFile}
-          data-overflow="hidden"
-          data-position="absolute"
-          data-z="-1"
-          style={{ width: "0.1px", height: "0.1px", opacity: "0" }}
         />
 
         <label htmlFor="file" data-cursor="pointer">
