@@ -56,7 +56,7 @@ export function AddArticleForm() {
         data-variant="secondary"
         type="submit"
         disabled={addArticleRequest.isLoading}
-        style={{ minWidth: "60px" }}
+        {...bg.Rhythm().times(5).style.minWidth}
       >
         {addArticleRequest.isLoading
           ? t("article.adding_article")

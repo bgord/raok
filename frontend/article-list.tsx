@@ -59,7 +59,7 @@ export function ArticleList() {
             data-bg="gray-600"
             data-color="white"
             data-fw="500"
-            style={bg.Rhythm.base().times(2).minWidth}
+            {...bg.Rhythm().times(2).style.minWidth}
           >
             {numberOfNonProcessedArticles}
           </div>
