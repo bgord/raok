@@ -164,7 +164,7 @@ app.get(
 
 app.post(
   "/schedule-feedly-articles-crawl",
-  bg.RateLimitShield.build({ limitMs: bg.Time.Seconds(30).toMs() }),
+  bg.RateLimitShield.build({ limitMs: bg.Time.Seconds(30).ms }),
   infra.AuthShield.verify,
   bg.Route(Routes.ScheduleFeedlyArticlesCrawl)
 );
@@ -188,8 +188,8 @@ app.get(
 
 app.get(
   "/healthcheck",
-  bg.RateLimitShield.build({ limitMs: bg.Time.Minutes(1).toMs() }),
-  bg.Timeout.build({ timeoutMs: bg.Time.Seconds(5).toMs() }),
+  bg.RateLimitShield.build({ limitMs: bg.Time.Minutes(1).ms }),
+  bg.Timeout.build({ timeoutMs: bg.Time.Seconds(5).ms }),
   infra.BasicAuthShield.verify,
   bg.Healthcheck.build([
     ...infra.prerequisites,

@@ -26,7 +26,10 @@ export async function NewspapersArchive(
       Repos.ArchiveNewspaperFilter.parse(request.query)
     ),
     archiveFiles: [],
-    articles: bg.Pagination.empty,
+    articles: {
+      result: [],
+      meta: { ...bg.Pagination.empty.meta, previousPage: undefined },
+    },
     newspapers: [],
     settings: await Repos.SettingsRepository.getAll(),
     stats: await Repos.StatsRepository.getAll(),

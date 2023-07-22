@@ -15,10 +15,10 @@ export const TimeStampFilter = z
   .transform((value) => {
     const now = Date.now();
 
-    const DAY = bg.Time.Days(1).toMs();
-    const THREE_DAYS = bg.Time.Days(3).toMs();
-    const WEEK = bg.Time.Days(7).toMs();
-    const THIRTY_DAYS = bg.Time.Days(30).toMs();
+    const DAY = bg.Time.Days(1).ms;
+    const THREE_DAYS = bg.Time.Days(3).ms;
+    const WEEK = bg.Time.Days(7).ms;
+    const THIRTY_DAYS = bg.Time.Days(30).ms;
 
     if (value === TimestampFiltersEnum.today) {
       return { gte: now - DAY };

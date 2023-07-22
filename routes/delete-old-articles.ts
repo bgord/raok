@@ -19,8 +19,7 @@ export async function DeleteOldArticles(
       version: 1,
       payload: {
         marker:
-          now -
-          bg.Time.Days(Aggregates.Article.ARTICLE_OLD_MARKER_IN_DAYS).toMs(),
+          now - bg.Time.Days(Aggregates.Article.ARTICLE_OLD_MARKER_IN_DAYS).ms,
       },
     })
   );

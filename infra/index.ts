@@ -12,13 +12,13 @@ export const prerequisites = [
   new bg.Prerequisite({
     label: "pandoc",
     binary: "pandoc",
-    strategy: bg.PrerequisiteStrategyEnum.exists,
+    strategy: bg.PrerequisiteStrategyEnum.binary,
   }),
 
   new bg.Prerequisite({
     label: "calibre",
     binary: "ebook-convert",
-    strategy: bg.PrerequisiteStrategyEnum.exists,
+    strategy: bg.PrerequisiteStrategyEnum.binary,
   }),
 
   new bg.Prerequisite({
@@ -30,7 +30,7 @@ export const prerequisites = [
 
 export const Session = new bg.Session({
   secret: Env.COOKIE_SECRET,
-  store: bg.SessionFileStore.build({ ttl: bg.Time.Days(3).toSeconds() }),
+  store: bg.SessionFileStore.build({ ttl: bg.Time.Days(3).seconds }),
 });
 
 export const AuthShield = new bg.EnvUserAuthShield({
