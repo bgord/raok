@@ -86,12 +86,12 @@ info "Copied staging-server-start script"
 
 # ==========================================================
 
-if test -d views
+if test -d frontend/views
 then
-  cp -r views $OUT_DIR
+  cp -r frontend/views $OUT_DIR/frontend/views
   info "Copied Handlebars views"
 else
-  info "views/ directory doesn't exist, step skipped"
+  info "frontend/views directory doesn't exist, step skipped"
 fi
 
 # ==========================================================

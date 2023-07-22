@@ -5,6 +5,7 @@ export * from "./logger";
 export * from "./mailer";
 
 import * as bg from "@bgord/node";
+import { db } from "./db";
 import { Env } from "./env";
 import { Mailer } from "./mailer";
 
@@ -25,6 +26,39 @@ export const prerequisites = [
     label: "nodemailer",
     strategy: bg.PrerequisiteStrategyEnum.mailer,
     mailer: Mailer,
+  }),
+
+  new bg.Prerequisite({
+    label: "prisma-sqlite",
+    strategy: bg.PrerequisiteStrategyEnum.prisma,
+    client: db,
+  }),
+
+  new bg.Prerequisite({
+    label: "static directory",
+    strategy: bg.PrerequisiteStrategyEnum.path,
+    path: "static",
+    access: { write: true },
+  }),
+
+  new bg.Prerequisite({
+    label: "files directory",
+    strategy: bg.PrerequisiteStrategyEnum.path,
+    path: "files",
+    access: { write: true },
+  }),
+
+  new bg.Prerequisite({
+    label: "newspapers directory",
+    strategy: bg.PrerequisiteStrategyEnum.path,
+    path: "newspapers",
+    access: { write: true },
+  }),
+
+  new bg.Prerequisite({
+    label: "node",
+    strategy: bg.PrerequisiteStrategyEnum.node,
+    version: bg.PackageVersion.fromStringWithV("v14.0.0"),
   }),
 ];
 
