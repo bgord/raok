@@ -19,7 +19,7 @@ export function Article(props: ArticlePropsType) {
   const notify = bg.useToastTrigger<types.ToastType>();
 
   const articleUrlCopied = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(2).toMs(),
+    limitMs: bg.Time.Seconds(2).ms,
     action: () => notify({ message: "article.url.copied" }),
   });
 

@@ -137,7 +137,7 @@ function useAutoUpdateNewspaper(
 ) {
   const queryClient = useQueryClient();
 
-  const cutoff = bg.Time.Minutes(3).toMs();
+  const cutoff = bg.Time.Minutes(3).ms;
   const now = Date.now();
   const hasCutoffPassed = now - props.scheduledAt > cutoff;
 
@@ -148,7 +148,7 @@ function useAutoUpdateNewspaper(
       !["delivered", "archived", "error"].includes(props.status) &&
       !hasCutoffPassed,
 
-    refetchInterval: bg.Time.Seconds(1).toMs(),
+    refetchInterval: bg.Time.Seconds(1).ms,
 
     onSuccess(updated) {
       queryClient.setQueryData<types.NewspaperType[]>(

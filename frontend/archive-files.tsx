@@ -23,7 +23,7 @@ export function ArchiveFiles(_props: RoutableProps) {
   const search = bg.useClientSearch();
 
   const fileUrlCopied = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(2).toMs(),
+    limitMs: bg.Time.Seconds(2).ms,
     action: () => notify({ message: "app.file.url.copied" }),
   });
 

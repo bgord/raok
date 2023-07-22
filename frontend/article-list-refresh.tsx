@@ -9,7 +9,7 @@ export function ArticleListRefresh() {
   const notify = bg.useToastTrigger();
 
   const refreshArticles = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(2).toMs(),
+    limitMs: bg.Time.Seconds(2).ms,
     action: () => {
       queryClient.refetchQueries("articles");
       notify({ message: "articles.refreshed" });

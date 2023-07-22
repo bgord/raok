@@ -10,7 +10,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
   const notify = bg.useToastTrigger();
 
   const articleUrlCopied = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(2).toMs(),
+    limitMs: bg.Time.Seconds(2).ms,
     action: () => notify({ message: "article.url.copied" }),
   });
 

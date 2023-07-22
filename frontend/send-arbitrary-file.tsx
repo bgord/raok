@@ -17,7 +17,7 @@ export function SendArbitraryFile() {
     onSuccess: () => notify({ message: "app.file.sent" }),
   });
 
-  const file = bg.useFile({ maxSize: MAX_UPLOADED_FILE_SIZE_BYTES });
+  const file = bg.useFile("file", { maxSize: MAX_UPLOADED_FILE_SIZE_BYTES });
 
   return (
     <form
@@ -43,18 +43,15 @@ export function SendArbitraryFile() {
 
       <div data-display="flex" data-gap="12">
         <input
-          id="file"
-          name="file"
           class="c-file-explorer"
-          accept={FileMimeTypes.form()}
           type="file"
+          accept={FileMimeTypes.form()}
           onInput={file.actions.selectFile}
+          {...file.input.props}
         />
 
-        <label htmlFor="file" data-cursor="pointer">
+        <label data-cursor="pointer" {...file.label.props}>
           <button
-            id="file-explorer"
-            name="file-explorer"
             disabled={file.state === bg.UseFileState.selected}
             type="button"
             class="c-button"

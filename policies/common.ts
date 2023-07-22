@@ -5,7 +5,7 @@ export function hasNewspaperStalled(config: {
   scheduledAt: number;
 }) {
   const now = Date.now();
-  const cutoff = bg.Time.Minutes(10).toMs();
+  const cutoff = bg.Time.Minutes(10).ms;
 
   const hasCutoffPassed = now - config.scheduledAt > cutoff;
 
