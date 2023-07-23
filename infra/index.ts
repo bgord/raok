@@ -60,6 +60,12 @@ export const prerequisites = [
     strategy: bg.PrerequisiteStrategyEnum.node,
     version: bg.PackageVersion.fromStringWithV("v14.0.0"),
   }),
+
+  new bg.Prerequisite({
+    label: "RAM",
+    strategy: bg.PrerequisiteStrategyEnum.RAM,
+    minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 100 }),
+  }),
 ];
 
 export const Session = new bg.Session({
