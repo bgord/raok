@@ -64,7 +64,13 @@ export const prerequisites = [
   new bg.Prerequisite({
     label: "RAM",
     strategy: bg.PrerequisiteStrategyEnum.RAM,
-    minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 100 }),
+    minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 128 }),
+  }),
+
+  new bg.Prerequisite({
+    label: "disk space",
+    strategy: bg.PrerequisiteStrategyEnum.space,
+    minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 512 }),
   }),
 ];
 
