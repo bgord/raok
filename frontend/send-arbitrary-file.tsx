@@ -28,7 +28,7 @@ export function SendArbitraryFile() {
         event.preventDefault();
 
         if (fileUpload.isLoading) return;
-        if (file.state !== bg.UseFileState.selected) return;
+        if (!file.isSelected) return;
 
         const form = new FormData();
         form.append("file", file.data);
@@ -52,7 +52,7 @@ export function SendArbitraryFile() {
 
         <label data-cursor="pointer" {...file.label.props}>
           <button
-            disabled={file.state === bg.UseFileState.selected}
+            disabled={file.isSelected}
             type="button"
             class="c-button"
             data-variant="secondary"
@@ -63,7 +63,7 @@ export function SendArbitraryFile() {
         </label>
 
         <div data-display="flex" data-wrap="nowrap" data-gap="12">
-          {file.state === bg.UseFileState.selected && !fileUpload.isSuccess && (
+          {file.isSelected && !fileUpload.isSuccess && (
             <button type="submit" class="c-button" data-variant="primary">
               {t("app.file.upload")}
             </button>
@@ -84,26 +84,25 @@ export function SendArbitraryFile() {
         </div>
       </div>
 
-      {file.state === bg.UseFileState.error && (
+      {file.isError && (
         <UI.Info data-mt="24" data-color="red-400">
           {t("app.file.errors.too_big")}
         </UI.Info>
       )}
 
-      {(fileUpload.isIdle || fileUpload.isSuccess) &&
-        file.state === bg.UseFileState.idle && (
-          <UI.Info data-gap="6" data-mt="24">
-            <Icons.InfoEmpty height="20" width="20" />
+      {(fileUpload.isIdle || fileUpload.isSuccess) && file.isIdle && (
+        <UI.Info data-gap="6" data-mt="24">
+          <Icons.InfoEmpty height="20" width="20" />
 
-            <span data-mt="3">
-              {t("app.file.size.max", {
-                value: prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES),
-              })}
-            </span>
-          </UI.Info>
-        )}
+          <span data-mt="3">
+            {t("app.file.size.max", {
+              value: prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES),
+            })}
+          </span>
+        </UI.Info>
+      )}
 
-      {fileUpload.isIdle && file.state === bg.UseFileState.selected && (
+      {fileUpload.isIdle && file.isSelected && (
         <Fragment>
           <div
             data-mt="24"
@@ -124,7 +123,7 @@ export function SendArbitraryFile() {
         </Fragment>
       )}
 
-      {fileUpload.isSuccess && file.state === bg.UseFileState.selected && (
+      {fileUpload.isSuccess && file.isSelected && (
         <div data-mt="24" data-fs="14" data-color="gray-600">
           {t("app.file.sent")}
         </div>
