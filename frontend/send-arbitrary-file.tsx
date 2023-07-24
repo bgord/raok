@@ -69,9 +69,7 @@ export function SendArbitraryFile() {
             </button>
           )}
 
-          {[bg.UseFileState.selected, bg.UseFileState.error].includes(
-            file.state
-          ) && (
+          {file.matches([bg.UseFileState.selected, bg.UseFileState.error]) && (
             <button
               type="button"
               class="c-button"
