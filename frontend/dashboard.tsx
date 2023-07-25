@@ -40,11 +40,11 @@ export function Dashboard(_: RoutableProps) {
         data-max-width="1296"
       >
         <section
-          data-max-width="768"
           data-width="100%"
           data-mt="6"
           data-px="24"
           data-md-px="0"
+          {...bg.Rhythm().times(62).style.maxWidth}
         >
           <ArticleList />
           <NewspaperList />
@@ -56,8 +56,8 @@ export function Dashboard(_: RoutableProps) {
           data-px="24"
           data-md-px="0"
           data-width="100%"
-          data-max-width="528"
           data-md-max-width="unset"
+          {...bg.Rhythm().times(40).style.maxWidth}
         >
           <CreateNewspaper />
           {displayNonEssentialPanes && <SendArbitraryFile />}
