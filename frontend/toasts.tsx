@@ -11,6 +11,9 @@ export function Toasts() {
 
   return (
     <bg.AnimaList
+      data-display="flex"
+      data-direction="column"
+      data-main="end"
       data-position="fixed"
       data-bottom="0"
       data-right="0"
