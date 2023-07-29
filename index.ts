@@ -11,7 +11,7 @@ const app = express();
 
 bg.addExpressEssentials(app);
 bg.Handlebars.applyTo(app);
-bg.I18n.applyTo(app);
+bg.I18n.applyTo(app, { supportedLanguages: infra.SupportedLanguages });
 infra.Session.applyTo(app);
 infra.AuthShield.applyTo(app);
 bg.HttpLogger.applyTo(app, infra.logger);

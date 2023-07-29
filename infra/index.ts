@@ -3,11 +3,13 @@ export * from "./env";
 export * from "./html";
 export * from "./logger";
 export * from "./mailer";
+export * from "./supported-languages";
 
 import * as bg from "@bgord/node";
 import { db } from "./db";
 import { Env } from "./env";
 import { Mailer } from "./mailer";
+import { SupportedLanguages } from "./supported-languages";
 
 export const prerequisites = [
   new bg.Prerequisite({
@@ -71,6 +73,12 @@ export const prerequisites = [
     label: "disk space",
     strategy: bg.PrerequisiteStrategyEnum.space,
     minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 512 }),
+  }),
+
+  new bg.Prerequisite({
+    label: "translations",
+    strategy: bg.PrerequisiteStrategyEnum.translations,
+    supportedLanguages: SupportedLanguages,
   }),
 ];
 
