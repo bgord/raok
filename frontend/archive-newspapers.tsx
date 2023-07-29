@@ -21,13 +21,13 @@ export function ArchiveNewspapers(_props: RoutableProps) {
 
   const statusFilter = bg.useUrlFilter({
     enum: types.NewspaperStatusEnum,
-    label: "status",
+    name: "status",
   });
 
   const sentAtFilter = bg.useUrlFilter({
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
-    label: "sentAt",
+    name: "sentAt",
   });
 
   const filters = { status: statusFilter.query, sentAt: sentAtFilter.query };
@@ -62,30 +62,28 @@ export function ArchiveNewspapers(_props: RoutableProps) {
 
       <div data-display="flex" data-cross="end" data-gap="24">
         <div data-display="flex" data-direction="column">
-          <label class="c-label" htmlFor={sentAtFilter.label}>
+          <label class="c-label" {...sentAtFilter.label.props}>
             {t("app.sent_at")}
           </label>
           <UI.Select
-            id={sentAtFilter.label}
-            name={sentAtFilter.label}
             value={sentAtFilter.query}
             onInput={sentAtFilter.onChange}
+            {...sentAtFilter.input.props}
           >
             {sentAtFilter.options.map((sentAtOption) => (
-              <option value={sentAtOption}>{t(sentAtOption)}</option>
+              <option value={sentAtOption}>{t(String(sentAtOption))}</option>
             ))}
           </UI.Select>
         </div>
 
         <div data-display="flex" data-direction="column">
-          <label class="c-label" htmlFor={statusFilter.label}>
+          <label class="c-label" {...statusFilter.label.props}>
             {t("app.status")}
           </label>
           <UI.Select
-            id={statusFilter.label}
-            name={statusFilter.label}
             value={statusFilter.query}
             onInput={statusFilter.onChange}
+            {...statusFilter.input.props}
           >
             <option selected>{t("all")}</option>
             {statusFilter.options.map((status) => (
@@ -108,9 +106,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
       </div>
 
       {archiveNewspapers.isSuccess && archiveNewspapers.data.length === 0 && (
-        <UI.Info>
-          {t("newspapers.archive.empty")}
-        </UI.Info>
+        <UI.Info>{t("newspapers.archive.empty")}</UI.Info>
       )}
 
       <ul

@@ -21,19 +21,19 @@ export function ArchiveArticles(_props: RoutableProps) {
   const search = bg.useClientSearch();
 
   const sourceFilter = bg.useUrlFilter({
+    name: "source",
     enum: types.ArticleSourceEnum,
-    label: "source",
   });
 
   const statusFilter = bg.useUrlFilter({
+    name: "status",
     enum: types.ArticleStatusEnum,
-    label: "status",
   });
 
   const createdAtFilter = bg.useUrlFilter({
+    name: "created-at",
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
-    label: "createdAt",
   });
 
   const filters = {
@@ -75,54 +75,51 @@ export function ArchiveArticles(_props: RoutableProps) {
 
       <div data-display="flex" data-cross="end" data-gap="24" data-md-gap="12">
         <div data-display="flex" data-direction="column">
-          <label class="c-label" htmlFor="created-at">
+          <label class="c-label" {...createdAtFilter.label.props}>
             Created at
           </label>
           <UI.Select
-            id="created-at"
-            name="created-at"
             value={createdAtFilter.query}
             onInput={createdAtFilter.onChange}
+            {...createdAtFilter.input.props}
           >
             {createdAtFilter.options.map((option) => (
-              <option value={option}>{t(option)}</option>
+              <option value={option}>{t(String(option))}</option>
             ))}
           </UI.Select>
         </div>
 
         <div data-display="flex" data-direction="column">
-          <label class="c-label" htmlFor="status">
+          <label class="c-label" {...statusFilter.label.props}>
             {t("app.status")}
           </label>
           <UI.Select
-            id="status"
-            name="status"
             value={statusFilter.query}
             onInput={statusFilter.onChange}
+            {...statusFilter.input.props}
           >
             <option selected>{t("all")}</option>
 
             {statusFilter.options.map((status) => (
-              <option value={status}>{t(status)}</option>
+              <option value={status}>{t(String(status))}</option>
             ))}
           </UI.Select>
         </div>
 
         <div data-display="flex" data-direction="column">
-          <label class="c-label" htmlFor="source">
+          <label class="c-label" {...sourceFilter.label.props}>
             {t("article.source")}
           </label>
           <UI.Select
-            id="source"
-            name="source"
             class="c-select"
             value={sourceFilter.query}
             onInput={sourceFilter.onChange}
+            {...sourceFilter.input.props}
           >
             <option selected>{t("all")}</option>
 
             {sourceFilter.options.map((source) => (
-              <option value={source}>{t(source)}</option>
+              <option value={source}>{t(String(source))}</option>
             ))}
           </UI.Select>
         </div>

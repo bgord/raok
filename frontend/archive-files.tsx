@@ -28,9 +28,9 @@ export function ArchiveFiles(_props: RoutableProps) {
   });
 
   const sentAtFilter = bg.useUrlFilter({
+    name: "sentAt",
     enum: TimestampFiltersEnum,
     defaultQuery: TimestampFiltersEnum.last_3_days,
-    label: "sentAt",
   });
 
   const filters = { sentAt: sentAtFilter.query };
@@ -73,17 +73,16 @@ export function ArchiveFiles(_props: RoutableProps) {
       >
         <div data-display="flex" data-cross="end" data-gap="24">
           <div data-display="flex" data-direction="column">
-            <label class="c-label" htmlFor={sentAtFilter.label}>
+            <label class="c-label" {...sentAtFilter.label.props}>
               {t("app.sent_at")}
             </label>
             <UI.Select
-              id={sentAtFilter.label}
-              name={sentAtFilter.label}
               value={sentAtFilter.query}
               onInput={sentAtFilter.onChange}
+              {...sentAtFilter.input.props}
             >
               {sentAtFilter.options.map((option) => (
-                <option value={option}>{t(option)}</option>
+                <option value={option}>{t(String(option))}</option>
               ))}
             </UI.Select>
           </div>
