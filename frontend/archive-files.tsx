@@ -101,7 +101,7 @@ export function ArchiveFiles(_props: RoutableProps) {
       <div
         data-display="flex"
         data-wrap="nowrap"
-        data-gap="12"
+        data-gap="6"
         data-max-width="100%"
       >
         <div data-position="relative" data-width="100%">
