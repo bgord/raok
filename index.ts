@@ -191,35 +191,16 @@ app.get(
   bg.RateLimitShield.build({ limitMs: bg.Time.Minutes(1).ms }),
   bg.Timeout.build({ timeoutMs: bg.Time.Seconds(5).ms }),
   infra.BasicAuthShield.verify,
-  bg.Healthcheck.build([
-    ...infra.prerequisites,
-    new bg.Prerequisite({
-      label: "api",
-      strategy: bg.PrerequisiteStrategyEnum.self,
-    }),
-  ])
+  bg.Healthcheck.build(infra.healthcheck)
 );
 
 app.get("*", (_, response) => response.redirect("/"));
 app.use(Routes.ErrorHandler.handle);
 
 (async function main() {
-  await bg.GracefulStartup.check({
-    port: infra.Env.PORT,
-    callback: () => {
-      infra.logger.error({
-        message: "Busy port",
-        operation: "server_startup_error",
-        metadata: { port: infra.Env.PORT },
-      });
-
-      process.exit(1);
-    },
-  });
+  await bg.Prerequisites.check(infra.prerequisites);
 
   const server = app.listen(infra.Env.PORT, async () => {
-    await bg.Prerequisites.check(infra.prerequisites);
-
     infra.logger.info({
       message: "Server has started",
       operation: "server_startup",
@@ -227,11 +208,5 @@ app.use(Routes.ErrorHandler.handle);
     });
   });
 
-  bg.GracefulShutdown.applyTo(server, () => {
-    infra.logger.info({
-      message: "Shutting down job scheduler",
-      operation: "scheduler_shutdown",
-    });
-    Scheduler.stop();
-  });
+  bg.GracefulShutdown.applyTo(server, () => Scheduler.stop());
 })();

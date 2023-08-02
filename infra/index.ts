@@ -13,6 +13,12 @@ import { SupportedLanguages } from "./supported-languages";
 
 export const prerequisites = [
   new bg.Prerequisite({
+    label: "port",
+    strategy: bg.PrerequisiteStrategyEnum.port,
+    port: Env.PORT,
+  }),
+
+  new bg.Prerequisite({
     label: "pandoc",
     binary: "pandoc",
     strategy: bg.PrerequisiteStrategyEnum.binary,
@@ -80,6 +86,16 @@ export const prerequisites = [
     strategy: bg.PrerequisiteStrategyEnum.translations,
     supportedLanguages: SupportedLanguages,
   }),
+];
+
+export const healthcheck = [
+  new bg.Prerequisite({
+    label: "api",
+    strategy: bg.PrerequisiteStrategyEnum.self,
+  }),
+  ...prerequisites.filter(
+    (prerequisite) => prerequisite.config.label !== "port"
+  ),
 ];
 
 export const Session = new bg.Session({
