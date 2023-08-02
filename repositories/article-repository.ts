@@ -43,7 +43,7 @@ export class ArticleRepository {
 
     return articles.map((article) => ({
       ...article,
-      createdAt: bg.RelativeDate.to.now.truthy(article.createdAt),
+      createdAt: bg.RelativeDate.truthy(article.createdAt),
     }));
   }
 
@@ -72,7 +72,7 @@ export class ArticleRepository {
 
     const result = articles.map((article) => ({
       ...article,
-      createdAt: bg.RelativeDate.to.now.truthy(article.createdAt),
+      createdAt: bg.RelativeDate.truthy(article.createdAt),
     }));
 
     return bg.Pagination.prepare({ total, pagination, result });
@@ -139,7 +139,7 @@ export class ArticleRepository {
 
     return articles.map((article) => ({
       ...article,
-      createdAt: bg.RelativeDate.to.now.truthy(article.createdAt),
+      createdAt: bg.RelativeDate.truthy(article.createdAt),
     }));
   }
 }

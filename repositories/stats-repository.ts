@@ -27,7 +27,7 @@ export class StatsRepository {
       await ArticleRepository.getNumberOfNonProcessed();
 
     return {
-      lastFeedlyImport: bg.RelativeDate.to.now.falsy(lastFeedlyImport?.value),
+      lastFeedlyImport: bg.RelativeDate.falsy(lastFeedlyImport?.value),
       createdArticles: createdArticles?.value ?? 0,
       sentNewspapers: sentNewspapers?.value ?? 0,
       lastFeedlyTokenExpiredError: lastFeedlyTokenExpiredError?.value ?? null,
