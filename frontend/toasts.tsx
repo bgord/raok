@@ -54,6 +54,7 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
       data-color="gray-700"
       data-bg="gray-200"
       data-br="2"
+      data-max-width="100%"
       box-shadow
     >
       <div
