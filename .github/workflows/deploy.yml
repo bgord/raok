@@ -1,13 +1,11 @@
 name: Deploy
-
 on:
   push:
     branches: [master]
-
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-
     steps:
       - name: Clone repositories
         uses: actions/checkout@v3
@@ -17,7 +15,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Install packages
         run: npm i
