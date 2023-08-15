@@ -12,7 +12,7 @@ type ArticleWasNotProcessedConfigType = {
   entity: VO.ArticleType;
 };
 
-export class ArticleWasNotProcessedFactory extends bg.Policy<ArticleWasNotProcessedConfigType> {
+class ArticleWasNotProcessedFactory extends bg.Policy<ArticleWasNotProcessedConfigType> {
   fails(config: ArticleWasNotProcessedConfigType) {
     return config.entity.status !== VO.ArticleStatusEnum.ready;
   }

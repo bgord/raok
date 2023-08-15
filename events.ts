@@ -20,7 +20,7 @@ export const ArticleAddedEvent = bg.EventDraft.merge(
     payload: VO.Article.merge(VO.ArticleMetatags),
   })
 );
-export type ArticleAddedEventType = z.infer<typeof ArticleAddedEvent>;
+type ArticleAddedEventType = z.infer<typeof ArticleAddedEvent>;
 
 export const ARTICLE_DELETED_EVENT = "ARTICLE_DELETED_EVENT";
 export const ArticleDeletedEvent = bg.EventDraft.merge(
@@ -30,7 +30,7 @@ export const ArticleDeletedEvent = bg.EventDraft.merge(
     payload: z.object({ articleId: VO.ArticleId }),
   })
 );
-export type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
+type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
 
 export const ARTICLE_LOCKED_EVENT = "ARTICLE_LOCKED_EVENT";
 export const ArticleLockedEvent = bg.EventDraft.merge(
@@ -40,7 +40,7 @@ export const ArticleLockedEvent = bg.EventDraft.merge(
     payload: z.object({ articleId: VO.ArticleId, newspaperId: VO.NewspaperId }),
   })
 );
-export type ArticleLockedEventType = z.infer<typeof ArticleLockedEvent>;
+type ArticleLockedEventType = z.infer<typeof ArticleLockedEvent>;
 
 export const ARTICLE_UNLOCKED_EVENT = "ARTICLE_UNLOCKED_EVENT";
 export const ArticleUnlockedEvent = bg.EventDraft.merge(
@@ -50,7 +50,7 @@ export const ArticleUnlockedEvent = bg.EventDraft.merge(
     payload: z.object({ articleId: VO.ArticleId }),
   })
 );
-export type ArticleUnlockedEventType = z.infer<typeof ArticleUnlockedEvent>;
+type ArticleUnlockedEventType = z.infer<typeof ArticleUnlockedEvent>;
 
 export const ARTICLE_PROCESSED_EVENT = "ARTICLE_PROCESSED_EVENT";
 export const ArticleProcessedEvent = bg.EventDraft.merge(
@@ -60,7 +60,7 @@ export const ArticleProcessedEvent = bg.EventDraft.merge(
     payload: z.object({ articleId: VO.ArticleId }),
   })
 );
-export type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
+type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
 
 export const ARTICLE_UNDELETE_EVENT = "ARTICLE_UNDELETE_EVENT";
 export const ArticleUndeleteEvent = bg.EventDraft.merge(
@@ -70,7 +70,7 @@ export const ArticleUndeleteEvent = bg.EventDraft.merge(
     payload: z.object({ articleId: VO.ArticleId }),
   })
 );
-export type ArticleUndeleteEventType = z.infer<typeof ArticleUndeleteEvent>;
+type ArticleUndeleteEventType = z.infer<typeof ArticleUndeleteEvent>;
 
 export const NEWSPAPER_SCHEDULED_EVENT = "NEWSPAPER_SCHEDULED_EVENT";
 export const NewspaperScheduledEvent = bg.EventDraft.merge(
@@ -84,9 +84,7 @@ export const NewspaperScheduledEvent = bg.EventDraft.merge(
     }),
   })
 );
-export type NewspaperScheduledEventType = z.infer<
-  typeof NewspaperScheduledEvent
->;
+type NewspaperScheduledEventType = z.infer<typeof NewspaperScheduledEvent>;
 
 export const NEWSPAPER_GENERATED_EVENT = "NEWSPAPER_GENERATED_EVENT";
 export const NewspaperGenerateEvent = bg.EventDraft.merge(
@@ -96,7 +94,7 @@ export const NewspaperGenerateEvent = bg.EventDraft.merge(
     payload: z.object({ newspaperId: VO.NewspaperId }),
   })
 );
-export type NewspaperGenerateEventType = z.infer<typeof NewspaperGenerateEvent>;
+type NewspaperGenerateEventType = z.infer<typeof NewspaperGenerateEvent>;
 
 export const NEWSPAPER_SENT_EVENT = "NEWSPAPER_SENT_EVENT";
 export const NewspaperSentEvent = bg.EventDraft.merge(
@@ -110,7 +108,7 @@ export const NewspaperSentEvent = bg.EventDraft.merge(
     }),
   })
 );
-export type NewspaperSentEventType = z.infer<typeof NewspaperSentEvent>;
+type NewspaperSentEventType = z.infer<typeof NewspaperSentEvent>;
 
 export const NEWSPAPER_ARCHIVED_EVENT = "NEWSPAPER_ARCHIVED_EVENT";
 export const NewspaperArchivedEvent = bg.EventDraft.merge(
@@ -120,7 +118,7 @@ export const NewspaperArchivedEvent = bg.EventDraft.merge(
     payload: z.object({ newspaperId: VO.NewspaperId }),
   })
 );
-export type NewspaperArchivedEventType = z.infer<typeof NewspaperArchivedEvent>;
+type NewspaperArchivedEventType = z.infer<typeof NewspaperArchivedEvent>;
 
 export const NEWSPAPER_FAILED_EVENT = "NEWSPAPER_FAILED_EVENT";
 export const NewspaperFailedEvent = bg.EventDraft.merge(
@@ -130,7 +128,7 @@ export const NewspaperFailedEvent = bg.EventDraft.merge(
     payload: z.object({ newspaperId: VO.NewspaperId }),
   })
 );
-export type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;
+type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;
 
 export const ARBITRARY_FILE_SCHEDULED_EVENT = "ARBITRARY_FILE_SCHEDULED_EVENT";
 export const ArbitraryFileScheduledEvent = bg.EventDraft.merge(
@@ -140,7 +138,7 @@ export const ArbitraryFileScheduledEvent = bg.EventDraft.merge(
     payload: bg.Schema.UploadedFile,
   })
 );
-export type ArbitraryFileScheduledEventType = z.infer<
+type ArbitraryFileScheduledEventType = z.infer<
   typeof ArbitraryFileScheduledEvent
 >;
 
@@ -153,7 +151,7 @@ export const ArticlesToReviewNotificationsDisabledEvent = bg.EventDraft.merge(
     payload: z.object({}),
   })
 );
-export type ArticlesToReviewNotificationsDisabledEventType = z.infer<
+type ArticlesToReviewNotificationsDisabledEventType = z.infer<
   typeof ArticlesToReviewNotificationsDisabledEvent
 >;
 
@@ -166,7 +164,7 @@ export const ArticlesToReviewNotificationsEnabledEvent = bg.EventDraft.merge(
     payload: z.object({}),
   })
 );
-export type ArticlesToReviewNotificationsEnabledEventType = z.infer<
+type ArticlesToReviewNotificationsEnabledEventType = z.infer<
   typeof ArticlesToReviewNotificationsEnabledEvent
 >;
 
@@ -179,7 +177,7 @@ export const ArticlesToReviewNotificationHourSetEvent = bg.EventDraft.merge(
     payload: z.object({ hour: bg.Schema.Hour }),
   })
 );
-export type ArticlesToReviewNotificationHourSetEventType = z.infer<
+type ArticlesToReviewNotificationHourSetEventType = z.infer<
   typeof ArticlesToReviewNotificationHourSetEvent
 >;
 
@@ -192,7 +190,7 @@ export const FeedlyArticlesCrawlingScheduledEvent = bg.EventDraft.merge(
     payload: z.object({}),
   })
 );
-export type FeedlyArticlesCrawlingScheduledEventType = z.infer<
+type FeedlyArticlesCrawlingScheduledEventType = z.infer<
   typeof FeedlyArticlesCrawlingScheduledEvent
 >;
 
@@ -204,7 +202,7 @@ export const DeleteOldArticlesEvent = bg.EventDraft.merge(
     payload: z.object({ marker: VO.ArticleOldMarker }),
   })
 );
-export type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
+type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
 
 export const STOP_FEEDLY_CRAWLING_EVENT = "STOP_FEEDLY_CRAWLING_EVENT";
 export const StopFeedlyCrawlingEvent = bg.EventDraft.merge(
@@ -214,9 +212,7 @@ export const StopFeedlyCrawlingEvent = bg.EventDraft.merge(
     payload: z.object({}),
   })
 );
-export type StopFeedlyCrawlingEventType = z.infer<
-  typeof StopFeedlyCrawlingEvent
->;
+type StopFeedlyCrawlingEventType = z.infer<typeof StopFeedlyCrawlingEvent>;
 
 export const RESTORE_FEEDLY_CRAWLING_EVENT = "RESTORE_FEEDLY_CRAWLING_EVENT";
 export const RestoreFeedlyCrawlingEvent = bg.EventDraft.merge(
@@ -226,7 +222,7 @@ export const RestoreFeedlyCrawlingEvent = bg.EventDraft.merge(
     payload: z.object({}),
   })
 );
-export type RestoreFeedlyCrawlingEventType = z.infer<
+type RestoreFeedlyCrawlingEventType = z.infer<
   typeof RestoreFeedlyCrawlingEvent
 >;
 

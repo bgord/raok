@@ -7,5 +7,3 @@ export const ReadableArticleTitle = z
   .min(1)
   .max(ARTICLE_TITLE_MAX_CHARS)
   .brand<"readable-article-title">();
-
-export type ReadableArticleTitleType = z.infer<typeof ReadableArticleTitle>;

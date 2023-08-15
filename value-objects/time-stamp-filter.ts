@@ -1,7 +1,7 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
-export enum TimestampFiltersEnum {
+enum TimestampFiltersEnum {
   today = "today",
   last_3_days = "last_3_days",
   last_week = "last_week",

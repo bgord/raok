@@ -19,7 +19,7 @@ export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
   );
 }
 
-export function Link(props: h.JSX.IntrinsicElements["a"]) {
+function Link(props: h.JSX.IntrinsicElements["a"]) {
   return (
     /* eslint-disable jsx-a11y/anchor-has-content */
     <a

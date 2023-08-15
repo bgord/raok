@@ -12,5 +12,3 @@ export enum NewspaperStatusEnum {
 export const NewspaperStatus = z
   .nativeEnum(NewspaperStatusEnum)
   .default(NewspaperStatusEnum.undetermined);
-
-export type NewspaperStatusType = z.infer<typeof NewspaperStatus>;

@@ -8,5 +8,3 @@ export enum ArticleSourceEnum {
 export const ArticleSource = z
   .nativeEnum(ArticleSourceEnum)
   .default(ArticleSourceEnum.web);
-
-export type ArticleSourceType = z.infer<typeof ArticleSource>;
