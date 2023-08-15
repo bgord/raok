@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { h } from "preact";
 import { useQuery, useQueryClient } from "react-query";
 

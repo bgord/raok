@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-identical-functions */
 import * as bg from "@bgord/node";
 import { z } from "zod";
 import Emittery from "emittery";

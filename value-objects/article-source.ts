@@ -1,8 +1,6 @@
 import { z } from "zod";
 
-/* eslint-disable no-shadow */
 export enum ArticleSourceEnum {
-  /* eslint-disable no-unused-vars */
   web = "web",
   feedly = "feedly",
 }

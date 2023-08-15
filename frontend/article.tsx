@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { h } from "preact";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
