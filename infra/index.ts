@@ -91,6 +91,12 @@ export const prerequisites = [
     label: "migrations",
     strategy: bg.PrerequisiteStrategyEnum.migrations,
   }),
+
+  new bg.Prerequisite({
+    label: "memory-consumption",
+    strategy: bg.PrerequisiteStrategyEnum.memory,
+    maximum: new bg.Size({ value: 500, unit: bg.SizeUnit.MB }),
+  }),
 ];
 
 export const healthcheck = [
