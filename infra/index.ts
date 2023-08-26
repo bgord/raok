@@ -104,6 +104,10 @@ export const healthcheck = [
     label: "api",
     strategy: bg.PrerequisiteStrategyEnum.self,
   }),
+  new bg.Prerequisite({
+    label: "outside-connectivity",
+    strategy: bg.PrerequisiteStrategyEnum.outsideConnectivity,
+  }),
   ...prerequisites.filter(
     (prerequisite) => prerequisite.config.label !== "port"
   ),
