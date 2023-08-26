@@ -86,6 +86,11 @@ export const prerequisites = [
     strategy: bg.PrerequisiteStrategyEnum.translations,
     supportedLanguages: SupportedLanguages,
   }),
+
+  new bg.Prerequisite({
+    label: "migrations",
+    strategy: bg.PrerequisiteStrategyEnum.migrations,
+  }),
 ];
 
 export const healthcheck = [
