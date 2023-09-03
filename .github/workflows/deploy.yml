@@ -18,7 +18,7 @@ jobs:
           node-version: 18.x
 
       - name: Install packages
-        run: npm install --platform=linux --arch=amd64
+        run: npm install --platform=linux --arch=x64
 
       - name: Create .env.staging file
         run: echo "${{ secrets.ENV_STAGING }}" > .env.staging
