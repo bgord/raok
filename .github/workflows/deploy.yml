@@ -20,9 +20,6 @@ jobs:
       - name: Install packages
         run: npm install
 
-      - name: Install sharp
-        run: npm install --platform=linux --arch=x64 sharp
-
       - name: Create .env.staging file
         run: echo "${{ secrets.ENV_STAGING }}" > .env.staging
 
