@@ -46,5 +46,8 @@ jobs:
       - name: Sync source code
         run: rsync -azP build/ staging:/var/www/${{ secrets.PROJECT_NAME }}
 
+      - name: Install sharp
+        run: ssh staging "cd /var/www/${{ secrets.PROJECT_NAME }} && npm install --platform=linux --arch=x64 sharp"
+
       - name: Restart server
         run: ssh staging sudo systemctl restart ${{ secrets.PROJECT_NAME }}.service
