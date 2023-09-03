@@ -75,7 +75,7 @@ export function ArticleList() {
 
       <ArticleActions />
 
-      {!searchModeEnabled && (
+      {!searchModeEnabled && articles.length > 0 && (
         <UI.Info data-md-px="12" data-mb="24" data-ml="6">
           {t("articles.list.results", {
             current: articles.length,
