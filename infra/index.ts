@@ -31,12 +31,6 @@ export const prerequisites = [
   }),
 
   new bg.Prerequisite({
-    label: "nodemailer",
-    strategy: bg.PrerequisiteStrategyEnum.mailer,
-    mailer: Mailer,
-  }),
-
-  new bg.Prerequisite({
     label: "prisma-sqlite",
     strategy: bg.PrerequisiteStrategyEnum.prisma,
     client: db,
@@ -113,6 +107,11 @@ export const healthcheck = [
     strategy: bg.PrerequisiteStrategyEnum.sslCertificateExpiry,
     host: "raok.bgord.me",
     validDaysMinimum: 7,
+  }),
+  new bg.Prerequisite({
+    label: "nodemailer",
+    strategy: bg.PrerequisiteStrategyEnum.mailer,
+    mailer: Mailer,
   }),
   ...prerequisites.filter(
     (prerequisite) => prerequisite.config.label !== "port"
