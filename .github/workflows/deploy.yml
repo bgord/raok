@@ -18,7 +18,7 @@ jobs:
           node-version: 18.x
 
       - name: Install packages
-        run: npm ci
+        run: npm install --platform=linux --arch=x64
 
       - name: Install sharp
         run: npm install --platform=linux --arch=x64 sharp
