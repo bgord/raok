@@ -108,6 +108,12 @@ export const healthcheck = [
     label: "outside-connectivity",
     strategy: bg.PrerequisiteStrategyEnum.outsideConnectivity,
   }),
+  new bg.Prerequisite({
+    label: "ssl-certificate-expiry",
+    strategy: bg.PrerequisiteStrategyEnum.sslCertificateExpiry,
+    host: "raok.bgord.me",
+    validDaysMinimum: 7,
+  }),
   ...prerequisites.filter(
     (prerequisite) => prerequisite.config.label !== "port"
   ),
