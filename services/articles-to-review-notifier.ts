@@ -32,7 +32,7 @@ export class ArticlesToReviewNotifier {
   }
 
   private shouldBeSent() {
-    if (this.numberOfArticlesToReview === 0) return false;
+    if (this.numberOfArticlesToReview < 10) return false;
 
     if (!this.isArticlesToReviewNotificationEnabled) return false;
 
