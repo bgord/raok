@@ -22,8 +22,8 @@ const FeedlyArticlesCrawlerTask = new AsyncTask(
     )
 );
 
-const ArtclesToReviewNotifierTask = new AsyncTask(
-  "artcles to review notifier",
+const ArticlesToReviewNotifierTask = new AsyncTask(
+  "articles to review notifier",
   async () => {
     try {
       const settings = await new Aggregates.Settings().build();
@@ -34,8 +34,8 @@ const ArtclesToReviewNotifierTask = new AsyncTask(
       await notification.send();
     } catch (error) {
       infra.logger.error({
-        message: "ArtclesToReviewNotifierTask error",
-        operation: "artcles_to_review_notifier_task_error",
+        message: "ArticlesToReviewNotifierTask error",
+        operation: "articles_to_review_notifier_task_error",
         metadata: { error: JSON.stringify(error) },
       });
     }
@@ -47,10 +47,10 @@ const FeedlyArticlesCrawlerJob = new SimpleIntervalJob(
   FeedlyArticlesCrawlerTask
 );
 
-const ArtclesToReviewNotifierJob = new SimpleIntervalJob(
+const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
   { minutes: 1, runImmediately: true },
-  ArtclesToReviewNotifierTask
+  ArticlesToReviewNotifierTask
 );
 
 Scheduler.addSimpleIntervalJob(FeedlyArticlesCrawlerJob);
-Scheduler.addSimpleIntervalJob(ArtclesToReviewNotifierJob);
+Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);

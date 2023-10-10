@@ -1,4 +1,4 @@
-export * from "./artbitrary-file-sender";
+export * from "./arbitrary-file-sender";
 export * from "./article-content-downloader";
 export * from "./article-metatags-scraper";
 export * from "./articles-to-review-notifier";

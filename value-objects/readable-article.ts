@@ -4,10 +4,10 @@ import { ReadableArticleContent } from "./readable-article-content";
 import { ReadableArticleTitle } from "./readable-article-title";
 import { ReadableArticleReadingTime } from "./readable-article-reading-time";
 
-const ReadbleArticle = z.object({
+const ReadableArticle = z.object({
   title: ReadableArticleTitle,
   content: ReadableArticleContent,
   readingTime: ReadableArticleReadingTime,
 });
 
-export type ReadableArticleType = z.infer<typeof ReadbleArticle>;
+export type ReadableArticleType = z.infer<typeof ReadableArticle>;
