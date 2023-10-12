@@ -135,17 +135,6 @@ app.post(
   bg.Route(Routes.SetArticlesToReviewNotificationHour)
 );
 
-app.post(
-  "/stop-feedly-crawling",
-  infra.AuthShield.verify,
-  bg.Route(Routes.StopFeedlyCrawling)
-);
-app.post(
-  "/restore-feedly-crawling",
-  infra.AuthShield.verify,
-  bg.Route(Routes.RestoreFeedlyCrawling)
-);
-
 app.get(
   "/archive/articles",
   infra.AuthShield.verify,
@@ -160,13 +149,6 @@ app.get(
   "/archive/files",
   infra.AuthShield.verify,
   bg.Route(Routes.FilesArchive)
-);
-
-app.post(
-  "/schedule-feedly-articles-crawl",
-  bg.RateLimitShield.build({ limitMs: bg.Time.Seconds(30).ms }),
-  infra.AuthShield.verify,
-  bg.Route(Routes.ScheduleFeedlyArticlesCrawl)
 );
 
 app.post(

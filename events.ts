@@ -181,19 +181,6 @@ type ArticlesToReviewNotificationHourSetEventType = z.infer<
   typeof ArticlesToReviewNotificationHourSetEvent
 >;
 
-export const FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT =
-  "FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT";
-export const FeedlyArticlesCrawlingScheduledEvent = bg.EventDraft.merge(
-  z.object({
-    name: z.literal(FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT),
-    version: z.literal(1),
-    payload: z.object({}),
-  })
-);
-type FeedlyArticlesCrawlingScheduledEventType = z.infer<
-  typeof FeedlyArticlesCrawlingScheduledEvent
->;
-
 export const DELETE_OLD_ARTICLES_EVENT = "DELETE_OLD_ARTICLES_EVENT";
 export const DeleteOldArticlesEvent = bg.EventDraft.merge(
   z.object({
@@ -203,28 +190,6 @@ export const DeleteOldArticlesEvent = bg.EventDraft.merge(
   })
 );
 type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
-
-export const STOP_FEEDLY_CRAWLING_EVENT = "STOP_FEEDLY_CRAWLING_EVENT";
-export const StopFeedlyCrawlingEvent = bg.EventDraft.merge(
-  z.object({
-    name: z.literal(STOP_FEEDLY_CRAWLING_EVENT),
-    version: z.literal(1),
-    payload: z.object({}),
-  })
-);
-type StopFeedlyCrawlingEventType = z.infer<typeof StopFeedlyCrawlingEvent>;
-
-export const RESTORE_FEEDLY_CRAWLING_EVENT = "RESTORE_FEEDLY_CRAWLING_EVENT";
-export const RestoreFeedlyCrawlingEvent = bg.EventDraft.merge(
-  z.object({
-    name: z.literal(RESTORE_FEEDLY_CRAWLING_EVENT),
-    version: z.literal(1),
-    payload: z.object({}),
-  })
-);
-type RestoreFeedlyCrawlingEventType = z.infer<
-  typeof RestoreFeedlyCrawlingEvent
->;
 
 export const emittery = new Emittery<{
   ARTICLE_ADDED_EVENT: ArticleAddedEventType;
@@ -242,10 +207,7 @@ export const emittery = new Emittery<{
   ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: ArticlesToReviewNotificationsDisabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: ArticlesToReviewNotificationsEnabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: ArticlesToReviewNotificationHourSetEventType;
-  FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT: FeedlyArticlesCrawlingScheduledEventType;
   DELETE_OLD_ARTICLES_EVENT: DeleteOldArticlesEventType;
-  STOP_FEEDLY_CRAWLING_EVENT: StopFeedlyCrawlingEventType;
-  RESTORE_FEEDLY_CRAWLING_EVENT: RestoreFeedlyCrawlingEventType;
 }>({
   debug: {
     enabled: true,
@@ -259,12 +221,6 @@ emittery.on(
   EventHandler.handle(async (event) => {
     await Repos.ArticleRepository.create(event.payload);
     await Repos.StatsRepository.incrementCreatedArticles();
-
-    if (event.payload.source === VO.ArticleSourceEnum.feedly) {
-      await Repos.StatsRepository.updateLastFeedlyImport(
-        event.payload.createdAt
-      );
-    }
   })
 );
 
@@ -416,13 +372,6 @@ emittery.on(
       const article = await new Aggregates.Article(item.id).build();
       await article.unlock();
     }
-  })
-);
-
-emittery.on(
-  FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT,
-  EventHandler.handle(async () => {
-    await Services.FeedlyArticlesCrawler.run();
   })
 );
 

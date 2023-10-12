@@ -14,15 +14,12 @@ type AcceptedEvent =
   | typeof Events.ArticlesToReviewNotificationHourSetEvent
   | typeof Events.ArticlesToReviewNotificationsDisabledEvent
   | typeof Events.ArticlesToReviewNotificationsEnabledEvent
-  | typeof Events.FeedlyArticlesCrawlingScheduledEvent
   | typeof Events.NewspaperArchivedEvent
   | typeof Events.NewspaperFailedEvent
   | typeof Events.NewspaperGenerateEvent
   | typeof Events.NewspaperScheduledEvent
   | typeof Events.NewspaperSentEvent
-  | typeof Events.DeleteOldArticlesEvent
-  | typeof Events.StopFeedlyCrawlingEvent
-  | typeof Events.RestoreFeedlyCrawlingEvent;
+  | typeof Events.DeleteOldArticlesEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventRepository {

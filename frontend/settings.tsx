@@ -29,24 +29,6 @@ export function Settings(_props: RoutableProps) {
     notificationHour.value ===
       settings.data.articlesToReviewNotificationHour.value;
 
-  const restoreFeedlyCrawling = useMutation(
-    api.Settings.restoreFeedlyCrawling,
-    {
-      onSuccess: () => {
-        notify({ message: "dashboard.crawling.restored" });
-        queryClient.invalidateQueries("settings");
-      },
-      onError: (error: bg.ServerError) => notify({ message: error.message }),
-    }
-  );
-  const stopFeedlyCrawling = useMutation(api.Settings.stopFeedlyCrawling, {
-    onSuccess: () => {
-      notify({ message: "dashboard.crawling.stopped" });
-      queryClient.invalidateQueries("settings");
-    },
-    onError: (error: bg.ServerError) => notify({ message: error.message }),
-  });
-
   const enableArticlesToReviewNotification = useMutation(
     api.Settings.enableArticlesToReviewNotification,
     {
@@ -86,7 +68,6 @@ export function Settings(_props: RoutableProps) {
     isArticlesToReviewNotificationEnabled,
     hours,
     articlesToReviewNotificationHour,
-    isFeedlyCrawlingStopped,
   } = settings.data;
 
   return (
@@ -222,56 +203,6 @@ export function Settings(_props: RoutableProps) {
             utc_zero: articlesToReviewNotificationHour.label,
           })}
         </UI.Info>
-      </section>
-
-      <section
-        data-display="flex"
-        data-cross="center"
-        data-gap="12"
-        data-bwb="1"
-        data-bcb="gray-200"
-        data-pt="12"
-        data-pb="24"
-      >
-        <strong
-          data-transform="uppercase"
-          data-color="gray-600"
-          data-bg="gray-200"
-          data-px="6"
-          data-br="4"
-          data-ls="1"
-          data-fs="12"
-        >
-          {isFeedlyCrawlingStopped ? t("app.stopped") : t("app.active")}
-        </strong>
-
-        <div data-fs="14" data-color="gray-600" data-transform="upper-first">
-          {t("dashboard.crawling")}
-        </div>
-
-        {isFeedlyCrawlingStopped && (
-          <button
-            type="submit"
-            class="c-button"
-            data-variant="primary"
-            data-ml="auto"
-            onClick={() => restoreFeedlyCrawling.mutate()}
-          >
-            {t("app.restore")}
-          </button>
-        )}
-
-        {!isFeedlyCrawlingStopped && (
-          <button
-            type="submit"
-            class="c-button"
-            data-variant="primary"
-            data-ml="auto"
-            onClick={() => stopFeedlyCrawling.mutate()}
-          >
-            {t("app.stop")}
-          </button>
-        )}
       </section>
     </main>
   );

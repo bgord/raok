@@ -9,7 +9,6 @@ import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
 
-import { ScheduleFeedlyCrawlButton } from "./schedule-feedly-crawl-button";
 import { AddArticleForm } from "./add-article-form";
 import { ArticleActions } from "./article-actions";
 import { Article } from "./article";
@@ -66,8 +65,6 @@ export function ArticleList() {
           </div>
 
           <ArticleListRefresh />
-
-          <ScheduleFeedlyCrawlButton data-ml="auto" />
         </UI.Header>
 
         <AddArticleForm />

@@ -12,7 +12,6 @@ export class SettingsRepository {
       ),
       isArticlesToReviewNotificationEnabled:
         settings.isArticlesToReviewNotificationEnabled,
-      isFeedlyCrawlingStopped: settings.isFeedlyCrawlingStopped,
     };
   }
 }

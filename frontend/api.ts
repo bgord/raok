@@ -47,10 +47,7 @@ export async function getStats(): Promise<types.StatsType> {
   const defaultStats: types.StatsType = {
     createdArticles: 0,
     sentNewspapers: 0,
-    lastFeedlyImport: null,
-    lastFeedlyTokenExpiredError: null,
     numberOfNonProcessedArticles: 0,
-    hasFeedlyTokenExpired: true,
   };
 
   return bg
@@ -100,10 +97,6 @@ export async function sendArbitraryFile(form: FormData) {
   });
 }
 
-export async function scheduleFeedlyArticlesCrawl() {
-  return bg.API("/schedule-feedly-articles-crawl", { method: "POST" });
-}
-
 export async function deleteOldArticles() {
   return bg.API("/articles/old/delete", { method: "POST" });
 }
@@ -137,14 +130,6 @@ export class Settings {
     return bg
       .API("/account/settings", { method: "GET" })
       .then((response) => response.json());
-  }
-
-  static async stopFeedlyCrawling() {
-    return bg.API("/stop-feedly-crawling", { method: "POST" });
-  }
-
-  static async restoreFeedlyCrawling() {
-    return bg.API("/restore-feedly-crawling", { method: "POST" });
   }
 
   static async enableArticlesToReviewNotification() {

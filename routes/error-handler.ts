@@ -69,18 +69,6 @@ export class ErrorHandler {
       });
     }
 
-    if (error instanceof Policies.ShouldCrawlFeedlyError) {
-      infra.logger.error({
-        message: "Feedly crawling stopped in the settings",
-        operation: Policies.ShouldCrawlFeedly.message,
-        correlationId: request.requestId,
-      });
-
-      return response
-        .status(400)
-        .send({ message: Policies.ShouldCrawlFeedly.message, _known: true });
-    }
-
     if (error instanceof Policies.TooManyArticlesInNewspaperError) {
       infra.logger.error({
         message: "Newspaper with too many articles attempted",

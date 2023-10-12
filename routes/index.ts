@@ -21,14 +21,11 @@ export * from "./newspaper-read";
 export * from "./newspapers";
 export * from "./newspapers-archive";
 export * from "./resend-newspaper";
-export * from "./restore-feedly-crawling";
-export * from "./schedule-feedly-articles-crawl";
 export * from "./send-arbitrary-file";
 export * from "./set-articles-to-review-notification-hour";
 export * from "./settings";
 export * from "./single-newspaper";
 export * from "./stats";
-export * from "./stop-feedly-crawling";
 export * from "./undelete-article";
 
 export * from "./error-handler";

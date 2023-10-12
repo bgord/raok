@@ -1,1 +1,0 @@
-export const FEEDLY_CRAWLING_INTERVAL_HOURS = 2;
