@@ -169,6 +169,7 @@ export function ArchiveFiles(_props: RoutableProps) {
             >
               <UI.Info
                 data-ml="auto"
+                data-transform="nowrap"
                 title={bg.DateFormatter.datetime(file.sentAt?.raw)}
               >
                 {file.sentAt?.relative}
