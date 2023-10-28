@@ -31,4 +31,14 @@ const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
   ArticlesToReviewNotifierTask
 );
 
+const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
+  console.log("here");
+});
+
+const RssCrawlerJob = new SimpleIntervalJob(
+  { minutes: 1, runImmediately: true },
+  RssCrawlerTask
+);
+
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
+Scheduler.addSimpleIntervalJob(RssCrawlerJob);
