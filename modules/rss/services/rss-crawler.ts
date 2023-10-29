@@ -32,10 +32,14 @@ export class RSSCrawler {
       operation: "rss_crawler_start",
     });
 
+    let sourceIndex = 1;
+
     for (const source of sources) {
+      if (sourceIndex > 3) break;
+
       try {
         infra.logger.info({
-          message: "Crawling RSS attepmt",
+          message: `Crawling RSS attempt ${sourceIndex}/${sources.length}`,
           operation: "rss_crawler_attempt",
           metadata: { source },
         });
@@ -45,7 +49,7 @@ export class RSSCrawler {
         }).parseURL(source);
 
         infra.logger.info({
-          message: "Crawling RSS success",
+          message: `Crawling RSS success ${sourceIndex}/${sources.length}`,
           operation: "rss_crawler_success",
           metadata: { source, items: rss.items.length },
         });
@@ -56,7 +60,7 @@ export class RSSCrawler {
 
         if (SourceCache.get(source) === hash) {
           infra.logger.info({
-            message: "Skipping cached source",
+            message: `Skipping cached source ${sourceIndex}/${sources.length}`,
             operation: "rss_crawler_source_skipped_from_cache",
             metadata: { source },
           });
@@ -91,12 +95,18 @@ export class RSSCrawler {
 
           urls.push(link.data);
         }
+
+        sourceIndex++;
+        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.info({
           message: "Crawling RSS error",
           operation: "rss_crawler_error",
           metadata: { source, error: infra.logger.formatError(error) },
         });
+
+        sourceIndex++;
+        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
 
@@ -110,12 +120,14 @@ export class RSSCrawler {
       metadata: { urls: this.urls.length },
     });
 
-    let index = 1;
+    let urlIndex = 1;
 
     for (const url of this.urls) {
+      if (urlIndex > 25) break;
+
       try {
         infra.logger.info({
-          message: `Article add attempt ${index}/${this.urls.length}`,
+          message: `Article add attempt ${urlIndex}/${this.urls.length}`,
           operation: "rss_crawler_article_add_attempt",
           metadata: { url },
         });
@@ -123,31 +135,29 @@ export class RSSCrawler {
         await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
 
         infra.logger.info({
-          message: `Article added ${index}/${this.urls.length}`,
+          message: `Article added ${urlIndex}/${this.urls.length}`,
           operation: "rss_crawler_article_add_success",
           metadata: { url },
         });
 
         LinkCache.set(url, true);
+        urlIndex++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.error({
-          message: `Article not added ${index}/${this.urls.length}`,
+          message: `Article not added ${urlIndex}/${this.urls.length}`,
           operation: "rss_crawler_article_add_error",
           metadata: { url },
         });
-      } finally {
-        if (index === 25) break;
-
-        index++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
+        urlIndex++;
       }
     }
 
     infra.logger.info({
       message: "Finished adding articles",
       operation: "rss_crawler_article_add_finished",
-      metadata: { total: index },
+      metadata: { total: urlIndex },
     });
   }
 
