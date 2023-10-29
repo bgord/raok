@@ -36,6 +36,7 @@ const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
 const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
   const rssCrawler = new RSS.Services.RSSCrawler();
   await rssCrawler.crawl();
+  await rssCrawler.process();
 });
 
 const RssCrawlerJob = new SimpleIntervalJob(
