@@ -18,6 +18,8 @@ const SourceCache = new bg.Cache({
   checkperiod: bg.Time.Hours(1).seconds,
 });
 
+const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
+
 export class RSSCrawler {
   public static INTERVAL_MINUTES = 5;
 
@@ -44,9 +46,7 @@ export class RSSCrawler {
           metadata: { source },
         });
 
-        const rss = await new Parser({
-          timeout: bg.Time.Seconds(5).ms,
-        }).parseURL(source);
+        const rss = await parser.parseURL(source);
 
         infra.logger.info({
           message: `Crawling RSS success ${sourceIndex}/${sources.length}`,
