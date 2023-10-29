@@ -1,7 +1,9 @@
 import * as bg from "@bgord/node";
+import axios from "axios";
 import Parser from "rss-parser";
 import _ from "lodash";
 import { createHash } from "node:crypto";
+import fs from "node:fs/promises";
 
 import * as VO from "../../../value-objects";
 import * as Aggregates from "../../../aggregates";
@@ -26,6 +28,8 @@ export class RSSCrawler {
   urls: VO.ArticleUrlType[] = [];
 
   public async crawl() {
+    await fs.writeFile("rss-crawler", Date.now().toString());
+
     const sources = await this.getSources();
     const urls: VO.ArticleUrlType[] = [];
 
@@ -46,7 +50,8 @@ export class RSSCrawler {
           metadata: { source },
         });
 
-        const rss = await parser.parseURL(source);
+        const response = await axios.get("https://www.brainpickings.org/feed/");
+        const rss = await parser.parseString(response.data);
 
         infra.logger.info({
           message: `Crawling RSS success ${sourceIndex}/${sources.length}`,
