@@ -1,5 +1,6 @@
 import * as bg from "@bgord/node";
 import Parser from "rss-parser";
+import { createHash } from "node:crypto";
 
 import * as VO from "../../../value-objects";
 import * as Aggregates from "../../../aggregates";
@@ -8,6 +9,11 @@ import * as infra from "../../../infra";
 
 const linkCache = new bg.Cache({
   stdTTL: bg.Time.Days(7).seconds,
+  checkperiod: bg.Time.Hours(1).seconds,
+});
+
+const sourceCache = new bg.Cache({
+  stdTTL: bg.Time.Days(1).seconds,
   checkperiod: bg.Time.Hours(1).seconds,
 });
 
@@ -30,6 +36,22 @@ export class RSSCrawler {
           operation: "rss_crawler_success",
           metadata: { source, items: rss.items.length },
         });
+
+        const hash = createHash("sha256")
+          .update(JSON.stringify(rss.items))
+          .digest("hex");
+
+        if (sourceCache.get(source) === hash) {
+          infra.logger.info({
+            message: "Skipping cached source",
+            operation: "rss_crawler_source_skipped_from_cache",
+            metadata: { source },
+          });
+
+          continue;
+        }
+
+        sourceCache.set(source, hash);
 
         for (const item of rss.items) {
           const link = VO.ArticleUrl.safeParse(item.link);
