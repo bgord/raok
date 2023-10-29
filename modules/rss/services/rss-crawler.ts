@@ -42,7 +42,7 @@ export class RSSCrawler {
           metadata: { source },
         });
 
-        const response = await axios.get("https://www.brainpickings.org/feed/");
+        const response = await axios.get(source);
         const rss = await parser.parseString(response.data);
 
         infra.logger.info({
