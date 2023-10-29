@@ -101,12 +101,20 @@ export class RSSCrawler {
       metadata: { urls: this.urls.length },
     });
 
+    let index = 1;
+
     for (const url of this.urls) {
       try {
+        infra.logger.info({
+          message: `Article add attempt ${index}/${this.urls.length}`,
+          operation: "rss_crawler_article_add_attempt",
+          metadata: { url },
+        });
+
         await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
 
         infra.logger.info({
-          message: "Article added",
+          message: `Article added ${index}/${this.urls.length}`,
           operation: "rss_crawler_article_add_success",
           metadata: { url },
         });
@@ -115,10 +123,13 @@ export class RSSCrawler {
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.error({
-          message: "Article not added",
+          message: `Article not added ${index}/${this.urls.length}`,
           operation: "rss_crawler_article_add_error",
-          metadata: { url, error: infra.logger.formatError(error) },
+          metadata: { url },
         });
+      } finally {
+        index++;
+        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
   }
