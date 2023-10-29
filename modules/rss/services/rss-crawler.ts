@@ -6,8 +6,13 @@ import * as Aggregates from "../../../aggregates";
 
 import * as infra from "../../../infra";
 
+const linkCache = new bg.Cache({
+  stdTTL: bg.Time.Days(7).seconds,
+  checkperiod: bg.Time.Hours(1).seconds,
+});
+
 export class RSSCrawler {
-  public static INTERVAL_MINUTES = 5;
+  public static INTERVAL_MINUTES = 1;
 
   constructor() {}
 
@@ -29,7 +34,7 @@ export class RSSCrawler {
         for (const item of rss.items) {
           const link = VO.ArticleUrl.safeParse(item.link);
 
-          if (!link.success) {
+          if (!link.success || !item.link) {
             infra.logger.warn({
               message: "Invalid article URL received from RSS",
               operation: "rss_crawler_article_url_invalid",
@@ -39,7 +44,18 @@ export class RSSCrawler {
             continue;
           }
 
+          if (linkCache.has(link.data)) {
+            infra.logger.info({
+              message: "Skipping cached article",
+              operation: "rss_crawler_article_url_skipped_from_cache",
+              metadata: { url: item.link, source },
+            });
+
+            continue;
+          }
+
           urls.push(link.data);
+          linkCache.set(link.data, true);
         }
       } catch (error) {
         infra.logger.info({
@@ -56,23 +72,23 @@ export class RSSCrawler {
       metadata: { urls: urls.length },
     });
 
-    // for (const url of urls) {
-    //   try {
-    //     await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
+    for (const url of urls) {
+      try {
+        await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
 
-    //     infra.logger.info({
-    //       message: "Article added",
-    //       operation: "rss_crawler_article_add_success",
-    //       metadata: { url },
-    //     });
-    //   } catch (error) {
-    //     infra.logger.error({
-    //       message: "Article not added",
-    //       operation: "rss_crawler_article_add_error",
-    //       metadata: { url, error: infra.logger.formatError(error) },
-    //     });
-    //   }
-    // }
+        infra.logger.info({
+          message: "Article added",
+          operation: "rss_crawler_article_add_success",
+          metadata: { url },
+        });
+      } catch (error) {
+        infra.logger.error({
+          message: "Article not added",
+          operation: "rss_crawler_article_add_error",
+          metadata: { url, error: infra.logger.formatError(error) },
+        });
+      }
+    }
   }
 
   private async getSources() {
