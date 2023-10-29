@@ -41,8 +41,6 @@ export class RSSCrawler {
     let sourceIndex = 1;
 
     for (const source of sources) {
-      if (sourceIndex > 3) break;
-
       try {
         infra.logger.info({
           message: `Crawling RSS attempt ${sourceIndex}/${sources.length}`,
@@ -155,6 +153,7 @@ export class RSSCrawler {
           metadata: { url },
         });
         LinkCache.set(url, true);
+        urlIndex++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
