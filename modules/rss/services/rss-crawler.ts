@@ -26,6 +26,11 @@ export class RSSCrawler {
     const sources = await this.getSources();
     const urls: VO.ArticleUrlType[] = [];
 
+    infra.logger.info({
+      message: "Starting RSS crawl",
+      operation: "rss_crawler_start",
+    });
+
     for (const source of sources) {
       try {
         const rss = await new Parser().parseURL(source);
@@ -107,6 +112,7 @@ export class RSSCrawler {
         });
 
         LinkCache.set(url, true);
+        await bg.sleep({ ms: 100 });
       } catch (error) {
         infra.logger.error({
           message: "Article not added",
