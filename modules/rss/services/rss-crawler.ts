@@ -18,7 +18,7 @@ const SourceCache = new bg.Cache({
 });
 
 export class RSSCrawler {
-  public static INTERVAL_MINUTES = 1;
+  public static INTERVAL_MINUTES = 5;
 
   urls: VO.ArticleUrlType[] = [];
 
@@ -76,7 +76,6 @@ export class RSSCrawler {
           }
 
           urls.push(link.data);
-          LinkCache.set(link.data, true);
         }
       } catch (error) {
         infra.logger.info({
@@ -106,6 +105,8 @@ export class RSSCrawler {
           operation: "rss_crawler_article_add_success",
           metadata: { url },
         });
+
+        LinkCache.set(url, true);
       } catch (error) {
         infra.logger.error({
           message: "Article not added",
