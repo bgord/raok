@@ -1,5 +1,6 @@
 import * as bg from "@bgord/node";
 import Parser from "rss-parser";
+import _ from "lodash";
 import { createHash } from "node:crypto";
 
 import * as VO from "../../../value-objects";
@@ -18,7 +19,7 @@ const SourceCache = new bg.Cache({
 });
 
 export class RSSCrawler {
-  public static INTERVAL_MINUTES = 30;
+  public static INTERVAL_MINUTES = 5;
 
   urls: VO.ArticleUrlType[] = [];
 
@@ -128,10 +129,18 @@ export class RSSCrawler {
           metadata: { url },
         });
       } finally {
+        if (index === 50) break;
+
         index++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
+
+    infra.logger.info({
+      message: "Finished adding articles",
+      operation: "rss_crawler_article_add_finished",
+      metadata: { total: index },
+    });
   }
 
   private async getSources() {
