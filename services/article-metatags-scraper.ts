@@ -9,7 +9,7 @@ export class ArticleMetatagsScraper {
     const emptyMetatags = { title: undefined };
 
     try {
-      const response = await og({ url, timeout: bg.Time.Seconds(30).ms });
+      const response = await og({ url, timeout: bg.Time.Seconds(5).ms });
 
       if (response.result.success) {
         return VO.ArticleMetatags.parse({ title: response.result.ogTitle });

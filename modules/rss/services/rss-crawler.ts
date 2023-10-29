@@ -137,7 +137,7 @@ export class RSSCrawler {
           metadata: { url },
         });
       } finally {
-        if (index === 50) break;
+        if (index === 25) break;
 
         index++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
