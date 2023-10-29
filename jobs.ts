@@ -1,5 +1,7 @@
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
+import * as RSS from "./modules/rss";
+
 import * as Services from "./services";
 import * as Aggregates from "./aggregates";
 import * as infra from "./infra";
@@ -31,4 +33,16 @@ const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
   ArticlesToReviewNotifierTask
 );
 
+const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
+  const rssCrawler = new RSS.Services.RSSCrawler();
+  await rssCrawler.crawl();
+  await rssCrawler.process();
+});
+
+const RssCrawlerJob = new SimpleIntervalJob(
+  { minutes: RSS.Services.RSSCrawler.INTERVAL_MINUTES, runImmediately: true },
+  RssCrawlerTask
+);
+
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
+Scheduler.addSimpleIntervalJob(RssCrawlerJob);
