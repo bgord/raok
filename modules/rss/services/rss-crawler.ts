@@ -34,7 +34,15 @@ export class RSSCrawler {
 
     for (const source of sources) {
       try {
-        const rss = await new Parser().parseURL(source);
+        infra.logger.info({
+          message: "Crawling RSS attepmt",
+          operation: "rss_crawler_attempt",
+          metadata: { source },
+        });
+
+        const rss = await new Parser({
+          timeout: bg.Time.Seconds(5).ms,
+        }).parseURL(source);
 
         infra.logger.info({
           message: "Crawling RSS success",
