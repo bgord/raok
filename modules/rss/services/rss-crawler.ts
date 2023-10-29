@@ -154,15 +154,15 @@ export class RSSCrawler {
           operation: "rss_crawler_article_add_error",
           metadata: { url },
         });
+        LinkCache.set(url, true);
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
-        urlIndex++;
       }
     }
 
     infra.logger.info({
       message: "Finished adding articles",
       operation: "rss_crawler_article_add_finished",
-      metadata: { total: urlIndex },
+      metadata: { total: urlIndex - 1 },
     });
   }
 
