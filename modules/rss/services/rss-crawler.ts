@@ -2,7 +2,6 @@ import * as bg from "@bgord/node";
 import axios from "axios";
 import Parser from "rss-parser";
 import _ from "lodash";
-import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 
 import * as VO from "../../../value-objects";
@@ -12,11 +11,6 @@ import * as infra from "../../../infra";
 
 const LinkCache = new bg.Cache({
   stdTTL: bg.Time.Days(7).seconds,
-  checkperiod: bg.Time.Hours(1).seconds,
-});
-
-const SourceCache = new bg.Cache({
-  stdTTL: bg.Time.Days(1).seconds,
   checkperiod: bg.Time.Hours(1).seconds,
 });
 
@@ -56,22 +50,6 @@ export class RSSCrawler {
           operation: "rss_crawler_success",
           metadata: { source, items: rss.items.length },
         });
-
-        const hash = createHash("sha256")
-          .update(JSON.stringify(rss.items))
-          .digest("hex");
-
-        if (SourceCache.get(source) === hash) {
-          infra.logger.info({
-            message: `Skipping cached source ${sourceIndex}/${sources.length}`,
-            operation: "rss_crawler_source_skipped_from_cache",
-            metadata: { source },
-          });
-
-          continue;
-        }
-
-        SourceCache.set(source, hash);
 
         for (const item of rss.items) {
           const link = VO.ArticleUrl.safeParse(item.link);
