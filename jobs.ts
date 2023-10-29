@@ -34,9 +34,17 @@ const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
 );
 
 const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
-  const rssCrawler = new RSS.Services.RSSCrawler();
-  await rssCrawler.crawl();
-  await rssCrawler.process();
+  try {
+    const rssCrawler = new RSS.Services.RSSCrawler();
+    await rssCrawler.crawl();
+    await rssCrawler.process();
+  } catch (error) {
+    infra.logger.error({
+      message: "RssCrawlerTask error",
+      operation: "rss_crawler_error",
+      metadata: { error: infra.logger.formatError(error) },
+    });
+  }
 });
 
 const RssCrawlerJob = new SimpleIntervalJob(
