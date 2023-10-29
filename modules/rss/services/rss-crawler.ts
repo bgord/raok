@@ -112,7 +112,7 @@ export class RSSCrawler {
         });
 
         LinkCache.set(url, true);
-        await bg.sleep({ ms: 100 });
+        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.error({
           message: "Article not added",
