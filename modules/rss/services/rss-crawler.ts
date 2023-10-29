@@ -18,7 +18,7 @@ const SourceCache = new bg.Cache({
 });
 
 export class RSSCrawler {
-  public static INTERVAL_MINUTES = 1;
+  public static INTERVAL_MINUTES = 5;
 
   urls: VO.ArticleUrlType[] = [];
 
