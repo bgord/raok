@@ -19,7 +19,7 @@ const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
 export class RSSCrawler {
   public static INTERVAL_MINUTES = 2;
 
-  public static PROCESSING_URLS_BATCH = 25;
+  public static PROCESSING_URLS_BATCH = 50;
 
   urls: VO.ArticleUrlType[] = [];
 
