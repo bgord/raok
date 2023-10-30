@@ -36,12 +36,12 @@ export class RSSCrawler {
       operation: "rss_crawler_start",
     });
 
-    let sourceIndex = 1;
+    const stepper = new bg.Stepper({ total: sources.length });
 
     for (const source of sources) {
       try {
         infra.logger.info({
-          message: `Crawling RSS attempt ${sourceIndex}/${sources.length}`,
+          message: `Crawling RSS attempt ${stepper.read().formatted}`,
           operation: "rss_crawler_attempt",
           metadata: { source },
         });
@@ -50,7 +50,7 @@ export class RSSCrawler {
         const rss = await parser.parseString(response.data);
 
         infra.logger.info({
-          message: `Crawling RSS success ${sourceIndex}/${sources.length}`,
+          message: `Crawling RSS success ${stepper.read().formatted}`,
           operation: "rss_crawler_success",
           metadata: { source, items: rss.items.length },
         });
@@ -97,7 +97,7 @@ export class RSSCrawler {
           metadata: { source, error: infra.logger.formatError(error) },
         });
       } finally {
-        sourceIndex++;
+        stepper.continue();
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
@@ -112,14 +112,14 @@ export class RSSCrawler {
       metadata: { urls: this.urls.length },
     });
 
-    let urlIndex = 1;
+    const stepper = new bg.Stepper({ total: RSSCrawler.PROCESSING_URLS_BATCH });
 
     for (const url of this.urls) {
-      if (urlIndex > RSSCrawler.PROCESSING_URLS_BATCH) break;
+      if (stepper.isFinished()) break;
 
       try {
         infra.logger.info({
-          message: `Article add attempt ${urlIndex}/${this.urls.length}`,
+          message: `Article add attempt ${stepper.read().formatted}`,
           operation: "rss_crawler_article_add_attempt",
           metadata: { url },
         });
@@ -127,19 +127,19 @@ export class RSSCrawler {
         await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
 
         infra.logger.info({
-          message: `Article added ${urlIndex}/${this.urls.length}`,
+          message: `Article added ${stepper.read().formatted}`,
           operation: "rss_crawler_article_add_success",
           metadata: { url },
         });
       } catch (error) {
         infra.logger.error({
-          message: `Article not added ${urlIndex}/${this.urls.length}`,
+          message: `Article not added ${stepper.read().formatted}`,
           operation: "rss_crawler_article_add_error",
           metadata: { url },
         });
       } finally {
         LinkCache.set(url, true);
-        urlIndex++;
+        stepper.continue();
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
@@ -147,7 +147,7 @@ export class RSSCrawler {
     infra.logger.info({
       message: "Finished adding articles",
       operation: "rss_crawler_article_add_finished",
-      metadata: { total: urlIndex - 1 },
+      metadata: { total: stepper.read().raw.total },
     });
   }
 
