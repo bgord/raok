@@ -3,6 +3,7 @@ import axios from "axios";
 import Parser from "rss-parser";
 import _ from "lodash";
 import fs from "node:fs/promises";
+import { isWithinInterval, subMonths, startOfToday } from "date-fns";
 
 import * as VO from "../../../value-objects";
 import * as Aggregates from "../../../aggregates";
@@ -62,6 +63,16 @@ export class RSSCrawler {
               message: "Invalid article URL received from RSS",
               operation: "rss_crawler_article_url_invalid",
               metadata: { url: item.link, source },
+            });
+
+            continue;
+          }
+
+          if (!this.isFromLastMonth(item.isoDate)) {
+            infra.logger.info({
+              message: "Skipping article older than month ago",
+              operation: "rss_crawler_article_url_skipped_too_old",
+              metadata: { url: item.link, source, date: item.isoDate },
             });
 
             continue;
@@ -169,5 +180,16 @@ export class RSSCrawler {
       "https://www.swyx.io/rss.xml",
       "https://www.brainpickings.org/feed/",
     ];
+  }
+
+  private isFromLastMonth(
+    value: bg.AsyncReturnType<Parser["parseString"]>["items"][0]["isoDate"]
+  ): boolean {
+    if (!value) return true;
+
+    return isWithinInterval(new Date(value), {
+      start: subMonths(startOfToday(), 1),
+      end: startOfToday(),
+    });
   }
 }
