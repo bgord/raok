@@ -27,6 +27,7 @@ export class RSSCrawler {
     await fs.writeFile("rss-crawler", Date.now().toString());
 
     const sources = await this.getSources();
+
     const urls: VO.ArticleUrlType[] = [];
 
     infra.logger.info({
@@ -78,16 +79,13 @@ export class RSSCrawler {
 
           urls.push(link.data);
         }
-
-        sourceIndex++;
-        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.info({
           message: "Crawling RSS error",
           operation: "rss_crawler_error",
           metadata: { source, error: infra.logger.formatError(error) },
         });
-
+      } finally {
         sourceIndex++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
@@ -122,16 +120,13 @@ export class RSSCrawler {
           operation: "rss_crawler_article_add_success",
           metadata: { url },
         });
-
-        LinkCache.set(url, true);
-        urlIndex++;
-        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.error({
           message: `Article not added ${urlIndex}/${this.urls.length}`,
           operation: "rss_crawler_article_add_error",
           metadata: { url },
         });
+      } finally {
         LinkCache.set(url, true);
         urlIndex++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
