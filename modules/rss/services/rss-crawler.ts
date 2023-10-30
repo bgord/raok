@@ -41,7 +41,7 @@ export class RSSCrawler {
     for (const source of sources) {
       try {
         infra.logger.info({
-          message: `Crawling RSS attempt ${stepper.read().formatted}`,
+          message: `Crawling RSS attempt ${stepper.format()}`,
           operation: "rss_crawler_attempt",
           metadata: { source },
         });
@@ -50,7 +50,7 @@ export class RSSCrawler {
         const rss = await parser.parseString(response.data);
 
         infra.logger.info({
-          message: `Crawling RSS success ${stepper.read().formatted}`,
+          message: `Crawling RSS success ${stepper.format()}`,
           operation: "rss_crawler_success",
           metadata: { source, items: rss.items.length },
         });
@@ -119,7 +119,7 @@ export class RSSCrawler {
 
       try {
         infra.logger.info({
-          message: `Article add attempt ${stepper.read().formatted}`,
+          message: `Article add attempt ${stepper.format()}`,
           operation: "rss_crawler_article_add_attempt",
           metadata: { url },
         });
@@ -127,13 +127,13 @@ export class RSSCrawler {
         await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
 
         infra.logger.info({
-          message: `Article added ${stepper.read().formatted}`,
+          message: `Article added ${stepper.format()}`,
           operation: "rss_crawler_article_add_success",
           metadata: { url },
         });
       } catch (error) {
         infra.logger.error({
-          message: `Article not added ${stepper.read().formatted}`,
+          message: `Article not added ${stepper.format()}`,
           operation: "rss_crawler_article_add_error",
           metadata: { url },
         });
