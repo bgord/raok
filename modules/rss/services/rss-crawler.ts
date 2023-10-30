@@ -19,6 +19,8 @@ const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
 export class RSSCrawler {
   public static INTERVAL_MINUTES = 2;
 
+  public static PROCESSING_URLS_BATCH = 25;
+
   urls: VO.ArticleUrlType[] = [];
 
   public async crawl() {
@@ -104,7 +106,7 @@ export class RSSCrawler {
     let urlIndex = 1;
 
     for (const url of this.urls) {
-      if (urlIndex > 25) break;
+      if (urlIndex > RSSCrawler.PROCESSING_URLS_BATCH) break;
 
       try {
         infra.logger.info({
