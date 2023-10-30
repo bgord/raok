@@ -3,6 +3,7 @@ import axios from "axios";
 import Parser from "rss-parser";
 import _ from "lodash";
 import fs from "node:fs/promises";
+import { isWithinInterval, subMonths, startOfToday } from "date-fns";
 
 import * as VO from "../../../value-objects";
 import * as Aggregates from "../../../aggregates";
@@ -19,12 +20,15 @@ const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
 export class RSSCrawler {
   public static INTERVAL_MINUTES = 2;
 
+  public static PROCESSING_URLS_BATCH = 50;
+
   urls: VO.ArticleUrlType[] = [];
 
   public async crawl() {
     await fs.writeFile("rss-crawler", Date.now().toString());
 
     const sources = await this.getSources();
+
     const urls: VO.ArticleUrlType[] = [];
 
     infra.logger.info({
@@ -64,6 +68,16 @@ export class RSSCrawler {
             continue;
           }
 
+          if (!this.isFromLastMonth(item.isoDate)) {
+            infra.logger.info({
+              message: "Skipping article older than month ago",
+              operation: "rss_crawler_article_url_skipped_too_old",
+              metadata: { url: item.link, source, date: item.isoDate },
+            });
+
+            continue;
+          }
+
           if (LinkCache.has(link.data)) {
             infra.logger.info({
               message: "Skipping cached article",
@@ -76,16 +90,13 @@ export class RSSCrawler {
 
           urls.push(link.data);
         }
-
-        sourceIndex++;
-        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.info({
           message: "Crawling RSS error",
           operation: "rss_crawler_error",
           metadata: { source, error: infra.logger.formatError(error) },
         });
-
+      } finally {
         sourceIndex++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
@@ -104,7 +115,7 @@ export class RSSCrawler {
     let urlIndex = 1;
 
     for (const url of this.urls) {
-      if (urlIndex > 25) break;
+      if (urlIndex > RSSCrawler.PROCESSING_URLS_BATCH) break;
 
       try {
         infra.logger.info({
@@ -120,16 +131,13 @@ export class RSSCrawler {
           operation: "rss_crawler_article_add_success",
           metadata: { url },
         });
-
-        LinkCache.set(url, true);
-        urlIndex++;
-        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       } catch (error) {
         infra.logger.error({
           message: `Article not added ${urlIndex}/${this.urls.length}`,
           operation: "rss_crawler_article_add_error",
           metadata: { url },
         });
+      } finally {
         LinkCache.set(url, true);
         urlIndex++;
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
@@ -172,5 +180,16 @@ export class RSSCrawler {
       "https://www.swyx.io/rss.xml",
       "https://www.brainpickings.org/feed/",
     ];
+  }
+
+  private isFromLastMonth(
+    value: bg.AsyncReturnType<Parser["parseString"]>["items"][0]["isoDate"]
+  ): boolean {
+    if (!value) return true;
+
+    return isWithinInterval(new Date(value), {
+      start: subMonths(startOfToday(), 1),
+      end: startOfToday(),
+    });
   }
 }

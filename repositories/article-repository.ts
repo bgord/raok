@@ -119,6 +119,10 @@ export class ArticleRepository {
     });
   }
 
+  static async getNumbersOfArticlesWithUrl(url: VO.ArticleType["url"]) {
+    return infra.db.article.count({ where: { url } });
+  }
+
   static async search(query: VO.ArticleSearchQueryType) {
     const isQueryAnUrlCheck = VO.ArticleUrl.safeParse(query);
 
