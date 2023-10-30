@@ -49,7 +49,7 @@
   "dependencies": {
     "@bgord/design": "^0.27.65",
     "@bgord/frontend": "github:bgord/bgord-frontend",
-    "@bgord/node": "^0.58.211",
+    "@bgord/node": "^0.58.218",
     "@mozilla/readability": "^0.4.1",
     "@prisma/client": "^3.7.0",
     "@reach/skip-nav": "^0.17.0",
