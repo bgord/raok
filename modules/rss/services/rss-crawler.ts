@@ -2,7 +2,6 @@ import * as bg from "@bgord/node";
 import axios from "axios";
 import Parser from "rss-parser";
 import _ from "lodash";
-import fs from "node:fs/promises";
 import { isWithinInterval, subMonths, startOfToday } from "date-fns";
 
 import * as VO from "../../../value-objects";
@@ -25,8 +24,6 @@ export class RSSCrawler {
   urls: VO.ArticleUrlType[] = [];
 
   public async crawl() {
-    await fs.writeFile("rss-crawler", Date.now().toString());
-
     const sources = await this.getSources();
 
     const urls: VO.ArticleUrlType[] = [];
