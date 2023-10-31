@@ -30,6 +30,7 @@ export async function Dashboard(
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
+    sources: [],
     stats: await Repos.StatsRepository.getAll(),
   };
 

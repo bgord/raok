@@ -1,6 +1,7 @@
 {
   "app.enable": "enable",
   "app.enabled": "enabled",
+  "app.sources": "Sources",
   "app.disable": "disable",
   "app.disabled": "disabled",
   "app.articles": "Articles",
