@@ -159,15 +159,15 @@ export class Source {
       .then((response) => response.json());
   }
 
-  static async reactivate(id: Pick<types.SourceType, "id">) {
+  static async reactivate(id: types.SourceType["id"]) {
     return bg.API(`/rss/source/${id}/reactivate`, { method: "POST" });
   }
 
-  static async archive(id: Pick<types.SourceType, "id">) {
+  static async archive(id: types.SourceType["id"]) {
     return bg.API(`/rss/source/${id}/archive`, { method: "POST" });
   }
 
-  static async delete(id: Pick<types.SourceType, "id">) {
+  static async delete(id: types.SourceType["id"]) {
     return bg.API(`/rss/source/${id}`, { method: "DELETE" });
   }
 

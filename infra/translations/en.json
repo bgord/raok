@@ -155,5 +155,9 @@
   "stats.newspapers_sent": "{{noun}} sent overall",
 
   "source.search.placeholder": "Search for a source...",
-  "source.list.empty": "No sources matching your filters"
+  "source.list.empty": "No sources matching your filters",
+  "source.delete.success": "Source deleted",
+  "source.delete.error": "Source delete error",
+  "source.delete": "Delete source",
+  "source.delete.confirmation": "Are you sure you want to delete this source?"
 }
