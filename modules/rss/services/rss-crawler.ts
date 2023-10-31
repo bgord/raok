@@ -5,6 +5,7 @@ import { isWithinInterval, subMonths, startOfToday } from "date-fns";
 
 import * as VO from "../../../value-objects";
 import * as Aggregates from "../../../aggregates";
+import * as Repos from "../repositories";
 
 import * as infra from "../../../infra";
 
@@ -23,7 +24,7 @@ export class RSSCrawler {
   urls: VO.ArticleUrlType[] = [];
 
   public async crawl() {
-    const sources = await this.getSources();
+    const sources = await Repos.SourceRepository.list();
 
     const urls: VO.ArticleUrlType[] = [];
 
@@ -36,7 +37,7 @@ export class RSSCrawler {
 
     for (const source of sources) {
       try {
-        const rss = await parser.parseURL(source);
+        const rss = await parser.parseURL(source.url);
 
         infra.logger.info({
           message: `Crawling RSS success ${stepper.format()}`,
@@ -94,37 +95,6 @@ export class RSSCrawler {
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
-  }
-
-  private async getSources() {
-    return [
-      "http://www.bram.us/feed/",
-      "http://feeds.feedburner.com/niebezpiecznik/",
-      "https://psyche.co/feed",
-      "http://feedpress.me/hacker-news-best",
-      "http://atlasobscura.com/blog/rss.xml",
-      "http://feeds.feedburner.com/bigthink/main",
-      "http://geteventstore.com/blog/feed/",
-      "https://www.builder.io/blog/feed.xml",
-      "https://controlaltbackspace.org/feed.xml",
-      "https://cuddly-octo-palm-tree.com/feed.xml",
-      "https://overreacted.io/rss.xml",
-      "http://danslimmon.wordpress.com/feed/",
-      "https://diracdeltas.github.io/blog/index.xml",
-      "https://event-driven.io/rss.xml",
-      "https://explained-from-first-principles.com/feed.xml",
-      "https://frontendmastery.com/feed/",
-      "https://www.midline.pl/rss/",
-      "http://feeds.feedburner.com/arkency.xml",
-      "http://martinfowler.com/bliki/bliki.atom",
-      "https://www.youtube.com/feeds/videos.xml?channel_id=UCtcUMxUSMWUNBfOaKUv5cjg",
-      "http://www.quantamagazine.org/feed/",
-      "https://reactjs.org/feed.xml",
-      "http://feeds.feedburner.com/depesz",
-      "https://buttondown.email/stately/rss",
-      "https://www.swyx.io/rss.xml",
-      "https://www.brainpickings.org/feed/",
-    ];
   }
 
   private isFromLastMonth(
