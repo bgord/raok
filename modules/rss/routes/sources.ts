@@ -2,13 +2,15 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
-import * as VO from "../value-objects";
-import * as infra from "../infra";
-import * as Repos from "../repositories";
+import * as infra from "../../../infra";
 
-import { App } from "../frontend/app";
+import * as VO from "../../../value-objects";
+import * as Repos from "../../../repositories";
+import { SourceRepository } from "../repositories/source-repository";
 
-export async function Dashboard(
+import { App } from "../../../frontend/app";
+
+export async function Sources(
   request: express.Request,
   response: express.Response,
   _next: express.NextFunction
@@ -30,7 +32,7 @@ export async function Dashboard(
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
-    sources: [],
+    sources: await SourceRepository.list(),
     stats: await Repos.StatsRepository.getAll(),
   };
 

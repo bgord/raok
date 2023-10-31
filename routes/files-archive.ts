@@ -34,6 +34,7 @@ export async function FilesArchive(
     ),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
+    sources: [],
     stats: await Repos.StatsRepository.getAll(),
   };
 

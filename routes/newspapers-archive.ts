@@ -32,6 +32,7 @@ export async function NewspapersArchive(
     },
     newspapers: [],
     settings: await Repos.SettingsRepository.getAll(),
+    sources: [],
     stats: await Repos.StatsRepository.getAll(),
   };
 

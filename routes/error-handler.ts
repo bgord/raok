@@ -2,6 +2,8 @@ import z from "zod";
 import express from "express";
 import * as bg from "@bgord/node";
 
+import * as RSS from "../modules/rss";
+
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
 import * as infra from "../infra";
@@ -130,6 +132,32 @@ export class ErrorHandler {
 
       return response.status(400).send({
         message: "article.scraping_timeout_error",
+        _known: true,
+      });
+    }
+
+    if (error instanceof RSS.Policies.SourceUrlIsNotUniqueError) {
+      infra.logger.error({
+        message: "Source is not unique",
+        operation: RSS.Policies.SourceUrlIsUnique.message,
+        correlationId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: RSS.Policies.SourceUrlIsUnique.message,
+        _known: true,
+      });
+    }
+
+    if (error instanceof RSS.Policies.SourceUrlRespondsError) {
+      infra.logger.error({
+        message: "Source does not respond",
+        operation: RSS.Policies.SourceUrlResponds.message,
+        correlationId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: RSS.Policies.SourceUrlResponds.message,
         _known: true,
       });
     }

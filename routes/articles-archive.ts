@@ -31,6 +31,7 @@ export async function ArticlesArchive(
       meta: { ...bg.Pagination.empty.meta, previousPage: undefined },
     },
     newspapers: [],
+    sources: [],
     settings: await Repos.SettingsRepository.getAll(),
     stats: await Repos.StatsRepository.getAll(),
   };

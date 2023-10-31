@@ -151,3 +151,30 @@ export class Settings {
     });
   }
 }
+
+export class Source {
+  static async list(): Promise<types.SourceType[]> {
+    return bg
+      .API("/rss/source/list", { method: "GET" })
+      .then((response) => response.json());
+  }
+
+  static async reactivate(id: types.SourceType["id"]) {
+    return bg.API(`/rss/source/${id}/reactivate`, { method: "POST" });
+  }
+
+  static async archive(id: types.SourceType["id"]) {
+    return bg.API(`/rss/source/${id}/archive`, { method: "POST" });
+  }
+
+  static async delete(id: types.SourceType["id"]) {
+    return bg.API(`/rss/source/${id}`, { method: "DELETE" });
+  }
+
+  static async create(url: types.SourceType["url"]) {
+    return bg.API("/rss/source/create", {
+      method: "POST",
+      body: JSON.stringify({ url }),
+    });
+  }
+}

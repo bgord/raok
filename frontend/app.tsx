@@ -19,9 +19,12 @@ import {
 } from "./archive-newspapers";
 import { Settings, InitialSettingsDataType } from "./settings";
 import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
+import { Sources, InitialSourcesDataType } from "./sources";
+
 import { ScrollButton } from "./scroll-button";
 
 export type InitialDataType = InitialDashboardDataType &
+  InitialSourcesDataType &
   InitialArchiveArticlesDataType &
   InitialArchiveNewspapersDataType &
   InitialSettingsDataType &
@@ -59,6 +62,7 @@ export function App(props: InitialDataType) {
           <SkipNavContent as="div" />
 
           <Router url={props.url}>
+            <Sources path="/sources" />
             <ArchiveArticles path="/archive/articles" />
             <ArchiveNewspapers path="/archive/newspapers" />
             <ArchiveFiles path="/archive/files" />

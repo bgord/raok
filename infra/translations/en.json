@@ -1,6 +1,7 @@
 {
   "app.enable": "enable",
   "app.enabled": "enabled",
+  "app.sources": "Sources",
   "app.disable": "disable",
   "app.disabled": "disabled",
   "app.articles": "Articles",
@@ -151,5 +152,26 @@
   "settings.preparing": "Preparing settings...",
 
   "stats.articles_added": "{{noun}} added overall",
-  "stats.newspapers_sent": "{{noun}} sent overall"
+  "stats.newspapers_sent": "{{noun}} sent overall",
+
+  "source.search.placeholder": "Search for a source...",
+  "source.list.empty": "No sources matching your filters",
+  "source.delete.success": "Source deleted",
+  "source.delete.error": "Source delete error",
+  "source.delete": "Delete source",
+  "source.delete.confirmation": "Are you sure you want to delete this source?",
+  "source.archive.success": "Source archived",
+  "source.archive.error": "Source archive error",
+  "source.archive": "Archive source",
+  "source.archive.confirmation": "Are you sure you want to archive this source?",
+  "source.reactivate.success": "Source reactivated",
+  "source.reactivate.error": "Source reactivate error",
+  "source.reactivate": "Reactivate source",
+  "source.reactivate.confirmation": "Are you sure you want to reactivate this source?",
+  "source.create.success": "Source created",
+  "source.url.label": "Source URL",
+  "source.url.placeholder": "https://example.com/rss",
+  "source.create.submit": "Create",
+  "source.error.not_unique": "Source already exists",
+  "source.error.not_responds": "Source does not respond"
 }

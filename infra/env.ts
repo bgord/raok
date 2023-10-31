@@ -16,6 +16,7 @@ const EnvironmentSchema = z.object({
   LOGS_LEVEL: bg.Schema.LogLevel,
   BASIC_AUTH_USERNAME: bg.Schema.BasicAuthUsername,
   BASIC_AUTH_PASSWORD: bg.Schema.BasicAuthPassword,
+  RSS_CRAWLING_ENABLED: bg.Schema.FeatureFlag,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 
