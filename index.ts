@@ -16,8 +16,28 @@ infra.Session.applyTo(app);
 infra.AuthShield.applyTo(app);
 bg.HttpLogger.applyTo(app, infra.logger);
 
+// Auth ========================
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
+app.post(
+  "/login",
+  bg.CsrfShield.verify,
+  infra.AuthShield.attach,
+  (_request, response) => response.redirect("/dashboard")
+);
+app.get("/logout", infra.AuthShield.detach, (_, response) =>
+  response.redirect("/")
+);
 
+app.get(
+  "/dashboard",
+  infra.AuthShield.verify,
+  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
+  bg.Route(Routes.Dashboard)
+);
+
+// =============================
+
+// Articles ====================
 app.get("/articles", infra.AuthShield.verify, bg.Route(Routes.Articles));
 app.get(
   "/articles/search",
@@ -29,7 +49,6 @@ app.get(
   infra.AuthShield.verify,
   bg.Route(Routes.ArchiveArticles)
 );
-
 app.post("/add-article", infra.AuthShield.verify, bg.Route(Routes.AddArticle));
 app.post(
   "/delete-article/:articleId",
@@ -51,7 +70,14 @@ app.post(
   infra.AuthShield.verify,
   bg.Route(Routes.DeleteOldArticles)
 );
+app.get(
+  "/archive/articles",
+  infra.AuthShield.verify,
+  bg.Route(Routes.ArticlesArchive)
+);
+// =============================
 
+// Newspapers ==================
 app.get("/newspapers", infra.AuthShield.verify, bg.Route(Routes.Newspapers));
 app.get(
   "/newspapers/archive",
@@ -88,7 +114,14 @@ app.post(
   infra.AuthShield.verify,
   bg.Route(Routes.ResendNewspaper)
 );
+app.get(
+  "/archive/newspapers",
+  infra.AuthShield.verify,
+  bg.Route(Routes.NewspapersArchive)
+);
+// =============================
 
+// Files =======================
 app.post(
   "/send-arbitrary-file",
   infra.AuthShield.verify,
@@ -101,24 +134,33 @@ app.post(
   bg.Route(Routes.SendArbitraryFile)
 );
 app.get(
+  "/files/archive/:fileId/download",
+  infra.AuthShield.verify,
+  bg.Route(Routes.DownloadFile)
+);
+app.get(
   "/files/archive",
   infra.AuthShield.verify,
   bg.Route(Routes.ArchiveFiles)
 );
 app.get(
-  "/files/archive/:fileId/download",
+  "/archive/files",
   infra.AuthShield.verify,
-  bg.Route(Routes.DownloadFile)
+  bg.Route(Routes.FilesArchive)
 );
+// =============================
 
+// Stats =======================
 app.get("/stats", infra.AuthShield.verify, bg.Route(Routes.Stats));
+// =============================
+
+// Settings ====================
 app.get("/settings", infra.AuthShield.verify, bg.Route(Routes.Dashboard));
 app.get(
   "/account/settings",
   infra.AuthShield.verify,
   bg.Route(Routes.Settings)
 );
-
 app.post(
   "/disable-articles-to-review-notification",
   infra.AuthShield.verify,
@@ -134,40 +176,9 @@ app.post(
   infra.AuthShield.verify,
   bg.Route(Routes.SetArticlesToReviewNotificationHour)
 );
+// =============================
 
-app.get(
-  "/archive/articles",
-  infra.AuthShield.verify,
-  bg.Route(Routes.ArticlesArchive)
-);
-app.get(
-  "/archive/newspapers",
-  infra.AuthShield.verify,
-  bg.Route(Routes.NewspapersArchive)
-);
-app.get(
-  "/archive/files",
-  infra.AuthShield.verify,
-  bg.Route(Routes.FilesArchive)
-);
-
-app.post(
-  "/login",
-  bg.CsrfShield.verify,
-  infra.AuthShield.attach,
-  (_request, response) => response.redirect("/dashboard")
-);
-app.get("/logout", infra.AuthShield.detach, (_, response) =>
-  response.redirect("/")
-);
-
-app.get(
-  "/dashboard",
-  infra.AuthShield.verify,
-  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
-  bg.Route(Routes.Dashboard)
-);
-
+// Healthcheck =================
 app.get(
   "/healthcheck",
   bg.RateLimitShield.build({ limitMs: bg.Time.Minutes(1).ms }),
@@ -175,6 +186,7 @@ app.get(
   infra.BasicAuthShield.verify,
   bg.Healthcheck.build(infra.healthcheck)
 );
+// =============================
 
 app.get("*", (_, response) => response.redirect("/"));
 app.use(Routes.ErrorHandler.handle);
