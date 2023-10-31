@@ -1,6 +1,8 @@
 import express from "express";
 import * as bg from "@bgord/node";
 
+import * as RSS from "./modules/rss";
+
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
 import * as infra from "./infra";
@@ -175,6 +177,29 @@ app.post(
   "/set-articles-to-review-notification-hour",
   infra.AuthShield.verify,
   bg.Route(Routes.SetArticlesToReviewNotificationHour)
+);
+// =============================
+
+// Source ======================
+app.post(
+  "/rss/source/create",
+  infra.AuthShield.verify,
+  bg.Route(RSS.Routes.SourceCreate)
+);
+app.delete(
+  "/rss/source/:sourceId",
+  infra.AuthShield.verify,
+  bg.Route(RSS.Routes.SourceDelete)
+);
+app.post(
+  "/rss/source/:sourceId/archive",
+  infra.AuthShield.verify,
+  bg.Route(RSS.Routes.SourceArchive)
+);
+app.post(
+  "/rss/source/:sourceId/reactivate",
+  infra.AuthShield.verify,
+  bg.Route(RSS.Routes.SourceReactivate)
 );
 // =============================
 
