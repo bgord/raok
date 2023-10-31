@@ -37,7 +37,7 @@ export class SourceRepository {
     return infra.db.source.count({ where });
   }
 
-  static async list() {
+  static async listAll() {
     const sources = await infra.db.source.findMany({
       where: { status: { not: VO.SourceStatusEnum.deleted } },
       orderBy: { createdAt: "desc" },

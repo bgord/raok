@@ -24,7 +24,7 @@ export class RSSCrawler {
   urls: VO.ArticleUrlType[] = [];
 
   public async crawl() {
-    const sources = await Repos.SourceRepository.list();
+    const sources = await Repos.SourceRepository.listAll();
 
     const urls: VO.ArticleUrlType[] = [];
 

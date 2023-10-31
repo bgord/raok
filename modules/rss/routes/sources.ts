@@ -32,7 +32,7 @@ export async function Sources(
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Repos.SettingsRepository.getAll(),
-    sources: await SourceRepository.list(),
+    sources: await SourceRepository.listAll(),
     stats: await Repos.StatsRepository.getAll(),
   };
 
