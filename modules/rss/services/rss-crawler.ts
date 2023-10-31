@@ -37,12 +37,6 @@ export class RSSCrawler {
 
     for (const source of sources) {
       try {
-        infra.logger.info({
-          message: `Crawling RSS attempt ${stepper.format()}`,
-          operation: "rss_crawler_attempt",
-          metadata: { source },
-        });
-
         const response = await axios.get(source);
         const rss = await parser.parseString(response.data);
 
@@ -55,35 +49,9 @@ export class RSSCrawler {
         for (const item of rss.items) {
           const link = VO.ArticleUrl.safeParse(item.link);
 
-          if (!link.success || !item.link) {
-            infra.logger.warn({
-              message: "Invalid article URL received from RSS",
-              operation: "rss_crawler_article_url_invalid",
-              metadata: { url: item.link, source },
-            });
-
-            continue;
-          }
-
-          if (!this.isFromLastMonth(item.isoDate)) {
-            infra.logger.info({
-              message: "Skipping article older than month ago",
-              operation: "rss_crawler_article_url_skipped_too_old",
-              metadata: { url: item.link, source, date: item.isoDate },
-            });
-
-            continue;
-          }
-
-          if (LinkCache.has(link.data)) {
-            infra.logger.info({
-              message: "Skipping cached article",
-              operation: "rss_crawler_article_url_skipped_from_cache",
-              metadata: { url: item.link, source },
-            });
-
-            continue;
-          }
+          if (!link.success || !item.link) continue;
+          if (!this.isFromLastMonth(item.isoDate)) continue;
+          if (LinkCache.has(link.data)) continue;
 
           urls.push(link.data);
         }
@@ -115,19 +83,7 @@ export class RSSCrawler {
       if (stepper.isFinished()) break;
 
       try {
-        infra.logger.info({
-          message: `Article add attempt ${stepper.format()}`,
-          operation: "rss_crawler_article_add_attempt",
-          metadata: { url },
-        });
-
         await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
-
-        infra.logger.info({
-          message: `Article added ${stepper.format()}`,
-          operation: "rss_crawler_article_add_success",
-          metadata: { url },
-        });
       } catch (error) {
         infra.logger.error({
           message: `Article not added ${stepper.format()}`,
@@ -140,12 +96,6 @@ export class RSSCrawler {
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
     }
-
-    infra.logger.info({
-      message: "Finished adding articles",
-      operation: "rss_crawler_article_add_finished",
-      metadata: { total: stepper.read().raw.total },
-    });
   }
 
   private async getSources() {
