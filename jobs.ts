@@ -53,4 +53,7 @@ const RssCrawlerJob = new SimpleIntervalJob(
 );
 
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
-Scheduler.addSimpleIntervalJob(RssCrawlerJob);
+
+if (infra.Env.RSS_CRAWLING_ENABLED === "yes") {
+  Scheduler.addSimpleIntervalJob(RssCrawlerJob);
+}
