@@ -49,3 +49,11 @@ model StatsKeyValue {
   key   String? @unique(map: "sqlite_autoindex_StatsKeyValue_2")
   value Int?
 }
+
+model Source {
+  id        String @id @default(uuid())
+  url       String
+  status    String
+  createdAt Int
+  updatedAt Int    @default(0)
+}
