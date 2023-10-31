@@ -1,6 +1,7 @@
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 import * as Policies from "../policies";
+import { SourceFinder } from "./source-finder";
 
 export class Source {
   constructor(private data: VO.SourceType) {}
@@ -41,12 +42,13 @@ export class Source {
     payload: Pick<VO.SourceType, "url" | "id">
   ): Promise<Source> {
     await Policies.SourceUrlIsUnique.perform({ sourceUrl: payload.url });
-    await Policies.SourceUrlResponds.perform({ sourceUrl: payload.url });
 
+    const url = await new SourceFinder(payload.url).find();
     const now = Date.now();
 
     const source = {
-      ...payload,
+      id: payload.id,
+      url,
       createdAt: now,
       updatedAt: now,
       status: VO.SourceStatusEnum.active,

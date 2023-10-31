@@ -174,5 +174,6 @@
   "source.create.submit": "Create",
   "source.error.not_unique": "Source already exists",
   "source.error.not_responds": "Source does not respond",
-  "source.url.copied": "Source URL copied"
+  "source.url.copied": "Source URL copied",
+  "source.create.waiting": "Finding proper RSS feed for given source..."
 }

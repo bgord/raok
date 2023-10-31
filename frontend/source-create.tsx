@@ -25,6 +25,7 @@ export function SourceCreate() {
   return (
     <form
       data-display="flex"
+      data-cross="end"
       data-gap="24"
       data-md-gap="12"
       onSubmit={(event) => {
@@ -75,6 +76,10 @@ export function SourceCreate() {
           onClick={sourceUrl.clear}
         />
       </div>
+
+      {createSource.isLoading && (
+        <UI.Info data-mb="6">{t("source.create.waiting")}</UI.Info>
+      )}
     </form>
   );
 }

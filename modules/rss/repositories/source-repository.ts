@@ -34,7 +34,9 @@ export class SourceRepository {
   }
 
   static async countUrl(where: Pick<VO.SourceType, "url">) {
-    return infra.db.source.count({ where });
+    return infra.db.source.count({
+      where: { ...where, status: { not: VO.SourceStatusEnum.deleted } },
+    });
   }
 
   static async listAll() {
