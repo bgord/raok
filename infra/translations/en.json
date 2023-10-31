@@ -171,5 +171,7 @@
   "source.create.success": "Source created",
   "source.url.label": "Source URL",
   "source.url.placeholder": "https://example.com/rss",
-  "source.create.submit": "Create"
+  "source.create.submit": "Create",
+  "source.error.not_unique": "Source already exists",
+  "source.error.not_responds": "Source does not respond"
 }
