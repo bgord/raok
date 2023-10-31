@@ -34,6 +34,7 @@ export function Article(props: ArticlePropsType) {
         articleId: props.id,
         articleTitle: props.title,
       });
+      props.toggle(props.id);
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
