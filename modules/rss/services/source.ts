@@ -25,7 +25,7 @@ export class Source {
       throw new Error("Source is deleted");
     }
 
-    await Repos.SourceRepository.archive({ id: this.data.id });
+    await Repos.SourceRepository.reactivate({ id: this.data.id });
   }
 
   async delete() {

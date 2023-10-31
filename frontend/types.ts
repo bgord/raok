@@ -56,3 +56,5 @@ export type ArchiveFileType = AsyncReturnType<
 >[0];
 
 export type SourceType = AsyncReturnType<typeof SourceRepository["list"]>[0];
+
+export { SourceStatusEnum } from "../modules/rss/value-objects/source-status-enum";

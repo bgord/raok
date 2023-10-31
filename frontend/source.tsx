@@ -5,6 +5,7 @@ import * as types from "./types";
 
 import { SourceDelete } from "./source-delete";
 import { SourceArchive } from "./source-archive";
+import { SourceReactivate } from "./source-reactivate";
 
 export function Source(props: types.SourceType) {
   return (
@@ -16,7 +17,12 @@ export function Source(props: types.SourceType) {
       <div data-fs="14">{props.url}</div>
 
       <UI.Info data-ml="auto">{props.updatedAt.relative}</UI.Info>
-      <SourceArchive {...props} />
+      {props.status === types.SourceStatusEnum.active && (
+        <SourceArchive {...props} />
+      )}
+      {props.status === types.SourceStatusEnum.inactive && (
+        <SourceReactivate {...props} />
+      )}
       <SourceDelete {...props} />
     </li>
   );

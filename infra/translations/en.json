@@ -163,5 +163,9 @@
   "source.archive.success": "Source archived",
   "source.archive.error": "Source archive error",
   "source.archive": "Archive source",
-  "source.archive.confirmation": "Are you sure you want to archive this source?"
+  "source.archive.confirmation": "Are you sure you want to archive this source?",
+  "source.reactivate.success": "Source reactivated",
+  "source.reactivate.error": "Source reactivate error",
+  "source.reactivate": "Reactivate source",
+  "source.reactivate.confirmation": "Are you sure you want to reactivate this source?"
 }
