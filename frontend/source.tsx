@@ -4,6 +4,7 @@ import * as UI from "./ui";
 import * as types from "./types";
 
 import { SourceDelete } from "./source-delete";
+import { SourceArchive } from "./source-archive";
 
 export function Source(props: types.SourceType) {
   return (
@@ -15,6 +16,7 @@ export function Source(props: types.SourceType) {
       <div data-fs="14">{props.url}</div>
 
       <UI.Info data-ml="auto">{props.updatedAt.relative}</UI.Info>
+      <SourceArchive {...props} />
       <SourceDelete {...props} />
     </li>
   );

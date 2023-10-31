@@ -159,5 +159,9 @@
   "source.delete.success": "Source deleted",
   "source.delete.error": "Source delete error",
   "source.delete": "Delete source",
-  "source.delete.confirmation": "Are you sure you want to delete this source?"
+  "source.delete.confirmation": "Are you sure you want to delete this source?",
+  "source.archive.success": "Source archived",
+  "source.archive.error": "Source archive error",
+  "source.archive": "Archive source",
+  "source.archive.confirmation": "Are you sure you want to archive this source?"
 }
