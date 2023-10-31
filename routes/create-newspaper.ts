@@ -14,9 +14,7 @@ export async function CreateNewspaper(
   const articles = [];
 
   for (const articleId of articleIds) {
-    const article = await new Aggregates.Article(articleId).build();
-
-    if (!article.entity) continue;
+    const article = await Aggregates.Article.build(articleId);
     articles.push(article);
   }
 

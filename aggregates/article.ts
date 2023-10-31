@@ -11,16 +11,19 @@ export class Article {
 
   stream: bg.EventType["stream"];
 
-  entity: VO.ArticleType | null = null;
+  entity: VO.ArticleType;
 
   static ARTICLE_OLD_MARKER_IN_DAYS = VO.ARTICLE_OLD_MARKER_IN_DAYS;
 
-  constructor(id: VO.ArticleType["id"]) {
-    this.id = id;
-    this.stream = Article.getStream(id);
+  constructor(article: VO.ArticleType) {
+    this.id = article.id;
+    this.entity = article;
+    this.stream = Article.getStream(article.id);
   }
 
-  async build() {
+  static async build(id: VO.ArticleIdType) {
+    let entity: VO.ArticleType | null = null;
+
     const events = await Repos.EventRepository.find(
       [
         Events.ArticleAddedEvent,
@@ -30,34 +33,34 @@ export class Article {
         Events.ArticleProcessedEvent,
         Events.ArticleUndeleteEvent,
       ],
-      Article.getStream(this.id)
+      Article.getStream(id)
     );
 
     for (const event of events) {
       switch (event.name) {
         case Events.ARTICLE_ADDED_EVENT:
-          this.entity = event.payload;
+          entity = event.payload;
           break;
 
         case Events.ARTICLE_DELETED_EVENT:
-          if (!this.entity) continue;
-          this.entity.status = VO.ArticleStatusEnum.deleted;
+          if (!entity) continue;
+          entity.status = VO.ArticleStatusEnum.deleted;
           break;
 
         case Events.ARTICLE_LOCKED_EVENT:
-          if (!this.entity) continue;
-          this.entity.status = VO.ArticleStatusEnum.in_progress;
+          if (!entity) continue;
+          entity.status = VO.ArticleStatusEnum.in_progress;
           break;
 
         case Events.ARTICLE_PROCESSED_EVENT:
-          if (!this.entity) continue;
-          this.entity.status = VO.ArticleStatusEnum.processed;
+          if (!entity) continue;
+          entity.status = VO.ArticleStatusEnum.processed;
           break;
 
         case Events.ARTICLE_UNLOCKED_EVENT:
         case Events.ARTICLE_UNDELETE_EVENT:
-          if (!this.entity) continue;
-          this.entity.status = VO.ArticleStatusEnum.ready;
+          if (!entity) continue;
+          entity.status = VO.ArticleStatusEnum.ready;
           break;
 
         default:
@@ -65,37 +68,37 @@ export class Article {
       }
     }
 
-    return this;
+    return new Article(entity as VO.ArticleType);
   }
 
-  static async add(newArticle: {
+  static async add(article: {
     url: VO.ArticleUrlType;
     source?: VO.ArticleSourceEnum;
   }) {
-    const newArticleSource = newArticle.source ?? VO.ArticleSourceEnum.web;
-    const newArticleId = VO.ArticleId.parse(bg.NewUUID.generate());
+    const id = VO.ArticleId.parse(bg.NewUUID.generate());
+    const source = article.source ?? VO.ArticleSourceEnum.web;
 
-    if (newArticleSource === VO.ArticleSourceEnum.rss) {
-      await Policies.ArticleUrlIsUnique.perform({ articleUrl: newArticle.url });
+    if (source === VO.ArticleSourceEnum.rss) {
+      await Policies.ArticleUrlIsUnique.perform({ articleUrl: article.url });
     }
 
-    if (newArticleSource !== VO.ArticleSourceEnum.rss) {
+    if (source !== VO.ArticleSourceEnum.rss) {
       await Policies.NonProcessedArticleUrlIsUnique.perform({
-        articleUrl: newArticle.url,
+        articleUrl: article.url,
       });
     }
 
-    const metatags = await Services.ArticleMetatagsScraper.get(newArticle.url);
+    const metatags = await Services.ArticleMetatagsScraper.get(article.url);
 
     await Repos.EventRepository.save(
       Events.ArticleAddedEvent.parse({
         name: Events.ARTICLE_ADDED_EVENT,
-        stream: Article.getStream(newArticleId),
+        stream: Article.getStream(id),
         version: 1,
         payload: {
-          id: newArticleId,
-          url: newArticle.url,
-          source: newArticleSource,
+          id,
+          url: article.url,
+          source,
           status: VO.ArticleStatusEnum.ready,
           ...metatags,
         },
@@ -104,8 +107,6 @@ export class Article {
   }
 
   async delete() {
-    if (!this.entity) return;
-
     await Policies.ArticleShouldExist.perform({ entity: this.entity });
     await Policies.ArticleWasNotProcessed.perform({
       entity: this.entity as VO.ArticleType,
@@ -122,8 +123,6 @@ export class Article {
   }
 
   async lock(newspaperId: VO.NewspaperIdType) {
-    if (!this.entity) return;
-
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.in_progress,
@@ -140,8 +139,6 @@ export class Article {
   }
 
   async unlock() {
-    if (!this.entity) return;
-
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.ready,
@@ -158,8 +155,6 @@ export class Article {
   }
 
   async markAsProcessed() {
-    if (!this.entity) return;
-
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.processed,
@@ -176,8 +171,6 @@ export class Article {
   }
 
   async undelete() {
-    if (!this.entity) return;
-
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.ready,

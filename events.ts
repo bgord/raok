@@ -297,7 +297,7 @@ emittery.on(
     });
 
     for (const entity of event.payload.articles) {
-      const article = await new Aggregates.Article(entity.id).build();
+      const article = await Aggregates.Article.build(entity.id);
       await article.lock(event.payload.id);
     }
 
@@ -338,7 +338,7 @@ emittery.on(
     );
 
     for (const entity of event.payload.articles) {
-      const article = await new Aggregates.Article(entity.id).build();
+      const article = await Aggregates.Article.build(entity.id);
       await article.markAsProcessed();
     }
 
@@ -369,7 +369,7 @@ emittery.on(
     ).build();
 
     for (const item of newspaper.articles) {
-      const article = await new Aggregates.Article(item.id).build();
+      const article = await Aggregates.Article.build(item.id);
       await article.unlock();
     }
   })
@@ -419,8 +419,7 @@ emittery.on(
     });
 
     for (const { id } of oldArticles) {
-      const articleId = VO.ArticleId.parse(id);
-      const article = await new Aggregates.Article(articleId).build();
+      const article = await Aggregates.Article.build(VO.ArticleId.parse(id));
       await article.delete();
     }
   })
