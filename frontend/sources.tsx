@@ -95,6 +95,7 @@ export function Sources(_props: RoutableProps) {
         data-direction="column"
         data-gap="12"
         data-max-width="100%"
+        data-mb="48"
       >
         {sources.map((source) => (
           <Source key={source.id} {...source} />
