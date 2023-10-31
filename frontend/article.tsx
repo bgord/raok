@@ -34,7 +34,10 @@ export function Article(props: ArticlePropsType) {
         articleId: props.id,
         articleTitle: props.title,
       });
-      props.toggle(props.id);
+
+      if (props.isAdded(props.id)) {
+        props.toggle(props.id);
+      }
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
