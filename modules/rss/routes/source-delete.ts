@@ -1,7 +1,7 @@
 import express from "express";
 
 import * as VO from "../value-objects";
-import * as Repos from "../repositories";
+import * as Services from "../services";
 
 export async function SourceDelete(
   request: express.Request,
@@ -10,7 +10,8 @@ export async function SourceDelete(
 ) {
   const id = VO.SourceId.parse(request.params.sourceId);
 
-  await Repos.SourceRepository.delete({ id });
+  const source = await Services.Source.build(id);
+  await source.delete();
 
   return response.status(200).send();
 }

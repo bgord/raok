@@ -2,17 +2,8 @@ import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 
 export class SourceRepository {
-  static async create(payload: Pick<VO.SourceType, "url" | "id">) {
-    const now = Date.now();
-
-    await infra.db.source.create({
-      data: {
-        ...payload,
-        createdAt: now,
-        updatedAt: now,
-        status: VO.SourceStatusEnum.active,
-      },
-    });
+  static async create(payload: VO.SourceType) {
+    await infra.db.source.create({ data: payload });
   }
 
   static async delete(where: Pick<VO.SourceType, "id">) {
@@ -34,5 +25,9 @@ export class SourceRepository {
       where,
       data: { status: VO.SourceStatusEnum.active, updatedAt: Date.now() },
     });
+  }
+
+  static async getById(where: Pick<VO.SourceType, "id">) {
+    return infra.db.source.findFirst({ where });
   }
 }
