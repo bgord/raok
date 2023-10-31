@@ -42,7 +42,7 @@ export class RSSCrawler {
         infra.logger.info({
           message: `Crawling RSS success ${stepper.format()}`,
           operation: "rss_crawler_success",
-          metadata: { source, items: rss.items.length },
+          metadata: { source: source.url, items: rss.items.length },
         });
 
         for (const item of rss.items) {
@@ -58,7 +58,10 @@ export class RSSCrawler {
         infra.logger.info({
           message: "Crawling RSS error",
           operation: "rss_crawler_error",
-          metadata: { source, error: infra.logger.formatError(error) },
+          metadata: {
+            source: source.url,
+            error: infra.logger.formatError(error),
+          },
         });
       } finally {
         stepper.continue();
@@ -79,8 +82,6 @@ export class RSSCrawler {
     const stepper = new bg.Stepper({ total: RSSCrawler.PROCESSING_URLS_BATCH });
 
     for (const url of this.urls) {
-      if (stepper.isFinished()) break;
-
       try {
         await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
       } catch (error) {
@@ -91,6 +92,7 @@ export class RSSCrawler {
         });
       } finally {
         LinkCache.set(url, true);
+        if (stepper.isFinished()) break;
         stepper.continue();
         await bg.sleep({ ms: bg.Time.Seconds(1).ms });
       }
