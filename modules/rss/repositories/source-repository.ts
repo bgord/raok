@@ -33,6 +33,10 @@ export class SourceRepository {
     return infra.db.source.findFirst({ where });
   }
 
+  static async countUrl(where: Pick<VO.SourceType, "url">) {
+    return infra.db.source.count({ where });
+  }
+
   static async list() {
     const sources = await infra.db.source.findMany({
       where: { status: { not: VO.SourceStatusEnum.deleted } },

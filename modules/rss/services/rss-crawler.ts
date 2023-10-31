@@ -1,5 +1,4 @@
 import * as bg from "@bgord/node";
-import axios from "axios";
 import Parser from "rss-parser";
 import _ from "lodash";
 import { isWithinInterval, subMonths, startOfToday } from "date-fns";
@@ -37,8 +36,7 @@ export class RSSCrawler {
 
     for (const source of sources) {
       try {
-        const response = await axios.get(source);
-        const rss = await parser.parseString(response.data);
+        const rss = await parser.parseURL(source);
 
         infra.logger.info({
           message: `Crawling RSS success ${stepper.format()}`,

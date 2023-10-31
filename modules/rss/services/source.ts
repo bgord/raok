@@ -1,3 +1,4 @@
+import Parser from "rss-parser";
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 
@@ -38,6 +39,16 @@ export class Source {
 
   static async create(payload: Pick<VO.SourceType, "url" | "id">) {
     const now = Date.now();
+
+    if ((await Repos.SourceRepository.countUrl({ url: payload.url })) > 1) {
+      throw new Error("Source already exists");
+    }
+
+    try {
+      await new Parser().parseURL(payload.url);
+    } catch (error) {
+      throw new Error("Source not found");
+    }
 
     await Repos.SourceRepository.create({
       ...payload,

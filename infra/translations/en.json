@@ -167,5 +167,9 @@
   "source.reactivate.success": "Source reactivated",
   "source.reactivate.error": "Source reactivate error",
   "source.reactivate": "Reactivate source",
-  "source.reactivate.confirmation": "Are you sure you want to reactivate this source?"
+  "source.reactivate.confirmation": "Are you sure you want to reactivate this source?",
+  "source.create.success": "Source created",
+  "source.url.label": "Source URL",
+  "source.url.placeholder": "https://example.com/rss",
+  "source.create.submit": "Create"
 }

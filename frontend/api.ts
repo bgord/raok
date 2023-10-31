@@ -171,7 +171,7 @@ export class Source {
     return bg.API(`/rss/source/${id}`, { method: "DELETE" });
   }
 
-  static async create(url: Pick<types.SourceType, "url">) {
+  static async create(url: types.SourceType["url"]) {
     return bg.API("/rss/source/create", {
       method: "POST",
       body: JSON.stringify({ url }),

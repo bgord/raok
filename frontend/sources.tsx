@@ -10,6 +10,7 @@ import * as types from "./types";
 import * as hooks from "./hooks";
 
 import { Source } from "./source";
+import { SourceCreate } from "./source-create";
 
 export type InitialSourcesDataType = {
   sources: types.SourceType[];
@@ -49,6 +50,8 @@ export function Sources(_props: RoutableProps) {
         <UI.Badge>{numberOfSources}</UI.Badge>
       </div>
 
+      <SourceCreate />
+
       <div
         data-display="flex"
         data-wrap="nowrap"
@@ -74,7 +77,7 @@ export function Sources(_props: RoutableProps) {
           />
         </div>
 
-        <UI.ClearButton onClick={search.clear} />
+        <UI.ClearButton onClick={search.clear} disabled={search.unchanged} />
       </div>
 
       {sourceList.isSuccess && sources.length === 0 && (
@@ -87,7 +90,12 @@ export function Sources(_props: RoutableProps) {
         ))}
       </datalist>
 
-      <ul data-display="flex" data-direction="column" data-max-width="100%">
+      <ul
+        data-display="flex"
+        data-direction="column"
+        data-gap="12"
+        data-max-width="100%"
+      >
         {sources.map((source) => (
           <Source key={source.id} {...source} />
         ))}
