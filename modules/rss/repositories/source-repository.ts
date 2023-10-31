@@ -48,6 +48,17 @@ export class SourceRepository {
       .map(SourceRepository.map);
   }
 
+  static async listActive() {
+    const sources = await infra.db.source.findMany({
+      where: { status: VO.SourceStatusEnum.active },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return sources
+      .map((item) => VO.Source.parse(item))
+      .map(SourceRepository.map);
+  }
+
   private static map(item: VO.SourceType) {
     return {
       ...item,

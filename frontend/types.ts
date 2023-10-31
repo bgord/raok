@@ -55,7 +55,7 @@ export type ArchiveFileType = AsyncReturnType<
   typeof FilesRepository["getAll"]
 >[0];
 
-export type SourceType = AsyncReturnType<typeof SourceRepository["list"]>[0];
+export type SourceType = AsyncReturnType<typeof SourceRepository["listAll"]>[0];
 
 export { SourceStatusEnum } from "../modules/rss/value-objects/source-status-enum";
 export { SOURCE_URL_MIN_LENGTH } from "../modules/rss/value-objects/source-url-min-length";
