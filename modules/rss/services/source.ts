@@ -37,21 +37,27 @@ export class Source {
     await Repos.SourceRepository.delete({ id: this.data.id });
   }
 
-  static async create(payload: Pick<VO.SourceType, "url" | "id">) {
+  static async create(
+    payload: Pick<VO.SourceType, "url" | "id">
+  ): Promise<Source> {
     await Policies.SourceUrlIsUnique.perform({ sourceUrl: payload.url });
     await Policies.SourceUrlResponds.perform({ sourceUrl: payload.url });
 
     const now = Date.now();
 
-    await Repos.SourceRepository.create({
+    const source = {
       ...payload,
       createdAt: now,
       updatedAt: now,
       status: VO.SourceStatusEnum.active,
-    });
+    };
+
+    await Repos.SourceRepository.create(source);
+
+    return new Source(source);
   }
 
-  static async build(id: VO.SourceIdType) {
+  static async build(id: VO.SourceIdType): Promise<Source> {
     const source = await Repos.SourceRepository.getById({ id });
 
     if (!source) throw new Error("Source not found");
