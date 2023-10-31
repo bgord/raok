@@ -152,5 +152,8 @@
   "settings.preparing": "Preparing settings...",
 
   "stats.articles_added": "{{noun}} added overall",
-  "stats.newspapers_sent": "{{noun}} sent overall"
+  "stats.newspapers_sent": "{{noun}} sent overall",
+
+  "source.search.placeholder": "Search for a source...",
+  "source.list.empty": "No sources matching your filters"
 }
