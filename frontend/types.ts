@@ -7,6 +7,7 @@ import type { NewspaperRepository } from "../repositories/newspaper-repository";
 import type { StatsRepository } from "../repositories/stats-repository";
 import type { SettingsRepository } from "../repositories/settings-repository";
 import type { FilesRepository } from "../repositories/files-repository";
+import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 
 export type { HourType } from "@bgord/node/dist/schema";
 export type { ArticleSearchQueryType } from "../value-objects/article-search-query";
@@ -53,3 +54,5 @@ export type ToastType = bg.BaseToastType & {
 export type ArchiveFileType = AsyncReturnType<
   typeof FilesRepository["getAll"]
 >[0];
+
+export type SourceType = AsyncReturnType<typeof SourceRepository["list"]>[0];
