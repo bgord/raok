@@ -3,10 +3,10 @@ import Parser from "rss-parser";
 
 import * as VO from "../value-objects";
 
-export class SourceUrlResponseError extends Error {
+export class SourceUrlRespondsError extends Error {
   constructor() {
     super();
-    Object.setPrototypeOf(this, SourceUrlResponseError.prototype);
+    Object.setPrototypeOf(this, SourceUrlRespondsError.prototype);
   }
 }
 
@@ -26,7 +26,7 @@ class SourceUrlRespondsFactory extends bg.Policy<SourceUrlRespondsConfigType> {
 
   message = "source.error.not_responds";
 
-  error = SourceUrlResponseError;
+  error = SourceUrlRespondsError;
 }
 
 export const SourceUrlResponds = new SourceUrlRespondsFactory();

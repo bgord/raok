@@ -1,5 +1,3 @@
-import Parser from "rss-parser";
-
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 import * as Policies from "../policies";
