@@ -1,3 +1,5 @@
+import * as bg from "@bgord/node";
+
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 
@@ -29,5 +31,24 @@ export class SourceRepository {
 
   static async getById(where: Pick<VO.SourceType, "id">) {
     return infra.db.source.findFirst({ where });
+  }
+
+  static async list() {
+    const sources = await infra.db.source.findMany({
+      where: { status: { not: VO.SourceStatusEnum.deleted } },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return sources
+      .map((item) => VO.Source.parse(item))
+      .map(SourceRepository.map);
+  }
+
+  private static map(item: VO.SourceType) {
+    return {
+      ...item,
+      createdAt: bg.RelativeDate.truthy(item.createdAt),
+      updatedAt: bg.RelativeDate.truthy(item.updatedAt),
+    };
   }
 }

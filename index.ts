@@ -181,6 +181,7 @@ app.post(
 // =============================
 
 // Source ======================
+app.get("/sources", infra.AuthShield.verify, bg.Route(RSS.Routes.Sources));
 app.post(
   "/rss/source/create",
   infra.AuthShield.verify,
@@ -200,6 +201,11 @@ app.post(
   "/rss/source/:sourceId/reactivate",
   infra.AuthShield.verify,
   bg.Route(RSS.Routes.SourceReactivate)
+);
+app.get(
+  "/rss/source/list",
+  infra.AuthShield.verify,
+  bg.Route(RSS.Routes.SourceList)
 );
 // =============================
 
