@@ -27,7 +27,8 @@ export class SourceFinder {
     const withRssXml = `${base.origin}/rss.xml`;
     const withFeed = `${base.origin}/feed`;
     const withFeedXml = `${base.origin}/feed.xml`;
+    const withIndexXml = `${base.origin}/index.xml`;
 
-    return [url, withRss, withRssXml, withFeed, withFeedXml];
+    return [url, withRss, withRssXml, withFeed, withFeedXml, withIndexXml];
   }
 }

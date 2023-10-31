@@ -15,7 +15,7 @@ export class Article {
 
   static ARTICLE_OLD_MARKER_IN_DAYS = VO.ARTICLE_OLD_MARKER_IN_DAYS;
 
-  constructor(article: VO.ArticleType) {
+  private constructor(article: VO.ArticleType) {
     this.id = article.id;
     this.entity = article;
     this.stream = Article.getStream(article.id);
