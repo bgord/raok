@@ -4,6 +4,7 @@ import { z } from "zod";
 import Emittery from "emittery";
 
 import * as Settings from "./modules/settings";
+import * as Stats from "./modules/stats";
 
 import * as VO from "./value-objects";
 import * as Services from "./services";
@@ -183,7 +184,7 @@ emittery.on(
   ARTICLE_ADDED_EVENT,
   EventHandler.handle(async (event) => {
     await Repos.ArticleRepository.create(event.payload);
-    await Repos.StatsRepository.incrementCreatedArticles();
+    await Stats.Repos.StatsRepository.incrementCreatedArticles();
   })
 );
 
@@ -288,7 +289,7 @@ emittery.on(
 emittery.on(
   NEWSPAPER_SENT_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.StatsRepository.incrementSentNewspapers();
+    await Stats.Repos.StatsRepository.incrementSentNewspapers();
 
     await Repos.NewspaperRepository.updateStatus(
       event.payload.newspaperId,

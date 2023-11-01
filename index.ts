@@ -3,6 +3,7 @@ import * as bg from "@bgord/node";
 
 import * as RSS from "./modules/rss";
 import * as Settings from "./modules/settings";
+import * as Stats from "./modules/stats";
 
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
@@ -154,7 +155,7 @@ app.get(
 // =============================
 
 // Stats =======================
-app.get("/stats", infra.AuthShield.verify, bg.Route(Routes.Stats));
+app.get("/stats", infra.AuthShield.verify, bg.Route(Stats.Routes.Stats));
 // =============================
 
 // Settings ====================

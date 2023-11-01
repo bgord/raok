@@ -3,6 +3,7 @@ import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
 import * as Settings from "../../settings";
+import * as Stats from "../../stats";
 
 import * as infra from "../../../infra";
 
@@ -35,7 +36,7 @@ export async function Sources(
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: await SourceRepository.listAll(),
-    stats: await Repos.StatsRepository.getAll(),
+    stats: await Stats.Repos.StatsRepository.getAll(),
   };
 
   const frontend = render(App({ ...state, url: request.url }));

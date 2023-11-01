@@ -4,7 +4,7 @@ import type * as bg from "@bgord/frontend";
 
 import type { ArticleRepository } from "../repositories/article-repository";
 import type { NewspaperRepository } from "../repositories/newspaper-repository";
-import type { StatsRepository } from "../repositories/stats-repository";
+import type { StatsRepository } from "../modules/stats/repositories/stats-repository";
 import type { SettingsRepository } from "../modules/settings/repositories/settings-repository";
 import type { FilesRepository } from "../repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";

@@ -1,6 +1,6 @@
-import * as infra from "../infra";
+import * as infra from "../../../infra";
 
-import { ArticleRepository } from "./article-repository";
+import { ArticleRepository } from "../../../repositories/article-repository";
 
 export class StatsRepository {
   static async getAll() {

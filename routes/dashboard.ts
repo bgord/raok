@@ -7,6 +7,7 @@ import * as infra from "../infra";
 import * as Repos from "../repositories";
 
 import * as Settings from "../modules/settings";
+import * as Stats from "../modules/stats";
 
 import { App } from "../frontend/app";
 
@@ -33,7 +34,7 @@ export async function Dashboard(
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
-    stats: await Repos.StatsRepository.getAll(),
+    stats: await Stats.Repos.StatsRepository.getAll(),
   };
 
   const frontend = render(App({ ...state, url: request.url }));

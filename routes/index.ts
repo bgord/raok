@@ -21,7 +21,6 @@ export * from "./newspapers-archive";
 export * from "./resend-newspaper";
 export * from "./send-arbitrary-file";
 export * from "./single-newspaper";
-export * from "./stats";
 export * from "./undelete-article";
 
 export * from "./error-handler";
