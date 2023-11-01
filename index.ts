@@ -2,6 +2,7 @@ import express from "express";
 import * as bg from "@bgord/node";
 
 import * as RSS from "./modules/rss";
+import * as Settings from "./modules/settings";
 
 import * as Routes from "./routes";
 import * as VO from "./value-objects";
@@ -161,22 +162,22 @@ app.get("/settings", infra.AuthShield.verify, bg.Route(Routes.Dashboard));
 app.get(
   "/account/settings",
   infra.AuthShield.verify,
-  bg.Route(Routes.Settings)
+  bg.Route(Settings.Routes.Settings)
 );
 app.post(
   "/disable-articles-to-review-notification",
   infra.AuthShield.verify,
-  bg.Route(Routes.DisableArticlesToReviewNotification)
+  bg.Route(Settings.Routes.DisableArticlesToReviewNotification)
 );
 app.post(
   "/enable-articles-to-review-notification",
   infra.AuthShield.verify,
-  bg.Route(Routes.EnableArticlesToReviewNotification)
+  bg.Route(Settings.Routes.EnableArticlesToReviewNotification)
 );
 app.post(
   "/set-articles-to-review-notification-hour",
   infra.AuthShield.verify,
-  bg.Route(Routes.SetArticlesToReviewNotificationHour)
+  bg.Route(Settings.Routes.SetArticlesToReviewNotificationHour)
 );
 // =============================
 

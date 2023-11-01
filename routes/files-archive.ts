@@ -6,6 +6,8 @@ import * as VO from "../value-objects";
 import * as infra from "../infra";
 import * as Repos from "../repositories";
 
+import * as Settings from "../modules/settings";
+
 import { App } from "../frontend/app";
 
 export async function FilesArchive(
@@ -33,7 +35,7 @@ export async function FilesArchive(
       bg.Pagination.getFirstPage({ take: VO.ARTICLES_PER_PAGE })
     ),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
-    settings: await Repos.SettingsRepository.getAll(),
+    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Repos.StatsRepository.getAll(),
   };

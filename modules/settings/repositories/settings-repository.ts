@@ -1,4 +1,4 @@
-import * as VO from "../value-objects";
+import * as VO from "../../../value-objects";
 import * as Aggregates from "../aggregates";
 
 export class SettingsRepository {

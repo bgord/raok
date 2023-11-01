@@ -1,6 +1,7 @@
 import * as bg from "@bgord/node";
 
-import * as Aggregates from "../aggregates";
+import * as Settings from "../modules/settings";
+
 import * as Repos from "../repositories";
 import * as infra from "../infra";
 
@@ -18,7 +19,7 @@ export class ArticlesToReviewNotifier {
 
   isArticlesToReviewNotificationEnabled = false;
 
-  constructor(settings: Aggregates.Settings) {
+  constructor(settings: Settings.Aggregates.Settings) {
     this.UTC_HOUR = settings.articlesToReviewNotificationHour;
     this.isArticlesToReviewNotificationEnabled =
       settings.isArticlesToReviewNotificationEnabled;

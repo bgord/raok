@@ -6,6 +6,8 @@ import * as VO from "../value-objects";
 import * as infra from "../infra";
 import * as Repos from "../repositories";
 
+import * as Settings from "../modules/settings";
+
 import { App } from "../frontend/app";
 
 export async function Dashboard(
@@ -29,7 +31,7 @@ export async function Dashboard(
     archiveFiles: [],
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
-    settings: await Repos.SettingsRepository.getAll(),
+    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Repos.StatsRepository.getAll(),
   };

@@ -1,7 +1,7 @@
 import * as bg from "@bgord/node";
 
 import * as Events from "../events";
-import * as Repos from "../repositories";
+import * as Repos from "../../../repositories";
 import * as Policies from "../policies";
 
 export class Settings {

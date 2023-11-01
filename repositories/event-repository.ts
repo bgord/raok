@@ -1,6 +1,8 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
+import * as Settings from "../modules/settings";
+
 import * as infra from "../infra";
 import * as Events from "../events";
 
@@ -11,9 +13,9 @@ type AcceptedEvent =
   | typeof Events.ArticleUnlockedEvent
   | typeof Events.ArticleProcessedEvent
   | typeof Events.ArticleUndeleteEvent
-  | typeof Events.ArticlesToReviewNotificationHourSetEvent
-  | typeof Events.ArticlesToReviewNotificationsDisabledEvent
-  | typeof Events.ArticlesToReviewNotificationsEnabledEvent
+  | typeof Settings.Events.ArticlesToReviewNotificationHourSetEvent
+  | typeof Settings.Events.ArticlesToReviewNotificationsDisabledEvent
+  | typeof Settings.Events.ArticlesToReviewNotificationsEnabledEvent
   | typeof Events.NewspaperArchivedEvent
   | typeof Events.NewspaperFailedEvent
   | typeof Events.NewspaperGenerateEvent

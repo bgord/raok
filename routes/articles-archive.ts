@@ -5,6 +5,8 @@ import * as bg from "@bgord/node";
 import * as Repos from "../repositories";
 import * as infra from "../infra";
 
+import * as Settings from "../modules/settings";
+
 import { App } from "../frontend/app";
 
 export async function ArticlesArchive(
@@ -32,7 +34,7 @@ export async function ArticlesArchive(
     },
     newspapers: [],
     sources: [],
-    settings: await Repos.SettingsRepository.getAll(),
+    settings: await Settings.Repos.SettingsRepository.getAll(),
     stats: await Repos.StatsRepository.getAll(),
   };
 

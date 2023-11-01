@@ -3,6 +3,8 @@ import * as bg from "@bgord/node";
 import { z } from "zod";
 import Emittery from "emittery";
 
+import * as Settings from "./modules/settings";
+
 import * as VO from "./value-objects";
 import * as Services from "./services";
 import * as Repos from "./repositories";
@@ -142,45 +144,6 @@ type ArbitraryFileScheduledEventType = z.infer<
   typeof ArbitraryFileScheduledEvent
 >;
 
-export const ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT =
-  "ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT";
-export const ArticlesToReviewNotificationsDisabledEvent = bg.EventDraft.merge(
-  z.object({
-    name: z.literal(ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT),
-    version: z.literal(1),
-    payload: z.object({}),
-  })
-);
-type ArticlesToReviewNotificationsDisabledEventType = z.infer<
-  typeof ArticlesToReviewNotificationsDisabledEvent
->;
-
-export const ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT =
-  "ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT";
-export const ArticlesToReviewNotificationsEnabledEvent = bg.EventDraft.merge(
-  z.object({
-    name: z.literal(ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT),
-    version: z.literal(1),
-    payload: z.object({}),
-  })
-);
-type ArticlesToReviewNotificationsEnabledEventType = z.infer<
-  typeof ArticlesToReviewNotificationsEnabledEvent
->;
-
-export const ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT =
-  "ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT";
-export const ArticlesToReviewNotificationHourSetEvent = bg.EventDraft.merge(
-  z.object({
-    name: z.literal(ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT),
-    version: z.literal(1),
-    payload: z.object({ hour: bg.Schema.Hour }),
-  })
-);
-type ArticlesToReviewNotificationHourSetEventType = z.infer<
-  typeof ArticlesToReviewNotificationHourSetEvent
->;
-
 export const DELETE_OLD_ARTICLES_EVENT = "DELETE_OLD_ARTICLES_EVENT";
 export const DeleteOldArticlesEvent = bg.EventDraft.merge(
   z.object({
@@ -204,9 +167,9 @@ export const emittery = new Emittery<{
   NEWSPAPER_ARCHIVED_EVENT: NewspaperArchivedEventType;
   NEWSPAPER_FAILED_EVENT: NewspaperFailedEventType;
   ARBITRARY_FILE_SCHEDULED_EVENT: ArbitraryFileScheduledEventType;
-  ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: ArticlesToReviewNotificationsDisabledEventType;
-  ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: ArticlesToReviewNotificationsEnabledEventType;
-  ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: ArticlesToReviewNotificationHourSetEventType;
+  ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsDisabledEventType;
+  ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsEnabledEventType;
+  ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: Settings.Events.ArticlesToReviewNotificationHourSetEventType;
   DELETE_OLD_ARTICLES_EVENT: DeleteOldArticlesEventType;
 }>({
   debug: {

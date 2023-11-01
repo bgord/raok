@@ -5,6 +5,8 @@ import * as bg from "@bgord/node";
 import * as infra from "../infra";
 import * as Repos from "../repositories";
 
+import * as Settings from "../modules/settings";
+
 import { App } from "../frontend/app";
 
 export async function NewspapersArchive(
@@ -31,7 +33,7 @@ export async function NewspapersArchive(
       meta: { ...bg.Pagination.empty.meta, previousPage: undefined },
     },
     newspapers: [],
-    settings: await Repos.SettingsRepository.getAll(),
+    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Repos.StatsRepository.getAll(),
   };

@@ -2,6 +2,8 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
+import * as Settings from "../../settings";
+
 import * as infra from "../../../infra";
 
 import * as VO from "../../../value-objects";
@@ -31,7 +33,7 @@ export async function Sources(
     archiveFiles: [],
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
     newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
-    settings: await Repos.SettingsRepository.getAll(),
+    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: await SourceRepository.listAll(),
     stats: await Repos.StatsRepository.getAll(),
   };

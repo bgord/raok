@@ -3,6 +3,7 @@ import express from "express";
 import * as bg from "@bgord/node";
 
 import * as RSS from "../modules/rss";
+import * as Settings from "../modules/settings";
 
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
@@ -84,15 +85,15 @@ export class ErrorHandler {
       });
     }
 
-    if (error instanceof Policies.NotificationHourShouldChangeError) {
+    if (error instanceof Settings.Policies.NotificationHourShouldChangeError) {
       infra.logger.error({
         message: "article to review notification hour not changed error",
-        operation: Policies.NotificationHourShouldChange.message,
+        operation: Settings.Policies.NotificationHourShouldChange.message,
         correlationId: request.requestId,
       });
 
       return response.status(400).send({
-        message: Policies.NotificationHourShouldChange.message,
+        message: Settings.Policies.NotificationHourShouldChange.message,
         _known: true,
       });
     }

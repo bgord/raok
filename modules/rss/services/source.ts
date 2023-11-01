@@ -4,7 +4,7 @@ import * as Policies from "../policies";
 import { SourceFinder } from "./source-finder";
 
 export class Source {
-  constructor(private data: VO.SourceType) {}
+  private constructor(private data: VO.SourceType) {}
 
   async archive() {
     if (this.data.status === VO.SourceStatusEnum.inactive) {
