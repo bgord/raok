@@ -1,6 +1,8 @@
 import express from "express";
 import * as bg from "@bgord/node";
 
+import * as App from "./app";
+
 import * as RSS from "./modules/rss";
 import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
@@ -21,7 +23,7 @@ infra.AuthShield.applyTo(app);
 bg.HttpLogger.applyTo(app, infra.logger);
 
 // Auth ========================
-app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
+app.get("/", bg.CsrfShield.attach, bg.Route(App.Routes.Home));
 app.post(
   "/login",
   bg.CsrfShield.verify,
@@ -36,7 +38,7 @@ app.get(
   "/dashboard",
   infra.AuthShield.verify,
   bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
-  bg.Route(Routes.Dashboard)
+  bg.Route(App.Routes.Dashboard)
 );
 
 // =============================
@@ -159,7 +161,7 @@ app.get("/stats", infra.AuthShield.verify, bg.Route(Stats.Routes.Stats));
 // =============================
 
 // Settings ====================
-app.get("/settings", infra.AuthShield.verify, bg.Route(Routes.Dashboard));
+app.get("/settings", infra.AuthShield.verify, bg.Route(App.Routes.Dashboard));
 app.get(
   "/account/settings",
   infra.AuthShield.verify,
@@ -222,7 +224,7 @@ app.get(
 // =============================
 
 app.get("*", (_, response) => response.redirect("/"));
-app.use(Routes.ErrorHandler.handle);
+app.use(App.Routes.ErrorHandler.handle);
 
 (async function main() {
   await bg.Prerequisites.check(infra.prerequisites);

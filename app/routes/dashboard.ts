@@ -2,14 +2,14 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
-import * as VO from "../value-objects";
-import * as infra from "../infra";
-import * as Repos from "../repositories";
+import * as VO from "../../value-objects";
+import * as infra from "../../infra";
+import * as Repos from "../../repositories";
 
-import * as Settings from "../modules/settings";
-import * as Stats from "../modules/stats";
+import * as Settings from "../../modules/settings";
+import * as Stats from "../../modules/stats";
 
-import { App } from "../frontend/app";
+import { App } from "../../frontend/app";
 
 export async function Dashboard(
   request: express.Request,

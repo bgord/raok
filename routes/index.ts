@@ -7,16 +7,12 @@ export * from "./articles-archive";
 export * from "./articles-search";
 export * from "./cancel-newspaper";
 export * from "./create-newspaper";
-export * from "./dashboard";
 export * from "./delete-all-articles";
 export * from "./delete-article";
 export * from "./delete-old-articles";
-export * from "./home";
 export * from "./newspaper-read";
 export * from "./newspapers";
 export * from "./newspapers-archive";
 export * from "./resend-newspaper";
 export * from "./single-newspaper";
 export * from "./undelete-article";
-
-export * from "./error-handler";
