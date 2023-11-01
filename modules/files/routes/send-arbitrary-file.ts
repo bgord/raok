@@ -1,7 +1,7 @@
 import express from "express";
 import * as bg from "@bgord/node";
 
-import * as Events from "../events";
+import * as Events from "../../../events";
 
 export async function SendArbitraryFile(
   request: express.Request,

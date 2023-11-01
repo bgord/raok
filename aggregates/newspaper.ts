@@ -1,5 +1,7 @@
 import * as bg from "@bgord/node";
 
+import * as Files from "../modules/files";
+
 import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Services from "../services";
@@ -149,7 +151,7 @@ export class Newspaper {
     });
 
     try {
-      await Services.ArbitraryFileSender.send(
+      await Files.Services.ArbitraryFileSender.send(
         Services.NewspaperFile.getAttachment(this.id)
       );
 

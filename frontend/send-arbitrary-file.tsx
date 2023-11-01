@@ -6,8 +6,7 @@ import * as Icons from "iconoir-react";
 
 import * as api from "./api";
 import * as UI from "./ui";
-import { MAX_UPLOADED_FILE_SIZE_BYTES } from "../value-objects/max-uploaded-file-size";
-import { FileMimeTypes } from "../value-objects/file-mime-types";
+import * as types from "./types";
 
 export function SendArbitraryFile() {
   const t = bg.useTranslations();
@@ -17,7 +16,9 @@ export function SendArbitraryFile() {
     onSuccess: () => notify({ message: "app.file.sent" }),
   });
 
-  const file = bg.useFile("file", { maxSize: MAX_UPLOADED_FILE_SIZE_BYTES });
+  const file = bg.useFile("file", {
+    maxSize: types.MAX_UPLOADED_FILE_SIZE_BYTES,
+  });
 
   return (
     <form
@@ -45,7 +46,7 @@ export function SendArbitraryFile() {
         <input
           class="c-file-explorer"
           type="file"
-          accept={FileMimeTypes.form()}
+          accept={types.FileMimeTypes.form()}
           onInput={file.actions.selectFile}
           {...file.input.props}
         />
@@ -94,7 +95,7 @@ export function SendArbitraryFile() {
 
           <span data-mt="3">
             {t("app.file.size.max", {
-              value: prettyBytes(MAX_UPLOADED_FILE_SIZE_BYTES),
+              value: prettyBytes(types.MAX_UPLOADED_FILE_SIZE_BYTES),
             })}
           </span>
         </UI.Info>

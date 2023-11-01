@@ -1,6 +1,6 @@
 import * as bg from "@bgord/node";
 
-import * as infra from "../infra";
+import * as infra from "../../../infra";
 
 export class ArbitraryFileSender {
   static send(

@@ -6,7 +6,7 @@ import type { ArticleRepository } from "../repositories/article-repository";
 import type { NewspaperRepository } from "../repositories/newspaper-repository";
 import type { StatsRepository } from "../modules/stats/repositories/stats-repository";
 import type { SettingsRepository } from "../modules/settings/repositories/settings-repository";
-import type { FilesRepository } from "../repositories/files-repository";
+import type { FilesRepository } from "../modules/files/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 
 export type { HourType } from "@bgord/node/dist/schema";
@@ -60,3 +60,6 @@ export type SourceType = AsyncReturnType<typeof SourceRepository["listAll"]>[0];
 export { SourceStatusEnum } from "../modules/rss/value-objects/source-status-enum";
 export { SOURCE_URL_MIN_LENGTH } from "../modules/rss/value-objects/source-url-min-length";
 export { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-max-length";
+
+export { MAX_UPLOADED_FILE_SIZE_BYTES } from "../modules/files/value-objects/max-uploaded-file-size";
+export { FileMimeTypes } from "../modules/files/value-objects/file-mime-types";

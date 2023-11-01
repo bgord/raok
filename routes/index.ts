@@ -1,6 +1,5 @@
 export * from "./add-article";
 export * from "./archive-articles";
-export * from "./archive-files";
 export * from "./archive-newspaper";
 export * from "./archive-newspapers";
 export * from "./articles";
@@ -12,14 +11,11 @@ export * from "./dashboard";
 export * from "./delete-all-articles";
 export * from "./delete-article";
 export * from "./delete-old-articles";
-export * from "./download-file";
-export * from "./files-archive";
 export * from "./home";
 export * from "./newspaper-read";
 export * from "./newspapers";
 export * from "./newspapers-archive";
 export * from "./resend-newspaper";
-export * from "./send-arbitrary-file";
 export * from "./single-newspaper";
 export * from "./undelete-article";
 

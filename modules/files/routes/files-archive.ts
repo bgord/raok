@@ -2,14 +2,16 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
-import * as VO from "../value-objects";
-import * as infra from "../infra";
-import * as Repos from "../repositories";
+import * as infra from "../../../infra";
+import * as Repos from "../../../repositories";
 
-import * as Settings from "../modules/settings";
-import * as Stats from "../modules/stats";
+import * as VO from "../../../value-objects";
 
-import { App } from "../frontend/app";
+import * as Settings from "../../settings";
+import * as Stats from "../../stats";
+import * as Files from "../";
+
+import { App } from "../../../frontend/app";
 
 export async function FilesArchive(
   request: express.Request,
@@ -29,8 +31,8 @@ export async function FilesArchive(
     archiveNewspapers: await Repos.NewspaperRepository.getAll(
       Repos.ArchiveNewspaperFilter.parse(request.query)
     ),
-    archiveFiles: await Repos.FilesRepository.getAll(
-      Repos.ArchiveFilesFilter.parse(request.query)
+    archiveFiles: await Files.Repos.FilesRepository.getAll(
+      Files.Repos.ArchiveFilesFilter.parse(request.query)
     ),
     articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(
       bg.Pagination.getFirstPage({ take: VO.ARTICLES_PER_PAGE })

@@ -5,6 +5,7 @@ import Emittery from "emittery";
 
 import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
+import * as Files from "./modules/files";
 
 import * as VO from "./value-objects";
 import * as Services from "./services";
@@ -345,7 +346,7 @@ emittery.on(
     const file = event.payload;
 
     try {
-      await Services.ArbitraryFileSender.send(file);
+      await Files.Services.ArbitraryFileSender.send(file);
 
       infra.logger.info({
         message: "Mailer success",
@@ -353,7 +354,7 @@ emittery.on(
         metadata: { filename: file.originalFilename },
       });
 
-      await Repos.FilesRepository.add(file);
+      await Files.Repos.FilesRepository.add(file);
     } catch (error) {
       infra.logger.error({
         message: "Mailer error while sending file",

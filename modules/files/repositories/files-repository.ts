@@ -1,8 +1,10 @@
 import z from "zod";
 import * as bg from "@bgord/node";
 
-import * as VO from "../value-objects";
-import * as infra from "../infra";
+import * as Files from "../";
+import * as infra from "../../../infra";
+
+import * as VO from "../../../value-objects";
 
 export const ArchiveFilesFilter = new bg.Filter(
   z.object({ sentAt: VO.TimeStampFilter })
@@ -21,7 +23,7 @@ export class FilesRepository {
     }));
   }
 
-  static async getSingle(id: VO.FileIdType) {
+  static async getSingle(id: Files.VO.FileIdType) {
     return infra.db.files.findFirst({ where: { id } });
   }
 

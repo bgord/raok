@@ -4,9 +4,9 @@ import * as bg from "@bgord/node";
 import * as RSS from "./modules/rss";
 import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
+import * as Files from "./modules/files";
 
 import * as Routes from "./routes";
-import * as VO from "./value-objects";
 import * as infra from "./infra";
 
 import { Scheduler } from "./jobs";
@@ -131,26 +131,26 @@ app.post(
   infra.AuthShield.verify,
   ...bg.FileUploader.handle({
     autoClean: false,
-    maxFilesSize: VO.MAX_UPLOADED_FILE_SIZE_BYTES,
+    maxFilesSize: Files.VO.MAX_UPLOADED_FILE_SIZE_BYTES,
     uploadDir: "files",
-    mimeTypes: VO.FileMimeTypes.value,
+    mimeTypes: Files.VO.FileMimeTypes.value,
   }),
-  bg.Route(Routes.SendArbitraryFile)
+  bg.Route(Files.Routes.SendArbitraryFile)
 );
 app.get(
   "/files/archive/:fileId/download",
   infra.AuthShield.verify,
-  bg.Route(Routes.DownloadFile)
+  bg.Route(Files.Routes.DownloadFile)
 );
 app.get(
   "/files/archive",
   infra.AuthShield.verify,
-  bg.Route(Routes.ArchiveFiles)
+  bg.Route(Files.Routes.ArchiveFiles)
 );
 app.get(
   "/archive/files",
   infra.AuthShield.verify,
-  bg.Route(Routes.FilesArchive)
+  bg.Route(Files.Routes.FilesArchive)
 );
 // =============================
 
