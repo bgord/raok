@@ -7,8 +7,8 @@ import * as RSS from "./modules/rss";
 import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
 import * as Files from "./modules/files";
+import * as Newspapers from "./modules/newspapers";
 
-import * as Routes from "./routes";
 import * as infra from "./infra";
 
 import { Scheduler } from "./jobs";
@@ -44,86 +44,98 @@ app.get(
 // =============================
 
 // Articles ====================
-app.get("/articles", infra.AuthShield.verify, bg.Route(Routes.Articles));
+app.get(
+  "/articles",
+  infra.AuthShield.verify,
+  bg.Route(Newspapers.Routes.Articles)
+);
 app.get(
   "/articles/search",
   infra.AuthShield.verify,
-  bg.Route(Routes.ArticlesSearch)
+  bg.Route(Newspapers.Routes.ArticlesSearch)
 );
 app.get(
   "/articles/archive",
   infra.AuthShield.verify,
-  bg.Route(Routes.ArchiveArticles)
+  bg.Route(Newspapers.Routes.ArchiveArticles)
 );
-app.post("/add-article", infra.AuthShield.verify, bg.Route(Routes.AddArticle));
+app.post(
+  "/add-article",
+  infra.AuthShield.verify,
+  bg.Route(Newspapers.Routes.AddArticle)
+);
 app.post(
   "/delete-article/:articleId",
   infra.AuthShield.verify,
-  bg.Route(Routes.DeleteArticle)
+  bg.Route(Newspapers.Routes.DeleteArticle)
 );
 app.post(
   "/undelete-article/:articleId",
   infra.AuthShield.verify,
-  bg.Route(Routes.UndeleteArticle)
+  bg.Route(Newspapers.Routes.UndeleteArticle)
 );
 app.post(
   "/articles/all/delete",
   infra.AuthShield.verify,
-  bg.Route(Routes.DeleteAllArticles)
+  bg.Route(Newspapers.Routes.DeleteAllArticles)
 );
 app.post(
   "/articles/old/delete",
   infra.AuthShield.verify,
-  bg.Route(Routes.DeleteOldArticles)
+  bg.Route(Newspapers.Routes.DeleteOldArticles)
 );
 app.get(
   "/archive/articles",
   infra.AuthShield.verify,
-  bg.Route(Routes.ArticlesArchive)
+  bg.Route(Newspapers.Routes.ArticlesArchive)
 );
 // =============================
 
 // Newspapers ==================
-app.get("/newspapers", infra.AuthShield.verify, bg.Route(Routes.Newspapers));
+app.get(
+  "/newspapers",
+  infra.AuthShield.verify,
+  bg.Route(Newspapers.Routes.Newspapers)
+);
 app.get(
   "/newspapers/archive",
   infra.AuthShield.verify,
-  bg.Route(Routes.ArchiveNewspapers)
+  bg.Route(Newspapers.Routes.ArchiveNewspapers)
 );
 app.get(
   "/newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Routes.SingleNewspaper)
+  bg.Route(Newspapers.Routes.SingleNewspaper)
 );
 app.get(
   "/newspaper/:newspaperId/read",
   infra.AuthShield.verify,
-  bg.Route(Routes.NewspaperRead)
+  bg.Route(Newspapers.Routes.NewspaperRead)
 );
 app.post(
   "/create-newspaper",
   infra.AuthShield.verify,
-  bg.Route(Routes.CreateNewspaper)
+  bg.Route(Newspapers.Routes.CreateNewspaper)
 );
 app.post(
   "/archive-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Routes.ArchiveNewspaper)
+  bg.Route(Newspapers.Routes.ArchiveNewspaper)
 );
 app.post(
   "/cancel-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Routes.CancelNewspaper)
+  bg.Route(Newspapers.Routes.CancelNewspaper)
 );
 app.post(
   "/resend-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Routes.ResendNewspaper)
+  bg.Route(Newspapers.Routes.ResendNewspaper)
 );
 app.get(
   "/archive/newspapers",
   infra.AuthShield.verify,
-  bg.Route(Routes.NewspapersArchive)
+  bg.Route(Newspapers.Routes.NewspapersArchive)
 );
 // =============================
 

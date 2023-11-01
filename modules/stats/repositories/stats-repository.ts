@@ -1,6 +1,6 @@
 import * as infra from "../../../infra";
 
-import { ArticleRepository } from "../../../repositories/article-repository";
+import * as Newspapers from "../../newspapers";
 
 export class StatsRepository {
   static async getAll() {
@@ -13,7 +13,7 @@ export class StatsRepository {
     });
 
     const numberOfNonProcessedArticles =
-      await ArticleRepository.getNumberOfNonProcessed();
+      await Newspapers.Repos.ArticleRepository.getNumberOfNonProcessed();
 
     return {
       createdArticles: createdArticles?.value ?? 0,

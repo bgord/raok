@@ -7,7 +7,7 @@ import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
 
-import { hasNewspaperStalled } from "../policies/common";
+import { hasNewspaperStalled } from "../modules/newspapers/policies/common";
 import { NewspaperArticle } from "./newspaper-article";
 
 type NewspaperProps = types.NewspaperType & h.JSX.IntrinsicElements["li"];

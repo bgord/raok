@@ -3,8 +3,8 @@ import Parser from "rss-parser";
 import _ from "lodash";
 import { isWithinInterval, subMonths, startOfToday } from "date-fns";
 
-import * as VO from "../../../value-objects";
-import * as Aggregates from "../../../aggregates";
+import * as Newspapers from "../../newspapers";
+
 import * as Repos from "../repositories";
 
 import * as infra from "../../../infra";
@@ -21,12 +21,12 @@ export class RSSCrawler {
 
   public static PROCESSING_URLS_BATCH = 50;
 
-  urls: VO.ArticleUrlType[] = [];
+  urls: Newspapers.VO.ArticleUrlType[] = [];
 
   public async crawl() {
     const sources = await Repos.SourceRepository.listActive();
 
-    const urls: VO.ArticleUrlType[] = [];
+    const urls: Newspapers.VO.ArticleUrlType[] = [];
 
     infra.logger.info({
       message: "Starting RSS crawl",
@@ -46,7 +46,7 @@ export class RSSCrawler {
         });
 
         for (const item of rss.items) {
-          const link = VO.ArticleUrl.safeParse(item.link);
+          const link = Newspapers.VO.ArticleUrl.safeParse(item.link);
 
           if (!link.success || !item.link) continue;
           if (!this.isFromLastMonth(item.isoDate)) continue;
@@ -83,7 +83,10 @@ export class RSSCrawler {
 
     for (const url of this.urls) {
       try {
-        await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.rss });
+        await Newspapers.Aggregates.Article.add({
+          url,
+          source: Newspapers.VO.ArticleSourceEnum.rss,
+        });
       } catch (error) {
         infra.logger.error({
           message: `Article not added ${stepper.format()}`,

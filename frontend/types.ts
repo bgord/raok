@@ -2,15 +2,15 @@ import type { Article } from "../infra/db";
 import type { AsyncReturnType } from "@bgord/node";
 import type * as bg from "@bgord/frontend";
 
-import type { ArticleRepository } from "../repositories/article-repository";
-import type { NewspaperRepository } from "../repositories/newspaper-repository";
+import type { ArticleRepository } from "../modules/newspapers/repositories/article-repository";
+import type { NewspaperRepository } from "../modules/newspapers/repositories/newspaper-repository";
 import type { StatsRepository } from "../modules/stats/repositories/stats-repository";
 import type { SettingsRepository } from "../modules/settings/repositories/settings-repository";
 import type { FilesRepository } from "../modules/files/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 
 export type { HourType } from "@bgord/node/dist/schema";
-export type { ArticleSearchQueryType } from "../value-objects/article-search-query";
+export type { ArticleSearchQueryType } from "../modules/newspapers/value-objects/article-search-query";
 
 export enum ArticleSourceEnum {
   web = "web",
@@ -63,3 +63,12 @@ export { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-m
 
 export { MAX_UPLOADED_FILE_SIZE_BYTES } from "../modules/files/value-objects/max-uploaded-file-size";
 export { FileMimeTypes } from "../modules/files/value-objects/file-mime-types";
+
+export { ARTICLE_OLD_MARKER_IN_DAYS } from "../modules/newspapers/value-objects/article-old-marker-in-days";
+
+export { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../modules/newspapers/value-objects/newspaper-max-articles-number";
+
+export { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-objects/article-search-query-min-length";
+export { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-objects/article-search-query-max-length";
+
+export { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";

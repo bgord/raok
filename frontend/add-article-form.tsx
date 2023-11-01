@@ -5,7 +5,6 @@ import * as bg from "@bgord/frontend";
 import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
-import { ARTICLE_URL_MAX_CHARS } from "../value-objects/article-url-max-chars";
 
 export function AddArticleForm() {
   const t = bg.useTranslations();
@@ -42,7 +41,7 @@ export function AddArticleForm() {
         inputMode="url"
         required
         value={url.value}
-        max={ARTICLE_URL_MAX_CHARS}
+        max={types.ARTICLE_URL_MAX_CHARS}
         onInput={(event) => url.set(event.currentTarget.value)}
         disabled={addArticleRequest.isLoading}
         placeholder={t("article.placeholder")}

@@ -2,12 +2,12 @@ import z from "zod";
 import * as bg from "@bgord/node";
 
 import * as Files from "../";
+import * as Newspapers from "../../newspapers";
+
 import * as infra from "../../../infra";
 
-import * as VO from "../../../value-objects";
-
 export const ArchiveFilesFilter = new bg.Filter(
-  z.object({ sentAt: VO.TimeStampFilter })
+  z.object({ sentAt: Newspapers.VO.TimeStampFilter })
 );
 
 export class FilesRepository {

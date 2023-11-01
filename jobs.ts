@@ -2,8 +2,8 @@ import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
 import * as RSS from "./modules/rss";
 import * as Settings from "./modules/settings";
+import * as Newspapers from "./modules/newspapers";
 
-import * as Services from "./services";
 import * as infra from "./infra";
 
 export const Scheduler = new ToadScheduler();
@@ -14,9 +14,10 @@ const ArticlesToReviewNotifierTask = new AsyncTask(
     try {
       const settings = await new Settings.Aggregates.Settings().build();
 
-      const notification = await new Services.ArticlesToReviewNotifier(
-        settings
-      ).build();
+      const notification =
+        await new Newspapers.Services.ArticlesToReviewNotifier(
+          settings
+        ).build();
       await notification.send();
     } catch (error) {
       infra.logger.error({

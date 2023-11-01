@@ -1,7 +1,7 @@
 import * as bg from "@bgord/node";
 import og from "open-graph-scraper";
 
-import * as infra from "../infra";
+import * as infra from "../../../infra";
 import * as VO from "../value-objects";
 
 export class ArticleMetatagsScraper {

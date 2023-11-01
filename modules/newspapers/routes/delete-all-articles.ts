@@ -1,6 +1,6 @@
 import express from "express";
 
-import * as Events from "../events";
+import * as Events from "../../../events";
 import * as Repos from "../repositories";
 
 export async function DeleteAllArticles(

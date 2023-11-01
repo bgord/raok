@@ -3,7 +3,7 @@ import * as bg from "@bgord/node";
 import _ from "lodash";
 
 import * as VO from "../value-objects";
-import * as infra from "../infra";
+import * as infra from "../../../infra";
 
 export const ArchiveArticlesFilter = new bg.Filter(
   z.object({

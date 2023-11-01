@@ -2,12 +2,11 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
-import * as VO from "../../value-objects";
-import * as infra from "../../infra";
-import * as Repos from "../../repositories";
-
+import * as Newspapers from "../../modules/newspapers";
 import * as Settings from "../../modules/settings";
 import * as Stats from "../../modules/stats";
+
+import * as infra from "../../infra";
 
 import { App } from "../../frontend/app";
 
@@ -21,7 +20,10 @@ export async function Dashboard(
     request.translationsPath
   );
 
-  const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
+  const pagination = bg.Pagination.parse(
+    request.query,
+    Newspapers.VO.ARTICLES_PER_PAGE
+  );
 
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
@@ -30,8 +32,10 @@ export async function Dashboard(
     archiveArticles: [],
     archiveNewspapers: [],
     archiveFiles: [],
-    articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
-    newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
+    articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
+      pagination
+    ),
+    newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Stats.Repos.StatsRepository.getAll(),

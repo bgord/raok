@@ -4,11 +4,10 @@ import * as bg from "@bgord/node";
 
 import * as Settings from "../../settings";
 import * as Stats from "../../stats";
+import * as Newspapers from "../../newspapers";
 
 import * as infra from "../../../infra";
 
-import * as VO from "../../../value-objects";
-import * as Repos from "../../../repositories";
 import { SourceRepository } from "../repositories/source-repository";
 
 import { App } from "../../../frontend/app";
@@ -23,7 +22,10 @@ export async function Sources(
     request.translationsPath
   );
 
-  const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
+  const pagination = bg.Pagination.parse(
+    request.query,
+    Newspapers.VO.ARTICLES_PER_PAGE
+  );
 
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
@@ -32,8 +34,10 @@ export async function Sources(
     archiveArticles: [],
     archiveNewspapers: [],
     archiveFiles: [],
-    articles: await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination),
-    newspapers: await Repos.NewspaperRepository.getAllNonArchived(),
+    articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
+      pagination
+    ),
+    newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: await SourceRepository.listAll(),
     stats: await Stats.Repos.StatsRepository.getAll(),

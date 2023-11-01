@@ -1,7 +1,8 @@
 import * as bg from "@bgord/node";
 
+import * as Newspapers from "../../newspapers";
+
 import * as Events from "../events";
-import * as Repos from "../../../repositories";
 import * as Policies from "../policies";
 
 export class Settings {
@@ -17,7 +18,7 @@ export class Settings {
   }
 
   async build() {
-    const events = await Repos.EventRepository.find(
+    const events = await Newspapers.Repos.EventRepository.find(
       [
         Events.ArticlesToReviewNotificationsDisabledEvent,
         Events.ArticlesToReviewNotificationsEnabledEvent,
@@ -51,7 +52,7 @@ export class Settings {
   async disableArticlesToReviewNotification() {
     if (!this.isArticlesToReviewNotificationEnabled) return;
 
-    await Repos.EventRepository.save(
+    await Newspapers.Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationsDisabledEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT,
         version: 1,
@@ -64,7 +65,7 @@ export class Settings {
   async enableArticlesToReviewNotification() {
     if (this.isArticlesToReviewNotificationEnabled) return;
 
-    await Repos.EventRepository.save(
+    await Newspapers.Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationsEnabledEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT,
         version: 1,
@@ -82,7 +83,7 @@ export class Settings {
       changed: utcHour,
     });
 
-    await Repos.EventRepository.save(
+    await Newspapers.Repos.EventRepository.save(
       Events.ArticlesToReviewNotificationHourSetEvent.parse({
         name: Events.ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT,
         version: 1,

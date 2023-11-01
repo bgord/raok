@@ -1,9 +1,9 @@
 import * as bg from "@bgord/node";
 
-import * as Settings from "../modules/settings";
+import * as Settings from "../../settings";
 
 import * as Repos from "../repositories";
-import * as infra from "../infra";
+import * as infra from "../../../infra";
 
 const mailer = new bg.Mailer({
   SMTP_HOST: infra.Env.SMTP_HOST,

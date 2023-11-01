@@ -1,13 +1,13 @@
 import * as bg from "@bgord/node";
 
-import * as Files from "../modules/files";
+import * as Files from "../../files";
 
-import * as Events from "../events";
+import * as Events from "../../../events";
 import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Policies from "../policies";
 import * as Repos from "../repositories";
-import * as infra from "../infra";
+import * as infra from "../../../infra";
 
 import { Article } from "./article";
 

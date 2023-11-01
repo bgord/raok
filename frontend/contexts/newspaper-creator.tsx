@@ -2,8 +2,6 @@ import * as bg from "@bgord/frontend";
 import { h, createContext, VNode } from "preact";
 import { useContext } from "preact/hooks";
 
-import { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../../value-objects/newspaper-max-articles-number";
-
 import * as types from "../types";
 
 type NewspaperCreatorState = {
@@ -28,13 +26,14 @@ export function NewspaperCreatorProvider(props: NewspaperCreatorProviderProps) {
     ...props.state.actions,
     toggle: (payload: types.ArticleType["id"]) => {
       if (
-        props.state.selectedArticleIds.length < NEWSPAPER_MAX_ARTICLES_NUMBER
+        props.state.selectedArticleIds.length <
+        types.NEWSPAPER_MAX_ARTICLES_NUMBER
       ) {
         props.state.actions.toggle(payload);
       } else {
         notify({
           message: t("newspaper.too_many_articles", {
-            max: NEWSPAPER_MAX_ARTICLES_NUMBER,
+            max: types.NEWSPAPER_MAX_ARTICLES_NUMBER,
           }),
         });
       }

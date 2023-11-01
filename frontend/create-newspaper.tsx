@@ -12,8 +12,6 @@ import * as types from "./types";
 import * as contexts from "./contexts";
 import * as UI from "./ui";
 
-import { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../value-objects/newspaper-max-articles-number";
-
 export function CreateNewspaper() {
   const t = bg.useTranslations();
 
@@ -41,7 +39,7 @@ export function CreateNewspaper() {
         <div data-color="gray-700" data-fs="14">
           {t("articles.selected", {
             selected: newspaperCreator.selectedArticleIds.length,
-            max: NEWSPAPER_MAX_ARTICLES_NUMBER,
+            max: types.NEWSPAPER_MAX_ARTICLES_NUMBER,
           })}
         </div>
       )}
@@ -52,7 +50,7 @@ export function CreateNewspaper() {
 
           <span>
             {t("articles.select_prompt", {
-              max: NEWSPAPER_MAX_ARTICLES_NUMBER,
+              max: types.NEWSPAPER_MAX_ARTICLES_NUMBER,
             })}
           </span>
         </UI.Info>
@@ -101,7 +99,7 @@ export function CreateNewspaper() {
 
       {newspaperCreator.selectedArticleIds.length > 0 &&
         newspaperCreator.selectedArticleIds.length <=
-          NEWSPAPER_MAX_ARTICLES_NUMBER && (
+          types.NEWSPAPER_MAX_ARTICLES_NUMBER && (
           <div data-display="flex" data-gap="12" data-pb="12">
             <form
               onSubmit={(event) => {

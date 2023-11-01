@@ -1,10 +1,10 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
-import * as Settings from "../modules/settings";
+import * as Settings from "../../settings";
 
-import * as infra from "../infra";
-import * as Events from "../events";
+import * as infra from "../../../infra";
+import * as Events from "../../../events";
 
 type AcceptedEvent =
   | typeof Events.ArticleAddedEvent

@@ -4,8 +4,9 @@ import path from "path";
 import { promises as fs } from "fs";
 import crypto from "crypto";
 
+import * as infra from "../../../infra";
+
 import * as VO from "../value-objects";
-import * as infra from "../infra";
 
 import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";

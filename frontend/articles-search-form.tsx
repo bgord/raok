@@ -8,8 +8,6 @@ import * as Icons from "iconoir-react";
 import * as types from "./types";
 import * as api from "./api";
 import * as UI from "./ui";
-import { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../value-objects/article-search-query-min-length";
-import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../value-objects/article-search-query-max-length";
 
 export function ArticlesSearchForm() {
   const t = bg.useTranslations();
@@ -50,13 +48,13 @@ export function ArticlesSearchForm() {
           class="c-input"
           placeholder={t("articles.search.placeholder")}
           data-width="100%"
-          pattern={`.{${ARTICLE_SEARCH_QUERY_MIN_LENGTH},${ARTICLE_SEARCH_QUERY_MAX_LENGTH}}`}
+          pattern={`.{${types.ARTICLE_SEARCH_QUERY_MIN_LENGTH},${types.ARTICLE_SEARCH_QUERY_MAX_LENGTH}}`}
           onInvalid={(event) =>
             // @ts-ignore
             event.target.setCustomValidity(
               t("articles.search.validation", {
-                from: ARTICLE_SEARCH_QUERY_MIN_LENGTH,
-                to: ARTICLE_SEARCH_QUERY_MAX_LENGTH,
+                from: types.ARTICLE_SEARCH_QUERY_MIN_LENGTH,
+                to: types.ARTICLE_SEARCH_QUERY_MAX_LENGTH,
               })
             )
           }
@@ -71,8 +69,8 @@ export function ArticlesSearchForm() {
               // @ts-ignore
               event.target.setCustomValidity(
                 t("articles.search.validation", {
-                  from: ARTICLE_SEARCH_QUERY_MIN_LENGTH,
-                  to: ARTICLE_SEARCH_QUERY_MAX_LENGTH,
+                  from: types.ARTICLE_SEARCH_QUERY_MIN_LENGTH,
+                  to: types.ARTICLE_SEARCH_QUERY_MAX_LENGTH,
                 })
               );
             }
@@ -106,7 +104,7 @@ export function ArticlesSearchForm() {
 
 function isSearchQueryValid(query: string) {
   return (
-    query.length >= ARTICLE_SEARCH_QUERY_MIN_LENGTH &&
-    query.length <= ARTICLE_SEARCH_QUERY_MAX_LENGTH
+    query.length >= types.ARTICLE_SEARCH_QUERY_MIN_LENGTH &&
+    query.length <= types.ARTICLE_SEARCH_QUERY_MAX_LENGTH
   );
 }

@@ -2,15 +2,15 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
-import * as infra from "../infra";
 import * as Repos from "../repositories";
+import * as infra from "../../../infra";
 
-import * as Settings from "../modules/settings";
-import * as Stats from "../modules/stats";
+import * as Settings from "../../settings";
+import * as Stats from "../../stats";
 
-import { App } from "../frontend/app";
+import { App } from "../../../frontend/app";
 
-export async function NewspapersArchive(
+export async function ArticlesArchive(
   request: express.Request,
   response: express.Response,
   _next: express.NextFunction
@@ -24,18 +24,18 @@ export async function NewspapersArchive(
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
     translations,
-    archiveArticles: [],
-    archiveNewspapers: await Repos.NewspaperRepository.getAll(
-      Repos.ArchiveNewspaperFilter.parse(request.query)
+    archiveArticles: await Repos.ArticleRepository.getAll(
+      Repos.ArchiveArticlesFilter.parse(request.query)
     ),
+    archiveNewspapers: [],
     archiveFiles: [],
     articles: {
       result: [],
       meta: { ...bg.Pagination.empty.meta, previousPage: undefined },
     },
     newspapers: [],
-    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
+    settings: await Settings.Repos.SettingsRepository.getAll(),
     stats: await Stats.Repos.StatsRepository.getAll(),
   };
 

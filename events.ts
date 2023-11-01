@@ -6,11 +6,8 @@ import Emittery from "emittery";
 import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
 import * as Files from "./modules/files";
+import * as Newspapers from "./modules/newspapers";
 
-import * as VO from "./value-objects";
-import * as Services from "./services";
-import * as Repos from "./repositories";
-import * as Aggregates from "./aggregates";
 import * as infra from "./infra";
 
 const EventHandler = new bg.EventHandler(infra.logger);
@@ -21,7 +18,7 @@ export const ArticleAddedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_ADDED_EVENT),
     version: z.literal(1),
-    payload: VO.Article.merge(VO.ArticleMetatags),
+    payload: Newspapers.VO.Article.merge(Newspapers.VO.ArticleMetatags),
   })
 );
 type ArticleAddedEventType = z.infer<typeof ArticleAddedEvent>;
@@ -31,7 +28,7 @@ export const ArticleDeletedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_DELETED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({ articleId: Newspapers.VO.ArticleId }),
   })
 );
 type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
@@ -41,7 +38,10 @@ export const ArticleLockedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_LOCKED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId, newspaperId: VO.NewspaperId }),
+    payload: z.object({
+      articleId: Newspapers.VO.ArticleId,
+      newspaperId: Newspapers.VO.NewspaperId,
+    }),
   })
 );
 type ArticleLockedEventType = z.infer<typeof ArticleLockedEvent>;
@@ -51,7 +51,7 @@ export const ArticleUnlockedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_UNLOCKED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({ articleId: Newspapers.VO.ArticleId }),
   })
 );
 type ArticleUnlockedEventType = z.infer<typeof ArticleUnlockedEvent>;
@@ -61,7 +61,7 @@ export const ArticleProcessedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_PROCESSED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({ articleId: Newspapers.VO.ArticleId }),
   })
 );
 type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
@@ -71,7 +71,7 @@ export const ArticleUndeleteEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_UNDELETE_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({ articleId: Newspapers.VO.ArticleId }),
   })
 );
 type ArticleUndeleteEventType = z.infer<typeof ArticleUndeleteEvent>;
@@ -82,8 +82,8 @@ export const NewspaperScheduledEvent = bg.EventDraft.merge(
     name: z.literal(NEWSPAPER_SCHEDULED_EVENT),
     version: z.literal(1),
     payload: z.object({
-      id: VO.NewspaperId,
-      articles: VO.Newspaper._def.shape().articles,
+      id: Newspapers.VO.NewspaperId,
+      articles: Newspapers.VO.Newspaper._def.shape().articles,
       createdAt: bg.Schema.Timestamp,
     }),
   })
@@ -95,7 +95,7 @@ export const NewspaperGenerateEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_GENERATED_EVENT),
     version: z.literal(1),
-    payload: z.object({ newspaperId: VO.NewspaperId }),
+    payload: z.object({ newspaperId: Newspapers.VO.NewspaperId }),
   })
 );
 type NewspaperGenerateEventType = z.infer<typeof NewspaperGenerateEvent>;
@@ -106,9 +106,9 @@ export const NewspaperSentEvent = bg.EventDraft.merge(
     name: z.literal(NEWSPAPER_SENT_EVENT),
     version: z.literal(1),
     payload: z.object({
-      newspaperId: VO.NewspaperId,
-      articles: VO.Newspaper._def.shape().articles,
-      sentAt: VO.Newspaper._def.shape().sentAt,
+      newspaperId: Newspapers.VO.NewspaperId,
+      articles: Newspapers.VO.Newspaper._def.shape().articles,
+      sentAt: Newspapers.VO.Newspaper._def.shape().sentAt,
     }),
   })
 );
@@ -119,7 +119,7 @@ export const NewspaperArchivedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_ARCHIVED_EVENT),
     version: z.literal(1),
-    payload: z.object({ newspaperId: VO.NewspaperId }),
+    payload: z.object({ newspaperId: Newspapers.VO.NewspaperId }),
   })
 );
 type NewspaperArchivedEventType = z.infer<typeof NewspaperArchivedEvent>;
@@ -129,7 +129,7 @@ export const NewspaperFailedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(NEWSPAPER_FAILED_EVENT),
     version: z.literal(1),
-    payload: z.object({ newspaperId: VO.NewspaperId }),
+    payload: z.object({ newspaperId: Newspapers.VO.NewspaperId }),
   })
 );
 type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;
@@ -151,7 +151,7 @@ export const DeleteOldArticlesEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(DELETE_OLD_ARTICLES_EVENT),
     version: z.literal(1),
-    payload: z.object({ marker: VO.ArticleOldMarker }),
+    payload: z.object({ marker: Newspapers.VO.ArticleOldMarker }),
   })
 );
 type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;
@@ -184,7 +184,7 @@ export const emittery = new Emittery<{
 emittery.on(
   ARTICLE_ADDED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.ArticleRepository.create(event.payload);
+    await Newspapers.Repos.ArticleRepository.create(event.payload);
     await Stats.Repos.StatsRepository.incrementCreatedArticles();
   })
 );
@@ -192,9 +192,9 @@ emittery.on(
 emittery.on(
   ARTICLE_DELETED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
+    await Newspapers.Repos.ArticleRepository.updateStatus(
       event.payload.articleId,
-      VO.ArticleStatusEnum.deleted
+      Newspapers.VO.ArticleStatusEnum.deleted
     );
   })
 );
@@ -202,9 +202,9 @@ emittery.on(
 emittery.on(
   ARTICLE_UNDELETE_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
+    await Newspapers.Repos.ArticleRepository.updateStatus(
       event.payload.articleId,
-      VO.ArticleStatusEnum.ready
+      Newspapers.VO.ArticleStatusEnum.ready
     );
   })
 );
@@ -213,12 +213,12 @@ emittery.on(
   ARTICLE_LOCKED_EVENT,
   EventHandler.handle(async (event) => {
     try {
-      await Repos.ArticleRepository.updateStatus(
+      await Newspapers.Repos.ArticleRepository.updateStatus(
         event.payload.articleId,
-        VO.ArticleStatusEnum.in_progress
+        Newspapers.VO.ArticleStatusEnum.in_progress
       );
 
-      await Repos.ArticleRepository.assignToNewspaper(
+      await Newspapers.Repos.ArticleRepository.assignToNewspaper(
         event.payload.articleId,
         event.payload.newspaperId
       );
@@ -235,9 +235,9 @@ emittery.on(
 emittery.on(
   ARTICLE_UNLOCKED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
+    await Newspapers.Repos.ArticleRepository.updateStatus(
       event.payload.articleId,
-      VO.ArticleStatusEnum.ready
+      Newspapers.VO.ArticleStatusEnum.ready
     );
   })
 );
@@ -245,9 +245,9 @@ emittery.on(
 emittery.on(
   ARTICLE_PROCESSED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
+    await Newspapers.Repos.ArticleRepository.updateStatus(
       event.payload.articleId,
-      VO.ArticleStatusEnum.processed
+      Newspapers.VO.ArticleStatusEnum.processed
     );
   })
 );
@@ -255,18 +255,20 @@ emittery.on(
 emittery.on(
   NEWSPAPER_SCHEDULED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.NewspaperRepository.create({
+    await Newspapers.Repos.NewspaperRepository.create({
       id: event.payload.id,
       scheduledAt: event.payload.createdAt,
-      status: VO.NewspaperStatusEnum.scheduled,
+      status: Newspapers.VO.NewspaperStatusEnum.scheduled,
     });
 
     for (const entity of event.payload.articles) {
-      const article = await Aggregates.Article.build(entity.id);
+      const article = await Newspapers.Aggregates.Article.build(entity.id);
       await article.lock(event.payload.id);
     }
 
-    const newspaper = await new Aggregates.Newspaper(event.payload.id).build();
+    const newspaper = await new Newspapers.Aggregates.Newspaper(
+      event.payload.id
+    ).build();
 
     await newspaper.generate();
   })
@@ -275,12 +277,12 @@ emittery.on(
 emittery.on(
   NEWSPAPER_GENERATED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.NewspaperRepository.updateStatus(
+    await Newspapers.Repos.NewspaperRepository.updateStatus(
       event.payload.newspaperId,
-      VO.NewspaperStatusEnum.ready_to_send
+      Newspapers.VO.NewspaperStatusEnum.ready_to_send
     );
 
-    const newspaper = await new Aggregates.Newspaper(
+    const newspaper = await new Newspapers.Aggregates.Newspaper(
       event.payload.newspaperId
     ).build();
     await newspaper.send();
@@ -292,31 +294,31 @@ emittery.on(
   EventHandler.handle(async (event) => {
     await Stats.Repos.StatsRepository.incrementSentNewspapers();
 
-    await Repos.NewspaperRepository.updateStatus(
+    await Newspapers.Repos.NewspaperRepository.updateStatus(
       event.payload.newspaperId,
-      VO.NewspaperStatusEnum.delivered
+      Newspapers.VO.NewspaperStatusEnum.delivered
     );
 
-    await Repos.NewspaperRepository.updateSentAt(
+    await Newspapers.Repos.NewspaperRepository.updateSentAt(
       event.payload.newspaperId,
       event.payload.sentAt
     );
 
     for (const entity of event.payload.articles) {
-      const article = await Aggregates.Article.build(entity.id);
+      const article = await Newspapers.Aggregates.Article.build(entity.id);
       await article.markAsProcessed();
     }
 
-    await Services.NewspaperFile.clear(event.payload.newspaperId);
+    await Newspapers.Services.NewspaperFile.clear(event.payload.newspaperId);
   })
 );
 
 emittery.on(
   NEWSPAPER_ARCHIVED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.NewspaperRepository.updateStatus(
+    await Newspapers.Repos.NewspaperRepository.updateStatus(
       event.payload.newspaperId,
-      VO.NewspaperStatusEnum.archived
+      Newspapers.VO.NewspaperStatusEnum.archived
     );
   })
 );
@@ -324,17 +326,17 @@ emittery.on(
 emittery.on(
   NEWSPAPER_FAILED_EVENT,
   EventHandler.handle(async (event) => {
-    await Repos.NewspaperRepository.updateStatus(
+    await Newspapers.Repos.NewspaperRepository.updateStatus(
       event.payload.newspaperId,
-      VO.NewspaperStatusEnum.error
+      Newspapers.VO.NewspaperStatusEnum.error
     );
 
-    const newspaper = await new Aggregates.Newspaper(
+    const newspaper = await new Newspapers.Aggregates.Newspaper(
       event.payload.newspaperId
     ).build();
 
     for (const item of newspaper.articles) {
-      const article = await Aggregates.Article.build(item.id);
+      const article = await Newspapers.Aggregates.Article.build(item.id);
       await article.unlock();
     }
   })
@@ -371,7 +373,7 @@ emittery.on(
 emittery.on(
   DELETE_OLD_ARTICLES_EVENT,
   EventHandler.handle(async (event) => {
-    const oldArticles = await Repos.ArticleRepository.getOld(
+    const oldArticles = await Newspapers.Repos.ArticleRepository.getOld(
       event.payload.marker
     );
 
@@ -384,7 +386,9 @@ emittery.on(
     });
 
     for (const { id } of oldArticles) {
-      const article = await Aggregates.Article.build(VO.ArticleId.parse(id));
+      const article = await Newspapers.Aggregates.Article.build(
+        Newspapers.VO.ArticleId.parse(id)
+      );
       await article.delete();
     }
   })

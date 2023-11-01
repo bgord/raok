@@ -4,9 +4,8 @@ import * as bg from "@bgord/node";
 
 import * as RSS from "../../modules/rss";
 import * as Settings from "../../modules/settings";
+import * as Newspapers from "../../modules/newspapers";
 
-import * as VO from "../../value-objects";
-import * as Policies from "../../policies";
 import * as infra from "../../infra";
 
 export class ErrorHandler {
@@ -58,29 +57,32 @@ export class ErrorHandler {
         .send({ message: "app.too_many_requests", _known: true });
     }
 
-    if (error instanceof Policies.NonProcessedArticleUrlIsNotUniqueError) {
+    if (
+      error instanceof
+      Newspapers.Policies.NonProcessedArticleUrlIsNotUniqueError
+    ) {
       infra.logger.error({
         message: "Article URL is not unique",
-        operation: Policies.NonProcessedArticleUrlIsUnique.message,
+        operation: Newspapers.Policies.NonProcessedArticleUrlIsUnique.message,
         correlationId: request.requestId,
         metadata: request.body,
       });
 
       return response.status(400).send({
-        message: Policies.NonProcessedArticleUrlIsUnique.message,
+        message: Newspapers.Policies.NonProcessedArticleUrlIsUnique.message,
         _known: true,
       });
     }
 
-    if (error instanceof Policies.TooManyArticlesInNewspaperError) {
+    if (error instanceof Newspapers.Policies.TooManyArticlesInNewspaperError) {
       infra.logger.error({
         message: "Newspaper with too many articles attempted",
-        operation: Policies.MaximumNewspaperArticleNumber.message,
+        operation: Newspapers.Policies.MaximumNewspaperArticleNumber.message,
         correlationId: request.requestId,
       });
 
       return response.status(400).send({
-        message: Policies.MaximumNewspaperArticleNumber.message,
+        message: Newspapers.Policies.MaximumNewspaperArticleNumber.message,
         _known: true,
       });
     }
@@ -98,7 +100,7 @@ export class ErrorHandler {
       });
     }
 
-    if (error instanceof VO.ArticleNotFoundError) {
+    if (error instanceof Newspapers.VO.ArticleNotFoundError) {
       infra.logger.error({
         message: "Article not found during metatags scrapping",
         operation: "article_not_found_during_metatags_scrapping_error",
@@ -111,7 +113,7 @@ export class ErrorHandler {
       });
     }
 
-    if (error instanceof VO.ArticleIsNotHTML) {
+    if (error instanceof Newspapers.VO.ArticleIsNotHTML) {
       infra.logger.error({
         message: "Article has incorrect format",
         operation: "article_is_not_html_error",
@@ -124,7 +126,7 @@ export class ErrorHandler {
       });
     }
 
-    if (error instanceof VO.ArticleScrapingTimeoutError) {
+    if (error instanceof Newspapers.VO.ArticleScrapingTimeoutError) {
       infra.logger.error({
         message: "Article scraping timeout error",
         operation: "article_scraping_timeout_error",
@@ -167,11 +169,12 @@ export class ErrorHandler {
       if (
         error.issues.find(
           (issue) =>
-            issue.message === VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE
+            issue.message ===
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE
         )
       ) {
         return response.status(400).send({
-          message: VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE,
+          message: Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE,
           _known: true,
         });
       }
@@ -179,11 +182,12 @@ export class ErrorHandler {
       if (
         error.issues.find(
           (issue) =>
-            issue.message === VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE
+            issue.message ===
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE
         )
       ) {
         return response.status(400).send({
-          message: VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE,
+          message: Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE,
           _known: true,
         });
       }
