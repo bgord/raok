@@ -1,7 +1,7 @@
 import express from "express";
 
-import * as Events from "../../../events";
-import * as Repos from "../repositories";
+import * as Events from "../events";
+import * as infra from "../../../infra";
 
 export async function DeleteAllArticles(
   _request: express.Request,
@@ -10,7 +10,7 @@ export async function DeleteAllArticles(
 ) {
   const now = Date.now();
 
-  await Repos.EventRepository.save(
+  await infra.EventStore.save(
     Events.DeleteOldArticlesEvent.parse({
       name: Events.DELETE_OLD_ARTICLES_EVENT,
       stream: String(now),

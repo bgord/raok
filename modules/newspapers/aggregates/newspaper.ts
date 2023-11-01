@@ -2,11 +2,10 @@ import * as bg from "@bgord/node";
 
 import * as Files from "../../files";
 
-import * as Events from "../../../events";
+import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Services from "../services";
 import * as Policies from "../policies";
-import * as Repos from "../repositories";
 import * as infra from "../../../infra";
 
 import { Article } from "./article";
@@ -32,7 +31,7 @@ export class Newspaper {
   }
 
   async build() {
-    const events = await Repos.EventRepository.find(
+    const events = await infra.EventStore.find(
       [
         Events.NewspaperScheduledEvent,
         Events.NewspaperGenerateEvent,
@@ -93,7 +92,7 @@ export class Newspaper {
 
     const newspaperId = VO.NewspaperId.parse(bg.NewUUID.generate());
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         stream: Newspaper.getStream(newspaperId),
@@ -118,7 +117,7 @@ export class Newspaper {
         articles: this.articles,
       }).create();
 
-      await Repos.EventRepository.save(
+      await infra.EventStore.save(
         Events.NewspaperGenerateEvent.parse({
           name: Events.NEWSPAPER_GENERATED_EVENT,
           stream: this.stream,
@@ -133,7 +132,7 @@ export class Newspaper {
         metadata: infra.logger.formatError(error),
       });
 
-      await Repos.EventRepository.save(
+      await infra.EventStore.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
@@ -155,7 +154,7 @@ export class Newspaper {
         Services.NewspaperFile.getAttachment(this.id)
       );
 
-      await Repos.EventRepository.save(
+      await infra.EventStore.save(
         Events.NewspaperSentEvent.parse({
           name: Events.NEWSPAPER_SENT_EVENT,
           stream: this.stream,
@@ -174,7 +173,7 @@ export class Newspaper {
         metadata: infra.logger.formatError(error),
       });
 
-      await Repos.EventRepository.save(
+      await infra.EventStore.save(
         Events.NewspaperFailedEvent.parse({
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
@@ -191,7 +190,7 @@ export class Newspaper {
       to: VO.NewspaperStatusEnum.archived,
     });
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.NewspaperArchivedEvent.parse({
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
@@ -215,7 +214,7 @@ export class Newspaper {
       return;
     }
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.NewspaperArchivedEvent.parse({
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
@@ -231,7 +230,7 @@ export class Newspaper {
       to: VO.NewspaperStatusEnum.scheduled,
     });
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.NewspaperScheduledEvent.parse({
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         version: 1,

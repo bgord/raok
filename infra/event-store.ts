@@ -1,30 +1,31 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
-import * as Settings from "../../settings";
+import * as Settings from "../modules/settings";
+import * as Newspapers from "../modules/newspapers";
 
-import * as infra from "../../../infra";
-import * as Events from "../../../events";
+import * as infra from "../infra";
+import * as Events from "../app/events";
 
 type AcceptedEvent =
-  | typeof Events.ArticleAddedEvent
-  | typeof Events.ArticleDeletedEvent
-  | typeof Events.ArticleLockedEvent
-  | typeof Events.ArticleUnlockedEvent
-  | typeof Events.ArticleProcessedEvent
-  | typeof Events.ArticleUndeleteEvent
+  | typeof Newspapers.Events.ArticleAddedEvent
+  | typeof Newspapers.Events.ArticleDeletedEvent
+  | typeof Newspapers.Events.ArticleLockedEvent
+  | typeof Newspapers.Events.ArticleUnlockedEvent
+  | typeof Newspapers.Events.ArticleProcessedEvent
+  | typeof Newspapers.Events.ArticleUndeleteEvent
   | typeof Settings.Events.ArticlesToReviewNotificationHourSetEvent
   | typeof Settings.Events.ArticlesToReviewNotificationsDisabledEvent
   | typeof Settings.Events.ArticlesToReviewNotificationsEnabledEvent
-  | typeof Events.NewspaperArchivedEvent
-  | typeof Events.NewspaperFailedEvent
-  | typeof Events.NewspaperGenerateEvent
-  | typeof Events.NewspaperScheduledEvent
-  | typeof Events.NewspaperSentEvent
-  | typeof Events.DeleteOldArticlesEvent;
+  | typeof Newspapers.Events.NewspaperArchivedEvent
+  | typeof Newspapers.Events.NewspaperFailedEvent
+  | typeof Newspapers.Events.NewspaperGenerateEvent
+  | typeof Newspapers.Events.NewspaperScheduledEvent
+  | typeof Newspapers.Events.NewspaperSentEvent
+  | typeof Newspapers.Events.DeleteOldArticlesEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
-export class EventRepository {
+export class EventStore {
   static async find<T extends AcceptedEvent[]>(
     acceptedEvents: T,
     stream?: bg.EventType["stream"]

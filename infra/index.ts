@@ -132,3 +132,5 @@ export const BasicAuthShield = new bg.BasicAuthShield({
   username: Env.BASIC_AUTH_USERNAME,
   password: Env.BASIC_AUTH_PASSWORD,
 });
+
+export { EventStore } from "./event-store";

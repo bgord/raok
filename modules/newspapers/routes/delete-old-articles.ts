@@ -2,8 +2,9 @@ import * as bg from "@bgord/node";
 import express from "express";
 
 import * as Aggregates from "../aggregates";
-import * as Events from "../../../events";
-import * as Repos from "../repositories";
+import * as Events from "../events";
+
+import * as infra from "../../../infra";
 
 export async function DeleteOldArticles(
   _request: express.Request,
@@ -12,7 +13,7 @@ export async function DeleteOldArticles(
 ) {
   const now = Date.now();
 
-  await Repos.EventRepository.save(
+  await infra.EventStore.save(
     Events.DeleteOldArticlesEvent.parse({
       name: Events.DELETE_OLD_ARTICLES_EVENT,
       stream: String(now),

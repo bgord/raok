@@ -1,10 +1,10 @@
 import * as bg from "@bgord/node";
 
-import * as Events from "../../../events";
+import * as Events from "../events";
 import * as VO from "../value-objects";
 import * as Policies from "../policies";
 import * as Services from "../services";
-import * as Repos from "../repositories";
+import * as infra from "../../../infra";
 
 export class Article {
   id: VO.ArticleType["id"];
@@ -24,7 +24,7 @@ export class Article {
   static async build(id: VO.ArticleIdType) {
     let entity: VO.ArticleType | null = null;
 
-    const events = await Repos.EventRepository.find(
+    const events = await infra.EventStore.find(
       [
         Events.ArticleAddedEvent,
         Events.ArticleDeletedEvent,
@@ -90,7 +90,7 @@ export class Article {
 
     const metatags = await Services.ArticleMetatagsScraper.get(article.url);
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.ArticleAddedEvent.parse({
         name: Events.ARTICLE_ADDED_EVENT,
         stream: Article.getStream(id),
@@ -112,7 +112,7 @@ export class Article {
       entity: this.entity as VO.ArticleType,
     });
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.ArticleDeletedEvent.parse({
         name: Events.ARTICLE_DELETED_EVENT,
         stream: this.stream,
@@ -128,7 +128,7 @@ export class Article {
       to: VO.ArticleStatusEnum.in_progress,
     });
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.ArticleLockedEvent.parse({
         name: Events.ARTICLE_LOCKED_EVENT,
         stream: this.stream,
@@ -144,7 +144,7 @@ export class Article {
       to: VO.ArticleStatusEnum.ready,
     });
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.ArticleUnlockedEvent.parse({
         name: Events.ARTICLE_UNLOCKED_EVENT,
         stream: this.stream,
@@ -160,7 +160,7 @@ export class Article {
       to: VO.ArticleStatusEnum.processed,
     });
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.ArticleProcessedEvent.parse({
         name: Events.ARTICLE_PROCESSED_EVENT,
         stream: this.stream,
@@ -176,7 +176,7 @@ export class Article {
       to: VO.ArticleStatusEnum.ready,
     });
 
-    await Repos.EventRepository.save(
+    await infra.EventStore.save(
       Events.ArticleUndeleteEvent.parse({
         name: Events.ARTICLE_UNDELETE_EVENT,
         stream: this.stream,
