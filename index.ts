@@ -11,8 +11,6 @@ import * as Newspapers from "./modules/newspapers";
 
 import * as infra from "./infra";
 
-import { Scheduler } from "./jobs";
-
 const app = express();
 
 bg.addExpressEssentials(app);
@@ -249,5 +247,5 @@ app.use(App.Routes.ErrorHandler.handle);
     });
   });
 
-  bg.GracefulShutdown.applyTo(server, () => Scheduler.stop());
+  bg.GracefulShutdown.applyTo(server, () => infra.Scheduler.stop());
 })();

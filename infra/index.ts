@@ -134,3 +134,4 @@ export const BasicAuthShield = new bg.BasicAuthShield({
 });
 
 export { EventStore } from "./event-store";
+export * from "./jobs";

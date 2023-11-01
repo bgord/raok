@@ -1,13 +1,13 @@
 import z from "zod";
 import * as bg from "@bgord/node";
 
-import * as Files from "../";
-import * as Newspapers from "../../newspapers";
+import * as VO from "../value-objects";
+import { TimeStampFilter } from "../../newspapers/value-objects";
 
 import * as infra from "../../../infra";
 
 export const ArchiveFilesFilter = new bg.Filter(
-  z.object({ sentAt: Newspapers.VO.TimeStampFilter })
+  z.object({ sentAt: TimeStampFilter })
 );
 
 export class FilesRepository {
@@ -23,7 +23,7 @@ export class FilesRepository {
     }));
   }
 
-  static async getSingle(id: Files.VO.FileIdType) {
+  static async getSingle(id: VO.FileIdType) {
     return infra.db.files.findFirst({ where: { id } });
   }
 
