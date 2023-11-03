@@ -24,6 +24,11 @@ export function Settings(_props: RoutableProps) {
     settings.data?.articlesToReviewNotificationHour.value
   );
 
+  const articlesToReviewNotificationEnabled = bg.useField<boolean>(
+    "articles-to-review-notification-enabled",
+    settings.data?.isArticlesToReviewNotificationEnabled ?? false
+  );
+
   const notificationHourChangeDisabled: boolean =
     !settings.data?.isArticlesToReviewNotificationEnabled ||
     notificationHour.value ===
@@ -64,11 +69,7 @@ export function Settings(_props: RoutableProps) {
   if (!settings.isSuccess)
     return <div data-p="24">{t("settings.preparing")}</div>;
 
-  const {
-    isArticlesToReviewNotificationEnabled,
-    hours,
-    articlesToReviewNotificationHour,
-  } = settings.data;
+  const { hours, articlesToReviewNotificationHour } = settings.data;
 
   return (
     <main
@@ -95,19 +96,14 @@ export function Settings(_props: RoutableProps) {
       >
         <div data-display="flex" data-cross="center" data-gap="12">
           <div data-display="flex" data-wrap="nowrap" data-gap="12">
-            <strong
-              data-px="6"
-              data-transform="uppercase"
-              data-color="gray-600"
-              data-bg="gray-200"
-              data-br="4"
-              data-ls="1"
-              data-fs="12"
-            >
-              {isArticlesToReviewNotificationEnabled
-                ? t("app.enabled")
-                : t("app.disabled")}
-            </strong>
+            <UI.Switch
+              {...articlesToReviewNotificationEnabled}
+              onChange={(event) =>
+                event.currentTarget.checked
+                  ? enableArticlesToReviewNotification.mutate()
+                  : disableArticlesToReviewNotification.mutate()
+              }
+            />
 
             <div
               data-fs="14"
@@ -117,30 +113,6 @@ export function Settings(_props: RoutableProps) {
               {t("articles-to-review-notification")}
             </div>
           </div>
-
-          {isArticlesToReviewNotificationEnabled && (
-            <button
-              type="submit"
-              class="c-button"
-              data-variant="primary"
-              data-ml="auto"
-              onClick={() => disableArticlesToReviewNotification.mutate()}
-            >
-              {t("app.disable")}
-            </button>
-          )}
-
-          {!isArticlesToReviewNotificationEnabled && (
-            <button
-              type="submit"
-              class="c-button"
-              data-variant="primary"
-              data-ml="auto"
-              onClick={() => enableArticlesToReviewNotification.mutate()}
-            >
-              {t("app.enable")}
-            </button>
-          )}
         </div>
 
         <form

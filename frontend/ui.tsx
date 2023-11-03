@@ -1,4 +1,4 @@
-import { h } from "preact";
+import { h, Fragment } from "preact";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
@@ -119,5 +119,29 @@ export function ArticleUrl(
     <OutboundLink href={props.url} data-max-width="100%" data-fs="12" {...rest}>
       {props.url}
     </OutboundLink>
+  );
+}
+
+export function Switch(
+  props: bg.UseFieldReturnType<boolean> &
+    Omit<h.JSX.IntrinsicElements["input"], "label" | "value">
+) {
+  const { value, set, input, label, ...rest } = props;
+
+  return (
+    <Fragment>
+      <input
+        class="c-switch-checkbox"
+        type="checkbox"
+        checked={value}
+        onChange={(event) => set(event.currentTarget.checked)}
+        {...input.props}
+        {...rest}
+      />
+
+      <label class="c-switch-label" {...label.props}>
+        <div class="c-switch-slider"></div>
+      </label>
+    </Fragment>
   );
 }
