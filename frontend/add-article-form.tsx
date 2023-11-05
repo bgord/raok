@@ -64,7 +64,7 @@ export function AddArticleForm() {
 
       <UI.ClearButton
         onClick={url.clear}
-        disabled={addArticleRequest.isLoading}
+        disabled={url.unchanged || addArticleRequest.isLoading}
       />
     </form>
   );
