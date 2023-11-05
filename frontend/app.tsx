@@ -50,6 +50,7 @@ export function App(props: InitialDataType) {
   queryClient.setQueryData("archive-files", props.archiveFiles);
   queryClient.setQueryData("settings", props.settings);
   queryClient.setQueryData("articles-search", []);
+  queryClient.setQueryData("sources", props.sources);
 
   return (
     <QueryClientProvider client={queryClient}>
