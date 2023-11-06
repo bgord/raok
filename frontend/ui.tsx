@@ -21,7 +21,6 @@ export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
 
 function Link(props: h.JSX.IntrinsicElements["a"]) {
   return (
-    /* eslint-disable jsx-a11y/anchor-has-content */
     <a
       class="c-link"
       data-color="gray-700"

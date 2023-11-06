@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-identical-functions */
 import { h } from "preact";
 import { useQuery, useInfiniteQuery, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
