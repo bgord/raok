@@ -20,3 +20,4 @@ static/main.min.css
 static/normalize.css
 static/normalize.min.css
 tmp/
+tsconfig.tsbuildinfo
