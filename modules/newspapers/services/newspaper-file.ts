@@ -133,12 +133,10 @@ export class NewspaperFile {
   }
 
   static getPaths(newspaperId: VO.NewspaperType["id"]): NewspaperFilePaths {
-    const base = path.resolve(__dirname, "../newspapers");
-
     return {
-      html: bg.Schema.Path.parse(`${base}/${newspaperId}.html`),
-      epub: bg.Schema.Path.parse(`${base}/${newspaperId}.epub`),
-      mobi: bg.Schema.Path.parse(`${base}/${newspaperId}.mobi`),
+      html: bg.Schema.Path.parse(`newspapers/${newspaperId}.html`),
+      epub: bg.Schema.Path.parse(`newspapers/${newspaperId}.epub`),
+      mobi: bg.Schema.Path.parse(`newspapers/${newspaperId}.mobi`),
     };
   }
 
