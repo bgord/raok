@@ -100,9 +100,10 @@ export class Article {
           url: article.url,
           source,
           status: VO.ArticleStatusEnum.ready,
+          createdAt: Date.now(),
           ...metatags,
         },
-      })
+      } satisfies Events.ArticleAddedEventType)
     );
   }
 
@@ -118,7 +119,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
-      })
+      } satisfies Events.ArticleDeletedEventType)
     );
   }
 
@@ -134,7 +135,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, newspaperId },
-      })
+      } satisfies Events.ArticleLockedEventType)
     );
   }
 
@@ -150,7 +151,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
-      })
+      } satisfies Events.ArticleUnlockedEventType)
     );
   }
 
@@ -166,7 +167,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
-      })
+      } satisfies Events.ArticleProcessedEventType)
     );
   }
 
@@ -182,7 +183,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
-      })
+      } satisfies Events.ArticleUndeleteEventType)
     );
   }
 

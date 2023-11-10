@@ -58,7 +58,7 @@ export class Settings {
         version: 1,
         stream: this.stream,
         payload: {},
-      })
+      } satisfies Events.ArticlesToReviewNotificationsDisabledEventType)
     );
   }
 
@@ -71,7 +71,7 @@ export class Settings {
         version: 1,
         stream: this.stream,
         payload: {},
-      })
+      } satisfies Events.ArticlesToReviewNotificationsEnabledEventType)
     );
   }
 
@@ -89,7 +89,7 @@ export class Settings {
         version: 1,
         stream: this.stream,
         payload: { hour: utcHour },
-      })
+      } satisfies Events.ArticlesToReviewNotificationHourSetEventType)
     );
   }
 

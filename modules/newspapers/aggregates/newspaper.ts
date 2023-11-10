@@ -100,8 +100,9 @@ export class Newspaper {
         payload: {
           id: newspaperId,
           articles: articles.map((x) => x.entity),
+          createdAt: Date.now(),
         },
-      })
+      } satisfies Events.NewspaperScheduledEventType)
     );
   }
 
@@ -123,7 +124,7 @@ export class Newspaper {
           stream: this.stream,
           version: 1,
           payload: { newspaperId: this.id },
-        })
+        } satisfies Events.NewspaperGenerateEventType)
       );
     } catch (error) {
       infra.logger.error({
@@ -138,7 +139,7 @@ export class Newspaper {
           version: 1,
           stream: this.stream,
           payload: { newspaperId: this.id },
-        })
+        } satisfies Events.NewspaperFailedEventType)
       );
     }
   }
@@ -164,7 +165,7 @@ export class Newspaper {
             articles: this.articles,
             sentAt: Date.now(),
           },
-        })
+        } satisfies Events.NewspaperSentEventType)
       );
     } catch (error) {
       infra.logger.error({
@@ -179,7 +180,7 @@ export class Newspaper {
           version: 1,
           stream: this.stream,
           payload: { newspaperId: this.id },
-        })
+        } satisfies Events.NewspaperFailedEventType)
       );
     }
   }
@@ -196,7 +197,7 @@ export class Newspaper {
         version: 1,
         stream: this.stream,
         payload: { newspaperId: this.id },
-      })
+      } satisfies Events.NewspaperArchivedEventType)
     );
   }
 
@@ -220,7 +221,7 @@ export class Newspaper {
         version: 1,
         stream: this.stream,
         payload: { newspaperId: this.id },
-      })
+      } satisfies Events.NewspaperArchivedEventType)
     );
   }
 
@@ -235,8 +236,12 @@ export class Newspaper {
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         version: 1,
         stream: this.stream,
-        payload: { id: this.id, articles: this.articles },
-      })
+        payload: {
+          id: this.id,
+          articles: this.articles,
+          createdAt: Date.now(),
+        },
+      } satisfies Events.NewspaperScheduledEventType)
     );
   }
 

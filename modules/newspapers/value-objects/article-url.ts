@@ -25,7 +25,6 @@ export const ArticleUrl = z
     url.search = params.toString();
 
     return url.toString();
-  })
-  .brand<"article-url">();
+  });
 
 export type ArticleUrlType = z.infer<typeof ArticleUrl>;
