@@ -103,7 +103,7 @@ function NavigationMobile() {
               onClick={navigation.disable}
               title={t("app.menu.close")}
             >
-              <Icons.Cancel data-color="white" height="30" width="30" />
+              <Icons.Xmark data-color="white" height="30" width="30" />
             </button>
           </div>
 

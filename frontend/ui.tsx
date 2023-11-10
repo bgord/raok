@@ -84,7 +84,7 @@ export function ClearButton(props: h.JSX.IntrinsicElements["button"]) {
       data-cross="center"
       {...props}
     >
-      <Icons.Cancel width="24" height="24" />
+      <Icons.Xmark width="24" height="24" />
     </button>
   );
 }

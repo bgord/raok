@@ -91,7 +91,7 @@ export function SendArbitraryFile() {
 
       {(fileUpload.isIdle || fileUpload.isSuccess) && file.isIdle && (
         <UI.Info data-gap="6" data-mt="24">
-          <Icons.InfoEmpty height="20" width="20" />
+          <Icons.InfoCircle height="20" width="20" />
 
           <span data-mt="3">
             {t("app.file.size.max", {
