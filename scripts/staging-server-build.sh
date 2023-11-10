@@ -45,7 +45,7 @@ info "Compiled TypeScript"
 cp package.json $OUT_DIR
 cp package-lock.json $OUT_DIR
 cd $OUT_DIR
-npm ci --omit=dev --ignore-scripts
+HUSKY=0 npm ci --omit=dev --ignore-scripts
 cd ../
 info "Installed packages"
 
