@@ -1,5 +1,5 @@
 import * as bg from "@bgord/node";
-import og from "open-graph-scraper";
+import * as og from "open-graph-scraper";
 
 import * as infra from "../../../infra";
 import * as VO from "../value-objects";
@@ -9,7 +9,10 @@ export class ArticleMetatagsScraper {
     const emptyMetatags = { title: undefined };
 
     try {
-      const response = await og({ url, timeout: bg.Time.Seconds(5).ms });
+      const response = await og.default({
+        url,
+        timeout: bg.Time.Seconds(5).ms,
+      });
 
       if (response.result.success) {
         return VO.ArticleMetatags.parse({ title: response.result.ogTitle });

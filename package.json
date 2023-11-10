@@ -58,7 +58,7 @@
     "iconoir-react": "7.0.1",
     "jsdom": "22.1.0",
     "lodash": "4.17.21",
-    "open-graph-scraper": "^4.11.0",
+    "open-graph-scraper": "6.3.2",
     "preact": "10.18.2",
     "preact-render-to-string": "6.3.0",
     "preact-router": "4.1.2",
