@@ -43,7 +43,7 @@
     "postcss": "8.4.31",
     "postcss-cli": "10.1.0",
     "prisma": "3.15.2",
-    "standard-version": "^9.3.2",
+    "standard-version": "9.3.2",
     "ts-node-dev": "^2.0.0"
   },
   "dependencies": {
