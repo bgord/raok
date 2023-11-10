@@ -1,6 +1,6 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient, useMutation } from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
@@ -18,18 +18,32 @@ export type InitialSourcesDataType = {
 
 export function Sources(_props: RoutableProps) {
   hooks.useLeavingPrompt();
+
   const t = bg.useTranslations();
   const search = bg.useClientSearch();
+  const queryClient = useQueryClient();
+  const notify = bg.useToastTrigger();
 
   const sourceList = useQuery("sources", () => api.Source.list(), {
     refetchOnMount: true,
   });
 
-  const sources = (sourceList.data ?? []).filter((source) =>
-    search.filterFn(String(source.url))
-  );
+  const reorder = useMutation(api.Reordering.transfer, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("sources");
+      notify({ message: "sources.reordered" });
+    },
+  });
 
-  const numberOfSources = sources.length;
+  const sources = bg.useReordering({
+    correlationId: "sources",
+    initialItems: (sourceList.data ?? []).filter((source) =>
+      search.filterFn(String(source.url))
+    ),
+    callback: reorder.mutate,
+  });
+
+  const numberOfSources = sources.items.length;
 
   return (
     <main
@@ -82,7 +96,7 @@ export function Sources(_props: RoutableProps) {
         <UI.ClearButton onClick={search.clear} disabled={search.unchanged} />
       </div>
 
-      {sourceList.isSuccess && sources.length === 0 && (
+      {sourceList.isSuccess && sources.items.length === 0 && (
         <UI.Info data-transform="upper-first">{t("source.list.empty")}</UI.Info>
       )}
 
@@ -99,8 +113,13 @@ export function Sources(_props: RoutableProps) {
         data-max-width="100%"
         data-mb="48"
       >
-        {sources.map((source) => (
-          <Source key={source.id} {...source} />
+        {sources.items.map((source, idx) => (
+          <Source
+            key={source.id}
+            {...source}
+            {...sources.props.item(idx)}
+            {...sources.props.handle(idx)}
+          />
         ))}
       </ul>
     </main>

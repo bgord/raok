@@ -1,4 +1,5 @@
 import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
 import { h } from "preact";
 
 import * as UI from "./ui";
@@ -8,8 +9,16 @@ import { SourceDelete } from "./source-delete";
 import { SourceArchive } from "./source-archive";
 import { SourceReactivate } from "./source-reactivate";
 
-export function Source(props: types.SourceType) {
+export function Source(
+  props: types.SourceType & h.JSX.IntrinsicElements["li"]
+) {
+  const { position, url, status, id, name, createdAt, updatedAt, ...rest } =
+    props;
+  const source = { position, id, name, createdAt, updatedAt, url, status };
+
   const notify = bg.useToastTrigger();
+
+  const hover = bg.useHover({ enabled: Boolean(props.draggable) });
 
   return (
     <li
@@ -18,7 +27,20 @@ export function Source(props: types.SourceType) {
       data-gap="6"
       data-wrap="nowrap"
       data-max-width="100%"
+      data-position="relative"
+      {...rest}
+      {...hover.attach}
     >
+      {hover.isHovering && (
+        <Icons.List
+          data-position="absolute"
+          data-z="1"
+          height="20"
+          width="20"
+          style={{ left: "-30px" }}
+        />
+      )}
+
       {props.status === types.SourceStatusEnum.active && (
         <div class="c-badge" data-color="green-700" data-bg="green-100">
           {props.status}
@@ -45,12 +67,12 @@ export function Source(props: types.SourceType) {
       />
 
       {props.status === types.SourceStatusEnum.active && (
-        <SourceArchive {...props} />
+        <SourceArchive {...source} />
       )}
       {props.status === types.SourceStatusEnum.inactive && (
-        <SourceReactivate {...props} />
+        <SourceReactivate {...source} />
       )}
-      <SourceDelete {...props} />
+      <SourceDelete {...source} />
     </li>
   );
 }

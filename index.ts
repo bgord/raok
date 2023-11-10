@@ -8,6 +8,7 @@ import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
 import * as Files from "./modules/files";
 import * as Newspapers from "./modules/newspapers";
+import * as Reordering from "./modules/reordering";
 
 import * as infra from "./infra";
 
@@ -230,6 +231,14 @@ app.get(
   bg.Timeout.build({ timeoutMs: bg.Time.Seconds(5).ms }),
   infra.BasicAuthShield.verify,
   bg.Healthcheck.build(infra.healthcheck)
+);
+// =============================
+
+// Reordering ==================
+app.post(
+  "/reordering/:correlationId/transfer",
+  infra.AuthShield.verify,
+  bg.Route(Reordering.Routes.ReorderingTransfer)
 );
 // =============================
 

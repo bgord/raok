@@ -1,5 +1,7 @@
 import * as bg from "@bgord/node";
 
+import * as Reordering from "../../reordering";
+
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 
@@ -45,20 +47,15 @@ export class SourceRepository {
       orderBy: { createdAt: "desc" },
     });
 
+    const reordering = await Reordering.Repos.ReorderingRepository.list(
+      "sources"
+    );
+
     return sources
       .map((item) => VO.Source.parse(item))
       .map(SourceRepository.map)
-      .sort((a, b) => {
-        const statusToOrder: Record<VO.SourceStatusEnum, number> = {
-          [VO.SourceStatusEnum.active]: 1,
-          [VO.SourceStatusEnum.inactive]: 2,
-          [VO.SourceStatusEnum.deleted]: 3,
-        };
-
-        if (statusToOrder[a.status] < statusToOrder[b.status]) return -1;
-        if (statusToOrder[a.status] > statusToOrder[b.status]) return 1;
-        return 0;
-      });
+      .map(bg.ReorderingIntegrator.appendPosition(reordering))
+      .sort(bg.ReorderingIntegrator.sortByPosition());
   }
 
   static async listActive() {
