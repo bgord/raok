@@ -19,9 +19,15 @@ export function Source(props: types.SourceType) {
       data-wrap="nowrap"
       data-max-width="100%"
     >
-      <div class="c-badge" data-bg="gray-600" data-color="white">
-        {props.status}
-      </div>
+      {props.status === types.SourceStatusEnum.active && (
+        <div class="c-badge" data-color="green-700" data-bg="green-100">
+          {props.status}
+        </div>
+      )}
+
+      {props.status === types.SourceStatusEnum.inactive && (
+        <div class="c-badge">{props.status}</div>
+      )}
 
       <div data-fs="14" data-transform="truncate" title={props.url}>
         {props.url}
