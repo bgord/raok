@@ -21,7 +21,9 @@ export function Sources(_props: RoutableProps) {
   const t = bg.useTranslations();
   const search = bg.useClientSearch();
 
-  const sourceList = useQuery("sources", () => api.Source.list());
+  const sourceList = useQuery("sources", () => api.Source.list(), {
+    refetchOnMount: true,
+  });
 
   const sources = (sourceList.data ?? []).filter((source) =>
     search.filterFn(String(source.url))
