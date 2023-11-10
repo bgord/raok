@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import * as VO from "../value-objects";
 
 export class ArticleContentDownloader {
@@ -7,9 +5,10 @@ export class ArticleContentDownloader {
     url: VO.NewspaperType["articles"][0]["url"]
   ): Promise<VO.ArticleContentType | null> {
     try {
-      const result = await axios.get(url);
+      const result = await fetch(url, { method: "GET" });
+      const text = await result.text();
 
-      return VO.ArticleContent.parse(result.data);
+      return VO.ArticleContent.parse(text);
     } catch (error) {
       return null;
     }

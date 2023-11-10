@@ -160,7 +160,7 @@ function NavigationShell() {
   );
 }
 
-function NavigationLink(props: h.JSX.HTMLAttributes) {
+function NavigationLink(props: Omit<h.JSX.HTMLAttributes, "ref">) {
   return (
     <Link
       activeClassName="c-link--active"
