@@ -68,7 +68,7 @@
     "react-query": "3.39.3",
     "rss-parser": "^3.13.0",
     "serialize-javascript": "6.0.1",
-    "toad-scheduler": "^1.6.0",
+    "toad-scheduler": "3.0.0",
     "typescript": "5.2.2",
     "zod": "^3.20.2"
   }
