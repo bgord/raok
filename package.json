@@ -52,7 +52,7 @@
     "@bgord/node": "0.58.227",
     "@mozilla/readability": "0.4.4",
     "@prisma/client": "^3.7.0",
-    "@reach/skip-nav": "^0.17.0",
+    "@reach/skip-nav": "0.18.0",
     "axios": "^0.24.0",
     "emittery": "^0.10.0",
     "express": "^4.17.2",
