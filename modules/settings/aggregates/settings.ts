@@ -6,7 +6,7 @@ import * as Policies from "../policies";
 import * as infra from "../../../infra";
 
 export class Settings {
-  stream: bg.EventType["stream"];
+  private readonly stream: bg.EventType["stream"];
 
   isArticlesToReviewNotificationEnabled = true;
 

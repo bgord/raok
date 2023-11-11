@@ -2,7 +2,7 @@ import * as VO from "../value-objects";
 import * as Policies from "../policies";
 
 export class SourceFinder {
-  private urls: VO.SourceUrlType[];
+  private readonly urls: VO.SourceUrlType[];
 
   constructor(url: VO.SourceUrlType) {
     this.urls = this.generate(url);

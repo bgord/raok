@@ -7,7 +7,7 @@ export class Hour {
     .array(bg.Schema.Hour)
     .parse(bg.Schema.hours);
 
-  value: bg.Schema.HourType;
+  private readonly value: bg.Schema.HourType;
 
   constructor(value: number) {
     this.value = bg.Schema.Hour.parse(value);
