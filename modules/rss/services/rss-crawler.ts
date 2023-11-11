@@ -5,8 +5,8 @@ import { isWithinInterval, subMonths, startOfToday } from "date-fns";
 
 import * as Newspapers from "../../newspapers";
 
+import * as VO from "../value-objects";
 import * as Repos from "../repositories";
-
 import * as infra from "../../../infra";
 
 const LinkCache = new bg.Cache({
@@ -16,17 +16,22 @@ const LinkCache = new bg.Cache({
 
 const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
 
+type RSSCrawlerJobType = {
+  url: Newspapers.VO.ArticleUrlType;
+  sourceId: VO.SourceIdType;
+};
+
 export class RSSCrawler {
-  public static INTERVAL_MINUTES = 2;
+  static INTERVAL_MINUTES = 2;
 
-  public static PROCESSING_URLS_BATCH = 50;
+  private PROCESSING_JOBS_BATCH = 50;
 
-  urls: Newspapers.VO.ArticleUrlType[] = [];
+  private jobs: RSSCrawlerJobType[] = [];
 
-  public async crawl() {
+  async crawl() {
     const sources = await Repos.SourceRepository.listActive();
 
-    const urls: Newspapers.VO.ArticleUrlType[] = [];
+    const jobs: RSSCrawlerJobType[] = [];
 
     infra.logger.info({
       message: "Starting RSS crawl",
@@ -52,7 +57,7 @@ export class RSSCrawler {
           if (!this.isFromLastMonth(item.isoDate)) continue;
           if (LinkCache.has(link.data)) continue;
 
-          urls.push(link.data);
+          jobs.push({ url: link.data, sourceId: source.id });
         }
       } catch (error) {
         infra.logger.info({
@@ -65,39 +70,39 @@ export class RSSCrawler {
         });
       } finally {
         stepper.continue();
-        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
+        await bg.sleep(bg.Time.Seconds(1));
       }
     }
 
-    this.urls = urls;
+    this.jobs = jobs;
   }
 
   async process() {
     infra.logger.info({
       message: "Trying to add articles",
       operation: "rss_crawler_article_add_description",
-      metadata: { urls: this.urls.length },
+      metadata: { jobs: this.jobs.length },
     });
 
-    const stepper = new bg.Stepper({ total: RSSCrawler.PROCESSING_URLS_BATCH });
+    const stepper = new bg.Stepper({ total: this.PROCESSING_JOBS_BATCH });
 
-    for (const url of this.urls) {
+    for (const job of this.jobs) {
       try {
         await Newspapers.Aggregates.Article.add({
-          url,
+          url: job.url,
           source: Newspapers.VO.ArticleSourceEnum.rss,
         });
       } catch (error) {
         infra.logger.error({
           message: `Article not added ${stepper.format()}`,
           operation: "rss_crawler_article_add_error",
-          metadata: { url },
+          metadata: { job },
         });
       } finally {
-        LinkCache.set(url, true);
+        LinkCache.set(job.url, true);
         if (stepper.isFinished()) break;
         stepper.continue();
-        await bg.sleep({ ms: bg.Time.Seconds(1).ms });
+        await bg.sleep(bg.Time.Seconds(1));
       }
     }
   }
