@@ -16,6 +16,7 @@ export function Source(
     props;
   const source = { position, id, name, createdAt, updatedAt, url, status };
 
+  const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
 
   const hover = bg.useHover({ enabled: Boolean(props.draggable) });
@@ -55,8 +56,12 @@ export function Source(
         {props.url}
       </div>
 
-      <UI.Info data-transform="nowrap" data-ml="auto">
-        {props.updatedAt.relative}
+      <UI.Info
+        data-transform="nowrap"
+        data-ml="auto"
+        title={bg.DateFormatter.datetime(props.updatedAt.raw)}
+      >
+        {t("source.used_at", { when: props.updatedAt.relative })}
       </UI.Info>
 
       <UI.CopyButton
