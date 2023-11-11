@@ -92,6 +92,7 @@ export function ArchiveFiles(_props: RoutableProps) {
             class="c-button"
             data-variant="bare"
             onClick={sentAtFilter.clear}
+            disabled={sentAtFilter.unchanged}
           >
             {t("app.reset")}
           </button>
@@ -123,7 +124,7 @@ export function ArchiveFiles(_props: RoutableProps) {
           />
         </div>
 
-        <UI.ClearButton onClick={search.clear} />
+        <UI.ClearButton onClick={search.clear} disabled={search.unchanged} />
       </div>
 
       {archiveFiles.isSuccess && files.length === 0 && (
