@@ -92,6 +92,7 @@ export class RSSCrawler {
           url: job.url,
           source: Newspapers.VO.ArticleSourceEnum.rss,
         });
+        await Repos.SourceRepository.bump({ id: job.sourceId });
       } catch (error) {
         infra.logger.error({
           message: `Article not added ${stepper.format()}`,
