@@ -175,5 +175,6 @@
   "source.error.not_unique": "Source already exists",
   "source.error.not_responds": "Source does not respond",
   "source.url.copied": "Source URL copied",
-  "source.create.waiting": "Finding proper RSS feed for given source..."
+  "source.create.waiting": "Finding proper RSS feed for given source...",
+  "source.reordered": "Sources reordered"
 }
