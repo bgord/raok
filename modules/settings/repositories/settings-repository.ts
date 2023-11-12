@@ -1,17 +1,22 @@
-import * as VO from "../value-objects";
+import * as bg from "@bgord/node";
+
 import * as Aggregates from "../aggregates";
 
 export class SettingsRepository {
   static async getAll() {
-    const settings = await new Aggregates.Settings().build();
+    const {
+      isArticlesToReviewNotificationEnabled,
+      articlesToReviewNotificationHour,
+    } = await new Aggregates.Settings().build();
 
     return {
-      hours: VO.Hour.listFormatted(),
-      articlesToReviewNotificationHour: VO.Hour.format(
-        settings.articlesToReviewNotificationHour
-      ),
-      isArticlesToReviewNotificationEnabled:
-        settings.isArticlesToReviewNotificationEnabled,
+      hours: bg.Hour.list().map((hour) => hour.get()),
+
+      articlesToReviewNotificationHour: new bg.Hour(
+        articlesToReviewNotificationHour
+      ).get(),
+
+      isArticlesToReviewNotificationEnabled,
     };
   }
 }

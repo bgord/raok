@@ -21,7 +21,7 @@ export function Settings(_props: RoutableProps) {
 
   const notificationHour = bg.useField<types.HourType | undefined>(
     "notification-hour",
-    settings.data?.articlesToReviewNotificationHour.value
+    settings.data?.articlesToReviewNotificationHour.raw
   );
 
   const articlesToReviewNotificationEnabled = bg.useField<boolean>(
@@ -32,7 +32,7 @@ export function Settings(_props: RoutableProps) {
   const notificationHourChangeDisabled: boolean =
     !settings.data?.isArticlesToReviewNotificationEnabled ||
     notificationHour.value ===
-      settings.data.articlesToReviewNotificationHour.value;
+      settings.data.articlesToReviewNotificationHour.raw;
 
   const enableArticlesToReviewNotification = useMutation(
     api.Settings.enableArticlesToReviewNotification,
@@ -142,15 +142,13 @@ export function Settings(_props: RoutableProps) {
             {hours
               .map((hour) => ({
                 ...hour,
-                local: bg.HourFormatter.convertUtcToLocal(hour.value).label,
+                local: bg.HourFormatter.convertUtcToLocal(hour.raw).label,
               }))
               .sort((a, b) => (a.local > b.local ? 1 : -1))
               .map((option) => (
                 <option
-                  value={option.value}
-                  selected={
-                    option.value === articlesToReviewNotificationHour.value
-                  }
+                  value={option.raw}
+                  selected={option.raw === articlesToReviewNotificationHour.raw}
                 >
                   {option.local}
                 </option>
@@ -170,9 +168,9 @@ export function Settings(_props: RoutableProps) {
         <UI.Info>
           {t("articles-to-review-notification.info", {
             local: bg.HourFormatter.convertUtcToLocal(
-              articlesToReviewNotificationHour.value
+              articlesToReviewNotificationHour.raw
             ).label,
-            utc_zero: articlesToReviewNotificationHour.label,
+            utc_zero: articlesToReviewNotificationHour.formatted,
           })}
         </UI.Info>
       </section>
