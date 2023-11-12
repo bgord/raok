@@ -65,7 +65,7 @@ export function CopyButton(props: CopyButtonPropsType) {
       onClick={() => bg.copyToClipboard(options)}
       {...rest}
     >
-      <Icons.Copy width="24" height="24" />
+      <Icons.Copy width="20" height="20" />
     </button>
   );
 }

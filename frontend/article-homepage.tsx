@@ -8,6 +8,7 @@ type ArticleHomepagePropsType = Pick<types.ArticleType, "url">;
 
 export function ArticleHomepage(props: ArticleHomepagePropsType) {
   const t = bg.useTranslations();
+  const homepage = new URL(props.url).origin;
 
   return (
     <button
@@ -15,9 +16,9 @@ export function ArticleHomepage(props: ArticleHomepagePropsType) {
       data-variant="bare"
       type="button"
       title={t("article.homepage")}
-      onClick={() => window.open(new URL(props.url).origin)}
+      onClick={() => window.open(homepage)}
     >
-      <Icons.Home width="22" height="22" />
+      <Icons.Home width="18" height="18" />
     </button>
   );
 }

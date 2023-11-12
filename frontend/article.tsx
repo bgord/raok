@@ -110,7 +110,7 @@ export function Article(props: ArticlePropsType) {
             data-variant="bare"
             onClick={() => deleteArticle.mutate(props.id)}
           >
-            <Icons.XmarkSquare width="24" height="24" />
+            <Icons.XmarkSquare width="20" height="20" />
           </button>
         </div>
       </div>
