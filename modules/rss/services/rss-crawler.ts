@@ -54,7 +54,7 @@ export class RSSCrawler {
           const link = Newspapers.VO.ArticleUrl.safeParse(item.link);
 
           if (!link.success || !item.link) continue;
-          if (!this.isFromLastMonth(item.isoDate)) continue;
+          if (!this.isFromLastThreeMonths(item.isoDate)) continue;
           if (LinkCache.has(link.data)) continue;
 
           jobs.push({ url: link.data, sourceId: source.id });
@@ -108,13 +108,13 @@ export class RSSCrawler {
     }
   }
 
-  private isFromLastMonth(
+  private isFromLastThreeMonths(
     value: bg.AsyncReturnType<Parser["parseString"]>["items"][0]["isoDate"]
   ): boolean {
     if (!value) return true;
 
     return isWithinInterval(new Date(value), {
-      start: subMonths(startOfToday(), 1),
+      start: subMonths(startOfToday(), 3),
       end: startOfToday(),
     });
   }
