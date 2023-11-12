@@ -9,6 +9,7 @@ import * as api from "./api";
 import * as types from "./types";
 
 import { ArticleHomepage } from "./article-homepage";
+import { ArticleSourceAdd } from "./article-source-add";
 
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]> &
@@ -97,6 +98,8 @@ export function Article(props: ArticlePropsType) {
         </UI.Badge>
 
         <div data-display="flex" data-wrap="nowrap" data-gap="3">
+          <ArticleSourceAdd {...props} />
+
           <UI.CopyButton
             options={{ text: props.url, onSuccess: articleUrlCopied }}
           />

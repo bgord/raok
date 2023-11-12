@@ -177,5 +177,7 @@
   "source.url.copied": "Source URL copied",
   "source.create.waiting": "Finding proper RSS feed for given source...",
   "source.reordered": "Sources reordered",
-  "source.used_at": "used {{when}}"
+  "source.used_at": "used {{when}}",
+  "article.source.added": "Article source added",
+  "article.source.add": "Add article source"
 }
