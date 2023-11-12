@@ -41,10 +41,10 @@ export class Source {
   static async create(
     payload: Pick<VO.SourceType, "url" | "id">
   ): Promise<Source> {
-    await Policies.SourceUrlIsUnique.perform({ sourceUrl: payload.url });
-
-    const url = await new SourceFinder(payload.url).find();
     const now = Date.now();
+    const url = await new SourceFinder(payload.url).find();
+
+    await Policies.SourceUrlIsUnique.perform({ sourceUrl: url });
 
     const source = {
       id: payload.id,
