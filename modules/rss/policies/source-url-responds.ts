@@ -17,7 +17,7 @@ type SourceUrlRespondsConfigType = {
 class SourceUrlRespondsFactory extends bg.Policy<SourceUrlRespondsConfigType> {
   async fails(config: SourceUrlRespondsConfigType): Promise<boolean> {
     try {
-      const parser = new Parser({ timeout: bg.Time.Seconds(2).ms });
+      const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
       await parser.parseURL(config.sourceUrl);
       return false;
     } catch (error) {
