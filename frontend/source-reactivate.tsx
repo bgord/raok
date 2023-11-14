@@ -21,7 +21,7 @@ export function SourceReactivate(
     onSuccess() {
       dialog.disable();
       notify({ message: "source.reactivate.success" });
-      queryClient.invalidateQueries("sources");
+      queryClient.invalidateQueries(api.keys.sources);
     },
     onError() {
       setTimeout(reactivateSource.reset, 5000);

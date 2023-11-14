@@ -13,7 +13,7 @@ export function ArticleSourceAdd(props: types.ArticleType) {
 
   const addArticleSourceRequest = useMutation(api.Source.create, {
     onSuccess: () => {
-      queryClient.invalidateQueries("sources");
+      queryClient.invalidateQueries(api.keys.sources);
       notify({ message: "article.source.added" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),

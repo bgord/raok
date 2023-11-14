@@ -16,14 +16,14 @@ export function ArticlesSearchForm() {
   const queryClient = useQueryClient();
 
   const articleSearch = useQuery(
-    "articles-search",
+    api.keys.articlesSearch,
     () => api.searchArticles(search.value as types.ArticleSearchQueryType),
     {
       enabled: false,
       retry: false,
       onError: (error: bg.ServerError) => {
         notify({ message: error.message });
-        queryClient.setQueryData("articles-search", []);
+        queryClient.setQueryData(api.keys.articlesSearch, []);
       },
     }
   );

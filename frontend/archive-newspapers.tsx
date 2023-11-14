@@ -32,7 +32,7 @@ export function ArchiveNewspapers(_props: RoutableProps) {
 
   const filters = { status: statusFilter.query, sentAt: sentAtFilter.query };
 
-  const archiveNewspapers = useQuery(["archive-newspapers", filters], () =>
+  const archiveNewspapers = useQuery(api.keys.archiveNewspapers(filters), () =>
     api.getArchiveNewspapers(filters)
   );
 

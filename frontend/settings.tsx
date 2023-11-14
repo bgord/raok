@@ -17,7 +17,7 @@ export function Settings(_props: RoutableProps) {
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
-  const settings = useQuery("settings", api.Settings.getSettings);
+  const settings = useQuery(api.keys.settings, api.Settings.getSettings);
 
   const notificationHour = bg.useField<types.HourType | undefined>(
     "notification-hour",
@@ -39,7 +39,7 @@ export function Settings(_props: RoutableProps) {
     {
       onSuccess: () => {
         notify({ message: "articles-to-review-notification.enabled" });
-        queryClient.invalidateQueries("settings");
+        queryClient.invalidateQueries(api.keys.settings);
       },
       onError: (error: bg.ServerError) => notify({ message: error.message }),
     }
@@ -49,7 +49,7 @@ export function Settings(_props: RoutableProps) {
     {
       onSuccess: () => {
         notify({ message: "articles-to-review-notification.disabled" });
-        queryClient.invalidateQueries("settings");
+        queryClient.invalidateQueries(api.keys.settings);
       },
       onError: (error: bg.ServerError) => notify({ message: error.message }),
     }
@@ -60,7 +60,7 @@ export function Settings(_props: RoutableProps) {
     {
       onSuccess: () => {
         notify({ message: "articles-to-review-notification.hour.changed" });
-        queryClient.invalidateQueries("settings");
+        queryClient.invalidateQueries(api.keys.settings);
       },
       onError: (error: bg.ServerError) => notify({ message: error.message }),
     }

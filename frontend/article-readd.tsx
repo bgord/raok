@@ -13,9 +13,9 @@ export function ArticleReadd(props: types.NewspaperType["articles"][0]) {
 
   const readdArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {
-      queryClient.invalidateQueries("articles");
-      queryClient.invalidateQueries("archive-articles");
-      queryClient.invalidateQueries("stats");
+      queryClient.invalidateQueries(api.keys.articles);
+      queryClient.invalidateQueries(api.keys.allArchiveArticles);
+      queryClient.invalidateQueries(api.keys.stats);
       notify({ message: "article.readded" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),

@@ -43,7 +43,7 @@ export function ArchiveArticles(_props: RoutableProps) {
     createdAt: createdAtFilter.query,
   };
 
-  const archiveArticles = useQuery(["archive-articles", filters], () =>
+  const archiveArticles = useQuery(api.keys.archiveArticles(filters), () =>
     api.getArchiveArticles(filters)
   );
 

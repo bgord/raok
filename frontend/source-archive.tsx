@@ -21,7 +21,7 @@ export function SourceArchive(
     onSuccess() {
       dialog.disable();
       notify({ message: "source.archive.success" });
-      queryClient.invalidateQueries("sources");
+      queryClient.invalidateQueries(api.keys.sources);
     },
     onError() {
       setTimeout(archiveSource.reset, 5000);

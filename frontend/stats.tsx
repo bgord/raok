@@ -10,7 +10,7 @@ export function Stats() {
   const t = bg.useTranslations();
   const pluralize = bg.usePluralize();
 
-  const stats = useQuery("stats", api.getStats);
+  const stats = useQuery(api.keys.stats, api.getStats);
 
   const createdArticles = stats.data?.createdArticles ?? 0;
   const sentNewspapers = stats.data?.sentNewspapers ?? 0;

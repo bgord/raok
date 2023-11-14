@@ -158,7 +158,7 @@ function useAutoUpdateNewspaper(
       );
 
       if (updated.status === "delivered") {
-        queryClient.invalidateQueries("articles");
+        queryClient.invalidateQueries(api.keys.articles);
         callback();
       }
     },
@@ -177,7 +177,7 @@ function ArchiveNewspaper(props: {
 
   const archiveNewspaper = useMutation(api.archiveNewspaper, {
     onSuccess: () => {
-      queryClient.invalidateQueries("newspapers");
+      queryClient.invalidateQueries(api.keys.newspapers);
       notify({ message: "newspaper.archived" });
     },
   });
@@ -206,8 +206,8 @@ function CancelNewspaper(props: {
 
   const cancelNewspaper = useMutation(api.cancelNewspaper, {
     onSuccess: () => {
-      queryClient.invalidateQueries("newspapers");
-      queryClient.invalidateQueries("articles");
+      queryClient.invalidateQueries(api.keys.newspapers);
+      queryClient.invalidateQueries(api.keys.articles);
       queryClient.invalidateQueries("archive-newspapers");
       notify({ message: "newspaper.cancelled" });
     },
@@ -232,9 +232,9 @@ function useResendNewspaper() {
 
   return useMutation(api.resendNewspaper, {
     onSuccess: () => {
-      queryClient.invalidateQueries("newspapers");
-      queryClient.invalidateQueries("articles");
-      queryClient.invalidateQueries("stats");
+      queryClient.invalidateQueries(api.keys.newspapers);
+      queryClient.invalidateQueries(api.keys.articles);
+      queryClient.invalidateQueries(api.keys.stats);
 
       notify({ message: "newspaper.resent" });
     },

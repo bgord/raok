@@ -17,8 +17,8 @@ export function AddArticleForm() {
   const addArticleRequest = useMutation(api.addArticle, {
     onSuccess: () => {
       url.clear();
-      queryClient.invalidateQueries("articles");
-      queryClient.invalidateQueries("stats");
+      queryClient.invalidateQueries(api.keys.articles);
+      queryClient.invalidateQueries(api.keys.stats);
       notify({ message: "article.added" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),

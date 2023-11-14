@@ -3,6 +3,8 @@ import { useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
+import * as api from "./api";
+
 export function ArticleListRefresh() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
@@ -11,7 +13,7 @@ export function ArticleListRefresh() {
   const refreshArticles = bg.useRateLimiter({
     limitMs: bg.Time.Seconds(2).ms,
     action: () => {
-      queryClient.refetchQueries("articles");
+      queryClient.refetchQueries(api.keys.articles);
       notify({ message: "articles.refreshed" });
     },
   });

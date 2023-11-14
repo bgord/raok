@@ -5,6 +5,7 @@ import * as bg from "@bgord/frontend";
 import type { Schema, TranslationsType } from "@bgord/node";
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
 
+import * as api from "./api";
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
 
@@ -39,18 +40,21 @@ const queryClient = new QueryClient({
 });
 
 export function App(props: InitialDataType) {
-  queryClient.setQueryData("articles", {
+  queryClient.setQueryData(api.keys.articles, {
     pages: [props.articles],
     pageParams: [1],
   });
-  queryClient.setQueryData("newspapers", props.newspapers);
-  queryClient.setQueryData("stats", props.stats);
-  queryClient.setQueryData("archive-articles", props.archiveArticles);
-  queryClient.setQueryData("archive-newspapers", props.archiveNewspapers);
-  queryClient.setQueryData("archive-files", props.archiveFiles);
-  queryClient.setQueryData("settings", props.settings);
-  queryClient.setQueryData("articles-search", []);
-  queryClient.setQueryData("sources", props.sources);
+  queryClient.setQueryData(api.keys.newspapers, props.newspapers);
+  queryClient.setQueryData(api.keys.stats, props.stats);
+  queryClient.setQueryData(api.keys.allArchiveArticles, props.archiveArticles);
+  queryClient.setQueryData(
+    api.keys.allArchiveNewspapers,
+    props.archiveNewspapers
+  );
+  queryClient.setQueryData(api.keys.allArchiveFiles, props.archiveFiles);
+  queryClient.setQueryData(api.keys.settings, props.settings);
+  queryClient.setQueryData(api.keys.articlesSearch, []);
+  queryClient.setQueryData(api.keys.sources, props.sources);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -11,7 +11,7 @@ import { Newspaper } from "./newspaper";
 export function NewspaperList() {
   const t = bg.useTranslations();
 
-  const _newspapers = useQuery("newspapers", api.getNewspapers);
+  const _newspapers = useQuery(api.keys.newspapers, api.getNewspapers);
 
   const newspapers = bg.useAnimaList(_newspapers.data ?? [], {
     direction: "head",

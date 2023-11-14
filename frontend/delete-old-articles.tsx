@@ -17,7 +17,7 @@ export function DeleteOldArticles(props: h.JSX.IntrinsicElements["button"]) {
       setTimeout(deleteOldArticles.reset, 5000);
       dialog.disable();
       notify({ message: "articles.old.deleted" });
-      queryClient.invalidateQueries("articles");
+      queryClient.invalidateQueries(api.keys.articles);
     },
     onError() {
       setTimeout(deleteOldArticles.reset, 5000);

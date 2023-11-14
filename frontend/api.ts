@@ -2,6 +2,31 @@ import * as bg from "@bgord/frontend";
 
 import * as types from "./types";
 
+export const keys = {
+  stats: ["stats"],
+  sources: ["sources"],
+  settings: ["settings"],
+  articles: ["articles"],
+  newspapers: ["newspapers"],
+  articlesSearch: ["articles-search"],
+  archiveFiles: (filters: Record<string, unknown>) => [
+    "archive-files",
+    filters,
+  ],
+  archiveNewspapers: (filters: Record<string, unknown>) => [
+    "archive-newspapers",
+    filters,
+  ],
+  archiveArticles: (filters: Record<string, unknown>) => [
+    "archive-articles",
+    filters,
+  ],
+
+  allArchiveFiles: ["archive-files"],
+  allArchiveNewspapers: ["archive-newspapers"],
+  allArchiveArticles: ["archive-articles"],
+};
+
 export async function getNewspapers(): Promise<types.NewspaperType[]> {
   return bg
     .API("/newspapers")

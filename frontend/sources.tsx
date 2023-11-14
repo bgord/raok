@@ -24,13 +24,13 @@ export function Sources(_props: RoutableProps) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
-  const sourceList = useQuery("sources", () => api.Source.list(), {
+  const sourceList = useQuery(api.keys.sources, () => api.Source.list(), {
     refetchOnMount: true,
   });
 
   const reorder = useMutation(api.Reordering.transfer, {
     onSuccess: () => {
-      queryClient.invalidateQueries("sources");
+      queryClient.invalidateQueries(api.keys.sources);
       notify({ message: "sources.reordered" });
     },
   });

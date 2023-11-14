@@ -19,7 +19,7 @@ export function ArticleList() {
 
   const newspaperCreator = contexts.useNewspaperCreator();
 
-  const stats = useQuery("stats", api.getStats);
+  const stats = useQuery(api.keys.stats, api.getStats);
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
 
   bg.useDocumentTitle(
@@ -27,7 +27,7 @@ export function ArticleList() {
   );
 
   const _articles = useInfiniteQuery(
-    "articles",
+    api.keys.articles,
     ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
     {
       getNextPageParam: (page) => page.meta.nextPage,
@@ -39,7 +39,8 @@ export function ArticleList() {
   const articles = bg.Pagination.infinite(_articles);
 
   const articlesSearch =
-    queryClient.getQueryData<types.ArticleType[]>("articles-search") ?? [];
+    queryClient.getQueryData<types.ArticleType[]>(api.keys.articlesSearch) ??
+    [];
   const articlesSearchResults = articlesSearch.length;
 
   const searchModeEnabled = articlesSearchResults > 0;
