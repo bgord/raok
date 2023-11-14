@@ -2,6 +2,7 @@ import * as bg from "@bgord/node";
 import Parser from "rss-parser";
 
 import * as VO from "../value-objects";
+import * as infra from "./../../../infra";
 
 export class SourceUrlRespondsError extends Error {
   constructor() {
@@ -21,6 +22,14 @@ class SourceUrlRespondsFactory extends bg.Policy<SourceUrlRespondsConfigType> {
       await parser.parseURL(config.sourceUrl);
       return false;
     } catch (error) {
+      infra.logger.warn({
+        message: "RSS source URL did not respond",
+        operation: "policy_rss_url_responds",
+        metadata: {
+          url: config.sourceUrl,
+          error: infra.logger.formatError(error),
+        },
+      });
       return true;
     }
   }
