@@ -23,12 +23,15 @@ export class SourceFinder {
   private generate(url: VO.SourceUrlType): VO.SourceUrlType[] {
     const base = new URL(url);
 
-    const withRss = `${base.origin}/rss`;
-    const withRssXml = `${base.origin}/rss.xml`;
-    const withFeed = `${base.origin}/feed`;
-    const withFeedXml = `${base.origin}/feed.xml`;
-    const withIndexXml = `${base.origin}/index.xml`;
-
-    return [url, withRss, withRssXml, withFeed, withFeedXml, withIndexXml];
+    return [
+      url,
+      `${base.origin}/rss`,
+      `${base.origin}/rss.xml`,
+      `${base.origin}/feed`,
+      `${base.origin}/feed.xml`,
+      `${base.origin}/index.xml`,
+      `${base.origin}/atom.xml`,
+      `${base.origin}/feeds.xml`,
+    ];
   }
 }
