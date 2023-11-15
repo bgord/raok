@@ -4,7 +4,7 @@ export const ArticleEstimatedReadingTimeInMinutes = z
   .number()
   .int()
   .positive()
-  .nullable();
+  .nullish();
 
 export type ArticleEstimatedReadingTimeInMinutesType = z.infer<
   typeof ArticleEstimatedReadingTimeInMinutes
