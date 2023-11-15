@@ -8,7 +8,7 @@ import * as infra from "../../../infra";
 
 import * as VO from "../value-objects";
 
-import { ReadableArticleContentGenerator } from "./readable-article-content-generator";
+import { ReadableArticleGenerator } from "./readable-article-generator";
 import { ArticleContentDownloader } from "./article-content-downloader";
 import { HtmlToEpubConverter } from "./html-to-epub";
 
@@ -62,7 +62,7 @@ export class NewspaperFile {
 
       if (!articleContent) continue;
 
-      const readableArticle = ReadableArticleContentGenerator.generate({
+      const readableArticle = ReadableArticleGenerator.generate({
         content: articleContent,
         url: article.url,
       });
@@ -73,7 +73,7 @@ export class NewspaperFile {
     }
 
     const totalReadingTime = readableArticles
-      .map((article) => article.readingTime)
+      .map((article) => article.readingTime ?? 0)
       .reduce(_.add, 0);
 
     let result = `

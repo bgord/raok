@@ -4,4 +4,4 @@ export * from "./articles-to-review-notifier";
 export * from "./estimated-reading-time-calculator";
 export * from "./html-to-epub";
 export * from "./newspaper-file";
-export * from "./readable-article-content-generator";
+export * from "./readable-article-generator";

@@ -101,6 +101,7 @@ export class Article {
           source,
           status: VO.ArticleStatusEnum.ready,
           createdAt: Date.now(),
+          estimatedReadingTimeInMinutes: null,
           ...metatags,
         },
       } satisfies Events.ArticleAddedEventType)

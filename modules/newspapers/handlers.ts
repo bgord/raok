@@ -16,6 +16,17 @@ export const onArticleAddedEventHandler =
   EventHandler.handle<Events.ArticleAddedEventType>(async (event) => {
     await Repos.ArticleRepository.create(event.payload);
     await Stats.Repos.StatsRepository.incrementCreatedArticles();
+
+    const content = await Services.ArticleContentDownloader.download(
+      event.payload.url
+    );
+
+    await Repos.ArticleRepository.updateReadingTime({
+      id: event.payload.id,
+      estimatedReadingTimeInMinutes: content
+        ? Services.ReadingTimeCalculator.getMinutes(content)
+        : null,
+    });
   });
 
 export const onArticleDeletedEventHandler =

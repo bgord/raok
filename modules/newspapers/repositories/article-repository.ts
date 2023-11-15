@@ -24,6 +24,7 @@ export class ArticleRepository {
         title: true,
         createdAt: true,
         status: true,
+        estimatedReadingTimeInMinutes: true,
       },
       where: filters,
     });
@@ -38,6 +39,7 @@ export class ArticleRepository {
         source: true,
         title: true,
         createdAt: true,
+        estimatedReadingTimeInMinutes: true,
       },
     });
 
@@ -64,6 +66,7 @@ export class ArticleRepository {
           source: true,
           title: true,
           createdAt: true,
+          estimatedReadingTimeInMinutes: true,
         },
         orderBy: { createdAt: "desc" },
         ...pagination.values,
@@ -108,6 +111,17 @@ export class ArticleRepository {
     return infra.db.article.update({
       where: { id: articleId },
       data: { newspaperId },
+    });
+  }
+
+  static async updateReadingTime(
+    payload: Pick<VO.ArticleType, "id" | "estimatedReadingTimeInMinutes">
+  ) {
+    return infra.db.article.update({
+      where: { id: payload.id },
+      data: {
+        estimatedReadingTimeInMinutes: payload.estimatedReadingTimeInMinutes,
+      },
     });
   }
 

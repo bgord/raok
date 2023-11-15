@@ -9,7 +9,7 @@ type ReadableArticleContentGeneratorConfigType = {
   content: VO.ArticleContentType;
 };
 
-export class ReadableArticleContentGenerator {
+export class ReadableArticleGenerator {
   static generate(
     config: ReadableArticleContentGeneratorConfigType
   ): VO.ReadableArticleType | null {
@@ -18,13 +18,11 @@ export class ReadableArticleContentGenerator {
 
     if (!article) return null;
 
-    const readableArticleContent = VO.ReadableArticleContent.parse(
-      article.content
-    );
+    const readableArticleContent = VO.ArticleContent.parse(article.content);
 
     return {
       content: readableArticleContent,
-      title: VO.ReadableArticleTitle.parse(article.title),
+      title: VO.ArticleTitle.parse(article.title),
       readingTime: Services.ReadingTimeCalculator.getMinutes(
         readableArticleContent
       ),

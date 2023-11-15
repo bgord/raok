@@ -52,17 +52,43 @@ export function Article(props: ArticlePropsType) {
       data-md-mx="6"
       {...bg.getAnimaProps(props)}
     >
-      <div data-display="flex" data-wrap="nowrap" data-overflow="hidden">
-        <label htmlFor={props.id} />
-        <input
-          id={props.id}
-          onClick={() => props.toggle(props.id)}
-          checked={props.isAdded(props.id)}
-          class="c-checkbox"
-          type="checkbox"
-          data-my="auto"
-          data-mr="12"
-        />
+      <div
+        data-display="flex"
+        data-wrap="nowrap"
+        data-gap="6"
+        data-overflow="hidden"
+      >
+        <div
+          data-display="flex"
+          data-cross="center"
+          data-direction="column"
+          data-gap="3"
+          data-mt="3"
+          {...bg.Rhythm().times(4).style.width}
+        >
+          <div
+            class="c-badge"
+            data-fs="12"
+            data-lh="12"
+            data-p="3"
+            data-transform="nowrap"
+            data-width="100%"
+          >
+            {t("article.reading_time", {
+              value: props.estimatedReadingTimeInMinutes ?? "·",
+            })}
+          </div>
+
+          <label htmlFor={props.id} />
+          <input
+            id={props.id}
+            onClick={() => props.toggle(props.id)}
+            checked={props.isAdded(props.id)}
+            class="c-checkbox"
+            type="checkbox"
+          />
+        </div>
+
         <div
           data-display="flex"
           data-direction="column"
