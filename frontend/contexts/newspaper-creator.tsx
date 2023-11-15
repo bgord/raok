@@ -29,14 +29,21 @@ export function NewspaperCreatorProvider(props: NewspaperCreatorProviderProps) {
         props.state.selectedArticleIds.length <
         types.NEWSPAPER_MAX_ARTICLES_NUMBER
       ) {
-        props.state.actions.toggle(payload);
-      } else {
-        notify({
-          message: t("newspaper.too_many_articles", {
-            max: types.NEWSPAPER_MAX_ARTICLES_NUMBER,
-          }),
-        });
+        return props.state.actions.toggle(payload);
       }
+      if (
+        props.state.selectedArticleIds.length ===
+          types.NEWSPAPER_MAX_ARTICLES_NUMBER &&
+        props.state.actions.isAdded(payload)
+      ) {
+        return props.state.actions.remove(payload);
+      }
+
+      notify({
+        message: t("newspaper.too_many_articles", {
+          max: types.NEWSPAPER_MAX_ARTICLES_NUMBER,
+        }),
+      });
     },
   };
 
