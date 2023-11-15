@@ -114,6 +114,17 @@ export class ArticleRepository {
     });
   }
 
+  static async updateReadingTime(
+    payload: Pick<VO.ArticleType, "id" | "estimatedReadingTimeInMinutes">
+  ) {
+    return infra.db.article.update({
+      where: { id: payload.id },
+      data: {
+        estimatedReadingTimeInMinutes: payload.estimatedReadingTimeInMinutes,
+      },
+    });
+  }
+
   static async getNumbersOfNonProcessedArticlesWithUrl(
     url: VO.ArticleType["url"]
   ) {
