@@ -25,15 +25,16 @@ model Newspaper {
 }
 
 model Article {
-  id           String     @id @default(uuid())
-  url          String
-  source       String
-  status       String
-  createdAt    Int
-  title        String?    @default("-")
-  newspaperId  String?
-  favouritedAt Int        @default(0)
-  Newspaper    Newspaper? @relation(fields: [newspaperId], references: [id])
+  id                            String     @id @default(uuid())
+  url                           String
+  source                        String
+  status                        String
+  createdAt                     Int
+  title                         String?    @default("-")
+  newspaperId                   String?
+  favouritedAt                  Int        @default(0)
+  Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
+  estimatedReadingTimeInMinutes Int?
 }
 
 model Files {
