@@ -17,15 +17,18 @@ export const onArticleAddedEventHandler =
     await Repos.ArticleRepository.create(event.payload);
     await Stats.Repos.StatsRepository.incrementCreatedArticles();
 
-    const content = await Services.ArticleContentDownloader.download(
+    const content = (await Services.ArticleContentDownloader.download(
       event.payload.url
-    );
+    )) as VO.ArticleContentType;
+
+    const readableArticle = Services.ReadableArticleGenerator.generate({
+      content,
+      url: event.payload.url,
+    });
 
     await Repos.ArticleRepository.updateReadingTime({
       id: event.payload.id,
-      estimatedReadingTimeInMinutes: content
-        ? Services.ReadingTimeCalculator.getMinutes(content)
-        : null,
+      estimatedReadingTimeInMinutes: readableArticle?.readingTime ?? null,
     });
   });
 
