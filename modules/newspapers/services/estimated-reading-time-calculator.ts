@@ -3,7 +3,7 @@ import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 
 export class ReadingTimeCalculator {
-  private static WORDS_PER_MINUTE = 500;
+  private static WORDS_PER_MINUTE = 250;
 
   static getMinutes(
     content: VO.ArticleContentType
