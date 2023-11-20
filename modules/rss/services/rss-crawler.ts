@@ -101,6 +101,7 @@ export class RSSCrawler {
         });
       } finally {
         LinkCache.set(job.url, true);
+        infra.ResponseCache.flushAll();
         if (stepper.isFinished()) break;
         stepper.continue();
         await bg.sleep(bg.Time.Seconds(1));

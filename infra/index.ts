@@ -2,10 +2,12 @@ export * from "./db";
 export * from "./env";
 export * from "./html";
 export * from "./logger";
+export * from "./response-cache";
 export * from "./mailer";
 export * from "./supported-languages";
 
 import * as bg from "@bgord/node";
+import { ResponseCache } from "./response-cache";
 import { db } from "./db";
 import { Env } from "./env";
 import { Mailer } from "./mailer";
@@ -135,3 +137,5 @@ export const BasicAuthShield = new bg.BasicAuthShield({
 
 export { EventStore } from "./event-store";
 export * from "./jobs";
+
+export const CacheResponse = new bg.CacheResponse(ResponseCache);

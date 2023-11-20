@@ -200,26 +200,31 @@ app.get("/sources", infra.AuthShield.verify, bg.Route(RSS.Routes.Sources));
 app.post(
   "/rss/source/create",
   infra.AuthShield.verify,
+  infra.CacheResponse.clear,
   bg.Route(RSS.Routes.SourceCreate)
 );
 app.delete(
   "/rss/source/:sourceId",
   infra.AuthShield.verify,
+  infra.CacheResponse.clear,
   bg.Route(RSS.Routes.SourceDelete)
 );
 app.post(
   "/rss/source/:sourceId/archive",
   infra.AuthShield.verify,
+  infra.CacheResponse.clear,
   bg.Route(RSS.Routes.SourceArchive)
 );
 app.post(
   "/rss/source/:sourceId/reactivate",
   infra.AuthShield.verify,
+  infra.CacheResponse.clear,
   bg.Route(RSS.Routes.SourceReactivate)
 );
 app.get(
   "/rss/source/list",
   infra.AuthShield.verify,
+  infra.CacheResponse.handle,
   bg.Route(RSS.Routes.SourceList)
 );
 // =============================
