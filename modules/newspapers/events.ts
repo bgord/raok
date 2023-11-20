@@ -18,7 +18,10 @@ export const ArticleDeletedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_DELETED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({
+      articleId: VO.ArticleId,
+      revision: VO.ArticleRevision,
+    }),
   })
 );
 export type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
@@ -31,6 +34,7 @@ export const ArticleLockedEvent = bg.EventDraft.merge(
     payload: z.object({
       articleId: VO.ArticleId,
       newspaperId: VO.NewspaperId,
+      revision: VO.ArticleRevision,
     }),
   })
 );
@@ -41,7 +45,10 @@ export const ArticleUnlockedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_UNLOCKED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({
+      articleId: VO.ArticleId,
+      revision: VO.ArticleRevision,
+    }),
   })
 );
 export type ArticleUnlockedEventType = z.infer<typeof ArticleUnlockedEvent>;
@@ -51,7 +58,10 @@ export const ArticleProcessedEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_PROCESSED_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({
+      articleId: VO.ArticleId,
+      revision: VO.ArticleRevision,
+    }),
   })
 );
 export type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
@@ -61,7 +71,10 @@ export const ArticleUndeleteEvent = bg.EventDraft.merge(
   z.object({
     name: z.literal(ARTICLE_UNDELETE_EVENT),
     version: z.literal(1),
-    payload: z.object({ articleId: VO.ArticleId }),
+    payload: z.object({
+      articleId: VO.ArticleId,
+      revision: VO.ArticleRevision,
+    }),
   })
 );
 export type ArticleUndeleteEventType = z.infer<typeof ArticleUndeleteEvent>;

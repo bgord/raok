@@ -34,31 +34,35 @@ export const onArticleAddedEventHandler =
 
 export const onArticleDeletedEventHandler =
   EventHandler.handle<Events.ArticleDeletedEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
-      event.payload.articleId,
-      VO.ArticleStatusEnum.deleted
-    );
+    await Repos.ArticleRepository.updateStatus({
+      id: event.payload.articleId,
+      status: VO.ArticleStatusEnum.deleted,
+      revision: event.payload.revision,
+    });
   });
 
 export const onArticleUndeletedEventHandler =
   EventHandler.handle<Events.ArticleUndeleteEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
-      event.payload.articleId,
-      VO.ArticleStatusEnum.ready
-    );
+    await Repos.ArticleRepository.updateStatus({
+      id: event.payload.articleId,
+      status: VO.ArticleStatusEnum.ready,
+      revision: event.payload.revision,
+    });
   });
 
 export const onArticleLockedEventHandler =
   EventHandler.handle<Events.ArticleLockedEventType>(async (event) => {
     try {
-      await Repos.ArticleRepository.updateStatus(
-        event.payload.articleId,
-        VO.ArticleStatusEnum.in_progress
-      );
+      await Repos.ArticleRepository.updateStatus({
+        id: event.payload.articleId,
+        status: VO.ArticleStatusEnum.in_progress,
+        revision: event.payload.revision,
+      });
 
       await Repos.ArticleRepository.assignToNewspaper(
         event.payload.articleId,
-        event.payload.newspaperId
+        event.payload.newspaperId,
+        event.payload.revision
       );
     } catch (error) {
       infra.logger.error({
@@ -71,18 +75,20 @@ export const onArticleLockedEventHandler =
 
 export const onArticleUnlockedEventHandler =
   EventHandler.handle<Events.ArticleUnlockedEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
-      event.payload.articleId,
-      VO.ArticleStatusEnum.ready
-    );
+    await Repos.ArticleRepository.updateStatus({
+      id: event.payload.articleId,
+      status: VO.ArticleStatusEnum.ready,
+      revision: event.payload.revision,
+    });
   });
 
 export const onArticleProcessedEventHandler =
   EventHandler.handle<Events.ArticleProcessedEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus(
-      event.payload.articleId,
-      VO.ArticleStatusEnum.processed
-    );
+    await Repos.ArticleRepository.updateStatus({
+      id: event.payload.articleId,
+      status: VO.ArticleStatusEnum.processed,
+      revision: event.payload.revision,
+    });
   });
 
 export const onNewspaperScheduledEventHandler =
@@ -95,7 +101,9 @@ export const onNewspaperScheduledEventHandler =
 
     for (const entity of event.payload.articles) {
       const article = await Aggregates.Article.build(entity.id);
-      await article.lock(event.payload.id);
+      const revision = new bg.Revision(article.revision);
+
+      await article.lock(event.payload.id, revision);
     }
 
     const newspaper = await new Aggregates.Newspaper(event.payload.id).build();
@@ -132,7 +140,9 @@ export const onNewspaperSentEventHandler =
 
     for (const entity of event.payload.articles) {
       const article = await Aggregates.Article.build(entity.id);
-      await article.markAsProcessed();
+      const revision = new bg.Revision(article.revision);
+
+      await article.markAsProcessed(revision);
     }
 
     await Services.NewspaperFile.clear(event.payload.newspaperId);
@@ -159,7 +169,8 @@ export const onNewspaperFailedEventHandler =
 
     for (const item of newspaper.articles) {
       const article = await Aggregates.Article.build(item.id);
-      await article.unlock();
+      const revision = new bg.Revision(article.revision);
+      await article.unlock(revision);
     }
   });
 
@@ -179,6 +190,7 @@ export const onDeleteOldArticlesEventHandler =
 
     for (const { id } of oldArticles) {
       const article = await Aggregates.Article.build(VO.ArticleId.parse(id));
-      await article.delete();
+      const revision = new bg.Revision(article.revision);
+      await article.delete(revision);
     }
   });

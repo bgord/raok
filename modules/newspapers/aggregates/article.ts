@@ -7,15 +7,18 @@ import * as Services from "../services";
 import * as infra from "../../../infra";
 
 export class Article {
-  id: VO.ArticleType["id"];
+  private readonly id: VO.ArticleType["id"];
 
-  stream: bg.EventType["stream"];
+  private readonly stream: bg.EventType["stream"];
 
-  entity: VO.ArticleType;
+  readonly entity: VO.ArticleType;
 
   static ARTICLE_OLD_MARKER_IN_DAYS = VO.ARTICLE_OLD_MARKER_IN_DAYS;
 
-  private constructor(article: VO.ArticleType) {
+  private constructor(
+    article: VO.ArticleType,
+    readonly revision: bg.Schema.RevisionType
+  ) {
     this.id = article.id;
     this.entity = article;
     this.stream = Article.getStream(article.id);
@@ -23,6 +26,7 @@ export class Article {
 
   static async build(id: VO.ArticleIdType) {
     let entity: VO.ArticleType | null = null;
+    let revision: bg.Schema.RevisionType = bg.Revision.initial;
 
     const events = await infra.EventStore.find(
       [
@@ -40,27 +44,32 @@ export class Article {
       switch (event.name) {
         case Events.ARTICLE_ADDED_EVENT:
           entity = event.payload;
+          revision = event.payload.revision;
           break;
 
         case Events.ARTICLE_DELETED_EVENT:
           if (!entity) continue;
           entity.status = VO.ArticleStatusEnum.deleted;
+          revision = event.payload.revision;
           break;
 
         case Events.ARTICLE_LOCKED_EVENT:
           if (!entity) continue;
           entity.status = VO.ArticleStatusEnum.in_progress;
+          revision = event.payload.revision;
           break;
 
         case Events.ARTICLE_PROCESSED_EVENT:
           if (!entity) continue;
           entity.status = VO.ArticleStatusEnum.processed;
+          revision = event.payload.revision;
           break;
 
         case Events.ARTICLE_UNLOCKED_EVENT:
         case Events.ARTICLE_UNDELETE_EVENT:
           if (!entity) continue;
           entity.status = VO.ArticleStatusEnum.ready;
+          revision = event.payload.revision;
           break;
 
         default:
@@ -68,7 +77,7 @@ export class Article {
       }
     }
 
-    return new Article(entity as VO.ArticleType);
+    return new Article(entity as VO.ArticleType, revision);
   }
 
   static async add(article: {
@@ -103,12 +112,14 @@ export class Article {
           createdAt: Date.now(),
           estimatedReadingTimeInMinutes: null,
           ...metatags,
+          revision: bg.Revision.initial,
         },
       } satisfies Events.ArticleAddedEventType)
     );
   }
 
-  async delete() {
+  async delete(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.ArticleShouldExist.perform({ entity: this.entity });
     await Policies.ArticleWasNotProcessed.perform({
       entity: this.entity as VO.ArticleType,
@@ -119,12 +130,13 @@ export class Article {
         name: Events.ARTICLE_DELETED_EVENT,
         stream: this.stream,
         version: 1,
-        payload: { articleId: this.id },
+        payload: { articleId: this.id, revision: revision.next().value },
       } satisfies Events.ArticleDeletedEventType)
     );
   }
 
-  async lock(newspaperId: VO.NewspaperIdType) {
+  async lock(newspaperId: VO.NewspaperIdType, revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.in_progress,
@@ -135,12 +147,17 @@ export class Article {
         name: Events.ARTICLE_LOCKED_EVENT,
         stream: this.stream,
         version: 1,
-        payload: { articleId: this.id, newspaperId },
+        payload: {
+          articleId: this.id,
+          newspaperId,
+          revision: revision.next().value,
+        },
       } satisfies Events.ArticleLockedEventType)
     );
   }
 
-  async unlock() {
+  async unlock(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.ready,
@@ -151,12 +168,13 @@ export class Article {
         name: Events.ARTICLE_UNLOCKED_EVENT,
         stream: this.stream,
         version: 1,
-        payload: { articleId: this.id },
+        payload: { articleId: this.id, revision: revision.next().value },
       } satisfies Events.ArticleUnlockedEventType)
     );
   }
 
-  async markAsProcessed() {
+  async markAsProcessed(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.processed,
@@ -167,12 +185,13 @@ export class Article {
         name: Events.ARTICLE_PROCESSED_EVENT,
         stream: this.stream,
         version: 1,
-        payload: { articleId: this.id },
+        payload: { articleId: this.id, revision: revision.next().value },
       } satisfies Events.ArticleProcessedEventType)
     );
   }
 
-  async undelete() {
+  async undelete(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.ArticleStatusTransition.perform({
       from: this.entity.status,
       to: VO.ArticleStatusEnum.ready,
@@ -183,7 +202,7 @@ export class Article {
         name: Events.ARTICLE_UNDELETE_EVENT,
         stream: this.stream,
         version: 1,
-        payload: { articleId: this.id },
+        payload: { articleId: this.id, revision: revision.next().value },
       } satisfies Events.ArticleUndeleteEventType)
     );
   }

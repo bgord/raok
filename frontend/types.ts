@@ -49,6 +49,7 @@ export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
 export type ToastType = bg.BaseToastType & {
   articleId?: ArticleType["id"] | null;
   articleTitle?: ArticleType["title"] | null;
+  revision?: ArticleType["revision"] | null;
 };
 
 export type ArchiveFileType = AsyncReturnType<

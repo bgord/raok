@@ -25,6 +25,7 @@ export class ArticleRepository {
         createdAt: true,
         status: true,
         estimatedReadingTimeInMinutes: true,
+        revision: true,
       },
       where: filters,
     });
@@ -40,6 +41,7 @@ export class ArticleRepository {
         title: true,
         createdAt: true,
         estimatedReadingTimeInMinutes: true,
+        revision: true,
       },
     });
 
@@ -67,6 +69,7 @@ export class ArticleRepository {
           title: true,
           createdAt: true,
           estimatedReadingTimeInMinutes: true,
+          revision: true,
         },
         orderBy: { createdAt: "desc" },
         ...pagination.values,
@@ -98,19 +101,22 @@ export class ArticleRepository {
   }
 
   static async updateStatus(
-    id: VO.ArticleType["id"],
-    status: VO.ArticleType["status"]
+    payload: Pick<VO.ArticleType, "id" | "status" | "revision">
   ) {
-    return infra.db.article.updateMany({ where: { id }, data: { status } });
+    return infra.db.article.updateMany({
+      where: { id: payload.id },
+      data: { status: payload.status, revision: payload.revision },
+    });
   }
 
   static async assignToNewspaper(
     articleId: VO.ArticleType["id"],
-    newspaperId: VO.NewspaperType["id"]
+    newspaperId: VO.NewspaperType["id"],
+    revision: VO.ArticleType["revision"]
   ) {
     return infra.db.article.update({
       where: { id: articleId },
-      data: { newspaperId },
+      data: { newspaperId, revision },
     });
   }
 
@@ -151,6 +157,7 @@ export class ArticleRepository {
         source: true,
         title: true,
         createdAt: true,
+        revision: true,
       },
       orderBy: { createdAt: "desc" },
     });

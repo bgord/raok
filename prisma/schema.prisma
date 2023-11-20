@@ -35,6 +35,7 @@ model Article {
   favouritedAt                  Int        @default(0)
   Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
   estimatedReadingTimeInMinutes Int?
+  revision  Int    @default(0)
 }
 
 model Files {

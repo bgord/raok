@@ -34,6 +34,7 @@ export function Article(props: ArticlePropsType) {
         message: "article.deleted",
         articleId: props.id,
         articleTitle: props.title,
+        revision: props.revision,
       });
 
       if (props.isAdded(props.id)) {
@@ -137,7 +138,7 @@ export function Article(props: ArticlePropsType) {
             title={t("article.delete")}
             class="c-button"
             data-variant="bare"
-            onClick={() => deleteArticle.mutate(props.id)}
+            onClick={() => deleteArticle.mutate(props)}
           >
             <Icons.XmarkSquare width="20" height="20" />
           </button>

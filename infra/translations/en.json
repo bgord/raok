@@ -180,5 +180,7 @@
   "source.used_at": "used {{when}}",
   "article.source.added": "Article source added",
   "article.source.add": "add article source",
-  "article.reading_time": "{{value}} min"
+  "article.reading_time": "{{value}} min",
+  "revision.invalid.error": "Invalid resource revision",
+  "revision.mismatch.error": "Resource changed in the meantime"
 }

@@ -107,12 +107,22 @@ export async function addArticle(article: types.ArticlePayloadType) {
   });
 }
 
-export async function deleteArticle(articleId: types.ArticleType["id"]) {
-  return bg.API(`/delete-article/${articleId}`, { method: "POST" });
+export async function deleteArticle(
+  payload: Pick<types.ArticleType, "id" | "revision">
+) {
+  return bg.API(`/delete-article/${payload.id}`, {
+    method: "POST",
+    headers: bg.WeakETag.fromRevision(payload.revision),
+  });
 }
 
-export async function undeleteArticle(articleId: types.ArticleType["id"]) {
-  return bg.API(`/undelete-article/${articleId}`, { method: "POST" });
+export async function undeleteArticle(
+  payload: Pick<types.ArticleType, "id" | "revision">
+) {
+  return bg.API(`/undelete-article/${payload.id}`, {
+    method: "POST",
+    headers: bg.WeakETag.fromRevision(payload.revision),
+  });
 }
 
 export async function sendArbitraryFile(form: FormData) {

@@ -74,7 +74,11 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
             disabled={undeleteArticle.isSuccess}
             onClick={() => {
               if (!props.item.articleId) return;
-              undeleteArticle.mutate(props.item.articleId);
+              undeleteArticle.mutate({
+                id: props.item.articleId,
+                revision: ((props.item.revision ?? 0) +
+                  1) as types.ArticleType["revision"],
+              });
             }}
           >
             {undeleteArticle.isIdle && t("app.undo")}

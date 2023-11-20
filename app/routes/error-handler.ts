@@ -57,6 +57,32 @@ export class ErrorHandler {
         .send({ message: "app.too_many_requests", _known: true });
     }
 
+    if (error instanceof bg.Errors.InvalidRevisionError) {
+      infra.logger.error({
+        message: "Invalid revision",
+        operation: "revision_invalid_error",
+        correlationId: request.requestId,
+        metadata: { url: request.url },
+      });
+
+      return response
+        .status(400)
+        .send({ message: "revision.invalid.error", _known: true });
+    }
+
+    if (error instanceof bg.Errors.RevisionMismatchError) {
+      infra.logger.error({
+        message: "Revision mismatch",
+        operation: "revision_mismatch_error",
+        correlationId: request.requestId,
+        metadata: { url: request.url },
+      });
+
+      return response
+        .status(412)
+        .send({ message: "revision.mismatch.error", _known: true });
+    }
+
     if (
       error instanceof
       Newspapers.Policies.NonProcessedArticleUrlIsNotUniqueError
