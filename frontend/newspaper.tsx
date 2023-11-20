@@ -50,7 +50,11 @@ export function Newspaper(props: NewspaperProps) {
 
         <div data-display="flex" data-cross="center" data-ml="auto">
           {(isStalled || props.status === "error") && (
-            <CancelNewspaper data-mr="12" id={props.id} />
+            <CancelNewspaper
+              id={props.id}
+              revision={props.revision}
+              data-mr="12"
+            />
           )}
 
           {(props.status === "delivered" || sentAtRelative !== "-") && (
@@ -95,7 +99,10 @@ export function Newspaper(props: NewspaperProps) {
               data-variant="secondary"
               data-mr="12"
               onClick={() => {
-                resendNewspaper.mutate(props.id);
+                resendNewspaper.mutate({
+                  id: props.id,
+                  revision: props.revision,
+                });
                 details.disable();
               }}
             >
@@ -104,7 +111,11 @@ export function Newspaper(props: NewspaperProps) {
           )}
 
           {["delivered", "error"].includes(props.status) && (
-            <ArchiveNewspaper id={props.id} data-mr="12" />
+            <ArchiveNewspaper
+              id={props.id}
+              revision={props.revision}
+              data-mr="12"
+            />
           )}
 
           {props.status === "delivered" && (
@@ -165,9 +176,10 @@ function useAutoUpdateNewspaper(
   });
 }
 
-function ArchiveNewspaper(props: {
-  id: types.NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
-}) {
+function ArchiveNewspaper(
+  props: Pick<types.NewspaperType, "id" | "revision"> &
+    h.JSX.IntrinsicElements["button"]
+) {
   const t = bg.useTranslations();
 
   const { id, ...rest } = props;
@@ -187,7 +199,9 @@ function ArchiveNewspaper(props: {
       type="submit"
       class="c-button"
       data-variant="secondary"
-      onClick={() => archiveNewspaper.mutate(id)}
+      onClick={() =>
+        archiveNewspaper.mutate({ id: props.id, revision: props.revision })
+      }
       {...rest}
     >
       {t("newspaper.archive")}
@@ -195,9 +209,10 @@ function ArchiveNewspaper(props: {
   );
 }
 
-function CancelNewspaper(props: {
-  id: types.NewspaperType["id"] & h.JSX.IntrinsicElements["button"];
-}) {
+function CancelNewspaper(
+  props: Pick<types.NewspaperType, "id" | "revision"> &
+    h.JSX.IntrinsicElements["button"]
+) {
   const { id, ...rest } = props;
 
   const t = bg.useTranslations();
@@ -218,7 +233,7 @@ function CancelNewspaper(props: {
       type="submit"
       class="c-button"
       data-variant="secondary"
-      onClick={() => cancelNewspaper.mutate(id)}
+      onClick={() => cancelNewspaper.mutate({ id, revision: props.revision })}
       {...rest}
     >
       {t("app.cancel")}

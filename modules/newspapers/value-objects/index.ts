@@ -22,3 +22,4 @@ export * from "./newspaper-id";
 export * from "./newspaper-max-articles-number";
 export * from "./newspaper-status";
 export * from "./time-stamp-filter";
+export * from "./newspaper-revision";

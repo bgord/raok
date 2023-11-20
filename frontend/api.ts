@@ -56,16 +56,31 @@ export async function createNewspaper(articleIds: types.ArticleType["id"][]) {
   });
 }
 
-export async function archiveNewspaper(id: types.NewspaperType["id"]) {
-  return bg.API(`/archive-newspaper/${id}`, { method: "POST" });
+export async function archiveNewspaper(
+  payload: Pick<types.NewspaperType, "id" | "revision">
+) {
+  return bg.API(`/archive-newspaper/${payload.id}`, {
+    method: "POST",
+    headers: bg.WeakETag.fromRevision(payload.revision),
+  });
 }
 
-export async function cancelNewspaper(id: types.NewspaperType["id"]) {
-  return bg.API(`/cancel-newspaper/${id}`, { method: "POST" });
+export async function cancelNewspaper(
+  payload: Pick<types.NewspaperType, "id" | "revision">
+) {
+  return bg.API(`/cancel-newspaper/${payload.id}`, {
+    method: "POST",
+    headers: bg.WeakETag.fromRevision(payload.revision),
+  });
 }
 
-export async function resendNewspaper(id: types.NewspaperType["id"]) {
-  return bg.API(`/resend-newspaper/${id}`, { method: "POST" });
+export async function resendNewspaper(
+  payload: Pick<types.NewspaperType, "id" | "revision">
+) {
+  return bg.API(`/resend-newspaper/${payload.id}`, {
+    method: "POST",
+    headers: bg.WeakETag.fromRevision(payload.revision),
+  });
 }
 
 export async function getStats(): Promise<types.StatsType> {

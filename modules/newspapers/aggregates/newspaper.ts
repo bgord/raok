@@ -23,6 +23,8 @@ export class Newspaper {
 
   sentAt: VO.NewspaperType["sentAt"] = null;
 
+  revision: bg.Schema.RevisionType = bg.Revision.initial;
+
   static MAX_ARTICLES_NUMBER = VO.NEWSPAPER_MAX_ARTICLES_NUMBER;
 
   constructor(id: VO.NewspaperType["id"]) {
@@ -48,23 +50,28 @@ export class Newspaper {
           this.articles = event.payload.articles;
           this.scheduledAt = event.payload.createdAt;
           this.status = VO.NewspaperStatusEnum.scheduled;
+          this.revision = event.payload.revision;
           break;
 
         case Events.NEWSPAPER_GENERATED_EVENT:
           this.status = VO.NewspaperStatusEnum.ready_to_send;
+          this.revision = event.payload.revision;
           break;
 
         case Events.NEWSPAPER_SENT_EVENT:
           this.status = VO.NewspaperStatusEnum.delivered;
           this.sentAt = event.payload.sentAt;
+          this.revision = event.payload.revision;
           break;
 
         case Events.NEWSPAPER_ARCHIVED_EVENT:
           this.status = VO.NewspaperStatusEnum.archived;
+          this.revision = event.payload.revision;
           break;
 
         case Events.NEWSPAPER_FAILED_EVENT:
           this.status = VO.NewspaperStatusEnum.error;
+          this.revision = event.payload.revision;
           break;
 
         default:
@@ -101,12 +108,14 @@ export class Newspaper {
           id: newspaperId,
           articles: articles.map((x) => x.entity),
           createdAt: Date.now(),
+          revision: bg.Revision.initial,
         },
       } satisfies Events.NewspaperScheduledEventType)
     );
   }
 
-  async generate() {
+  async generate(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.NewspaperStatusTransition.perform({
       from: this.status,
       to: VO.NewspaperStatusEnum.ready_to_send,
@@ -123,7 +132,7 @@ export class Newspaper {
           name: Events.NEWSPAPER_GENERATED_EVENT,
           stream: this.stream,
           version: 1,
-          payload: { newspaperId: this.id },
+          payload: { newspaperId: this.id, revision: revision.next().value },
         } satisfies Events.NewspaperGenerateEventType)
       );
     } catch (error) {
@@ -138,13 +147,14 @@ export class Newspaper {
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
           stream: this.stream,
-          payload: { newspaperId: this.id },
+          payload: { newspaperId: this.id, revision: revision.next().value },
         } satisfies Events.NewspaperFailedEventType)
       );
     }
   }
 
-  async send() {
+  async send(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.NewspaperStatusTransition.perform({
       from: this.status,
       to: VO.NewspaperStatusEnum.delivered,
@@ -164,6 +174,7 @@ export class Newspaper {
             newspaperId: this.id,
             articles: this.articles,
             sentAt: Date.now(),
+            revision: revision.next().value,
           },
         } satisfies Events.NewspaperSentEventType)
       );
@@ -179,13 +190,14 @@ export class Newspaper {
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
           stream: this.stream,
-          payload: { newspaperId: this.id },
+          payload: { newspaperId: this.id, revision: revision.next().value },
         } satisfies Events.NewspaperFailedEventType)
       );
     }
   }
 
-  async archive() {
+  async archive(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.NewspaperStatusTransition.perform({
       from: this.status,
       to: VO.NewspaperStatusEnum.archived,
@@ -196,12 +208,13 @@ export class Newspaper {
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
         stream: this.stream,
-        payload: { newspaperId: this.id },
+        payload: { newspaperId: this.id, revision: revision.next().value },
       } satisfies Events.NewspaperArchivedEventType)
     );
   }
 
-  async cancel() {
+  async cancel(revision: bg.Revision) {
+    revision.validate(this.revision);
     if (
       (await Policies.HasNewspaperStalled.fails({
         status: this.status,
@@ -220,12 +233,13 @@ export class Newspaper {
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
         stream: this.stream,
-        payload: { newspaperId: this.id },
+        payload: { newspaperId: this.id, revision: revision.next().value },
       } satisfies Events.NewspaperArchivedEventType)
     );
   }
 
-  async resend() {
+  async resend(revision: bg.Revision) {
+    revision.validate(this.revision);
     await Policies.NewspaperStatusTransition.perform({
       from: this.status,
       to: VO.NewspaperStatusEnum.scheduled,
@@ -240,6 +254,7 @@ export class Newspaper {
           id: this.id,
           articles: this.articles,
           createdAt: Date.now(),
+          revision: revision.next().value,
         },
       } satisfies Events.NewspaperScheduledEventType)
     );

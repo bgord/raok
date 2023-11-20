@@ -33,6 +33,7 @@ export class NewspaperRepository {
         status: true,
         scheduledAt: true,
         sentAt: true,
+        revision: true,
         articles: {
           select: {
             id: true,
@@ -61,6 +62,7 @@ export class NewspaperRepository {
         status: true,
         scheduledAt: true,
         sentAt: true,
+        revision: true,
         articles: {
           select: {
             id: true,
@@ -87,11 +89,9 @@ export class NewspaperRepository {
     return result ? NewspaperRepository._mapper(result) : null;
   }
 
-  static async create(newspaper: {
-    id: VO.NewspaperType["id"];
-    status: VO.NewspaperType["status"];
-    scheduledAt: VO.NewspaperType["scheduledAt"];
-  }) {
+  static async create(
+    newspaper: Pick<VO.NewspaperType, "id" | "status" | "scheduledAt">
+  ) {
     return infra.db.newspaper.upsert({
       create: newspaper,
       update: { status: newspaper.status },
@@ -100,22 +100,20 @@ export class NewspaperRepository {
   }
 
   static async updateStatus(
-    newspaperId: VO.NewspaperType["id"],
-    status: VO.NewspaperType["status"]
+    payload: Pick<VO.NewspaperType, "id" | "status" | "revision">
   ) {
     return infra.db.newspaper.updateMany({
-      where: { id: newspaperId },
-      data: { status },
+      where: { id: payload.id },
+      data: { status: payload.status, revision: payload.revision },
     });
   }
 
   static async updateSentAt(
-    newspaperId: VO.NewspaperType["id"],
-    sentAt: VO.NewspaperType["sentAt"]
+    payload: Pick<VO.NewspaperType, "id" | "sentAt" | "revision">
   ) {
     return infra.db.newspaper.updateMany({
-      where: { id: newspaperId },
-      data: { sentAt },
+      where: { id: payload.id },
+      data: { sentAt: payload.sentAt, revision: payload.revision },
     });
   }
 

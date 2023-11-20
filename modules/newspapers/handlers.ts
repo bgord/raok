@@ -107,36 +107,42 @@ export const onNewspaperScheduledEventHandler =
     }
 
     const newspaper = await new Aggregates.Newspaper(event.payload.id).build();
+    const revision = new bg.Revision(newspaper.revision);
 
-    await newspaper.generate();
+    await newspaper.generate(revision);
   });
 
 export const onNewspaperGeneratedEventHandler =
   EventHandler.handle<Events.NewspaperGenerateEventType>(async (event) => {
-    await Repos.NewspaperRepository.updateStatus(
-      event.payload.newspaperId,
-      VO.NewspaperStatusEnum.ready_to_send
-    );
+    await Repos.NewspaperRepository.updateStatus({
+      id: event.payload.newspaperId,
+      status: VO.NewspaperStatusEnum.ready_to_send,
+      revision: event.payload.revision,
+    });
 
     const newspaper = await new Aggregates.Newspaper(
       event.payload.newspaperId
     ).build();
-    await newspaper.send();
+    const revision = new bg.Revision(newspaper.revision);
+
+    await newspaper.send(revision);
   });
 
 export const onNewspaperSentEventHandler =
   EventHandler.handle<Events.NewspaperSentEventType>(async (event) => {
     await Stats.Repos.StatsRepository.incrementSentNewspapers();
 
-    await Repos.NewspaperRepository.updateStatus(
-      event.payload.newspaperId,
-      VO.NewspaperStatusEnum.delivered
-    );
+    await Repos.NewspaperRepository.updateStatus({
+      id: event.payload.newspaperId,
+      status: VO.NewspaperStatusEnum.delivered,
+      revision: event.payload.revision,
+    });
 
-    await Repos.NewspaperRepository.updateSentAt(
-      event.payload.newspaperId,
-      event.payload.sentAt
-    );
+    await Repos.NewspaperRepository.updateSentAt({
+      id: event.payload.newspaperId,
+      sentAt: event.payload.sentAt,
+      revision: event.payload.revision,
+    });
 
     for (const entity of event.payload.articles) {
       const article = await Aggregates.Article.build(entity.id);
@@ -150,18 +156,20 @@ export const onNewspaperSentEventHandler =
 
 export const onNewspaperArchivedEventHandler =
   EventHandler.handle<Events.NewspaperArchivedEventType>(async (event) => {
-    await Repos.NewspaperRepository.updateStatus(
-      event.payload.newspaperId,
-      VO.NewspaperStatusEnum.archived
-    );
+    await Repos.NewspaperRepository.updateStatus({
+      id: event.payload.newspaperId,
+      status: VO.NewspaperStatusEnum.archived,
+      revision: event.payload.revision,
+    });
   });
 
 export const onNewspaperFailedEventHandler =
   EventHandler.handle<Events.NewspaperFailedEventType>(async (event) => {
-    await Repos.NewspaperRepository.updateStatus(
-      event.payload.newspaperId,
-      VO.NewspaperStatusEnum.error
-    );
+    await Repos.NewspaperRepository.updateStatus({
+      id: event.payload.newspaperId,
+      status: VO.NewspaperStatusEnum.error,
+      revision: event.payload.revision,
+    });
 
     const newspaper = await new Aggregates.Newspaper(
       event.payload.newspaperId
