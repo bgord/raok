@@ -1,3 +1,4 @@
+import * as bg from "@bgord/node";
 import express from "express";
 
 import * as VO from "../value-objects";
@@ -8,10 +9,11 @@ export async function SourceReactivate(
   response: express.Response,
   _next: express.NextFunction
 ) {
+  const revision = bg.Revision.fromWeakETag(request.WeakETag);
   const id = VO.SourceId.parse(request.params.sourceId);
 
   const source = await Services.Source.build(id);
-  await source.reactivate();
+  await source.reactivate(revision);
 
   return response.status(200).send();
 }

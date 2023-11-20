@@ -9,7 +9,7 @@ import * as types from "./types";
 export function SourceDelete(
   props: types.SourceType & h.JSX.IntrinsicElements["button"]
 ) {
-  const { id, ...rest } = props;
+  const { id, revision, ...rest } = props;
 
   const t = bg.useTranslations();
 
@@ -51,7 +51,7 @@ export function SourceDelete(
             type="button"
             class="c-button"
             data-variant="primary"
-            onClick={() => deleteSource.mutate(id)}
+            onClick={() => deleteSource.mutate({ id, revision })}
           >
             {t("app.delete")}
           </button>

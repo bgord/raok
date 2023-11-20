@@ -232,8 +232,8 @@ app.get(
 // Healthcheck =================
 app.get(
   "/healthcheck",
-  bg.RateLimitShield.build({ limitMs: bg.Time.Minutes(1).ms }),
-  bg.Timeout.build({ timeoutMs: bg.Time.Seconds(5).ms }),
+  bg.RateLimitShield.build(bg.Time.Minutes(1)),
+  bg.Timeout.build(bg.Time.Seconds(5)),
   infra.BasicAuthShield.verify,
   bg.Healthcheck.build(infra.healthcheck)
 );

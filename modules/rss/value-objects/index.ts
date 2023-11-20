@@ -5,3 +5,4 @@ export * from "./source-status";
 export * from "./source-updated-at";
 export * from "./source-url";
 export * from "./source";
+export * from "./source-revision";

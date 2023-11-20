@@ -184,16 +184,25 @@ export class Source {
       .then((response) => response.json());
   }
 
-  static async reactivate(id: types.SourceType["id"]) {
-    return bg.API(`/rss/source/${id}/reactivate`, { method: "POST" });
+  static async reactivate(payload: Pick<types.SourceType, "id" | "revision">) {
+    return bg.API(`/rss/source/${payload.id}/reactivate`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
   }
 
-  static async archive(id: types.SourceType["id"]) {
-    return bg.API(`/rss/source/${id}/archive`, { method: "POST" });
+  static async archive(payload: Pick<types.SourceType, "id" | "revision">) {
+    return bg.API(`/rss/source/${payload.id}/archive`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
   }
 
-  static async delete(id: types.SourceType["id"]) {
-    return bg.API(`/rss/source/${id}`, { method: "DELETE" });
+  static async delete(payload: Pick<types.SourceType, "id" | "revision">) {
+    return bg.API(`/rss/source/${payload.id}`, {
+      method: "DELETE",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
   }
 
   static async create(url: types.SourceType["url"]) {

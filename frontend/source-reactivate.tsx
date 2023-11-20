@@ -9,7 +9,7 @@ import * as types from "./types";
 export function SourceReactivate(
   props: types.SourceType & h.JSX.IntrinsicElements["button"]
 ) {
-  const { id, ...rest } = props;
+  const { id, revision, ...rest } = props;
 
   const t = bg.useTranslations();
 
@@ -51,7 +51,7 @@ export function SourceReactivate(
             type="button"
             class="c-button"
             data-variant="primary"
-            onClick={() => reactivateSource.mutate(id)}
+            onClick={() => reactivateSource.mutate({ id, revision })}
           >
             {t("source.reactivate")}
           </button>
