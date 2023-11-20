@@ -63,4 +63,5 @@ model Reordering {
   id            String @id @default(uuid())
   correlationId String
   position      Int
+  revision      Int    @default(0)
 }
