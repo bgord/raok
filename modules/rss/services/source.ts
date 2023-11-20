@@ -19,7 +19,10 @@ export class Source {
       throw new Error("Source is deleted");
     }
 
-    await Repos.SourceRepository.archive({ id: this.data.id });
+    await Repos.SourceRepository.archive({
+      id: this.data.id,
+      revision: revision.next().value,
+    });
   }
 
   async reactivate(revision: bg.Revision) {
@@ -33,7 +36,10 @@ export class Source {
       throw new Error("Source is deleted");
     }
 
-    await Repos.SourceRepository.reactivate({ id: this.data.id });
+    await Repos.SourceRepository.reactivate({
+      id: this.data.id,
+      revision: revision.next().value,
+    });
   }
 
   async delete(revision: bg.Revision) {
@@ -43,7 +49,10 @@ export class Source {
       throw new Error("Source already deleted");
     }
 
-    await Repos.SourceRepository.delete({ id: this.data.id });
+    await Repos.SourceRepository.delete({
+      id: this.data.id,
+      revision: revision.next().value,
+    });
   }
 
   async bump(revision: bg.Revision) {
@@ -53,7 +62,10 @@ export class Source {
       throw new Error("Source is not active");
     }
 
-    await Repos.SourceRepository.bump({ id: this.data.id });
+    await Repos.SourceRepository.bump({
+      id: this.data.id,
+      revision: revision.next().value,
+    });
   }
 
   static async create(

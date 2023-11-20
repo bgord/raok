@@ -10,29 +10,35 @@ export class SourceRepository {
     await infra.db.source.create({ data: payload });
   }
 
-  static async delete(where: Pick<VO.SourceType, "id">) {
+  static async delete(payload: Pick<VO.SourceType, "id" | "revision">) {
     await infra.db.source.update({
-      where,
-      data: { status: VO.SourceStatusEnum.deleted },
+      where: { id: payload.id },
+      data: { status: VO.SourceStatusEnum.deleted, revision: payload.revision },
     });
   }
 
-  static async archive(where: Pick<VO.SourceType, "id">) {
+  static async archive(payload: Pick<VO.SourceType, "id" | "revision">) {
     await infra.db.source.update({
-      where,
-      data: { status: VO.SourceStatusEnum.inactive },
+      where: { id: payload.id },
+      data: {
+        status: VO.SourceStatusEnum.inactive,
+        revision: payload.revision,
+      },
     });
   }
 
-  static async reactivate(where: Pick<VO.SourceType, "id">) {
+  static async reactivate(payload: Pick<VO.SourceType, "id" | "revision">) {
     await infra.db.source.update({
-      where,
-      data: { status: VO.SourceStatusEnum.active },
+      where: { id: payload.id },
+      data: { status: VO.SourceStatusEnum.active, revision: payload.revision },
     });
   }
 
-  static async bump(where: Pick<VO.SourceType, "id">) {
-    await infra.db.source.update({ where, data: { updatedAt: Date.now() } });
+  static async bump(payload: Pick<VO.SourceType, "id" | "revision">) {
+    await infra.db.source.update({
+      where: { id: payload.id },
+      data: { revision: payload.revision, updatedAt: Date.now() },
+    });
   }
 
   static async getById(where: Pick<VO.SourceType, "id">) {
