@@ -20,6 +20,11 @@ export function Source(
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
 
+  const sourceUrlCopied = bg.useRateLimiter({
+    limitMs: bg.Time.Seconds(2).ms,
+    action: () => notify({ message: "source.url.copied" }),
+  });
+
   const hover = bg.useHover({ enabled: Boolean(props.draggable) });
 
   return (
@@ -66,10 +71,7 @@ export function Source(
       </UI.Info>
 
       <UI.CopyButton
-        options={{
-          text: props.url,
-          onSuccess: () => notify({ message: "source.url.copied" }),
-        }}
+        options={{ text: props.url, onSuccess: sourceUrlCopied }}
       />
 
       {props.status === types.SourceStatusEnum.active && (
