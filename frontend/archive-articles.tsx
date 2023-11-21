@@ -80,6 +80,7 @@ export function ArchiveArticles(_props: RoutableProps) {
             Created at
           </label>
           <UI.Select
+            key={createdAtFilter.query}
             value={createdAtFilter.query}
             onInput={createdAtFilter.onChange}
             {...createdAtFilter.input.props}
@@ -95,6 +96,7 @@ export function ArchiveArticles(_props: RoutableProps) {
             {t("app.status")}
           </label>
           <UI.Select
+            key={statusFilter.query}
             value={statusFilter.query}
             onInput={statusFilter.onChange}
             {...statusFilter.input.props}
@@ -113,6 +115,7 @@ export function ArchiveArticles(_props: RoutableProps) {
           </label>
           <UI.Select
             class="c-select"
+            key={sourceFilter.query}
             value={sourceFilter.query}
             onInput={sourceFilter.onChange}
             {...sourceFilter.input.props}
