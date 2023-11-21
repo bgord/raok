@@ -13,46 +13,6 @@ export const ArchiveNewspaperFilter = new bg.Filter(
 );
 
 export class NewspaperRepository {
-  static async getAll(filters?: infra.Prisma.NewspaperWhereInput) {
-    const { status, ...rest } = filters ?? {};
-
-    const result = await infra.db.newspaper.findMany({
-      where: {
-        status: filters?.status ?? {
-          in: [
-            VO.NewspaperStatusEnum.delivered,
-            VO.NewspaperStatusEnum.error,
-            VO.NewspaperStatusEnum.archived,
-          ],
-        },
-        ...rest,
-      },
-      orderBy: { sentAt: "desc" },
-      select: {
-        id: true,
-        status: true,
-        scheduledAt: true,
-        sentAt: true,
-        revision: true,
-        articles: {
-          select: {
-            id: true,
-            source: true,
-            status: true,
-            title: true,
-            url: true,
-            estimatedReadingTimeInMinutes: true,
-            revision: true,
-          },
-        },
-      },
-    });
-
-    return result
-      .map(NewspaperRepository._mapper)
-      .filter((newspaper) => newspaper.articles.length > 0);
-  }
-
   static async getAllNonArchived() {
     const result = await infra.db.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },

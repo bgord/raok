@@ -14,10 +14,6 @@ import {
   ArchiveArticles,
   InitialArchiveArticlesDataType,
 } from "./archive-articles";
-import {
-  ArchiveNewspapers,
-  InitialArchiveNewspapersDataType,
-} from "./archive-newspapers";
 import { Settings, InitialSettingsDataType } from "./settings";
 import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
 import { Sources, InitialSourcesDataType } from "./sources";
@@ -27,7 +23,6 @@ import { ScrollButton } from "./scroll-button";
 export type InitialDataType = InitialDashboardDataType &
   InitialSourcesDataType &
   InitialArchiveArticlesDataType &
-  InitialArchiveNewspapersDataType &
   InitialSettingsDataType &
   InitialArchiveFilesDataType & {
     url: string;
@@ -47,10 +42,6 @@ export function App(props: InitialDataType) {
   queryClient.setQueryData(api.keys.newspapers, props.newspapers);
   queryClient.setQueryData(api.keys.stats, props.stats);
   queryClient.setQueryData(api.keys.allArchiveArticles, props.archiveArticles);
-  queryClient.setQueryData(
-    api.keys.allArchiveNewspapers,
-    props.archiveNewspapers
-  );
   queryClient.setQueryData(api.keys.allArchiveFiles, props.archiveFiles);
   queryClient.setQueryData(api.keys.settings, props.settings);
   queryClient.setQueryData(api.keys.articlesSearch, []);
@@ -69,7 +60,6 @@ export function App(props: InitialDataType) {
           <Router url={props.url}>
             <Sources path="/sources" />
             <ArchiveArticles path="/archive/articles" />
-            <ArchiveNewspapers path="/archive/newspapers" />
             <ArchiveFiles path="/archive/files" />
             <Dashboard path="/dashboard" />
             <Settings path="/settings" />

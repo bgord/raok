@@ -122,8 +122,6 @@
   "newspaper.resent": "resent",
   "newspaper.scheduled": "newspaper scheduled",
   "newspaper.sent_relative": "sent {{when}}",
-  "newspapers.archive": "Archive newspapers",
-  "newspapers.archive.empty": "No archive newspapers matching your filters",
 
   "newspaper.status.undetermined": "undetermined",
   "newspaper.status.scheduled": "scheduled",

@@ -30,7 +30,6 @@ export async function Dashboard(
     language: request.language,
     translations,
     archiveArticles: [],
-    archiveNewspapers: [],
     archiveFiles: [],
     articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
       pagination

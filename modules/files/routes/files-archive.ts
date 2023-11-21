@@ -26,9 +26,6 @@ export async function FilesArchive(
     language: request.language,
     translations,
     archiveArticles: [],
-    archiveNewspapers: await Newspapers.Repos.NewspaperRepository.getAll(
-      Newspapers.Repos.ArchiveNewspaperFilter.parse(request.query)
-    ),
     archiveFiles: await Files.Repos.FilesRepository.getAll(
       Files.Repos.ArchiveFilesFilter.parse(request.query)
     ),

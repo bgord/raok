@@ -97,11 +97,6 @@ app.get(
   bg.Route(Newspapers.Routes.Newspapers)
 );
 app.get(
-  "/newspapers/archive",
-  infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArchiveNewspapers)
-);
-app.get(
   "/newspaper/:newspaperId",
   infra.AuthShield.verify,
   bg.Route(Newspapers.Routes.SingleNewspaper)
@@ -130,11 +125,6 @@ app.post(
   "/resend-newspaper/:newspaperId",
   infra.AuthShield.verify,
   bg.Route(Newspapers.Routes.ResendNewspaper)
-);
-app.get(
-  "/archive/newspapers",
-  infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.NewspapersArchive)
 );
 // =============================
 

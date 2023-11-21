@@ -13,17 +13,12 @@ export const keys = {
     "archive-files",
     filters,
   ],
-  archiveNewspapers: (filters: Record<string, unknown>) => [
-    "archive-newspapers",
-    filters,
-  ],
   archiveArticles: (filters: Record<string, unknown>) => [
     "archive-articles",
     filters,
   ],
 
   allArchiveFiles: ["archive-files"],
-  allArchiveNewspapers: ["archive-newspapers"],
   allArchiveArticles: ["archive-articles"],
 };
 
@@ -31,14 +26,6 @@ export async function getNewspapers(): Promise<types.NewspaperType[]> {
   return bg
     .API("/newspapers")
     .then((response) => (response.ok ? response.json() : []));
-}
-
-export async function getArchiveNewspapers(
-  filters?: bg.FilterType
-): Promise<types.NewspaperType[]> {
-  const url = new bg.FilterUrl("/newspapers/archive", filters).value;
-
-  return bg.API(url).then((response) => (response.ok ? response.json() : []));
 }
 
 export async function getSingleNewspaper(
