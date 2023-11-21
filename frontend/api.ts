@@ -143,13 +143,14 @@ export async function deleteAllArticles() {
 }
 
 export async function getArchiveArticles(
+  page: bg.PageType,
   filters?: bg.FilterType
-): Promise<types.ArchiveArticleType[]> {
-  const url = new bg.FilterUrl("/articles/archive", filters).value;
+): Promise<bg.Paged<types.ArchiveArticleType>> {
+  const url = new bg.FilterUrl(`/articles/archive`, { ...filters, page }).value;
 
   return bg
     .API(url, { method: "GET" })
-    .then((response) => (response.ok ? response.json() : []));
+    .then((response) => (response.ok ? response.json() : bg.Pagination.empty));
 }
 
 export async function getArchiveFiles(

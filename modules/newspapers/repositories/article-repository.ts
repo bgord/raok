@@ -14,21 +14,27 @@ export const ArchiveArticlesFilter = new bg.Filter(
 );
 
 export class ArticleRepository {
-  static async getAll(filters?: infra.Prisma.ArticleWhereInput) {
-    return infra.db.article.findMany({
-      orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        url: true,
-        source: true,
-        title: true,
-        createdAt: true,
-        status: true,
-        estimatedReadingTimeInMinutes: true,
-        revision: true,
-      },
-      where: filters,
-    });
+  static async pagedGetAll(
+    pagination: bg.PaginationType,
+    filters?: infra.Prisma.ArticleWhereInput
+  ) {
+    const where = filters;
+
+    const [total, articles] = await infra.db.$transaction([
+      infra.db.article.count({ where }),
+      infra.db.article.findMany({
+        orderBy: { createdAt: "desc" },
+        where,
+        ...pagination.values,
+      }),
+    ]);
+
+    const result = articles.map((article) => ({
+      ...article,
+      createdAt: bg.RelativeDate.truthy(article.createdAt),
+    }));
+
+    return bg.Pagination.prepare({ total, pagination, result });
   }
 
   static async getAllNonProcessed(filters?: infra.Prisma.ArticleWhereInput) {

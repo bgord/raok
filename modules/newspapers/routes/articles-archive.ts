@@ -5,6 +5,7 @@ import * as bg from "@bgord/node";
 import * as Repos from "../repositories";
 import * as infra from "../../../infra";
 
+import * as VO from "../value-objects";
 import * as Settings from "../../settings";
 import * as Stats from "../../stats";
 
@@ -20,11 +21,14 @@ export async function ArticlesArchive(
     request.translationsPath
   );
 
+  const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
+
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
     translations,
-    archiveArticles: await Repos.ArticleRepository.getAll(
+    archiveArticles: await Repos.ArticleRepository.pagedGetAll(
+      pagination,
       Repos.ArchiveArticlesFilter.parse(request.query)
     ),
     archiveNewspapers: [],

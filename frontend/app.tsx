@@ -41,7 +41,10 @@ export function App(props: InitialDataType) {
   });
   queryClient.setQueryData(api.keys.newspapers, props.newspapers);
   queryClient.setQueryData(api.keys.stats, props.stats);
-  queryClient.setQueryData(api.keys.allArchiveArticles, props.archiveArticles);
+  queryClient.setQueryData(api.keys.allArchiveArticles, {
+    pages: [props.archiveArticles],
+    pageParams: [1],
+  });
   queryClient.setQueryData(api.keys.allArchiveFiles, props.archiveFiles);
   queryClient.setQueryData(api.keys.settings, props.settings);
   queryClient.setQueryData(api.keys.articlesSearch, []);

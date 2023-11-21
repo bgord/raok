@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
-import { useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
@@ -13,7 +13,7 @@ import { TimestampFiltersEnum } from "./filters";
 import { ArchiveArticle } from "./archive-article";
 
 export type InitialArchiveArticlesDataType = {
-  archiveArticles: types.ArchiveArticleType[];
+  archiveArticles: bg.Paged<types.ArchiveArticleType>;
 };
 
 export function ArchiveArticles(_props: RoutableProps) {
@@ -43,11 +43,15 @@ export function ArchiveArticles(_props: RoutableProps) {
     createdAt: createdAtFilter.query,
   };
 
-  const archiveArticles = useQuery(api.keys.archiveArticles(filters), () =>
-    api.getArchiveArticles(filters)
+  const _archiveArticles = useInfiniteQuery(
+    api.keys.archiveArticles(filters),
+    ({ pageParam = 1 }) => api.getArchiveArticles(pageParam, filters),
+    { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true }
   );
 
-  const articles = (archiveArticles.data ?? []).filter((article) =>
+  const archiveArticles = bg.Pagination.infinite(_archiveArticles) ?? [];
+
+  const articles = archiveArticles.filter((article) =>
     search.filterFn(String(article.title))
   );
 
@@ -58,7 +62,7 @@ export function ArchiveArticles(_props: RoutableProps) {
       data-display="flex"
       data-direction="column"
       data-gap="36"
-      data-mt="24"
+      data-my="24"
       data-mx="auto"
       data-md-pl="6"
       data-md-pr="3"
@@ -175,14 +179,14 @@ export function ArchiveArticles(_props: RoutableProps) {
         <UI.ClearButton disabled={search.unchanged} onClick={search.clear} />
       </div>
 
-      {archiveArticles.isSuccess && articles.length === 0 && (
+      {_archiveArticles.isSuccess && articles.length === 0 && (
         <UI.Info data-transform="upper-first">
           {t("articles.archive.empty")}
         </UI.Info>
       )}
 
       <datalist id="articles">
-        {archiveArticles.data?.map((article) => (
+        {articles.map((article) => (
           <option value={String(article.title)} />
         ))}
       </datalist>
@@ -197,6 +201,20 @@ export function ArchiveArticles(_props: RoutableProps) {
           <ArchiveArticle key={article.id} {...article} />
         ))}
       </ul>
+
+      {_archiveArticles.hasNextPage && (
+        <div data-display="flex">
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            data-mx="auto"
+            onClick={() => _archiveArticles.fetchNextPage()}
+          >
+            {t("app.load_more")}
+          </button>
+        </div>
+      )}
     </main>
   );
 }

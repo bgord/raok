@@ -36,8 +36,8 @@ export type ArticleType = AsyncReturnType<
 >["result"][0];
 
 export type ArchiveArticleType = AsyncReturnType<
-  typeof ArticleRepository["getAll"]
->[0];
+  typeof ArticleRepository["pagedGetAll"]
+>["result"][0];
 
 export type NewspaperType = AsyncReturnType<
   typeof NewspaperRepository["getAllNonArchived"]

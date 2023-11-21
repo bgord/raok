@@ -29,7 +29,9 @@ export async function Dashboard(
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
     translations,
-    archiveArticles: [],
+    archiveArticles: await Newspapers.Repos.ArticleRepository.pagedGetAll(
+      bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE })
+    ),
     archiveFiles: [],
     articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
       pagination
