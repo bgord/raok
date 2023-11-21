@@ -129,6 +129,11 @@ export function ArchiveArticles(_props: RoutableProps) {
           type="button"
           class="c-button"
           data-variant="bare"
+          disabled={
+            createdAtFilter.unchanged &&
+            statusFilter.unchanged &&
+            sourceFilter.unchanged
+          }
           onClick={bg.exec([
             createdAtFilter.clear,
             statusFilter.clear,
@@ -164,7 +169,7 @@ export function ArchiveArticles(_props: RoutableProps) {
           />
         </div>
 
-        <UI.ClearButton onClick={search.clear} />
+        <UI.ClearButton disabled={search.unchanged} onClick={search.clear} />
       </div>
 
       {archiveArticles.isSuccess && articles.length === 0 && (
@@ -179,7 +184,12 @@ export function ArchiveArticles(_props: RoutableProps) {
         ))}
       </datalist>
 
-      <ul data-display="flex" data-direction="column" data-max-width="100%">
+      <ul
+        data-display="flex"
+        data-direction="column"
+        data-max-width="100%"
+        data-gap="6"
+      >
         {articles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />
         ))}

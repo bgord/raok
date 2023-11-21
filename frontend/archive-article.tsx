@@ -19,7 +19,6 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
       data-display="flex"
       data-cross="center"
       data-wrap="nowrap"
-      data-mb="24"
       data-max-width="768"
       data-width="100%"
     >
