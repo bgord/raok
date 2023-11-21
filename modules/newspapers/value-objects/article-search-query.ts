@@ -11,6 +11,7 @@ import {
 
 export const ArticleSearchQuery = z
   .string()
+  .trim()
   .min(
     ARTICLE_SEARCH_QUERY_MIN_LENGTH,
     ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE
