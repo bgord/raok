@@ -152,14 +152,9 @@ export function ArchiveFiles(_props: RoutableProps) {
             data-max-width="100%"
             data-fs="14"
           >
-            <strong
-              data-transform="truncate"
-              title={file.name}
-              data-color="gray-600"
-              data-mr="12"
-            >
+            <UI.Title title={file.name} data-mr="12">
               {file.name}
-            </strong>
+            </UI.Title>
 
             <div
               data-display="flex"
@@ -171,12 +166,15 @@ export function ArchiveFiles(_props: RoutableProps) {
               <UI.Info
                 data-ml="auto"
                 data-transform="nowrap"
+                data-color="gray-400"
                 title={bg.DateFormatter.datetime(file.sentAt?.raw)}
               >
                 {file.sentAt?.relative}
               </UI.Info>
 
-              <span data-transform="nowrap">{prettyBytes(file.size)}</span>
+              <UI.Info data-transform="nowrap">
+                {prettyBytes(file.size)}
+              </UI.Info>
 
               <UI.CopyButton
                 options={{
