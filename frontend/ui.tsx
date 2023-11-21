@@ -101,7 +101,7 @@ export function Info(props: h.JSX.IntrinsicElements["div"]) {
   );
 }
 
-export function ArticleTitle(props: h.JSX.IntrinsicElements["div"]) {
+export function Title(props: h.JSX.IntrinsicElements["div"]) {
   return (
     <div data-fs="14" data-transform="truncate" data-width="100%" {...props}>
       {props.title}

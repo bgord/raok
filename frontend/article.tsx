@@ -98,7 +98,7 @@ export function Article(props: ArticlePropsType) {
           data-mr="12"
           data-md-mr="3"
         >
-          <UI.ArticleTitle title={String(props.title)} />
+          <UI.Title title={String(props.title)} />
           <UI.ArticleUrl url={props.url} />
 
           <UI.Info title={bg.DateFormatter.datetime(props.createdAt.raw)}>

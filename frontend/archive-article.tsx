@@ -30,7 +30,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
         data-md-mr="0"
         data-overflow="hidden"
       >
-        <UI.ArticleTitle title={String(props.title)} />
+        <UI.Title title={String(props.title)} />
 
         <UI.ArticleUrl url={props.url} />
       </div>

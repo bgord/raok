@@ -89,7 +89,7 @@ export function CreateNewspaper() {
                 data-max-width="100%"
                 data-overflow="hidden"
               >
-                <UI.ArticleTitle title={String(article.title)} />
+                <UI.Title title={String(article.title)} />
                 <UI.ArticleUrl url={article.url} />
               </div>
             </li>
