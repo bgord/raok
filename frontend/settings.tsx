@@ -96,9 +96,9 @@ export function Settings(_props: RoutableProps) {
       >
         <div data-display="flex" data-cross="center" data-gap="12">
           <div data-display="flex" data-wrap="nowrap" data-gap="12">
-            <UI.Switch
+            <bg.Switch
               {...articlesToReviewNotificationEnabled}
-              onChange={(event) =>
+              onChange={(event: h.JSX.TargetedUIEvent<HTMLInputElement>) =>
                 event.currentTarget.checked
                   ? enableArticlesToReviewNotification.mutate()
                   : disableArticlesToReviewNotification.mutate()
