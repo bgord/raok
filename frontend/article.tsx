@@ -65,7 +65,6 @@ export function Article(props: ArticlePropsType) {
           data-direction="column"
           data-gap="3"
           data-mt="3"
-          {...bg.Rhythm().times(4).style.width}
         >
           <div
             class="c-badge"
@@ -73,7 +72,7 @@ export function Article(props: ArticlePropsType) {
             data-lh="12"
             data-p="3"
             data-transform="nowrap"
-            data-width="100%"
+            {...bg.Rhythm().times(4).style.width}
           >
             {t("article.reading_time", {
               value: props.estimatedReadingTimeInMinutes ?? "·",
