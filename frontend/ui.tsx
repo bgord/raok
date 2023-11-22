@@ -130,7 +130,7 @@ export function Switch(
   return (
     <Fragment>
       <input
-        class="c-switch-checkbox"
+        class="c-switch-checkbox c-visually-hidden"
         type="checkbox"
         checked={value}
         onChange={(event) => set(event.currentTarget.checked)}
