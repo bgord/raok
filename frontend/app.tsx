@@ -17,6 +17,7 @@ import {
 import { Settings, InitialSettingsDataType } from "./settings";
 import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
 import { Sources, InitialSourcesDataType } from "./sources";
+import { TimestampFiltersEnum } from "./filters";
 
 import { ScrollButton } from "./scroll-button";
 
@@ -45,7 +46,10 @@ export function App(props: InitialDataType) {
     pages: [props.archiveArticles],
     pageParams: [1],
   });
-  queryClient.setQueryData(api.keys.allArchiveFiles, props.archiveFiles);
+  queryClient.setQueryData(
+    api.keys.archiveFiles({ sentAt: TimestampFiltersEnum.last_3_days }),
+    props.archiveFiles
+  );
   queryClient.setQueryData(api.keys.settings, props.settings);
   queryClient.setQueryData(api.keys.articlesSearch, []);
   queryClient.setQueryData(api.keys.sources, props.sources);
