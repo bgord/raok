@@ -222,7 +222,7 @@ app.get(
 // Healthcheck =================
 app.get(
   "/healthcheck",
-  bg.RateLimitShield.build(bg.Time.Minutes(1)),
+  bg.RateLimitShield.build(bg.Time.Seconds(15)),
   bg.Timeout.build(bg.Time.Seconds(5)),
   infra.BasicAuthShield.verify,
   bg.Healthcheck.build(infra.healthcheck)
