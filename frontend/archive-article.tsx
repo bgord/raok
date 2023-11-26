@@ -19,6 +19,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
       data-display="flex"
       data-cross="center"
       data-wrap="nowrap"
+      data-gap="12"
       data-max-width="768"
       data-width="100%"
     >
@@ -36,15 +37,29 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
 
       <div
         data-display="flex"
-        data-md-display="none"
         data-direction="column"
-        data-cross="end"
+        data-wrap="nowrap"
         data-ml="auto"
-        data-mr="6"
       >
-        <UI.Badge data-mb="6">{props.status}</UI.Badge>
+        <div
+          data-display="flex"
+          data-cross="center"
+          data-wrap="nowrap"
+          data-gap="6"
+        >
+          <UI.Badge>{props.status}</UI.Badge>
 
-        <UI.Badge>{props.source}</UI.Badge>
+          <UI.Badge>{props.source}</UI.Badge>
+        </div>
+
+        <UI.Info
+          data-ml="auto"
+          data-transform="nowrap"
+          data-self="center"
+          data-mt="6"
+        >
+          {props.createdAt.relative}
+        </UI.Info>
       </div>
 
       <div data-display="flex" data-direction="column" data-self="start">

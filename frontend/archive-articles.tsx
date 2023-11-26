@@ -201,7 +201,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         data-display="flex"
         data-direction="column"
         data-max-width="100%"
-        data-gap="6"
+        data-gap="12"
       >
         {archiveArticles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />
