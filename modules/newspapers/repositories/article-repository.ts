@@ -16,9 +16,10 @@ export const ArchiveArticlesFilter = new bg.Filter(
 export class ArticleRepository {
   static async pagedGetAll(
     pagination: bg.PaginationType,
+    search: VO.ArticleArchiveSearchQueryType,
     filters?: infra.Prisma.ArticleWhereInput
   ) {
-    const where = filters;
+    const where = { ...filters, title: { contains: search } };
 
     const [total, articles] = await infra.db.$transaction([
       infra.db.article.count({ where }),

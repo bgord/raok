@@ -1,4 +1,5 @@
 export * from "./article";
+export * from "./article-archive-search-query";
 export * from "./article-content";
 export * from "./article-content-max-chars";
 export * from "./article-estimated-reading-time-in-minutes";
@@ -20,6 +21,6 @@ export * from "./articles-per-page";
 export * from "./newspaper";
 export * from "./newspaper-id";
 export * from "./newspaper-max-articles-number";
+export * from "./newspaper-revision";
 export * from "./newspaper-status";
 export * from "./time-stamp-filter";
-export * from "./newspaper-revision";

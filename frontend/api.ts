@@ -13,10 +13,10 @@ export const keys = {
     "archive-files",
     filters,
   ],
-  archiveArticles: (filters: Record<string, unknown>) => [
-    "archive-articles",
-    filters,
-  ],
+  archiveArticles: (
+    filters: Record<string, unknown>,
+    search: string | undefined
+  ) => ["archive-articles", filters, search],
 
   allArchiveFiles: ["archive-files"],
   allArchiveArticles: ["archive-articles"],
@@ -144,12 +144,17 @@ export async function deleteAllArticles() {
 
 export async function getArchiveArticles(
   page: bg.PageType,
-  filters?: bg.FilterType
+  filters: bg.FilterType,
+  search: string | undefined
 ): Promise<bg.Paged<types.ArchiveArticleType>> {
-  const url = new bg.FilterUrl(`/articles/archive`, { ...filters, page }).value;
+  const url = new bg.FilterUrl(`/articles/archive`, {
+    ...filters,
+    page,
+    search,
+  });
 
   return bg
-    .API(url, { method: "GET" })
+    .API(url.value, { method: "GET" })
     .then((response) => (response.ok ? response.json() : bg.Pagination.empty));
 }
 

@@ -26,7 +26,9 @@ export async function FilesArchive(
     language: request.language,
     translations,
     archiveArticles: await Newspapers.Repos.ArticleRepository.pagedGetAll(
-      bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE })
+      bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE }),
+      undefined,
+      undefined
     ),
     archiveFiles: await Files.Repos.FilesRepository.getAll(
       Files.Repos.ArchiveFilesFilter.parse(request.query)

@@ -29,6 +29,7 @@ export async function ArticlesArchive(
     translations,
     archiveArticles: await Repos.ArticleRepository.pagedGetAll(
       pagination,
+      undefined,
       Repos.ArchiveArticlesFilter.parse(request.query)
     ),
     archiveNewspapers: [],

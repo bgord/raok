@@ -19,7 +19,8 @@ export type InitialArchiveArticlesDataType = {
 export function ArchiveArticles(_props: RoutableProps) {
   hooks.useLeavingPrompt();
   const t = bg.useTranslations();
-  const search = bg.useClientSearch();
+
+  const search = bg.useField("article-search", "");
 
   const sourceFilter = bg.useUrlFilter({
     name: "source",
@@ -44,18 +45,18 @@ export function ArchiveArticles(_props: RoutableProps) {
   };
 
   const _archiveArticles = useInfiniteQuery(
-    api.keys.archiveArticles(filters),
-    ({ pageParam = 1 }) => api.getArchiveArticles(pageParam, filters),
+    api.keys.archiveArticles(
+      filters,
+      search.value === "" ? undefined : search.value
+    ),
+    ({ pageParam = 1 }) =>
+      api.getArchiveArticles(pageParam, filters, search.value),
     { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true }
   );
 
   const archiveArticles = bg.Pagination.infinite(_archiveArticles) ?? [];
 
-  const articles = archiveArticles.filter((article) =>
-    search.filterFn(String(article.title))
-  );
-
-  const numberOfArticles = articles.length;
+  const numberOfArchiveArticles = archiveArticles.length;
 
   return (
     <main
@@ -75,7 +76,7 @@ export function ArchiveArticles(_props: RoutableProps) {
           {t("articles.archive")}
         </h2>
 
-        <UI.Badge>{numberOfArticles}</UI.Badge>
+        <UI.Badge>{numberOfArchiveArticles}</UI.Badge>
       </div>
 
       <div data-display="flex" data-cross="end" data-gap="24" data-md-gap="12">
@@ -160,8 +161,9 @@ export function ArchiveArticles(_props: RoutableProps) {
         <div data-position="relative" data-width="100%">
           <input
             list="articles"
-            onInput={search.onChange}
-            value={search.query}
+            onInput={(event) => search.set(event.currentTarget.value)}
+            required
+            value={search.value}
             class="c-input"
             placeholder={t("article.search.placeholder")}
             data-width="100%"
@@ -179,14 +181,14 @@ export function ArchiveArticles(_props: RoutableProps) {
         <UI.ClearButton disabled={search.unchanged} onClick={search.clear} />
       </div>
 
-      {_archiveArticles.isSuccess && articles.length === 0 && (
+      {_archiveArticles.isSuccess && archiveArticles.length === 0 && (
         <UI.Info data-transform="upper-first">
           {t("articles.archive.empty")}
         </UI.Info>
       )}
 
       <datalist id="articles">
-        {articles.map((article) => (
+        {archiveArticles.map((article) => (
           <option value={String(article.title)} />
         ))}
       </datalist>
@@ -197,7 +199,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         data-max-width="100%"
         data-gap="6"
       >
-        {articles.map((article) => (
+        {archiveArticles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />
         ))}
       </ul>

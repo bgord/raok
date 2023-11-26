@@ -32,7 +32,9 @@ export async function Sources(
     language: request.language,
     translations,
     archiveArticles: await Newspapers.Repos.ArticleRepository.pagedGetAll(
-      bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE })
+      bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE }),
+      undefined,
+      undefined
     ),
     archiveFiles: [],
     articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
