@@ -21,6 +21,10 @@ export function ArchiveArticles(_props: RoutableProps) {
   const t = bg.useTranslations();
 
   const search = bg.useField("article-search", "");
+  const debouncedSearch = bg.useDebounce<string>({
+    value: search.value,
+    delayMs: 250,
+  });
 
   const sourceFilter = bg.useUrlFilter({
     name: "source",
@@ -47,10 +51,10 @@ export function ArchiveArticles(_props: RoutableProps) {
   const _archiveArticles = useInfiniteQuery(
     api.keys.archiveArticles(
       filters,
-      search.value === "" ? undefined : search.value
+      debouncedSearch === "" ? undefined : debouncedSearch
     ),
     ({ pageParam = 1 }) =>
-      api.getArchiveArticles(pageParam, filters, search.value),
+      api.getArchiveArticles(pageParam, filters, debouncedSearch),
     { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true }
   );
 
