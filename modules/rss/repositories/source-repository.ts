@@ -65,7 +65,7 @@ export class SourceRepository {
       .map((item) => VO.Source.parse(item))
       .map(SourceRepository.map)
       .map(bg.ReorderingIntegrator.appendPosition(reordering))
-      .sort(bg.ReorderingIntegrator.sortByPosition());
+      .toSorted(bg.ReorderingIntegrator.sortByPosition());
   }
 
   static async listActive() {

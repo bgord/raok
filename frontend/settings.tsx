@@ -144,7 +144,7 @@ export function Settings(_props: RoutableProps) {
                 ...hour,
                 local: bg.HourFormatter.convertUtcToLocal(hour.raw).label,
               }))
-              .sort((a, b) => (a.local > b.local ? 1 : -1))
+              .toSorted((a, b) => (a.local > b.local ? 1 : -1))
               .map((option) => (
                 <option
                   value={option.raw}
