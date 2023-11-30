@@ -62,7 +62,7 @@ export const prerequisites = [
   new bg.Prerequisite({
     label: "node",
     strategy: bg.PrerequisiteStrategyEnum.node,
-    version: bg.PackageVersion.fromStringWithV("v16.0.0"),
+    version: bg.PackageVersion.fromStringWithV("v20.5.1"),
   }),
 
   new bg.Prerequisite({
