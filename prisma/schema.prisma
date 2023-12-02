@@ -14,6 +14,8 @@ model Event {
   stream    String
   version   Int
   payload   String
+
+  @@index(stream)
 }
 
 model Newspaper {
