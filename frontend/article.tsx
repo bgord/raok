@@ -61,6 +61,7 @@ export function Article(props: ArticlePropsType) {
       >
         <div
           data-display="flex"
+          data-md-display="none"
           data-cross="center"
           data-direction="column"
           data-gap="3"
@@ -93,6 +94,7 @@ export function Article(props: ArticlePropsType) {
           data-display="flex"
           data-direction="column"
           data-max-width="100%"
+          data-width="100%"
           data-overflow="hidden"
           data-mr="12"
           data-md-mr="3"
@@ -100,7 +102,10 @@ export function Article(props: ArticlePropsType) {
           <UI.Title title={String(props.title)} />
           <UI.ArticleUrl url={props.url} />
 
-          <UI.Info title={bg.DateFormatter.datetime(props.createdAt.raw)}>
+          <UI.Info
+            data-md-display="none"
+            title={bg.DateFormatter.datetime(props.createdAt.raw)}
+          >
             {props.createdAt.relative}
           </UI.Info>
         </div>
@@ -112,7 +117,36 @@ export function Article(props: ArticlePropsType) {
         data-md-direction="row"
         data-cross="center"
         data-ml="auto"
+        data-md-ml="unset"
       >
+        <label data-display="none" data-md-display="flex" htmlFor={props.id} />
+        <input
+          data-display="none"
+          data-md-display="flex"
+          data-mr="12"
+          id={props.id}
+          onClick={() => props.toggle(props.id)}
+          checked={props.isAdded(props.id)}
+          class="c-checkbox"
+          type="checkbox"
+        />
+
+        <div
+          class="c-badge"
+          data-display="none"
+          data-md-display="flex"
+          data-md-mr="auto"
+          data-fs="12"
+          data-lh="12"
+          data-p="3"
+          data-transform="nowrap"
+          {...bg.Rhythm().times(4).style.width}
+        >
+          {t("article.reading_time", {
+            value: props.estimatedReadingTimeInMinutes ?? "·",
+          })}
+        </div>
+
         <UI.Badge
           data-self="start"
           data-width="100%"
