@@ -53,9 +53,9 @@ export class ArticlesToReviewNotifier {
     await mailer.send({
       from: infra.Env.EMAIL_FROM,
       to: infra.Env.EMAIL_FOR_NOTIFICATIONS,
-      subject: `[raok] - ${this.numberOfArticlesToReview} articles to review`,
+      subject: `⌛ [RAOK] - ${this.numberOfArticlesToReview} new articles to review`,
       html: `
-        You've ${this.numberOfArticlesToReview} articles to review on raok.
+        You have got ${this.numberOfArticlesToReview} articles to review on raok.
         <br/>
         <br/>
         <a href="https://raok.bgord.me/dashboard" target="_blank" rel="noopener noreferer">
