@@ -31,8 +31,6 @@ export function Source(
     <li
       data-display="flex"
       data-cross="center"
-      data-gap="6"
-      data-wrap="nowrap"
       data-max-width="100%"
       data-position="relative"
       {...rest}
@@ -48,39 +46,48 @@ export function Source(
         />
       )}
 
-      {props.status === types.SourceStatusEnum.active && (
-        <div class="c-badge" data-color="green-700" data-bg="green-100">
-          {props.status}
+      <div
+        data-display="flex"
+        data-wrap="nowrap"
+        data-gap="6"
+        data-max-width="100%"
+      >
+        {props.status === types.SourceStatusEnum.active && (
+          <div class="c-badge" data-color="green-700" data-bg="green-100">
+            {props.status}
+          </div>
+        )}
+
+        {props.status === types.SourceStatusEnum.inactive && (
+          <div class="c-badge">{props.status}</div>
+        )}
+
+        <div data-fs="14" data-transform="truncate" title={props.url}>
+          {props.url}
         </div>
-      )}
-
-      {props.status === types.SourceStatusEnum.inactive && (
-        <div class="c-badge">{props.status}</div>
-      )}
-
-      <div data-fs="14" data-transform="truncate" title={props.url}>
-        {props.url}
       </div>
 
-      <UI.Info
-        data-transform="nowrap"
-        data-ml="auto"
-        title={bg.DateFormatter.datetime(props.updatedAt.raw)}
-      >
-        {t("source.used_at", { when: props.updatedAt.relative })}
-      </UI.Info>
+      <div data-display="flex" data-gap="6" data-wrap="nowrap" data-ml="auto">
+        <UI.Info
+          data-transform="nowrap"
+          data-ml="auto"
+          title={bg.DateFormatter.datetime(props.updatedAt.raw)}
+        >
+          {t("source.used_at", { when: props.updatedAt.relative })}
+        </UI.Info>
 
-      <UI.CopyButton
-        options={{ text: props.url, onSuccess: sourceUrlCopied }}
-      />
+        <UI.CopyButton
+          options={{ text: props.url, onSuccess: sourceUrlCopied }}
+        />
 
-      {props.status === types.SourceStatusEnum.active && (
-        <SourceArchive {...source} />
-      )}
-      {props.status === types.SourceStatusEnum.inactive && (
-        <SourceReactivate {...source} />
-      )}
-      <SourceDelete {...source} />
+        {props.status === types.SourceStatusEnum.active && (
+          <SourceArchive {...source} />
+        )}
+        {props.status === types.SourceStatusEnum.inactive && (
+          <SourceReactivate {...source} />
+        )}
+        <SourceDelete {...source} />
+      </div>
     </li>
   );
 }
