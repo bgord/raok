@@ -86,11 +86,13 @@ export function ArticlesSearchForm() {
         data-main="center"
         data-cross="center"
         title={t("app.search")}
+        disabled={search.unchanged}
       >
         <Icons.Search width="24" height="24" />
       </button>
 
       <UI.ClearButton
+        disabled={search.unchanged}
         onClick={() => {
           search.clear();
 

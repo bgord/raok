@@ -47,15 +47,10 @@ export function ArticleList() {
 
   return (
     <section>
-      <div data-bg="gray-100" data-p="12" data-pt="6" data-mb="6" data-shadow>
-        <UI.Header data-display="flex" data-cross="center" data-gap="6">
-          <Icons.Notes height="20px" width="20px" />
-
-          <span data-mr="6">{t("app.articles")}</span>
-
+      <div data-bg="gray-100" data-p="12" data-md-p="6" data-shadow>
+        <UI.Header data-display="flex" data-cross="center" data-gap="12">
           <div
             class="c-badge"
-            data-ml="6"
             data-bg="gray-600"
             data-color="white"
             data-fw="500"
@@ -63,6 +58,9 @@ export function ArticleList() {
           >
             {numberOfNonProcessedArticles}
           </div>
+
+          <Icons.Notes height="20px" width="20px" />
+          <span data-mt="3">{t("app.articles")}</span>
 
           <ArticleListRefresh />
         </UI.Header>
@@ -73,7 +71,7 @@ export function ArticleList() {
       <ArticleActions />
 
       {!searchModeEnabled && articles.length > 0 && (
-        <UI.Info data-md-px="12" data-mb="24" data-ml="6">
+        <UI.Info data-md-ml="6" data-mb="12" data-color="gray-500">
           {t("articles.list.results", {
             current: articles.length,
             max: Number(numberOfNonProcessedArticles),
@@ -82,7 +80,7 @@ export function ArticleList() {
       )}
 
       {searchModeEnabled && (
-        <UI.Info data-md-px="12" data-mb="24" data-ml="6">
+        <UI.Info data-md-ml="6" data-mb="12" data-color="gray-500">
           {t("articles.search.results", { count: articlesSearchResults })}
         </UI.Info>
       )}

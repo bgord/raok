@@ -28,7 +28,8 @@ export function ArticleListRefresh() {
       data-display="flex"
       data-main="center"
       data-cross="center"
-      data-ml="12"
+      data-ml="auto"
+      data-mr="3"
     >
       <Icons.Refresh />
     </button>

@@ -28,8 +28,8 @@ export function ArticleActions() {
         onClick={toggle.toggle}
       >
         {t("article.actions")}
-        {toggle.off && <Icons.NavArrowDown height="24" width="24" />}
-        {toggle.on && <Icons.NavArrowUp height="24" width="24" />}
+        {toggle.off && <Icons.NavArrowLeft height="20" width="20" />}
+        {toggle.on && <Icons.NavArrowDown height="20" width="20" />}
       </button>
 
       {toggle.on && (

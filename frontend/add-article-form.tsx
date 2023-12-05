@@ -28,8 +28,9 @@ export function AddArticleForm() {
     <form
       data-display="flex"
       data-gap="12"
+      data-md-gap="6"
       data-mt="12"
-      data-md-mt="24"
+      data-md-mt="3"
       onSubmit={(event) => {
         event.preventDefault();
         addArticleRequest.mutate({ url: url.value });
