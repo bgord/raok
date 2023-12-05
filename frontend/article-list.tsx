@@ -48,7 +48,14 @@ export function ArticleList() {
 
   return (
     <section>
-      <div data-bg="gray-100" data-p="12" data-md-p="6" data-shadow>
+      <div
+        data-bg="gray-100"
+        data-p="12"
+        data-pt="6"
+        data-pr="6"
+        data-md-p="6"
+        data-shadow
+      >
         <UI.Header data-display="flex" data-cross="center" data-gap="12">
           <div
             class="c-badge"
