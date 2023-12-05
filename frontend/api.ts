@@ -134,14 +134,6 @@ export async function sendArbitraryFile(form: FormData) {
   });
 }
 
-export async function deleteOldArticles() {
-  return bg.API("/articles/old/delete", { method: "POST" });
-}
-
-export async function deleteAllArticles() {
-  return bg.API("/articles/all/delete", { method: "POST" });
-}
-
 export async function getArchiveArticles(
   page: bg.PageType,
   filters: bg.FilterType,

@@ -5,8 +5,6 @@ export * from "./article-content-max-chars";
 export * from "./article-estimated-reading-time-in-minutes";
 export * from "./article-id";
 export * from "./article-metatags";
-export * from "./article-old-marker";
-export * from "./article-old-marker-in-days";
 export * from "./article-revision";
 export * from "./article-search-query";
 export * from "./article-search-query-max-length";

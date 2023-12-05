@@ -181,24 +181,3 @@ export const onNewspaperFailedEventHandler =
       await article.unlock(revision);
     }
   });
-
-export const onDeleteOldArticlesEventHandler =
-  EventHandler.handle<Events.DeleteOldArticlesEventType>(async (event) => {
-    const oldArticles = await Repos.ArticleRepository.getOld(
-      event.payload.marker
-    );
-
-    if (!oldArticles.length) return;
-
-    infra.logger.info({
-      message: "Deleting old articles",
-      operation: "old_articles_delete",
-      metadata: { count: oldArticles.length },
-    });
-
-    for (const { id } of oldArticles) {
-      const article = await Aggregates.Article.build(VO.ArticleId.parse(id));
-      const revision = new bg.Revision(article.revision);
-      await article.delete(revision);
-    }
-  });

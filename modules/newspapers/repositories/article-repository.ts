@@ -58,10 +58,6 @@ export class ArticleRepository {
     }));
   }
 
-  static async getOld(marker: VO.ArticleOldMarkerType) {
-    return ArticleRepository.getAllNonProcessed({ createdAt: { lte: marker } });
-  }
-
   static async pagedGetAllNonProcessed(pagination: bg.PaginationType) {
     const where = { status: VO.ArticleStatusEnum.ready };
 
@@ -157,14 +153,6 @@ export class ArticleRepository {
       where: {
         status: VO.ArticleStatusEnum.ready,
         [isQueryAnUrlCheck.success ? "url" : "title"]: { contains: query },
-      },
-      select: {
-        id: true,
-        url: true,
-        source: true,
-        title: true,
-        createdAt: true,
-        revision: true,
       },
       orderBy: { createdAt: "desc" },
     });

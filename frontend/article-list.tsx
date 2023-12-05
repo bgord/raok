@@ -9,13 +9,14 @@ import * as api from "./api";
 import * as types from "./types";
 
 import { AddArticleForm } from "./add-article-form";
-import { ArticleActions } from "./article-actions";
+import { ArticlesSearchForm } from "./articles-search-form";
 import { Article } from "./article";
 import { ArticleListRefresh } from "./article-list-refresh";
 
 export function ArticleList() {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
+  const articleActions = bg.useToggle();
 
   const newspaperCreator = contexts.useNewspaperCreator();
 
@@ -68,22 +69,50 @@ export function ArticleList() {
         <AddArticleForm />
       </div>
 
-      <ArticleActions />
+      <div
+        data-display="flex"
+        data-cross="center"
+        data-main="between"
+        data-mt="6"
+        data-mb={articleActions.on ? "3" : "12"}
+      >
+        <button
+          title={
+            articleActions.on
+              ? t("article.actions.hide")
+              : t("article.actions.show")
+          }
+          type="button"
+          class="c-button"
+          data-display="flex"
+          data-main="center"
+          data-cross="center"
+          data-gap="6"
+          data-variant="bare"
+          onClick={articleActions.toggle}
+        >
+          {articleActions.off && <Icons.NavArrowRight height="20" width="20" />}
+          {articleActions.on && <Icons.NavArrowDown height="20" width="20" />}
+          {t("article.actions")}
+        </button>
 
-      {!searchModeEnabled && articles.length > 0 && (
-        <UI.Info data-md-ml="6" data-mb="12" data-color="gray-500">
-          {t("articles.list.results", {
-            current: articles.length,
-            max: Number(numberOfNonProcessedArticles),
-          })}
-        </UI.Info>
-      )}
+        {!searchModeEnabled && articles.length > 0 && (
+          <UI.Info data-md-mr="6" data-color="gray-500">
+            {t("articles.list.results", {
+              current: articles.length,
+              max: Number(numberOfNonProcessedArticles),
+            })}
+          </UI.Info>
+        )}
 
-      {searchModeEnabled && (
-        <UI.Info data-md-ml="6" data-mb="12" data-color="gray-500">
-          {t("articles.search.results", { count: articlesSearchResults })}
-        </UI.Info>
-      )}
+        {searchModeEnabled && (
+          <UI.Info data-md-mr="6" data-color="gray-500">
+            {t("articles.search.results", { count: articlesSearchResults })}
+          </UI.Info>
+        )}
+      </div>
+
+      {articleActions.on && <ArticlesSearchForm />}
 
       {searchModeEnabled && (
         <ul>

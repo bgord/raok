@@ -149,13 +149,3 @@ export const NewspaperFailedEvent = bg.EventDraft.merge(
   })
 );
 export type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;
-
-export const DELETE_OLD_ARTICLES_EVENT = "DELETE_OLD_ARTICLES_EVENT";
-export const DeleteOldArticlesEvent = bg.EventDraft.merge(
-  z.object({
-    name: z.literal(DELETE_OLD_ARTICLES_EVENT),
-    version: z.literal(1),
-    payload: z.object({ marker: VO.ArticleOldMarker }),
-  })
-);
-export type DeleteOldArticlesEventType = z.infer<typeof DeleteOldArticlesEvent>;

@@ -26,7 +26,6 @@ export const emittery = new Emittery<{
   ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsDisabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsEnabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: Settings.Events.ArticlesToReviewNotificationHourSetEventType;
-  DELETE_OLD_ARTICLES_EVENT: NewspapersEvents.DeleteOldArticlesEventType;
 }>({
   debug: {
     enabled: true,
@@ -93,9 +92,4 @@ emittery.on(
 emittery.on(
   Files.Events.ARBITRARY_FILE_SCHEDULED_EVENT,
   Files.Handlers.onArbitraryFileScheduledEventHandler
-);
-
-emittery.on(
-  NewspapersEvents.DELETE_OLD_ARTICLES_EVENT,
-  NewspapersHandlers.onDeleteOldArticlesEventHandler
 );

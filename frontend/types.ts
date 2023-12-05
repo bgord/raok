@@ -65,8 +65,6 @@ export { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-m
 export { MAX_UPLOADED_FILE_SIZE_BYTES } from "../modules/files/value-objects/max-uploaded-file-size";
 export { FileMimeTypes } from "../modules/files/value-objects/file-mime-types";
 
-export { ARTICLE_OLD_MARKER_IN_DAYS } from "../modules/newspapers/value-objects/article-old-marker-in-days";
-
 export { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../modules/newspapers/value-objects/newspaper-max-articles-number";
 
 export { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-objects/article-search-query-min-length";

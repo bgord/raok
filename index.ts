@@ -73,16 +73,6 @@ app.post(
   infra.AuthShield.verify,
   bg.Route(Newspapers.Routes.UndeleteArticle)
 );
-app.post(
-  "/articles/all/delete",
-  infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.DeleteAllArticles)
-);
-app.post(
-  "/articles/old/delete",
-  infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.DeleteOldArticles)
-);
 app.get(
   "/archive/articles",
   infra.AuthShield.verify,

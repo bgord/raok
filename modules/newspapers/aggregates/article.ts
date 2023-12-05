@@ -13,8 +13,6 @@ export class Article {
 
   readonly entity: VO.ArticleType;
 
-  static ARTICLE_OLD_MARKER_IN_DAYS = VO.ARTICLE_OLD_MARKER_IN_DAYS;
-
   private constructor(
     article: VO.ArticleType,
     readonly revision: bg.Schema.RevisionType

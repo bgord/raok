@@ -21,8 +21,7 @@ type AcceptedEvent =
   | typeof Newspapers.Events.NewspaperFailedEvent
   | typeof Newspapers.Events.NewspaperGenerateEvent
   | typeof Newspapers.Events.NewspaperScheduledEvent
-  | typeof Newspapers.Events.NewspaperSentEvent
-  | typeof Newspapers.Events.DeleteOldArticlesEvent;
+  | typeof Newspapers.Events.NewspaperSentEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventStore {
