@@ -60,7 +60,7 @@ export function Dashboard(_: RoutableProps) {
           {...bg.Rhythm().times(40).style.maxWidth}
         >
           <CreateNewspaper />
-          {displayNonEssentialPanes && <SendArbitraryFile />}
+          <SendArbitraryFile />
           {displayNonEssentialPanes && <Stats />}
         </section>
       </main>
