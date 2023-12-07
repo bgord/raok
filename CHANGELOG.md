@@ -1,7 +1,10 @@
 # Changelog
+- 2023-12-07 13:55 ff690d5 **build(deps): bump @bgord/frontend from `7534259` to `0589214` (#78)**
+- 2023-12-07 13:55 347218e **build(deps-dev): bump @typescript-eslint/parser from 6.11.0 to 6.13.2 (#80)**
+## 2023-12-07 13:55 
 - 2023-12-07 13:43 c775cb3 **refactor: add articles-to-review-notification badge**
-## 2023-12-07 13:43 
 - 2023-12-07 13:39 eded728 **step: add clickable source url**
+- 2023-12-07 12:45 e81bccd **docs: generate CHANGELOG**
 - 2023-12-07 11:09 ba48488 **step: add changelog workflow**
 - 2023-12-07 11:09 5490897 **step: bump bgord/scripts**
 - 2023-12-06 14:37 01826c5 **refactor: reenable send arbitrary file panel on moblie**
