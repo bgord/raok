@@ -1,0 +1,1302 @@
+# Changelog
+- 2023-12-07 13:43 c775cb3 **refactor: add articles-to-review-notification badge**
+## 2023-12-07 13:43 
+- 2023-12-07 13:39 eded728 **step: add clickable source url**
+- 2023-12-07 11:09 ba48488 **step: add changelog workflow**
+- 2023-12-07 11:09 5490897 **step: bump bgord/scripts**
+- 2023-12-06 14:37 01826c5 **refactor: reenable send arbitrary file panel on moblie**
+- 2023-12-05 14:15 896b74b **refactor: improve source list on mobile**
+- 2023-12-05 14:11 1cc5752 **refactor: article form styles**
+- 2023-12-05 12:57 43947ee **refactor: remove delete old/all articles button**
+- 2023-12-05 12:46 c30c41d **refactor: improve mobile add article form**
+- 2023-12-03 22:46 92c54e2 **refactor: improve mobile article list**
+- 2023-12-03 10:44 a01aa22 **refactor: improve article to review notification subject**
+- 2023-12-02 13:13 1d28ced **step: add article status index**
+- 2023-12-02 12:48 7a5f090 **feature: create index on event stream**
+- 2023-11-30 15:24 ba81294 **refactor: update node version**
+- 2023-11-29 09:37 3cd57fb **refactor: use non-mutable array method**
+- 2023-11-26 18:05 f385e80 **step: bump bgord/node**
+- 2023-11-26 18:02 2f664c7 **step: bump bgord/node**
+- 2023-11-26 14:00 d87ffbe **feature: add archive article created at relative ui**
+- 2023-11-26 13:39 6dc21b1 **step: bump bgord/node**
+- 2023-11-26 12:22 d18a1b3 **fix: healthcheck rate limit/timeout**
+- 2023-11-26 11:44 62e4b67 **step: add search debouncing**
+- 2023-11-26 11:40 1098fa7 **feature: add server side archive article search**
+- 2023-11-25 14:04 08adbb8 **refactor: change healthcheck rate limitting to 15s**
+- 2023-11-25 13:53 66de95b **fix: shellcheck errors**
+- 2023-11-25 13:52 25cd9fa **step: bump bgord/scripts**
+- 2023-11-23 22:43 a112d3c **Merge branch 'master' of github.com:bgord/raok**
+- 2023-11-23 22:22 b171aba **build(deps-dev): bump @types/cors from 2.8.16 to 2.8.17 (#63)**
+- 2023-11-23 22:21 cba7032 **build(deps): bump typescript from 5.2.2 to 5.3.2 (#66)**
+- 2023-11-23 22:21 473dd2f **build(deps-dev): bump @types/jsdom from 21.1.5 to 21.1.6 (#67)**
+- 2023-11-23 22:21 37948cf **build(deps-dev): bump @typescript-eslint/eslint-plugin (#64)**
+- 2023-11-23 22:21 1c6a42e **build(deps-dev): bump @commitlint/config-conventional (#65)**
+- 2023-11-22 21:25 e75a4a5 **refactor: use bg/switch component**
+- 2023-11-22 21:24 0b279d8 **step: bump bgord/frontend**
+- 2023-11-22 13:44 6d0d8ed **step: add switch keyboard navigation**
+- 2023-11-22 13:28 2161d59 **fix: article list alignment**
+- 2023-11-22 13:14 d155b26 **fix: default archiveFiles filter in ssr**
+- 2023-11-21 22:14 fd939dc **build(deps): bump @bgord/node from 0.58.237 to 0.58.241 (#59)**
+- 2023-11-21 22:14 ee272cf **build(deps-dev): bump eslint from 8.53.0 to 8.54.0 (#57)**
+- 2023-11-21 22:13 bdbaed3 **build(deps-dev): bump esbuild from 0.19.5 to 0.19.7 (#62)**
+- 2023-11-21 22:13 96dfd2c **build(deps-dev): bump @types/lodash from 4.14.201 to 4.14.202 (#61)**
+- 2023-11-21 22:13 50b3fb0 **build(deps-dev): bump @types/passport from 1.0.15 to 1.0.16 (#60)**
+- 2023-11-21 21:18 aa5edcb **feature: add article archive pagination**
+- 2023-11-21 20:43 95060bd **fix: add missing key**
+- 2023-11-21 20:36 2ef18fc **refactor: update archive files filters ui**
+- 2023-11-21 16:32 52da086 **refactor: remove newspaper archive view**
+- 2023-11-21 16:22 1687252 **fix: rate limit source url copy**
+- 2023-11-21 16:19 bec18f1 **step: add missing bottom margin**
+- 2023-11-21 16:19 8fe8806 **refactor: revamp archive files**
+- 2023-11-21 16:16 9eac0ee **refactor: rename article title component**
+- 2023-11-21 16:00 2fd528c **refactor: add field trimming**
+- 2023-11-20 22:42 30ea80d **refactor: resolve conflicts**
+- 2023-11-20 22:15 f964769 **step: add optimistic locking for newspapers**
+- 2023-11-20 20:12 db32d52 **step: add optimistic locking for articles**
+- 2023-11-20 19:35 b52ecdb **Revert "step: add source revision column"**
+- 2023-11-20 19:30 1b506a7 **step: add optimistic locking for sources**
+- 2023-11-20 19:12 4ac929b **step: bump bgord/node**
+- 2023-11-20 19:11 c8b2a1e **step: add source revision column**
+- 2023-11-20 19:05 d049355 **step: bump bgord/frontend**
+- 2023-11-20 19:04 ac2e11e **feature: add source respone cache**
+- 2023-11-18 10:30 e02d6e2 **refactor: set WORDS_PER_MINUTE to 250**
+- 2023-11-17 17:41 3d4b663 **refactor: improve estimated reading time in minutes calculation**
+- 2023-11-16 21:38 64cf168 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#49)**
+- 2023-11-16 21:37 f163002 **build(deps-dev): bump @typescript-eslint/parser from 6.10.0 to 6.11.0 (#52)**
+- 2023-11-16 21:37 7bdfb5a **build(deps-dev): bump @commitlint/config-conventional (#48)**
+- 2023-11-16 21:37 4a982d3 **build(deps): bump preact-render-to-string from 6.3.0 to 6.3.1 (#50)**
+- 2023-11-16 21:37 158f7cd **build(deps): bump @bgord/frontend from `0139f45` to `00ceac5` (#51)**
+- 2023-11-16 13:07 88c72a0 **fix: update WORDS_PER_MINUTE in ReadingTimeCalculator**
+- 2023-11-15 14:56 fa61d23 **fix: toggling an article to be removed when max number of newspapers reached**
+- 2023-11-15 14:50 409c034 **refactor: change WORDS_PER_MINUTE to 125 in ReadingTimeCalculator**
+- 2023-11-15 14:33 d47ef1b **fix: parsing old events without estimated-reading-time-in-minutes**
+- 2023-11-15 14:25 9b7987a **build(deps): bump iconoir-react from 7.0.1 to 7.0.2 (#42)**
+- 2023-11-15 14:25 2026d55 **build(deps): bump preact from 10.18.2 to 10.19.2 (#44)**
+- 2023-11-15 14:24 36590a2 **Article reading time UI (#47)**
+- 2023-11-14 20:09 260a4c3 **refactor: api keys**
+- 2023-11-14 16:24 8d27729 **refactor: reading time calculator**
+- 2023-11-14 13:18 3bab162 **step: add warn log for SourceUrlRespondsError**
+- 2023-11-14 13:17 d971d6b **refactor: increase source url responds parser timeout**
+- 2023-11-14 12:19 edce380 **feature: add new source finder patterns**
+- 2023-11-12 16:41 6a6f635 **refactor: crawl articles from last 3 months ago**
+- 2023-11-12 16:27 fa3703f **fix: source uniqueness check after finding a new possible url**
+- 2023-11-12 16:26 dc282a1 **feature: create article source add component**
+- 2023-11-12 16:26 9e7bf30 **refactor: make article icons smaller**
+- 2023-11-12 12:28 2f88fca **refactor: use hour vo from bg**
+- 2023-11-12 12:19 1a52554 **step: bump bgord/node**
+- 2023-11-11 18:13 4abb251 **step: bump bgord/node**
+- 2023-11-11 17:46 333fa9d **refactor: improve types cohesion**
+- 2023-11-11 14:04 547248d **fix: disabled buttons on archive files page**
+- 2023-11-11 14:03 4f4336f **feature: add source.used_at**
+- 2023-11-11 14:00 8ae818d **refactor: set correct updatedAt when rss crawler adds an article**
+- 2023-11-11 13:45 211be6c **refactor: store source id in rss crawler job**
+- 2023-11-11 13:06 f1d3a87 **fix: missing translations**
+- 2023-11-10 21:07 b78c1c8 **fix: newspaper paths**
+- 2023-11-10 19:21 c3c69c9 **feature: setup reordering**
+- 2023-11-10 18:58 2d6ce3c **step: dont install husky in build**
+- 2023-11-10 16:44 5b0eae2 **step: color source status badge**
+- 2023-11-10 16:42 2b7ec94 **fix: refetch sources on mount**
+- 2023-11-10 16:07 29cbbf6 **refactor: use satisfies**
+- 2023-11-10 13:51 ded992b **step: update zod**
+- 2023-11-10 13:51 d259624 **step: update rss-parser**
+- 2023-11-10 13:51 3cc2c96 **step: update zod**
+- 2023-11-10 13:50 988dc91 **step: update pretty-bytes**
+- 2023-11-10 13:50 8ae55a6 **step: update emittery**
+- 2023-11-10 13:49 d3fd900 **step: update ts-node-dev**
+- 2023-11-10 13:49 1bd9d66 **step: update standard-version**
+- 2023-11-10 13:48 966dafb **step: update standard-version**
+- 2023-11-10 13:48 1d4d771 **step: update gzip**
+- 2023-11-10 13:47 5c0f7d3 **step: update prisma**
+- 2023-11-10 13:44 af84e77 **step: update express**
+- 2023-11-10 13:39 d45171a **refactor: update toad-scheduler**
+- 2023-11-10 13:37 da90ae7 **step: update open-graph-scraper**
+- 2023-11-10 13:36 a59fdad **step: update jsdom**
+- 2023-11-10 13:35 8b7ca99 **step: update eslint**
+- 2023-11-10 13:34 b54b690 **step: update esbuild**
+- 2023-11-10 13:31 28ffee7 **step: remove axios**
+- 2023-11-10 13:30 fedb13f **step: update preact**
+- 2023-11-10 13:30 b2ecd3e **step: update eslint**
+- 2023-11-10 13:29 555126b **step: update postcss**
+- 2023-11-10 13:28 0aee87a **step: update only-allow**
+- 2023-11-10 13:27 a3d4100 **step: update react-query**
+- 2023-11-10 13:26 49ec008 **step: update react**
+- 2023-11-10 13:25 24b1dd6 **step: update serialize**
+- 2023-11-10 13:24 4843ce0 **step: update husky**
+- 2023-11-10 13:24 0a186fa **refactor: update lodash**
+- 2023-11-10 13:23 2a2da62 **refactor: update types**
+- 2023-11-10 13:21 3b99c63 **refactor: update skip-nav**
+- 2023-11-10 13:20 d0b6d66 **refactor: update readability**
+- 2023-11-10 13:19 6cee821 **refactor: upgrade postcss**
+- 2023-11-10 13:18 12971e6 **refactor: update commitlint**
+- 2023-11-10 13:17 a18254b **step: bump bgord/scripts**
+- 2023-11-10 13:11 e993e5a **refactor: update design and node**
+- 2023-11-10 13:10 7595573 **step: bump bgord/frontend**
+- 2023-11-06 18:28 5179a0a **refactor: bump bgord/node**
+- 2023-11-06 16:45 524c8d3 **refactor: update eslint**
+- 2023-11-06 16:27 b57994e **step: bump typescript version**
+- 2023-11-06 16:23 9ebc2e4 **step: bump bgord/node**
+- 2023-11-06 16:01 042e7c3 **step: bump bgord/design**
+- 2023-11-06 15:25 e11521c **step: bump bgord/frontend**
+- 2023-11-06 15:21 707c382 **step: enable incremental compiler option**
+- 2023-11-05 20:30 4bb4cbe **fix: sources ssr**
+- 2023-11-05 20:08 23860b0 **fix: add article clear button disabled**
+- 2023-11-04 11:38 e4db093 **step: bump bgord/frontend**
+- 2023-11-03 18:37 fa65a4d **refactor: use switch ui component**
+- 2023-11-03 18:31 822e38d **step: bump bgord/frontend**
+- 2023-11-03 18:19 0d1b733 **step: bump bgord/frontend**
+- 2023-11-03 18:06 aec1c56 **step: bump bgord/frontend**
+- 2023-11-01 15:06 5839c9a **fix: import issues**
+- 2023-11-01 14:48 8976148 **refactor: move event store to infra**
+- 2023-11-01 14:34 b8c8c54 **refactor: extract newspapers module**
+- 2023-11-01 14:16 e006296 **refactor: extract app catalog**
+- 2023-11-01 14:13 37401d7 **refactor: move hour vo to settings**
+- 2023-11-01 14:11 6d7a0e0 **refactor: extract files module**
+- 2023-11-01 13:59 60f2cab **refactor: extract stats module**
+- 2023-11-01 13:39 de2c33a **refactor: extract settings module**
+- 2023-11-01 13:30 143d18f **refactor: remove ds store**
+- 2023-10-31 20:34 243d13c **step: add one more rss source finder option**
+- 2023-10-31 20:26 ba58adb **refactor: article to aggregate factory pattern**
+- 2023-10-31 20:13 94b9867 **step: add active > inactive > deleted source sorting**
+- 2023-10-31 20:03 4857ad5 **fix: newspaper creator on selected article delete**
+- 2023-10-31 19:55 483fcbf **feature: implement source-finder**
+- 2023-10-31 18:50 fd1e7af **fix: list active sources in rss-crawler**
+- 2023-10-31 18:49 121538f **refactor: rename SourceRepository#list to listAll**
+- 2023-10-31 18:47 bcad774 **fix: stepper usage in rss-crawler**
+- 2023-10-31 18:36 a8eddc2 **fix: source list ui**
+- 2023-10-31 18:30 1069d01 **refactor: take rss-crawler sources from db**
+- 2023-10-31 18:18 9c90a6f **RSS source management (#31)**
+- 2023-10-31 09:14 1ac8193 **refactor: remove excessive logs**
+- 2023-10-30 20:59 f3c0e54 **refactor: file write on crawling start**
+- 2023-10-30 14:48 fbdec58 **step: bump bgord/node**
+- 2023-10-30 14:42 0e35e3c **refactor: use stepper from bgord/node**
+- 2023-10-30 14:33 127c1f5 **step: bump bgord/node**
+- 2023-10-30 09:43 9841e13 **RSS refactoring (#30)**
+- 2023-10-29 21:02 18abd80 **fix: axios get source**
+- 2023-10-29 20:53 c7dc1bb **refactor: remove source cache**
+- 2023-10-29 20:42 74547fd **fix: remove source index condition**
+- 2023-10-29 20:30 236481e **fix: cache non-added articles as well**
+- 2023-10-29 20:10 605a208 **refactor: use axios for rss parsing**
+- 2023-10-29 19:21 d9f0978 **refactor: change INTERVAL_MINUTES to 2**
+- 2023-10-29 19:21 5c97134 **fix: create rss parser once**
+- 2023-10-29 18:45 6d5b7f0 **refactor: allow for 3 sources at once**
+- 2023-10-29 15:14 089ad92 **step: lower metatags scraper timeout**
+- 2023-10-29 15:03 9e0b96b **step: set explicit parser parse url timeout**
+- 2023-10-29 14:48 fd8f5ae **step: add processing limit**
+- 2023-10-29 14:13 31dbfd7 **bump rss-crawler interval**
+- 2023-10-29 13:56 dd14fd4 **step: add progress indicator**
+- 2023-10-29 13:47 355a3a9 **step: add rss crawler task error log**
+- 2023-10-29 13:19 3b9711b **step: increase interval**
+- 2023-10-29 13:06 25837c8 **step: add rss crawl start log**
+- 2023-10-29 12:33 b980209 **fix: resolve conflicts**
+- 2023-10-29 12:31 3e40509 **fix: crawler interval**
+- 2023-10-29 12:27 e77cfcc **RSS (#29)**
+- 2023-10-29 12:23 bfe043a **refactor: split rss crawler into two functions**
+- 2023-10-29 12:09 6920d0f **feature: cache entire source if possible**
+- 2023-10-29 11:58 7fc5e65 **feature: implement url cache**
+- 2023-10-28 16:34 aab3e86 **feature: implement rss crawler without cache**
+- 2023-10-28 16:34 28b697e **step: add rss article source**
+- 2023-10-28 16:33 376f0f9 **step: setup rss crawler**
+- 2023-10-28 15:36 69b0133 **step: setup rss module**
+- 2023-10-22 20:33 24f346f **fix: archive-files sent-at wrapping**
+- 2023-10-12 15:57 19e7868 **step: bump eslint-config-bgord**
+- 2023-10-12 13:37 5ede80c **step: remove feedly**
+- 2023-10-10 21:09 fe513de **step: bump bgord/scripts**
+- 2023-10-10 16:20 0fe53e5 **step: bump bgord/scripts**
+- 2023-10-10 16:10 8eab355 **step: update gitignore**
+- 2023-10-10 15:57 182fc3d **fix: typos**
+- 2023-10-10 14:12 b0db37b **step: bump bgord/node**
+- 2023-10-08 22:53 0f0893b **feature: backup files and newspapers**
+- 2023-10-08 16:30 e8bd94c **refactor: update backup script**
+- 2023-10-08 15:44 02d148a **refactor: update backup script**
+- 2023-10-05 19:06 d9932a2 **step: bump bgord/node**
+- 2023-10-04 10:18 d951504 **step: bump bgord/node**
+- 2023-10-01 20:44 1e69498 **refactor: node 20**
+- 2023-09-15 14:20 d554e3b **step: bump bgord/scripts**
+- 2023-09-15 14:19 f8af727 **step: bump bgord/scripts**
+- 2023-09-14 18:31 18b7352 **feature: send articles to review email only if more than 10 articles**
+- 2023-09-14 09:29 9269b2c **fix: remove ck_subscriber_id query param from article url**
+- 2023-09-03 23:28 b404cf6 **feature: cache node modules**
+- 2023-09-03 22:59 34ab561 **feature: add npm deps caching in gh actions**
+- 2023-09-03 22:22 122a6ef **step: install sharp post sync source code**
+- 2023-09-03 22:15 646aef3 **refactor: remove sharp installation**
+- 2023-09-03 22:10 6041c1f **step: remove platform/arch from install**
+- 2023-09-03 22:05 06ecae9 **step: try install instead of ci**
+- 2023-09-03 21:58 29c47f6 **step: try seprate sharp install**
+- 2023-09-03 21:52 c99998a **step: try x64**
+- 2023-09-03 21:44 87a39e6 **fix: sharp installation**
+- 2023-09-03 20:36 c0a47b1 **fix: article list count on empty article list**
+- 2023-09-03 20:34 db12ea0 **refactor: move nodemailer out of prereq**
+- 2023-09-03 09:40 a4b5404 **step: add ssl-certificate-expiry prereq**
+- 2023-09-02 16:46 e26b704 **step: bump bgord/node**
+- 2023-08-26 23:13 a9a8e65 **step: add outside-connecvitity prereq**
+- 2023-08-26 18:10 f713bb4 **step: add memory consumption prereq**
+- 2023-08-26 18:10 88c979e **step: bump bgord/node**
+- 2023-08-26 15:19 8715817 **feature: add migrations prereq**
+- 2023-08-15 23:18 bbfd180 **refactor: remove unsued types**
+- 2023-08-15 23:13 0bd0557 **fix: eslint warnings**
+- 2023-08-15 23:10 7de9403 **refactor: remove unused dependencies**
+- 2023-08-15 22:58 22fd039 **step: bump bgord/scripts**
+- 2023-08-08 14:47 c139b9d **step: bump bgord/frontend**
+- 2023-08-08 12:35 8a13292 **step: bump bgord/node**
+- 2023-08-08 12:34 bc881c0 **step: bump bgord/frontend**
+- 2023-08-07 18:25 6c37e6f **fix: toasts**
+- 2023-08-07 18:17 830ea7d **step: bump bgord/node**
+- 2023-08-07 14:55 4214386 **refactor: update node lts**
+- 2023-08-02 19:34 aaa7a2f **fix: relative date any type issue**
+- 2023-08-02 16:22 a617e08 **refactor: port prereq**
+- 2023-08-02 14:00 ab24059 **step: bump bgord/frontend**
+- 2023-08-01 20:21 60701b5 **step: bump bgord/design**
+- 2023-08-01 20:11 60444a5 **step: bump bgord/frontend**
+- 2023-07-31 00:20 6cb59de **fix: statistics -> stats**
+- 2023-07-29 23:44 c1a76c4 **feature: add translations prereq**
+- 2023-07-29 22:45 ce3020f **refactor: useUrlFilter name**
+- 2023-07-29 22:39 98314ea **step: bump bgord/frontend**
+- 2023-07-25 20:24 df0cc1d **fix: toasts**
+- 2023-07-25 20:17 abb9b59 **refactor: improve max-widths**
+- 2023-07-24 19:18 37c96dc **step: bump bgord/frontend**
+- 2023-07-24 18:54 ad3a54a **refactor: use file hook**
+- 2023-07-24 18:49 47f902a **step: bump bgord/frontend**
+- 2023-07-23 17:09 645a870 **feature: add space prereq**
+- 2023-07-23 16:55 88e454c **feature: add RAM prereq**
+- 2023-07-22 16:33 4499295 **step: bump bgord/frontend**
+- 2023-07-22 13:18 5731e84 **step: add missing prerequisites**
+- 2023-07-22 13:17 b02ace8 **refactor: adjust to newest bgord/node**
+- 2023-07-22 13:05 84facc5 **refactor: adjust frontend to package changes**
+- 2023-07-22 12:59 a0d5fd9 **step: bump bgord/frontend**
+- 2023-07-12 22:53 ae645da **refactor: use c-file-explorer**
+- 2023-07-12 22:51 4c6ac25 **step: bump bgord/design**
+- 2023-07-10 17:58 7595407 **fix: number of articles badge**
+- 2023-07-09 19:17 170447a **refactor: improve article count badge**
+- 2023-07-09 14:04 98b8999 **refactor: rename crawl to import**
+- 2023-07-09 13:21 41f912b **fix: app.no_internet_connection translation**
+- 2023-07-09 12:38 1d7128f **fix: number of articles badge**
+- 2023-07-07 18:06 ea8527e **fix: refetch articles when navigating back to dashboard**
+- 2023-07-06 19:37 642f02b **step: bump bgord/frontend**
+- 2023-07-05 17:37 7aa26cd **fix: autocompletes on the login page**
+- 2023-06-29 23:25 0f60523 **refactor: use bg.api**
+- 2023-06-29 23:23 8949a1a **step: bump bgord/frontend**
+- 2023-06-28 23:23 a86e93c **feature: add article hompage button**
+- 2023-06-28 23:02 d630637 **step: bump bgord/frontend**
+- 2023-06-25 19:48 9067ebc **refactor: use bg.HourFormatter**
+- 2023-06-25 19:47 6734471 **step: bump bgord/frontend**
+- 2023-06-25 19:46 b997826 **step: autofocus article url input**
+- 2023-06-24 16:41 c7b226e **step: bump bgord/frontend**
+- 2023-06-24 14:20 319d040 **fix: reduce spacing between articles**
+- 2023-06-23 20:58 48198cd **feature: add showing x of y articles info**
+- 2023-06-23 20:47 002f5a7 **refactor: extrac article list refresh component**
+- 2023-06-23 20:43 13a312f **refactor: hide articles search form inside actions toggle**
+- 2023-06-21 16:11 851aa4a **fix: archive files on mobile**
+- 2023-06-21 16:07 1a238ae **step: display raw data for file sent at**
+- 2023-06-21 15:58 401458e **fix: scheduler empty imports issue**
+- 2023-06-19 22:10 c524bf3 **refactor: rate limit article url copied handler**
+- 2023-06-17 15:15 100e9f9 **refactor: use build info repository from bgord/node**
+- 2023-06-17 15:12 466bda3 **step: bump bgord/node**
+- 2023-06-17 11:12 fa2b134 **refactor: relative date**
+- 2023-06-17 11:11 ab2f607 **step: bump bgord/node**
+- 2023-06-17 01:21 8341880 **step: bump bgord/node**
+- 2023-06-17 01:14 e1f879b **refactor: change refresh articles rate limiter to 2s**
+- 2023-06-17 01:06 c2c013a **step: bump bgord/scripts**
+- 2023-06-17 01:06 595ca46 **step: bump bgord/node**
+- 2023-06-15 20:08 237c068 **fix: translations path**
+- 2023-06-15 19:58 789304b **feature: hide non-essential panes on scroll breakpoint**
+- 2023-06-15 19:54 d23c086 **refactor: extract scroll button**
+- 2023-06-15 19:44 6543bcc **fix: build translations path**
+- 2023-06-15 19:30 e92ce44 **feature: add top=3 to newspaper creator**
+- 2023-06-15 19:29 c172cdf **feature: add build prechecks to staging-server-build**
+- 2023-06-15 19:13 a052166 **step: bump bgord/scripts**
+- 2023-06-15 19:10 a4f86e0 **refactor: use EventLogger**
+- 2023-06-15 19:08 40e829d **step: bump bgord/node**
+- 2023-06-15 14:30 b56aca7 **step: bump bgord/node**
+- 2023-06-15 14:14 bf1f3a9 **refactor: cleanup index.ts**
+- 2023-06-15 14:09 0275133 **refactor: adjust to bg.Policy**
+- 2023-06-15 14:02 4b42ff8 **refactor: rename language to i18n**
+- 2023-06-15 14:01 75d2294 **step: bump bgord/node**
+- 2023-06-15 13:49 37cfe8c **refactor: move translations to infra**
+- 2023-06-14 18:48 0422889 **refactor: extract article-readd component**
+- 2023-06-14 18:42 bc21140 **fix: inability to remove an article from newspaper creator when limit is reached**
+- 2023-06-14 18:36 5305f5e **feature: make newspaper creator stick out**
+- 2023-06-14 14:03 e18beb3 **fix: bg.hour changes**
+- 2023-06-14 14:00 92be35f **refactor: use bg.EventHandler**
+- 2023-06-14 13:57 b8ebea7 **refactor: use bg.Schema.Hour**
+- 2023-06-14 13:53 006322c **step: bump bgord/node**
+- 2023-06-12 21:39 da6fb61 **Merge branch 'master' of github.com:bgord/raok**
+- 2023-06-12 21:38 f7d307e **feature: remove marketings params from article url**
+- 2023-06-12 12:52 d698a5c **fix: non-processed articles number badge font size**
+- 2023-06-12 12:48 9f9ee05 **fix: add margin-bottom to archive-newspaper list**
+- 2023-06-12 12:47 ab70064 **fix: improve non-processed articles number badge**
+- 2023-06-09 15:55 157b9e5 **feature: add numberOfNonProcessedArticles to document.title**
+- 2023-06-09 14:33 e38619b **refactor: move html.ts to infra**
+- 2023-06-09 12:33 b671439 **refactor: use infra.logger.formatError**
+- 2023-06-09 12:29 7a9d026 **step: bump bgord/scripts**
+- 2023-06-09 00:15 ef48d65 **refactor: move mailer to infra**
+- 2023-06-08 20:28 fad36c7 **step: bump bgord/scripts**
+- 2023-06-08 20:25 c44ad11 **step: bump bgord/frontend**
+- 2023-06-08 11:33 72d6b62 **step: bump bgord/design**
+- 2023-06-08 11:32 01bb196 **fix: bgord/frontend updates**
+- 2023-06-08 11:31 0afc057 **step: bump bgord/frontend**
+- 2023-06-08 11:28 f468205 **feature: handle articles to review notification hour not changed**
+- 2023-06-08 11:08 f445347 **fix: scripts/staging-server-build.sh**
+- 2023-06-08 11:03 53eb2bb **refactor: move error-handler to routes**
+- 2023-06-08 11:02 525ea5e **refactor: create an infra directory**
+- 2023-06-08 10:46 d3a0c3f **step: protect healthcheck endpoint with rate limit and timeout**
+- 2023-06-08 10:45 d0d4287 **refactor: server error**
+- 2023-06-08 10:45 558ac61 **refactor: cache static files**
+- 2023-06-08 10:44 908f276 **refactor: dont use custom brand types**
+- 2023-06-08 10:44 4ed50ef **step: bump bgord/node**
+- 2023-06-08 10:36 80f47a5 **fix: adjust feedly token error text**
+- 2023-06-08 10:35 eb15362 **step: remove local-server-start**
+- 2023-06-08 10:35 646a0eb **step: bump bgord/scripts**
+- 2023-06-06 20:42 cd7f809 **refactor: use bg.ServerError**
+- 2023-06-01 22:15 0f6a1a1 **refactor: cleanup middlewares**
+- 2023-06-01 22:04 f58a5cb **feature: add healthcheck**
+- 2023-06-01 21:58 655710f **step: bump bgord/node**
+- 2023-05-29 16:59 fc16b1b **fix: login page**
+- 2023-05-29 16:59 b2b319b **step: bump bgord/node**
+- 2023-05-22 21:55 d08f4a1 **fix: article badge alignment**
+- 2023-05-22 21:49 022aa41 **fix: restore auth shield for articles search**
+- 2023-05-16 16:28 c212cbf **fix: inline styles overrides**
+- 2023-05-15 21:53 b5ca5e1 **feature: add graceful startup**
+- 2023-05-15 21:51 366f75a **step: bump bgord/node**
+- 2023-05-15 21:01 0c21829 **step: bump bgord/node**
+- 2023-05-15 14:26 41446d3 **fix: input zoom on mobile**
+- 2023-05-15 13:51 43b32eb **fix: scroll button alignment**
+- 2023-05-14 19:14 5fe216e **fix: minor ui issues**
+- 2023-05-14 18:53 a1b0b57 **step: bump bgord/node**
+- 2023-05-14 18:43 6468f4e **refactor: rename requestId to correlationId**
+- 2023-05-14 18:28 1b906e2 **refactor: replace reporter with logger**
+- 2023-05-14 18:21 2fd9044 **step: bump bgord/node**
+- 2023-05-14 18:11 52cf61f **step: bump bgord/node**
+- 2023-05-14 18:08 5444646 **fix: lighthouse metrics**
+- 2023-05-14 17:39 d5b44f1 **fix: ui.info color**
+- 2023-05-14 17:33 2e46f3f **feature: unlock articles on newspaper creation error**
+- 2023-05-14 17:10 627f6f2 **fix: cancelling errored newspaper on archive newspaper view**
+- 2023-05-14 17:02 e1db519 **step: add article unlocked event**
+- 2023-05-14 15:23 929b3fd **fix: saf on mobile**
+- 2023-05-14 15:19 eaca87d **fix: send arbitrary file on mobile**
+- 2023-05-14 15:13 4101a66 **fix: send arbitrary file translations**
+- 2023-05-14 15:10 af6dd2b **fix: settings on mobile**
+- 2023-05-14 14:55 cc9cde3 **fix: decode query in search articles**
+- 2023-05-14 14:42 01e1f27 **refactor: remove newspaper processed in**
+- 2023-05-14 14:38 c853dd7 **refactor: rename old articles copy**
+- 2023-05-14 14:35 e952340 **fix: dialog alignments**
+- 2023-05-14 14:26 2f3b107 **fix: error translations**
+- 2023-05-14 14:19 9959b97 **fix: add max height to toast list**
+- 2023-05-14 14:15 ae4ad7a **fix: double toast message translation**
+- 2023-05-14 14:12 326ebe1 **fix: deleting articles in search view**
+- 2023-05-14 14:01 e37234a **fix: refetch search article query on article deletion**
+- 2023-05-14 14:01 01dfd12 **fix: handle double article deletion**
+- 2023-05-14 13:55 cbcde57 **fix: missing translations**
+- 2023-05-14 13:45 912a7c8 **fix: sorting newspapers in case of resending**
+- 2023-05-14 13:39 34b14ca **step: rate limit refresh articles to once per 10s**
+- 2023-05-14 13:38 13ddd2c **step: bump bgord/frontend**
+- 2023-05-14 12:48 2d46dd3 **step: bump bgord/node**
+- 2023-05-14 12:29 75a48d9 **fix: article list refresh**
+- 2023-05-14 12:22 3674108 **fix: translations**
+- 2023-05-14 12:14 d81ca4b **fix: upper-first**
+- 2023-05-14 01:33 b7adae1 **feature: add rate limit to /schedule-feedly-crawl**
+- 2023-05-14 01:28 5b7d62c **step: bump bgord/node**
+- 2023-05-13 23:42 4235424 **step: add box-shadow to tiles**
+- 2023-05-13 23:25 fd1d049 **refactor: make icons smaller**
+- 2023-05-13 23:18 7759c87 **step: add info icon**
+- 2023-05-13 20:25 8707d02 **refactor: use ui.info wherever possible**
+- 2023-05-13 19:57 cc69bf9 **refactor: add ui article url component**
+- 2023-05-13 19:50 14075e3 **refactor: add ui.article title**
+- 2023-05-13 19:39 9dc0372 **refactor: remove borders**
+- 2023-05-13 19:33 3249633 **feature: add separate article actions section**
+- 2023-05-13 18:37 d741a68 **feature: add clear button to add article form**
+- 2023-05-13 18:32 d00e166 **step: add article scrapping error warning**
+- 2023-05-13 18:30 0555d81 **step: bump bgord/node**
+- 2023-05-13 18:25 7a17465 **step: handle ArticleScrapingTimeoutError**
+- 2023-05-13 18:18 31206b2 **step: add ArticleIsNotHTML error**
+- 2023-05-13 18:10 4d7e481 **feature: add article not found check**
+- 2023-05-13 18:06 513dc51 **fix: logging unknown errors**
+- 2023-05-12 23:35 9af5af0 **fix: add url inputmode to add article form url input**
+- 2023-05-08 21:44 25f054f **step: display article urls and unselect**
+- 2023-05-07 22:32 f908498 **refactor: rename newspaper creator tile**
+- 2023-05-07 22:31 c83cad5 **refactor: reorder tiles in dashboard**
+- 2023-05-07 22:18 46ae823 **refactor: change newspaper creator structure**
+- 2023-05-07 22:06 0003080 **feature: add max newspaper articles validation**
+- 2023-05-07 21:47 3ac626b **refactor: add vo for max articles in a newspaper**
+- 2023-05-07 21:40 3b531fa **refactor: reorganize dashboard**
+- 2023-05-07 21:34 47ca80f **refactor: move create newspaper button**
+- 2023-05-07 21:20 11c7490 **step: display selected articles in the new tile**
+- 2023-05-07 20:55 9996907 **step: add newspaper creator context**
+- 2023-05-07 20:32 f7f57e5 **feature: setup create newspaper tile**
+- 2023-05-07 20:21 25cbf9f **fix: disable schedule feedly crawl on error**
+- 2023-05-07 20:13 92cc8d5 **fix: newspaper status ready_to_send translation**
+- 2023-05-07 20:05 d0e3ace **feature: add toc**
+- 2023-05-07 01:22 cdb0393 **step: bump bgord/scripts**
+- 2023-05-07 01:10 861c957 **step: bump scripts**
+- 2023-05-07 00:45 d82a09e **refactor: remove unused imports**
+- 2023-05-07 00:38 cfa6791 **refactor: remove ArticleUrlIsNotUniqueError**
+- 2023-05-07 00:33 cacff0c **feature: add logs level env variable**
+- 2023-05-06 23:50 a7b83f7 **feature: add scroll button**
+- 2023-04-11 14:28 45fd3b1 **Update archive-files.tsx**
+- 2023-04-11 14:23 aed8cce **Update archive-newspapers.tsx**
+- 2023-04-11 14:23 4f3dc15 **Update archive-files.tsx**
+- 2023-04-11 14:21 d26dcde **Update archive newspapers empty message**
+- 2023-04-11 14:17 f881738 **Upgrade to ubuntu-20.04 for deploy GH action**
+- 2023-04-10 18:58 ebe82d3 **Update en.json**
+- 2023-04-09 22:50 eed550d **fix: uppercase first letter of archive articles empty**
+- 2023-04-09 22:39 8e590c1 **Revert "fix: archive files empty case"**
+- 2023-04-09 22:32 9e560c0 **fix: missing empty result texts using the created at drop-down**
+- 2023-04-07 20:20 166b89c **refactor: paramtetrize articles.search.validation**
+- 2023-04-07 20:16 42f17d5 **refactor: add ARTICLE_URL_MAX_CHARS**
+- 2023-04-07 20:14 4bf5b58 **refactor: add ARTICLE_TITLE_MAX_CHARS**
+- 2023-04-07 20:11 d471aa0 **refactor: add article content max chars**
+- 2023-04-04 23:58 6a91a9b **fix: uppercase utc**
+- 2023-04-04 23:48 9667543 **refactor: unify filters naming**
+- 2023-04-04 23:45 f38317b **refactor: add ui.info component**
+- 2023-04-04 23:40 0ccdb2c **fix: archive files empty case**
+- 2023-04-04 16:47 ef842f6 **step: bump bgord/frontend**
+- 2023-04-04 16:40 5201cc9 **fix: today filter translation**
+- 2023-04-04 16:37 bec994a **step: bump bgord/frontend**
+- 2023-04-04 12:27 6c1ce60 **Search bar (#15)**
+- 2023-03-21 23:23 f650ee9 **refactor: extract http-logger**
+- 2023-03-21 23:16 f6205ca **refactor: extract logger**
+- 2023-03-21 23:00 24a5172 **step: add translations to ui components**
+- 2023-03-21 22:46 b743776 **feature: add logger for event handler**
+- 2023-03-20 15:43 0fde86b **build(deps): bump http-cache-semantics from 4.1.0 to 4.1.1 (#10)**
+- 2023-03-19 16:31 83877ed **fix: disable hour select when articles to review notificaiton is disabled**
+- 2023-03-19 16:29 d4dd554 **Basic logger (#14)**
+- 2023-03-12 12:40 a09a037 **feature: fix missing button icon titles**
+- 2023-03-09 21:30 2dbfbf9 **fix: archive files button alignment**
+- 2023-03-08 20:48 c8066d8 **step: fix: misaligned clear button icon in archive files**
+- 2023-02-22 00:31 20f1345 **fix: newspaper status badge**
+- 2023-02-21 23:57 99bbed9 **fix: newspaper article copy button alignment**
+- 2023-02-21 01:19 51e0675 **fix: epub not being delivered to kindle issue**
+- 2023-02-21 00:50 e069591 **fix: epub generation**
+- 2023-02-21 00:12 94fcc1a **fix: uuid -> newuuid**
+- 2023-02-21 00:09 e7c66a8 **feature: add nodemailer prerequisite**
+- 2023-02-21 00:09 70d2894 **refactor: extract mailer service**
+- 2023-02-21 00:09 645e1ec **step: bump bgord/node**
+- 2023-02-20 22:29 62a8208 **step: adjust send a book copy**
+- 2023-02-20 22:28 0daf78d **step: make source badge full width**
+- 2023-01-24 21:35 0d8585c **step: add only-allow**
+- 2023-01-22 22:03 7812782 **step: remove handlebars types**
+- 2023-01-22 22:01 7e915c3 **step: regenerate feedly token**
+- 2023-01-22 21:55 28a6bd8 **feature: add feedly token expired error**
+- 2023-01-19 01:00 336d8c4 **feature: return hasFeedlyTokenExpired in stats**
+- 2023-01-19 00:59 b2f12d4 **refactor: use bg.Falsy for hasExpired parameter**
+- 2023-01-19 00:54 63fc458 **refactor: extract stats.lastFeedlyTokenExpiredError from FeedlyToken#hasExpired**
+- 2023-01-19 00:29 149ba4f **refactor: rename Services.FeedlyTokenExpiredNotifier.handle**
+- 2023-01-19 00:27 fdb0c91 **refactor: add FeedlyToken#hasExpired method**
+- 2023-01-19 00:27 aafb5cc **fix: eslint warnings**
+- 2023-01-19 00:07 3b5b2cd **refactor: extract feedly token**
+- 2023-01-17 00:26 233b370 **fix: use npx prisma generate on startup**
+- 2022-12-14 16:50 32f6637 **feature: add pandoc prerequsite**
+- 2022-12-14 16:48 0ce956a **step: bump bgord/node**
+- 2022-12-14 00:11 79a04c5 **step: bump bgord/node**
+- 2022-11-13 13:38 8467f8a **feature: add re-add button for non-ready archive articles**
+- 2022-11-09 00:01 d131d6e **fix: filters for archive files**
+- 2022-11-09 00:00 559bf98 **refactor: unify reset filters in archives**
+- 2022-11-08 23:57 f403bc2 **refactor: make search bar in archive newspapers full width**
+- 2022-11-08 23:55 6809977 **refactor: make search bar in archive files full width**
+- 2022-11-08 23:50 7d4be6c **refactor: make search bar in archive articles full width**
+- 2022-11-08 19:16 f3f08e5 **feature: include deleted articles in the archive**
+- 2022-11-08 19:11 2f3d729 **refactor: delete ArticleRepository#delete**
+- 2022-11-04 00:59 0f3b91a **feature: translate select boxes**
+- 2022-10-30 12:14 d1ca4c4 **fix: refetch stats on refreshing articles**
+- 2022-10-30 11:17 988d80d **fix: archive articles**
+- 2022-10-28 16:35 d19ceb8 **refactor: use default bgord/node export**
+- 2022-10-28 16:27 e003cca **refactor: remove the concept of a favourite article**
+- 2022-10-28 16:19 8578db6 **refactor: remove favourite article routes**
+- 2022-10-28 16:18 8f672a3 **refactor: remove favourite articles from the frontend**
+- 2022-10-28 16:13 a066854 **refactor: simplify session handling**
+- 2022-10-28 01:36 a47da2a **fix: remove unused import**
+- 2022-10-27 20:27 9b39271 **fix: dashboard section padding**
+- 2022-10-24 23:57 97bc294 **refactor: use mime type for send-arbitrary-file**
+- 2022-10-12 17:14 50a1d72 **fix: typo in feedly-token:regenerate**
+- 2022-09-29 12:56 ffe1214 **fix: align source badge in article list to the left**
+- 2022-09-23 22:16 1943da7 **feature: sort files by sentAt desc**
+- 2022-09-19 20:18 36eaa3e **refactor: use data-pointer-events from design**
+- 2022-09-19 15:29 23eefaa **fix: make entire file explorer button clickable**
+- 2022-09-19 15:26 57798fe **step: bump bgord/node**
+- 2022-09-19 03:21 d2286dd **fix: invisible menu icon on mobile**
+- 2022-09-19 03:09 21ed105 **refactor: use default import**
+- 2022-09-19 02:45 7592297 **refactor: remove unneeded css in main.hbs**
+- 2022-09-19 01:27 7d76bd8 **refactor: use branded types from zod**
+- 2022-09-19 00:16 b6b8f7d **refactor: unify archive articles/newspapers**
+- 2022-09-19 00:11 8140ec1 **step: improve translations**
+- 2022-09-18 23:58 37ec034 **refactor: use bg.pluralize**
+- 2022-09-18 23:54 8441818 **step: bump bgord/frontend**
+- 2022-09-18 23:51 c2d77f6 **step: bump scripts**
+- 2022-09-18 23:42 5763c8f **step: bump bgord/frontend**
+- 2022-09-18 23:31 ac03099 **refactor: pass language to translations context**
+- 2022-09-18 23:29 d907459 **step: bump bgord/frontend**
+- 2022-09-15 19:09 65ba9e2 **fix: number of unprocessed articles**
+- 2022-09-15 19:00 7fd0a50 **refactor: data-gap in settings**
+- 2022-09-15 18:27 09a03f3 **Improve brand types (#9)**
+- 2022-09-15 17:32 d3705b3 **feature: add copy button to newspaper article**
+- 2022-09-15 17:27 534c743 **fix: archive newspapers mobile**
+- 2022-09-15 17:16 fda5725 **fix: read online alignment**
+- 2022-09-15 17:09 0795b26 **refactor: use default exports on frontend**
+- 2022-09-15 17:02 89cb6a7 **refactor: extract copy button component**
+- 2022-09-15 16:51 6e3d065 **feature: add copy archive article link button**
+- 2022-09-15 16:11 1001dc0 **refactor: reduce settings nesting**
+- 2022-09-15 16:07 5e47c12 **refactor: archive files gap**
+- 2022-09-15 16:06 6a9ce66 **feature: add copy archive file link button**
+- 2022-09-15 16:05 cd83e2f **refactor: use getFileDownloadUrl**
+- 2022-09-15 15:54 2ff9345 **refactor: use download icon in archive files**
+- 2022-09-15 15:46 5873717 **step: bump bgord/node**
+- 2022-09-15 15:37 bf6a1c5 **refactor: use .trim() for VO**
+- 2022-09-15 15:37 9c84257 **step: remove max length for readable article content**
+- 2022-09-15 15:25 a1b6961 **refactor: utc to local in settings**
+- 2022-09-15 15:20 b168a7a **fix: formatUtcHourToLocal**
+- 2022-09-15 15:11 05a7920 **refactor: settings articles to review notification**
+- 2022-09-15 14:53 9a296c1 **refactor: enable/disable articles to review notification**
+- 2022-09-15 14:44 e48360a **refactor: feedly crawling settings to api calls**
+- 2022-09-14 14:02 8fbfa67 **refactor: use copy to clipboard function**
+- 2022-09-14 14:01 0f8a67a **step: bump bgord/frontend**
+- 2022-09-14 13:44 4324ece **refactor: use default bgord/frontend imports**
+- 2022-09-14 13:37 81befbf **feature: add copy article link button**
+- 2022-09-14 13:28 5fcd4ea **refactor: remove unnecessary forms**
+- 2022-09-10 13:52 48a24a2 **refactor: use iconoir everywhere**
+- 2022-09-10 13:40 93cf666 **fix: missing newspaper repo types**
+- 2022-09-10 13:35 c866883 **refactor: use db.$transaction instead of Promise.all**
+- 2022-09-10 13:31 79ae212 **refactor: use single db file**
+- 2022-09-10 13:24 c774ba9 **refactor: make max uploaded file size more readable**
+- 2022-09-10 13:16 f6f1000 **feature: add a do-nothing script to regenerate the feedly token**
+- 2022-09-01 00:10 cca0c86 **Advanced pagination (#8)**
+- 2022-08-29 20:16 ae1d88a **step: prepare to exhausted pagination check**
+- 2022-08-29 19:18 9a48a60 **refactor: improve formatting**
+- 2022-08-23 23:17 49004bc **fix: set correct filename for downloads**
+- 2022-08-23 23:11 f40736e **step: preload articles and newspapers for archive fiels**
+- 2022-08-23 23:08 24d043b **fix: download file by path, not content**
+- 2022-08-23 22:53 57c3702 **step: create files directory on build**
+- 2022-08-23 22:48 5a1ac7d **refactor: reorganize archive files filters**
+- 2022-08-23 22:43 c16ae74 **refactor: use file not found error**
+- 2022-08-23 22:39 531e66e **step: bum pbgord/node**
+- 2022-08-23 22:36 2cebf0f **step: implement file download route**
+- 2022-08-23 22:36 115c0c8 **step: add a way to download file**
+- 2022-08-23 01:27 3ea2a7c **step: don't remove unploaded file**
+- 2022-08-23 01:17 71d6daf **step: add FilesRepo#getSingle method**
+- 2022-08-23 01:16 62f1865 **step: setup download-file route**
+- 2022-08-23 01:15 2ddfeed **step: add file-id**
+- 2022-08-22 23:59 6011f35 **fix: fix wrapping long archive file titles**
+- 2022-08-22 23:58 9656f51 **step: bump bgord/design**
+- 2022-08-22 23:49 85ca5f6 **step: setup files/ directory**
+- 2022-08-22 23:49 5dd2e3f **step: change uploaddir to files/**
+- 2022-08-22 21:36 32cf142 **step: bump bgord/frontend**
+- 2022-08-22 21:18 5ec0f0f **step: display relative date**
+- 2022-08-22 21:06 9cd66f9 **step: improve archive file list**
+- 2022-08-22 21:05 9fac8c9 **fix: missing archive file sentAt**
+- 2022-08-21 02:31 6fc0f1b **feature: add archive files**
+- 2022-08-21 02:17 69a968a **step: add archive files filters**
+- 2022-08-21 02:12 aca6fb8 **step: add api call for archive files**
+- 2022-08-21 02:08 c5c2546 **step: add archive files**
+- 2022-08-21 02:07 369e481 **step: add files repo**
+- 2022-08-21 02:05 2cd2f41 **step: add files table**
+- 2022-08-21 02:03 60b36e7 **step: bump scripts**
+- 2022-08-21 01:56 1d8c354 **step: add files to navigation**
+- 2022-08-15 11:38 b1c973e **fix: disabling articles to review notification**
+- 2022-08-11 22:06 24020b4 **feature: use offline indicator**
+- 2022-08-11 21:52 8a84959 **step: bump bgord/frontend**
+- 2022-08-11 21:40 c4833ec **step: bump bgord/frontend**
+- 2022-08-11 21:27 9f14c26 **refactor: improve archive newspapers mobile styles**
+- 2022-08-11 21:25 f4d0cd6 **refactor: add padding for mobile settings**
+- 2022-08-11 21:23 2644b17 **refactor: improve articles to review notifications mobile styles**
+- 2022-08-11 19:22 7d7573b **refactor: use bg in error handler**
+- 2022-08-11 19:14 8de6c54 **step: use leaving prompt**
+- 2022-08-11 13:37 e2fe777 **step: bump bgord/node**
+- 2022-08-11 13:37 1e32842 **refactor: use stream from bgord/node**
+- 2022-08-11 13:28 0a6a13d **refactor: use articles.length**
+- 2022-08-09 21:12 83f16d7 **refactor: take feedly stream id from env**
+- 2022-08-09 20:32 f59c689 **fix: eslint warnings**
+- 2022-08-09 20:25 6215cb5 **refactor: use bgord/node default csp**
+- 2022-08-09 19:52 dd1add2 **step: udpate preact**
+- 2022-08-09 19:39 7c09151 **refactor: bump bgord/node**
+- 2022-08-09 19:33 4e2ffdd **step: remove predefined caching**
+- 2022-08-09 19:13 aa8213c **step: bump bgord/frontend**
+- 2022-08-09 17:03 831c1b6 **feature: add dialog for delete old articles**
+- 2022-08-09 16:56 70eb158 **Merge branch 'master' of github.com:bgord/raok-web**
+- 2022-08-09 16:56 4ae486c **Dialog (#7)**
+- 2022-08-09 15:13 a6f4c65 **step: center delete buttons on mobile**
+- 2022-08-04 23:21 a3b93fb **feature: add delete all articles button**
+- 2022-08-04 23:10 f3d4875 **refactor: rename delete old articles**
+- 2022-08-04 23:08 e2ced2d **refactor: add ARTICLE_OLD_MARKER_IN_DAYS vo**
+- 2022-08-04 23:03 cd3cace **fix: some articles not being processed**
+- 2022-08-04 17:40 5045beb **refactor: don't use anima list for articles**
+- 2022-08-04 16:53 4cc3de8 **step: add articleTitle to article.deleted notification**
+- 2022-08-04 16:53 4b872f4 **feature: add a title to article.deleted notification**
+- 2022-08-04 16:38 fb74298 **fix: multiple loading indicators in toast**
+- 2022-08-04 16:26 0adce92 **refactor: adjust to new time converter**
+- 2022-08-04 16:24 e08aaea **step: bump bgord/node**
+- 2022-08-04 14:51 36590c8 **fix: settings spacing**
+- 2022-08-03 23:23 baa4585 **step: improve feedly token expired notifier message**
+- 2022-08-03 23:09 2b02045 **feature: send feedly token expired notification only once**
+- 2022-08-03 23:01 ed7e429 **step: bump bgord/scripts**
+- 2022-08-03 22:53 ffeace4 **step: bump bgord/frontend**
+- 2022-08-03 22:44 5422751 **step: bump bgord/node**
+- 2022-08-03 22:41 7983867 **refactor: use time from bgord/node**
+- 2022-08-03 22:38 608f43d **step: bump bgord-node**
+- 2022-08-03 22:24 13ca3a3 **step: add services/time**
+- 2022-08-03 22:13 0f03d82 **fix: lastFeedlyTokenExpiredError**
+- 2022-08-03 21:55 368ffe1 **step: add feedly-token-expiration-days vo**
+- 2022-08-03 21:43 0091c08 **feature: add lastFeedlyTokenExpiredError to stats**
+- 2022-08-03 21:34 4674361 **refactor: improve check for axios status response in feedly token notifier**
+- 2022-08-03 21:10 3b6f1f8 **refactor: hide shouldBeSent in send method in notifier**
+- 2022-08-03 21:04 46a53e9 **refactor: use aggregates default export**
+- 2022-08-03 20:56 16048a6 **step: add FEEDLY_CRAWLING_INTERVAL_HOURS vo**
+- 2022-07-25 23:36 f1c2258 **refactor: file uploader syntax**
+- 2022-07-25 23:36 39186fd **refactor: bump bgord node**
+- 2022-07-25 23:28 71a48e2 **fix: number of unprocessed articles not updating**
+- 2022-07-25 23:17 fedd01b **fix: add tail direction for article list**
+- 2022-07-25 23:17 223e3fe **step: remove todo**
+- 2022-07-22 17:58 fcf3080 **step: bump design**
+- 2022-07-17 15:46 1ee986d **refactor: add max uplaoded file size value object**
+- 2022-07-17 15:33 555f97c **step: bump max file size**
+- 2022-07-17 15:30 f33f893 **fix: dont autoclean uploaded files**
+- 2022-07-17 15:21 7873147 **feature: remove mobi support**
+- 2022-07-17 15:12 16fd273 **refactor: nonempty to min 1 in zod**
+- 2022-07-15 21:25 af73612 **feature: add skip navigation link**
+- 2022-07-12 20:37 f227695 **refactor: use bg complex date**
+- 2022-07-12 20:10 bbffe65 **refactor: use relative formatting from bg**
+- 2022-07-12 20:03 eac0cff **step: add ml for number of non processed articles**
+- 2022-07-12 19:59 d0a6bab **refactor: improve formatting**
+- 2022-07-12 19:57 a2e98cc **refactor: use bg.DateFormatter**
+- 2022-07-12 19:27 c52559c **feature: add raw last feedly import title**
+- 2022-07-08 18:08 15805c0 **step: add codeql analysis workflow**
+- 2022-07-08 18:07 69b5dcc **Purge css (#6)**
+- 2022-07-08 00:10 0691cf2 **step: bump bgord-node**
+- 2022-07-08 00:04 40331aa **step: add a badge for the number of non processed articles**
+- 2022-07-07 23:52 283b066 **step: display number of non processed articles**
+- 2022-07-07 23:47 c6ee830 **step: return nonProcessedArticles in stats**
+- 2022-07-07 23:37 1cefe4f **step: remove /review route**
+- 2022-07-07 16:44 f9629cc **step: add ico cache**
+- 2022-07-06 21:43 b618515 **fix: should crawl feedly condition**
+- 2022-07-06 21:42 d49ea38 **step: handle schedule feedly crawl button error**
+- 2022-07-06 21:42 02810dc **step: add ui for stopping crawling**
+- 2022-07-06 21:38 b42ad16 **step: add should-crawl-feedly policy**
+- 2022-07-06 21:13 9fde2f0 **step: setup stop/restore feedly crawling**
+- 2022-07-06 20:55 6c68868 **feature: add isFeedlyCrawlingStopped to settings aggregate**
+- 2022-07-06 19:59 3419543 **step: define stop/restore feedly crawling events**
+- 2022-07-06 13:55 f76eeb6 **refactor: all initial data**
+- 2022-07-06 13:49 8d128d6 **refactor: disable refetch on mount by default**
+- 2022-07-06 13:43 85021a4 **refactor: initial data for fav articles query**
+- 2022-07-06 13:40 d0a6139 **refactor: initial data for newspapers query**
+- 2022-07-06 13:38 7f49372 **fix: new article apperaing at the end of the list**
+- 2022-07-06 13:38 45b717e **refactor: initial data for articles query**
+- 2022-07-06 13:34 0ea3d0c **refactor: initial data for stats query**
+- 2022-07-06 13:30 262ab7b **refactor: usefield for url**
+- 2022-07-05 21:53 b758d2b **step: add png cache**
+- 2022-07-05 20:22 5afe3c3 **step: compress favicon file**
+- 2022-07-04 15:09 89785e2 **step: bump bgord-scripts**
+- 2022-07-04 13:23 260a639 **feature: add article created at**
+- 2022-07-04 13:06 ecbf2f2 **refactor: simplify feedly service**
+- 2022-07-04 12:58 12f2f9e **feature: add feedly token expired notifier**
+- 2022-07-03 10:38 b982da1 **step: bump bgord-node**
+- 2022-07-02 16:45 0c204a7 **step: bump ts**
+- 2022-07-02 07:44 e61ad26 **step: bump bgord-scripts**
+- 2022-07-02 07:23 82b5568 **step: improve loading favicons**
+- 2022-07-02 07:20 83b87b4 **step: add doctype**
+- 2022-07-01 15:34 8a23778 **step: disable refetch on mount**
+- 2022-07-01 15:15 a5861b4 **step: add server timing**
+- 2022-07-01 15:02 c88e042 **refactor: use iconoir**
+- 2022-07-01 14:48 1675d8f **step: install iconoir**
+- 2022-07-01 01:21 b8c2c24 **refactor: use gap for favourite articles**
+- 2022-07-01 00:49 e0d574a **step: bump bgord-design**
+- 2022-07-01 00:33 662d4e3 **step: bump ts and zod**
+- 2022-07-01 00:11 a1a666a **step: use auth sheield detach method to logout**
+- 2022-06-30 23:56 3d76f79 **step: bump bgord-node**
+- 2022-06-30 23:33 7666784 **feature: add local time to notification settings**
+- 2022-06-30 23:20 0217fd1 **step: get loader for settings**
+- 2022-06-30 12:50 8fc8c99 **step: update packages**
+- 2022-06-30 12:24 3292d7d **refactor: use sendgrid for email sending**
+- 2022-04-26 20:53 5d3c55c **fix: dashboard rendering crash**
+- 2022-04-23 13:57 4b6ec9f **step: lower old article marker to 3 days**
+- 2022-04-22 16:05 e6fc78f **refactor: use marker in delete old article event**
+- 2022-04-22 16:00 06abb3f **step: implement delete old articles handler**
+- 2022-04-22 15:36 a786c8b **step: add delete old articles route**
+- 2022-04-22 15:36 a2751a7 **step: deifne delete old articles event**
+- 2022-04-22 15:35 86dcfd0 **step: add old article marker vo**
+- 2022-04-22 15:10 67ec6a6 **feature: add delete old articles**
+- 2022-04-14 00:24 1b95162 **feature: implement load more articles**
+- 2022-04-13 23:34 57e39a3 **fix: improve pagination**
+- 2022-04-13 12:38 3e773fc **step: add dashboard.scheduling translation**
+- 2022-04-13 12:34 1983f52 **fix: expired feedly token**
+- 2022-04-07 21:27 d0da32f **step: bump bgord-node**
+- 2022-04-07 12:15 2c07a67 **step: emphasize number of articles to review**
+- 2022-04-07 11:08 1162ce0 **step: create .env.staging in deploy workflow**
+- 2022-04-07 10:51 bfe471a **step: readd bgord-scripts**
+- 2022-04-07 10:29 88dbe25 **feature: add github deploy template**
+- 2022-04-04 13:52 67e81ac **feature: add send arbitrary file loading message**
+- 2022-04-01 16:03 5b4452c **fix: ad. 3 - horizontal mobile navigation cutting off the last item #3**
+- 2022-03-31 23:07 e9ebf3f **feature: adjust review for mobile**
+- 2022-03-30 21:55 80bd0a6 **feature: add article reviewer**
+- 2022-03-30 20:00 14d38fb **step: setup review route**
+- 2022-03-30 19:42 15aba58 **step: install use state machine**
+- 2022-03-29 17:04 6787038 **fix: bump bgord-frontend**
+- 2022-03-24 19:56 cefc1fa **fix: server error parsing**
+- 2022-03-24 19:50 7bf1116 **fix: too long clickable area for article.link**
+- 2022-03-24 18:48 b36fa74 **refactor: adjust use anima list to new config api**
+- 2022-03-24 10:47 db2dda7 **feature: add a way to undelete article**
+- 2022-03-24 10:46 5b2bb46 **step: add undelete article api call**
+- 2022-03-24 10:38 f508d8c **refactor: don't pretranslate notifications**
+- 2022-03-23 22:12 5907f93 **feature: add undelete article endpoint**
+- 2022-03-23 22:08 183c68c **step: handle article#undelete**
+- 2022-03-23 21:35 70cae3c **step: add deleted article status**
+- 2022-03-23 21:26 c672ab7 **step: define undelete article event**
+- 2022-03-21 15:05 9c13394 **feature: add server error extractor**
+- 2022-03-21 14:40 2e723a3 **step: add _server: true part to the error handler response**
+- 2022-03-21 14:01 76cc440 **step: handle Policies.NonProcessedArticleUrlIsNotUniqueError**
+- 2022-03-19 21:04 57624ec **refactor: delete unused settings hbs template**
+- 2022-03-19 16:50 ff47b13 **refactor: use url filter from bgord frontend**
+- 2022-03-19 16:11 377f08a **refactor: move safe window to bgord-frontend**
+- 2022-03-19 16:09 675700e **feature: use filters in ssr**
+- 2022-03-19 16:06 7df31d9 **step: apply url filter for newspapers archive**
+- 2022-03-19 16:05 b84638d **fix: handling default query in url filter hook**
+- 2022-03-19 15:53 1ec9dad **feature: apply url filter to archive articles**
+- 2022-03-19 15:50 3a160c6 **feature: add use url filter**
+- 2022-03-19 14:38 8a17ebe **feature: sync query params to url**
+- 2022-03-19 13:03 b3522f0 **feature: add proper locale to html**
+- 2022-03-19 00:50 eed948e **refactor: use filter url from bgord-fronentd**
+- 2022-03-19 00:47 a7ae945 **refactor: use filter from bgord-node**
+- 2022-03-19 00:41 8bfbc1c **feature: add backend filter for newspaper sent at field**
+- 2022-03-19 00:38 c53717d **refactor: move filter enums from hooks to filters**
+- 2022-03-19 00:28 216a189 **feature: add created at filter for achive articles**
+- 2022-03-19 00:27 7f0afac **feature: add timestamp filter**
+- 2022-03-19 00:10 ffd00e5 **step: loosen frontend api function types**
+- 2022-03-18 17:57 b28e00b **feature: add newspaper status filter**
+- 2022-03-18 17:49 fadad77 **feature: implement frontend filter url class**
+- 2022-03-18 17:48 f296876 **step: use undefined instead of all in archive newspapers**
+- 2022-03-18 17:48 c977b6d **step: define archive newspaper filter**
+- 2022-03-18 17:26 a86f272 **step: apply default archive article filters for ssr**
+- 2022-03-18 17:25 7151b1e **refactor: improve filter types**
+- 2022-03-18 17:10 d68c1c7 **refactor: move archive articles filter to repo**
+- 2022-03-18 17:10 70b8fcf **refactor: make filter api more flexible**
+- 2022-03-18 16:57 9347f3b **feature: add server side archive articles filters**
+- 2022-03-18 16:56 58c302d **refactor: use undefined instead of all**
+- 2022-03-18 15:54 4574d8a **feature: add backend archive articles filter**
+- 2022-03-18 15:53 34d5f60 **feature: add filter service**
+- 2022-03-18 14:15 867e014 **step: add index file for routes**
+- 2022-03-17 14:46 5ea01ef **fix: uppercase article dashboard section header**
+- 2022-03-17 14:41 4a06989 **feature: add translations to the build step**
+- 2022-03-17 14:39 48bc469 **fix: staging server build script if**
+- 2022-03-17 14:37 420388e **refactor: use client filter from bgord-frontend**
+- 2022-03-17 13:58 527314f **refactor: rename use search to use client search**
+- 2022-03-17 13:49 87ac4f1 **fix: archived articles**
+- 2022-03-17 13:04 c3b04ec **fix: badge alignment**
+- 2022-03-17 12:52 b62a875 **fix: filters alignment**
+- 2022-03-17 12:16 edfdfbf **fix: search input icon**
+- 2022-03-17 12:12 19dd957 **refactor: add ui.select**
+- 2022-03-16 19:55 d7831de **step: add en translations for favourite articles**
+- 2022-03-16 19:49 4ef68ff **refactor: remove unnecessary square brackets**
+- 2022-03-16 19:47 1ef7743 **step: add en translations for newspapers**
+- 2022-03-16 19:31 7d80088 **step: add en translations to article list**
+- 2022-03-16 19:12 e19eb4f **step: add en translations to add article fomr**
+- 2022-03-16 19:06 75b10ec **step: add en translations to schedule feedly crawl**
+- 2022-03-16 19:00 5887b1a **step: add en translations for nav**
+- 2022-03-16 18:00 df58a5a **feature: consume translations from the backend**
+- 2022-03-16 17:53 1173c1f **step: bump bgord-node**
+- 2022-03-16 13:52 2401123 **refactor: rename reporter raw error label in jobs**
+- 2022-03-16 13:44 081e564 **step: pass language to the frontend app**
+- 2022-03-15 14:49 99e4a44 **fix: remove fixed position from build meta**
+- 2022-03-11 15:51 ad2c314 **feature: setup locale header parser**
+- 2022-03-11 15:36 8b83f21 **step: add locale header to fetch calls**
+- 2022-03-08 14:11 9d3cf8b **step: decrease spacing on mobile**
+- 2022-03-06 21:07 bdff56d **step: make right dashboard section sticky**
+- 2022-02-22 19:30 aaba3a8 **refactor: use a-r-t from bgord-node**
+- 2022-02-22 19:13 73faaa3 **refactor: use types from repo method return signatures**
+- 2022-02-22 18:57 873fdb4 **refactor: use article types from prisma client**
+- 2022-02-22 18:21 0a4f312 **refactor: don't fetch all data for dashboard ssr**
+- 2022-02-22 17:52 e69b39f **refactor: improve archive newspapers payload size**
+- 2022-02-22 17:51 0ad3dcf **refactor: improve archive articles payload size**
+- 2022-02-22 17:43 e16e12a **refactor: improve newspaper payload**
+- 2022-02-22 17:16 e1ca398 **refactor: eliminate status from article in dashboard**
+- 2022-02-22 17:14 185718c **refactor: eliminate favourite from dashboard articles**
+- 2022-02-22 17:08 3df5297 **refactor: eliminate createdAt from dashboard articles**
+- 2022-02-22 16:58 4b187e2 **refactor: make articles payload smaller**
+- 2022-02-22 16:55 3eae7e8 **refactor: add default article title to the read model**
+- 2022-02-22 16:37 619547c **refactor: delete article image**
+- 2022-02-22 16:35 f6bfbc5 **refactor: remove article description**
+- 2022-02-22 16:16 c534253 **step: bump bgord-node**
+- 2022-02-22 00:34 24aa750 **refactor: make favourite articles payload smaller**
+- 2022-02-22 00:19 d7a164c **fix: don't use time zone offset for format distance to now**
+- 2022-02-21 23:31 25dc117 **refactor: use multiple data-transform values**
+- 2022-02-21 23:10 2496d69 **fix: empty sent at**
+- 2022-02-21 12:14 bf08d57 **refactor: use outbound-link from bgord-frontend**
+- 2022-02-21 10:43 364ace8 **refactor: move anima list to bgord frontend**
+- 2022-02-21 10:13 71b36ab **step: bump bgord-node**
+- 2022-02-21 10:11 4f5ce8e **refactor: move standalone anima to bgord-frontend**
+- 2022-02-21 09:46 cb93833 **refactor: move toasts to bgord-frontend**
+- 2022-02-21 09:10 5fc3238 **refactor: remove toast type**
+- 2022-02-21 09:07 6618c02 **feature: make toast type extendable**
+- 2022-02-21 08:57 3fde309 **refactor: rename toasts context data type**
+- 2022-02-21 08:56 324525b **refactor: rename toast type to base toast type**
+- 2022-02-21 08:50 076b475 **refactor: move toast type back to toasts context**
+- 2022-02-21 08:39 a9055c7 **refactor: move use toasts implementation inside the toasts context provider**
+- 2022-02-21 08:33 69d3665 **refactor: add toasts config type**
+- 2022-02-21 08:30 4c9e83e **refactor: rename notifications to toasts**
+- 2022-02-21 08:23 a682102 **refactor: add configurable timeout**
+- 2022-02-21 08:23 98fde94 **refactor: reimplement add notification function**
+- 2022-02-21 08:17 03769a8 **refactor: remove type state from notification omit union**
+- 2022-02-21 08:16 18e8b8f **refactor: add props object for notifications context provider**
+- 2022-02-21 08:15 ffbf4c8 **refactor: extract notification type to types**
+- 2022-02-21 07:58 a9a4c2a **refactor: move use search to bgord-frontend**
+- 2022-02-20 21:20 a197b9f **refactor: move use list hook to bgord-frontend**
+- 2022-02-20 21:07 3634277 **refactor: move use file hook to bgord-frontend**
+- 2022-02-20 20:48 bc68779 **refactor: move use expandable list hook to bgord-frontend**
+- 2022-02-20 20:36 3a70082 **refactor: move use previous value hook to bgord-frontend**
+- 2022-02-20 20:32 bc6a249 **refactor: move use window dimensions to bgord-frontend**
+- 2022-02-20 20:27 3580dcf **refactor: move use toggle to bgord-frontend**
+- 2022-02-20 15:30 4ebf447 **refactor: don't use date-fns on frontend**
+- 2022-02-20 13:31 6a42a43 **refactor: api exports**
+- 2022-02-20 13:25 a219dcf **step: send time zone offset header**
+- 2022-02-20 13:19 ecf631e **refactor: rename stats repo update methods**
+- 2022-02-20 12:53 64aef5d **refactor: don't use lodash/delay on frontend**
+- 2022-02-20 12:47 55c98fd **refactor: don't use lodash/isEqual on frontend**
+- 2022-02-20 12:46 3ec96d3 **refactor: don't use lodash/pick on frontend**
+- 2022-02-20 00:56 87ac5f2 **refactor: improve build meta positioning**
+- 2022-02-20 00:53 f8de208 **fix: archive link url**
+- 2022-02-19 17:55 9241d76 **fix: shadow variable warning**
+- 2022-02-19 17:54 f03432a **feature: add read newspaper link**
+- 2022-02-19 17:43 8dfa050 **step: don't delete html files**
+- 2022-02-19 17:37 a3934e4 **step: setup newspaper read route**
+- 2022-02-19 17:35 8a49cb8 **fix: target blank vuln**
+- 2022-02-19 17:24 07596c0 **step: add newspaper read online button**
+- 2022-02-19 17:03 757697a **fix: make jsdom types dev dep**
+- 2022-02-19 14:54 5ad1239 **refactor: use anima opacity style from design**
+- 2022-02-19 14:18 74e99a5 **refactor: use positioners from design**
+- 2022-02-19 13:55 b3af3a6 **fix: title-truncate rule violations**
+- 2022-02-19 13:41 67c4625 **step: bump bgord-design**
+- 2022-02-19 12:49 3d5648c **refactor: create an index file for repos**
+- 2022-02-19 12:40 d9d8149 **refactor: remove unnecessary redirects in route handlers**
+- 2022-02-19 12:36 3c5710b **refactor: serialize state in html service**
+- 2022-02-19 12:30 871170d **feature: add build repository**
+- 2022-02-19 12:26 a26c498 **refactor: create settings repo**
+- 2022-02-19 12:20 7169e2d **refactor: make dashbaord.ts state terser**
+- 2022-02-19 12:16 097a2d7 **refactor: extract ssr html to a service**
+- 2022-02-17 18:36 86c0cc9 **step: reorder archive and resend buttons**
+- 2022-02-17 18:25 9c9b6fe **feature: improve newspaper list item on mobile**
+- 2022-02-17 01:02 39b96c7 **step: update ts**
+- 2022-02-17 00:31 73fbfe3 **feature: add build version and date**
+- 2022-02-16 22:49 5bf0487 **feature: check arbitrary file size check**
+- 2022-02-16 22:24 e7ef6cf **feature: display selected abitrary file size**
+- 2022-02-16 22:06 82ee3a5 **step: add full selected file name tooltip**
+- 2022-02-16 22:03 8bc4c7c **fix: stat spelling**
+- 2022-02-14 20:56 cf75236 **feature: add active link class**
+- 2022-02-14 20:38 77eb9e9 **fix: close mobile navigation on route change**
+- 2022-02-14 20:34 8a385d7 **feature: add mobile navigation animation**
+- 2022-02-14 20:33 7f34a7d **fix: don't override children style props in anima**
+- 2022-02-14 20:24 66b2c6f **fix: display navigation for all pages**
+- 2022-02-14 20:16 f92f897 **fix: use scroll lock hook**
+- 2022-02-14 20:00 4d0e792 **feature: add full screen mobile navigation**
+- 2022-02-14 19:51 23ba625 **refactor: add icon-close component**
+- 2022-02-14 19:45 71cfb93 **feature: add use body scroll lock hook**
+- 2022-02-14 19:29 b52f4f4 **feature: setup mobile navigation**
+- 2022-02-14 19:26 7069b80 **step: add hamburger menu icon**
+- 2022-02-14 19:15 132dd29 **step: add navigation shell for ssr**
+- 2022-02-14 19:02 39b34eb **refactor: move navigation to a component**
+- 2022-02-14 18:52 0d143fc **feature: add use window size hook**
+- 2022-02-14 00:33 b57b66d **feature: add max abitrary file size limit**
+- 2022-02-14 00:05 9d1d35a **feature: add arbitrary file processor**
+- 2022-02-13 23:31 6d71949 **refactor: create html-to-epub converter**
+- 2022-02-13 23:21 d570c68 **refactor: use arbitrary file sender for newspaper**
+- 2022-02-13 22:57 0853120 **fix: reset file uplaod mutation on clear click**
+- 2022-02-13 22:53 65298f5 **fix: send arbitrary file typo**
+- 2022-02-12 01:33 3d92a3c **fix: missing anima props for articles**
+- 2022-02-12 00:14 df56fc4 **fix: h1 link**
+- 2022-02-11 23:21 353c3e9 **step: improve dashboard vertical spacing on mobile**
+- 2022-02-11 23:20 b00c054 **fix: blue underline on h1 on mobile**
+- 2022-02-11 22:15 c3d70ac **fix: missing newspaper title during creation**
+- 2022-02-11 22:12 3b64a68 **fix: x/5 articles text alignment**
+- 2022-02-06 21:56 ab44e82 **refactor: adjust article header to mobile**
+- 2022-02-06 21:09 73f1a73 **step: adjust newspaper for mobile**
+- 2022-02-06 13:39 74f0b91 **step: use anima for selected articles counter**
+- 2022-02-06 13:29 4419bd2 **refactor: add article form**
+- 2022-02-06 13:22 9b5406b **refactor: extract schedule feedly articles crawl component**
+- 2022-02-06 13:17 0387337 **step: improve article section padding**
+- 2022-02-06 13:06 ceca5a2 **step: remove article.status from the list items**
+- 2022-02-06 12:41 2502b7f **refactor: remove props.status logic in article as all of them are ready**
+- 2022-02-06 12:36 80f3fa1 **step: remove article count in badge**
+- 2022-02-06 12:33 84079c9 **refactor: add text-align center to badge**
+- 2022-02-06 12:33 47531f1 **refactor: use badge in archive-article**
+- 2022-02-06 12:29 70410dd **refactor: remove additional article props**
+- 2022-02-06 12:27 9366d6c **refactor: make trash icon svg**
+- 2022-02-06 00:15 0721c42 **feature: make article list responsive**
+- 2022-02-05 22:29 356512a **fix: remove additional props from article**
+- 2022-02-05 22:20 f8c0b10 **step: reduce newspaper right ornaments**
+- 2022-02-05 14:02 00339f5 **step: bump bgord-node**
+- 2022-02-05 11:57 597623a **refactor: rewrite notifications in anima**
+- 2022-02-05 11:40 f412c58 **refactor: make notification.id string**
+- 2022-02-05 11:32 bcf22c5 **fix: remove some eslint warnings**
+- 2022-02-05 11:27 9eac61f **feature: add ssr for settings page**
+- 2022-02-05 11:03 cf13df8 **step: remove article list item's right border**
+- 2022-02-04 22:01 3b0cfa0 **feature: reorder dashboard columns**
+- 2022-02-04 21:57 d2db2c3 **step: display newspaper title**
+- 2022-02-04 21:50 9c1b100 **fix: overflowing newspaper articles**
+- 2022-02-04 17:31 6b74d23 **feature: add articles counter**
+- 2022-02-04 17:19 986d196 **step: log feedly get articles error**
+- 2022-02-01 19:37 0e29acb **refactor: change settings to preact**
+- 2022-02-01 19:06 7e443ed **step: slow down refetch article rotatino animation**
+- 2022-02-01 01:23 9791386 **fix: router ssr**
+- 2022-02-01 00:17 6f8ed11 **refactor: extract epub to mobi converter**
+- 2022-01-31 19:49 602e7f7 **fix: linter issues**
+- 2022-01-31 18:58 38fc60b **fix: type issues**
+- 2022-01-31 18:54 dc3cf8a **fix: article types**
+- 2022-01-30 23:59 af3e3d9 **fix: show less/more fav articles animation**
+- 2022-01-30 23:54 72bfdfa **feature: add favourited at article read model field**
+- 2022-01-30 21:01 de5fd59 **fix: article list use anima list direction**
+- 2022-01-30 20:57 fa98efc **fix: updating list items in use anima list**
+- 2022-01-30 20:48 d0f9022 **step: require T to have an id in use anima list**
+- 2022-01-30 20:47 562cbfa **fix: add use animma list head/tail**
+- 2022-01-30 17:19 0e95f92 **step: bump bgord-node**
+- 2022-01-30 17:08 063ceb4 **fix: missing status prop**
+- 2022-01-30 17:03 0968e83 **step: use anima list for newspaper list**
+- 2022-01-30 16:59 fe123a9 **refactor: adjust article list to anima list**
+- 2022-01-30 16:45 be6a0a0 **fix: anima list flickering**
+- 2022-01-30 14:20 6de15ba **fix: initial render animation**
+- 2022-01-30 13:54 0653528 **refactor: extract use create newspaper hook**
+- 2022-01-30 13:52 1cfdfc0 **feature: implement anima list**
+- 2022-01-30 13:51 b1afa23 **refactor: rename anime to anima**
+- 2022-01-29 11:38 4773231 **refactor: move use previous value to hooks**
+- 2022-01-29 11:28 2040054 **feature: add favourite/unfavourite to archive articles**
+- 2022-01-29 00:31 89e0431 **feature: add anime rotation effect**
+- 2022-01-29 00:07 a5e3e0b **refactor: rename use toggle action names**
+- 2022-01-29 00:05 dd782c5 **refactor: use anime instead of use animated toggle**
+- 2022-01-29 00:00 e01bdd3 **feature: add anime component**
+- 2022-01-28 23:58 e2bff41 **step: improve expanded newspaper details style**
+- 2022-01-28 21:46 63b2261 **fix: clear selected articles count**
+- 2022-01-27 22:27 a76f515 **feature: add articles refetch button**
+- 2022-01-27 21:40 367f6e0 **step: improve archive newspapers**
+- 2022-01-26 23:44 1fb6501 **feature: add no unchecked indexed access ts option**
+- 2022-01-25 21:44 5aa124b **feature: add reset newspaper archive filters button**
+- 2022-01-25 21:43 72ecf56 **feature: add clear article archive filter button**
+- 2022-01-25 21:40 cfbabf5 **step: reorder article archive filters**
+- 2022-01-25 21:38 42c050e **feature: add timestamp created at filter for archive articles**
+- 2022-01-25 21:30 3d3a9c8 **refactor: extract use timestamp filter**
+- 2022-01-25 21:26 6b6119c **step: add default value of last_3_days for archive newspaper sent at filter**
+- 2022-01-25 21:25 8862677 **fix: handle empty article title in archive articles**
+- 2022-01-25 21:21 6f2e8cc **feature: add number of filtered out articles/newspapers**
+- 2022-01-25 21:01 af2ab24 **feature: implement sent at filter function**
+- 2022-01-25 20:49 9e94323 **refactor: differentiate between filter query and filterFn value**
+- 2022-01-25 20:49 4023f4a **step: allow overriding filterFn in useFilter**
+- 2022-01-25 20:43 b941672 **fix: make string default T in useFilter filterFn**
+- 2022-01-25 20:30 9849ab0 **step: display sent at relative for all sent newspapers**
+- 2022-01-25 20:27 5be8d73 **feature: add archive newspaper status filter**
+- 2022-01-25 20:22 a9f1fbd **fix: username spacing**
+- 2022-01-25 20:11 d94ef42 **fix: login max-width**
+- 2022-01-25 19:57 a010d35 **feature: add ssr for archive newspapers**
+- 2022-01-25 19:48 1f7c647 **step: hide some newspaper details for archived newspapers in the archive**
+- 2022-01-25 19:43 b44cef0 **fix: move notifications container to app.tsx**
+- 2022-01-25 19:37 7593419 **fix: cancelling newspaper**
+- 2022-01-25 19:05 1f7e0a0 **feature: setup archive newspapers**
+- 2022-01-25 18:53 bf4befd **refactor: rename /archive/articles**
+- 2022-01-25 18:50 11025e2 **feature: add selected articles counter**
+- 2022-01-24 21:53 f064dd5 **step: add logs for article metatags scraper #get failure**
+- 2022-01-24 21:49 187f080 **step: make first column full width on mobile**
+- 2022-01-24 21:40 40ee848 **refactor: use predefined max-widths**
+- 2022-01-24 21:33 306db69 **step: add horizontal spacing for dashboard on mobile**
+- 2022-01-24 21:27 d8d6397 **step: add bottom spacing on mobile**
+- 2022-01-24 21:19 5f0e2bc **refactor: use list-style none from bgord-design**
+- 2022-01-24 20:53 f5322ae **feature: add spacing to the vertical sides of the screen on mobile**
+- 2022-01-24 20:50 302fcbd **feature: reverse dashboard columns on wrap**
+- 2022-01-24 20:36 4879e00 **refactor: don't use zod enums in frontend**
+- 2022-01-24 20:22 8834ed2 **feature: add migrate stats to kv script**
+- 2022-01-24 20:22 2fbc486 **refactor: migrate last feedly import stat to kv**
+- 2022-01-24 20:19 86ebe07 **refactor: migrate increment newspaper sent stat to kv**
+- 2022-01-24 20:06 f216d9d **refactor: migrate increment created articles stat to kv**
+- 2022-01-24 19:54 0ef5d48 **step: add stats key value migration**
+- 2022-01-24 01:52 18d5fb7 **fix: show 0 more in use expandable list**
+- 2022-01-24 01:34 089749c **step: add archive articles datalist**
+- 2022-01-24 01:29 0fcdf51 **feature: add article status filter**
+- 2022-01-24 01:22 95cf3e9 **feature: add source article archive filter**
+- 2022-01-24 00:49 e772758 **refactor: change route to /articles/archive**
+- 2022-01-24 00:41 36c7a7f **feature: add ssr for archive articles**
+- 2022-01-23 23:32 6566e45 **feature: implement search archive articles**
+- 2022-01-23 23:20 be005ae **refactor: migrate archive to preact**
+- 2022-01-23 23:07 14eb75f **feature: setup archive page in preact**
+- 2022-01-23 23:06 b54a147 **refactor: use preact-router for dashboard**
+- 2022-01-23 22:25 24fc5d4 **step: display search archive articles input**
+- 2022-01-23 21:41 e8d89ad **feature: add favourite article indicator to the archive**
+- 2022-01-20 19:36 3378759 **step: increase session ttl to 3 days**
+- 2022-01-20 19:18 4e8d4e0 **fix: align section headers and icons**
+- 2022-01-20 19:15 57d555f **step: invalidate stats query after scheduling feedly crawl**
+- 2022-01-20 19:13 f682883 **fix: add missing key props**
+- 2022-01-20 01:00 b829278 **feature: add schedule feedly crawl ui**
+- 2022-01-20 00:46 2aa4af7 **step: add a schedule feedly articles crawl route**
+- 2022-01-20 00:42 e349b03 **refactor: emit feedly articles crawl scheduled in jobs**
+- 2022-01-20 00:32 a07cec3 **refactor: extract feedly articles crawler to a service**
+- 2022-01-20 00:26 24f9a01 **step: add FEEDLY_ARTICLES_CRAWLING_SCHEDULED_EVENT**
+- 2022-01-20 00:18 ae8724a **feature: use session file store**
+- 2022-01-19 22:26 4328841 **fix: delay invalidating articles query on successful newspaper scheduling**
+- 2022-01-19 22:14 34de246 **feature: order by latest articles first in the archive**
+- 2022-01-18 20:14 c98f6b4 **feature: setup archive page**
+- 2022-01-17 18:04 0e0cf70 **refactor: use hour from the settings in articles to review notifier**
+- 2022-01-17 17:52 00c6458 **feature: add a way to update articles to review notification hour**
+- 2022-01-17 17:46 c3f66e5 **step: add ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT event**
+- 2022-01-16 19:20 07bf2a7 **step: list hours**
+- 2022-01-16 18:58 b7ba80b **feature: add a way to enable articles to review notification**
+- 2022-01-16 18:45 7f09cbe **feature: add a way to disable articles to review notification**
+- 2022-01-16 18:18 7ccf0c6 **feature: add settings page**
+- 2022-01-16 16:06 a36ef0b **step: align article status**
+- 2022-01-14 00:28 df5526b **feature: implement articles to review notifier**
+- 2022-01-14 00:26 8d71de2 **step: add email for notifications**
+- 2022-01-13 23:56 4f5ea2c **feature: add articles to review notification sender**
+- 2022-01-13 23:45 a7337ca **refactor: rename feedly articles crawler task**
+- 2022-01-13 21:55 ea936e2 **step: improve send arbitrary file copy**
+- 2022-01-13 21:53 e602b00 **step: improve article title/link typography**
+- 2022-01-13 21:53 da56e58 **refactor: add custom padding to bare buttons**
+- 2022-01-13 21:44 0973491 **refactor: extract long mutations to custom hooks**
+- 2022-01-13 21:33 23a87e5 **refactor: extract use delete article from favourites to a hook**
+- 2022-01-13 21:31 6a1b0eb **feature: use expandable list for favourite articles**
+- 2022-01-13 21:30 92d8f62 **step: add useExpandableList**
+- 2022-01-13 21:21 cbafa92 **fix: update follow-redirects to avoid vulnerability**
+- 2022-01-13 21:21 3c82430 **step: bump bgord-design**
+- 2022-01-13 20:26 6519ddf **refactor: replace favourite articles and stats**
+- 2022-01-13 20:22 dec84b1 **step: make newspaper badges stand out**
+- 2022-01-13 20:18 4d37a15 **step: make status/source article badges equal width**
+- 2022-01-13 20:14 d4a90d0 **step: align newspaper articles better**
+- 2022-01-13 20:11 f1f255d **step: move notifications to the bottom**
+- 2022-01-12 22:12 10541bc **step: make favourite article's link font size smaller**
+- 2022-01-12 22:09 84c0bbf **fix: notification size**
+- 2022-01-12 20:39 f34eb4e **step: don't fetch index.js for login page**
+- 2022-01-12 20:06 a0b9862 **step: bump bgord-design**
+- 2022-01-12 19:53 df37480 **step: add polite aria-live to notification**
+- 2022-01-12 19:51 8b17b1f **fix: make slide in/out animation live through rerenders**
+- 2022-01-12 19:39 32db8ed **step: bump bgord-design**
+- 2022-01-12 19:30 b2b8d80 **feature: add successful action notifications**
+- 2022-01-12 18:41 1e1ae9f **step: add notification state for animation**
+- 2022-01-12 18:35 1af8680 **step: expose update fn from use list hook**
+- 2022-01-12 00:36 e3378b2 **feature: implement notification ui**
+- 2022-01-11 23:52 19dd81a **feature: implement basic notifications**
+- 2022-01-11 23:22 c4a36d8 **refactor: add comparisonFn to useList hook**
+- 2022-01-11 21:04 5f12335 **step: make empty states consistent**
+- 2022-01-11 20:59 ed11241 **step: display newspaper processed time**
+- 2022-01-11 20:51 942c88d **step: display relative newspaper sent time**
+- 2022-01-11 20:50 49dacf4 **step: increase space between article input and submit button**
+- 2022-01-11 20:38 017f7f5 **fix: modifing query cache after (un)favouriting an article**
+- 2022-01-11 20:33 3b80881 **step: align article status and source badges in a column**
+- 2022-01-11 20:20 36744c1 **fix: handle empty last feedly import stat**
+- 2022-01-11 20:04 5452762 **refactor: split cancelling and archiving newspaper**
+- 2022-01-11 19:53 05a9636 **feature: add a way to unfavourite article**
+- 2022-01-11 19:09 b673bfc **step: load icons eagerly**
+- 2022-01-11 18:58 c22b152 **step: sort routes**
+- 2022-01-11 18:54 4ff2348 **feature: display last feedly hit info**
+- 2022-01-11 18:42 f248110 **step: add loading state for new article form**
+- 2022-01-11 18:39 f68c986 **fix: use list remove method**
+- 2022-01-11 00:30 29e6f7f **step: ssr favourite articles**
+- 2022-01-10 21:31 608d878 **feature: display favourite articles**
+- 2022-01-10 21:20 c434c5c **feature: implement making article favourite**
+- 2022-01-10 20:53 4014e91 **feature: output newspaper metadata**
+- 2022-01-10 20:42 67fd13a **step: add page break after an article**
+- 2022-01-10 20:01 eca5976 **step: don't allow selecting in-progress articles**
+- 2022-01-10 19:59 2b2deb2 **refactor: extract article to a component**
+- 2022-01-10 01:14 619c981 **feature: allow archiving stalled newspapers**
+- 2022-01-10 00:53 c1468d6 **step: add has-newspaper-stalled policy**
+- 2022-01-10 00:28 dcee0d7 **feature: add cutoff time to autoupdate newspaper status**
+- 2022-01-09 16:35 fb1d2c2 **refactor: move add article form to article section**
+- 2022-01-09 16:30 f1a0293 **step: add right border to article and newspaper list items**
+- 2022-01-09 16:04 139c80c **step: leave only top bg on newspaper header**
+- 2022-01-09 01:52 d6c2689 **step: add newspaper icon**
+- 2022-01-09 01:48 21f359f **step: add article icon**
+- 2022-01-09 01:38 c17a70b **step: add top borders to sections**
+- 2022-01-09 01:34 2a284df **step: add book icon**
+- 2022-01-09 01:29 25dd7a2 **step: add icon-stats**
+- 2022-01-09 01:24 1a9ab41 **step: change file explorer copy**
+- 2022-01-09 01:21 ded0aaf **feature: add trash icon in place of delete button**
+- 2022-01-09 00:58 3b373db **refactor: use data-transform truncate from bgord-node**
+- 2022-01-09 00:51 24922d3 **fix: render instead of hydrating**
+- 2022-01-09 00:49 8006c12 **step: use data-overflow from bgord-design**
+- 2022-01-08 22:51 113a191 **feature: display article metatags**
+- 2022-01-08 22:46 b8d16ac **fix: missing default stat**
+- 2022-01-08 22:44 fd17a84 **step: add article metatags scraper**
+- 2022-01-08 22:44 a831261 **step: add article metatags vo**
+- 2022-01-08 22:23 abb9c0f **step: add article meta tags vo**
+- 2022-01-08 19:58 141070d **feature: hide newspaper details on resending**
+- 2022-01-08 19:47 c3fda70 **feature: update sent newspapers stat**
+- 2022-01-08 16:07 2e5bdbf **step: add toggle to use animated toggle**
+- 2022-01-08 15:24 49cd8a6 **fix: stale ssr layout**
+- 2022-01-08 15:12 9a132a8 **feature: handle file upload flow messages**
+- 2022-01-08 13:40 cb2fff9 **step: delete arbitrary file after an attempt to send**
+- 2022-01-08 13:38 983ef4b **feature: implement arbitrary file sender**
+- 2022-01-08 13:14 a441700 **step: add uploaded file service**
+- 2022-01-08 13:14 9894b45 **step: add arbitrary file scheduled event**
+- 2022-01-08 12:56 a82871f **step: setup uploaded-file service**
+- 2022-01-08 12:54 b752c47 **step: add file uploader from bg**
+- 2022-01-08 11:39 7e1108c **step: add send-arbitrary-file api call**
+- 2022-01-08 11:39 265b760 **step: setup send-arbitrary-file route**
+- 2022-01-08 01:09 966202c **refactor: migrate to animated toggle for newspaper details**
+- 2022-01-08 01:08 6b205bd **feature: add animated toggle state**
+- 2022-01-07 23:43 c35320c **step: add file selector form**
+- 2022-01-07 23:41 c0da73e **feature: add useFile hook**
+- 2022-01-07 21:45 14e8db0 **feature: add send arbitrary section**
+- 2022-01-07 21:44 aa1c1cc **refactor: create header component**
+- 2022-01-07 21:17 28125f0 **refactor: remove newspaper number**
+- 2022-01-07 21:16 cc83121 **step: get all non archived newspapers by default**
+- 2022-01-07 21:14 eb9da9c **feature: prerender newspapers**
+- 2022-01-07 21:04 27d1747 **fix: newspaper overflow**
+- 2022-01-07 21:00 eb743c5 **step: remove dashboard.hbs**
+- 2022-01-07 20:05 cfafdcf **step: prerender article list**
+- 2022-01-07 19:53 955dbd7 **step: improve toggling newspaper details**
+- 2022-01-07 19:36 4452873 **feature: add no empty newspaper policy**
+- 2022-01-07 00:36 2c3fa73 **feature: add full ssr support with hydration**
+- 2022-01-07 00:20 f8f99cf **step: ignore frontend in local server start script**
+- 2022-01-06 22:53 14d2181 **refactor: extract frontend app to another file**
+- 2022-01-06 22:52 d9af0d8 **step: install preact ssr**
+- 2022-01-06 22:49 d371b15 **step: use frontend scripts from bgord-scripts**
+- 2022-01-06 21:34 c27a577 **step: add frontend build step to staging server build script**
+- 2022-01-06 21:32 eec6a02 **step: add staging-frontend-build script**
+- 2022-01-06 21:04 9ed23e0 **step: display article delete only when article is not being processed**
+- 2022-01-06 20:35 6431f81 **feature: autoupdate newspaper status**
+- 2022-01-06 20:08 a3dff4c **feature: add single newspaper endpoint**
+- 2022-01-06 19:53 ce28a13 **step: make newspaper details consistent**
+- 2022-01-06 19:47 a0bfe2d **refactor: migrate toggling newspaper details**
+- 2022-01-06 19:31 9d2d64a **refactor: extract newspaper article**
+- 2022-01-06 19:19 ccc895d **step: move add article form back to the left colummn**
+- 2022-01-06 19:17 9157a1d **refactor: migrate to use list in article list**
+- 2022-01-06 19:16 b251b9b **feature: add use list hook**
+- 2022-01-06 18:47 90c572a **refactor: extract all api calls to one file**
+- 2022-01-06 18:16 0d5d6a2 **refactor: migrate stats to a separate file**
+- 2022-01-06 18:05 a936068 **refactor: extract newspaper list to a separate file**
+- 2022-01-06 18:04 a8b30f7 **refactor: extract article list to a separate file**
+- 2022-01-06 14:47 5f02782 **refactor: extract add article form to a separate file**
+- 2022-01-06 14:45 b1ee8c7 **refactor: extract frontend types to a separate file**
+- 2022-01-06 14:42 325e258 **refactor: use ui file**
+- 2022-01-06 14:17 1f5b7b7 **feature: migrate creating newspaper to preact**
+- 2022-01-06 13:45 10c903b **feature: migrate selecting articles to preact**
+- 2022-01-06 13:31 dccc3ed **feature: migrate resending newpaper to preact**
+- 2022-01-06 13:25 70c6d1f **feature: migrate archiving newspaper to preact**
+- 2022-01-05 23:17 3730eaf **refactor: create link component**
+- 2022-01-05 23:05 d4b37de **step: add badge component**
+- 2022-01-05 22:56 f7b70b1 **feature: refactor displaying newspaper list to preact**
+- 2022-01-05 22:15 6044041 **feature: refactor delete article to preact**
+- 2022-01-05 22:11 cc9b2f3 **feature: autorefresh article list upon creating a new article**
+- 2022-01-05 22:07 d0b09b5 **feature: migrate article list to preact**
+- 2022-01-05 21:37 9f87953 **feature: migrate add article form to preact**
+- 2022-01-05 20:02 43e6cec **feature: setup preact**
+- 2022-01-05 18:42 a55aa92 **refactor: use stream in newspaper aggregate**
+- 2022-01-05 18:37 d6ffa9f **refactor: use stream in article aggregate**
+- 2022-01-05 18:28 ce94f89 **step: add optional event-repository#read stream param**
+- 2022-01-05 18:14 69eda04 **feature: add event stream property**
+- 2022-01-05 17:57 ffff167 **step: use article status transition**
+- 2022-01-05 17:54 e153f2a **step: add article-status-transition policy**
+- 2022-01-05 01:08 2a31c0e **step: build article aggregate with article processed event**
+- 2022-01-05 01:07 dfca2c9 **step: update article read model on article processed event**
+- 2022-01-05 00:51 a161a50 **step: define article processed event**
+- 2022-01-05 00:49 e7b66a5 **step: build article from article locked event**
+- 2022-01-05 00:47 428ad08 **step: move updating article read model to article locked event**
+- 2022-01-05 00:40 6775689 **step: make newspaperid in #schedule type safe**
+- 2022-01-05 00:17 a04b2cb **step: make newspaper#schedule accept article objects**
+- 2022-01-05 00:11 4b091a2 **step: define article#lock command**
+- 2022-01-05 00:08 20d8f5e **step: define article locked event**
+- 2022-01-04 20:42 cb5e54d **feature: display created overall articles stat**
+- 2022-01-04 20:23 f54d67e **step: add stats read model**
+- 2022-01-04 19:33 cf9db96 **Brand types (#1)**
+- 2022-01-03 21:24 0fb771b **step: run feedly job every 2 hours**
+- 2022-01-03 21:23 31b7c28 **fix: marking articles as deleted**
+- 2022-01-03 20:35 cc9e974 **fix: emails not being delivered to kindle due to no attachment**
+- 2022-01-03 19:51 4c891bc **step: add date labels**
+- 2022-01-03 19:00 7b34af3 **fix: sent article source alignment in the newspaper list**
+- 2022-01-03 18:49 1ed4bcf **fix: eslint issues**
+- 2022-01-03 18:28 d116cbb **feature: add reading time to article title**
+- 2022-01-03 18:21 265e006 **step: add reading time readable article vo**
+- 2022-01-03 18:20 abd2ee7 **refactor: move newspaper creation out of newspaper aggregate**
+- 2022-01-03 00:14 100ea18 **feature: add estimated reading time calculator**
+- 2022-01-03 00:00 745f4d7 **refactor: use newspaper-status-transition policy**
+- 2022-01-02 23:58 6953f0d **feature: implement newspaper-status-transition**
+- 2022-01-02 23:38 701a74c **refactor: resign from intermediary variable for events**
+- 2022-01-02 23:33 f2023ca **refactor: use policy#perform**
+- 2022-01-02 23:22 3109fdf **feature: add maxiumum-newspaper-article-number policy**
+- 2022-01-02 23:02 27f1373 **refactor: implement policies basing on the abstract policy class**
+- 2022-01-02 22:44 3ec233a **step: bump bgord-node**
+- 2022-01-02 22:17 1e0c54a **feature: add SUPRESS_FEEDLY_CRAWLING feature flag**
+- 2022-01-02 22:07 9f547d4 **feature: add markArticlesAsRead feedly service method**
+- 2022-01-02 22:00 b3168e3 **step: grab article id from feedly**
+- 2022-01-02 21:54 0a49c0d **step: get only unread articles from feedly**
+- 2022-01-02 21:49 22b728d **feature: add a job to get articles from feedly**
+- 2022-01-02 21:41 fc0d169 **step: use different policy based on article source when adding it**
+- 2022-01-02 21:32 dac03e3 **feature: display article source**
+- 2022-01-02 21:28 9d73395 **step: filter out empty and twitter canonical urls**
+- 2022-01-02 20:21 cb87241 **step: add feedly-article vo**
+- 2022-01-02 20:15 fc4644d **step: add article-url-is-unique policy**
+- 2022-01-02 20:12 9d69a7a **refactor: rename article-url-is-unique**
+- 2022-01-02 20:07 0c5d71d **feature: setup jobs scheduler**
+- 2022-01-02 20:04 6a9fc9f **feature: add feedly service to fetch articles**
+- 2022-01-02 19:46 93a2aec **step: add feedly token env var**
+- 2022-01-02 15:51 5a30d64 **step: reorder articles and newspaper**
+- 2022-01-02 15:21 09fa476 **feature: add ellipsis overflow handling for newspaper article list**
+- 2022-01-02 15:14 8a00ae5 **fix: article list overflow**
+- 2022-01-02 14:03 3a9285c **feature: allow resending delivered newspapers**
+- 2022-01-02 13:44 ffdf5d4 **fix: make article url input required**
+- 2022-01-02 13:42 3e736fe **fix: emit scheduled event on retry**
+- 2022-01-02 13:33 231c536 **fix: check newspapers folder into git**
+- 2022-01-02 13:27 a13e7f9 **fix: newspaper file paths in prod**
+- 2022-01-02 13:02 654818d **feature: add favicon**
+- 2022-01-02 12:59 45fc9ab **feature: add sent at newspaper timestamp**
+- 2022-01-02 12:59 3f17db9 **feature: add title**
+- 2022-01-02 12:42 ac050c3 **step: add newspaper status validation in all methods**
+- 2022-01-02 12:28 90bdfe7 **feature: add a way to retry failed newspaper**
+- 2022-01-02 12:21 16f7ea0 **feature: handle newspaper creation failures**
+- 2022-01-02 12:13 9efa22a **feature: add a way to archive newspaper**
+- 2022-01-02 11:49 be257a3 **feature: add refresh button**
+- 2022-01-02 11:03 c5740b7 **refactor: create newspaper sender**
+- 2022-01-02 10:54 fde6ede **refactor: add private compose metho to newspaper file**
+- 2022-01-02 10:37 d7d9048 **feature: convert html to mobi**
+- 2022-01-02 10:20 b49642a **step: reload page on successful newspaper crceation**
+- 2022-01-02 10:01 163fe0d **step: style empty states**
+- 2022-01-02 09:54 be33a4a **fix: article was not processed policy**
+- 2022-01-02 09:49 c189eaa **step: style dashboard**
+- 2022-01-02 09:25 49a3f63 **feature: toggle newspaper articles**
+- 2022-01-02 08:57 8219650 **step: add arrow icons**
+- 2021-12-31 15:27 b8738e0 **feature: display articles for newspapers**
+- 2021-12-31 15:09 8ee8f54 **refactor: remove newspaper number from db**
+- 2021-12-31 13:59 3ae3a6b **refactor: resign from table-of-contents aggregate**
+- 2021-12-31 02:36 d714191 **step: add article was not processed policy**
+- 2021-12-31 02:36 46d1a8e **refactor: article-should-exist policy**
+- 2021-12-31 02:29 79cf358 **feature: show only non-processed articles**
+- 2021-12-31 02:20 1901ed4 **feature: update article status when it's been included in a sent newspaper**
+- 2021-12-31 02:17 88717e4 **feature: update article status when they are being processed**
+- 2021-12-31 02:01 2793f38 **feature: sort newspapers by desc schedule time**
+- 2021-12-31 02:00 3223899 **fix: article status badge spacing**
+- 2021-12-31 01:57 72689cc **step: remove settings for now**
+- 2021-12-31 01:47 8107a32 **refactor: use article aggregate for creating newspaper**
+- 2021-12-31 01:42 9378167 **refactor: use article aggregate for deleting articles**
+- 2021-12-31 01:34 97de244 **refactor: use article aggregate for creationg articles**
+- 2021-12-31 01:30 839b2a0 **refactor: migrate article-should-exist policy to read model**
+- 2021-12-31 01:25 022dd55 **refactor: migrate article-url-is-unique policy to read model**
+- 2021-12-31 01:24 a099211 **fix: wrap routes with bg.Route**
+- 2021-12-31 01:08 c76e74b **feature: display article status**
+- 2021-12-31 01:02 f1689c5 **refactor: use article read model**
+- 2021-12-31 00:15 a471005 **feature: display newspapers**
+- 2021-12-31 00:12 c38bdc6 **step: add a script to convert ts**
+- 2021-12-30 23:48 7c1db8b **feature: add newspaper repository**
+- 2021-12-30 22:33 abb7849 **feature: delete newspaper file after sending**
+- 2021-12-30 20:53 ca0a2f0 **feature: send newspaper**
+- 2021-12-30 20:50 c351f62 **step: add smtp env vars**
+- 2021-12-30 20:12 807810e **feature: generate newspaper file**
+- 2021-12-30 20:05 9ad79e7 **feature: add newspaper file creator service**
+- 2021-12-30 00:29 012e19a **step: add readable article vo**
+- 2021-12-30 00:11 cdefdb5 **feature: add readable article content generator**
+- 2021-12-30 00:00 d2a2e0a **feature: get content of the articles**
+- 2021-12-29 23:56 608bde7 **step: add article content downloader service**
+- 2021-12-29 23:55 e4854ac **step: install axios**
+- 2021-12-29 23:43 c495ff8 **step: align delete button to right always**
+- 2021-12-29 23:43 611e916 **refactor: change contents to articles in toc**
+- 2021-12-29 23:31 5859af5 **feature: schedule creating a newspaper**
+- 2021-12-29 00:29 e3dddab **refactor: add toContent article method**
+- 2021-12-29 00:17 0f7f161 **feature: add create-newspaper form ui**
+- 2021-12-29 00:14 05384d3 **step: setup newspaper aggregate**
+- 2021-12-28 23:48 12d816d **feature: add a schedule newspaper command**
+- 2021-12-28 23:24 ca2e87a **step: add table-of-contents vo**
+- 2021-12-28 23:24 1d5cbf1 **step: setup create-newspaper route handler**
+- 2021-12-28 19:44 eb1721e **feature: add unique article url policy**
+- 2021-12-28 19:39 572f215 **feature: add article should exist policy**
+- 2021-12-28 19:35 303a4ca **step: add create newspaper button**
+- 2021-12-28 19:15 681b629 **feature: add select and deselect all buttons**
+- 2021-12-28 19:07 91e79d2 **feature: add checkboxes to select articles to send**
+- 2021-12-28 18:14 b786cf4 **feature: add a way to delete an article**
+- 2021-12-28 16:46 c1764e0 **feature: handle adding new articles**
+- 2021-12-28 16:46 6ce8a7e **feature: display articles**
+- 2021-12-28 16:20 40aeba1 **feature: add new article form**
+- 2021-12-27 23:46 6097598 **feature: add an endpoint to update the number of articles to autosend**
+- 2021-12-27 23:32 ada0f60 **feature: display current number of articles to autosend**
+- 2021-12-27 23:28 7b211cd **feature: add update number of articles to autosend form**
+- 2021-12-27 23:20 dd89fe7 **step: add UpdatedNumberOfArticlesToAutosendEventType**
+- 2021-12-27 23:05 86e0773 **feature: add login-protected dashboard page**
+- 2021-12-27 22:56 02c0a00 **feature: add raok login homepage**
+- 2021-12-27 22:53 ad0a67d **step: setup handlebars**
+- 2021-12-27 22:49 5d14f77 **step: setup prisma**
+- 2021-12-27 22:45 5f351c5 **chore(release): 1.0.0**
+- 2021-12-27 22:39 28ca148 **feature: setup project**
