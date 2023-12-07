@@ -1,11 +1,13 @@
 # Changelog
+- 2023-12-07 13:56 7dae638 **build(deps): bump jsdom from 22.1.0 to 23.0.1 (#77)**
+## 2023-12-07 13:56 
 - 2023-12-07 13:55 ff690d5 **build(deps): bump @bgord/frontend from `7534259` to `0589214` (#78)**
 - 2023-12-07 13:55 ee6cba3 **build(deps-dev): bump @commitlint/cli from 18.4.2 to 18.4.3 (#70)**
 - 2023-12-07 13:55 751bbc0 **build(deps): bump iconoir-react from 7.0.2 to 7.1.0 (#79)**
 - 2023-12-07 13:55 347218e **build(deps-dev): bump @typescript-eslint/parser from 6.11.0 to 6.13.2 (#80)**
-## 2023-12-07 13:55 
 - 2023-12-07 13:43 c775cb3 **refactor: add articles-to-review-notification badge**
 - 2023-12-07 13:39 eded728 **step: add clickable source url**
+- 2023-12-07 12:56 f5802db **docs: generate CHANGELOG**
 - 2023-12-07 12:55 94f8593 **docs: generate CHANGELOG**
 - 2023-12-07 12:45 e81bccd **docs: generate CHANGELOG**
 - 2023-12-07 11:09 ba48488 **step: add changelog workflow**
