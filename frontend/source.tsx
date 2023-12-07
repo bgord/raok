@@ -62,9 +62,14 @@ export function Source(
           <div class="c-badge">{props.status}</div>
         )}
 
-        <div data-fs="14" data-transform="truncate" title={props.url}>
+        <UI.OutboundLink
+          href={props.url}
+          data-fs="14"
+          data-transform="truncate"
+          title={props.url}
+        >
           {props.url}
-        </div>
+        </UI.OutboundLink>
       </div>
 
       <div data-display="flex" data-gap="6" data-wrap="nowrap" data-ml="auto">
