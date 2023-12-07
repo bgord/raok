@@ -105,6 +105,23 @@ export function Settings(_props: RoutableProps) {
               }
             />
 
+            {settings.data?.isArticlesToReviewNotificationEnabled && (
+              <div
+                class="c-badge"
+                data-color="green-700"
+                data-bg="green-100"
+                {...bg.Rhythm().times(7).style.width}
+              >
+                {t("articles-to-review-notification.enabled")}
+              </div>
+            )}
+
+            {!settings.data?.isArticlesToReviewNotificationEnabled && (
+              <div class="c-badge" {...bg.Rhythm().times(7).style.width}>
+                {t("articles-to-review-notification.disabled")}
+              </div>
+            )}
+
             <div
               data-fs="14"
               data-color="gray-600"
