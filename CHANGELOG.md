@@ -1,6 +1,9 @@
 # Changelog
+- 2023-12-08 16:03 1e77180 **fix: toasts wrapping**
+## 2023-12-08 16:03 
+- 2023-12-08 16:00 c267e18 **fix: add saf padding bottom**
 - 2023-12-07 16:13 0e2ae9e **step: bump bgord/node**
-## 2023-12-07 16:13 
+- 2023-12-07 15:14 2862215 **docs: generate CHANGELOG**
 - 2023-12-07 13:56 7dae638 **build(deps): bump jsdom from 22.1.0 to 23.0.1 (#77)**
 - 2023-12-07 13:55 ff690d5 **build(deps): bump @bgord/frontend from `7534259` to `0589214` (#78)**
 - 2023-12-07 13:55 ee6cba3 **build(deps-dev): bump @commitlint/cli from 18.4.2 to 18.4.3 (#70)**
