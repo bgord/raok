@@ -1,7 +1,17 @@
 # Changelog
+- 2023-12-08 16:10 f280d7d **Merge branch 'dependabot/npm_and_yarn/bgord/frontend-6c5e81e'**
+## 2023-12-08 16:10 
+- 2023-12-08 16:09 aa46260 **Merge branch 'dependabot/npm_and_yarn/postcss-8.4.32'**
+- 2023-12-08 16:09 32a020b **Merge branch 'dependabot/npm_and_yarn/typescript-5.3.3'**
+- 2023-12-08 16:08 bb7c192 **Merge branch 'dependabot/npm_and_yarn/esbuild-0.19.8'**
+- 2023-12-08 16:08 36b69d0 **Merge branch 'master' of github.com:bgord/raok**
 - 2023-12-08 16:03 1e77180 **fix: toasts wrapping**
-## 2023-12-08 16:03 
 - 2023-12-08 16:00 c267e18 **fix: add saf padding bottom**
+- 2023-12-08 15:07 596f304 **docs: generate CHANGELOG**
+- 2023-12-08 05:10 31256ef **build(deps): bump @bgord/frontend from `0589214` to `6c5e81e`**
+- 2023-12-08 05:08 3cbd9a4 **build(deps-dev): bump postcss from 8.4.31 to 8.4.32**
+- 2023-12-08 05:06 f0b075d **build(deps): bump typescript from 5.3.2 to 5.3.3**
+- 2023-12-08 05:06 4da3e2a **build(deps-dev): bump esbuild from 0.19.7 to 0.19.8**
 - 2023-12-07 16:13 0e2ae9e **step: bump bgord/node**
 - 2023-12-07 15:14 2862215 **docs: generate CHANGELOG**
 - 2023-12-07 13:56 7dae638 **build(deps): bump jsdom from 22.1.0 to 23.0.1 (#77)**
