@@ -14,107 +14,58 @@ import { Mailer } from "./mailer";
 import { SupportedLanguages } from "./supported-languages";
 
 export const prerequisites = [
-  new bg.Prerequisite({
-    label: "port",
-    strategy: bg.PrerequisiteStrategyEnum.port,
-    port: Env.PORT,
-  }),
-
-  new bg.Prerequisite({
-    label: "pandoc",
-    binary: "pandoc",
-    strategy: bg.PrerequisiteStrategyEnum.binary,
-  }),
-
-  new bg.Prerequisite({
-    label: "calibre",
-    binary: "ebook-convert",
-    strategy: bg.PrerequisiteStrategyEnum.binary,
-  }),
-
-  new bg.Prerequisite({
-    label: "prisma-sqlite",
-    strategy: bg.PrerequisiteStrategyEnum.prisma,
-    client: db,
-  }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisitePort({ label: "port", port: Env.PORT }),
+  new bg.PrerequisiteBinary({ label: "pandoc", binary: "pandoc" }),
+  new bg.PrerequisiteBinary({ label: "calibre", binary: "ebook-convert" }),
+  new bg.PrerequisitePrisma({ label: "prisma-sqlite", client: db }),
+  new bg.PrerequisitePath({
     label: "static directory",
-    strategy: bg.PrerequisiteStrategyEnum.path,
     path: "static",
     access: { write: true },
   }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisitePath({
     label: "files directory",
-    strategy: bg.PrerequisiteStrategyEnum.path,
     path: "files",
     access: { write: true },
   }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisitePath({
     label: "newspapers directory",
-    strategy: bg.PrerequisiteStrategyEnum.path,
     path: "newspapers",
     access: { write: true },
   }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisiteNode({
     label: "node",
-    strategy: bg.PrerequisiteStrategyEnum.node,
     version: bg.PackageVersion.fromStringWithV("v20.5.1"),
   }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisiteRAM({
     label: "RAM",
-    strategy: bg.PrerequisiteStrategyEnum.RAM,
+    enabled: Env.type === bg.Schema.NodeEnvironmentEnum.production,
     minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 128 }),
   }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisiteSpace({
     label: "disk space",
-    strategy: bg.PrerequisiteStrategyEnum.space,
     minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 512 }),
   }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisiteTranslations({
     label: "translations",
-    strategy: bg.PrerequisiteStrategyEnum.translations,
     supportedLanguages: SupportedLanguages,
   }),
-
-  new bg.Prerequisite({
-    label: "migrations",
-    strategy: bg.PrerequisiteStrategyEnum.migrations,
-  }),
-
-  new bg.Prerequisite({
+  new bg.PrerequisiteMigrations({ label: "migrations" }),
+  new bg.PrerequisiteMemory({
     label: "memory-consumption",
-    strategy: bg.PrerequisiteStrategyEnum.memory,
     maximum: new bg.Size({ value: 500, unit: bg.SizeUnit.MB }),
   }),
 ];
 
 export const healthcheck = [
-  new bg.Prerequisite({
-    label: "api",
-    strategy: bg.PrerequisiteStrategyEnum.self,
-  }),
-  new bg.Prerequisite({
-    label: "outside-connectivity",
-    strategy: bg.PrerequisiteStrategyEnum.outsideConnectivity,
-  }),
-  new bg.Prerequisite({
+  new bg.PrerequisiteSelf({ label: "api" }),
+  new bg.PrerequisiteOutsideConnectivity({ label: "outside-connectivity" }),
+  new bg.PrerequisiteSSLCertificateExpiry({
     label: "ssl-certificate-expiry",
-    strategy: bg.PrerequisiteStrategyEnum.sslCertificateExpiry,
     host: "raok.bgord.me",
     validDaysMinimum: 7,
   }),
-  new bg.Prerequisite({
-    label: "nodemailer",
-    strategy: bg.PrerequisiteStrategyEnum.mailer,
-    mailer: Mailer,
-  }),
+  new bg.PrerequisiteMailer({ label: "nodemailer", mailer: Mailer }),
   ...prerequisites.filter(
     (prerequisite) => prerequisite.config.label !== "port"
   ),
