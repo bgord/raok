@@ -1,12 +1,15 @@
 # Changelog
+- 2023-12-11 17:31 bcf5041 **feature: change PROCESSING_JOBS_BATCH to 100**
+## 2023-12-11 17:31 
 - 2023-12-11 17:19 734932c **build(deps): bump preact from 10.19.2 to 10.19.3 (#86)**
-## 2023-12-11 17:19 
 - 2023-12-11 17:18 e8d41d4 **build(deps-dev): bump eslint from 8.54.0 to 8.55.0 (#88)**
 - 2023-12-11 17:18 abf8a95 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#87)**
 - 2023-12-11 17:17 ed0eb58 **build(deps-dev): bump postcss-cli from 10.1.0 to 11.0.0 (#90)**
 - 2023-12-11 17:17 03541bd **build(deps-dev): bump eslint-config-prettier from 9.0.0 to 9.1.0 (#89)**
+- 2023-12-11 17:15 3701939 **refactor: improve readbility**
 - 2023-12-11 17:11 f3ce506 **fix: source#bump validations**
 - 2023-12-11 16:56 f8b08ff **step: bump bgord/node**
+- 2023-12-11 16:19 b4f04bb **docs: generate CHANGELOG**
 - 2023-12-11 16:18 ec80625 **docs: generate CHANGELOG**
 - 2023-12-11 16:18 9ef1962 **docs: generate CHANGELOG**
 - 2023-12-11 16:17 1cfa5dc **docs: generate CHANGELOG**
