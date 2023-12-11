@@ -58,7 +58,7 @@ export class Source {
   async bump(revision: bg.Revision) {
     revision.validate(this.data.revision);
 
-    if (this.data.status === VO.SourceStatusEnum.active) {
+    if (this.data.status !== VO.SourceStatusEnum.active) {
       throw new Error("Source is not active");
     }
 
