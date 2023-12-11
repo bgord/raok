@@ -25,7 +25,7 @@ type RSSCrawlerJobType = {
 export class RSSCrawler {
   static INTERVAL_MINUTES = 2;
 
-  private PROCESSING_JOBS_BATCH = 100;
+  private PROCESSING_JOBS_BATCH = 75;
 
   private jobs: RSSCrawlerJobType[] = [];
 
@@ -71,7 +71,7 @@ export class RSSCrawler {
         });
       } finally {
         stepper.continue();
-        await bg.sleep(bg.Time.Seconds(1));
+        await bg.sleep(bg.Time.Seconds(0.5));
       }
     }
 
