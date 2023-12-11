@@ -1,6 +1,9 @@
 # Changelog
+- 2023-12-11 17:11 f3ce506 **fix: source#bump validations**
+## 2023-12-11 17:11 
+- 2023-12-11 16:56 f8b08ff **step: bump bgord/node**
 - 2023-12-09 14:42 8dd979f **refactor: prereqs**
-## 2023-12-09 14:42 
+- 2023-12-09 13:43 d8871c5 **docs: generate CHANGELOG**
 - 2023-12-08 16:10 f280d7d **Merge branch 'dependabot/npm_and_yarn/bgord/frontend-6c5e81e'**
 - 2023-12-08 16:09 aa46260 **Merge branch 'dependabot/npm_and_yarn/postcss-8.4.32'**
 - 2023-12-08 16:09 32a020b **Merge branch 'dependabot/npm_and_yarn/typescript-5.3.3'**
