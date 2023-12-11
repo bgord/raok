@@ -90,13 +90,14 @@ export class RSSCrawler {
     for (const job of this.jobs) {
       try {
         const source = await Services.Source.build(job.sourceId);
+        const revision = new bg.Revision(source.data.revision);
 
         await Newspapers.Aggregates.Article.add({
           url: job.url,
           source: Newspapers.VO.ArticleSourceEnum.rss,
         });
 
-        await source.bump(new bg.Revision(source.data.revision));
+        await source.bump(revision);
       } catch (error) {
         infra.logger.error({
           message: `Article not added ${stepper.format()}`,
