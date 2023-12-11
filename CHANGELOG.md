@@ -1,7 +1,9 @@
 # Changelog
+- 2023-12-11 17:17 ed0eb58 **build(deps-dev): bump postcss-cli from 10.1.0 to 11.0.0 (#90)**
+## 2023-12-11 17:17 
 - 2023-12-11 17:11 f3ce506 **fix: source#bump validations**
-## 2023-12-11 17:11 
 - 2023-12-11 16:56 f8b08ff **step: bump bgord/node**
+- 2023-12-11 16:13 3302cb1 **docs: generate CHANGELOG**
 - 2023-12-09 14:42 8dd979f **refactor: prereqs**
 - 2023-12-09 13:43 d8871c5 **docs: generate CHANGELOG**
 - 2023-12-08 16:10 f280d7d **Merge branch 'dependabot/npm_and_yarn/bgord/frontend-6c5e81e'**
