@@ -28,7 +28,7 @@
     "@types/serialize-javascript": "5.0.4",
     "@typescript-eslint/eslint-plugin": "6.13.2",
     "@typescript-eslint/parser": "6.13.2",
-    "esbuild": "0.19.8",
+    "esbuild": "0.19.9",
     "eslint": "8.55.0",
     "eslint-config-bgord": "3.4.1",
     "eslint-config-prettier": "9.1.0",
