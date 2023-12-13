@@ -1,6 +1,10 @@
 # Changelog
+- 2023-12-13 15:31 a9e2a09 **step: add clear button to articles to review notifications**
+## 2023-12-13 15:31 
+- 2023-12-13 15:29 e8d7465 **fix: articles-to-review-notification.info hour formatting**
+- 2023-12-13 15:27 8f7534e **fix: article reading time badge wrapping**
+- 2023-12-11 20:08 374b21a **docs: generate CHANGELOG**
 - 2023-12-11 20:04 c9f6fbf **refactor: adjust sleep time in rss crawler**
-## 2023-12-11 20:04 
 - 2023-12-11 17:31 bcf5041 **feature: change PROCESSING_JOBS_BATCH to 100**
 - 2023-12-11 17:19 734932c **build(deps): bump preact from 10.19.2 to 10.19.3 (#86)**
 - 2023-12-11 17:18 e8d41d4 **build(deps-dev): bump eslint from 8.54.0 to 8.55.0 (#88)**
