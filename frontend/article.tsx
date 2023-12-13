@@ -72,7 +72,10 @@ export function Article(props: ArticlePropsType) {
             data-fs="12"
             data-lh="12"
             data-p="3"
-            data-transform="nowrap"
+            data-transform="truncate"
+            title={t("article.reading_time", {
+              value: props.estimatedReadingTimeInMinutes ?? "·",
+            })}
             {...bg.Rhythm().times(4).style.width}
           >
             {t("article.reading_time", {
