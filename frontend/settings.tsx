@@ -155,6 +155,7 @@ export function Settings(_props: RoutableProps) {
             onInput={(event) =>
               notificationHour.set(Number(event.currentTarget.value))
             }
+            value={notificationHour.value}
           >
             {hours
               .map((hour) => ({
@@ -164,6 +165,7 @@ export function Settings(_props: RoutableProps) {
               .toSorted((a, b) => (a.local > b.local ? 1 : -1))
               .map((option) => (
                 <option
+                  key={option.raw}
                   value={option.raw}
                   selected={option.raw === articlesToReviewNotificationHour.raw}
                 >
@@ -180,6 +182,14 @@ export function Settings(_props: RoutableProps) {
           >
             {t("app.update")}
           </button>
+
+          <UI.ClearButton
+            disabled={
+              notificationHour.unchanged ||
+              setArticlesToReviewNotificationHour.isLoading
+            }
+            onClick={notificationHour.clear}
+          />
         </form>
 
         <UI.Info>
