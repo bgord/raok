@@ -90,7 +90,7 @@
   "articles-to-review-notification.disabled": "disabled",
   "articles-to-review-notification.hour.change.error": "Notification hour not changed",
   "articles-to-review-notification.hour.changed": "articles to review notifications hour changed",
-  "articles-to-review-notification.info": "Notifications will be sent at {{local}} your time every day, which is {{utc_zero}} UTC+0",
+  "articles-to-review-notification.info": "Notifications will be sent at {{local}} your time every day, which is {{utc_zero}}:00 UTC+0",
 
   "dashboard.unselect_all": "cancel",
   "dashboard.no_articles_available": "No articles available at the moment",
