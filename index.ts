@@ -223,6 +223,7 @@ app.get(
 app.post(
   "/reordering/:correlationId/transfer",
   infra.AuthShield.verify,
+  infra.CacheResponse.clear,
   bg.Route(Reordering.Routes.ReorderingTransfer)
 );
 // =============================
