@@ -1,8 +1,12 @@
 # Changelog
+- 2023-12-14 13:24 e4adb5c **fix: oxlint errors**
+## 2023-12-14 13:24 
+- 2023-12-14 13:19 f46b600 **step: bump bgord/scripts**
+- 2023-12-14 13:19 50b6a3a **step: install oxlint**
 - 2023-12-13 15:31 a9e2a09 **step: add clear button to articles to review notifications**
-## 2023-12-13 15:31 
 - 2023-12-13 15:29 e8d7465 **fix: articles-to-review-notification.info hour formatting**
 - 2023-12-13 15:27 8f7534e **fix: article reading time badge wrapping**
+- 2023-12-13 14:33 82ee4d8 **docs: generate CHANGELOG**
 - 2023-12-11 20:08 374b21a **docs: generate CHANGELOG**
 - 2023-12-11 20:04 c9f6fbf **refactor: adjust sleep time in rss crawler**
 - 2023-12-11 17:31 bcf5041 **feature: change PROCESSING_JOBS_BATCH to 100**
