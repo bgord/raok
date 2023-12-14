@@ -1,6 +1,9 @@
 # Changelog
+- 2023-12-14 22:01 24e6e5e **feature: add source list sorting**
+## 2023-12-14 22:01 
+- 2023-12-14 21:47 f81eac4 **step: bump bgord/frontend**
 - 2023-12-14 20:26 750765c **fix: clear response cache on reordering**
-## 2023-12-14 20:26 
+- 2023-12-14 19:28 0ba4cf1 **docs: generate CHANGELOG**
 - 2023-12-14 13:53 0cd40f7 **docs: generate CHANGELOG**
 - 2023-12-14 13:24 e4adb5c **fix: oxlint errors**
 - 2023-12-14 13:19 f46b600 **step: bump bgord/scripts**
