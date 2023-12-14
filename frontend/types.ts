@@ -71,3 +71,9 @@ export { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-obj
 export { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-objects/article-search-query-max-length";
 
 export { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";
+
+export enum SourceSortEnum {
+  default = "default",
+  used_at_most_recent = "used_at_most_recent",
+  used_at_least_recent = "used_at_least_recent",
+}

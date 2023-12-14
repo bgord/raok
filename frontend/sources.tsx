@@ -35,12 +35,24 @@ export function Sources(_props: RoutableProps) {
     },
   });
 
+  const sort = bg.useClientSort<types.SourceType>("sort-sources", {
+    enum: types.SourceSortEnum,
+    options: {
+      [types.SourceSortEnum.default]: bg.defaultSortFn,
+      [types.SourceSortEnum.used_at_most_recent]: (a, b) =>
+        a.updatedAt.raw < b.updatedAt.raw ? 1 : -1,
+      [types.SourceSortEnum.used_at_least_recent]: (a, b) =>
+        a.updatedAt.raw > b.updatedAt.raw ? 1 : -1,
+    },
+  });
+
   const sources = bg.useReordering({
     correlationId: "sources",
-    initialItems: (sourceList.data ?? []).filter((source) =>
-      search.filterFn(String(source.url))
-    ),
+    initialItems: (sourceList.data ?? [])
+      .filter((source) => search.filterFn(String(source.url)))
+      .toSorted(sort.sortFn),
     callback: reorder.mutate,
+    enabled: sort.unchanged && search.unchanged,
   });
 
   const numberOfSources = sources.items.length;
@@ -49,7 +61,7 @@ export function Sources(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
-      data-gap="36"
+      data-gap="12"
       data-mt="24"
       data-mx="auto"
       data-md-pl="6"
@@ -72,9 +84,28 @@ export function Sources(_props: RoutableProps) {
         data-display="flex"
         data-wrap="nowrap"
         data-max-width="100%"
-        data-gap="6"
+        data-gap="12"
       >
-        <div data-position="relative" data-width="100%">
+        <div data-display="flex" data-direction="column">
+          <label class="c-label" {...sort.label.props}>
+            {t("sort")}
+          </label>
+
+          <UI.Select
+            key={sort.value}
+            value={sort.value}
+            onInput={(event) => sort.set(event.currentTarget.value)}
+            {...sort.input.props}
+          >
+            {sort.options.map((option) => (
+              <option key={option} value={option}>
+                {t(`source.sort.${String(option)}`)}
+              </option>
+            ))}
+          </UI.Select>
+        </div>
+
+        <div data-position="relative" data-grow="1" data-self="end">
           <input
             list="articles"
             onInput={search.onChange}
@@ -93,7 +124,16 @@ export function Sources(_props: RoutableProps) {
           />
         </div>
 
-        <UI.ClearButton onClick={search.clear} disabled={search.unchanged} />
+        <button
+          type="button"
+          class="c-button"
+          data-variant="bare"
+          data-self="end"
+          onClick={bg.exec([search.clear, sort.clear])}
+          disabled={search.unchanged && sort.unchanged}
+        >
+          {t("app.reset")}
+        </button>
       </div>
 
       {sourceList.isSuccess && sources.items.length === 0 && (
@@ -111,7 +151,7 @@ export function Sources(_props: RoutableProps) {
         data-direction="column"
         data-gap="12"
         data-max-width="100%"
-        data-mb="48"
+        data-my="24"
       >
         {sources.items.map((source, idx) => (
           <Source

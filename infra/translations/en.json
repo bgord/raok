@@ -170,5 +170,8 @@
   "article.source.add": "add article source",
   "article.reading_time": "{{value}} min",
   "revision.invalid.error": "Invalid resource revision",
-  "revision.mismatch.error": "Resource changed in the meantime"
+  "revision.mismatch.error": "Resource changed in the meantime",
+  "source.sort.default": "default",
+  "source.sort.used_at_most_recent": "most recent",
+  "source.sort.used_at_least_recent": "least recent"
 }
