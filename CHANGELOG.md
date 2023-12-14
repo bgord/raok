@@ -1,6 +1,8 @@
 # Changelog
+- 2023-12-14 20:26 750765c **fix: clear response cache on reordering**
+## 2023-12-14 20:26 
+- 2023-12-14 13:53 0cd40f7 **docs: generate CHANGELOG**
 - 2023-12-14 13:24 e4adb5c **fix: oxlint errors**
-## 2023-12-14 13:24 
 - 2023-12-14 13:19 f46b600 **step: bump bgord/scripts**
 - 2023-12-14 13:19 50b6a3a **step: install oxlint**
 - 2023-12-13 15:31 a9e2a09 **step: add clear button to articles to review notifications**
