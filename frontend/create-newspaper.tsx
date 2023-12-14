@@ -70,6 +70,7 @@ export function CreateNewspaper() {
 
           return (
             <li
+              key={id}
               data-display="flex"
               data-wrap="nowrap"
               data-gap="12"

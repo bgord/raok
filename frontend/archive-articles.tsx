@@ -95,7 +95,9 @@ export function ArchiveArticles(_props: RoutableProps) {
             {...createdAtFilter.input.props}
           >
             {createdAtFilter.options.map((option) => (
-              <option value={option}>{t(String(option))}</option>
+              <option key={option} value={option}>
+                {t(String(option))}
+              </option>
             ))}
           </UI.Select>
         </div>
@@ -113,7 +115,9 @@ export function ArchiveArticles(_props: RoutableProps) {
             <option selected>{t("all")}</option>
 
             {statusFilter.options.map((status) => (
-              <option value={status}>{t(String(status))}</option>
+              <option key={status} value={status}>
+                {t(String(status))}
+              </option>
             ))}
           </UI.Select>
         </div>
@@ -132,7 +136,9 @@ export function ArchiveArticles(_props: RoutableProps) {
             <option selected>{t("all")}</option>
 
             {sourceFilter.options.map((source) => (
-              <option value={source}>{t(String(source))}</option>
+              <option key={source} value={source}>
+                {t(String(source))}
+              </option>
             ))}
           </UI.Select>
         </div>
@@ -193,7 +199,7 @@ export function ArchiveArticles(_props: RoutableProps) {
 
       <datalist id="articles">
         {archiveArticles.map((article) => (
-          <option value={String(article.title)} />
+          <option key={article.id} value={String(article.title)} />
         ))}
       </datalist>
 

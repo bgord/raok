@@ -82,7 +82,9 @@ export function ArchiveFiles(_props: RoutableProps) {
               {...sentAtFilter.input.props}
             >
               {sentAtFilter.options.map((option) => (
-                <option value={option}>{t(String(option))}</option>
+                <option key={option} value={option}>
+                  {t(String(option))}
+                </option>
               ))}
             </UI.Select>
           </div>
@@ -133,7 +135,7 @@ export function ArchiveFiles(_props: RoutableProps) {
 
       <datalist id="files">
         {archiveFiles.data?.map((file) => (
-          <option value={String(file.name)} />
+          <option key={file.id} value={String(file.name)} />
         ))}
       </datalist>
 
@@ -145,6 +147,7 @@ export function ArchiveFiles(_props: RoutableProps) {
       >
         {files.map((file) => (
           <li
+            key={file.id}
             data-display="flex"
             data-cross="center"
             data-wrap="nowrap"

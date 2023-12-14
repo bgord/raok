@@ -102,7 +102,7 @@ export function Sources(_props: RoutableProps) {
 
       <datalist id="sources">
         {sourceList.data?.map((source) => (
-          <option value={String(source.url)} />
+          <option key={source} value={String(source.url)} />
         ))}
       </datalist>
 
