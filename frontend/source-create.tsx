@@ -50,7 +50,7 @@ export function SourceCreate() {
           class="c-input"
           type="url"
           data-grow="1"
-          onChange={(event) => sourceUrl.set(event.currentTarget.value)}
+          onChange={sourceUrl.onChange}
           pattern={`.{${types.SOURCE_URL_MIN_LENGTH},${types.SOURCE_URL_MAX_LENGTH}}`}
           placeholder={t("source.url.placeholder")}
           required

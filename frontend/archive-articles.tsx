@@ -171,7 +171,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         <div data-position="relative" data-width="100%">
           <input
             list="articles"
-            onInput={(event) => search.set(event.currentTarget.value)}
+            onInput={search.onChange}
             required
             value={search.value}
             class="c-input"

@@ -43,7 +43,7 @@ export function AddArticleForm() {
         required
         value={url.value}
         max={types.ARTICLE_URL_MAX_CHARS}
-        onInput={(event) => url.set(event.currentTarget.value)}
+        onInput={url.onChange}
         disabled={addArticleRequest.isLoading}
         placeholder={t("article.placeholder")}
         class="c-input"
