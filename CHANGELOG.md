@@ -1,6 +1,9 @@
 # Changelog
+- 2023-12-15 16:59 73bb9e9 **refactor: use field on change**
+## 2023-12-15 16:59 
+- 2023-12-15 16:58 bdd358c **step: bump bgord/frontend**
 - 2023-12-15 08:58 6524d20 **refactor: improve source create form**
-## 2023-12-15 08:58 
+- 2023-12-15 07:59 5196433 **docs: generate CHANGELOG**
 - 2023-12-14 22:01 24e6e5e **feature: add source list sorting**
 - 2023-12-14 21:47 f81eac4 **step: bump bgord/frontend**
 - 2023-12-14 21:05 c1a3138 **docs: generate CHANGELOG**
