@@ -29,6 +29,7 @@ export function SourceCreate() {
       data-gap="24"
       data-md-gap="12"
       data-mt="24"
+      data-mb="12"
       onSubmit={(event) => {
         event.preventDefault();
         createSource.mutate(sourceUrl.value);
@@ -36,9 +37,11 @@ export function SourceCreate() {
     >
       <div
         data-display="flex"
-        data-direction="column"
+        data-cross="center"
+        data-wrap="nowrap"
         data-grow="1"
-        {...bg.Rhythm().times(25).style.maxWidth}
+        data-gap="6"
+        {...bg.Rhythm().times(30).style.maxWidth}
       >
         <label class="c-label" {...sourceUrl.label.props}>
           {t("source.url.label")}
@@ -46,6 +49,7 @@ export function SourceCreate() {
         <input
           class="c-input"
           type="url"
+          data-grow="1"
           onChange={(event) => sourceUrl.set(event.currentTarget.value)}
           pattern={`.{${types.SOURCE_URL_MIN_LENGTH},${types.SOURCE_URL_MAX_LENGTH}}`}
           placeholder={t("source.url.placeholder")}

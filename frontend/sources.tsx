@@ -94,7 +94,7 @@ export function Sources(_props: RoutableProps) {
           <UI.Select
             key={sort.value}
             value={sort.value}
-            onInput={(event) => sort.set(event.currentTarget.value)}
+            onInput={sort.onChange}
             {...sort.input.props}
           >
             {sort.options.map((option) => (

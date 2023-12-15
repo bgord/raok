@@ -173,5 +173,6 @@
   "revision.mismatch.error": "Resource changed in the meantime",
   "source.sort.default": "default",
   "source.sort.used_at_most_recent": "most recent",
-  "source.sort.used_at_least_recent": "least recent"
+  "source.sort.used_at_least_recent": "least recent",
+  "sort": "Sort by"
 }
