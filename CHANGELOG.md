@@ -1,7 +1,9 @@
 # Changelog
+- 2023-12-15 08:58 6524d20 **refactor: improve source create form**
+## 2023-12-15 08:58 
 - 2023-12-14 22:01 24e6e5e **feature: add source list sorting**
-## 2023-12-14 22:01 
 - 2023-12-14 21:47 f81eac4 **step: bump bgord/frontend**
+- 2023-12-14 21:05 c1a3138 **docs: generate CHANGELOG**
 - 2023-12-14 20:26 750765c **fix: clear response cache on reordering**
 - 2023-12-14 19:28 0ba4cf1 **docs: generate CHANGELOG**
 - 2023-12-14 13:53 0cd40f7 **docs: generate CHANGELOG**
