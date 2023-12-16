@@ -41,6 +41,15 @@ export const onArticleDeletedEventHandler =
     });
   });
 
+export const onArticleReadEventHandler =
+  EventHandler.handle<Events.ArticleReadEventType>(async (event) => {
+    await Repos.ArticleRepository.updateStatus({
+      id: event.payload.articleId,
+      status: VO.ArticleStatusEnum.read,
+      revision: event.payload.revision,
+    });
+  });
+
 export const onArticleUndeletedEventHandler =
   EventHandler.handle<Events.ArticleUndeleteEventType>(async (event) => {
     await Repos.ArticleRepository.updateStatus({

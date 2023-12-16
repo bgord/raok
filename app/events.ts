@@ -11,27 +11,24 @@ import * as infra from "../infra";
 const EventLogger = new bg.EventLogger(infra.logger);
 
 export const emittery = new Emittery<{
-  ARTICLE_ADDED_EVENT: NewspapersEvents.ArticleAddedEventType;
-  ARTICLE_DELETED_EVENT: NewspapersEvents.ArticleDeletedEventType;
-  ARTICLE_LOCKED_EVENT: NewspapersEvents.ArticleLockedEventType;
-  ARTICLE_UNLOCKED_EVENT: NewspapersEvents.ArticleUnlockedEventType;
-  ARTICLE_PROCESSED_EVENT: NewspapersEvents.ArticleProcessedEventType;
-  ARTICLE_UNDELETE_EVENT: NewspapersEvents.ArticleUndeleteEventType;
-  NEWSPAPER_SCHEDULED_EVENT: NewspapersEvents.NewspaperScheduledEventType;
-  NEWSPAPER_GENERATED_EVENT: NewspapersEvents.NewspaperGenerateEventType;
-  NEWSPAPER_SENT_EVENT: NewspapersEvents.NewspaperSentEventType;
-  NEWSPAPER_ARCHIVED_EVENT: NewspapersEvents.NewspaperArchivedEventType;
-  NEWSPAPER_FAILED_EVENT: NewspapersEvents.NewspaperFailedEventType;
   ARBITRARY_FILE_SCHEDULED_EVENT: Files.Events.ArbitraryFileScheduledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsDisabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsEnabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: Settings.Events.ArticlesToReviewNotificationHourSetEventType;
+  ARTICLE_ADDED_EVENT: NewspapersEvents.ArticleAddedEventType;
+  ARTICLE_DELETED_EVENT: NewspapersEvents.ArticleDeletedEventType;
+  ARTICLE_LOCKED_EVENT: NewspapersEvents.ArticleLockedEventType;
+  ARTICLE_PROCESSED_EVENT: NewspapersEvents.ArticleProcessedEventType;
+  ARTICLE_READ_EVENT: NewspapersEvents.ArticleReadEventType;
+  ARTICLE_UNDELETE_EVENT: NewspapersEvents.ArticleUndeleteEventType;
+  ARTICLE_UNLOCKED_EVENT: NewspapersEvents.ArticleUnlockedEventType;
+  NEWSPAPER_ARCHIVED_EVENT: NewspapersEvents.NewspaperArchivedEventType;
+  NEWSPAPER_FAILED_EVENT: NewspapersEvents.NewspaperFailedEventType;
+  NEWSPAPER_GENERATED_EVENT: NewspapersEvents.NewspaperGenerateEventType;
+  NEWSPAPER_SCHEDULED_EVENT: NewspapersEvents.NewspaperScheduledEventType;
+  NEWSPAPER_SENT_EVENT: NewspapersEvents.NewspaperSentEventType;
 }>({
-  debug: {
-    enabled: true,
-    name: "infra/logger",
-    logger: EventLogger.handle,
-  },
+  debug: { enabled: true, name: "infra/logger", logger: EventLogger.handle },
 });
 
 emittery.on(
@@ -42,6 +39,11 @@ emittery.on(
 emittery.on(
   NewspapersEvents.ARTICLE_DELETED_EVENT,
   NewspapersHandlers.onArticleDeletedEventHandler
+);
+
+emittery.on(
+  NewspapersEvents.ARTICLE_READ_EVENT,
+  NewspapersHandlers.onArticleReadEventHandler
 );
 
 emittery.on(

@@ -34,6 +34,7 @@ export class Article {
         Events.ArticleUnlockedEvent,
         Events.ArticleProcessedEvent,
         Events.ArticleUndeleteEvent,
+        Events.ArticleReadEvent,
       ],
       Article.getStream(id)
     );
@@ -60,6 +61,12 @@ export class Article {
         case Events.ARTICLE_PROCESSED_EVENT:
           if (!entity) continue;
           entity.status = VO.ArticleStatusEnum.processed;
+          revision = event.payload.revision;
+          break;
+
+        case Events.ARTICLE_READ_EVENT:
+          if (!entity) continue;
+          entity.status = VO.ArticleStatusEnum.read;
           revision = event.payload.revision;
           break;
 
@@ -185,6 +192,23 @@ export class Article {
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
       } satisfies Events.ArticleProcessedEventType)
+    );
+  }
+
+  async markAsRead(revision: bg.Revision) {
+    revision.validate(this.revision);
+    await Policies.ArticleStatusTransition.perform({
+      from: this.entity.status,
+      to: VO.ArticleStatusEnum.read,
+    });
+
+    await infra.EventStore.save(
+      Events.ArticleReadEvent.parse({
+        name: Events.ARTICLE_READ_EVENT,
+        stream: this.stream,
+        version: 1,
+        payload: { articleId: this.id, revision: revision.next().value },
+      } satisfies Events.ArticleReadEventType)
     );
   }
 
