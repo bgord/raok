@@ -16,7 +16,7 @@ export function SourceCreate() {
   const createSource = useMutation(api.Source.create, {
     onSuccess: () => {
       sourceUrl.clear();
-      queryClient.invalidateQueries(api.keys.sources);
+      queryClient.invalidateQueries(api.keys.allSources);
       notify({ message: "source.create.success" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),

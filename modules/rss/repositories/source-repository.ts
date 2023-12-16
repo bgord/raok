@@ -1,9 +1,15 @@
+import z from "zod";
+import _ from "lodash";
 import * as bg from "@bgord/node";
 
 import * as Reordering from "../../reordering";
 
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
+
+export const SourceFilter = new bg.Filter(
+  z.object({ status: VO.SourceStatus.optional() })
+);
 
 export class SourceRepository {
   static async create(payload: VO.SourceType) {
@@ -51,9 +57,13 @@ export class SourceRepository {
     });
   }
 
-  static async listAll() {
+  static async listAll(_filters?: infra.Prisma.SourceWhereInput) {
+    const filters = _.isEmpty(_filters)
+      ? { status: { not: VO.SourceStatusEnum.deleted } }
+      : _filters;
+
     const sources = await infra.db.source.findMany({
-      where: { status: { not: VO.SourceStatusEnum.deleted } },
+      where: filters,
       orderBy: { createdAt: "desc" },
     });
 

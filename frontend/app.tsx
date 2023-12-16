@@ -52,7 +52,10 @@ export function App(props: InitialDataType) {
   );
   queryClient.setQueryData(api.keys.settings, props.settings);
   queryClient.setQueryData(api.keys.articlesSearch, []);
-  queryClient.setQueryData(api.keys.sources, props.sources);
+  queryClient.setQueryData(
+    api.keys.sources({ status: undefined }),
+    props.sources
+  );
 
   return (
     <QueryClientProvider client={queryClient}>

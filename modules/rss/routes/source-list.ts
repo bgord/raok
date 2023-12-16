@@ -10,7 +10,8 @@ export async function SourceList(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const sources = await Repos.SourceRepository.listAll();
+  const filters = Repos.SourceFilter.parse(request.query);
+  const sources = await Repos.SourceRepository.listAll(filters);
 
   infra.ResponseCache.set(request.url, sources, bg.Time.Minutes(5).seconds);
   return response.status(200).send(sources);

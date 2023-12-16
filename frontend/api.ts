@@ -4,7 +4,8 @@ import * as types from "./types";
 
 export const keys = {
   stats: ["stats"],
-  sources: ["sources"],
+  sources: (filters: Record<string, unknown>) => ["sources", filters],
+  allSources: ["sources"],
   settings: ["settings"],
   articles: ["articles"],
   newspapers: ["newspapers"],
@@ -188,10 +189,12 @@ export class Settings {
 }
 
 export class Source {
-  static async list(): Promise<types.SourceType[]> {
+  static async list(filters?: bg.FilterType): Promise<types.SourceType[]> {
+    const url = new bg.FilterUrl("/rss/source/list", filters).value;
+
     return bg
-      .API("/rss/source/list", { method: "GET" })
-      .then((response) => response.json());
+      .API(url, { method: "GET" })
+      .then((response) => (response.ok ? response.json() : []));
   }
 
   static async reactivate(payload: Pick<types.SourceType, "id" | "revision">) {

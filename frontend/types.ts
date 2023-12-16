@@ -32,19 +32,21 @@ export enum NewspaperStatusEnum {
 
 export type ArticlePayloadType = Pick<Article, "url">;
 export type ArticleType = AsyncReturnType<
-  typeof ArticleRepository["pagedGetAllNonProcessed"]
+  (typeof ArticleRepository)["pagedGetAllNonProcessed"]
 >["result"][0];
 
 export type ArchiveArticleType = AsyncReturnType<
-  typeof ArticleRepository["pagedGetAll"]
+  (typeof ArticleRepository)["pagedGetAll"]
 >["result"][0];
 
 export type NewspaperType = AsyncReturnType<
-  typeof NewspaperRepository["getAllNonArchived"]
+  (typeof NewspaperRepository)["getAllNonArchived"]
 >[0];
 
-export type StatsType = AsyncReturnType<typeof StatsRepository["getAll"]>;
-export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
+export type StatsType = AsyncReturnType<(typeof StatsRepository)["getAll"]>;
+export type SettingsType = AsyncReturnType<
+  (typeof SettingsRepository)["getAll"]
+>;
 
 export type ToastType = bg.BaseToastType & {
   articleId?: ArticleType["id"] | null;
@@ -53,12 +55,17 @@ export type ToastType = bg.BaseToastType & {
 };
 
 export type ArchiveFileType = AsyncReturnType<
-  typeof FilesRepository["getAll"]
+  (typeof FilesRepository)["getAll"]
 >[0];
 
-export type SourceType = AsyncReturnType<typeof SourceRepository["listAll"]>[0];
+export type SourceType = AsyncReturnType<
+  (typeof SourceRepository)["listAll"]
+>[0];
 
-export { SourceStatusEnum } from "../modules/rss/value-objects/source-status-enum";
+export enum SourceStatusEnum {
+  "active" = "active",
+  "inactive" = "inactive",
+}
 export { SOURCE_URL_MIN_LENGTH } from "../modules/rss/value-objects/source-url-min-length";
 export { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-max-length";
 

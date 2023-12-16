@@ -21,7 +21,7 @@ export function SourceDelete(
     onSuccess() {
       dialog.disable();
       notify({ message: "source.delete.success" });
-      queryClient.invalidateQueries(api.keys.sources);
+      queryClient.invalidateQueries(api.keys.allSources);
     },
     onError() {
       setTimeout(deleteSource.reset, 5000);

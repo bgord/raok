@@ -8,7 +8,7 @@ import * as Newspapers from "../../newspapers";
 
 import * as infra from "../../../infra";
 
-import { SourceRepository } from "../repositories/source-repository";
+import * as Repos from "../repositories/source-repository";
 
 import { App } from "../../../frontend/app";
 
@@ -22,6 +22,7 @@ export async function Sources(
     request.translationsPath
   );
 
+  const filters = Repos.SourceFilter.parse(request.query);
   const pagination = bg.Pagination.parse(
     request.query,
     Newspapers.VO.ARTICLES_PER_PAGE
@@ -42,7 +43,7 @@ export async function Sources(
     ),
     newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Settings.Repos.SettingsRepository.getAll(),
-    sources: await SourceRepository.listAll(),
+    sources: await Repos.SourceRepository.listAll(filters),
     stats: await Stats.Repos.StatsRepository.getAll(),
   };
 

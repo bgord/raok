@@ -24,20 +24,24 @@ export function Sources(_props: RoutableProps) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
-  const sourceList = useQuery(api.keys.sources, () => api.Source.list(), {
-    refetchOnMount: true,
+  const statusFilter = bg.useUrlFilter({
+    name: "status",
+    enum: types.SourceStatusEnum,
   });
+
+  const filters = { status: statusFilter.query };
+
+  const sourceList = useQuery(
+    api.keys.sources(filters),
+    () => api.Source.list(filters),
+    { refetchOnMount: true }
+  );
 
   const reorder = useMutation(api.Reordering.transfer, {
     onSuccess: () => {
-      queryClient.invalidateQueries(api.keys.sources);
+      queryClient.invalidateQueries(api.keys.allSources);
       notify({ message: "sources.reordered" });
     },
-  });
-
-  const statusFilter = bg.useFilter({
-    name: "filter-status",
-    enum: types.SourceStatusEnum,
   });
 
   const usedAtSort = bg.useClientSort<types.SourceType>("sort-sources", {
@@ -55,7 +59,6 @@ export function Sources(_props: RoutableProps) {
     correlationId: "sources",
     initialItems: (sourceList.data ?? [])
       .filter((source) => search.filterFn(String(source.url)))
-      .filter((source) => statusFilter.filterFn(source.status))
       .toSorted(usedAtSort.sortFn),
     callback: reorder.mutate,
     enabled: usedAtSort.unchanged && search.unchanged && statusFilter.unchanged,
