@@ -50,11 +50,10 @@ export function SourceCreate() {
           class="c-input"
           type="url"
           data-grow="1"
-          onChange={sourceUrl.onChange}
-          pattern={`.{${types.SOURCE_URL_MIN_LENGTH},${types.SOURCE_URL_MAX_LENGTH}}`}
           placeholder={t("source.url.placeholder")}
-          required
+          onChange={sourceUrl.onChange}
           value={sourceUrl.value}
+          {...bg.Form.pattern(types.SourceUrlValidations)}
           {...sourceUrl.input.props}
         />
       </div>

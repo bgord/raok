@@ -55,18 +55,18 @@ export enum SourceStatusEnum {
   "active" = "active",
   "inactive" = "inactive",
 }
-export { SOURCE_URL_MIN_LENGTH } from "../modules/rss/value-objects/source-url-min-length";
-export { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-max-length";
+import { SOURCE_URL_MIN_LENGTH } from "../modules/rss/value-objects/source-url-min-length";
+import { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-max-length";
 
 export { MAX_UPLOADED_FILE_SIZE_BYTES } from "../modules/files/value-objects/max-uploaded-file-size";
 export { FileMimeTypes } from "../modules/files/value-objects/file-mime-types";
 
 export { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../modules/newspapers/value-objects/newspaper-max-articles-number";
 
-export { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-objects/article-search-query-min-length";
-export { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-objects/article-search-query-max-length";
+import { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-objects/article-search-query-min-length";
+import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-objects/article-search-query-max-length";
 
-export { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";
+import { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";
 export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-status-enum";
 
 export enum SourceSortEnum {
@@ -74,3 +74,18 @@ export enum SourceSortEnum {
   used_at_most_recent = "used_at_most_recent",
   used_at_least_recent = "used_at_least_recent",
 }
+
+export const SourceUrlValidations = {
+  min: SOURCE_URL_MIN_LENGTH,
+  max: SOURCE_URL_MAX_LENGTH,
+};
+
+export const ArticleSearchValidations = {
+  min: ARTICLE_SEARCH_QUERY_MIN_LENGTH,
+  max: ARTICLE_SEARCH_QUERY_MAX_LENGTH,
+};
+
+export const ArticleUrlValidations = {
+  min: 1,
+  max: ARTICLE_URL_MAX_CHARS,
+};

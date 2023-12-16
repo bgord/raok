@@ -93,7 +93,7 @@
   "articles.refreshed": "article list refreshed",
   "articles.search.placeholder": "Search for an article by URL or title...",
   "articles.search.results": "Showing {{count}} results for your search query",
-  "articles.search.validation": "You can enter from {{from}} to {{to}} characters",
+  "articles.search.validation": "You can enter from {{min}} to {{max}} characters",
   "articles.select_prompt": "You can select up to {{max}} articles to create the newspaper",
   "articles.selected": "Selected {{selected}} out of {{max}} articles",
   "dashboard.no_articles_available": "No articles available at the moment",

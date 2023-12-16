@@ -47,14 +47,10 @@ export function ArticlesSearchForm() {
           class="c-input"
           placeholder={t("articles.search.placeholder")}
           data-width="100%"
-          pattern={`.{${types.ARTICLE_SEARCH_QUERY_MIN_LENGTH},${types.ARTICLE_SEARCH_QUERY_MAX_LENGTH}}`}
           onInvalid={(event) =>
             // @ts-ignore
             event.target.setCustomValidity(
-              t("articles.search.validation", {
-                from: types.ARTICLE_SEARCH_QUERY_MIN_LENGTH,
-                to: types.ARTICLE_SEARCH_QUERY_MAX_LENGTH,
-              })
+              t("articles.search.validation", types.ArticleSearchValidations)
             )
           }
           value={search.value}
@@ -67,13 +63,11 @@ export function ArticlesSearchForm() {
             } else {
               // @ts-ignore
               event.target.setCustomValidity(
-                t("articles.search.validation", {
-                  from: types.ARTICLE_SEARCH_QUERY_MIN_LENGTH,
-                  to: types.ARTICLE_SEARCH_QUERY_MAX_LENGTH,
-                })
+                t("articles.search.validation", types.ArticleSearchValidations)
               );
             }
           }}
+          {...bg.Form.pattern(types.ArticleSearchValidations)}
         />
       </div>
 
@@ -105,7 +99,7 @@ export function ArticlesSearchForm() {
 
 function isSearchQueryValid(query: string) {
   return (
-    query.length >= types.ARTICLE_SEARCH_QUERY_MIN_LENGTH &&
-    query.length <= types.ARTICLE_SEARCH_QUERY_MAX_LENGTH
+    query.length >= types.ArticleSearchValidations.min &&
+    query.length <= types.ArticleSearchValidations.max
   );
 }

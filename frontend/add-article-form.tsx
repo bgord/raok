@@ -38,16 +38,15 @@ export function AddArticleForm() {
     >
       <input
         autofocus
-        type="url"
-        inputMode="url"
-        required
-        value={url.value}
-        max={types.ARTICLE_URL_MAX_CHARS}
-        onInput={url.onChange}
-        disabled={addArticleRequest.isLoading}
-        placeholder={t("article.placeholder")}
         class="c-input"
         data-grow="1"
+        type="url"
+        inputMode="url"
+        placeholder={t("article.placeholder")}
+        value={url.value}
+        onInput={url.onChange}
+        disabled={addArticleRequest.isLoading}
+        {...bg.Form.pattern(types.ArticleUrlValidations)}
         {...url.input.props}
       />
 
