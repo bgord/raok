@@ -1,7 +1,11 @@
 # Changelog
+- 2023-12-16 14:11 2a48dbe **feature: add server side source status filter**
+## 2023-12-16 14:11 
+- 2023-12-16 13:48 cc66318 **feature: add source status client side filter**
+- 2023-12-16 13:43 e389234 **step: bump bgord/frontend**
 - 2023-12-15 16:59 73bb9e9 **refactor: use field on change**
-## 2023-12-15 16:59 
 - 2023-12-15 16:58 bdd358c **step: bump bgord/frontend**
+- 2023-12-15 16:00 323482d **docs: generate CHANGELOG**
 - 2023-12-15 08:58 6524d20 **refactor: improve source create form**
 - 2023-12-15 07:59 5196433 **docs: generate CHANGELOG**
 - 2023-12-14 22:01 24e6e5e **feature: add source list sorting**
