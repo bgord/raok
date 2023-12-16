@@ -178,5 +178,7 @@
   "source.status": "status",
   "source.status.active": "active",
   "source.status.inactive": "inactive",
-  "source.status.deleted": "deleted"
+  "source.status.deleted": "deleted",
+  "article.mark-as-read": "Mark as read",
+  "article.marked-as-read": "Marked as read"
 }

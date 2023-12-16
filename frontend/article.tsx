@@ -37,9 +37,24 @@ export function Article(props: ArticlePropsType) {
         revision: props.revision,
       });
 
-      if (props.isAdded(props.id)) {
-        props.toggle(props.id);
-      }
+      if (props.isAdded(props.id)) props.toggle(props.id);
+    },
+    onError: (error: bg.ServerError) => notify({ message: error.message }),
+  });
+
+  const articleMarkAsRead = useMutation(api.articleMarkAsRead, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(api.keys.articles);
+      queryClient.refetchQueries(api.keys.articlesSearch);
+      queryClient.invalidateQueries(api.keys.stats);
+      notify({
+        message: "article.marked-as-read",
+        articleId: props.id,
+        articleTitle: props.title,
+        revision: props.revision,
+      });
+
+      if (props.isAdded(props.id)) props.toggle(props.id);
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
@@ -162,13 +177,19 @@ export function Article(props: ArticlePropsType) {
 
         <div data-display="flex" data-wrap="nowrap" data-gap="3">
           <ArticleSourceAdd {...props} />
-
           <UI.CopyButton
             options={{ text: props.url, onSuccess: articleUrlCopied }}
           />
-
           <ArticleHomepage {...props} />
-
+          <button
+            type="submit"
+            title={t("article.mark-as-read")}
+            class="c-button"
+            data-variant="bare"
+            onClick={() => articleMarkAsRead.mutate(props)}
+          >
+            <Icons.DoubleCheck width="20" height="20" />
+          </button>
           <button
             type="submit"
             title={t("article.delete")}
