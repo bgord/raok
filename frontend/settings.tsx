@@ -90,8 +90,6 @@ export function Settings(_props: RoutableProps) {
         data-direction="column"
         data-gap="24"
         data-mt="12"
-        data-bwb="1"
-        data-bcb="gray-200"
         data-py="24"
       >
         <div data-display="flex" data-cross="center" data-gap="12">
