@@ -26,7 +26,7 @@ export function SourceCreate() {
     <form
       data-display="flex"
       data-cross="end"
-      data-gap="24"
+      data-gap="12"
       data-md-gap="12"
       data-mt="24"
       data-mb="12"
@@ -59,12 +59,7 @@ export function SourceCreate() {
         />
       </div>
 
-      <div
-        data-display="flex"
-        data-wrap="nowrap"
-        data-gap="24"
-        data-md-gap="12"
-      >
+      <div data-display="flex" data-wrap="nowrap" data-gap="12">
         <button
           type="submit"
           class="c-button"

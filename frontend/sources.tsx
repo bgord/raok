@@ -35,7 +35,12 @@ export function Sources(_props: RoutableProps) {
     },
   });
 
-  const sort = bg.useClientSort<types.SourceType>("sort-sources", {
+  const statusFilter = bg.useFilter({
+    name: "filter-status",
+    enum: types.SourceStatusEnum,
+  });
+
+  const usedAtSort = bg.useClientSort<types.SourceType>("sort-sources", {
     enum: types.SourceSortEnum,
     options: {
       [types.SourceSortEnum.default]: bg.defaultSortFn,
@@ -50,9 +55,10 @@ export function Sources(_props: RoutableProps) {
     correlationId: "sources",
     initialItems: (sourceList.data ?? [])
       .filter((source) => search.filterFn(String(source.url)))
-      .toSorted(sort.sortFn),
+      .filter((source) => statusFilter.filterFn(source.status))
+      .toSorted(usedAtSort.sortFn),
     callback: reorder.mutate,
-    enabled: sort.unchanged && search.unchanged,
+    enabled: usedAtSort.unchanged && search.unchanged && statusFilter.unchanged,
   });
 
   const numberOfSources = sources.items.length;
@@ -87,17 +93,40 @@ export function Sources(_props: RoutableProps) {
         data-gap="12"
       >
         <div data-display="flex" data-direction="column">
-          <label class="c-label" {...sort.label.props}>
+          <label class="c-label" {...statusFilter.label.props}>
+            {t("source.status")}
+          </label>
+
+          <UI.Select
+            class="c-select"
+            key={statusFilter.query}
+            value={statusFilter.query}
+            onInput={statusFilter.onChange}
+            {...statusFilter.input.props}
+          >
+            <option selected>{t("all")}</option>
+            <hr />
+
+            {statusFilter.options.map((status) => (
+              <option key={status} value={status}>
+                {t(`source.status.${status}`)}
+              </option>
+            ))}
+          </UI.Select>
+        </div>
+
+        <div data-display="flex" data-direction="column">
+          <label class="c-label" {...usedAtSort.label.props}>
             {t("sort")}
           </label>
 
           <UI.Select
-            key={sort.value}
-            value={sort.value}
-            onInput={sort.onChange}
-            {...sort.input.props}
+            key={usedAtSort.value}
+            value={usedAtSort.value}
+            onInput={usedAtSort.onChange}
+            {...usedAtSort.input.props}
           >
-            {sort.options.map((option) => (
+            {usedAtSort.options.map((option) => (
               <option key={option} value={option}>
                 {t(`source.sort.${String(option)}`)}
               </option>
@@ -129,15 +158,23 @@ export function Sources(_props: RoutableProps) {
           class="c-button"
           data-variant="bare"
           data-self="end"
-          onClick={bg.exec([search.clear, sort.clear])}
-          disabled={search.unchanged && sort.unchanged}
+          onClick={bg.exec([
+            search.clear,
+            usedAtSort.clear,
+            statusFilter.clear,
+          ])}
+          disabled={
+            search.unchanged && usedAtSort.unchanged && statusFilter.unchanged
+          }
         >
           {t("app.reset")}
         </button>
       </div>
 
       {sourceList.isSuccess && sources.items.length === 0 && (
-        <UI.Info data-transform="upper-first">{t("source.list.empty")}</UI.Info>
+        <UI.Info data-mt="6" data-transform="upper-first">
+          {t("source.list.empty")}
+        </UI.Info>
       )}
 
       <datalist id="sources">

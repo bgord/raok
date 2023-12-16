@@ -174,5 +174,9 @@
   "source.sort.default": "default",
   "source.sort.used_at_most_recent": "most recent",
   "source.sort.used_at_least_recent": "least recent",
-  "sort": "Sort by"
+  "sort": "Sort by",
+  "source.status": "status",
+  "source.status.active": "active",
+  "source.status.inactive": "inactive",
+  "source.status.deleted": "deleted"
 }
