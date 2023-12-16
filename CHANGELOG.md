@@ -1,6 +1,7 @@
 # Changelog
+- 2023-12-16 16:11 2d0d8bd **step: bump bgord/node**
+## 2023-12-16 16:11 
 - 2023-12-16 16:00 577af1a **refactor: make article source badge smaller**
-## 2023-12-16 16:00 
 - 2023-12-16 15:58 6f0c0b8 **feature: add article mark as read ui**
 - 2023-12-16 15:49 49ac835 **step: add ArticleMarkAsRead route**
 - 2023-12-16 15:45 7d9c2aa **feature: add Article#markAsRead method**
@@ -8,6 +9,7 @@
 - 2023-12-16 15:40 b7937e6 **step: add read article status**
 - 2023-12-16 15:39 e22b5a3 **refactor: extract ArticleStatusEnum**
 - 2023-12-16 15:37 d03b40e **refactor: remove border under the settings**
+- 2023-12-16 15:04 7d72ce2 **docs: generate CHANGELOG**
 - 2023-12-16 14:11 2a48dbe **feature: add server side source status filter**
 - 2023-12-16 13:48 cc66318 **feature: add source status client side filter**
 - 2023-12-16 13:43 e389234 **step: bump bgord/frontend**
