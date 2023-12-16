@@ -10,6 +10,7 @@ export * from "./article-search-query";
 export * from "./article-search-query-max-length";
 export * from "./article-search-query-min-length";
 export * from "./article-source";
+export * from "./article-status-enum";
 export * from "./article-status";
 export * from "./article-title";
 export * from "./article-title-max-chars";

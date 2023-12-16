@@ -17,13 +17,6 @@ export enum ArticleSourceEnum {
   feedly = "feedly",
 }
 
-export enum ArticleStatusEnum {
-  "ready" = "ready",
-  "in_progress" = "in_progress",
-  "processed" = "processed",
-  "deleted" = "deleted",
-}
-
 export enum NewspaperStatusEnum {
   "delivered" = "delivered",
   "archived" = "archived",
@@ -32,21 +25,19 @@ export enum NewspaperStatusEnum {
 
 export type ArticlePayloadType = Pick<Article, "url">;
 export type ArticleType = AsyncReturnType<
-  (typeof ArticleRepository)["pagedGetAllNonProcessed"]
+  typeof ArticleRepository["pagedGetAllNonProcessed"]
 >["result"][0];
 
 export type ArchiveArticleType = AsyncReturnType<
-  (typeof ArticleRepository)["pagedGetAll"]
+  typeof ArticleRepository["pagedGetAll"]
 >["result"][0];
 
 export type NewspaperType = AsyncReturnType<
-  (typeof NewspaperRepository)["getAllNonArchived"]
+  typeof NewspaperRepository["getAllNonArchived"]
 >[0];
 
-export type StatsType = AsyncReturnType<(typeof StatsRepository)["getAll"]>;
-export type SettingsType = AsyncReturnType<
-  (typeof SettingsRepository)["getAll"]
->;
+export type StatsType = AsyncReturnType<typeof StatsRepository["getAll"]>;
+export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
 
 export type ToastType = bg.BaseToastType & {
   articleId?: ArticleType["id"] | null;
@@ -55,12 +46,10 @@ export type ToastType = bg.BaseToastType & {
 };
 
 export type ArchiveFileType = AsyncReturnType<
-  (typeof FilesRepository)["getAll"]
+  typeof FilesRepository["getAll"]
 >[0];
 
-export type SourceType = AsyncReturnType<
-  (typeof SourceRepository)["listAll"]
->[0];
+export type SourceType = AsyncReturnType<typeof SourceRepository["listAll"]>[0];
 
 export enum SourceStatusEnum {
   "active" = "active",
@@ -78,6 +67,7 @@ export { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-obj
 export { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-objects/article-search-query-max-length";
 
 export { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";
+export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-status-enum";
 
 export enum SourceSortEnum {
   default = "default",

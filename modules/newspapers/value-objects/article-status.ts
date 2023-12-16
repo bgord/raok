@@ -1,12 +1,7 @@
 /* eslint-ignore */
 import { z } from "zod";
 
-export enum ArticleStatusEnum {
-  "ready" = "ready",
-  "in_progress" = "in_progress",
-  "processed" = "processed",
-  "deleted" = "deleted",
-}
+import { ArticleStatusEnum } from "./article-status-enum";
 
 export const ArticleStatus = z
   .nativeEnum(ArticleStatusEnum)
