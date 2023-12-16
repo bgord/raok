@@ -113,7 +113,7 @@ export function ArchiveArticles(_props: RoutableProps) {
             {...statusFilter.input.props}
           >
             <option selected>{t("all")}</option>
-
+            <hr />
             {statusFilter.options.map((status) => (
               <option key={status} value={status}>
                 {t(String(status))}
@@ -134,7 +134,7 @@ export function ArchiveArticles(_props: RoutableProps) {
             {...sourceFilter.input.props}
           >
             <option selected>{t("all")}</option>
-
+            <hr />
             {sourceFilter.options.map((source) => (
               <option key={source} value={source}>
                 {t(String(source))}
