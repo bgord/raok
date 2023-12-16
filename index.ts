@@ -73,6 +73,11 @@ app.post(
   infra.AuthShield.verify,
   bg.Route(Newspapers.Routes.UndeleteArticle)
 );
+app.post(
+  "/article/:articleId/mark-as-read",
+  infra.AuthShield.verify,
+  bg.Route(Newspapers.Routes.ArticleMarkAsRead)
+);
 app.get(
   "/archive/articles",
   infra.AuthShield.verify,

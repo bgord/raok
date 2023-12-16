@@ -18,7 +18,6 @@ export const keys = {
     filters: Record<string, unknown>,
     search: string | undefined
   ) => ["archive-articles", filters, search],
-
   allArchiveFiles: ["archive-files"],
   allArchiveArticles: ["archive-articles"],
 };
@@ -123,6 +122,15 @@ export async function undeleteArticle(
   payload: Pick<types.ArticleType, "id" | "revision">
 ) {
   return bg.API(`/undelete-article/${payload.id}`, {
+    method: "POST",
+    headers: bg.WeakETag.fromRevision(payload.revision),
+  });
+}
+
+export async function articleMarkAsRead(
+  payload: Pick<types.ArticleType, "id" | "revision">
+) {
+  return bg.API(`/article/${payload.id}/mark-as-read`, {
     method: "POST",
     headers: bg.WeakETag.fromRevision(payload.revision),
   });

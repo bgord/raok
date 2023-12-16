@@ -1,6 +1,7 @@
 export * from "./add-article";
 export * from "./archive-articles";
 export * from "./archive-newspaper";
+export * from "./article-mark-as-read";
 export * from "./articles";
 export * from "./articles-archive";
 export * from "./articles-search";
