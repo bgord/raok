@@ -166,11 +166,10 @@ export function Article(props: ArticlePropsType) {
         </div>
 
         <UI.Badge
-          data-self="start"
-          data-width="100%"
-          data-md-width="auto"
+          data-ml="auto"
           data-mt="3"
           data-mr="3"
+          {...bg.Rhythm().times(7).style.minWidth}
         >
           {props.source}
         </UI.Badge>

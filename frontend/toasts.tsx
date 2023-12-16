@@ -66,7 +66,9 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
       >
         <span data-transform="upper-first">{t(props.item.message)}</span>
 
-        {props.item.message === "article.deleted" && (
+        {["article.deleted", "article.marked-as-read"].includes(
+          props.item.message
+        ) && (
           <button
             type="button"
             class="c-button"
