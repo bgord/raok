@@ -3,4 +3,5 @@ export enum ArticleStatusEnum {
   "in_progress" = "in_progress",
   "processed" = "processed",
   "deleted" = "deleted",
+  "read" = "read",
 }
