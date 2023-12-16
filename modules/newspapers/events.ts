@@ -26,6 +26,19 @@ export const ArticleDeletedEvent = bg.EventDraft.merge(
 );
 export type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
 
+export const ARTICLE_READ_EVENT = "ARTICLE_READ_EVENT";
+export const ArticleReadEvent = bg.EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_READ_EVENT),
+    version: z.literal(1),
+    payload: z.object({
+      articleId: VO.ArticleId,
+      revision: VO.ArticleRevision,
+    }),
+  })
+);
+export type ArticleReadEventType = z.infer<typeof ArticleReadEvent>;
+
 export const ARTICLE_LOCKED_EVENT = "ARTICLE_LOCKED_EVENT";
 export const ArticleLockedEvent = bg.EventDraft.merge(
   z.object({

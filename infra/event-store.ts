@@ -11,17 +11,18 @@ type AcceptedEvent =
   | typeof Newspapers.Events.ArticleAddedEvent
   | typeof Newspapers.Events.ArticleDeletedEvent
   | typeof Newspapers.Events.ArticleLockedEvent
-  | typeof Newspapers.Events.ArticleUnlockedEvent
   | typeof Newspapers.Events.ArticleProcessedEvent
+  | typeof Newspapers.Events.ArticleReadEvent
   | typeof Newspapers.Events.ArticleUndeleteEvent
-  | typeof Settings.Events.ArticlesToReviewNotificationHourSetEvent
-  | typeof Settings.Events.ArticlesToReviewNotificationsDisabledEvent
-  | typeof Settings.Events.ArticlesToReviewNotificationsEnabledEvent
+  | typeof Newspapers.Events.ArticleUnlockedEvent
   | typeof Newspapers.Events.NewspaperArchivedEvent
   | typeof Newspapers.Events.NewspaperFailedEvent
   | typeof Newspapers.Events.NewspaperGenerateEvent
   | typeof Newspapers.Events.NewspaperScheduledEvent
-  | typeof Newspapers.Events.NewspaperSentEvent;
+  | typeof Newspapers.Events.NewspaperSentEvent
+  | typeof Settings.Events.ArticlesToReviewNotificationHourSetEvent
+  | typeof Settings.Events.ArticlesToReviewNotificationsDisabledEvent
+  | typeof Settings.Events.ArticlesToReviewNotificationsEnabledEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventStore {
