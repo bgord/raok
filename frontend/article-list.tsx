@@ -29,7 +29,7 @@ export function ArticleList() {
 
   const _articles = useInfiniteQuery(
     api.keys.articles,
-    ({ pageParam = 1 }) => api.getPagedArticles(pageParam),
+    ({ pageParam = 1 }) => api.Article.listPaged(pageParam),
     {
       getNextPageParam: (page) => page.meta.nextPage,
       onSuccess: () => stats.refetch(),

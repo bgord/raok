@@ -17,7 +17,7 @@ export function ArticlesSearchForm() {
 
   const articleSearch = useQuery(
     api.keys.articlesSearch,
-    () => api.searchArticles(search.value as types.ArticleSearchQueryType),
+    () => api.Article.search(search.value as types.ArticleSearchQueryType),
     {
       enabled: false,
       retry: false,

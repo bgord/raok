@@ -35,7 +35,7 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
 
-  const undeleteArticle = useMutation(api.undeleteArticle, {
+  const undeleteArticle = useMutation(api.Article.undelete, {
     onSuccess: () => {
       setTimeout(() => {
         queryClient.invalidateQueries(api.keys.articles);

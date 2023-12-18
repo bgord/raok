@@ -26,6 +26,56 @@ export class Article {
   static async opened(id: types.ArticleType["id"]) {
     return bg.API(`/article/${id}/opened`, { method: "POST" });
   }
+
+  static async delete(payload: Pick<types.ArticleType, "id" | "revision">) {
+    return bg.API(`/delete-article/${payload.id}`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
+  }
+
+  static async markAsRead(payload: Pick<types.ArticleType, "id" | "revision">) {
+    return bg.API(`/article/${payload.id}/mark-as-read`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
+  }
+
+  static async undelete(payload: Pick<types.ArticleType, "id" | "revision">) {
+    return bg.API(`/undelete-article/${payload.id}`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
+  }
+
+  static async add(article: types.ArticlePayloadType) {
+    return bg.API("/add-article", {
+      method: "POST",
+      body: JSON.stringify(article),
+    });
+  }
+
+  static async listPaged(
+    page: bg.PageType
+  ): Promise<bg.Paged<types.ArticleType>> {
+    return bg
+      .API(`/articles?page=${page}`, { method: "GET" })
+      .then((response) =>
+        response.ok ? response.json() : bg.Pagination.empty
+      );
+  }
+
+  static async search(
+    _query: types.ArticleSearchQueryType
+  ): Promise<types.ArticleType[]> {
+    if (_query.length === 0) return [];
+
+    const query = encodeURIComponent(_query);
+
+    return bg
+      .API(`/articles/search?query=${query}`, { method: "GET" })
+      .then((response) => (response.ok ? response.json() : []));
+  }
 }
 
 export async function getNewspapers(): Promise<types.NewspaperType[]> {
@@ -86,60 +136,6 @@ export async function getStats(): Promise<types.StatsType> {
   return bg
     .API("/stats", { method: "GET" })
     .then((response) => (response.ok ? response.json() : defaultStats));
-}
-
-export async function getPagedArticles(
-  page: bg.PageType
-): Promise<bg.Paged<types.ArticleType>> {
-  return bg
-    .API(`/articles?page=${page}`, { method: "GET" })
-    .then((response) => (response.ok ? response.json() : bg.Pagination.empty));
-}
-
-export async function searchArticles(
-  _query: types.ArticleSearchQueryType
-): Promise<types.ArticleType[]> {
-  if (_query.length === 0) return [];
-
-  const query = encodeURIComponent(_query);
-
-  return bg
-    .API(`/articles/search?query=${query}`, { method: "GET" })
-    .then((response) => (response.ok ? response.json() : []));
-}
-
-export async function addArticle(article: types.ArticlePayloadType) {
-  return bg.API("/add-article", {
-    method: "POST",
-    body: JSON.stringify(article),
-  });
-}
-
-export async function deleteArticle(
-  payload: Pick<types.ArticleType, "id" | "revision">
-) {
-  return bg.API(`/delete-article/${payload.id}`, {
-    method: "POST",
-    headers: bg.WeakETag.fromRevision(payload.revision),
-  });
-}
-
-export async function undeleteArticle(
-  payload: Pick<types.ArticleType, "id" | "revision">
-) {
-  return bg.API(`/undelete-article/${payload.id}`, {
-    method: "POST",
-    headers: bg.WeakETag.fromRevision(payload.revision),
-  });
-}
-
-export async function articleMarkAsRead(
-  payload: Pick<types.ArticleType, "id" | "revision">
-) {
-  return bg.API(`/article/${payload.id}/mark-as-read`, {
-    method: "POST",
-    headers: bg.WeakETag.fromRevision(payload.revision),
-  });
 }
 
 export async function sendArbitraryFile(form: FormData) {

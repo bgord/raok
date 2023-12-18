@@ -14,7 +14,7 @@ export function ArticleMarkAsAdded(props: ArticlePropsType) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger<types.ToastType>();
 
-  const articleMarkAsRead = useMutation(api.articleMarkAsRead, {
+  const articleMarkAsRead = useMutation(api.Article.markAsRead, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.articles);
       queryClient.refetchQueries(api.keys.articlesSearch);

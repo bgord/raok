@@ -14,7 +14,7 @@ export function AddArticleForm() {
 
   const url = bg.useField<types.ArticleType["url"]>("article-url", "");
 
-  const addArticleRequest = useMutation(api.addArticle, {
+  const addArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
       url.clear();
       queryClient.invalidateQueries(api.keys.articles);

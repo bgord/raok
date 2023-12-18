@@ -14,7 +14,7 @@ export function ArticleDelete(props: ArticlePropsType) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger<types.ToastType>();
 
-  const deleteArticle = useMutation(api.deleteArticle, {
+  const deleteArticle = useMutation(api.Article.delete, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.articles);
       queryClient.refetchQueries(api.keys.articlesSearch);

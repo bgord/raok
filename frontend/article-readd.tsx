@@ -11,7 +11,7 @@ export function ArticleReadd(props: types.NewspaperType["articles"][0]) {
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
-  const readdArticleRequest = useMutation(api.addArticle, {
+  const readdArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.articles);
       queryClient.invalidateQueries(api.keys.allArchiveArticles);
