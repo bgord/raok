@@ -1,6 +1,8 @@
 # Changelog
 - 2023-12-18 18:57 bda1aed **build(deps-dev): bump @typescript-eslint/parser from 6.13.2 to 6.14.0 (#91)**
+- 2023-12-18 18:57 b61433b **build(deps-dev): bump eslint from 8.55.0 to 8.56.0 (#96)**
 ## 2023-12-18 18:57 
+- 2023-12-18 17:57 dc475db **docs: generate CHANGELOG**
 - 2023-12-18 17:46 5bde830 **step: bump bgord/frontend**
 - 2023-12-18 16:47 ba2ef71 **docs: generate CHANGELOG**
 - 2023-12-16 23:25 21486f4 **refactor: add missing form.ensure implementations**
