@@ -1,7 +1,9 @@
 # Changelog
+- 2023-12-18 17:46 5bde830 **step: bump bgord/frontend**
+## 2023-12-18 17:46 
 - 2023-12-16 23:25 21486f4 **refactor: add missing form.ensure implementations**
-## 2023-12-16 23:25 
 - 2023-12-16 23:17 ea2c18e **step: bump bgord/frontend**
+- 2023-12-16 22:26 b62b270 **docs: generate CHANGELOG**
 - 2023-12-16 16:19 7a7a0b5 **step: add hr in select**
 - 2023-12-16 16:14 544ccb3 **step: bump bgord/frontend**
 - 2023-12-16 16:11 2d0d8bd **step: bump bgord/node**
