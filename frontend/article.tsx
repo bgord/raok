@@ -10,6 +10,7 @@ import * as types from "./types";
 
 import { ArticleHomepage } from "./article-homepage";
 import { ArticleSourceAdd } from "./article-source-add";
+import { ArticleMarkAsAdded } from "./article-mark-as-added";
 
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]> &
@@ -32,23 +33,6 @@ export function Article(props: ArticlePropsType) {
       queryClient.invalidateQueries(api.keys.stats);
       notify({
         message: "article.deleted",
-        articleId: props.id,
-        articleTitle: props.title,
-        revision: props.revision,
-      });
-
-      if (props.isAdded(props.id)) props.toggle(props.id);
-    },
-    onError: (error: bg.ServerError) => notify({ message: error.message }),
-  });
-
-  const articleMarkAsRead = useMutation(api.articleMarkAsRead, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(api.keys.articles);
-      queryClient.refetchQueries(api.keys.articlesSearch);
-      queryClient.invalidateQueries(api.keys.stats);
-      notify({
-        message: "article.marked-as-read",
         articleId: props.id,
         articleTitle: props.title,
         revision: props.revision,
@@ -180,15 +164,7 @@ export function Article(props: ArticlePropsType) {
             options={{ text: props.url, onSuccess: articleUrlCopied }}
           />
           <ArticleHomepage {...props} />
-          <button
-            type="submit"
-            title={t("article.mark-as-read")}
-            class="c-button"
-            data-variant="bare"
-            onClick={() => articleMarkAsRead.mutate(props)}
-          >
-            <Icons.DoubleCheck width="20" height="20" />
-          </button>
+          <ArticleMarkAsAdded {...props} />
           <button
             type="submit"
             title={t("article.delete")}
