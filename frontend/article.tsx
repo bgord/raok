@@ -9,6 +9,7 @@ import { ArticleHomepage } from "./article-homepage";
 import { ArticleSourceAdd } from "./article-source-add";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
 import { ArticleDelete } from "./article-delete";
+import { ArticleUrl } from "./article-url";
 
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]> &
@@ -82,8 +83,7 @@ export function Article(props: ArticlePropsType) {
           data-md-mr="3"
         >
           <UI.Title title={String(props.title)} />
-          <UI.ArticleUrl url={props.url} />
-
+          <ArticleUrl {...props} />
           <UI.Info
             data-md-display="none"
             title={bg.DateFormatter.datetime(props.createdAt.raw)}
