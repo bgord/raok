@@ -212,6 +212,17 @@ export class Article {
     );
   }
 
+  async opened() {
+    await infra.EventStore.save(
+      Events.ArticleOpenedEvent.parse({
+        name: Events.ARTICLE_OPENED_EVENT,
+        stream: this.stream,
+        version: 1,
+        payload: { articleId: this.id },
+      } satisfies Events.ArticleOpenedEventType)
+    );
+  }
+
   async undelete(revision: bg.Revision) {
     revision.validate(this.revision);
     await Policies.ArticleStatusTransition.perform({
