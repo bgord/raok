@@ -152,7 +152,7 @@ function useAutoUpdateNewspaper(
   const now = Date.now();
   const hasCutoffPassed = now - props.scheduledAt > cutoff;
 
-  useQuery(["newspapers", props.id], () => api.getSingleNewspaper(props.id), {
+  useQuery(["newspapers", props.id], () => api.Newspaper.getSingle(props.id), {
     initialData: props,
 
     enabled:
@@ -187,7 +187,7 @@ function ArchiveNewspaper(
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
-  const archiveNewspaper = useMutation(api.archiveNewspaper, {
+  const archiveNewspaper = useMutation(api.Newspaper.archive, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.newspapers);
       notify({ message: "newspaper.archived" });
@@ -219,7 +219,7 @@ function CancelNewspaper(
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
 
-  const cancelNewspaper = useMutation(api.cancelNewspaper, {
+  const cancelNewspaper = useMutation(api.Newspaper.cancel, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.newspapers);
       queryClient.invalidateQueries(api.keys.articles);
@@ -245,7 +245,7 @@ function useResendNewspaper() {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
-  return useMutation(api.resendNewspaper, {
+  return useMutation(api.Newspaper.resend, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.newspapers);
       queryClient.invalidateQueries(api.keys.articles);

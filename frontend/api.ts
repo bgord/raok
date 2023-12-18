@@ -78,52 +78,50 @@ export class Article {
   }
 }
 
-export async function getNewspapers(): Promise<types.NewspaperType[]> {
-  return bg
-    .API("/newspapers")
-    .then((response) => (response.ok ? response.json() : []));
-}
+export class Newspaper {
+  static async list(): Promise<types.NewspaperType[]> {
+    return bg
+      .API("/newspapers")
+      .then((response) => (response.ok ? response.json() : []));
+  }
 
-export async function getSingleNewspaper(
-  id: types.NewspaperType["id"]
-): Promise<types.NewspaperType> {
-  return bg
-    .API(`/newspaper/${id}`)
-    .then((response) => (response.ok ? response.json() : []));
-}
+  static async getSingle(
+    id: types.NewspaperType["id"]
+  ): Promise<types.NewspaperType> {
+    return bg
+      .API(`/newspaper/${id}`)
+      .then((response) => (response.ok ? response.json() : []));
+  }
 
-export async function createNewspaper(articleIds: types.ArticleType["id"][]) {
-  return bg.API("/create-newspaper", {
-    method: "POST",
-    body: JSON.stringify({ articleIds }),
-  });
-}
+  static async create(articleIds: types.ArticleType["id"][]) {
+    return bg.API("/create-newspaper", {
+      method: "POST",
+      body: JSON.stringify({ articleIds }),
+    });
+  }
 
-export async function archiveNewspaper(
-  payload: Pick<types.NewspaperType, "id" | "revision">
-) {
-  return bg.API(`/archive-newspaper/${payload.id}`, {
-    method: "POST",
-    headers: bg.WeakETag.fromRevision(payload.revision),
-  });
-}
+  static async archive(payload: Pick<types.NewspaperType, "id" | "revision">) {
+    return bg.API(`/archive-newspaper/${payload.id}`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
+  }
 
-export async function cancelNewspaper(
-  payload: Pick<types.NewspaperType, "id" | "revision">
-) {
-  return bg.API(`/cancel-newspaper/${payload.id}`, {
-    method: "POST",
-    headers: bg.WeakETag.fromRevision(payload.revision),
-  });
-}
+  static async cancel(payload: Pick<types.NewspaperType, "id" | "revision">) {
+    return bg.API(`/cancel-newspaper/${payload.id}`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
+  }
 
-export async function resendNewspaper(
-  payload: Pick<types.NewspaperType, "id" | "revision">
-) {
-  return bg.API(`/resend-newspaper/${payload.id}`, {
-    method: "POST",
-    headers: bg.WeakETag.fromRevision(payload.revision),
-  });
+  static async resend(
+    payload: Pick<types.NewspaperType, "id" | "revision">
+  ) {
+    return bg.API(`/resend-newspaper/${payload.id}`, {
+      method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
+    });
+  }
 }
 
 export async function getStats(): Promise<types.StatsType> {

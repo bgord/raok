@@ -144,7 +144,7 @@ function useCreateNewspaper(callback: VoidFunction) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
-  return useMutation(api.createNewspaper, {
+  return useMutation(api.Newspaper.create, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.newspapers);
       notify({ message: "newspaper.scheduled" });
