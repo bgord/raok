@@ -22,6 +22,12 @@ export const keys = {
   allArchiveArticles: ["archive-articles"],
 };
 
+export class Article {
+  static async opened(id: types.ArticleType["id"]) {
+    return bg.API(`/article/${id}/opened`, { method: "POST" });
+  }
+}
+
 export async function getNewspapers(): Promise<types.NewspaperType[]> {
   return bg
     .API("/newspapers")

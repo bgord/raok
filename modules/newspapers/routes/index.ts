@@ -13,3 +13,4 @@ export * from "./newspapers";
 export * from "./resend-newspaper";
 export * from "./single-newspaper";
 export * from "./undelete-article";
+export * from "./article-opened";

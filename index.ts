@@ -78,6 +78,11 @@ app.post(
   infra.AuthShield.verify,
   bg.Route(Newspapers.Routes.ArticleMarkAsRead)
 );
+app.post(
+  "/article/:articleId/opened",
+  infra.AuthShield.verify,
+  bg.Route(Newspapers.Routes.ArticleOpened)
+);
 app.get(
   "/archive/articles",
   infra.AuthShield.verify,
