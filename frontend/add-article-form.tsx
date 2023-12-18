@@ -44,7 +44,7 @@ export function AddArticleForm() {
         inputMode="url"
         placeholder={t("article.placeholder")}
         value={url.value}
-        onInput={url.onChange}
+        onInput={url.handleChange}
         disabled={addArticleRequest.isLoading}
         {...bg.Form.pattern(types.ArticleUrlValidations)}
         {...url.input.props}

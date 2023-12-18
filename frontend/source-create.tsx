@@ -51,7 +51,7 @@ export function SourceCreate() {
           type="url"
           data-grow="1"
           placeholder={t("source.url.placeholder")}
-          onChange={sourceUrl.onChange}
+          onChange={sourceUrl.handleChange}
           value={sourceUrl.value}
           {...bg.Form.pattern(types.SourceUrlValidations)}
           {...sourceUrl.input.props}
