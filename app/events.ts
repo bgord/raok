@@ -22,6 +22,7 @@ export const emittery = new Emittery<{
   ARTICLE_READ_EVENT: NewspapersEvents.ArticleReadEventType;
   ARTICLE_UNDELETE_EVENT: NewspapersEvents.ArticleUndeleteEventType;
   ARTICLE_UNLOCKED_EVENT: NewspapersEvents.ArticleUnlockedEventType;
+  ARTICLE_OPENED_EVENT: NewspapersEvents.ArticleOpenedEventType;
   NEWSPAPER_ARCHIVED_EVENT: NewspapersEvents.NewspaperArchivedEventType;
   NEWSPAPER_FAILED_EVENT: NewspapersEvents.NewspaperFailedEventType;
   NEWSPAPER_GENERATED_EVENT: NewspapersEvents.NewspaperGenerateEventType;

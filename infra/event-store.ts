@@ -15,6 +15,7 @@ type AcceptedEvent =
   | typeof Newspapers.Events.ArticleReadEvent
   | typeof Newspapers.Events.ArticleUndeleteEvent
   | typeof Newspapers.Events.ArticleUnlockedEvent
+  | typeof Newspapers.Events.ArticleOpenedEvent
   | typeof Newspapers.Events.NewspaperArchivedEvent
   | typeof Newspapers.Events.NewspaperFailedEvent
   | typeof Newspapers.Events.NewspaperGenerateEvent
