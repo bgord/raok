@@ -1,16 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { h } from "preact";
-import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
-import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
-import * as api from "./api";
 import * as types from "./types";
 
 import { ArticleHomepage } from "./article-homepage";
 import { ArticleSourceAdd } from "./article-source-add";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
+import { ArticleDelete } from "./article-delete";
 
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]> &
@@ -18,29 +16,11 @@ type ArticlePropsType = types.ArticleType &
 
 export function Article(props: ArticlePropsType) {
   const t = bg.useTranslations();
-  const queryClient = useQueryClient();
   const notify = bg.useToastTrigger<types.ToastType>();
 
   const articleUrlCopied = bg.useRateLimiter({
     limitMs: bg.Time.Seconds(2).ms,
     action: () => notify({ message: "article.url.copied" }),
-  });
-
-  const deleteArticle = useMutation(api.deleteArticle, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(api.keys.articles);
-      queryClient.refetchQueries(api.keys.articlesSearch);
-      queryClient.invalidateQueries(api.keys.stats);
-      notify({
-        message: "article.deleted",
-        articleId: props.id,
-        articleTitle: props.title,
-        revision: props.revision,
-      });
-
-      if (props.isAdded(props.id)) props.toggle(props.id);
-    },
-    onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
   return (
@@ -165,15 +145,7 @@ export function Article(props: ArticlePropsType) {
           />
           <ArticleHomepage {...props} />
           <ArticleMarkAsAdded {...props} />
-          <button
-            type="submit"
-            title={t("article.delete")}
-            class="c-button"
-            data-variant="bare"
-            onClick={() => deleteArticle.mutate(props)}
-          >
-            <Icons.XmarkSquare width="20" height="20" />
-          </button>
+          <ArticleDelete {...props} />
         </div>
       </div>
     </li>

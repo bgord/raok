@@ -9,18 +9,18 @@ import * as types from "./types";
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]>;
 
-export function ArticleMarkAsAdded(props: ArticlePropsType) {
+export function ArticleDelete(props: ArticlePropsType) {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger<types.ToastType>();
 
-  const articleMarkAsRead = useMutation(api.articleMarkAsRead, {
+  const deleteArticle = useMutation(api.deleteArticle, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.articles);
       queryClient.refetchQueries(api.keys.articlesSearch);
       queryClient.invalidateQueries(api.keys.stats);
       notify({
-        message: "article.marked-as-read",
+        message: "article.deleted",
         articleId: props.id,
         articleTitle: props.title,
         revision: props.revision,
@@ -34,12 +34,12 @@ export function ArticleMarkAsAdded(props: ArticlePropsType) {
   return (
     <button
       type="submit"
-      title={t("article.mark-as-read")}
+      title={t("article.delete")}
       class="c-button"
       data-variant="bare"
-      onClick={() => articleMarkAsRead.mutate(props)}
+      onClick={() => deleteArticle.mutate(props)}
     >
-      <Icons.DoubleCheck width="20" height="20" />
+      <Icons.XmarkSquare width="20" height="20" />
     </button>
   );
 }
