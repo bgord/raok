@@ -54,7 +54,7 @@ export function ArchiveArticles(_props: RoutableProps) {
       debouncedSearch === "" ? undefined : debouncedSearch
     ),
     ({ pageParam = 1 }) =>
-      api.getArchiveArticles(pageParam, filters, debouncedSearch),
+      api.Archive.getArticles(pageParam, filters, debouncedSearch),
     { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true }
   );
 

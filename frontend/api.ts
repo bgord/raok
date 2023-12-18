@@ -114,9 +114,7 @@ export class Newspaper {
     });
   }
 
-  static async resend(
-    payload: Pick<types.NewspaperType, "id" | "revision">
-  ) {
+  static async resend(payload: Pick<types.NewspaperType, "id" | "revision">) {
     return bg.API(`/resend-newspaper/${payload.id}`, {
       method: "POST",
       headers: bg.WeakETag.fromRevision(payload.revision),
@@ -143,30 +141,34 @@ export async function sendArbitraryFile(form: FormData) {
   });
 }
 
-export async function getArchiveArticles(
-  page: bg.PageType,
-  filters: bg.FilterType,
-  search: string | undefined
-): Promise<bg.Paged<types.ArchiveArticleType>> {
-  const url = new bg.FilterUrl(`/articles/archive`, {
-    ...filters,
-    page,
-    search,
-  });
+export class Archive {
+  static async getArticles(
+    page: bg.PageType,
+    filters: bg.FilterType,
+    search: string | undefined
+  ): Promise<bg.Paged<types.ArchiveArticleType>> {
+    const url = new bg.FilterUrl(`/articles/archive`, {
+      ...filters,
+      page,
+      search,
+    });
 
-  return bg
-    .API(url.value, { method: "GET" })
-    .then((response) => (response.ok ? response.json() : bg.Pagination.empty));
-}
+    return bg
+      .API(url.value, { method: "GET" })
+      .then((response) =>
+        response.ok ? response.json() : bg.Pagination.empty
+      );
+  }
 
-export async function getArchiveFiles(
-  filters?: bg.FilterType
-): Promise<types.ArchiveFileType[]> {
-  const url = new bg.FilterUrl("/files/archive", filters).value;
+  static async getFiles(
+    filters?: bg.FilterType
+  ): Promise<types.ArchiveFileType[]> {
+    const url = new bg.FilterUrl("/files/archive", filters).value;
 
-  return bg
-    .API(url, { method: "GET" })
-    .then((response) => (response.ok ? response.json() : []));
+    return bg
+      .API(url, { method: "GET" })
+      .then((response) => (response.ok ? response.json() : []));
+  }
 }
 
 export class Settings {

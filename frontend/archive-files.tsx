@@ -35,7 +35,7 @@ export function ArchiveFiles(_props: RoutableProps) {
 
   const filters = { sentAt: sentAtFilter.query };
   const archiveFiles = useQuery(api.keys.archiveFiles(filters), () =>
-    api.getArchiveFiles(filters)
+    api.Archive.getFiles(filters)
   );
 
   const files = (archiveFiles.data ?? []).filter((file) =>
