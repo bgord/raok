@@ -162,4 +162,8 @@ export class ArticleRepository {
       createdAt: bg.RelativeDate.truthy(article.createdAt),
     }));
   }
+
+  static async getSingle(id: VO.ArticleIdType) {
+    return infra.db.article.findFirst({ where: { id } });
+  }
 }
