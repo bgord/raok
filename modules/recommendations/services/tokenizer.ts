@@ -24,6 +24,8 @@ export class Tokenizer {
   static tokenize(input: string): TokenType[] {
     const tokens = (input.match(Tokenizer.WORD_REGEX) ?? [])
       .map((token) => token.toLowerCase())
+      .filter((token) => token.length > 1)
+      .filter((token) => Number.isNaN(Number(token)))
       .filter((token) => !stopWords.includes(token));
 
     return Array.from(new Set(tokens));
