@@ -5,6 +5,7 @@ import * as Settings from "../modules/settings";
 import * as Files from "../modules/files";
 import * as NewspapersEvents from "../modules/newspapers/events";
 import * as NewspapersHandlers from "../modules/newspapers/handlers";
+import * as Recommendations from "../modules/recommendations";
 
 import * as infra from "../infra";
 
@@ -95,4 +96,26 @@ emittery.on(
 emittery.on(
   Files.Events.ARBITRARY_FILE_SCHEDULED_EVENT,
   Files.Handlers.onArbitraryFileScheduledEventHandler
+);
+
+// Recommendations
+
+emittery.on(
+  NewspapersEvents.ARTICLE_OPENED_EVENT,
+  Recommendations.Handlers.onArticleOpenedEventHandler
+);
+
+emittery.on(
+  NewspapersEvents.ARTICLE_PROCESSED_EVENT,
+  Recommendations.Handlers.onArticleProcessedEventHandler
+);
+
+emittery.on(
+  NewspapersEvents.ARTICLE_DELETED_EVENT,
+  Recommendations.Handlers.onArticleDeletedEventHandler
+);
+
+emittery.on(
+  NewspapersEvents.ARTICLE_READ_EVENT,
+  Recommendations.Handlers.onArticleReadEventHandler
 );
