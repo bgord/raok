@@ -239,15 +239,6 @@ app.post(
 );
 // =============================
 
-app.post(
-  "/ratings/catch-up",
-  bg.Route(async (_request, response) => {
-    const result = await main();
-
-    return response.status(200).send(result);
-  })
-);
-
 app.get("*", (_, response) => response.redirect("/"));
 app.use(App.Routes.ErrorHandler.handle);
 
