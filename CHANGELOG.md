@@ -1,6 +1,7 @@
 # Changelog
+- 2023-12-21 14:52 4f8c49c **Recommendations (#103)**
+## 2023-12-21 14:52 
 - 2023-12-18 22:23 f522301 **feature: add article url component**
-## 2023-12-18 22:23 
 - 2023-12-18 22:16 7c8cc4c **refactor: archive api**
 - 2023-12-18 22:14 8bc047d **refactor: newspaper api**
 - 2023-12-18 22:11 3ec5e89 **refactor: article api**
@@ -9,6 +10,7 @@
 - 2023-12-18 21:58 b296c30 **feature: add article opened schema**
 - 2023-12-18 21:54 ac7d499 **refactor: extract article delete**
 - 2023-12-18 21:52 add2b06 **refactor: extract article mark as added**
+- 2023-12-18 21:24 e6e0121 **docs: generate CHANGELOG**
 - 2023-12-18 18:57 bda1aed **build(deps-dev): bump @typescript-eslint/parser from 6.13.2 to 6.14.0 (#91)**
 - 2023-12-18 18:57 b61433b **build(deps-dev): bump eslint from 8.55.0 to 8.56.0 (#96)**
 - 2023-12-18 17:58 24298de **docs: generate CHANGELOG**
