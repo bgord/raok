@@ -19,7 +19,7 @@ export const onArticleReadEventHandler =
   EventHandler.handle<Events.ArticleReadEventType>(async (event) => {
     await Services.RatingUpdateProcessor.process(
       event.payload.articleId,
-      Services.RatingActionEnum.deleted
+      Services.RatingActionEnum.read
     );
   });
 
@@ -27,7 +27,7 @@ export const onArticleProcessedEventHandler =
   EventHandler.handle<Events.ArticleProcessedEventType>(async (event) => {
     await Services.RatingUpdateProcessor.process(
       event.payload.articleId,
-      Services.RatingActionEnum.deleted
+      Services.RatingActionEnum.processed
     );
   });
 
@@ -35,6 +35,6 @@ export const onArticleOpenedEventHandler =
   EventHandler.handle<Events.ArticleOpenedEventType>(async (event) => {
     await Services.RatingUpdateProcessor.process(
       event.payload.articleId,
-      Services.RatingActionEnum.deleted
+      Services.RatingActionEnum.opened
     );
   });
