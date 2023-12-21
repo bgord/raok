@@ -8,7 +8,13 @@ export class TokenRatingRepository {
 
     await infra.db.tokenRating.upsert({
       where: { token: payload.token },
-      update: { value: { increment: payload.value }, updatedAt: now },
+      update: {
+        value:
+          payload.value >= 0
+            ? { increment: payload.value }
+            : { decrement: Math.abs(payload.value) },
+        updatedAt: now,
+      },
       create: { ...payload, createdAt: now },
     });
   }

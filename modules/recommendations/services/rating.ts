@@ -20,7 +20,7 @@ export class TokenRatingCalculator {
       case RatingActionEnum.processed:
         return tokens.map((token) => ({ token, value: 5 }));
       case RatingActionEnum.deleted:
-        return tokens.map((token) => ({ token, value: -0.5 }));
+        return tokens.map((token) => ({ token, value: -1 }));
       default:
         return [];
     }
