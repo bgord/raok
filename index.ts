@@ -11,7 +11,6 @@ import * as Newspapers from "./modules/newspapers";
 import * as Reordering from "./modules/reordering";
 
 import * as infra from "./infra";
-import { main } from "./rating-catch-up";
 
 const app = express();
 
