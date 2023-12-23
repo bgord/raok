@@ -48,10 +48,13 @@ export function Sources(_props: RoutableProps) {
     enum: types.SourceSortEnum,
     options: {
       [types.SourceSortEnum.default]: bg.defaultSortFn,
-      [types.SourceSortEnum.used_at_most_recent]: (a, b) =>
-        a.updatedAt.raw < b.updatedAt.raw ? 1 : -1,
-      [types.SourceSortEnum.used_at_least_recent]: (a, b) =>
-        a.updatedAt.raw > b.updatedAt.raw ? 1 : -1,
+      [types.SourceSortEnum.used_at_most_recent]: bg.Sorts.updatedAtMostRecent,
+      [types.SourceSortEnum.used_at_least_recent]:
+        bg.Sorts.updatedAtLeastRecent,
+      [types.SourceSortEnum.a_z]: (a, b) =>
+        bg.Sorts.aToZ(new URL(a.url).hostname, new URL(b.url).hostname),
+      [types.SourceSortEnum.z_a]: (a, b) =>
+        bg.Sorts.zToA(new URL(a.url).hostname, new URL(b.url).hostname),
     },
   });
 

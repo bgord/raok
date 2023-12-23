@@ -73,6 +73,8 @@ export enum SourceSortEnum {
   default = "default",
   used_at_most_recent = "used_at_most_recent",
   used_at_least_recent = "used_at_least_recent",
+  a_z = "a_z",
+  z_a = "z_a",
 }
 
 export const SourceUrlValidations = {
