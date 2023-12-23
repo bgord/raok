@@ -10,6 +10,7 @@ import { ArticleSourceAdd } from "./article-source-add";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
 import { ArticleDelete } from "./article-delete";
 import { ArticleUrl } from "./article-url";
+import { ArticleRating } from "./article-rating";
 
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]> &
@@ -129,14 +130,17 @@ export function Article(props: ArticlePropsType) {
           })}
         </div>
 
-        <UI.Badge
-          data-ml="auto"
-          data-mt="3"
-          data-mr="3"
-          {...bg.Rhythm().times(7).style.minWidth}
-        >
-          {props.source}
-        </UI.Badge>
+        <div data-display="flex" data-wrap="nowrap" data-ml="auto" data-gap="6">
+          <ArticleRating {...props} />
+
+          <UI.Badge
+            data-mt="3"
+            data-mr="3"
+            {...bg.Rhythm().times(7).style.minWidth}
+          >
+            {props.source}
+          </UI.Badge>
+        </div>
 
         <div data-display="flex" data-wrap="nowrap" data-gap="3">
           <ArticleSourceAdd {...props} />
