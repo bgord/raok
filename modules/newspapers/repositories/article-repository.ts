@@ -116,6 +116,13 @@ export class ArticleRepository {
     });
   }
 
+  static async updateRating(payload: Pick<VO.ArticleType, "id" | "rating">) {
+    return infra.db.article.update({
+      where: { id: payload.id },
+      data: { rating: payload.rating },
+    });
+  }
+
   static async getNumbersOfNonProcessedArticlesWithUrl(
     url: VO.ArticleType["url"]
   ) {
