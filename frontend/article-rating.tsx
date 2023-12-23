@@ -30,10 +30,7 @@ export function ArticleRating(props: Pick<types.ArticleType, "rating">) {
       data-my="auto"
       data-color={ratingLevelToColor[level]}
       title={props.rating ? props.rating.toString() : "none"}
-      style={{
-        ...bg.Rhythm(8).times(1).square,
-        ...bg.Rhythm(8).times(1).minWidth,
-      }}
+      {...bg.Rhythm(8).times(1).style.square}
     >
       <circle cx="50%" cy="50%" r="50%" fill="currentColor" />
     </svg>
