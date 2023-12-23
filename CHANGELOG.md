@@ -1,6 +1,8 @@
 # Changelog
+- 2023-12-23 14:58 dbebbd4 **Article rating (#104)**
+## 2023-12-23 14:58 
 - 2023-12-21 14:52 4f8c49c **Recommendations (#103)**
-## 2023-12-21 14:52 
+- 2023-12-21 13:52 79fbaad **docs: generate CHANGELOG**
 - 2023-12-18 22:23 f522301 **feature: add article url component**
 - 2023-12-18 22:16 7c8cc4c **refactor: archive api**
 - 2023-12-18 22:14 8bc047d **refactor: newspaper api**
