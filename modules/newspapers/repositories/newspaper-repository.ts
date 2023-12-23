@@ -32,6 +32,7 @@ export class NewspaperRepository {
             url: true,
             estimatedReadingTimeInMinutes: true,
             revision: true,
+            rating: true,
           },
         },
       },

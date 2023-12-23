@@ -39,6 +39,7 @@ model Article {
   Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
   estimatedReadingTimeInMinutes Int?
   revision                      Int        @default(0)
+  rating                        Float?
 
   @@index(status)
 }

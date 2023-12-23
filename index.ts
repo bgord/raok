@@ -11,7 +11,6 @@ import * as Newspapers from "./modules/newspapers";
 import * as Reordering from "./modules/reordering";
 
 import * as infra from "./infra";
-import { main } from "./rating-catch-up";
 
 const app = express();
 
@@ -238,15 +237,6 @@ app.post(
   bg.Route(Reordering.Routes.ReorderingTransfer)
 );
 // =============================
-
-app.post(
-  "/ratings/catch-up",
-  bg.Route(async (_request, response) => {
-    const result = await main();
-
-    return response.status(200).send(result);
-  })
-);
 
 app.get("*", (_, response) => response.redirect("/"));
 app.use(App.Routes.ErrorHandler.handle);

@@ -4,7 +4,7 @@ import { ArticleRepository } from "../../newspapers/repositories/article-reposit
 import * as Services from "../services";
 import * as Repos from "../repositories";
 
-export class RatingUpdateProcessor {
+export class TokenRatingUpdateProcessor {
   static async process(id: ArticleIdType, action: Services.RatingActionEnum) {
     const article = await ArticleRepository.getSingle(id);
 

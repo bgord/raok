@@ -1,6 +1,7 @@
 import * as bg from "@bgord/node";
 
 import * as Stats from "../stats";
+import * as Recommendations from "../recommendations";
 
 import * as Aggregates from "./aggregates";
 import * as Events from "./events";
@@ -29,6 +30,16 @@ export const onArticleAddedEventHandler =
     await Repos.ArticleRepository.updateReadingTime({
       id: event.payload.id,
       estimatedReadingTimeInMinutes: readableArticle?.readingTime ?? null,
+    });
+
+    const rating =
+      await Recommendations.Services.TextRatingCalculator.calculate(
+        readableArticle?.title
+      );
+
+    await Repos.ArticleRepository.updateRating({
+      id: event.payload.id,
+      rating,
     });
   });
 

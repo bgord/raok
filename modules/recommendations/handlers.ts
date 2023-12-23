@@ -9,7 +9,7 @@ const EventHandler = new bg.EventHandler(infra.logger);
 
 export const onArticleDeletedEventHandler =
   EventHandler.handle<Events.ArticleDeletedEventType>(async (event) => {
-    await Services.RatingUpdateProcessor.process(
+    await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
       Services.RatingActionEnum.deleted
     );
@@ -17,7 +17,7 @@ export const onArticleDeletedEventHandler =
 
 export const onArticleReadEventHandler =
   EventHandler.handle<Events.ArticleReadEventType>(async (event) => {
-    await Services.RatingUpdateProcessor.process(
+    await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
       Services.RatingActionEnum.read
     );
@@ -25,7 +25,7 @@ export const onArticleReadEventHandler =
 
 export const onArticleProcessedEventHandler =
   EventHandler.handle<Events.ArticleProcessedEventType>(async (event) => {
-    await Services.RatingUpdateProcessor.process(
+    await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
       Services.RatingActionEnum.processed
     );
@@ -33,7 +33,7 @@ export const onArticleProcessedEventHandler =
 
 export const onArticleOpenedEventHandler =
   EventHandler.handle<Events.ArticleOpenedEventType>(async (event) => {
-    await Services.RatingUpdateProcessor.process(
+    await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
       Services.RatingActionEnum.opened
     );

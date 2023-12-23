@@ -41,15 +41,6 @@ export class ArticleRepository {
   static async getAllNonProcessed(filters?: infra.Prisma.ArticleWhereInput) {
     const articles = await infra.db.article.findMany({
       where: _.merge(filters, { status: VO.ArticleStatusEnum.ready }),
-      select: {
-        id: true,
-        url: true,
-        source: true,
-        title: true,
-        createdAt: true,
-        estimatedReadingTimeInMinutes: true,
-        revision: true,
-      },
     });
 
     return articles.map((article) => ({
@@ -65,15 +56,6 @@ export class ArticleRepository {
       infra.db.article.count({ where }),
       infra.db.article.findMany({
         where,
-        select: {
-          id: true,
-          url: true,
-          source: true,
-          title: true,
-          createdAt: true,
-          estimatedReadingTimeInMinutes: true,
-          revision: true,
-        },
         orderBy: { createdAt: "desc" },
         ...pagination.values,
       }),
@@ -131,6 +113,13 @@ export class ArticleRepository {
       data: {
         estimatedReadingTimeInMinutes: payload.estimatedReadingTimeInMinutes,
       },
+    });
+  }
+
+  static async updateRating(payload: Pick<VO.ArticleType, "id" | "rating">) {
+    return infra.db.article.update({
+      where: { id: payload.id },
+      data: { rating: payload.rating },
     });
   }
 

@@ -18,4 +18,8 @@ export class TokenRatingRepository {
       create: { ...payload, createdAt: now },
     });
   }
+
+  static async list(tokens: VO.TokenType[]) {
+    return infra.db.tokenRating.findMany({ where: { token: { in: tokens } } });
+  }
 }

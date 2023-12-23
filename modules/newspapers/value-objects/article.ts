@@ -9,6 +9,7 @@ import { ArticleContent } from "./article-content";
 import { ArticleTitle } from "./article-title";
 import { ArticleEstimatedReadingTimeInMinutes } from "./article-estimated-reading-time-in-minutes";
 import { ArticleRevision } from "./article-revision";
+import { ArticleRating } from "./article-rating";
 
 export const Article = z.object({
   id: ArticleId,
@@ -18,6 +19,7 @@ export const Article = z.object({
   status: ArticleStatus,
   estimatedReadingTimeInMinutes: ArticleEstimatedReadingTimeInMinutes,
   revision: ArticleRevision,
+  rating: ArticleRating,
 });
 
 export const ReadableArticle = z.object({
