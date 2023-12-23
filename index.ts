@@ -9,6 +9,7 @@ import * as Stats from "./modules/stats";
 import * as Files from "./modules/files";
 import * as Newspapers from "./modules/newspapers";
 import * as Reordering from "./modules/reordering";
+import * as Recommendations from "./modules/recommendations";
 
 import * as infra from "./infra";
 
@@ -235,6 +236,29 @@ app.post(
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
   bg.Route(Reordering.Routes.ReorderingTransfer)
+);
+// =============================
+
+// Recommendations =============
+app.get(
+  "/token-blacklist/list",
+  infra.AuthShield.verify,
+  infra.CacheResponse.handle,
+  bg.Route(Recommendations.Routes.TokenBlacklistList)
+);
+
+app.post(
+  "/token-blacklist/create",
+  infra.AuthShield.verify,
+  infra.CacheResponse.clear,
+  bg.Route(Recommendations.Routes.TokenBlacklistCreate)
+);
+
+app.post(
+  "/token-blacklist/delete",
+  infra.AuthShield.verify,
+  infra.CacheResponse.clear,
+  bg.Route(Recommendations.Routes.TokenBlacklistDelete)
 );
 // =============================
 
