@@ -20,6 +20,7 @@ export const keys = {
   ) => ["archive-articles", filters, search],
   allArchiveFiles: ["archive-files"],
   allArchiveArticles: ["archive-articles"],
+  tokenBlacklist: ["token-blacklist"],
 };
 
 export class Article {
@@ -241,6 +242,28 @@ export class Reordering {
     return bg.API(`/reordering/${config.correlationId}/transfer`, {
       method: "POST",
       body: JSON.stringify({ id: config.id, to: config.to }),
+    });
+  }
+}
+
+export class TokenBlacklist {
+  static async create(payload: Pick<types.TokenBlacklistType, "token">) {
+    return bg.API("/token-blacklist/create", {
+      method: "POST",
+      body: JSON.stringify({ token: payload.token }),
+    });
+  }
+
+  static async list(): Promise<types.TokenBlacklistType[]> {
+    return bg
+      .API("/token-blacklist/list")
+      .then((response) => (response.ok ? response.json() : []));
+  }
+
+  static async delete(payload: Pick<types.TokenBlacklistType, "token">) {
+    return bg.API("/token-blacklist/delete", {
+      method: "POST",
+      body: JSON.stringify({ token: payload.token }),
     });
   }
 }

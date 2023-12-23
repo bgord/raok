@@ -8,6 +8,7 @@ import type { StatsRepository } from "../modules/stats/repositories/stats-reposi
 import type { SettingsRepository } from "../modules/settings/repositories/settings-repository";
 import type { FilesRepository } from "../modules/files/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
+import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
 
 /**
  * @public
@@ -62,6 +63,10 @@ export type ArchiveFileType = AsyncReturnType<
 >[0];
 
 export type SourceType = AsyncReturnType<typeof SourceRepository["listAll"]>[0];
+
+export type TokenBlacklistType = AsyncReturnType<
+  typeof TokenBlacklistRepository["list"]
+>[0];
 
 export enum SourceStatusEnum {
   "active" = "active",
