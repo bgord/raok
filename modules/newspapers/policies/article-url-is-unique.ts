@@ -2,7 +2,7 @@ import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 
-export class ArticleUrlIsNotUniqueError extends Error {
+class ArticleUrlIsNotUniqueError extends Error {
   constructor() {
     super();
     Object.setPrototypeOf(this, ArticleUrlIsNotUniqueError.prototype);

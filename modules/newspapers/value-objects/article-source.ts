@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+/**
+ * @public
+ */
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",

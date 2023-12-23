@@ -9,14 +9,26 @@ import type { SettingsRepository } from "../modules/settings/repositories/settin
 import type { FilesRepository } from "../modules/files/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 
+/**
+ * @public
+ */
 export type { HourType } from "@bgord/node/dist/schema";
+/**
+ * @public
+ */
 export type { ArticleSearchQueryType } from "../modules/newspapers/value-objects/article-search-query";
 
+/**
+ * @public
+ */
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",
 }
 
+/**
+ * @public
+ */
 export enum NewspaperStatusEnum {
   "delivered" = "delivered",
   "archived" = "archived",

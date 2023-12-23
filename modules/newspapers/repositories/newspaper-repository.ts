@@ -1,16 +1,8 @@
-import * as z from "zod";
 import * as bg from "@bgord/node";
 import { format } from "date-fns";
 
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
-
-export const ArchiveNewspaperFilter = new bg.Filter(
-  z.object({
-    status: VO.NewspaperStatus.optional(),
-    sentAt: VO.TimeStampFilter,
-  })
-);
 
 export class NewspaperRepository {
   static async getAllNonArchived() {

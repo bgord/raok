@@ -22,7 +22,7 @@ export const Article = z.object({
   rating: ArticleRating,
 });
 
-export const ReadableArticle = z.object({
+const ReadableArticle = z.object({
   content: ArticleContent,
   title: ArticleTitle,
   readingTime: ArticleEstimatedReadingTimeInMinutes,

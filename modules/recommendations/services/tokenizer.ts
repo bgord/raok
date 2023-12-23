@@ -1,4 +1,4 @@
-export type TokenType = string;
+import * as VO from "../value-objects";
 
 // prettier-ignore
 const stopWords = [
@@ -21,7 +21,7 @@ const stopWords = [
 export class Tokenizer {
   private static WORD_REGEX = /\w+/g;
 
-  static tokenize(input: string): TokenType[] {
+  static tokenize(input: string): VO.TokenType[] {
     const tokens = (input.match(Tokenizer.WORD_REGEX) ?? [])
       .map((token) => token.toLowerCase())
       .filter((token) => token.length > 1)

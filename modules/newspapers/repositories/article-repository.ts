@@ -38,17 +38,6 @@ export class ArticleRepository {
     return bg.Pagination.prepare({ total, pagination, result });
   }
 
-  static async getAllNonProcessed(filters?: infra.Prisma.ArticleWhereInput) {
-    const articles = await infra.db.article.findMany({
-      where: _.merge(filters, { status: VO.ArticleStatusEnum.ready }),
-    });
-
-    return articles.map((article) => ({
-      ...article,
-      createdAt: bg.RelativeDate.truthy(article.createdAt),
-    }));
-  }
-
   static async pagedGetAllNonProcessed(pagination: bg.PaginationType) {
     const where = { status: VO.ArticleStatusEnum.ready };
 

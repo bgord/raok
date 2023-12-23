@@ -21,6 +21,9 @@ import { TimestampFiltersEnum } from "./filters";
 
 import { ScrollButton } from "./scroll-button";
 
+/**
+ * @public
+ */
 export type InitialDataType = InitialDashboardDataType &
   InitialSourcesDataType &
   InitialArchiveArticlesDataType &
