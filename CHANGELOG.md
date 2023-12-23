@@ -1,6 +1,9 @@
 # Changelog
+- 2023-12-23 19:37 d371e13 **fix: default rating for 0 value**
+## 2023-12-23 19:37 
+- 2023-12-23 19:36 a66bec5 **refactor: remove article favourited at column**
 - 2023-12-23 14:58 dbebbd4 **Article rating (#104)**
-## 2023-12-23 14:58 
+- 2023-12-23 13:59 42b4cae **docs: generate CHANGELOG**
 - 2023-12-21 14:52 4f8c49c **Recommendations (#103)**
 - 2023-12-21 13:52 79fbaad **docs: generate CHANGELOG**
 - 2023-12-18 22:23 f522301 **feature: add article url component**
