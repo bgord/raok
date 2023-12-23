@@ -39,7 +39,7 @@ export const prerequisites = [
   }),
   new bg.PrerequisiteRAM({
     label: "RAM",
-    enabled: Env.type === bg.Schema.NodeEnvironmentEnum.production,
+    enabled: Env.type !== bg.Schema.NodeEnvironmentEnum.local,
     minimum: new bg.Size({ unit: bg.SizeUnit.MB, value: 128 }),
   }),
   new bg.PrerequisiteSpace({
