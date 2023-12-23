@@ -91,3 +91,9 @@ export const ArticleUrlValidations = {
   min: 1,
   max: ARTICLE_URL_MAX_CHARS,
 };
+
+export enum ArchiveFilesSortEnum {
+  default = "default",
+  a_z = "a_z",
+  z_a = "z_a",
+}

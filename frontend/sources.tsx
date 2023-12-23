@@ -134,7 +134,7 @@ export function Sources(_props: RoutableProps) {
           >
             {usedAtSort.options.map((option) => (
               <option key={option} value={option}>
-                {t(`source.sort.${String(option)}`)}
+                {t(`source.sort.${option}`)}
               </option>
             ))}
           </UI.Select>

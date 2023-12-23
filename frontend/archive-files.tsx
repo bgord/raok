@@ -38,9 +38,18 @@ export function ArchiveFiles(_props: RoutableProps) {
     api.Archive.getFiles(filters)
   );
 
-  const files = (archiveFiles.data ?? []).filter((file) =>
-    search.filterFn(String(file.name))
-  );
+  const sort = bg.useClientSort<types.ArchiveFileType>("sort-archive-files", {
+    enum: types.SourceSortEnum,
+    options: {
+      [types.ArchiveFilesSortEnum.default]: bg.defaultSortFn,
+      [types.ArchiveFilesSortEnum.a_z]: (a, b) => bg.Sorts.aToZ(a.name, b.name),
+      [types.ArchiveFilesSortEnum.z_a]: (a, b) => bg.Sorts.zToA(a.name, b.name),
+    },
+  });
+
+  const files = (archiveFiles.data ?? [])
+    .filter((file) => search.filterFn(file.name))
+    .sort(sort.sortFn);
 
   const numberOfFiles = files.length;
 
@@ -89,12 +98,31 @@ export function ArchiveFiles(_props: RoutableProps) {
             </UI.Select>
           </div>
 
+          <div data-display="flex" data-direction="column">
+            <label class="c-label" {...sort.label.props}>
+              {t("sort")}
+            </label>
+
+            <UI.Select
+              key={sort.value}
+              value={sort.value}
+              onInput={sort.handleChange}
+              {...sort.input.props}
+            >
+              {sort.options.map((option) => (
+                <option key={option} value={option}>
+                  {t(`archive-files.sort.${option}`)}
+                </option>
+              ))}
+            </UI.Select>
+          </div>
+
           <button
             type="button"
             class="c-button"
             data-variant="bare"
-            onClick={sentAtFilter.clear}
-            disabled={sentAtFilter.unchanged}
+            onClick={bg.exec([sentAtFilter.clear, sort.clear])}
+            disabled={sentAtFilter.unchanged && sort.unchanged}
           >
             {t("app.reset")}
           </button>
