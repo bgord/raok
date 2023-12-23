@@ -1,7 +1,11 @@
 # Changelog
+- 2023-12-23 20:16 5cb9fbc **feature: add archive files sorting**
+## 2023-12-23 20:16 
+- 2023-12-23 20:05 63b14c6 **feature: add a-z source sorting**
+- 2023-12-23 20:00 18bf720 **step: bump bgord/frontend**
 - 2023-12-23 19:37 d371e13 **fix: default rating for 0 value**
-## 2023-12-23 19:37 
 - 2023-12-23 19:36 a66bec5 **refactor: remove article favourited at column**
+- 2023-12-23 18:38 25d7e6a **docs: generate CHANGELOG**
 - 2023-12-23 14:58 dbebbd4 **Article rating (#104)**
 - 2023-12-23 13:59 42b4cae **docs: generate CHANGELOG**
 - 2023-12-21 14:52 4f8c49c **Recommendations (#103)**
