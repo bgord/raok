@@ -2,7 +2,6 @@ import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import * as bg from "@bgord/frontend";
 
-import * as hooks from "./hooks";
 import * as contexts from "./contexts";
 
 import { ArticleList } from "./article-list";
@@ -20,8 +19,6 @@ export type InitialDashboardDataType = {
 };
 
 export function Dashboard(_: RoutableProps) {
-  hooks.useLeavingPrompt();
-
   const scroll = bg.useScroll();
 
   const displayNonEssentialPanes = scroll.position.value <= 150;
