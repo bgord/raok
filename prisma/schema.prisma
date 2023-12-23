@@ -78,3 +78,8 @@ model TokenRating {
   createdAt Int
   updatedAt Int    @default(0)
 }
+
+model TokenBlacklist {
+  token     String @id
+  createdAt Int
+}
