@@ -11,8 +11,8 @@ enum RatingLevel {
 
 function getRatingLevel(value: types.ArticleType["rating"]): RatingLevel {
   if (value === undefined || value === null) return RatingLevel.default;
-  if (value <= 0) return RatingLevel.not_recommended;
-  if (value > 0 && value <= 3) return RatingLevel.default;
+  if (value < 0) return RatingLevel.not_recommended;
+  if (value >= 0 && value <= 3) return RatingLevel.default;
   return RatingLevel.recommended;
 }
 
