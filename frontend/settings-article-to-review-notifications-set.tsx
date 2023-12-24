@@ -58,6 +58,7 @@ export function SettingsArticlesToReviewNotificationsSet(
           notificationHour.set(Number(event.currentTarget.value))
         }
         value={notificationHour.value}
+        disabled={!props.isArticlesToReviewNotificationEnabled}
       >
         {props.hours
           .map((hour) => ({
