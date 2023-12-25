@@ -114,3 +114,8 @@ export enum ArchiveFilesSortEnum {
   a_z = "a_z",
   z_a = "z_a",
 }
+
+export const BlacklistedTokenValidations = {
+  min: SOURCE_URL_MIN_LENGTH,
+  max: SOURCE_URL_MAX_LENGTH,
+};

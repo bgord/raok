@@ -9,6 +9,7 @@ import * as types from "./types";
 import * as hooks from "./hooks";
 
 import { SettingsTokenBlacklistItem } from "./settings-token-blacklist-item";
+import { SettingsTokenBlacklistCreate } from "./settings-token-blacklist-create";
 
 export function SettingsTokenBlacklist() {
   hooks.useLeavingPrompt();
@@ -41,7 +42,6 @@ export function SettingsTokenBlacklist() {
     <main
       data-display="flex"
       data-direction="column"
-      data-gap="12"
       data-mt="24"
       data-mx="auto"
       data-md-pl="6"
@@ -56,6 +56,8 @@ export function SettingsTokenBlacklist() {
           {t("app.token_blacklist")}
         </div>
       </div>
+
+      <SettingsTokenBlacklistCreate />
 
       <div
         data-display="flex"
