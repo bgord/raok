@@ -4,19 +4,8 @@ import * as Icons from "iconoir-react";
 
 import * as types from "./types";
 
-export function Badge(props: h.JSX.IntrinsicElements["strong"]) {
-  return (
-    <strong
-      data-transform="uppercase center"
-      data-color="gray-600"
-      data-bg="gray-200"
-      data-px="6"
-      data-br="4"
-      data-ls="1"
-      data-fs="12"
-      {...props}
-    />
-  );
+export function Badge(props: h.JSX.IntrinsicElements["div"]) {
+  return <div class="c-badge" {...props} />;
 }
 
 function Link(props: h.JSX.IntrinsicElements["a"]) {
