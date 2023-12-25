@@ -34,8 +34,11 @@ export function ArchiveFiles(_props: RoutableProps) {
   });
 
   const filters = { sentAt: sentAtFilter.query };
-  const archiveFiles = useQuery(api.keys.archiveFiles(filters), () =>
-    api.Archive.getFiles(filters)
+
+  const archiveFiles = useQuery(
+    api.keys.archiveFiles(filters),
+    () => api.Archive.getFiles(filters),
+    { refetchOnMount: true }
   );
 
   const sort = bg.useClientSort<types.ArchiveFileType>("sort-archive-files", {
