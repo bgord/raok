@@ -233,6 +233,18 @@ export class ErrorHandler {
           _known: true,
         });
       }
+
+      if (
+        error.issues.find(
+          (issue) =>
+            issue.message === Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY
+        )
+      ) {
+        return response.status(400).send({
+          message: Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY,
+          _known: true,
+        });
+      }
     }
 
     infra.logger.error({
