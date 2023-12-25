@@ -1,7 +1,25 @@
 # Changelog
+- 2023-12-25 22:11 c19a8cd **step: add article title not blacklisted policy**
+## 2023-12-25 22:11 
+- 2023-12-25 21:55 5c60fcc **step: handle token validation errors**
+- 2023-12-25 21:47 6022c38 **step: add blacklisted token is unique policy**
+- 2023-12-25 21:33 5a03e83 **refactor: rename blacklisted tokens**
+- 2023-12-25 21:30 5f9758c **feature: add basic token create ui**
+- 2023-12-25 21:19 7f6be75 **feature: add delete token blacklist item button**
+- 2023-12-25 21:15 a313bcd **refactor: improve archive file spacing**
+- 2023-12-25 21:13 ac8c0f3 **fix: refetch on query in archive files**
+- 2023-12-25 13:23 1a7d1f7 **feature: add SettingsTokenBlacklist UI**
+- 2023-12-24 12:46 c393ef5 **refactor: extract SettingsArticlesToReviewNotificationsSwitch**
+- 2023-12-24 12:43 fed8251 **refactor: extract SettingsArticlesToReviewNotificationsSet**
+- 2023-12-24 12:41 1b19d58 **refactor: extract settings articles to review notifications**
+- 2023-12-24 00:47 9779e2b **feature: add token blacklist api**
+- 2023-12-24 00:43 a3ed0c5 **step: add token blacklist cache**
+- 2023-12-24 00:37 445c0d3 **feature: add token blacklist routes**
+- 2023-12-24 00:28 965fa1d **feature: add token blacklist repo**
+- 2023-12-24 00:24 cde4769 **feature: add token blacklist schema**
 - 2023-12-23 23:14 288ad17 **refactor: delete unused code**
-## 2023-12-23 23:14 
 - 2023-12-23 23:10 9715aea **step: bump bgord/scripts**
+- 2023-12-23 22:29 46872d0 **docs: generate CHANGELOG**
 - 2023-12-23 21:53 750d5a9 **refactor: remove leaving prompt hook from dashboard**
 - 2023-12-23 20:43 fc3140a **fix: ram prereq**
 - 2023-12-23 20:16 5cb9fbc **feature: add archive files sorting**
