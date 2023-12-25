@@ -10,6 +10,7 @@ import * as types from "./types";
 export type InitialSettingsDataType = { settings: types.SettingsType };
 
 import { SettingsArticlesToReviewNotifications } from "./settings-articles-to-review-notifications";
+import { SettingsTokenBlacklist } from "./settings-token-blacklist";
 
 export function Settings(_props: RoutableProps) {
   hooks.useLeavingPrompt();
@@ -36,6 +37,7 @@ export function Settings(_props: RoutableProps) {
       </h2>
 
       <SettingsArticlesToReviewNotifications {...settings.data} />
+      <SettingsTokenBlacklist />
     </main>
   );
 }

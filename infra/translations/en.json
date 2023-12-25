@@ -173,5 +173,8 @@
   "stats.articles_added": "{{noun}} added overall",
   "stats.newspapers_sent": "{{noun}} sent overall",
   "today": "today",
-  "web": "web"
+  "web": "web",
+  "app.token_blacklist": "Token blacklist",
+  "token_blacklist.search.placeholder": "Search for a token",
+  "token_blacklist.list.empty": "No tokens matching your filters"
 }
