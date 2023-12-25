@@ -207,6 +207,19 @@ export class ErrorHandler {
       });
     }
 
+    if (error instanceof Newspapers.Policies.ArticleBlacklistedError) {
+      infra.logger.error({
+        message: "Article title blacklisted",
+        operation: Newspapers.Policies.ArticleTitleNotBlacklisted.message,
+        correlationId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: Newspapers.Policies.ArticleTitleNotBlacklisted.message,
+        _known: true,
+      });
+    }
+
     if (error instanceof z.ZodError) {
       if (
         error.issues.find(

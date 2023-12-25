@@ -65,7 +65,7 @@ export function SettingsTokenBlacklist() {
         data-max-width="100%"
         data-gap="12"
       >
-        <div data-display="flex" data-direction="column">
+        <div data-display="flex" data-cross="center" data-gap="12">
           <label class="c-label" {...sort.label.props}>
             {t("sort")}
           </label>
@@ -116,7 +116,7 @@ export function SettingsTokenBlacklist() {
       </div>
 
       {tokenBlacklist.isSuccess && tokens.length === 0 && (
-        <UI.Info data-mt="6" data-transform="upper-first">
+        <UI.Info data-mt="12" data-transform="upper-first">
           {t("token_blacklist.list.empty")}
         </UI.Info>
       )}

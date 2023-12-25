@@ -8,3 +8,4 @@ export * from "./maximum-newspaper-article-number";
 export * from "./newspaper-status-transition";
 export * from "./no-empty-newspaper";
 export * from "./non-processed-article-url-is-unique";
+export * from "./article-title-not-blacklisted";

@@ -28,8 +28,7 @@ export function SettingsBlacklistedTokenCreate() {
       data-cross="end"
       data-gap="12"
       data-md-gap="12"
-      data-mt="24"
-      data-mb="12"
+      data-my="24"
       onSubmit={(event) => {
         event.preventDefault();
         createBlacklistedToken.mutate({ token: token.value });

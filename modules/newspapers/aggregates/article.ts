@@ -104,6 +104,10 @@ export class Article {
 
     const metatags = await Services.ArticleMetatagsScraper.get(article.url);
 
+    await Policies.ArticleTitleNotBlacklisted.perform({
+      title: metatags.title,
+    });
+
     await infra.EventStore.save(
       Events.ArticleAddedEvent.parse({
         name: Events.ARTICLE_ADDED_EVENT,

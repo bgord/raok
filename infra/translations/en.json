@@ -183,5 +183,6 @@
   "blacklisted_token.placeholder": "e.g. github",
   "blacklisted_token.create.submit": "add",
   "blacklisted_token.error.not_unique": "Token already exists",
-  "token.structure.error": "Token should be 2 - 512 chars"
+  "token.structure.error": "Token should be 2 - 512 chars",
+  "article.title.blacklisted": "Article title blacklisted"
 }
