@@ -176,5 +176,6 @@
   "web": "web",
   "app.token_blacklist": "Token blacklist",
   "token_blacklist.search.placeholder": "Search for a token",
-  "token_blacklist.list.empty": "No tokens matching your filters"
+  "token_blacklist.list.empty": "No tokens matching your filters",
+  "token_blacklist.deleted": "Token deleted"
 }
