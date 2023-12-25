@@ -1,1 +1,1 @@
-export const TOKEN_MIN_LENGTH = 1;
+export const TOKEN_MIN_LENGTH = 2;

@@ -5,6 +5,7 @@ import * as bg from "@bgord/node";
 import * as RSS from "../../modules/rss";
 import * as Settings from "../../modules/settings";
 import * as Newspapers from "../../modules/newspapers";
+import * as Recommendations from "../../modules/recommendations";
 
 import * as infra from "../../infra";
 
@@ -187,6 +188,21 @@ export class ErrorHandler {
 
       return response.status(400).send({
         message: RSS.Policies.SourceUrlResponds.message,
+        _known: true,
+      });
+    }
+
+    if (
+      error instanceof Recommendations.Policies.BlacklistedTokenIsNotUniqueError
+    ) {
+      infra.logger.error({
+        message: "Blacklisted token is not unique",
+        operation: Recommendations.Policies.BlacklistedTokenIsUnique.message,
+        correlationId: request.requestId,
+      });
+
+      return response.status(400).send({
+        message: Recommendations.Policies.BlacklistedTokenIsUnique.message,
         _known: true,
       });
     }

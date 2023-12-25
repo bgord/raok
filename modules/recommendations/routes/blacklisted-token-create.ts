@@ -2,6 +2,7 @@ import express from "express";
 
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
+import * as Policies from "../policies";
 
 export async function BlacklistedTokenCreate(
   request: express.Request,
@@ -10,6 +11,7 @@ export async function BlacklistedTokenCreate(
 ) {
   const token = VO.Token.parse(request.body.token);
 
+  await Policies.BlacklistedTokenIsUnique.perform({ token });
   await Repos.TokenBlacklistRepository.create({ token });
 
   return response.status(201).send();

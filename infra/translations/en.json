@@ -181,5 +181,6 @@
   "blacklisted_token.created": "Token added to the blacklist",
   "blacklisted_token.label": "Token",
   "blacklisted_token.placeholder": "e.g. github",
-  "blacklisted_token.create.submit": "add"
+  "blacklisted_token.create.submit": "add",
+  "blacklisted_token.error.not_unique": "Token already exists"
 }

@@ -25,4 +25,8 @@ export class TokenBlacklistRepository {
       createdAt: bg.RelativeDate.truthy(token.createdAt),
     }));
   }
+
+  static async getCountOfToken(where: Pick<VO.BlacklistedTokenType, "token">) {
+    return infra.db.tokenBlacklist.count({ where });
+  }
 }
