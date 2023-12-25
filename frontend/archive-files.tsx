@@ -192,7 +192,6 @@ export function ArchiveFiles(_props: RoutableProps) {
 
             <div
               data-display="flex"
-              data-gap="12"
               data-cross="center"
               data-wrap="nowrap"
               data-ml="auto"
@@ -201,12 +200,13 @@ export function ArchiveFiles(_props: RoutableProps) {
                 data-ml="auto"
                 data-transform="nowrap"
                 data-color="gray-400"
+                data-mr="12"
                 title={bg.DateFormatter.datetime(file.sentAt?.raw)}
               >
                 {file.sentAt?.relative}
               </UI.Info>
 
-              <UI.Info data-transform="nowrap">
+              <UI.Info data-transform="nowrap" data-mr="6">
                 {prettyBytes(file.size)}
               </UI.Info>
 
