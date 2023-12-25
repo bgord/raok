@@ -6,14 +6,14 @@ import * as api from "./api";
 import * as UI from "./ui";
 import * as types from "./types";
 
-export function SettingsTokenBlacklistItem(props: types.TokenBlacklistType) {
+export function SettingsBlacklistedToken(props: types.TokenBlacklistType) {
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger<types.ToastType>();
 
-  const deleteTokenBlacklist = useMutation(api.TokenBlacklist.delete, {
+  const deleteBlacklistedToken = useMutation(api.TokenBlacklist.delete, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.tokenBlacklist);
-      notify({ message: "token_blacklist.deleted" });
+      notify({ message: "blacklisted_token.deleted" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
@@ -29,8 +29,8 @@ export function SettingsTokenBlacklistItem(props: types.TokenBlacklistType) {
       {props.token}
 
       <UI.ClearButton
-        disabled={deleteTokenBlacklist.isLoading}
-        onClick={() => deleteTokenBlacklist.mutate({ token: props.token })}
+        disabled={deleteBlacklistedToken.isLoading}
+        onClick={() => deleteBlacklistedToken.mutate({ token: props.token })}
       />
     </UI.Badge>
   );

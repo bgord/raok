@@ -241,24 +241,24 @@ app.post(
 
 // Recommendations =============
 app.get(
-  "/token-blacklist/list",
+  "/token-blacklist",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  bg.Route(Recommendations.Routes.TokenBlacklistList)
+  bg.Route(Recommendations.Routes.TokenBlacklist)
 );
 
 app.post(
   "/token-blacklist/create",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(Recommendations.Routes.TokenBlacklistCreate)
+  bg.Route(Recommendations.Routes.BlacklistedTokenCreate)
 );
 
 app.post(
   "/token-blacklist/delete",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(Recommendations.Routes.TokenBlacklistDelete)
+  bg.Route(Recommendations.Routes.BlacklistedTokenDelete)
 );
 // =============================
 

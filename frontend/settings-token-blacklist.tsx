@@ -8,8 +8,8 @@ import * as api from "./api";
 import * as types from "./types";
 import * as hooks from "./hooks";
 
-import { SettingsTokenBlacklistItem } from "./settings-token-blacklist-item";
-import { SettingsTokenBlacklistCreate } from "./settings-token-blacklist-create";
+import { SettingsBlacklistedToken } from "./settings-blacklisted-token";
+import { SettingsBlacklistedTokenCreate } from "./settings-blacklisted-token-create";
 
 export function SettingsTokenBlacklist() {
   hooks.useLeavingPrompt();
@@ -57,7 +57,7 @@ export function SettingsTokenBlacklist() {
         </div>
       </div>
 
-      <SettingsTokenBlacklistCreate />
+      <SettingsBlacklistedTokenCreate />
 
       <div
         data-display="flex"
@@ -129,7 +129,7 @@ export function SettingsTokenBlacklist() {
 
       <ul data-display="flex" data-gap="12" data-my="24">
         {tokens.map((token) => (
-          <SettingsTokenBlacklistItem key={token.token} {...token} />
+          <SettingsBlacklistedToken key={token.token} {...token} />
         ))}
       </ul>
     </main>

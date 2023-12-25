@@ -6,7 +6,7 @@ import * as api from "./api";
 import * as types from "./types";
 import * as UI from "./ui";
 
-export function SettingsTokenBlacklistCreate() {
+export function SettingsBlacklistedTokenCreate() {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();
@@ -17,7 +17,7 @@ export function SettingsTokenBlacklistCreate() {
     onSuccess: () => {
       token.clear();
       queryClient.invalidateQueries(api.keys.tokenBlacklist);
-      notify({ message: "token_blacklist.created" });
+      notify({ message: "blacklisted_token.created" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
@@ -44,12 +44,12 @@ export function SettingsTokenBlacklistCreate() {
         {...bg.Rhythm().times(30).style.maxWidth}
       >
         <label class="c-label" {...token.label.props}>
-          {t("token.label")}
+          {t("blacklisted_token.label")}
         </label>
         <input
           class="c-input"
           data-grow="1"
-          placeholder={t("token.placeholder")}
+          placeholder={t("blacklisted_token.placeholder")}
           onChange={token.handleChange}
           value={token.value}
           {...bg.Form.pattern(types.BlacklistedTokenValidations)}

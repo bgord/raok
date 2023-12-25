@@ -256,7 +256,7 @@ export class TokenBlacklist {
 
   static async list(): Promise<types.TokenBlacklistType[]> {
     return bg
-      .API("/token-blacklist/list")
+      .API("/token-blacklist")
       .then((response) => (response.ok ? response.json() : []));
   }
 

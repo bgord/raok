@@ -5,7 +5,7 @@ import * as Repos from "../repositories";
 
 import * as infra from "../../../infra";
 
-export async function TokenBlacklistList(
+export async function TokenBlacklist(
   request: express.Request,
   response: express.Response,
   _next: express.NextFunction

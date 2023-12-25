@@ -5,7 +5,7 @@ import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 
 export class TokenBlacklistRepository {
-  static async create(payload: VO.TokenBlacklistType) {
+  static async create(payload: VO.BlacklistedTokenType) {
     const now = Date.now();
 
     await infra.db.tokenBlacklist.create({
@@ -13,7 +13,7 @@ export class TokenBlacklistRepository {
     });
   }
 
-  static async delete(where: Pick<VO.TokenBlacklistType, "token">) {
+  static async delete(where: Pick<VO.BlacklistedTokenType, "token">) {
     await infra.db.tokenBlacklist.delete({ where });
   }
 
