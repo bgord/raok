@@ -39,6 +39,7 @@ model Article {
   estimatedReadingTimeInMinutes Int?
   revision                      Int        @default(0)
   rating                        Float?
+  description                   String?
 
   @@index(status)
 }
