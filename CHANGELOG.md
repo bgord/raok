@@ -1,10 +1,19 @@
 # Changelog
+- 2023-12-26 22:42 ce67189 **feature: display article description**
+## 2023-12-26 22:42 
+- 2023-12-26 11:58 e96245e **refactor: move article rating level calculator to api**
+- 2023-12-26 11:43 c31ef0d **feature: fetch article description**
+- 2023-12-26 11:39 8c15333 **refactor: simplify article#add**
+- 2023-12-26 11:35 0020edb **step: add article description vo**
+- 2023-12-26 11:32 9f69593 **step: add article description column**
+- 2023-12-25 22:27 3e25022 **refactor: use native c-badge**
+- 2023-12-25 22:23 28609c7 **step: bump bgord/scripts**
 - 2023-12-25 22:11 c19a8cd **step: add article title not blacklisted policy**
-## 2023-12-25 22:11 
 - 2023-12-25 21:55 5c60fcc **step: handle token validation errors**
 - 2023-12-25 21:47 6022c38 **step: add blacklisted token is unique policy**
 - 2023-12-25 21:33 5a03e83 **refactor: rename blacklisted tokens**
 - 2023-12-25 21:30 5f9758c **feature: add basic token create ui**
+- 2023-12-25 21:20 3b1a467 **docs: generate CHANGELOG**
 - 2023-12-25 21:19 7f6be75 **feature: add delete token blacklist item button**
 - 2023-12-25 21:15 a313bcd **refactor: improve archive file spacing**
 - 2023-12-25 21:13 ac8c0f3 **fix: refetch on query in archive files**
