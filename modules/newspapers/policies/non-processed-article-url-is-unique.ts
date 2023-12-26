@@ -12,9 +12,7 @@ export class NonProcessedArticleUrlIsNotUniqueError extends Error {
   }
 }
 
-type NonProcessedArticleUrlIsUniqueConfigType = {
-  articleUrl: VO.ArticleType["url"];
-};
+type NonProcessedArticleUrlIsUniqueConfigType = Pick<VO.ArticleType, "url">;
 
 class NonProcessedArticleUrlIsUniqueFactory extends bg.Policy<NonProcessedArticleUrlIsUniqueConfigType> {
   async fails(
@@ -22,7 +20,7 @@ class NonProcessedArticleUrlIsUniqueFactory extends bg.Policy<NonProcessedArticl
   ): Promise<boolean> {
     const numbersOfNonProcessedArticlesWithUrl =
       await Repos.ArticleRepository.getNumbersOfNonProcessedArticlesWithUrl(
-        config.articleUrl
+        config.url
       );
 
     return numbersOfNonProcessedArticlesWithUrl > 0;

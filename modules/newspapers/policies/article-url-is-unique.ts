@@ -9,16 +9,12 @@ class ArticleUrlIsNotUniqueError extends Error {
   }
 }
 
-type ArticleUrlIsUniqueConfigType = {
-  articleUrl: VO.ArticleType["url"];
-};
+type ArticleUrlIsUniqueConfigType = Pick<VO.ArticleType, "url">;
 
 class ArticleUrlIsUniqueFactory extends bg.Policy<ArticleUrlIsUniqueConfigType> {
   async fails(config: ArticleUrlIsUniqueConfigType): Promise<boolean> {
     const numbersOfArticlesWithUrl =
-      await Repos.ArticleRepository.getNumbersOfArticlesWithUrl(
-        config.articleUrl
-      );
+      await Repos.ArticleRepository.getNumbersOfArticlesWithUrl(config.url);
 
     return numbersOfArticlesWithUrl > 0;
   }

@@ -8,9 +8,9 @@ export async function AddArticle(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const articleUrl = VO.ArticleUrl.parse(request.body.url);
+  const url = VO.ArticleUrl.parse(request.body.url);
 
-  await Aggregates.Article.add({ url: articleUrl });
+  await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.web });
 
   return response.send();
 }

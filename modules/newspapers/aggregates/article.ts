@@ -85,28 +85,17 @@ export class Article {
     return new Article(entity as VO.ArticleType, revision);
   }
 
-  static async add(article: {
-    url: VO.ArticleUrlType;
-    source?: VO.ArticleSourceEnum;
-  }) {
+  static async add(article: Pick<VO.ArticleType, "source" | "url">) {
     const id = VO.ArticleId.parse(bg.NewUUID.generate());
-    const source = article.source ?? VO.ArticleSourceEnum.web;
 
-    if (source === VO.ArticleSourceEnum.rss) {
-      await Policies.ArticleUrlIsUnique.perform({ articleUrl: article.url });
-    }
-
-    if (source !== VO.ArticleSourceEnum.rss) {
-      await Policies.NonProcessedArticleUrlIsUnique.perform({
-        articleUrl: article.url,
-      });
+    if (article.source === VO.ArticleSourceEnum.rss) {
+      await Policies.ArticleUrlIsUnique.perform(article);
+    } else {
+      await Policies.NonProcessedArticleUrlIsUnique.perform(article);
     }
 
     const metatags = await Services.ArticleMetatagsScraper.get(article.url);
-
-    await Policies.ArticleTitleNotBlacklisted.perform({
-      title: metatags.title,
-    });
+    await Policies.ArticleTitleNotBlacklisted.perform(metatags);
 
     await infra.EventStore.save(
       Events.ArticleAddedEvent.parse({
@@ -116,12 +105,12 @@ export class Article {
         payload: {
           id,
           url: article.url,
-          source,
+          source: article.source,
           status: VO.ArticleStatusEnum.ready,
           createdAt: Date.now(),
           estimatedReadingTimeInMinutes: null,
-          ...metatags,
           revision: bg.Revision.initial,
+          ...metatags,
         },
       } satisfies Events.ArticleAddedEventType)
     );
