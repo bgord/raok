@@ -90,7 +90,9 @@ export function Article(props: ArticlePropsType) {
             data-overflow="hidden"
           >
             <UI.Title title={String(props.title)} />
-            <UI.Info data-color="gray-500">{props.description}</UI.Info>
+            <UI.Info data-color="gray-500" data-my="3" data-lh="20">
+              {props.description}
+            </UI.Info>
           </div>
           <ArticleUrl {...props} />
           <UI.Info
