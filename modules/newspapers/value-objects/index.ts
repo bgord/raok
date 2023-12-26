@@ -6,6 +6,8 @@ export * from "./article-description";
 export * from "./article-estimated-reading-time-in-minutes";
 export * from "./article-id";
 export * from "./article-metatags";
+export * from "./article-rating";
+export * from "./article-rating-level-enum";
 export * from "./article-revision";
 export * from "./article-search-query";
 export * from "./article-search-query-max-length";

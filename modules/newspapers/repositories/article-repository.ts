@@ -2,6 +2,7 @@ import * as z from "zod";
 import * as bg from "@bgord/node";
 import _ from "lodash";
 
+import * as Services from "../services";
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 
@@ -53,6 +54,7 @@ export class ArticleRepository {
     const result = articles.map((article) => ({
       ...article,
       createdAt: bg.RelativeDate.truthy(article.createdAt),
+      rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
     }));
 
     return bg.Pagination.prepare({ total, pagination, result });

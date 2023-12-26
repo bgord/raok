@@ -86,6 +86,8 @@ import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-obj
 import { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";
 export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-status-enum";
 
+export { ArticleRatingLevel } from "../modules/newspapers/value-objects/article-rating-level-enum";
+
 export enum SourceSortEnum {
   default = "default",
   used_at_most_recent = "used_at_most_recent",
