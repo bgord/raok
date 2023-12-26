@@ -15,18 +15,7 @@ export class NewspaperRepository {
         scheduledAt: true,
         sentAt: true,
         revision: true,
-        articles: {
-          select: {
-            id: true,
-            source: true,
-            status: true,
-            title: true,
-            url: true,
-            estimatedReadingTimeInMinutes: true,
-            revision: true,
-            rating: true,
-          },
-        },
+        articles: true,
       },
     });
 
