@@ -1,6 +1,8 @@
 # Changelog
+- 2023-12-26 23:04 fe8a09c **refactor: improve article description ui**
+## 2023-12-26 23:04 
 - 2023-12-26 22:42 ce67189 **feature: display article description**
-## 2023-12-26 22:42 
+- 2023-12-26 21:44 581f5aa **docs: generate CHANGELOG**
 - 2023-12-26 11:58 e96245e **refactor: move article rating level calculator to api**
 - 2023-12-26 11:43 c31ef0d **feature: fetch article description**
 - 2023-12-26 11:39 8c15333 **refactor: simplify article#add**
