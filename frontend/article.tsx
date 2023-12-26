@@ -83,7 +83,15 @@ export function Article(props: ArticlePropsType) {
           data-mr="12"
           data-md-mr="3"
         >
-          <UI.Title title={String(props.title)} />
+          <div
+            data-display="flex"
+            data-max-width="100%"
+            data-width="100%"
+            data-overflow="hidden"
+          >
+            <UI.Title title={String(props.title)} />
+            <UI.Info data-color="gray-500">{props.description}</UI.Info>
+          </div>
           <ArticleUrl {...props} />
           <UI.Info
             data-md-display="none"
