@@ -6,7 +6,7 @@ import * as VO from "../value-objects";
 
 export class ArticleMetatagsScraper {
   static async get(url: VO.ArticleUrlType): Promise<VO.ArticleMetatagsType> {
-    const emptyMetatags = { title: undefined };
+    const emptyMetatags = { title: undefined, description: undefined };
 
     try {
       const response = await og.default({
@@ -15,7 +15,10 @@ export class ArticleMetatagsScraper {
       });
 
       if (response.result.success) {
-        return VO.ArticleMetatags.parse({ title: response.result.ogTitle });
+        return VO.ArticleMetatags.parse({
+          title: response.result.ogTitle,
+          description: response.result.ogDescription,
+        });
       }
 
       return VO.ArticleMetatags.parse(emptyMetatags);
