@@ -48,7 +48,7 @@ export class SourceRepository {
   }
 
   static async getById(where: Pick<VO.SourceType, "id">) {
-    return infra.db.source.findFirst({ where });
+    return infra.db.source.findUnique({ where });
   }
 
   static async countUrl(where: Pick<VO.SourceType, "url">) {

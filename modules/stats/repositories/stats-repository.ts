@@ -4,11 +4,11 @@ import * as Newspapers from "../../newspapers";
 
 export class StatsRepository {
   static async getAll() {
-    const createdArticles = await infra.db.statsKeyValue.findFirst({
+    const createdArticles = await infra.db.statsKeyValue.findUnique({
       where: { key: "createdArticles" },
     });
 
-    const sentNewspapers = await infra.db.statsKeyValue.findFirst({
+    const sentNewspapers = await infra.db.statsKeyValue.findUnique({
       where: { key: "sentNewspapers" },
     });
 
