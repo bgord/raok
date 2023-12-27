@@ -21,6 +21,7 @@ export const keys = {
   allArchiveFiles: ["archive-files"],
   allArchiveArticles: ["archive-articles"],
   tokenBlacklist: ["token-blacklist"],
+  tokenBlacklistSuggestions: ["token-blacklist-suggestions"],
 };
 
 export class Article {
@@ -265,5 +266,11 @@ export class TokenBlacklist {
       method: "POST",
       body: JSON.stringify({ token: payload.token }),
     });
+  }
+
+  static async listSuggestions(): Promise<types.TokenBlacklistType[]> {
+    return bg
+      .API("/token-blacklist/suggestions")
+      .then((response) => (response.ok ? response.json() : []));
   }
 }

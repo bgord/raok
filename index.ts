@@ -260,6 +260,13 @@ app.post(
   infra.CacheResponse.clear,
   bg.Route(Recommendations.Routes.BlacklistedTokenDelete)
 );
+
+app.get(
+  "/token-blacklist/suggestions",
+  infra.AuthShield.verify,
+  infra.CacheResponse.handle,
+  bg.Route(Recommendations.Routes.BlacklistedTokenSuggestions)
+);
 // =============================
 
 app.get("*", (_, response) => response.redirect("/"));
