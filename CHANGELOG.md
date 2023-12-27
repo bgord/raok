@@ -1,7 +1,9 @@
 # Changelog
+- 2023-12-27 09:21 813b811 **feature: display max 2 lines of article description**
+## 2023-12-27 09:21 
 - 2023-12-26 23:04 fe8a09c **refactor: improve article description ui**
-## 2023-12-26 23:04 
 - 2023-12-26 22:42 ce67189 **feature: display article description**
+- 2023-12-26 22:05 b0f69b7 **docs: generate CHANGELOG**
 - 2023-12-26 21:44 581f5aa **docs: generate CHANGELOG**
 - 2023-12-26 11:58 e96245e **refactor: move article rating level calculator to api**
 - 2023-12-26 11:43 c31ef0d **feature: fetch article description**
