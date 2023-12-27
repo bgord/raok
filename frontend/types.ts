@@ -88,6 +88,9 @@ export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-s
 
 export { ArticleRatingLevel } from "../modules/newspapers/value-objects/article-rating-level-enum";
 
+/**
+ * @public
+ */
 export { SUGGESTED_BLACKLISTED_TOKENS_COUNT } from "../modules/recommendations/value-objects/suggested-blacklisted-tokens-count";
 
 export enum SourceSortEnum {

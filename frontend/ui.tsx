@@ -85,7 +85,6 @@ export function Info(props: h.JSX.IntrinsicElements["div"]) {
       data-cross="center"
       data-fs="12"
       data-color="gray-600"
-      data-transform="line-clamp"
       {...props}
     />
   );
