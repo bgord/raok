@@ -95,11 +95,7 @@ export function Article(props: ArticlePropsType) {
               data-my="3"
               data-lh="20"
               title={String(props.description)}
-              style={{
-                display: "-webkit-box",
-                "-webkit-box-orient": "vertical",
-                "-webkit-line-clamp": "2",
-              }}
+              data-transform="line-clamp"
             >
               {props.description}
             </UI.Info>
