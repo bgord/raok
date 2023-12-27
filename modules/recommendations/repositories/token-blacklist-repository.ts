@@ -29,4 +29,8 @@ export class TokenBlacklistRepository {
   static async getCountOfToken(where: Pick<VO.BlacklistedTokenType, "token">) {
     return infra.db.tokenBlacklist.count({ where });
   }
+
+  static async getSuggestedBlacklistedTokens(take: number) {
+    return infra.db.tokenRating.findMany({ orderBy: { value: "desc" }, take });
+  }
 }
