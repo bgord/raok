@@ -1,6 +1,9 @@
 # Changelog
+- 2023-12-27 18:34 921350c **refactor: change find first to unique**
+## 2023-12-27 18:34 
+- 2023-12-27 18:32 432f7df **feature: add line-clamp transform**
 - 2023-12-27 09:21 813b811 **feature: display max 2 lines of article description**
-## 2023-12-27 09:21 
+- 2023-12-27 08:23 26bd246 **docs: generate CHANGELOG**
 - 2023-12-26 23:04 fe8a09c **refactor: improve article description ui**
 - 2023-12-26 22:42 ce67189 **feature: display article description**
 - 2023-12-26 22:05 b0f69b7 **docs: generate CHANGELOG**
