@@ -11,11 +11,15 @@ export async function BlacklistedTokenSuggestions(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const tokens =
+  const suggestions =
     await Repos.TokenBlacklistRepository.getSuggestedBlacklistedTokens(
       VO.SUGGESTED_BLACKLISTED_TOKENS_COUNT
     );
 
-  infra.ResponseCache.set(request.url, tokens, bg.Time.Minutes(30).seconds);
-  return response.status(200).send(tokens);
+  infra.ResponseCache.set(
+    request.url,
+    suggestions,
+    bg.Time.Minutes(30).seconds
+  );
+  return response.status(200).send(suggestions);
 }

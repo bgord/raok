@@ -31,6 +31,6 @@ export class TokenBlacklistRepository {
   }
 
   static async getSuggestedBlacklistedTokens(take: number) {
-    return infra.db.tokenRating.findMany({ orderBy: { value: "desc" }, take });
+    return infra.db.tokenRating.findMany({ orderBy: { value: "asc" }, take });
   }
 }

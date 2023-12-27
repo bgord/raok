@@ -10,6 +10,7 @@ import * as hooks from "./hooks";
 
 import { SettingsBlacklistedToken } from "./settings-blacklisted-token";
 import { SettingsBlacklistedTokenCreate } from "./settings-blacklisted-token-create";
+import { SettingsBlacklistedTokensSuggestions } from "./settings-blacklisted-tokens-suggestions";
 
 export function SettingsTokenBlacklist() {
   hooks.useLeavingPrompt();
@@ -132,6 +133,8 @@ export function SettingsTokenBlacklist() {
           <SettingsBlacklistedToken key={token.token} {...token} />
         ))}
       </ul>
+
+      <SettingsBlacklistedTokensSuggestions />
     </main>
   );
 }

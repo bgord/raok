@@ -88,6 +88,8 @@ export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-s
 
 export { ArticleRatingLevel } from "../modules/newspapers/value-objects/article-rating-level-enum";
 
+export { SUGGESTED_BLACKLISTED_TOKENS_COUNT } from "../modules/recommendations/value-objects/suggested-blacklisted-tokens-count";
+
 export enum SourceSortEnum {
   default = "default",
   used_at_most_recent = "used_at_most_recent",
