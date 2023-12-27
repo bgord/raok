@@ -90,7 +90,17 @@ export function Article(props: ArticlePropsType) {
             data-overflow="hidden"
           >
             <UI.Title title={String(props.title)} />
-            <UI.Info data-color="gray-500" data-my="3" data-lh="20">
+            <UI.Info
+              data-color="gray-500"
+              data-my="3"
+              data-lh="20"
+              title={String(props.description)}
+              style={{
+                display: "-webkit-box",
+                "-webkit-box-orient": "vertical",
+                "-webkit-line-clamp": "2",
+              }}
+            >
               {props.description}
             </UI.Info>
           </div>
