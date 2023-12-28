@@ -11,7 +11,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "lib": ["ESNext"],
-    "incremental": true
+    "incremental": true,
+    "experimentalDecorators": true
   },
   "exclude": ["bgord-scripts"]
 }

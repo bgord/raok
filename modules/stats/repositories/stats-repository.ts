@@ -7,6 +7,7 @@ import * as Newspapers from "../../newspapers";
 const rounding = new bg.RoundToNearest();
 
 export class StatsRepository {
+  @infra.decorators.duration()
   static async getAll() {
     const createdArticles = await infra.db.statsKeyValue.findUnique({
       where: { key: "createdArticles" },
