@@ -95,7 +95,7 @@ export function Article(props: ArticlePropsType) {
               data-my="3"
               data-lh="20"
               title={String(props.description)}
-              data-transform="line-clamp"
+              {...bg.LineClamp()}
             >
               {props.description}
             </UI.Info>
