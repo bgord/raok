@@ -13,6 +13,7 @@ export function SettingsBlacklistedToken(props: types.TokenBlacklistType) {
   const deleteBlacklistedToken = useMutation(api.TokenBlacklist.delete, {
     onSuccess: () => {
       queryClient.invalidateQueries(api.keys.tokenBlacklist);
+      queryClient.invalidateQueries(api.keys.tokenBlacklistSuggestions);
       notify({ message: "blacklisted_token.deleted" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
