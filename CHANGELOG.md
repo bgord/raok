@@ -1,11 +1,13 @@
 # Changelog
+- 2023-12-28 13:09 00cc652 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#109)**
+## 2023-12-28 13:09 
 - 2023-12-27 19:21 4e1db7c **fix: ui line clamp**
-## 2023-12-27 19:21 
 - 2023-12-27 19:06 81ad840 **feature: add settings blacklisted tokens suggestions ui**
 - 2023-12-27 18:46 f943191 **feature: add BlacklistedTokenSuggestions route**
 - 2023-12-27 18:43 bcfd419 **step: add getSuggestedBlacklistedTokens**
 - 2023-12-27 18:34 921350c **refactor: change find first to unique**
 - 2023-12-27 18:32 432f7df **feature: add line-clamp transform**
+- 2023-12-27 18:22 bb9c344 **docs: generate CHANGELOG**
 - 2023-12-27 17:37 aadfeb4 **docs: generate CHANGELOG**
 - 2023-12-27 09:21 813b811 **feature: display max 2 lines of article description**
 - 2023-12-27 08:23 26bd246 **docs: generate CHANGELOG**
