@@ -1,6 +1,8 @@
 # Changelog
+- 2023-12-28 13:09 a1cbf7f **build(deps-dev): bump oxlint from 0.0.20 to 0.0.22 (#108)**
 - 2023-12-28 13:09 00cc652 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#109)**
 ## 2023-12-28 13:09 
+- 2023-12-28 12:09 e3857ac **docs: generate CHANGELOG**
 - 2023-12-27 19:21 4e1db7c **fix: ui line clamp**
 - 2023-12-27 19:06 81ad840 **feature: add settings blacklisted tokens suggestions ui**
 - 2023-12-27 18:46 f943191 **feature: add BlacklistedTokenSuggestions route**
