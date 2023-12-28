@@ -1,12 +1,14 @@
 # Changelog
+- 2023-12-28 16:10 3fc5b55 **feature: add articles per day stat**
+## 2023-12-28 16:10 
 - 2023-12-28 13:44 2b18764 **feature: make getSuggestedBlacklistedTokens filter out already blacklisted tokens**
-## 2023-12-28 13:44 
 - 2023-12-28 13:11 2502a5e **build(deps-dev): bump vitest from 1.0.4 to 1.1.0 (#106)**
 - 2023-12-28 13:10 1faeec9 **build(deps): bump @mozilla/readability from 0.4.4 to 0.5.0 (#105)**
 - 2023-12-28 13:10 130b256 **build(deps-dev): bump @typescript-eslint/parser from 6.14.0 to 6.16.0 (#107)**
 - 2023-12-28 13:09 a1cbf7f **build(deps-dev): bump oxlint from 0.0.20 to 0.0.22 (#108)**
 - 2023-12-28 13:09 00cc652 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#109)**
 - 2023-12-28 13:06 0cd63f8 **step: bump bgord/frontend**
+- 2023-12-28 12:44 6b839db **docs: generate CHANGELOG**
 - 2023-12-28 12:11 8c486ab **docs: generate CHANGELOG**
 - 2023-12-28 12:11 00f4569 **docs: generate CHANGELOG**
 - 2023-12-28 12:10 9ccb9bd **docs: generate CHANGELOG**
