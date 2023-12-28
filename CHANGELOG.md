@@ -1,7 +1,9 @@
 # Changelog
+- 2023-12-28 13:10 1faeec9 **build(deps): bump @mozilla/readability from 0.4.4 to 0.5.0 (#105)**
+## 2023-12-28 13:10 
 - 2023-12-28 13:09 a1cbf7f **build(deps-dev): bump oxlint from 0.0.20 to 0.0.22 (#108)**
 - 2023-12-28 13:09 00cc652 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#109)**
-## 2023-12-28 13:09 
+- 2023-12-28 12:10 9ccb9bd **docs: generate CHANGELOG**
 - 2023-12-28 12:09 e3857ac **docs: generate CHANGELOG**
 - 2023-12-27 19:21 4e1db7c **fix: ui line clamp**
 - 2023-12-27 19:06 81ad840 **feature: add settings blacklisted tokens suggestions ui**
