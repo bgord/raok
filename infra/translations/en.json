@@ -185,5 +185,6 @@
   "blacklisted_token.error.not_unique": "Token already exists",
   "token.structure.error": "Token should be 2 - 512 chars",
   "article.title.blacklisted": "Article title blacklisted",
-  "blacklisted_token.suggestions": "Add one of the suggested:"
+  "blacklisted_token.suggestions": "Add one of the suggested:",
+  "stats.articles_per_day": "per day"
 }

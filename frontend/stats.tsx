@@ -14,6 +14,7 @@ export function Stats() {
 
   const createdArticles = stats.data?.createdArticles ?? 0;
   const sentNewspapers = stats.data?.sentNewspapers ?? 0;
+  const articlesPerDay = stats.data?.articlesPerDay ?? null;
 
   return (
     <div data-mt="48" data-bg="gray-100" data-p="12" data-shadow>
@@ -27,6 +28,9 @@ export function Stats() {
         {t("stats.articles_added", {
           noun: pluralize({ value: createdArticles, singular: "article" }),
         })}
+        <div data-fs="24">{" ·"}</div>
+        {articlesPerDay && <strong>{articlesPerDay}</strong>}
+        {t("stats.articles_per_day")}
       </div>
 
       <div

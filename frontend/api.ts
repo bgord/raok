@@ -129,6 +129,7 @@ export async function getStats(): Promise<types.StatsType> {
     createdArticles: 0,
     sentNewspapers: 0,
     numberOfNonProcessedArticles: 0,
+    articlesPerDay: null,
   };
 
   return bg
