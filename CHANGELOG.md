@@ -1,8 +1,10 @@
 # Changelog
+- 2023-12-28 17:07 0ca1752 **fix: decorators export**
+## 2023-12-28 17:07 
 - 2023-12-28 16:53 c8f29bd **feature: add method duration decorator**
-## 2023-12-28 16:53 
 - 2023-12-28 16:51 18bf567 **step: bump bgord/node**
 - 2023-12-28 16:10 3fc5b55 **feature: add articles per day stat**
+- 2023-12-28 15:53 caf1298 **docs: generate CHANGELOG**
 - 2023-12-28 15:15 6d70068 **docs: generate CHANGELOG**
 - 2023-12-28 13:44 2b18764 **feature: make getSuggestedBlacklistedTokens filter out already blacklisted tokens**
 - 2023-12-28 13:11 2502a5e **build(deps-dev): bump vitest from 1.0.4 to 1.1.0 (#106)**
