@@ -12,7 +12,6 @@ import { db } from "./db";
 import { Env } from "./env";
 import { Mailer } from "./mailer";
 import { SupportedLanguages } from "./supported-languages";
-import { logger } from "./logger";
 
 export const prerequisites = [
   new bg.PrerequisitePort({ label: "port", port: Env.PORT }),
@@ -91,5 +90,3 @@ export { EventStore } from "./event-store";
 export * from "./jobs";
 
 export const CacheResponse = new bg.CacheResponse(ResponseCache);
-
-export const decorators = new bg.Decorators(logger);
