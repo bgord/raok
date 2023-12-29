@@ -80,8 +80,8 @@ export function Newspaper(props: NewspaperProps) {
               data-mx="6"
               onClick={details.toggle}
             >
-              {details.off && <Icons.NavArrowDown height="24" width="24" />}
-              {details.on && <Icons.NavArrowUp height="24" width="24" />}
+              {details.off && <Icons.NavArrowLeft height="24" width="24" />}
+              {details.on && <Icons.NavArrowDown height="24" width="24" />}
             </button>
           )}
         </div>
