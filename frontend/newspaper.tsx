@@ -17,11 +17,17 @@ type NewspaperProps = types.NewspaperType & h.JSX.IntrinsicElements["li"];
 
 export function Newspaper(props: NewspaperProps) {
   const t = bg.useTranslations();
+  const notify = bg.useToastTrigger();
 
   const details = bg.useToggle();
   useAutoUpdateNewspaper(props, details.enable);
 
   const sentAtRelative = props.sentAt?.relative ?? "-";
+
+  const newspaperUrlCopied = bg.useRateLimiter({
+    limitMs: bg.Time.Seconds(2).ms,
+    action: () => notify({ message: "newspaper.url.copied" }),
+  });
 
   const isStalled = hasNewspaperStalled({
     status: props.status,
@@ -107,13 +113,23 @@ export function Newspaper(props: NewspaperProps) {
 
           {props.status === "delivered" && (
             <UI.OutboundLink
-              href={`/newspaper/${props.id}/read`}
+              href={api.NewspaperLink.getDownload(props)}
               data-mr="auto"
             >
               <button type="button" class="c-button" data-variant="bare">
                 {t("newspaper.read_online")}
               </button>
             </UI.OutboundLink>
+          )}
+
+          {props.status === "delivered" && (
+            <UI.CopyButton
+              data-mr="6"
+              options={{
+                text: api.NewspaperLink.getFull(props),
+                onSuccess: newspaperUrlCopied,
+              }}
+            />
           )}
         </div>
       </bg.Anima>

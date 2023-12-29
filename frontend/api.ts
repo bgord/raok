@@ -275,3 +275,14 @@ export class TokenBlacklist {
       .then((response) => (response.ok ? response.json() : []));
   }
 }
+
+export class NewspaperLink {
+  static getDownload(newspaper: types.NewspaperType): string {
+    return `/newspaper/${newspaper.id}/read`;
+  }
+
+  static getFull(newspaper: types.NewspaperType): string {
+    const safeWindow = bg.getSafeWindow();
+    return `${safeWindow?.location.origin}/newspaper/${newspaper.id}/read`;
+  }
+}
