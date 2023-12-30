@@ -1,9 +1,14 @@
 # Changelog
+- 2023-12-30 10:03 32ae801 **fix: create newspaper spacing issue**
+## 2023-12-30 10:03 
+- 2023-12-29 09:12 f6a26b8 **feature: add copy newspaper url button**
+- 2023-12-29 09:05 84055fa **refactor: extract newspaper components**
+- 2023-12-29 08:55 f7de1ed **refactor: newspaper show/hide arrow pattern**
 - 2023-12-28 17:07 0ca1752 **fix: decorators export**
-## 2023-12-28 17:07 
 - 2023-12-28 16:53 c8f29bd **feature: add method duration decorator**
 - 2023-12-28 16:51 18bf567 **step: bump bgord/node**
 - 2023-12-28 16:10 3fc5b55 **feature: add articles per day stat**
+- 2023-12-28 16:08 e55f41a **docs: generate CHANGELOG**
 - 2023-12-28 15:53 caf1298 **docs: generate CHANGELOG**
 - 2023-12-28 15:15 6d70068 **docs: generate CHANGELOG**
 - 2023-12-28 13:44 2b18764 **feature: make getSuggestedBlacklistedTokens filter out already blacklisted tokens**
