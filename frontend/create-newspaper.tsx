@@ -45,7 +45,7 @@ export function CreateNewspaper() {
       )}
 
       {newspaperCreator.selectedArticleIds.length === 0 && (
-        <UI.Info data-gap="6" data-mb="12" data-pb="12">
+        <UI.Info data-gap="6" data-mb="12" data-pb="3">
           <Icons.InfoCircle height="20" width="20" />
 
           <span>
