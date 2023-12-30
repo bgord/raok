@@ -32,14 +32,11 @@ export const onArticleAddedEventHandler =
       estimatedReadingTimeInMinutes: readableArticle?.readingTime ?? null,
     });
 
-    const rating =
-      await Recommendations.Services.TextRatingCalculator.calculate(
-        readableArticle?.title
-      );
-
     await Repos.ArticleRepository.updateRating({
       id: event.payload.id,
-      rating,
+      rating: await Recommendations.Services.TextRatingCalculator.calculate(
+        readableArticle?.title
+      ),
     });
   });
 

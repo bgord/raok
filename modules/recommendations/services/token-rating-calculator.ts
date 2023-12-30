@@ -1,6 +1,7 @@
 import * as VO from "../value-objects";
 
 export enum RatingActionEnum {
+  added = "added",
   opened = "opened",
   read = "read",
   processed = "processed",
@@ -13,6 +14,8 @@ export class TokenRatingCalculator {
     tokens: VO.TokenType[]
   ): VO.TokenRatingType[] {
     switch (action) {
+      case RatingActionEnum.added:
+        return tokens.map((token) => ({ token, value: 2 }));
       case RatingActionEnum.opened:
         return tokens.map((token) => ({ token, value: 1 }));
       case RatingActionEnum.read:

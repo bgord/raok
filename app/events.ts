@@ -101,6 +101,11 @@ emittery.on(
 // Recommendations
 
 emittery.on(
+  NewspapersEvents.ARTICLE_ADDED_EVENT,
+  Recommendations.Handlers.onArticleAddedEventHandler
+);
+
+emittery.on(
   NewspapersEvents.ARTICLE_OPENED_EVENT,
   Recommendations.Handlers.onArticleOpenedEventHandler
 );
