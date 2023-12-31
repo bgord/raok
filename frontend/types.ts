@@ -131,4 +131,6 @@ export enum ArticlesSortEnum {
   default = "default",
   most_rated = "most_rated",
   least_rated = "least_rated",
+  longest_read = "longest_read",
+  shortest_read = "shortest_read",
 }

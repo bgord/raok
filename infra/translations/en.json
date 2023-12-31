@@ -190,5 +190,7 @@
   "newspaper.url.copied": "newspaper url copied",
   "article.sort.default": "default",
   "article.sort.most_rated": "most rated",
-  "article.sort.least_rated": "least rated"
+  "article.sort.least_rated": "least rated",
+  "article.sort.longest_read": "longest rated",
+  "article.sort.shortest_read": "shortest rated"
 }

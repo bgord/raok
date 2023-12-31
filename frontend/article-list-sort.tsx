@@ -19,6 +19,12 @@ export function useArticleSort() {
         ratingToSortValue[b.rating] - ratingToSortValue[a.rating],
       [types.ArticlesSortEnum.least_rated]: (a, b) =>
         ratingToSortValue[a.rating] - ratingToSortValue[b.rating],
+      [types.ArticlesSortEnum.longest_read]: (a, b) =>
+        (b.estimatedReadingTimeInMinutes ?? 0) -
+        (a.estimatedReadingTimeInMinutes ?? 0),
+      [types.ArticlesSortEnum.shortest_read]: (a, b) =>
+        (a.estimatedReadingTimeInMinutes ?? 0) -
+        (b.estimatedReadingTimeInMinutes ?? 0),
     },
   });
 }
