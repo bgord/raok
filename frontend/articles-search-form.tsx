@@ -32,16 +32,14 @@ export function ArticlesSearchForm() {
     <form
       data-display="flex"
       data-wrap="nowrap"
-      data-max-width="100%"
       data-gap="6"
-      data-mb="24"
-      data-md-mx="6"
+      data-grow="1"
       onSubmit={(event) => {
         event.preventDefault();
         articleSearch.refetch();
       }}
     >
-      <div data-position="relative" data-width="100%">
+      <div data-position="relative" data-grow="1">
         <input
           list="articles"
           class="c-input"

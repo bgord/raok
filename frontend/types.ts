@@ -126,3 +126,9 @@ export const BlacklistedTokenValidations = {
   min: SOURCE_URL_MIN_LENGTH,
   max: SOURCE_URL_MAX_LENGTH,
 };
+
+export enum ArticlesSortEnum {
+  default = "default",
+  most_rated = "most_rated",
+  least_rated = "least_rated",
+}

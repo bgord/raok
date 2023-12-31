@@ -187,5 +187,8 @@
   "article.title.blacklisted": "Article title blacklisted",
   "blacklisted_token.suggestions": "Add one of the suggested:",
   "stats.articles_per_day": "per day",
-  "newspaper.url.copied": "newspaper url copied"
+  "newspaper.url.copied": "newspaper url copied",
+  "article.sort.default": "default",
+  "article.sort.most_rated": "most rated",
+  "article.sort.least_rated": "least rated"
 }

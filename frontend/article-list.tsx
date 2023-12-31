@@ -12,6 +12,7 @@ import { AddArticleForm } from "./add-article-form";
 import { ArticlesSearchForm } from "./articles-search-form";
 import { Article } from "./article";
 import { ArticleListRefresh } from "./article-list-refresh";
+import { ArticleListSort, useArticleSort } from "./article-list-sort";
 
 export function ArticleList() {
   const t = bg.useTranslations();
@@ -27,6 +28,8 @@ export function ArticleList() {
     `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`
   );
 
+  const sort = useArticleSort();
+
   const _articles = useInfiniteQuery(
     api.keys.articles,
     ({ pageParam = 1 }) => api.Article.listPaged(pageParam),
@@ -37,11 +40,11 @@ export function ArticleList() {
     }
   );
 
-  const articles = bg.Pagination.infinite(_articles);
+  const articles = bg.Pagination.infinite(_articles).toSorted(sort.sortFn);
 
-  const articlesSearch =
-    queryClient.getQueryData<types.ArticleType[]>(api.keys.articlesSearch) ??
-    [];
+  const articlesSearch = (
+    queryClient.getQueryData<types.ArticleType[]>(api.keys.articlesSearch) ?? []
+  ).toSorted(sort.sortFn);
   const articlesSearchResults = articlesSearch.length;
 
   const searchModeEnabled = articlesSearchResults > 0;
@@ -66,10 +69,8 @@ export function ArticleList() {
           >
             {numberOfNonProcessedArticles}
           </div>
-
           <Icons.Notes height="20px" width="20px" />
           <span data-mt="3">{t("app.articles")}</span>
-
           <ArticleListRefresh />
         </UI.Header>
 
@@ -119,7 +120,20 @@ export function ArticleList() {
         )}
       </div>
 
-      {articleActions.on && <ArticlesSearchForm />}
+      {articleActions.on && (
+        <div
+          data-display="flex"
+          data-wrap="nowrap"
+          data-cross="center"
+          data-md-cross="end"
+          data-mb="24"
+          data-md-mx="3"
+          data-gap="6"
+        >
+          <ArticleListSort {...sort} />
+          <ArticlesSearchForm />
+        </div>
+      )}
 
       {searchModeEnabled && (
         <ul>
