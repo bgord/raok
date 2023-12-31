@@ -1,6 +1,8 @@
 # Changelog
+- 2023-12-31 10:11 03b5a18 **feature: add sort by article rating UI**
+## 2023-12-31 10:11 
 - 2023-12-30 14:09 b5f186b **feature: update token rating on article added**
-## 2023-12-30 14:09 
+- 2023-12-30 13:14 1cd1e2d **docs: generate CHANGELOG**
 - 2023-12-30 10:03 32ae801 **fix: create newspaper spacing issue**
 - 2023-12-30 09:05 1674c15 **docs: generate CHANGELOG**
 - 2023-12-29 09:12 f6a26b8 **feature: add copy newspaper url button**
