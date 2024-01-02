@@ -1,6 +1,8 @@
 # Changelog
+- 2024-01-02 19:43 fbc3e7d **refactor: remove unnecessary wording**
+## 2024-01-02 19:43 
 - 2024-01-02 19:42 193ffe4 **feature: reorganize article created at position**
-## 2024-01-02 19:42 
+- 2024-01-02 18:43 7702ef0 **docs: generate CHANGELOG**
 - 2023-12-31 14:03 3b5a024 **feature: add sort by article reading time**
 - 2023-12-31 13:04 6df18c4 **docs: generate CHANGELOG**
 - 2023-12-31 10:11 03b5a18 **feature: add sort by article rating UI**
