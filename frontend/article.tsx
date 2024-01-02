@@ -38,6 +38,7 @@ export function Article(props: ArticlePropsType) {
         data-display="flex"
         data-wrap="nowrap"
         data-gap="6"
+        data-width="100%"
         data-overflow="hidden"
       >
         <div
@@ -101,12 +102,6 @@ export function Article(props: ArticlePropsType) {
             </UI.Info>
           </div>
           <ArticleUrl {...props} />
-          <UI.Info
-            data-md-display="none"
-            title={bg.DateFormatter.datetime(props.createdAt.raw)}
-          >
-            {props.createdAt.relative}
-          </UI.Info>
         </div>
       </div>
 
@@ -167,6 +162,16 @@ export function Article(props: ArticlePropsType) {
           <ArticleMarkAsAdded {...props} />
           <ArticleDelete {...props} />
         </div>
+
+        <UI.Info
+          data-transform="nowrap"
+          data-md-display="none"
+          data-color="gray-400"
+          data-ml="auto"
+          title={bg.DateFormatter.datetime(props.createdAt.raw)}
+        >
+          {props.createdAt.relative}
+        </UI.Info>
       </div>
     </li>
   );
