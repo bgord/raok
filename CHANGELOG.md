@@ -1,6 +1,8 @@
 # Changelog
+- 2024-01-02 19:42 193ffe4 **feature: reorganize article created at position**
+## 2024-01-02 19:42 
 - 2023-12-31 14:03 3b5a024 **feature: add sort by article reading time**
-## 2023-12-31 14:03 
+- 2023-12-31 13:04 6df18c4 **docs: generate CHANGELOG**
 - 2023-12-31 10:11 03b5a18 **feature: add sort by article rating UI**
 - 2023-12-31 09:12 a64d4fc **docs: generate CHANGELOG**
 - 2023-12-30 14:09 b5f186b **feature: update token rating on article added**
