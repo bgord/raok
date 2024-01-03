@@ -18,7 +18,7 @@ export function NewspaperList() {
   });
 
   return (
-    <section data-mt="48" data-mb="72" data-md-mb="36">
+    <section data-my="24">
       <UI.Header
         data-display="flex"
         data-bg="gray-100"

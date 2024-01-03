@@ -31,10 +31,8 @@ export function Dashboard(_: RoutableProps) {
         data-display="flex"
         data-main="center"
         data-mx="auto"
-        data-mt="12"
-        data-mb="48"
-        data-md-mb="72"
-        data-pb="48"
+        data-my="12"
+        data-md-mb="48"
         data-max-width="1296"
       >
         <section
