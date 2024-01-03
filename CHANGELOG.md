@@ -1,7 +1,10 @@
 # Changelog
+- 2024-01-03 17:03 b67fad3 **refactor: change send to kindle copy**
+## 2024-01-03 17:03 
+- 2024-01-03 16:58 c8083eb **fix: load more button spacing**
 - 2024-01-02 19:43 fbc3e7d **refactor: remove unnecessary wording**
-## 2024-01-02 19:43 
 - 2024-01-02 19:42 193ffe4 **feature: reorganize article created at position**
+- 2024-01-02 18:44 c8e6309 **docs: generate CHANGELOG**
 - 2024-01-02 18:43 7702ef0 **docs: generate CHANGELOG**
 - 2023-12-31 14:03 3b5a024 **feature: add sort by article reading time**
 - 2023-12-31 13:04 6df18c4 **docs: generate CHANGELOG**
