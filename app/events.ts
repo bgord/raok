@@ -69,6 +69,11 @@ emittery.on(
 );
 
 emittery.on(
+  NewspapersEvents.ARTICLE_OPENED_EVENT,
+  NewspapersHandlers.onArticleOpenedEventHandler
+);
+
+emittery.on(
   NewspapersEvents.NEWSPAPER_SCHEDULED_EVENT,
   NewspapersHandlers.onNewspaperScheduledEventHandler
 );

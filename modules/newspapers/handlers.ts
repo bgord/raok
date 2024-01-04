@@ -56,6 +56,7 @@ export const onArticleReadEventHandler =
       status: VO.ArticleStatusEnum.read,
       revision: event.payload.revision,
     });
+    await Stats.Repos.StatsRepository.incrementReadArticles();
   });
 
 export const onArticleUndeletedEventHandler =
@@ -106,6 +107,12 @@ export const onArticleProcessedEventHandler =
       status: VO.ArticleStatusEnum.processed,
       revision: event.payload.revision,
     });
+    await Stats.Repos.StatsRepository.incrementSentArticles();
+  });
+
+export const onArticleOpenedEventHandler =
+  EventHandler.handle<Events.ArticleOpenedEventType>(async () => {
+    await Stats.Repos.StatsRepository.incrementOpenedArticles();
   });
 
 export const onNewspaperScheduledEventHandler =

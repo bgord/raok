@@ -14,6 +14,18 @@ export class StatsRepository {
       where: { key: "createdArticles" },
     });
 
+    const openedArticles = await infra.db.statsKeyValue.findUnique({
+      where: { key: "openedArticles" },
+    });
+
+    const readArticles = await infra.db.statsKeyValue.findUnique({
+      where: { key: "readArticles" },
+    });
+
+    const sentArticles = await infra.db.statsKeyValue.findUnique({
+      where: { key: "sentArticles" },
+    });
+
     const sentNewspapers = await infra.db.statsKeyValue.findUnique({
       where: { key: "sentNewspapers" },
     });
@@ -33,6 +45,9 @@ export class StatsRepository {
         sentNewspapers: sentNewspapers?.value ?? 0,
         numberOfNonProcessedArticles,
         articlesPerDay: null,
+        openedArticles: openedArticles?.value ?? 0,
+        readArticles: readArticles?.value ?? 0,
+        sentArticles: sentArticles?.value ?? 0,
       };
     }
 
@@ -49,6 +64,9 @@ export class StatsRepository {
       sentNewspapers: sentNewspapers?.value ?? 0,
       numberOfNonProcessedArticles,
       articlesPerDay,
+      openedArticles: openedArticles?.value ?? 0,
+      readArticles: readArticles?.value ?? 0,
+      sentArticles: sentArticles?.value ?? 0,
     };
   }
 
@@ -57,6 +75,30 @@ export class StatsRepository {
       where: { key: "createdArticles" },
       update: { value: { increment: 1 } },
       create: { key: "createdArticles", value: 1 },
+    });
+  }
+
+  static async incrementOpenedArticles() {
+    return infra.db.statsKeyValue.upsert({
+      where: { key: "openedArticles" },
+      update: { value: { increment: 1 } },
+      create: { key: "openedArticles", value: 1 },
+    });
+  }
+
+  static async incrementReadArticles() {
+    return infra.db.statsKeyValue.upsert({
+      where: { key: "readArticles" },
+      update: { value: { increment: 1 } },
+      create: { key: "readArticles", value: 1 },
+    });
+  }
+
+  static async incrementSentArticles() {
+    return infra.db.statsKeyValue.upsert({
+      where: { key: "sentArticles" },
+      update: { value: { increment: 1 } },
+      create: { key: "sentArticles", value: 1 },
     });
   }
 

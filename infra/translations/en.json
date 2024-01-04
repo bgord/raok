@@ -192,5 +192,8 @@
   "article.sort.most_rated": "most rated",
   "article.sort.least_rated": "least rated",
   "article.sort.longest_read": "longest rated",
-  "article.sort.shortest_read": "shortest rated"
+  "article.sort.shortest_read": "shortest rated",
+  "stats.opened_articles": "opened",
+  "stats.read_articles": "read",
+  "stats.sent_articles": "sent"
 }
