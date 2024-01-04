@@ -95,6 +95,7 @@ export function Sources(_props: RoutableProps) {
       <div
         data-display="flex"
         data-wrap="nowrap"
+        data-md-wrap="wrap"
         data-max-width="100%"
         data-gap="12"
       >
