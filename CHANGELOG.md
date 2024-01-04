@@ -1,10 +1,13 @@
 # Changelog
+- 2024-01-04 16:00 d9add31 **step: add reprocess-article-stats-events route**
+## 2024-01-04 16:00 
+- 2024-01-04 15:43 55c1bf9 **feature: add more stats**
 - 2024-01-04 13:19 d49ef40 **fix: settings articles to review notifications**
 - 2024-01-04 13:19 42f06e3 **fix: settings articles to review notifications**
-## 2024-01-04 13:19 
 - 2024-01-04 13:12 8c0290a **fix: settings token blacklist on mobile**
 - 2024-01-04 13:06 4f1479b **fix: archive articles on mobile**
 - 2024-01-04 13:03 a5a8353 **fix: source search on mobile**
+- 2024-01-04 12:36 b956df9 **docs: generate CHANGELOG**
 - 2024-01-04 12:21 1362a36 **docs: generate CHANGELOG**
 - 2024-01-03 17:03 b67fad3 **refactor: change send to kindle copy**
 - 2024-01-03 16:58 c8083eb **fix: load more button spacing**
