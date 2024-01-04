@@ -67,6 +67,7 @@ export function ArchiveArticles(_props: RoutableProps) {
       data-display="flex"
       data-direction="column"
       data-gap="36"
+      data-md-gap="12"
       data-my="24"
       data-mx="auto"
       data-md-pl="6"
@@ -83,7 +84,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         <UI.Badge>{numberOfArchiveArticles}</UI.Badge>
       </div>
 
-      <div data-display="flex" data-cross="end" data-gap="24" data-md-gap="12">
+      <div data-display="flex" data-cross="end" data-gap="24" data-md-gap="3">
         <div data-display="flex" data-direction="column">
           <label class="c-label" {...createdAtFilter.label.props}>
             Created at
@@ -167,6 +168,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         data-wrap="nowrap"
         data-max-width="100%"
         data-gap="6"
+        data-mb="12"
       >
         <div data-position="relative" data-width="100%">
           <input
