@@ -9,15 +9,13 @@ export class SourceFinder {
   }
 
   async find(): Promise<VO.SourceUrlType> {
-    try {
-      const options = this.urls.map((sourceUrl) =>
-        Policies.SourceUrlResponds.perform({ sourceUrl }).then(() => sourceUrl)
-      );
+    const options = this.urls.map((sourceUrl) =>
+      Policies.SourceUrlResponds.perform({ sourceUrl }).then(() => sourceUrl)
+    );
 
-      return Promise.any(options);
-    } catch (error) {
+    return Promise.any(options).catch(() => {
       throw new Policies.SourceUrlRespondsError();
-    }
+    });
   }
 
   private generate(url: VO.SourceUrlType): VO.SourceUrlType[] {
