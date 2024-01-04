@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-04 16:05 3a018a8 **step: reprocess article events for stats**
+## 2024-01-04 16:05 
 - 2024-01-04 16:00 d9add31 **step: add reprocess-article-stats-events route**
-## 2024-01-04 16:00 
 - 2024-01-04 15:43 55c1bf9 **feature: add more stats**
+- 2024-01-04 15:01 6065336 **docs: generate CHANGELOG**
 - 2024-01-04 13:19 d49ef40 **fix: settings articles to review notifications**
 - 2024-01-04 13:19 42f06e3 **fix: settings articles to review notifications**
 - 2024-01-04 13:12 8c0290a **fix: settings token blacklist on mobile**
