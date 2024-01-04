@@ -1,9 +1,11 @@
 # Changelog
+- 2024-01-04 19:42 36ce996 **step: get 7 suggested blacklisted tokens instead of 5**
+## 2024-01-04 19:42 
 - 2024-01-04 19:18 e1174e0 **step: get 5 suggested blacklisted tokens instead of 3**
-## 2024-01-04 19:18 
 - 2024-01-04 19:03 fd0cbd4 **fix: all promises were rejected error**
 - 2024-01-04 18:38 6634721 **refactor: extract getArticlesPerDay method**
 - 2024-01-04 18:32 ce2b1a2 **step: bump eslint-bgord**
+- 2024-01-04 18:19 13a8a28 **docs: generate CHANGELOG**
 - 2024-01-04 17:38 c6967cf **docs: generate CHANGELOG**
 - 2024-01-04 17:32 a071a42 **docs: generate CHANGELOG**
 - 2024-01-04 16:05 3a018a8 **step: reprocess article events for stats**
