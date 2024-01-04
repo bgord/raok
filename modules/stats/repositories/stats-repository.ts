@@ -33,31 +33,7 @@ export class StatsRepository {
     const numberOfNonProcessedArticles =
       await Newspapers.Repos.ArticleRepository.getNumberOfNonProcessed();
 
-    const firstArticle = await infra.db.article.findFirst({
-      select: { createdAt: true },
-      orderBy: { createdAt: "asc" },
-      take: 1,
-    });
-
-    if (!firstArticle || !createdArticles?.value) {
-      return {
-        createdArticles: createdArticles?.value ?? 0,
-        sentNewspapers: sentNewspapers?.value ?? 0,
-        numberOfNonProcessedArticles,
-        articlesPerDay: null,
-        openedArticles: openedArticles?.value ?? 0,
-        readArticles: readArticles?.value ?? 0,
-        sentArticles: sentArticles?.value ?? 0,
-      };
-    }
-
-    const daysSinceFirstArticle = rounding.round(
-      (Date.now() - firstArticle.createdAt) / bg.Time.Days(1).ms
-    );
-
-    const articlesPerDay = rounding.round(
-      createdArticles.value / daysSinceFirstArticle
-    );
+    const articlesPerDay = await StatsRepository.getArticlesPerDay();
 
     return {
       createdArticles: createdArticles?.value ?? 0,
@@ -68,6 +44,26 @@ export class StatsRepository {
       readArticles: readArticles?.value ?? 0,
       sentArticles: sentArticles?.value ?? 0,
     };
+  }
+
+  private static async getArticlesPerDay() {
+    const createdArticles = await infra.db.statsKeyValue.findUnique({
+      where: { key: "createdArticles" },
+    });
+
+    const firstArticle = await infra.db.article.findFirst({
+      select: { createdAt: true },
+      orderBy: { createdAt: "asc" },
+      take: 1,
+    });
+
+    if (!firstArticle?.createdAt || !createdArticles?.value) return null;
+
+    const daysSinceFirstArticle = rounding.round(
+      (Date.now() - firstArticle.createdAt) / bg.Time.Days(1).ms
+    );
+
+    return rounding.round(createdArticles.value / daysSinceFirstArticle);
   }
 
   static async incrementCreatedArticles() {
