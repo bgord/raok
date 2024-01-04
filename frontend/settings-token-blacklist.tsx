@@ -68,10 +68,12 @@ export function SettingsTokenBlacklist() {
         <div
           data-display="flex"
           data-cross="center"
+          data-md-direction="column"
           data-gap="12"
+          data-wrap="nowrap"
           data-md-gap="3"
         >
-          <label class="c-label" {...sort.label.props}>
+          <label class="c-label" {...sort.label.props} data-transform="nowrap">
             {t("sort")}
           </label>
 
