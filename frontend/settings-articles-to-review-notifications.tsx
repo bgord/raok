@@ -19,7 +19,8 @@ export function SettingsArticlesToReviewNotifications(
       data-direction="column"
       data-gap="24"
       data-mt="12"
-      data-py="24"
+      data-pt="24"
+      data-pb="12"
     >
       <SettingsArticlesToReviewNotificationsSwitch {...props} />
       <SettingsArticlesToReviewNotificationsSet {...props} />

@@ -40,7 +40,7 @@ export function SettingsArticlesToReviewNotificationsSwitch(
 
   return (
     <div data-display="flex" data-cross="center" data-gap="12">
-      <div data-display="flex" data-wrap="nowrap" data-gap="12">
+      <div data-display="flex" data-gap="12">
         <bg.Switch
           {...articlesToReviewNotificationEnabled}
           onChange={(event: h.JSX.TargetedUIEvent<HTMLInputElement>) =>
