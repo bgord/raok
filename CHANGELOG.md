@@ -1,7 +1,12 @@
 # Changelog
+- 2024-01-04 13:19 42f06e3 **fix: settings articles to review notifications**
+## 2024-01-04 13:19 
+- 2024-01-04 13:12 8c0290a **fix: settings token blacklist on mobile**
+- 2024-01-04 13:06 4f1479b **fix: archive articles on mobile**
+- 2024-01-04 13:03 a5a8353 **fix: source search on mobile**
 - 2024-01-03 17:03 b67fad3 **refactor: change send to kindle copy**
-## 2024-01-03 17:03 
 - 2024-01-03 16:58 c8083eb **fix: load more button spacing**
+- 2024-01-03 16:03 fd96af3 **docs: generate CHANGELOG**
 - 2024-01-02 19:43 fbc3e7d **refactor: remove unnecessary wording**
 - 2024-01-02 19:42 193ffe4 **feature: reorganize article created at position**
 - 2024-01-02 18:44 c8e6309 **docs: generate CHANGELOG**
