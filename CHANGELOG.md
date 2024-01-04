@@ -1,6 +1,8 @@
 # Changelog
+- 2024-01-04 18:38 6634721 **refactor: extract getArticlesPerDay method**
+## 2024-01-04 18:38 
 - 2024-01-04 18:32 ce2b1a2 **step: bump eslint-bgord**
-## 2024-01-04 18:32 
+- 2024-01-04 17:32 a071a42 **docs: generate CHANGELOG**
 - 2024-01-04 16:05 3a018a8 **step: reprocess article events for stats**
 - 2024-01-04 16:00 d9add31 **step: add reprocess-article-stats-events route**
 - 2024-01-04 15:43 55c1bf9 **feature: add more stats**
