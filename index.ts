@@ -269,44 +269,6 @@ app.get(
 );
 // =============================
 
-app.post("/reprocess-article-stats-events", async (_request, response) => {
-  const openedArticles = await infra.db.event.count({
-    where: { name: "ARTICLE_OPENED_EVENT" },
-  });
-
-  const sentArticles = await infra.db.event.count({
-    where: { name: "ARTICLE_PROCESSED_EVENT" },
-  });
-
-  const readArticles = await infra.db.event.count({
-    where: { name: "ARTICLE_READ_EVENT" },
-  });
-
-  const openedArticlesResult = await infra.db.statsKeyValue.upsert({
-    where: { key: "openedArticles" },
-    update: { value: openedArticles },
-    create: { key: "openedArticles", value: openedArticles },
-  });
-
-  const readArticlesResult = await infra.db.statsKeyValue.upsert({
-    where: { key: "readArticles" },
-    update: { value: readArticles },
-    create: { key: "readArticles", value: readArticles },
-  });
-
-  const sentArticlesResult = await infra.db.statsKeyValue.upsert({
-    where: { key: "sentArticles" },
-    update: { value: sentArticles },
-    create: { key: "sentArticles", value: sentArticles },
-  });
-
-  return response.send({
-    openedArticlesResult,
-    readArticlesResult,
-    sentArticlesResult,
-  });
-});
-
 app.get("*", (_, response) => response.redirect("/"));
 app.use(App.Routes.ErrorHandler.handle);
 
