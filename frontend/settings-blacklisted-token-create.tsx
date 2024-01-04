@@ -36,7 +36,9 @@ export function SettingsBlacklistedTokenCreate() {
     >
       <div
         data-display="flex"
+        data-md-direction="column"
         data-cross="center"
+        data-md-cross="start"
         data-wrap="nowrap"
         data-grow="1"
         data-gap="6"
@@ -48,6 +50,7 @@ export function SettingsBlacklistedTokenCreate() {
         <input
           class="c-input"
           data-grow="1"
+          data-width="100%"
           placeholder={t("blacklisted_token.placeholder")}
           onChange={token.handleChange}
           value={token.value}

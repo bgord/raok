@@ -65,8 +65,14 @@ export function SettingsTokenBlacklist() {
         data-wrap="nowrap"
         data-max-width="100%"
         data-gap="12"
+        data-md-gap="3"
       >
-        <div data-display="flex" data-cross="center" data-gap="12">
+        <div
+          data-display="flex"
+          data-cross="center"
+          data-gap="12"
+          data-md-gap="3"
+        >
           <label class="c-label" {...sort.label.props}>
             {t("sort")}
           </label>
@@ -85,7 +91,12 @@ export function SettingsTokenBlacklist() {
           </UI.Select>
         </div>
 
-        <div data-position="relative" data-grow="1" data-self="end">
+        <div
+          data-position="relative"
+          data-grow="1"
+          data-self="end"
+          data-width="100%"
+        >
           <input
             list="token_blacklist"
             onInput={search.onChange}
