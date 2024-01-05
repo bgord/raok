@@ -1,8 +1,10 @@
 # Changelog
+- 2024-01-05 13:11 a7419de **build(deps-dev): bump vitest from 1.1.0 to 1.1.2 (#118)**
+## 2024-01-05 13:11 
 - 2024-01-04 19:42 36ce996 **step: get 7 suggested blacklisted tokens instead of 5**
-## 2024-01-04 19:42 
 - 2024-01-04 19:18 e1174e0 **step: get 5 suggested blacklisted tokens instead of 3**
 - 2024-01-04 19:03 fd0cbd4 **fix: all promises were rejected error**
+- 2024-01-04 18:43 8d8b2a3 **docs: generate CHANGELOG**
 - 2024-01-04 18:38 6634721 **refactor: extract getArticlesPerDay method**
 - 2024-01-04 18:32 ce2b1a2 **step: bump eslint-bgord**
 - 2024-01-04 18:19 13a8a28 **docs: generate CHANGELOG**
