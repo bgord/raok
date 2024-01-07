@@ -9,14 +9,7 @@ export class NewspaperRepository {
     const result = await infra.db.newspaper.findMany({
       where: { status: { not: VO.NewspaperStatusEnum.archived } },
       orderBy: { sentAt: "desc" },
-      select: {
-        id: true,
-        status: true,
-        scheduledAt: true,
-        sentAt: true,
-        revision: true,
-        articles: true,
-      },
+      include: { articles: true },
     });
 
     return result.map(NewspaperRepository._mapper);

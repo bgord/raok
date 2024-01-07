@@ -6,7 +6,7 @@ import * as Icons from "iconoir-react";
 import * as types from "./types";
 import * as api from "./api";
 
-export function ArticleReadd(props: types.NewspaperType["articles"][0]) {
+export function ArticleReadd(props: Pick<types.ArticleType, "url">) {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
   const queryClient = useQueryClient();

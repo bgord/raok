@@ -31,13 +31,11 @@ export class ArticleRepository {
       }),
     ]);
 
-    const result = articles.map((article) => ({
-      ...article,
-      createdAt: bg.RelativeDate.truthy(article.createdAt),
-      rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
-    }));
-
-    return bg.Pagination.prepare({ total, pagination, result });
+    return bg.Pagination.prepare({
+      total,
+      pagination,
+      result: articles.map(ArticleRepository._map),
+    });
   }
 
   static async pagedGetAllNonProcessed(pagination: bg.PaginationType) {
@@ -52,13 +50,11 @@ export class ArticleRepository {
       }),
     ]);
 
-    const result = articles.map((article) => ({
-      ...article,
-      createdAt: bg.RelativeDate.truthy(article.createdAt),
-      rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
-    }));
-
-    return bg.Pagination.prepare({ total, pagination, result });
+    return bg.Pagination.prepare({
+      total,
+      pagination,
+      result: articles.map(ArticleRepository._map),
+    });
   }
 
   static async getNumberOfNonProcessed() {
@@ -138,14 +134,18 @@ export class ArticleRepository {
       orderBy: { createdAt: "desc" },
     });
 
-    return articles.map((article) => ({
-      ...article,
-      createdAt: bg.RelativeDate.truthy(article.createdAt),
-      rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
-    }));
+    return articles.map(ArticleRepository._map);
   }
 
   static async getSingle(id: VO.ArticleIdType) {
     return infra.db.article.findFirst({ where: { id } });
+  }
+
+  static _map(article: infra.Article) {
+    return {
+      ...article,
+      createdAt: bg.RelativeDate.truthy(article.createdAt),
+      rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
+    };
   }
 }
