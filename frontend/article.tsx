@@ -25,6 +25,7 @@ export function Article(props: ArticlePropsType) {
       data-md-direction="column"
       data-wrap="nowrap"
       data-mb="12"
+      data-pb="6"
       data-md-mx="6"
       {...bg.getAnimaProps(props)}
     >
