@@ -1,8 +1,11 @@
 # Changelog
+- 2024-01-07 16:44 4d5d27f **feature: add article deliver by email**
+## 2024-01-07 16:44 
+- 2024-01-07 16:18 a3d6a56 **feature: add article email delivery ui**
 - 2024-01-07 14:30 728bb17 **Revert "refactor: remove leaving prompt hook from dashboard"**
-## 2024-01-07 14:30 
 - 2024-01-07 14:19 c5e20a3 **refactor: add article repository mapper**
 - 2024-01-07 14:14 557cd76 **fix: return rating for article search query**
+- 2024-01-07 13:34 231059c **docs: generate CHANGELOG**
 - 2024-01-07 13:25 1ce7ab1 **docs: generate CHANGELOG**
 - 2024-01-07 10:47 a6d9f0b **feature: add source health**
 - 2024-01-05 13:13 1bf37e2 **build(deps-dev): bump esbuild from 0.19.8 to 0.19.11 (#114)**
