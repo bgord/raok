@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-07 14:30 728bb17 **Revert "refactor: remove leaving prompt hook from dashboard"**
+## 2024-01-07 14:30 
 - 2024-01-07 14:19 c5e20a3 **refactor: add article repository mapper**
-## 2024-01-07 14:19 
 - 2024-01-07 14:14 557cd76 **fix: return rating for article search query**
+- 2024-01-07 13:25 1ce7ab1 **docs: generate CHANGELOG**
 - 2024-01-07 10:47 a6d9f0b **feature: add source health**
 - 2024-01-05 13:13 1bf37e2 **build(deps-dev): bump esbuild from 0.19.8 to 0.19.11 (#114)**
 - 2024-01-05 13:12 a8c6f49 **build(deps-dev): bump @typescript-eslint/parser from 6.16.0 to 6.17.0 (#117)**
