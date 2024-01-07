@@ -1,10 +1,14 @@
 # Changelog
+- 2024-01-07 14:19 c5e20a3 **refactor: add article repository mapper**
+## 2024-01-07 14:19 
+- 2024-01-07 14:14 557cd76 **fix: return rating for article search query**
+- 2024-01-07 10:47 a6d9f0b **feature: add source health**
 - 2024-01-05 13:13 1bf37e2 **build(deps-dev): bump esbuild from 0.19.8 to 0.19.11 (#114)**
-## 2024-01-05 13:13 
 - 2024-01-05 13:12 a8c6f49 **build(deps-dev): bump @typescript-eslint/parser from 6.16.0 to 6.17.0 (#117)**
 - 2024-01-05 13:12 6505db7 **build(deps): bump @bgord/frontend from `e1dc9fa` to `1598f49` (#112)**
 - 2024-01-05 13:12 1b357bd **build(deps): bump iconoir-react from 7.1.0 to 7.3.0 (#116)**
 - 2024-01-05 13:11 a7419de **build(deps-dev): bump vitest from 1.1.0 to 1.1.2 (#118)**
+- 2024-01-05 12:13 40d582c **docs: generate CHANGELOG**
 - 2024-01-05 12:12 7fcdbd4 **docs: generate CHANGELOG**
 - 2024-01-05 12:11 296f126 **docs: generate CHANGELOG**
 - 2024-01-04 19:42 36ce996 **step: get 7 suggested blacklisted tokens instead of 5**
