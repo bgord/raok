@@ -8,6 +8,7 @@ import * as types from "./types";
 import { SourceDelete } from "./source-delete";
 import { SourceArchive } from "./source-archive";
 import { SourceReactivate } from "./source-reactivate";
+import { Health } from "./health";
 
 export function Source(
   props: types.SourceType & h.JSX.IntrinsicElements["li"]
@@ -52,6 +53,8 @@ export function Source(
         data-gap="6"
         data-max-width="100%"
       >
+        <Health {...props} />
+
         {props.status === types.SourceStatusEnum.active && (
           <div class="c-badge" data-color="green-700" data-bg="green-100">
             {props.status}
