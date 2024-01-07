@@ -34,6 +34,7 @@ export class ArticleRepository {
     const result = articles.map((article) => ({
       ...article,
       createdAt: bg.RelativeDate.truthy(article.createdAt),
+      rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
     }));
 
     return bg.Pagination.prepare({ total, pagination, result });
@@ -140,6 +141,7 @@ export class ArticleRepository {
     return articles.map((article) => ({
       ...article,
       createdAt: bg.RelativeDate.truthy(article.createdAt),
+      rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
     }));
   }
 
