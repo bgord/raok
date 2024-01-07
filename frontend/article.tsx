@@ -8,6 +8,7 @@ import * as types from "./types";
 import { ArticleHomepage } from "./article-homepage";
 import { ArticleSourceAdd } from "./article-source-add";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
+import { ArticleEmailDelivery } from "./article-email-delivery";
 import { ArticleDelete } from "./article-delete";
 import { ArticleUrl } from "./article-url";
 import { ArticleRating } from "./article-rating";
@@ -101,7 +102,22 @@ export function Article(props: ArticlePropsType) {
               {props.description}
             </UI.Info>
           </div>
-          <ArticleUrl {...props} />
+          <div
+            data-display="flex"
+            data-cross="center"
+            data-max-width="100%"
+            data-width="100%"
+            data-overflow="hidden"
+            data-wrap="nowrap"
+            data-gap="3"
+          >
+            <ArticleHomepage {...props} />
+            <UI.CopyButton
+              data-pt="3"
+              options={{ text: props.url, onSuccess: articleUrlCopied }}
+            />
+            <ArticleUrl {...props} />
+          </div>
         </div>
       </div>
 
@@ -143,7 +159,6 @@ export function Article(props: ArticlePropsType) {
 
         <div data-display="flex" data-wrap="nowrap" data-ml="auto" data-gap="6">
           <ArticleRating {...props} />
-
           <UI.Badge
             data-mt="3"
             data-mr="3"
@@ -153,12 +168,9 @@ export function Article(props: ArticlePropsType) {
           </UI.Badge>
         </div>
 
-        <div data-display="flex" data-wrap="nowrap" data-gap="3">
+        <div data-display="flex" data-wrap="nowrap">
           <ArticleSourceAdd {...props} />
-          <UI.CopyButton
-            options={{ text: props.url, onSuccess: articleUrlCopied }}
-          />
-          <ArticleHomepage {...props} />
+          <ArticleEmailDelivery {...props} />
           <ArticleMarkAsAdded {...props} />
           <ArticleDelete {...props} />
         </div>

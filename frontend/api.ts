@@ -78,6 +78,12 @@ export class Article {
       .API(`/articles/search?query=${query}`, { method: "GET" })
       .then((response) => (response.ok ? response.json() : []));
   }
+
+  static async deliverByEmail(payload: Pick<types.ArticleType, "id">) {
+    return bg.API(`/article/${payload.id}/deliver-by-email`, {
+      method: "POST",
+    });
+  }
 }
 
 export class Newspaper {

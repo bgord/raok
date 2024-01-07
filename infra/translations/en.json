@@ -195,5 +195,7 @@
   "article.sort.shortest_read": "shortest rated",
   "stats.opened_articles": "opened",
   "stats.read_articles": "read",
-  "stats.sent_articles": "sent"
+  "stats.sent_articles": "sent",
+  "article.delivered-by-email": "Articled delivered by email",
+  "article.deliver-by-email": "Deliver by email"
 }
