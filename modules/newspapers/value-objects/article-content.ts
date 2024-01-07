@@ -5,7 +5,6 @@ export const ArticleContent = z
   .string()
   .trim()
   .min(1)
-  .max(ARTICLE_CONTENT_MAX_CHARS)
-  .brand<"article-content">();
+  .max(ARTICLE_CONTENT_MAX_CHARS);
 
 export type ArticleContentType = z.infer<typeof ArticleContent>;

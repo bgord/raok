@@ -38,6 +38,7 @@ export function ArticleDelete(props: ArticlePropsType) {
       class="c-button"
       data-variant="bare"
       onClick={() => deleteArticle.mutate(props)}
+      {...bg.Rhythm().times(2).style.height}
     >
       <Icons.XmarkSquare width="20" height="20" />
     </button>

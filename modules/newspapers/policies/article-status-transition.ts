@@ -18,7 +18,12 @@ class ArticleStatusTransitionFactory extends bg.Policy<ArticleStatusTransitionCo
     const status = VO.ArticleStatusEnum;
 
     const transitions: Record<VO.ArticleStatusType, VO.ArticleStatusType[]> = {
-      [status.ready]: [status.in_progress, status.deleted, status.read],
+      [status.ready]: [
+        status.in_progress,
+        status.deleted,
+        status.read,
+        status.processed,
+      ],
       [status.in_progress]: [status.processed, status.ready],
       [status.processed]: [status.in_progress],
       [status.deleted]: [status.ready],

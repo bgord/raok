@@ -38,6 +38,7 @@ export function ArticleEmailDelivery(props: ArticlePropsType) {
       class="c-button"
       data-variant="bare"
       onClick={() => articleDeliverByEmail.mutate(props)}
+      {...bg.Rhythm().times(2).style.height}
     >
       <Icons.Mail width="20" height="20" />
     </button>

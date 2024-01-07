@@ -79,9 +79,12 @@ export class Article {
       .then((response) => (response.ok ? response.json() : []));
   }
 
-  static async deliverByEmail(payload: Pick<types.ArticleType, "id">) {
+  static async deliverByEmail(
+    payload: Pick<types.ArticleType, "id" | "revision">
+  ) {
     return bg.API(`/article/${payload.id}/deliver-by-email`, {
       method: "POST",
+      headers: bg.WeakETag.fromRevision(payload.revision),
     });
   }
 }

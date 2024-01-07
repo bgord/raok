@@ -80,6 +80,11 @@ app.post(
   bg.Route(Newspapers.Routes.ArticleMarkAsRead)
 );
 app.post(
+  "/article/:articleId/deliver-by-email",
+  infra.AuthShield.verify,
+  bg.Route(Newspapers.Routes.ArticleDeliverByEmail)
+);
+app.post(
   "/article/:articleId/opened",
   infra.AuthShield.verify,
   bg.Route(Newspapers.Routes.ArticleOpened)

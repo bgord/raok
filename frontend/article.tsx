@@ -5,7 +5,6 @@ import * as bg from "@bgord/frontend";
 import * as UI from "./ui";
 import * as types from "./types";
 
-import { ArticleHomepage } from "./article-homepage";
 import { ArticleSourceAdd } from "./article-source-add";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
 import { ArticleEmailDelivery } from "./article-email-delivery";
@@ -19,12 +18,6 @@ type ArticlePropsType = types.ArticleType &
 
 export function Article(props: ArticlePropsType) {
   const t = bg.useTranslations();
-  const notify = bg.useToastTrigger<types.ToastType>();
-
-  const articleUrlCopied = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(2).ms,
-    action: () => notify({ message: "article.url.copied" }),
-  });
 
   return (
     <li
@@ -102,22 +95,7 @@ export function Article(props: ArticlePropsType) {
               {props.description}
             </UI.Info>
           </div>
-          <div
-            data-display="flex"
-            data-cross="center"
-            data-max-width="100%"
-            data-width="100%"
-            data-overflow="hidden"
-            data-wrap="nowrap"
-            data-gap="3"
-          >
-            <ArticleHomepage {...props} />
-            <UI.CopyButton
-              data-pt="3"
-              options={{ text: props.url, onSuccess: articleUrlCopied }}
-            />
-            <ArticleUrl {...props} />
-          </div>
+          <ArticleUrl {...props} />
         </div>
       </div>
 
@@ -168,7 +146,7 @@ export function Article(props: ArticlePropsType) {
           </UI.Badge>
         </div>
 
-        <div data-display="flex" data-wrap="nowrap">
+        <div data-display="flex" data-wrap="nowrap" data-mt="6" data-gap="3">
           <ArticleSourceAdd {...props} />
           <ArticleEmailDelivery {...props} />
           <ArticleMarkAsAdded {...props} />

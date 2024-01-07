@@ -36,6 +36,7 @@ export function ArticleSourceAdd(props: types.ArticleType) {
       data-variant="bare"
       onClick={addArticleSource}
       disabled={addArticleSourceRequest.isLoading}
+      {...bg.Rhythm().times(2).style.height}
     >
       <Icons.RssFeed width="20" height="20" />
     </button>

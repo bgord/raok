@@ -38,6 +38,7 @@ export function ArticleMarkAsAdded(props: ArticlePropsType) {
       class="c-button"
       data-variant="bare"
       onClick={() => articleMarkAsRead.mutate(props)}
+      {...bg.Rhythm().times(2).style.height}
     >
       <Icons.DoubleCheck width="20" height="20" />
     </button>
