@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-07 17:34 96c9e66 **refactor: improve article list spacing**
+## 2024-01-07 17:34 
 - 2024-01-07 16:44 4d5d27f **feature: add article deliver by email**
-## 2024-01-07 16:44 
 - 2024-01-07 16:18 a3d6a56 **feature: add article email delivery ui**
+- 2024-01-07 16:14 c0aecd1 **docs: generate CHANGELOG**
 - 2024-01-07 14:30 728bb17 **Revert "refactor: remove leaving prompt hook from dashboard"**
 - 2024-01-07 14:19 c5e20a3 **refactor: add article repository mapper**
 - 2024-01-07 14:14 557cd76 **fix: return rating for article search query**
