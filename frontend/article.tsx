@@ -147,7 +147,13 @@ export function Article(props: ArticlePropsType) {
           </UI.Badge>
         </div>
 
-        <div data-display="flex" data-wrap="nowrap" data-mt="6" data-gap="3">
+        <div
+          data-display="flex"
+          data-wrap="nowrap"
+          data-mt="6"
+          data-gap="3"
+          data-ml="auto"
+        >
           <ArticleSourceAdd {...props} />
           <ArticleEmailDelivery {...props} />
           <ArticleMarkAsAdded {...props} />
