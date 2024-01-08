@@ -1,8 +1,10 @@
 # Changelog
+- 2024-01-08 16:21 f180739 **fix: source list wrapping**
+## 2024-01-08 16:21 
 - 2024-01-08 15:59 368bc21 **fix: article add focus issue**
-## 2024-01-08 15:59 
 - 2024-01-08 15:28 6d4e468 **refactor: extract array type by number**
 - 2024-01-08 15:25 e697076 **step: add /blog/rss.xml source finder option**
+- 2024-01-08 15:00 72b9307 **docs: generate CHANGELOG**
 - 2024-01-08 12:39 6940189 **Update health.tsx**
 - 2024-01-08 11:39 9329766 **docs: generate CHANGELOG**
 - 2024-01-08 10:45 ec6adbb **refactor: use gap for article list article spacing**
