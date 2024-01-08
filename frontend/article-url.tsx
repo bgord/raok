@@ -44,8 +44,8 @@ export function ArticleUrl(props: ArticlePropsType) {
           details.on ? t("article.actions.hide") : t("article.actions.show")
         }
       >
-        {details.off && <Icons.NavArrowRight height="20" width="20" />}
-        {details.on && <Icons.NavArrowDown height="20" width="20" />}
+        {details.off && <Icons.NavArrowRight height="18" width="18" />}
+        {details.on && <Icons.NavArrowDown height="18" width="18" />}
       </button>
 
       {details.on && (

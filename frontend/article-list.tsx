@@ -136,7 +136,13 @@ export function ArticleList() {
       )}
 
       {searchModeEnabled && (
-        <ul>
+        <ul
+          data-display="flex"
+          data-direction="column"
+          data-max-width="100%"
+          data-wrap="nowrap"
+          data-gap="12"
+        >
           {articlesSearch.map((article) => (
             <Article
               key={article.id}
@@ -154,7 +160,13 @@ export function ArticleList() {
       )}
 
       {!searchModeEnabled && (
-        <ul>
+        <ul
+          data-display="flex"
+          data-direction="column"
+          data-max-width="100%"
+          data-wrap="nowrap"
+          data-gap="12"
+        >
           {articles.map((article) => (
             <Article
               key={article.id}
