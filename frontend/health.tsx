@@ -34,6 +34,7 @@ export function Health(props: Pick<types.SourceType, "updatedAt">) {
   return (
     <svg
       data-my="auto"
+      data-shrink="0"
       data-color={healthLevelToColor[level]}
       {...bg.Rhythm(8).times(1).style.square}
     >
