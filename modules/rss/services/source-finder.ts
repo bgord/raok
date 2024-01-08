@@ -30,6 +30,7 @@ export class SourceFinder {
       `${base.origin}/index.xml`,
       `${base.origin}/atom.xml`,
       `${base.origin}/feeds.xml`,
+      `${base.origin}/blog/rss.xml`,
     ];
   }
 }
