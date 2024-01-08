@@ -30,7 +30,7 @@ export class EventStore {
   static async find<T extends AcceptedEvent[]>(
     acceptedEvents: T,
     stream?: bg.EventType["stream"]
-  ): Promise<z.infer<T[0]>[]> {
+  ): Promise<z.infer<T[number]>[]> {
     const acceptedEventNames = acceptedEvents.map(
       (acceptedEvent) => acceptedEvent._def.shape().name._def.value
     );
@@ -53,7 +53,7 @@ export class EventStore {
         return parser.parse(event);
       })
       .filter(
-        (event: z.infer<T[0]> | undefined): event is z.infer<T[0]> =>
+        (event: z.infer<T[number]> | undefined): event is z.infer<T[number]> =>
           event !== undefined
       );
   }

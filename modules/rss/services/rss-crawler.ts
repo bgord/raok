@@ -115,7 +115,7 @@ export class RSSCrawler {
   }
 
   private isFromLastThreeMonths(
-    value: bg.AsyncReturnType<Parser["parseString"]>["items"][0]["isoDate"]
+    value: bg.AsyncReturnType<Parser["parseString"]>["items"][number]["isoDate"]
   ): boolean {
     if (!value) return true;
 

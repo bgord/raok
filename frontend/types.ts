@@ -39,15 +39,15 @@ export enum NewspaperStatusEnum {
 export type ArticlePayloadType = Pick<Article, "url">;
 export type ArticleType = AsyncReturnType<
   typeof ArticleRepository["pagedGetAllNonProcessed"]
->["result"][0];
+>["result"][number];
 
 export type ArchiveArticleType = AsyncReturnType<
   typeof ArticleRepository["pagedGetAll"]
->["result"][0];
+>["result"][number];
 
 export type NewspaperType = AsyncReturnType<
   typeof NewspaperRepository["getAllNonArchived"]
->[0];
+>[number];
 
 export type StatsType = AsyncReturnType<typeof StatsRepository["getAll"]>;
 export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
@@ -60,13 +60,15 @@ export type ToastType = bg.BaseToastType & {
 
 export type ArchiveFileType = AsyncReturnType<
   typeof FilesRepository["getAll"]
->[0];
+>[number];
 
-export type SourceType = AsyncReturnType<typeof SourceRepository["listAll"]>[0];
+export type SourceType = AsyncReturnType<
+  typeof SourceRepository["listAll"]
+>[number];
 
 export type TokenBlacklistType = AsyncReturnType<
   typeof TokenBlacklistRepository["list"]
->[0];
+>[number];
 
 export enum SourceStatusEnum {
   "active" = "active",

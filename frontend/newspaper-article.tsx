@@ -7,7 +7,9 @@ import * as types from "./types";
 import { ArticleReadd } from "./article-readd";
 import { ArticleHomepage } from "./article-homepage";
 
-export function NewspaperArticle(props: types.NewspaperType["articles"][0]) {
+export function NewspaperArticle(
+  props: types.NewspaperType["articles"][number]
+) {
   const notify = bg.useToastTrigger();
 
   const articleUrlCopied = bg.useRateLimiter({
