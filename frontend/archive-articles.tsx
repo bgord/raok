@@ -84,7 +84,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         <UI.Badge>{numberOfArchiveArticles}</UI.Badge>
       </div>
 
-      <div data-display="flex" data-cross="end" data-gap="24" data-md-gap="3">
+      <div data-display="flex" data-cross="end" data-gap="12" data-md-gap="3">
         <div data-display="flex" data-direction="column">
           <label class="c-label" {...createdAtFilter.label.props}>
             Created at
@@ -209,7 +209,6 @@ export function ArchiveArticles(_props: RoutableProps) {
         data-display="flex"
         data-direction="column"
         data-max-width="100%"
-        data-gap="12"
       >
         {archiveArticles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />
