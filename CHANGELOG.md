@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-10 21:40 adc0526 **refactor: swap homepage and add source buttons**
+## 2024-01-10 21:40 
 - 2024-01-09 10:32 ec8065c **Update archive-files.tsx**
 - 2024-01-09 10:32 ca04468 **Update archive-articles.tsx**
-## 2024-01-09 10:32 
+- 2024-01-09 09:33 b97feda **docs: generate CHANGELOG**
 - 2024-01-09 09:32 0063df1 **docs: generate CHANGELOG**
 - 2024-01-08 16:21 f180739 **fix: source list wrapping**
 - 2024-01-08 15:59 368bc21 **fix: article add focus issue**
