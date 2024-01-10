@@ -7,7 +7,7 @@ import * as api from "./api";
 import * as UI from "./ui";
 import * as types from "./types";
 
-import { ArticleHomepage } from "./article-homepage";
+import { ArticleSourceAdd } from "./article-source-add";
 
 type ArticlePropsType = types.ArticleType;
 
@@ -50,7 +50,7 @@ export function ArticleUrl(props: ArticlePropsType) {
 
       {details.on && (
         <Fragment>
-          <ArticleHomepage {...props} />
+          <ArticleSourceAdd {...props} />
           <UI.CopyButton
             data-pt="3"
             options={{ text: props.url, onSuccess: articleUrlCopied }}

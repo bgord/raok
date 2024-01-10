@@ -5,7 +5,7 @@ import * as bg from "@bgord/frontend";
 import * as UI from "./ui";
 import * as types from "./types";
 
-import { ArticleSourceAdd } from "./article-source-add";
+import { ArticleHomepage } from "./article-homepage";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
 import { ArticleEmailDelivery } from "./article-email-delivery";
 import { ArticleDelete } from "./article-delete";
@@ -152,8 +152,8 @@ export function Article(props: ArticlePropsType) {
           data-gap="3"
           data-ml="auto"
         >
-          <ArticleSourceAdd {...props} />
           <ArticleEmailDelivery {...props} />
+          <ArticleHomepage {...props} />
           <ArticleMarkAsAdded {...props} />
           <ArticleDelete {...props} />
         </div>

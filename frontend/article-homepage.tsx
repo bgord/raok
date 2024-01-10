@@ -17,6 +17,7 @@ export function ArticleHomepage(props: ArticleHomepagePropsType) {
       type="button"
       title={t("article.homepage")}
       onClick={() => window.open(homepage)}
+      {...bg.Rhythm().times(2).style.height}
     >
       <Icons.Home width="18" height="18" />
     </button>
