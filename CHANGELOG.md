@@ -1,10 +1,12 @@
 # Changelog
+- 2024-01-11 22:52 614c3d0 **feature: limit concurrency for deployments**
+## 2024-01-11 22:52 
 - 2024-01-11 22:41 f44a72a **build(deps-dev): bump @commitlint/config-conventional (#119)**
-## 2024-01-11 22:41 
 - 2024-01-11 22:40 524aee2 **build(deps): bump jsdom from 23.0.1 to 23.2.0 (#120)**
 - 2024-01-11 22:40 4b18a3e **build(deps-dev): bump @typescript-eslint/eslint-plugin (#124)**
 - 2024-01-11 22:40 3c8e0e7 **build(deps-dev): bump vitest from 1.1.2 to 1.1.3 (#121)**
 - 2024-01-11 22:40 20960a7 **build(deps-dev): bump oxlint from 0.0.22 to 0.1.2 (#123)**
+- 2024-01-11 21:41 3db7cbd **docs: generate CHANGELOG**
 - 2024-01-10 21:40 adc0526 **refactor: swap homepage and add source buttons**
 - 2024-01-10 20:40 df302db **docs: generate CHANGELOG**
 - 2024-01-09 10:32 ec8065c **Update archive-files.tsx**
