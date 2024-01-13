@@ -4,7 +4,7 @@ on:
     branches: [master]
   workflow_dispatch:
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-deploy-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   deploy:
