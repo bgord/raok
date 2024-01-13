@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-13 15:32 0749d37 **build(deps): bump serialize-javascript from 6.0.1 to 6.0.2 (#126)**
+## 2024-01-13 15:32 
 - 2024-01-13 15:31 54eeaa9 **build(deps): bump @bgord/frontend from `1598f49` to `26b3e27` (#125)**
-## 2024-01-13 15:31 
 - 2024-01-13 15:24 1e4e669 **refactor: add concurrency constraints to github actions**
+- 2024-01-13 14:32 f06b1a6 **docs: generate CHANGELOG**
 - 2024-01-13 14:31 ab426d2 **docs: generate CHANGELOG**
 - 2024-01-11 22:52 614c3d0 **feature: limit concurrency for deployments**
 - 2024-01-11 22:41 f44a72a **build(deps-dev): bump @commitlint/config-conventional (#119)**
