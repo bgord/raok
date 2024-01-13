@@ -286,6 +286,7 @@ app.use(App.Routes.ErrorHandler.handle);
       operation: "server_startup",
       metadata: { port: infra.Env.PORT },
     });
+    await Recommendations.Services.StopWordsCleaner.run();
   });
 
   bg.GracefulShutdown.applyTo(server, () => infra.Scheduler.stop());

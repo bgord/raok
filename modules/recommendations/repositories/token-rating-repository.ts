@@ -22,4 +22,10 @@ export class TokenRatingRepository {
   static async list(tokens: VO.TokenType[]) {
     return infra.db.tokenRating.findMany({ where: { token: { in: tokens } } });
   }
+
+  static async deleteMany(tokens: VO.TokenType[]) {
+    return infra.db.tokenRating.deleteMany({
+      where: { token: { in: tokens } },
+    });
+  }
 }
