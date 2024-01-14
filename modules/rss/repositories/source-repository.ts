@@ -13,7 +13,7 @@ export const SourceFilter = new bg.Filter(
 );
 
 export class SourceRepository {
-  static async create(payload: VO.SourceType) {
+  static async create(payload: infra.Source) {
     await infra.db.source.create({ data: payload });
   }
 
@@ -73,7 +73,6 @@ export class SourceRepository {
     );
 
     return sources
-      .map((item) => VO.Source.parse(item))
       .map(SourceRepository.map)
       .map(bg.ReorderingIntegrator.appendPosition(reordering))
       .toSorted(bg.ReorderingIntegrator.sortByPosition());
@@ -85,9 +84,7 @@ export class SourceRepository {
       orderBy: { createdAt: "desc" },
     });
 
-    return sources
-      .map((item) => VO.Source.parse(item))
-      .map(SourceRepository.map);
+    return sources.map(SourceRepository.map);
   }
 
   static async updateMetadata(
@@ -97,7 +94,7 @@ export class SourceRepository {
     await infra.db.source.update({ where: { id }, data: metadata });
   }
 
-  private static map(item: VO.SourceType) {
+  private static map(item: infra.Source) {
     return {
       ...item,
       createdAt: bg.RelativeDate.truthy(item.createdAt),

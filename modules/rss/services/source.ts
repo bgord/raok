@@ -83,6 +83,8 @@ export class Source {
       updatedAt: now,
       status: VO.SourceStatusEnum.active,
       revision: bg.Revision.initial,
+      countValue: 0,
+      countStrategy: "total_last_month",
     };
 
     await Repos.SourceRepository.create(source);

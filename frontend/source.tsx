@@ -78,8 +78,9 @@ export function Source(
         data-ml="auto"
         title={bg.DateFormatter.datetime(props.updatedAt.raw)}
       >
-        {t("source.used_at", {
+        {t("source.usage", {
           when: props.updatedAt.relative,
+          count: props.countValue,
         })}
       </UI.Info>
 

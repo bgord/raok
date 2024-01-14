@@ -7,7 +7,8 @@ import * as api from "./api";
 import * as types from "./types";
 
 export function SourceDelete(
-  props: types.SourceType & h.JSX.IntrinsicElements["button"]
+  props: Pick<types.SourceType, "id" | "revision"> &
+    h.JSX.IntrinsicElements["button"]
 ) {
   const { id, revision, ...rest } = props;
 

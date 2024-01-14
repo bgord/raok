@@ -55,6 +55,10 @@ export function Sources(_props: RoutableProps) {
         bg.Sorts.aToZ(new URL(a.url).hostname, new URL(b.url).hostname),
       [types.SourceSortEnum.z_a]: (a, b) =>
         bg.Sorts.zToA(new URL(a.url).hostname, new URL(b.url).hostname),
+      [types.SourceSortEnum.most_frequent]: (a, b) =>
+        a.countValue < b.countValue ? 1 : 0,
+      [types.SourceSortEnum.least_frequent]: (a, b) =>
+        a.countValue > b.countValue ? 1 : 0,
     },
   });
 
