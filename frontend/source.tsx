@@ -78,7 +78,9 @@ export function Source(
         data-ml="auto"
         title={bg.DateFormatter.datetime(props.updatedAt.raw)}
       >
-        {t("source.used_at", { when: props.updatedAt.relative })}
+        {t("source.used_at", {
+          when: props.updatedAt.relative,
+        })}
       </UI.Info>
 
       <UI.CopyButton

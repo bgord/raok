@@ -45,6 +45,14 @@ export class RSSCrawler {
       try {
         const rss = await parser.parseURL(source.url);
 
+        const metadata = Services.SourceMetadataUpdater.map(rss.items);
+        console.log(
+          source.id,
+          metadata,
+          rss.items.map((item) => item.isoDate)
+        );
+        await Services.SourceMetadataUpdater.update(source.id, metadata);
+
         infra.logger.info({
           message: `Crawling RSS success ${stepper.format()}`,
           operation: "rss_crawler_success",

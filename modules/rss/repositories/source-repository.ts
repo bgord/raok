@@ -6,6 +6,7 @@ import * as Reordering from "../../reordering";
 
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
+import * as Services from "../services";
 
 export const SourceFilter = new bg.Filter(
   z.object({ status: VO.SourceStatus.optional() })
@@ -87,6 +88,13 @@ export class SourceRepository {
     return sources
       .map((item) => VO.Source.parse(item))
       .map(SourceRepository.map);
+  }
+
+  static async updateMetadata(
+    id: VO.SourceIdType,
+    metadata: Services.SourceMetadataType
+  ) {
+    await infra.db.source.update({ where: { id }, data: metadata });
   }
 
   private static map(item: VO.SourceType) {
