@@ -1,7 +1,10 @@
 # Changelog
+- 2024-01-14 09:41 51d7f1f **feature: add source metadata ui**
+## 2024-01-14 09:41 
+- 2024-01-14 08:51 ba15731 **feature: add source metadata**
 - 2024-01-13 21:50 869f2a5 **feature: add stop words cleaner**
-## 2024-01-13 21:50 
 - 2024-01-13 21:35 c873df5 **step: add new stopwrods**
+- 2024-01-13 20:51 e9fcde7 **docs: generate CHANGELOG**
 - 2024-01-13 15:32 0749d37 **build(deps): bump serialize-javascript from 6.0.1 to 6.0.2 (#126)**
 - 2024-01-13 15:31 54eeaa9 **build(deps): bump @bgord/frontend from `1598f49` to `26b3e27` (#125)**
 - 2024-01-13 15:24 1e4e669 **refactor: add concurrency constraints to github actions**
