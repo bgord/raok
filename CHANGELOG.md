@@ -1,7 +1,10 @@
 # Changelog
+- 2024-01-15 13:17 486806c **refactor: use bg.time.now**
+## 2024-01-15 13:17 
+- 2024-01-15 13:11 c59760b **step: bump bgord/node**
 - 2024-01-15 13:03 fa39ccd **step: bump bgord/node**
-## 2024-01-15 13:03 
 - 2024-01-15 12:39 4a978bd **step: bump bgord/frontend**
+- 2024-01-15 12:05 929652b **docs: generate CHANGELOG**
 - 2024-01-15 11:41 f290b04 **docs: generate CHANGELOG**
 - 2024-01-14 09:41 51d7f1f **feature: add source metadata ui**
 - 2024-01-14 08:51 ba15731 **feature: add source metadata**
