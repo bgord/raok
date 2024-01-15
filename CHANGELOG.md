@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-15 12:39 4a978bd **step: bump bgord/frontend**
+## 2024-01-15 12:39 
 - 2024-01-14 09:41 51d7f1f **feature: add source metadata ui**
-## 2024-01-14 09:41 
 - 2024-01-14 08:51 ba15731 **feature: add source metadata**
+- 2024-01-14 08:49 2f639f1 **docs: generate CHANGELOG**
 - 2024-01-13 21:50 869f2a5 **feature: add stop words cleaner**
 - 2024-01-13 21:35 c873df5 **step: add new stopwrods**
 - 2024-01-13 20:51 e9fcde7 **docs: generate CHANGELOG**
