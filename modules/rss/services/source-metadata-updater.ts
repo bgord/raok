@@ -10,8 +10,8 @@ type SourceItemType = { isoDate: string };
 
 export class SourceMetadataUpdater {
   static map(items: unknown[]) {
-    const predicate = (timestampInSeconds: number) =>
-      timestampInSeconds >= Date.now() - bg.Time.Days(30).ms;
+    const predicate = (timestampInMs: number) =>
+      timestampInMs >= bg.Time.Now().Minus(bg.Time.Days(30)).ms;
 
     const countValue = items
       .filter(

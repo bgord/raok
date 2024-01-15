@@ -59,9 +59,9 @@ export class StatsRepository {
 
     if (!firstArticle?.createdAt || !createdArticles?.value) return null;
 
-    const daysSinceFirstArticle = rounding.round(
-      (Date.now() - firstArticle.createdAt) / bg.Time.Days(1).ms
-    );
+    const daysSinceFirstArticle = bg.Time.Now().Minus(
+      bg.Time.Ms(firstArticle.createdAt)
+    ).days;
 
     return rounding.round(createdArticles.value / daysSinceFirstArticle);
   }
