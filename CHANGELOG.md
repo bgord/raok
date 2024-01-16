@@ -1,8 +1,10 @@
 # Changelog
+- 2024-01-16 11:32 62ea9ed **build(deps-dev): bump oxlint from 0.1.2 to 0.2.0 (#134)**
+## 2024-01-16 11:32 
 - 2024-01-16 11:31 9decf8a **build(deps-dev): bump @typescript-eslint/parser from 6.17.0 to 6.19.0 (#136)**
 - 2024-01-16 11:31 775c69f **build(deps-dev): bump @commitlint/cli from 18.4.3 to 18.4.4 (#130)**
 - 2024-01-16 11:31 0338b28 **build(deps-dev): bump postcss from 8.4.32 to 8.4.33 (#132)**
-## 2024-01-16 11:31 
+- 2024-01-16 10:32 f099c12 **docs: generate CHANGELOG**
 - 2024-01-15 13:17 486806c **refactor: use bg.time.now**
 - 2024-01-15 13:11 c59760b **step: bump bgord/node**
 - 2024-01-15 13:03 fa39ccd **step: bump bgord/node**
