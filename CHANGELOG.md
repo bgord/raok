@@ -1,9 +1,13 @@
 # Changelog
+- 2024-01-16 11:31 9decf8a **build(deps-dev): bump @typescript-eslint/parser from 6.17.0 to 6.19.0 (#136)**
+- 2024-01-16 11:31 775c69f **build(deps-dev): bump @commitlint/cli from 18.4.3 to 18.4.4 (#130)**
+- 2024-01-16 11:31 0338b28 **build(deps-dev): bump postcss from 8.4.32 to 8.4.33 (#132)**
+## 2024-01-16 11:31 
 - 2024-01-15 13:17 486806c **refactor: use bg.time.now**
-## 2024-01-15 13:17 
 - 2024-01-15 13:11 c59760b **step: bump bgord/node**
 - 2024-01-15 13:03 fa39ccd **step: bump bgord/node**
 - 2024-01-15 12:39 4a978bd **step: bump bgord/frontend**
+- 2024-01-15 12:18 a79f0f5 **docs: generate CHANGELOG**
 - 2024-01-15 12:05 929652b **docs: generate CHANGELOG**
 - 2024-01-15 11:41 f290b04 **docs: generate CHANGELOG**
 - 2024-01-14 09:41 51d7f1f **feature: add source metadata ui**
