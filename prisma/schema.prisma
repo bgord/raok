@@ -76,10 +76,11 @@ model Reordering {
 }
 
 model TokenRating {
-  token     String @id
-  value     Int    @default(0)
-  createdAt Int
-  updatedAt Int    @default(0)
+  token           String @id
+  value           Int    @default(0)
+  createdAt       Int
+  updatedAt       Int    @default(0)
+  dismissedUntill Int?
 }
 
 model TokenBlacklist {
