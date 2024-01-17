@@ -3,7 +3,7 @@ import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 
 export class TokenRatingRepository {
-  static async upsert(payload: VO.TokenRatingType) {
+  static async upsert(payload: Omit<VO.TokenRatingType, "dismissedUntil">) {
     const now = Date.now();
 
     await infra.db.tokenRating.upsert({
@@ -30,6 +30,16 @@ export class TokenRatingRepository {
   static async deleteMany(tokens: VO.TokenType[]) {
     return infra.db.tokenRating.deleteMany({
       where: { token: { in: tokens } },
+    });
+  }
+
+  static async dismiss(
+    token: VO.TokenRatingType["token"],
+    dismissedUntil: VO.TokenRatingType["dismissedUntil"],
+  ) {
+    return infra.db.tokenRating.update({
+      where: { token },
+      data: { dismissedUntil },
     });
   }
 }

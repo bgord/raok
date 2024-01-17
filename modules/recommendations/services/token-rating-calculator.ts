@@ -11,8 +11,8 @@ export enum RatingActionEnum {
 export class TokenRatingCalculator {
   static calculate(
     action: RatingActionEnum,
-    tokens: VO.TokenType[]
-  ): VO.TokenRatingType[] {
+    tokens: VO.TokenType[],
+  ): Omit<VO.TokenRatingType, "dismissedUntil">[] {
     switch (action) {
       case RatingActionEnum.added:
         return tokens.map((token) => ({ token, value: 2 }));
