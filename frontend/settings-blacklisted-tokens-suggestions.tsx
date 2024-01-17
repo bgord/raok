@@ -12,7 +12,7 @@ export function SettingsBlacklistedTokensSuggestions() {
 
   const blacklistedTokensSuggestions = useQuery(
     api.keys.tokenBlacklistSuggestions,
-    api.TokenBlacklist.listSuggestions
+    api.TokenBlacklist.listSuggestions,
   );
 
   const createBlacklistedToken = useMutation(api.TokenBlacklist.create, {
@@ -24,27 +24,52 @@ export function SettingsBlacklistedTokensSuggestions() {
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
+  const dismissBlacklistedTokenSuggestion = useMutation(
+    api.TokenBlacklist.dismissSuggestion,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(api.keys.tokenBlacklist);
+        queryClient.invalidateQueries(api.keys.tokenBlacklistSuggestions);
+        notify({ message: "blacklisted_token.dismissed" });
+      },
+      onError: (error: bg.ServerError) => notify({ message: error.message }),
+    },
+  );
+
   const suggestions = blacklistedTokensSuggestions.data ?? [];
 
   if (blacklistedTokensSuggestions.isLoading) return null;
   if (suggestions.length === 0) return null;
 
   return (
-    <div data-display="flex" data-gap="6" data-cross="center">
+    <div data-display="flex" data-gap="12" data-cross="center">
       <UI.Info>{t("blacklisted_token.suggestions")}</UI.Info>
 
       {suggestions.map((suggestion) => (
-        <button
-          class="c-button"
-          type="button"
-          data-variant="bare"
+        <div
+          data-display="flex"
+          data-main="center"
+          data-cross="center"
           key={suggestion.token}
-          onClick={() =>
-            createBlacklistedToken.mutate({ token: suggestion.token })
-          }
         >
-          {suggestion.token}
-        </button>
+          <button
+            class="c-button"
+            type="button"
+            data-variant="bare"
+            onClick={() =>
+              createBlacklistedToken.mutate({ token: suggestion.token })
+            }
+          >
+            {suggestion.token}
+          </button>
+
+          <UI.ClearButton
+            disabled={dismissBlacklistedTokenSuggestion.isLoading}
+            onClick={() =>
+              dismissBlacklistedTokenSuggestion.mutate(suggestion.token)
+            }
+          />
+        </div>
       ))}
     </div>
   );

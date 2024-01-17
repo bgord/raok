@@ -38,6 +38,7 @@ export class TokenBlacklistRepository {
       FROM TokenRating tr
       LEFT JOIN TokenBlacklist tb ON tr.token = tb.token
       WHERE tb.token IS NULL
+        AND (tr.dismissedUntil IS NULL OR tr.dismissedUntil < strftime('%s', 'now') * 1000)
       ORDER BY tr.value ASC
       LIMIT ${limit};
     `;
