@@ -1,6 +1,12 @@
 # Changelog
+- 2024-01-17 22:33 57fc853 **feature: add suggested blacklisted token dismiss ui**
+## 2024-01-17 22:33 
+- 2024-01-17 22:23 d458f13 **feature: add SuggestedBlacklistedTokenDismiss endpoint**
+- 2024-01-17 22:17 88d4b46 **feature: add a service to dismiss a suggested blacklisted token**
+- 2024-01-17 22:09 a6faede **step: Add token rating repository get method**
+- 2024-01-17 22:05 c166fa9 **step: add token rating dismissed untill column**
 - 2024-01-17 21:30 7584d56 **fix: remove console.log**
-## 2024-01-17 21:30 
+- 2024-01-17 20:31 945da43 **docs: generate CHANGELOG**
 - 2024-01-17 15:25 afbf6af **fix: longest and shortest read copy**
 - 2024-01-17 14:26 9994eed **docs: generate CHANGELOG**
 - 2024-01-16 11:32 62ea9ed **build(deps-dev): bump oxlint from 0.1.2 to 0.2.0 (#134)**
