@@ -1,6 +1,8 @@
 # Changelog
+- 2024-01-17 21:30 7584d56 **fix: remove console.log**
+## 2024-01-17 21:30 
 - 2024-01-17 15:25 afbf6af **fix: longest and shortest read copy**
-## 2024-01-17 15:25 
+- 2024-01-17 14:26 9994eed **docs: generate CHANGELOG**
 - 2024-01-16 11:32 62ea9ed **build(deps-dev): bump oxlint from 0.1.2 to 0.2.0 (#134)**
 - 2024-01-16 11:31 9decf8a **build(deps-dev): bump @typescript-eslint/parser from 6.17.0 to 6.19.0 (#136)**
 - 2024-01-16 11:31 775c69f **build(deps-dev): bump @commitlint/cli from 18.4.3 to 18.4.4 (#130)**
