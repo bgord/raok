@@ -23,6 +23,10 @@ export class TokenRatingRepository {
     return infra.db.tokenRating.findMany({ where: { token: { in: tokens } } });
   }
 
+  static async get(token: VO.TokenType) {
+    return infra.db.tokenRating.findUnique({ where: { token } });
+  }
+
   static async deleteMany(tokens: VO.TokenType[]) {
     return infra.db.tokenRating.deleteMany({
       where: { token: { in: tokens } },
