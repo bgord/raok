@@ -1,10 +1,14 @@
 # Changelog
+- 2024-01-18 08:43 765b7ea **build(deps-dev): bump @typescript-eslint/eslint-plugin (#137)**
+- 2024-01-18 08:43 71c826a **build(deps-dev): bump oxlint from 0.2.0 to 0.2.1 (#140)**
+- 2024-01-18 08:43 15d9af9 **build(deps-dev): bump vitest from 1.1.3 to 1.2.1 (#141)**
+## 2024-01-18 08:43 
 - 2024-01-17 22:33 57fc853 **feature: add suggested blacklisted token dismiss ui**
-## 2024-01-17 22:33 
 - 2024-01-17 22:23 d458f13 **feature: add SuggestedBlacklistedTokenDismiss endpoint**
 - 2024-01-17 22:17 88d4b46 **feature: add a service to dismiss a suggested blacklisted token**
 - 2024-01-17 22:09 a6faede **step: Add token rating repository get method**
 - 2024-01-17 22:05 c166fa9 **step: add token rating dismissed untill column**
+- 2024-01-17 21:41 a456479 **docs: generate CHANGELOG**
 - 2024-01-17 21:30 7584d56 **fix: remove console.log**
 - 2024-01-17 20:31 945da43 **docs: generate CHANGELOG**
 - 2024-01-17 15:25 afbf6af **fix: longest and shortest read copy**
