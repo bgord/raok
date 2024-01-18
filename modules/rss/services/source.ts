@@ -69,16 +69,18 @@ export class Source {
   }
 
   static async create(
-    payload: Pick<VO.SourceType, "url" | "id">
+    payload: Pick<VO.SourceType, "url" | "id">,
   ): Promise<Source> {
     const now = Date.now();
-    const url = await new SourceFinder(payload.url).find();
+
+    const sourceFinder = await SourceFinder.build(payload.url);
+    const url = await sourceFinder.find();
 
     await Policies.SourceUrlIsUnique.perform({ sourceUrl: url });
 
     const source = {
       id: payload.id,
-      url,
+      url: payload.url,
       createdAt: now,
       updatedAt: now,
       status: VO.SourceStatusEnum.active,
