@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-18 16:01 6496bb2 **feature: handle adding yt rss sources**
+## 2024-01-18 16:01 
 - 2024-01-18 13:28 fbdb9b3 **fix: health component conditions**
-## 2024-01-18 13:28 
 - 2024-01-18 13:23 606e86d **step: bump bgord/node**
+- 2024-01-18 12:32 5faa5c7 **docs: generate CHANGELOG**
 - 2024-01-18 08:43 765b7ea **build(deps-dev): bump @typescript-eslint/eslint-plugin (#137)**
 - 2024-01-18 08:43 71c826a **build(deps-dev): bump oxlint from 0.2.0 to 0.2.1 (#140)**
 - 2024-01-18 08:43 15d9af9 **build(deps-dev): bump vitest from 1.1.3 to 1.2.1 (#141)**
