@@ -10,9 +10,6 @@ type SourceItemType = { isoDate: string };
 
 export class SourceMetadataUpdater {
   static map(items: unknown[]) {
-    const predicate = (timestampInMs: number) =>
-      timestampInMs >= bg.Time.Now().Minus(bg.Time.Days(30)).ms;
-
     const countValue = items
       .filter(
         (item): item is SourceItemType =>
@@ -22,7 +19,11 @@ export class SourceMetadataUpdater {
           typeof item.isoDate === "string"
       )
       .map((item) => parseISO(item.isoDate).getTime())
-      .filter(predicate).length;
+      .filter((createdAtTimestamp: number) =>
+        bg.Time.Ms(createdAtTimestamp).isAfter(
+          bg.Time.Now().Minus(bg.Time.Days(30))
+        )
+      ).length;
 
     return { countValue, countStrategy: "total_last_month" };
   }

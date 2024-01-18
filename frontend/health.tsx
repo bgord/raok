@@ -16,7 +16,7 @@ function getHealthLevel(value: number): HealthLevel {
   if (value >= Date.now() - bg.Time.Days(1).ms) return HealthLevel.one_day;
   if (value >= Date.now() - bg.Time.Days(3).ms) return HealthLevel.three_days;
   if (value >= Date.now() - bg.Time.Days(7).ms) return HealthLevel.week;
-  if (value >= Date.now() - bg.Time.Days(7).ms) return HealthLevel.week;
+  if (value >= Date.now() - bg.Time.Days(30).ms) return HealthLevel.month;
   return HealthLevel.no;
 }
 
