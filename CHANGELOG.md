@@ -1,6 +1,10 @@
 # Changelog
+- 2024-01-22 14:01 c506fd5 **build(deps): bump @bgord/frontend from `d389135` to `210e5b2` (#142)**
+- 2024-01-22 14:01 acf8288 **build(deps-dev): bump vite from 5.0.11 to 5.0.12 (#143)**
+- 2024-01-22 14:01 246e2f3 **build(deps-dev): bump oxlint from 0.2.1 to 0.2.2 (#144)**
+## 2024-01-22 14:01 
 - 2024-01-18 16:01 6496bb2 **feature: handle adding yt rss sources**
-## 2024-01-18 16:01 
+- 2024-01-18 15:03 b0ef6d9 **docs: generate CHANGELOG**
 - 2024-01-18 13:28 fbdb9b3 **fix: health component conditions**
 - 2024-01-18 13:23 606e86d **step: bump bgord/node**
 - 2024-01-18 12:32 5faa5c7 **docs: generate CHANGELOG**
