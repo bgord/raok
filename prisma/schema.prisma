@@ -94,5 +94,6 @@ model RssCrawlerJob {
   status        String
   sourceId      String
   createdAt     Int
-  updatedAt     Int    @default(0)
+  updatedAt     Int
+  revision      Int    @default(0)
 }

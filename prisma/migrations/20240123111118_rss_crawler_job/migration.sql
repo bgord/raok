@@ -5,5 +5,6 @@ CREATE TABLE "RssCrawlerJob" (
     "status" TEXT NOT NULL,
     "sourceId" TEXT NOT NULL,
     "createdAt" INTEGER NOT NULL,
-    "updatedAt" INTEGER NOT NULL DEFAULT 0
+    "updatedAt" INTEGER NOT NULL,
+    "revision" INTEGER NOT NULL DEFAULT 0
 );
