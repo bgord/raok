@@ -37,9 +37,7 @@ const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
 
 const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
   try {
-    const rssCrawler = new RSS.Services.RSSCrawler();
-    await rssCrawler.crawl();
-    await rssCrawler.process();
+    await RSS.Services.RSSCrawler.crawl();
   } catch (error) {
     logger.error({
       message: "RssCrawlerTask error",
@@ -54,8 +52,32 @@ const RssCrawlerJob = new SimpleIntervalJob(
   RssCrawlerTask
 );
 
+const RssCrawlJobProcessorTask = new AsyncTask(
+  "rss-crawl-job-processor",
+  async () => {
+    try {
+      await RSS.Services.RssCrawlerJobProcessor.process();
+    } catch (error) {
+      logger.error({
+        message: "RssCrawlJobProcessorTask error",
+        operation: "rss_crawl_job_processor_error",
+        metadata: { error: logger.formatError(error) },
+      });
+    }
+  }
+);
+
+const RssCrawlJobProcessorJob = new SimpleIntervalJob(
+  {
+    minutes: RSS.Services.RssCrawlerJobProcessor.INTERVAL_MINUTES,
+    runImmediately: true,
+  },
+  RssCrawlJobProcessorTask
+);
+
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
 
 if (Env.RSS_CRAWLING_ENABLED === "yes") {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
+  Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
 }
