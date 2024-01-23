@@ -2,7 +2,7 @@ import * as bg from "@bgord/node";
 import _ from "lodash";
 
 import * as infra from "../../../infra";
-import { RSSCrawlerJobStatusEnum } from "../services/rss-crawler-v2";
+import { RSSCrawlerJobStatusEnum } from "../services/rss-crawler";
 
 export class RssCrawlerJobRepository {
   static async create(

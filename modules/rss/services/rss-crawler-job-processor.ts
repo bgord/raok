@@ -5,18 +5,18 @@ import * as Newspapers from "../../newspapers";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
-import { RSSCrawlerJob } from "./rss-crawler-v2";
+import { RSSCrawlerJob } from "./rss-crawler";
 
 import * as infra from "../../../infra";
 
-export class RssCrawlerJobProcessorV2 {
+export class RssCrawlerJobProcessor {
   static readonly INTERVAL_MINUTES = 1;
 
   static readonly PROCESSING_JOBS_BATCH_LIMIT = 200;
 
   static async process() {
     const ids = await Repos.RssCrawlerJobRepository.listReady(
-      RssCrawlerJobProcessorV2.PROCESSING_JOBS_BATCH_LIMIT,
+      RssCrawlerJobProcessor.PROCESSING_JOBS_BATCH_LIMIT,
     );
 
     infra.logger.info({
