@@ -40,7 +40,7 @@
     "eslint-plugin-sonarjs": "0.23.0",
     "gzip-cli": "1.2.0",
     "husky": "8.0.3",
-    "oxlint": "0.2.2",
+    "oxlint": "0.2.3",
     "postcss": "8.4.33",
     "postcss-cli": "11.0.0",
     "prisma": "3.15.2",
