@@ -18,9 +18,11 @@ export type RSSItemType = bg.AsyncReturnType<
 export enum RSSCrawlerJobStatusEnum {
   ready = "ready",
   processed = "processed",
+  failed = "failed",
 }
 
 export class RSSCrawlerJob {
+  /* eslint-disable max-params */
   private constructor(
     private readonly id: bg.Schema.UUIDType,
     readonly url: Newspapers.VO.ArticleUrlType,
@@ -65,7 +67,12 @@ export class RSSCrawlerJob {
   async process(revision: bg.Revision) {
     revision.validate(this.revision.value);
 
-    if (this.status !== RSSCrawlerJobStatusEnum.ready) {
+    if (
+      [
+        RSSCrawlerJobStatusEnum.processed,
+        RSSCrawlerJobStatusEnum.failed,
+      ].includes(this.status)
+    ) {
       throw new Error("Job is already processed");
     }
 
@@ -76,6 +83,28 @@ export class RSSCrawlerJob {
     );
 
     this.status = RSSCrawlerJobStatusEnum.processed;
+    this.revision = revision.next();
+  }
+
+  async fail(revision: bg.Revision) {
+    revision.validate(this.revision.value);
+
+    if (
+      [
+        RSSCrawlerJobStatusEnum.processed,
+        RSSCrawlerJobStatusEnum.failed,
+      ].includes(this.status)
+    ) {
+      throw new Error("Job is already processed");
+    }
+
+    await Repos.RssCrawlerJobRepository.updateStatus(
+      this.id,
+      RSSCrawlerJobStatusEnum.failed,
+      revision.next().value,
+    );
+
+    this.status = RSSCrawlerJobStatusEnum.failed;
     this.revision = revision.next();
   }
 

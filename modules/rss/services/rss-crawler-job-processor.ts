@@ -16,7 +16,7 @@ export class RssCrawlerJobProcessor {
 
   static async process() {
     const ids = await Repos.RssCrawlerJobRepository.listReady(
-      RssCrawlerJobProcessor.PROCESSING_JOBS_BATCH_LIMIT,
+      RssCrawlerJobProcessor.PROCESSING_JOBS_BATCH_LIMIT
     );
 
     infra.logger.info({
@@ -40,6 +40,8 @@ export class RssCrawlerJobProcessor {
             const sourceRevision = new bg.Revision(source.data.revision);
             await source.bump(sourceRevision);
           } catch (error) {
+            await job.fail(new bg.Revision(job.revision));
+
             infra.logger.error({
               message: `Article not added ${stepper.format()}`,
               operation: "rss_crawl_job_processor_article_add_error",
@@ -49,7 +51,7 @@ export class RssCrawlerJobProcessor {
             infra.ResponseCache.flushAll();
             stepper.continue();
           }
-        }),
+        })
     );
 
     await plimit(jobs, { limit: 25 });
