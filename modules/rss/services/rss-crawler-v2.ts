@@ -75,7 +75,7 @@ export class RSSCrawlerJobFactory {
   }
 }
 
-export class RSSCrawler {
+export class RSSCrawlerV2 {
   static INTERVAL_MINUTES = 2;
 
   static async crawl() {
