@@ -16,7 +16,7 @@ export class RssCrawlerJobProcessorV2 {
 
   static async process() {
     const ids = await Repos.RssCrawlerJobRepository.listReady(
-      RssCrawlerJobProcessorV2.PROCESSING_JOBS_BATCH_LIMIT
+      RssCrawlerJobProcessorV2.PROCESSING_JOBS_BATCH_LIMIT,
     );
 
     infra.logger.info({
@@ -34,6 +34,7 @@ export class RssCrawlerJobProcessorV2 {
               url: job.url,
               source: Newspapers.VO.ArticleSourceEnum.rss,
             });
+            await job.process(new bg.Revision(job.revision));
 
             const source = await Services.Source.build(job.sourceId);
             const sourceRevision = new bg.Revision(source.data.revision);
@@ -48,7 +49,7 @@ export class RssCrawlerJobProcessorV2 {
             infra.ResponseCache.flushAll();
             stepper.continue();
           }
-        })
+        }),
     );
 
     await plimit(jobs, { limit: 25 });

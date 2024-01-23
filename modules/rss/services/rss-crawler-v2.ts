@@ -15,45 +15,73 @@ export type RSSItemType = bg.AsyncReturnType<
   Parser["parseString"]
 >["items"][number];
 
-enum RSSCrawlerJobStatusEnum {
+export enum RSSCrawlerJobStatusEnum {
   ready = "ready",
-  in_progress = "done",
   processed = "processed",
 }
 
 export class RSSCrawlerJob {
   private constructor(
-    readonly id: bg.Schema.UUIDType,
+    private readonly id: bg.Schema.UUIDType,
     readonly url: Newspapers.VO.ArticleUrlType,
     readonly sourceId: VO.SourceIdType,
-    readonly status: RSSCrawlerJobStatusEnum = RSSCrawlerJobStatusEnum.ready
+    public revision: bg.Revision,
+    private status: RSSCrawlerJobStatusEnum = RSSCrawlerJobStatusEnum.ready,
   ) {}
 
-  static async build(id: bg.Schema.UUIDType) {
+  static async build(id: bg.Schema.UUIDType): Promise<RSSCrawlerJob> {
     const job = await Repos.RssCrawlerJobRepository.getById(id);
 
     if (!job) {
       throw new Error("RSS crawler job not found");
     }
 
-    return job;
+    return new RSSCrawlerJob(
+      job.id,
+      job.url,
+      job.sourceId,
+      new bg.Revision(job.revision),
+      job.status as RSSCrawlerJobStatusEnum,
+    );
   }
 
   static async create(
     url: Newspapers.VO.ArticleUrlType,
-    sourceId: VO.SourceIdType
+    sourceId: VO.SourceIdType,
   ) {
     const id = bg.NewUUID.generate();
     const job = { id, url, sourceId, status: RSSCrawlerJobStatusEnum.ready };
 
     await Repos.RssCrawlerJobRepository.create(job);
 
-    return new RSSCrawlerJob(id, url, sourceId);
+    return new RSSCrawlerJob(
+      id,
+      url,
+      sourceId,
+      new bg.Revision(bg.Revision.initial),
+    );
+  }
+
+  async process(revision: bg.Revision) {
+    revision.validate(this.revision.value);
+
+    if (this.status !== RSSCrawlerJobStatusEnum.ready) {
+      throw new Error("Job is already processed");
+    }
+
+    await Repos.RssCrawlerJobRepository.updateStatus(
+      this.id,
+      RSSCrawlerJobStatusEnum.processed,
+      revision.next().value,
+    );
+
+    this.status = RSSCrawlerJobStatusEnum.processed;
+    this.revision = revision.next();
   }
 
   static async exists(
     url: Newspapers.VO.ArticleUrlType,
-    sourceId: VO.SourceIdType
+    sourceId: VO.SourceIdType,
   ): Promise<boolean> {
     const count = await Repos.RssCrawlerJobRepository.count({ url, sourceId });
 
@@ -64,7 +92,7 @@ export class RSSCrawlerJob {
 export class RSSCrawlerJobFactory {
   static async create(
     item: bg.AsyncReturnType<Parser["parseString"]>["items"][number],
-    sourceId: VO.SourceIdType
+    sourceId: VO.SourceIdType,
   ): Promise<RSSCrawlerJob | null> {
     try {
       const url = Newspapers.VO.ArticleUrl.safeParse(item.link);
@@ -95,7 +123,7 @@ export class RSSCrawlerV2 {
 
         await Services.SourceMetadataUpdater.update(
           source.id,
-          Services.SourceMetadataUpdater.map(rss.items)
+          Services.SourceMetadataUpdater.map(rss.items),
         );
 
         infra.logger.info({
@@ -105,7 +133,7 @@ export class RSSCrawlerV2 {
         });
 
         const jobs = rss.items.map(
-          (item) => () => RSSCrawlerJobFactory.create(item, source.id)
+          (item) => () => RSSCrawlerJobFactory.create(item, source.id),
         );
 
         await plimit(jobs, { limit: 100 });
