@@ -19,21 +19,21 @@ export class RSSCrawlerJob {
     readonly id: bg.Schema.UUIDType,
     readonly url: Newspapers.VO.ArticleUrlType,
     readonly sourceId: VO.SourceIdType,
-    readonly status: "new" | "done" = "new",
+    readonly status: "new" | "done" = "new"
   ) {}
 
   static async build(_id: bg.Schema.UUIDType) {}
 
   static async create(
     url: Newspapers.VO.ArticleUrlType,
-    sourceId: VO.SourceIdType,
+    sourceId: VO.SourceIdType
   ) {
     return new RSSCrawlerJob(bg.NewUUID.generate(), url, sourceId);
   }
 
   static async exists(
     _url: Newspapers.VO.ArticleUrlType,
-    _sourceId: VO.SourceIdType,
+    _sourceId: VO.SourceIdType
   ): Promise<boolean> {
     return false;
   }
@@ -42,7 +42,7 @@ export class RSSCrawlerJob {
 export class RSSCrawlerJobFactory {
   static async create(
     item: bg.AsyncReturnType<Parser["parseString"]>["items"][number],
-    sourceId: VO.SourceIdType,
+    sourceId: VO.SourceIdType
   ): Promise<RSSCrawlerJob | null> {
     try {
       const url = Newspapers.VO.ArticleUrl.safeParse(item.link);
@@ -62,7 +62,7 @@ export class RSSCrawlerJobFactory {
 export class RSSCrawler {
   static INTERVAL_MINUTES = 2;
 
-  async crawl() {
+  static async crawl() {
     const sources = await Repos.SourceRepository.listActive();
 
     const stepper = new bg.Stepper({ total: sources.length });
@@ -75,7 +75,7 @@ export class RSSCrawler {
         await Services.SourceMetadataUpdater.update(source.id, metadata);
 
         await Promise.all(
-          rss.items.map((item) => RSSCrawlerJobFactory.create(item, source.id)),
+          rss.items.map((item) => RSSCrawlerJobFactory.create(item, source.id))
         );
       } catch (error) {
         infra.logger.info({

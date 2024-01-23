@@ -87,3 +87,12 @@ model TokenBlacklist {
   token     String @id
   createdAt Int
 }
+
+model RssCrawlerJob {
+  id            String @id @default(uuid())
+  url           String
+  status        String
+  sourceId      String
+  createdAt     Int
+  updatedAt     Int    @default(0)
+}
