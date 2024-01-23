@@ -16,15 +16,13 @@ export class RssCrawlerJobProcessor {
 
   static async process() {
     const ids = await Repos.RssCrawlerJobRepository.listReady(
-      RssCrawlerJobProcessor.PROCESSING_JOBS_BATCH_LIMIT
+      RssCrawlerJobProcessor.PROCESSING_JOBS_BATCH_LIMIT,
     );
 
     infra.logger.info({
       message: `Received ${ids.length} ready jobs`,
       operation: "rss_crawler_job_processor_workload",
     });
-
-    const stepper = new bg.Stepper({ total: ids.length });
 
     const jobs = ids.map(
       (job) => () =>
@@ -41,17 +39,10 @@ export class RssCrawlerJobProcessor {
             await source.bump(sourceRevision);
           } catch (error) {
             await job.fail(new bg.Revision(job.revision));
-
-            infra.logger.error({
-              message: `Article not added ${stepper.format()}`,
-              operation: "rss_crawl_job_processor_article_add_error",
-              metadata: { job },
-            });
           } finally {
             infra.ResponseCache.flushAll();
-            stepper.continue();
           }
-        })
+        }),
     );
 
     await plimit(jobs, { limit: 25 });

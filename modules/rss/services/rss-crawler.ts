@@ -144,8 +144,6 @@ export class RSSCrawler {
   static async crawl() {
     const sources = await Repos.SourceRepository.listActive();
 
-    const stepper = new bg.Stepper({ total: sources.length });
-
     for (const source of sources) {
       try {
         const rss = await parser.parseURL(source.url);
@@ -154,12 +152,6 @@ export class RSSCrawler {
           source.id,
           Services.SourceMetadataUpdater.map(rss.items),
         );
-
-        infra.logger.info({
-          message: `Crawling RSS success ${stepper.format()}`,
-          operation: "rss_crawler_success",
-          metadata: { source: source.url, items: rss.items.length },
-        });
 
         const jobs = rss.items.map(
           (item) => () => RSSCrawlerJobFactory.create(item, source.id),
@@ -176,8 +168,6 @@ export class RSSCrawler {
           },
         });
       }
-
-      stepper.continue();
     }
   }
 }
