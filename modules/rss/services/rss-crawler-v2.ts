@@ -1,7 +1,6 @@
 import * as bg from "@bgord/node";
 import Parser from "rss-parser";
 import _ from "lodash";
-import pall from "p-all";
 
 import * as Services from "../services";
 import * as VO from "../value-objects";
@@ -92,11 +91,15 @@ export class RSSCrawlerV2 {
           Services.SourceMetadataUpdater.map(rss.items)
         );
 
-        const jobs = rss.items.map(
-          (item) => () => RSSCrawlerJobFactory.create(item, source.id)
-        );
+        infra.logger.info({
+          message: `Crawling RSS success ${stepper.format()}`,
+          operation: "rss_crawler_success",
+          metadata: { source: source.url, items: rss.items.length },
+        });
 
-        await pall(jobs, { concurrency: 5 });
+        await Promise.allSettled(
+          rss.items.map((item) => RSSCrawlerJobFactory.create(item, source.id))
+        );
       } catch (error) {
         infra.logger.info({
           message: "Crawling RSS error",
