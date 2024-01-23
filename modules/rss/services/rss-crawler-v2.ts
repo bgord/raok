@@ -1,6 +1,7 @@
 import * as bg from "@bgord/node";
 import Parser from "rss-parser";
 import _ from "lodash";
+import { callLimit } from "promise-call-limit";
 
 import * as Services from "../services";
 import * as VO from "../value-objects";
@@ -19,7 +20,7 @@ export class RSSCrawlerJob {
     readonly id: bg.Schema.UUIDType,
     readonly url: Newspapers.VO.ArticleUrlType,
     readonly sourceId: VO.SourceIdType,
-    readonly status: "ready" | "done" = "ready"
+    readonly status: "ready" | "done" = "ready",
   ) {}
 
   static async build(id: bg.Schema.UUIDType) {
@@ -34,7 +35,7 @@ export class RSSCrawlerJob {
 
   static async create(
     url: Newspapers.VO.ArticleUrlType,
-    sourceId: VO.SourceIdType
+    sourceId: VO.SourceIdType,
   ) {
     const id = bg.NewUUID.generate();
     const job = { id, url, sourceId, status: "ready" };
@@ -46,7 +47,7 @@ export class RSSCrawlerJob {
 
   static async exists(
     url: Newspapers.VO.ArticleUrlType,
-    sourceId: VO.SourceIdType
+    sourceId: VO.SourceIdType,
   ): Promise<boolean> {
     const count = await Repos.RssCrawlerJobRepository.count({ url, sourceId });
 
@@ -57,7 +58,7 @@ export class RSSCrawlerJob {
 export class RSSCrawlerJobFactory {
   static async create(
     item: bg.AsyncReturnType<Parser["parseString"]>["items"][number],
-    sourceId: VO.SourceIdType
+    sourceId: VO.SourceIdType,
   ): Promise<RSSCrawlerJob | null> {
     try {
       const url = Newspapers.VO.ArticleUrl.safeParse(item.link);
@@ -88,7 +89,7 @@ export class RSSCrawlerV2 {
 
         await Services.SourceMetadataUpdater.update(
           source.id,
-          Services.SourceMetadataUpdater.map(rss.items)
+          Services.SourceMetadataUpdater.map(rss.items),
         );
 
         infra.logger.info({
@@ -97,9 +98,11 @@ export class RSSCrawlerV2 {
           metadata: { source: source.url, items: rss.items.length },
         });
 
-        await Promise.allSettled(
-          rss.items.map((item) => RSSCrawlerJobFactory.create(item, source.id))
+        const jobs = rss.items.map(
+          (item) => () => RSSCrawlerJobFactory.create(item, source.id),
         );
+
+        await callLimit(jobs, { limit: 100 });
       } catch (error) {
         infra.logger.info({
           message: "Crawling RSS error",
