@@ -52,8 +52,32 @@ const RssCrawlerJob = new SimpleIntervalJob(
   RssCrawlerTask
 );
 
+const RssCrawlJobProcessorTask = new AsyncTask(
+  "rss-crawl-job-processor",
+  async () => {
+    try {
+      await RSS.Services.RssCrawlerJobProcessorV2.process();
+    } catch (error) {
+      logger.error({
+        message: "RssCrawlJobProcessorTask error",
+        operation: "rss_crawl_job_processor_error",
+        metadata: { error: logger.formatError(error) },
+      });
+    }
+  }
+);
+
+const RssCrawlJobProcessorJob = new SimpleIntervalJob(
+  {
+    minutes: RSS.Services.RssCrawlerJobProcessorV2.INTERVAL_MINUTES,
+    runImmediately: true,
+  },
+  RssCrawlJobProcessorTask
+);
+
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
 
 if (Env.RSS_CRAWLING_ENABLED === "yes") {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
+  Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
 }

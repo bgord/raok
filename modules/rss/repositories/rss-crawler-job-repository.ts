@@ -19,6 +19,14 @@ export class RssCrawlerJobRepository {
     });
   }
 
+  static async listReady(limit: number) {
+    return infra.db.rssCrawlerJob.findMany({
+      where: { status: "ready" },
+      select: { id: true },
+      take: limit,
+    });
+  }
+
   static async getById(id: infra.RssCrawlerJob["id"]) {
     return infra.db.rssCrawlerJob.findUnique({ where: { id } });
   }
