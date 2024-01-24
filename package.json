@@ -51,7 +51,7 @@
   "dependencies": {
     "@bgord/design": "0.27.74",
     "@bgord/frontend": "github:bgord/bgord-frontend",
-    "@bgord/node": "0.58.258",
+    "@bgord/node": "0.58.260",
     "@mozilla/readability": "0.5.0",
     "@prisma/client": "3.15.2",
     "@reach/skip-nav": "0.18.0",

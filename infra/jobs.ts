@@ -1,3 +1,4 @@
+import * as bg from "@bgord/node";
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
 import * as RSS from "../modules/rss";
@@ -77,7 +78,7 @@ const RssCrawlJobProcessorJob = new SimpleIntervalJob(
 
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
 
-if (Env.RSS_CRAWLING_ENABLED === "yes") {
+if (bg.FeatureFlag.isEnabled(Env.RSS_CRAWLING_ENABLED)) {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
   Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
 }
