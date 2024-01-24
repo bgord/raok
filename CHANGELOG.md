@@ -1,6 +1,8 @@
 # Changelog
+- 2024-01-24 16:46 24608f0 **fix: revisions in RssCrawlerJobProcessor**
+## 2024-01-24 16:46 
 - 2024-01-24 16:04 eb3a0a9 **fix: backup script**
-## 2024-01-24 16:04 
+- 2024-01-24 15:05 2849146 **docs: generate CHANGELOG**
 - 2024-01-24 12:40 5508a12 **refactor: extract rss crawler job classes**
 - 2024-01-24 12:03 02eeb82 **step: bump bgord/node**
 - 2024-01-24 11:45 3d59716 **docs: generate CHANGELOG**
