@@ -11,14 +11,15 @@ import * as Files from "../";
 
 import { App } from "../../../frontend/app";
 
+/** @public */
 export async function FilesArchive(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
   const translations = await bg.I18n.getTranslations(
     request.language,
-    request.translationsPath
+    request.translationsPath,
   );
 
   const state = {
@@ -28,13 +29,13 @@ export async function FilesArchive(
     archiveArticles: await Newspapers.Repos.ArticleRepository.pagedGetAll(
       bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE }),
       undefined,
-      undefined
+      undefined,
     ),
     archiveFiles: await Files.Repos.FilesRepository.getAll(
-      Files.Repos.ArchiveFilesFilter.parse(request.query)
+      Files.Repos.ArchiveFilesFilter.parse(request.query),
     ),
     articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
-      bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE })
+      bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE }),
     ),
     newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
     settings: await Settings.Repos.SettingsRepository.getAll(),

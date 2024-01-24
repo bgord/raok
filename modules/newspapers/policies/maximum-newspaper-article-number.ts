@@ -2,6 +2,7 @@ import * as bg from "@bgord/node";
 
 import * as Aggregates from "../aggregates";
 
+/** @public */
 export class TooManyArticlesInNewspaperError extends Error {
   constructor() {
     super();

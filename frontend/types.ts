@@ -10,26 +10,18 @@ import type { FilesRepository } from "../modules/files/repositories/files-reposi
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
 
-/**
- * @public
- */
+/** @public */
 export type { HourType } from "@bgord/node/dist/schema";
-/**
- * @public
- */
+/** @public */
 export type { ArticleSearchQueryType } from "../modules/newspapers/value-objects/article-search-query";
 
-/**
- * @public
- */
+/** @public */
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",
 }
 
-/**
- * @public
- */
+/** @public */
 export enum NewspaperStatusEnum {
   "delivered" = "delivered",
   "archived" = "archived",
@@ -38,19 +30,21 @@ export enum NewspaperStatusEnum {
 
 export type ArticlePayloadType = Pick<Article, "url">;
 export type ArticleType = AsyncReturnType<
-  typeof ArticleRepository["pagedGetAllNonProcessed"]
+  (typeof ArticleRepository)["pagedGetAllNonProcessed"]
 >["result"][number];
 
 export type ArchiveArticleType = AsyncReturnType<
-  typeof ArticleRepository["pagedGetAll"]
+  (typeof ArticleRepository)["pagedGetAll"]
 >["result"][number];
 
 export type NewspaperType = AsyncReturnType<
-  typeof NewspaperRepository["getAllNonArchived"]
+  (typeof NewspaperRepository)["getAllNonArchived"]
 >[number];
 
-export type StatsType = AsyncReturnType<typeof StatsRepository["getAll"]>;
-export type SettingsType = AsyncReturnType<typeof SettingsRepository["getAll"]>;
+export type StatsType = AsyncReturnType<(typeof StatsRepository)["getAll"]>;
+export type SettingsType = AsyncReturnType<
+  (typeof SettingsRepository)["getAll"]
+>;
 
 export type ToastType = bg.BaseToastType & {
   articleId?: ArticleType["id"] | null;
@@ -59,15 +53,15 @@ export type ToastType = bg.BaseToastType & {
 };
 
 export type ArchiveFileType = AsyncReturnType<
-  typeof FilesRepository["getAll"]
+  (typeof FilesRepository)["getAll"]
 >[number];
 
 export type SourceType = AsyncReturnType<
-  typeof SourceRepository["listAll"]
+  (typeof SourceRepository)["listAll"]
 >[number];
 
 export type TokenBlacklistType = AsyncReturnType<
-  typeof TokenBlacklistRepository["list"]
+  (typeof TokenBlacklistRepository)["list"]
 >[number];
 
 export enum SourceStatusEnum {
@@ -90,9 +84,7 @@ export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-s
 
 export { ArticleRatingLevel } from "../modules/newspapers/value-objects/article-rating-level-enum";
 
-/**
- * @public
- */
+/** @public */
 export { SUGGESTED_BLACKLISTED_TOKENS_COUNT } from "../modules/recommendations/value-objects/suggested-blacklisted-tokens-count";
 
 export enum SourceSortEnum {

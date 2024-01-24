@@ -6,10 +6,11 @@ import * as VO from "../value-objects";
 import * as Aggregates from "../aggregates";
 import * as Services from "../services";
 
+/** @public */
 export async function ArticleDeliverByEmail(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
   const revision = bg.Revision.fromWeakETag(request.WeakETag);
   const id = VO.ArticleId.parse(request.params.articleId);
@@ -17,7 +18,7 @@ export async function ArticleDeliverByEmail(
   const article = await Aggregates.Article.build(id);
 
   const message = await Services.ArticleEmailMessageComposer.compose(
-    article.entity.url
+    article.entity.url,
   );
 
   await article.markAsProcessed(revision);

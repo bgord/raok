@@ -5,9 +5,10 @@ import * as Repos from "../repositories";
 import * as VO from "../value-objects";
 import * as Services from "../services";
 
+/** @public */
 export class TextRatingCalculator {
   static async calculate(
-    text: bg.Falsy<string>
+    text: bg.Falsy<string>,
   ): Promise<VO.TokenRatingValueType | undefined> {
     if (!text) return undefined;
 

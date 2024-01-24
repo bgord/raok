@@ -4,6 +4,7 @@ import * as VO from "../value-objects";
 
 import * as Recommendations from "../../recommendations";
 
+/** @public */
 export class ArticleBlacklistedError extends Error {
   constructor() {
     super();

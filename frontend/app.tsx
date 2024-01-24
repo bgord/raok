@@ -21,9 +21,7 @@ import { TimestampFiltersEnum } from "./filters";
 
 import { ScrollButton } from "./scroll-button";
 
-/**
- * @public
- */
+/** @public */
 export type InitialDataType = InitialDashboardDataType &
   InitialSourcesDataType &
   InitialArchiveArticlesDataType &
@@ -51,13 +49,13 @@ export function App(props: InitialDataType) {
   });
   queryClient.setQueryData(
     api.keys.archiveFiles({ sentAt: TimestampFiltersEnum.last_3_days }),
-    props.archiveFiles
+    props.archiveFiles,
   );
   queryClient.setQueryData(api.keys.settings, props.settings);
   queryClient.setQueryData(api.keys.articlesSearch, []);
   queryClient.setQueryData(
     api.keys.sources({ status: undefined }),
-    props.sources
+    props.sources,
   );
 
   return (

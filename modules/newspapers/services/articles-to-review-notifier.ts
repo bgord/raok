@@ -12,6 +12,7 @@ const mailer = new bg.Mailer({
   SMTP_PASS: infra.Env.SMTP_PASS,
 });
 
+/** @public */
 export class ArticlesToReviewNotifier {
   UTC_HOUR: bg.Schema.HourType;
 

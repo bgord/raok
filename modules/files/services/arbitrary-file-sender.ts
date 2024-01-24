@@ -2,9 +2,10 @@ import * as bg from "@bgord/node";
 
 import * as infra from "../../../infra";
 
+/** @public */
 export class ArbitraryFileSender {
   static send(
-    file: Pick<bg.Schema.UploadedFileType, "originalFilename" | "path">
+    file: Pick<bg.Schema.UploadedFileType, "originalFilename" | "path">,
   ) {
     return infra.Mailer.send({
       from: infra.Env.EMAIL_FROM,

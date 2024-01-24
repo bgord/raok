@@ -2,12 +2,13 @@ import * as bg from "@bgord/node";
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 
+/** @public */
 export class NonProcessedArticleUrlIsNotUniqueError extends Error {
   constructor() {
     super();
     Object.setPrototypeOf(
       this,
-      NonProcessedArticleUrlIsNotUniqueError.prototype
+      NonProcessedArticleUrlIsNotUniqueError.prototype,
     );
   }
 }
@@ -16,11 +17,11 @@ type NonProcessedArticleUrlIsUniqueConfigType = Pick<VO.ArticleType, "url">;
 
 class NonProcessedArticleUrlIsUniqueFactory extends bg.Policy<NonProcessedArticleUrlIsUniqueConfigType> {
   async fails(
-    config: NonProcessedArticleUrlIsUniqueConfigType
+    config: NonProcessedArticleUrlIsUniqueConfigType,
   ): Promise<boolean> {
     const numbersOfNonProcessedArticlesWithUrl =
       await Repos.ArticleRepository.getNumbersOfNonProcessedArticlesWithUrl(
-        config.url
+        config.url,
       );
 
     return numbersOfNonProcessedArticlesWithUrl > 0;

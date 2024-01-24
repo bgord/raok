@@ -11,14 +11,15 @@ import * as Stats from "../../stats";
 
 import { App } from "../../../frontend/app";
 
+/** @public */
 export async function ArticlesArchive(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
   const translations = await bg.I18n.getTranslations(
     request.language,
-    request.translationsPath
+    request.translationsPath,
   );
 
   const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
@@ -30,7 +31,7 @@ export async function ArticlesArchive(
     archiveArticles: await Repos.ArticleRepository.pagedGetAll(
       pagination,
       undefined,
-      Repos.ArchiveArticlesFilter.parse(request.query)
+      Repos.ArchiveArticlesFilter.parse(request.query),
     ),
     archiveNewspapers: [],
     archiveFiles: [],

@@ -7,10 +7,11 @@ import {
   ARBITRARY_FILE_SCHEDULED_EVENT,
 } from "../events";
 
+/** @public */
 export async function SendArbitraryFile(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
   const file = bg.Schema.UploadedFile.parse(request.body?.file);
 
@@ -21,7 +22,7 @@ export async function SendArbitraryFile(
       name: ARBITRARY_FILE_SCHEDULED_EVENT,
       version: 1,
       payload: file,
-    })
+    }),
   );
 
   return response.send();

@@ -6,10 +6,11 @@ import path from "path";
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
 
+/** @public */
 export async function DownloadFile(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
   const fileId = VO.FileId.safeParse(request.params.fileId);
   if (!fileId.success) throw new bg.Errors.FileNotFoundError();
