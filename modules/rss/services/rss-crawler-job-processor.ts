@@ -31,13 +31,13 @@ export class RssCrawlerJobProcessor {
               url: job.url,
               source: Newspapers.VO.ArticleSourceEnum.rss,
             });
-            await job.process(new bg.Revision(job.revision));
+            await job.process(job.revision);
 
             const source = await Services.Source.build(job.sourceId);
             const sourceRevision = new bg.Revision(source.data.revision);
             await source.bump(sourceRevision);
           } catch (error) {
-            await job.fail(new bg.Revision(job.revision));
+            await job.fail(job.revision);
           } finally {
             infra.ResponseCache.flushAll();
           }
