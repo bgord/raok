@@ -1,7 +1,10 @@
 # Changelog
+- 2024-01-24 17:14 2b25d0c **fix: knip issues**
+## 2024-01-24 17:14 
+- 2024-01-24 17:05 7b21363 **step: bump bgord/scripts**
 - 2024-01-24 16:46 24608f0 **fix: revisions in RssCrawlerJobProcessor**
-## 2024-01-24 16:46 
 - 2024-01-24 16:04 eb3a0a9 **fix: backup script**
+- 2024-01-24 15:46 ac1c7b2 **docs: generate CHANGELOG**
 - 2024-01-24 15:05 2849146 **docs: generate CHANGELOG**
 - 2024-01-24 12:40 5508a12 **refactor: extract rss crawler job classes**
 - 2024-01-24 12:03 02eeb82 **step: bump bgord/node**
