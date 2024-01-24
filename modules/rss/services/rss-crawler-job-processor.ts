@@ -5,7 +5,6 @@ import * as Newspapers from "../../newspapers";
 
 import * as Services from "../services";
 import * as Repos from "../repositories";
-import { RSSCrawlerJob } from "./rss-crawler";
 
 import * as infra from "../../../infra";
 
@@ -26,7 +25,7 @@ export class RssCrawlerJobProcessor {
 
     const jobs = ids.map(
       (job) => () =>
-        RSSCrawlerJob.build(job.id).then(async (job) => {
+        Services.RSSCrawlerJob.build(job.id).then(async (job) => {
           try {
             await Newspapers.Aggregates.Article.add({
               url: job.url,

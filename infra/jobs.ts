@@ -77,7 +77,6 @@ const RssCrawlJobProcessorJob = new SimpleIntervalJob(
 );
 
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
-
 if (bg.FeatureFlag.isEnabled(Env.RSS_CRAWLING_ENABLED)) {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
   Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
