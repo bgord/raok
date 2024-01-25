@@ -1,8 +1,11 @@
 # Changelog
+- 2024-01-25 11:02 80ef19d **refactor: improve mobile articles**
+## 2024-01-25 11:02 
+- 2024-01-25 10:57 5649256 **fix: pass found source url, not given**
 - 2024-01-24 17:14 2b25d0c **fix: knip issues**
-## 2024-01-24 17:14 
 - 2024-01-24 17:05 7b21363 **step: bump bgord/scripts**
 - 2024-01-24 16:46 24608f0 **fix: revisions in RssCrawlerJobProcessor**
+- 2024-01-24 16:14 28bce6b **docs: generate CHANGELOG**
 - 2024-01-24 16:04 eb3a0a9 **fix: backup script**
 - 2024-01-24 15:46 ac1c7b2 **docs: generate CHANGELOG**
 - 2024-01-24 15:05 2849146 **docs: generate CHANGELOG**
