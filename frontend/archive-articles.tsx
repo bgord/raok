@@ -51,11 +51,11 @@ export function ArchiveArticles(_props: RoutableProps) {
   const _archiveArticles = useInfiniteQuery(
     api.keys.archiveArticles(
       filters,
-      debouncedSearch === "" ? undefined : debouncedSearch
+      debouncedSearch === "" ? undefined : debouncedSearch,
     ),
     ({ pageParam = 1 }) =>
       api.Archive.getArticles(pageParam, filters, debouncedSearch),
-    { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true }
+    { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true },
   );
 
   const archiveArticles = bg.Pagination.infinite(_archiveArticles) ?? [];
@@ -168,7 +168,6 @@ export function ArchiveArticles(_props: RoutableProps) {
         data-wrap="nowrap"
         data-max-width="100%"
         data-gap="6"
-        data-mb="12"
       >
         <div data-position="relative" data-width="100%">
           <input
@@ -205,11 +204,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         ))}
       </datalist>
 
-      <ul
-        data-display="flex"
-        data-direction="column"
-        data-max-width="100%"
-      >
+      <ul data-display="flex" data-direction="column" data-max-width="100%">
         {archiveArticles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />
         ))}
