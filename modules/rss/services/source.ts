@@ -80,7 +80,7 @@ export class Source {
 
     const source = {
       id: payload.id,
-      url: payload.url,
+      url,
       createdAt: now,
       updatedAt: now,
       status: VO.SourceStatusEnum.active,
