@@ -105,6 +105,7 @@ export function Article(props: ArticlePropsType) {
         data-cross="center"
         data-ml="auto"
         data-md-ml="unset"
+        data-md-mt="6"
       >
         <label data-display="none" data-md-display="flex" htmlFor={props.id} />
         <input
@@ -137,6 +138,7 @@ export function Article(props: ArticlePropsType) {
         <div data-display="flex" data-wrap="nowrap" data-ml="auto" data-gap="6">
           <ArticleRating {...props} />
           <UI.Badge
+            data-md-display="none"
             data-mt="3"
             data-mr="3"
             {...bg.Rhythm().times(7).style.minWidth}
@@ -149,8 +151,10 @@ export function Article(props: ArticlePropsType) {
           data-display="flex"
           data-wrap="nowrap"
           data-mt="6"
+          data-md-mt="0"
           data-gap="3"
           data-ml="auto"
+          data-md-ml="12"
         >
           <ArticleEmailDelivery {...props} />
           <ArticleHomepage {...props} />
