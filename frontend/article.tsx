@@ -7,7 +7,7 @@ import * as types from "./types";
 
 import { ArticleHomepage } from "./article-homepage";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
-import { ArticleEmailDelivery } from "./article-email-delivery";
+import { ArticleSourceAdd } from "./article-source-add";
 import { ArticleDelete } from "./article-delete";
 import { ArticleUrl } from "./article-url";
 import { ArticleRating } from "./article-rating";
@@ -156,7 +156,7 @@ export function Article(props: ArticlePropsType) {
           data-ml="auto"
           data-md-ml="12"
         >
-          <ArticleEmailDelivery {...props} />
+          <ArticleSourceAdd {...props} />
           <ArticleHomepage {...props} />
           <ArticleMarkAsAdded {...props} />
           <ArticleDelete {...props} />
