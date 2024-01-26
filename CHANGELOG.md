@@ -1,8 +1,10 @@
 # Changelog
+- 2024-01-26 13:09 650f307 **step: swap source add with deliver by email buttons**
+## 2024-01-26 13:09 
 - 2024-01-25 11:26 a0d8213 **fix: unnecessary space below archive articles search input**
-## 2024-01-25 11:26 
 - 2024-01-25 11:02 80ef19d **refactor: improve mobile articles**
 - 2024-01-25 10:57 5649256 **fix: pass found source url, not given**
+- 2024-01-25 10:26 3556827 **docs: generate CHANGELOG**
 - 2024-01-25 10:06 389bb0b **docs: generate CHANGELOG**
 - 2024-01-24 17:14 2b25d0c **fix: knip issues**
 - 2024-01-24 17:05 7b21363 **step: bump bgord/scripts**
