@@ -38,7 +38,6 @@ export function AddArticleForm() {
       }}
     >
       <input
-        autofocus
         class="c-input"
         data-grow="1"
         type="url"
