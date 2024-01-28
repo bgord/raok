@@ -13,8 +13,7 @@ export function AddArticleForm() {
   const notify = bg.useToastTrigger();
 
   const url = bg.useField<types.ArticleType["url"]>("article-url", "");
-
-  const ref = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
 
   const addArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
@@ -40,7 +39,6 @@ export function AddArticleForm() {
     >
       <input
         autofocus
-        ref={ref}
         class="c-input"
         data-grow="1"
         type="url"
@@ -50,6 +48,7 @@ export function AddArticleForm() {
         onChange={url.handleChange}
         {...bg.Form.pattern(types.ArticleUrlValidations)}
         {...url.input.props}
+        {...shortcut}
       />
 
       <button

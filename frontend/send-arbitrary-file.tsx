@@ -12,6 +12,7 @@ export function SendArbitraryFile() {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
 
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
   const fileUpload = useMutation(api.sendArbitraryFile, {
     onSuccess: () => notify({ message: "app.file.sent" }),
   });
@@ -19,8 +20,6 @@ export function SendArbitraryFile() {
   const file = bg.useFile("file", {
     maxSize: types.MAX_UPLOADED_FILE_SIZE_BYTES,
   });
-
-  const ref = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
 
   return (
     <form
@@ -46,12 +45,12 @@ export function SendArbitraryFile() {
 
       <div data-display="flex" data-gap="12">
         <input
-          ref={ref}
           class="c-file-explorer"
           type="file"
           accept={types.FileMimeTypes.form()}
           onInput={file.actions.selectFile}
           {...file.input.props}
+          {...shortcut}
         />
 
         <label data-cursor="pointer" {...file.label.props}>
