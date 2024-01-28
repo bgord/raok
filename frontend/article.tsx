@@ -44,6 +44,7 @@ export function Article(props: ArticlePropsType) {
         >
           <div
             class="c-badge"
+            data-main="center"
             data-fs="12"
             data-lh="12"
             data-p="3"
