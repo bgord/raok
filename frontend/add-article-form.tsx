@@ -14,6 +14,8 @@ export function AddArticleForm() {
 
   const url = bg.useField<types.ArticleType["url"]>("article-url", "");
 
+  const ref = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
+
   const addArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
       url.clear();
@@ -38,6 +40,7 @@ export function AddArticleForm() {
     >
       <input
         autofocus
+        ref={ref}
         class="c-input"
         data-grow="1"
         type="url"
@@ -53,7 +56,7 @@ export function AddArticleForm() {
         class="c-button"
         data-variant="secondary"
         type="submit"
-        disabled={addArticleRequest.isLoading}
+        disabled={addArticleRequest.isLoading || url.unchanged}
         {...bg.Rhythm().times(5).style.minWidth}
       >
         {addArticleRequest.isLoading
@@ -63,7 +66,7 @@ export function AddArticleForm() {
 
       <UI.ClearButton
         onClick={url.clear}
-        disabled={url.unchanged || addArticleRequest.isLoading}
+        disabled={addArticleRequest.isLoading || url.unchanged}
       />
     </form>
   );

@@ -20,6 +20,8 @@ export function SendArbitraryFile() {
     maxSize: types.MAX_UPLOADED_FILE_SIZE_BYTES,
   });
 
+  const ref = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
+
   return (
     <form
       data-bg="gray-100"
@@ -44,6 +46,7 @@ export function SendArbitraryFile() {
 
       <div data-display="flex" data-gap="12">
         <input
+          ref={ref}
           class="c-file-explorer"
           type="file"
           accept={types.FileMimeTypes.form()}
