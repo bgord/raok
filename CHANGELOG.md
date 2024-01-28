@@ -1,8 +1,11 @@
 # Changelog
+- 2024-01-28 16:45 247c554 **feature: add dependabot config**
+## 2024-01-28 16:45 
+- 2024-01-28 16:44 0b8ae0d **step: bump bgord/scripts**
 - 2024-01-28 16:33 f0f43f6 **fix: codeql workflow schedule**
-## 2024-01-28 16:33 
 - 2024-01-28 16:19 95aa89b **refactor: bump bgord/node**
 - 2024-01-28 16:12 9c014fc **step: bump bgord/scripts**
+- 2024-01-28 15:35 bbaae1e **docs: generate CHANGELOG**
 - 2024-01-28 15:19 8ba503e **docs: generate CHANGELOG**
 - 2024-01-28 15:13 3c35d04 **docs: generate CHANGELOG**
 - 2024-01-28 12:22 bcd4cd5 **build(deps): bump open-graph-scraper from 6.3.2 to 6.3.3 (#147)**
