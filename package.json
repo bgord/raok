@@ -39,7 +39,7 @@
     "eslint-plugin-security": "2.1.0",
     "eslint-plugin-sonarjs": "0.23.0",
     "gzip-cli": "1.2.0",
-    "husky": "8.0.3",
+    "husky": "9.0.6",
     "oxlint": "0.2.6",
     "postcss": "8.4.33",
     "postcss-cli": "11.0.0",
