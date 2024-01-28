@@ -15,7 +15,7 @@ model Event {
   version   Int
   payload   String
 
-  @@index(stream)
+  @@index([stream])
 }
 
 model Newspaper {
@@ -23,8 +23,8 @@ model Newspaper {
   status      String
   scheduledAt Int
   sentAt      Int?
-  articles    Article[]
   revision    Int       @default(0)
+  articles    Article[]
 }
 
 model Article {
@@ -35,13 +35,13 @@ model Article {
   createdAt                     Int
   title                         String?    @default("-")
   newspaperId                   String?
-  Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
   estimatedReadingTimeInMinutes Int?
   revision                      Int        @default(0)
   rating                        Float?
   description                   String?
+  Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
 
-  @@index(status)
+  @@index([status])
 }
 
 model Files {
@@ -89,11 +89,11 @@ model TokenBlacklist {
 }
 
 model RssCrawlerJob {
-  id            String @id @default(uuid())
-  url           String
-  status        String
-  sourceId      String
-  createdAt     Int
-  updatedAt     Int
-  revision      Int    @default(0)
+  id        String @id @default(uuid())
+  url       String
+  status    String
+  sourceId  String
+  createdAt Int
+  updatedAt Int
+  revision  Int    @default(0)
 }
