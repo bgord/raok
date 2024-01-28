@@ -1,7 +1,10 @@
 # Changelog
+- 2024-01-28 12:21 f4e20b9 **build(deps-dev): bump @commitlint/cli from 18.4.4 to 18.6.0 (#155)**
+## 2024-01-28 12:21 
 - 2024-01-28 12:20 b1c5c53 **step: bump bgord/node**
-## 2024-01-28 12:20 
+- 2024-01-28 12:20 613b81b **build(deps-dev): bump oxlint from 0.2.2 to 0.2.6 (#157)**
 - 2024-01-28 12:09 be06a6c **Prisma v5 (#156)**
+- 2024-01-28 11:20 f9bf17f **docs: generate CHANGELOG**
 - 2024-01-28 11:09 11b7ed8 **docs: generate CHANGELOG**
 - 2024-01-26 13:09 650f307 **step: swap source add with deliver by email buttons**
 - 2024-01-26 12:11 c316f5e **docs: generate CHANGELOG**
