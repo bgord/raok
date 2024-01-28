@@ -1,6 +1,7 @@
 # Changelog
+- 2024-01-28 17:02 ad1aa2b **build(deps-dev): bump husky from 8.0.3 to 9.0.6 (#158)**
+## 2024-01-28 17:02 
 - 2024-01-28 17:00 0fc87b5 **build(deps-dev): bump esbuild from 0.19.11 to 0.20.0 (#159)**
-## 2024-01-28 17:00 
 - 2024-01-28 16:55 daf231a **build(deps-dev): bump @typescript-eslint/parser from 6.19.0 to 6.19.1 (#160)**
 - 2024-01-28 16:55 d26ddcb **build(deps): bump @bgord/frontend from `3fbd635` to `95a9f82` (#162)**
 - 2024-01-28 16:55 7f43340 **build(deps-dev): bump vitest from 1.2.1 to 1.2.2 (#161)**
@@ -9,6 +10,7 @@
 - 2024-01-28 16:33 f0f43f6 **fix: codeql workflow schedule**
 - 2024-01-28 16:19 95aa89b **refactor: bump bgord/node**
 - 2024-01-28 16:12 9c014fc **step: bump bgord/scripts**
+- 2024-01-28 16:00 988c508 **docs: generate CHANGELOG**
 - 2024-01-28 15:56 8045f20 **docs: generate CHANGELOG**
 - 2024-01-28 15:55 66edebf **docs: generate CHANGELOG**
 - 2024-01-28 15:45 0ce3ee3 **docs: generate CHANGELOG**
