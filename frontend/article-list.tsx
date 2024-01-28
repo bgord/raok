@@ -25,7 +25,7 @@ export function ArticleList() {
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
 
   bg.useDocumentTitle(
-    `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`
+    `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`,
   );
 
   const sort = useArticleSort();
@@ -37,7 +37,7 @@ export function ArticleList() {
       getNextPageParam: (page) => page.meta.nextPage,
       onSuccess: () => stats.refetch(),
       refetchOnMount: true,
-    }
+    },
   );
 
   const articles = bg.Pagination.infinite(_articles).toSorted(sort.sortFn);
@@ -69,8 +69,8 @@ export function ArticleList() {
           >
             {numberOfNonProcessedArticles}
           </div>
-          <Icons.Notes height="20px" width="20px" />
-          <span data-mt="3">{t("app.articles")}</span>
+          <Icons.Notes data-md-display="none" height="20px" width="20px" />
+          <span data-my="auto">{t("app.articles")}</span>
           <ArticleListRefresh />
         </UI.Header>
 
