@@ -123,6 +123,7 @@ export function Article(props: ArticlePropsType) {
         <div
           class="c-badge"
           data-display="none"
+          data-main="center"
           data-md-display="flex"
           data-md-mr="auto"
           data-fs="12"
