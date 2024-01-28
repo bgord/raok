@@ -70,7 +70,9 @@ export function ArticleList() {
             {numberOfNonProcessedArticles}
           </div>
           <Icons.Notes data-md-display="none" height="20px" width="20px" />
-          <span data-my="auto">{t("app.articles")}</span>
+          <span data-mt="3" data-md-my="auto">
+            {t("app.articles")}
+          </span>
           <ArticleListRefresh />
         </UI.Header>
 
