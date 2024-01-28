@@ -90,3 +90,5 @@ export { EventStore } from "./event-store";
 export * from "./jobs";
 
 export const CacheResponse = new bg.CacheResponse(ResponseCache);
+
+export * from "./lucia";

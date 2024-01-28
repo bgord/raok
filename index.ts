@@ -286,6 +286,7 @@ app.use(App.Routes.ErrorHandler.handle);
 
 (async function main() {
   await bg.Prerequisites.check(infra.prerequisites);
+  await App.Services.AdminUserCreator.seed();
 
   const server = app.listen(infra.Env.PORT, async () => {
     infra.logger.info({
