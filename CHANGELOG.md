@@ -1,10 +1,12 @@
 # Changelog
+- 2024-01-28 16:55 daf231a **build(deps-dev): bump @typescript-eslint/parser from 6.19.0 to 6.19.1 (#160)**
+## 2024-01-28 16:55 
 - 2024-01-28 16:45 247c554 **feature: add dependabot config**
-## 2024-01-28 16:45 
 - 2024-01-28 16:44 0b8ae0d **step: bump bgord/scripts**
 - 2024-01-28 16:33 f0f43f6 **fix: codeql workflow schedule**
 - 2024-01-28 16:19 95aa89b **refactor: bump bgord/node**
 - 2024-01-28 16:12 9c014fc **step: bump bgord/scripts**
+- 2024-01-28 15:45 0ce3ee3 **docs: generate CHANGELOG**
 - 2024-01-28 15:35 bbaae1e **docs: generate CHANGELOG**
 - 2024-01-28 15:19 8ba503e **docs: generate CHANGELOG**
 - 2024-01-28 15:13 3c35d04 **docs: generate CHANGELOG**
