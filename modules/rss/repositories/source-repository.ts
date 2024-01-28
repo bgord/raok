@@ -97,8 +97,8 @@ export class SourceRepository {
   private static map(item: infra.Source) {
     return {
       ...item,
-      createdAt: bg.RelativeDate.truthy(item.createdAt),
-      updatedAt: bg.RelativeDate.truthy(item.updatedAt),
+      createdAt: bg.RelativeDate.truthy(Number(item.createdAt)),
+      updatedAt: bg.RelativeDate.truthy(Number(item.updatedAt)),
     };
   }
 }

@@ -60,7 +60,7 @@ export class StatsRepository {
     if (!firstArticle?.createdAt || !createdArticles?.value) return null;
 
     const daysSinceFirstArticle = bg.Time.Now().Minus(
-      bg.Time.Ms(firstArticle.createdAt)
+      bg.Time.Ms(Number(firstArticle.createdAt))
     ).days;
 
     return rounding.round(createdArticles.value / daysSinceFirstArticle);

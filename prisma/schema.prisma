@@ -21,8 +21,8 @@ model Event {
 model Newspaper {
   id          String    @id @default(uuid())
   status      String
-  scheduledAt Int
-  sentAt      Int?
+  scheduledAt BigInt
+  sentAt      BigInt?
   revision    Int       @default(0)
   articles    Article[]
 }
@@ -32,7 +32,7 @@ model Article {
   url                           String
   source                        String
   status                        String
-  createdAt                     Int
+  createdAt                     BigInt
   title                         String?    @default("-")
   newspaperId                   String?
   estimatedReadingTimeInMinutes Int?
@@ -49,7 +49,7 @@ model Files {
   name   String
   size   Int
   path   String
-  sentAt Int?
+  sentAt BigInt?
 }
 
 model StatsKeyValue {
@@ -62,8 +62,8 @@ model Source {
   id            String @id @default(uuid())
   url           String
   status        String
-  createdAt     Int
-  updatedAt     Int    @default(0)
+  createdAt     BigInt
+  updatedAt     BigInt    @default(0)
   revision      Int    @default(0)
   countValue    Int    @default(0)
   countStrategy String @default("total_last_month")
@@ -78,14 +78,14 @@ model Reordering {
 model TokenRating {
   token          String @id
   value          Int    @default(0)
-  createdAt      Int
-  updatedAt      Int    @default(0)
-  dismissedUntil Int?
+  createdAt      BigInt
+  updatedAt      BigInt    @default(0)
+  dismissedUntil BigInt?
 }
 
 model TokenBlacklist {
   token     String @id
-  createdAt Int
+  createdAt BigInt
 }
 
 model RssCrawlerJob {
@@ -93,7 +93,7 @@ model RssCrawlerJob {
   url       String
   status    String
   sourceId  String
-  createdAt Int
-  updatedAt Int
+  createdAt BigInt
+  updatedAt BigInt
   revision  Int    @default(0)
 }

@@ -19,7 +19,7 @@ export class FilesRepository {
 
     return files.map((file) => ({
       ...file,
-      sentAt: bg.RelativeDate.falsy(file.sentAt),
+      sentAt: bg.RelativeDate.falsy(Number(file.sentAt)),
     }));
   }
 

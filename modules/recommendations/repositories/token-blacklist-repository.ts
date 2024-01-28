@@ -22,7 +22,7 @@ export class TokenBlacklistRepository {
 
     return tokens.map((token) => ({
       ...token,
-      createdAt: bg.RelativeDate.truthy(token.createdAt),
+      createdAt: bg.RelativeDate.truthy(Number(token.createdAt)),
     }));
   }
 

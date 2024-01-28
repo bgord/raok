@@ -144,7 +144,7 @@ export class ArticleRepository {
   static _map(article: infra.Article) {
     return {
       ...article,
-      createdAt: bg.RelativeDate.truthy(article.createdAt),
+      createdAt: bg.RelativeDate.truthy(Number(article.createdAt)),
       rating: Services.ArticleRatingLevelCalculator.calculate(article.rating),
     };
   }
