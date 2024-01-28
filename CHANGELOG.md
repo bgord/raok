@@ -1,6 +1,8 @@
 # Changelog
+- 2024-01-28 16:19 95aa89b **refactor: bump bgord/node**
+## 2024-01-28 16:19 
 - 2024-01-28 16:12 9c014fc **step: bump bgord/scripts**
-## 2024-01-28 16:12 
+- 2024-01-28 15:13 3c35d04 **docs: generate CHANGELOG**
 - 2024-01-28 12:22 bcd4cd5 **build(deps): bump open-graph-scraper from 6.3.2 to 6.3.3 (#147)**
 - 2024-01-28 12:21 fa53cd4 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#148)**
 - 2024-01-28 12:21 f4e20b9 **build(deps-dev): bump @commitlint/cli from 18.4.4 to 18.6.0 (#155)**
