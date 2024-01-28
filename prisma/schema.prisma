@@ -45,7 +45,7 @@ model Article {
 }
 
 model Files {
-  id     String @id @default(uuid())
+  id     String  @id @default(uuid())
   name   String
   size   Int
   path   String
@@ -63,7 +63,7 @@ model Source {
   url           String
   status        String
   createdAt     BigInt
-  updatedAt     BigInt    @default(0)
+  updatedAt     BigInt @default(0)
   revision      Int    @default(0)
   countValue    Int    @default(0)
   countStrategy String @default("total_last_month")
@@ -76,10 +76,10 @@ model Reordering {
 }
 
 model TokenRating {
-  token          String @id
-  value          Int    @default(0)
+  token          String  @id
+  value          Int     @default(0)
   createdAt      BigInt
-  updatedAt      BigInt    @default(0)
+  updatedAt      BigInt  @default(0)
   dismissedUntil BigInt?
 }
 
