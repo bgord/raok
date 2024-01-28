@@ -1,9 +1,13 @@
 # Changelog
+- 2024-01-28 12:22 bcd4cd5 **build(deps): bump open-graph-scraper from 6.3.2 to 6.3.3 (#147)**
+## 2024-01-28 12:22 
+- 2024-01-28 12:21 fa53cd4 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#148)**
 - 2024-01-28 12:21 f4e20b9 **build(deps-dev): bump @commitlint/cli from 18.4.4 to 18.6.0 (#155)**
-## 2024-01-28 12:21 
+- 2024-01-28 12:21 7803bf7 **build(deps-dev): bump @commitlint/config-conventional (#154)**
 - 2024-01-28 12:20 b1c5c53 **step: bump bgord/node**
 - 2024-01-28 12:20 613b81b **build(deps-dev): bump oxlint from 0.2.2 to 0.2.6 (#157)**
 - 2024-01-28 12:09 be06a6c **Prisma v5 (#156)**
+- 2024-01-28 11:21 ac704a1 **docs: generate CHANGELOG**
 - 2024-01-28 11:20 f9bf17f **docs: generate CHANGELOG**
 - 2024-01-28 11:09 11b7ed8 **docs: generate CHANGELOG**
 - 2024-01-26 13:09 650f307 **step: swap source add with deliver by email buttons**
