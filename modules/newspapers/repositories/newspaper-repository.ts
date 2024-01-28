@@ -62,8 +62,12 @@ export class NewspaperRepository {
   ) {
     return {
       ...newspaper,
-      sentAt: bg.RelativeDate.falsy(newspaper.sentAt),
-      title: `Newspaper ${format(newspaper.scheduledAt, "yyyy-MM-dd-hh-mm")}`,
+      scheduledAt: Number(newspaper.scheduledAt),
+      sentAt: bg.RelativeDate.falsy(Number(newspaper.sentAt)),
+      title: `Newspaper ${format(
+        Number(newspaper.scheduledAt),
+        "yyyy-MM-dd-hh-mm"
+      )}`,
     };
   }
 }

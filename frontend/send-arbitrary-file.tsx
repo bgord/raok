@@ -12,6 +12,7 @@ export function SendArbitraryFile() {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
 
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
   const fileUpload = useMutation(api.sendArbitraryFile, {
     onSuccess: () => notify({ message: "app.file.sent" }),
   });
@@ -49,6 +50,7 @@ export function SendArbitraryFile() {
           accept={types.FileMimeTypes.form()}
           onInput={file.actions.selectFile}
           {...file.input.props}
+          {...shortcut}
         />
 
         <label data-cursor="pointer" {...file.label.props}>

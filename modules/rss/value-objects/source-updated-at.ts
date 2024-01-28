@@ -1,3 +1,3 @@
-import * as bg from "@bgord/node";
+import z from "zod";
 
-export const SourceUpdatedAt = bg.Schema.Timestamp;
+export const SourceUpdatedAt = z.bigint();

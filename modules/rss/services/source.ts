@@ -69,7 +69,7 @@ export class Source {
   }
 
   static async create(
-    payload: Pick<VO.SourceType, "url" | "id">,
+    payload: Pick<VO.SourceType, "url" | "id">
   ): Promise<Source> {
     const now = Date.now();
 
@@ -81,8 +81,8 @@ export class Source {
     const source = {
       id: payload.id,
       url,
-      createdAt: now,
-      updatedAt: now,
+      createdAt: BigInt(now),
+      updatedAt: BigInt(now),
       status: VO.SourceStatusEnum.active,
       revision: bg.Revision.initial,
       countValue: 0,

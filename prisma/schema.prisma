@@ -15,16 +15,16 @@ model Event {
   version   Int
   payload   String
 
-  @@index(stream)
+  @@index([stream])
 }
 
 model Newspaper {
   id          String    @id @default(uuid())
   status      String
-  scheduledAt Int
-  sentAt      Int?
-  articles    Article[]
+  scheduledAt BigInt
+  sentAt      BigInt?
   revision    Int       @default(0)
+  articles    Article[]
 }
 
 model Article {
@@ -32,24 +32,24 @@ model Article {
   url                           String
   source                        String
   status                        String
-  createdAt                     Int
+  createdAt                     BigInt
   title                         String?    @default("-")
   newspaperId                   String?
-  Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
   estimatedReadingTimeInMinutes Int?
   revision                      Int        @default(0)
   rating                        Float?
   description                   String?
+  Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
 
-  @@index(status)
+  @@index([status])
 }
 
 model Files {
-  id     String @id @default(uuid())
+  id     String  @id @default(uuid())
   name   String
   size   Int
   path   String
-  sentAt Int?
+  sentAt BigInt?
 }
 
 model StatsKeyValue {
@@ -62,8 +62,8 @@ model Source {
   id            String @id @default(uuid())
   url           String
   status        String
-  createdAt     Int
-  updatedAt     Int    @default(0)
+  createdAt     BigInt
+  updatedAt     BigInt @default(0)
   revision      Int    @default(0)
   countValue    Int    @default(0)
   countStrategy String @default("total_last_month")
@@ -76,24 +76,24 @@ model Reordering {
 }
 
 model TokenRating {
-  token          String @id
-  value          Int    @default(0)
-  createdAt      Int
-  updatedAt      Int    @default(0)
-  dismissedUntil Int?
+  token          String  @id
+  value          Int     @default(0)
+  createdAt      BigInt
+  updatedAt      BigInt  @default(0)
+  dismissedUntil BigInt?
 }
 
 model TokenBlacklist {
   token     String @id
-  createdAt Int
+  createdAt BigInt
 }
 
 model RssCrawlerJob {
-  id            String @id @default(uuid())
-  url           String
-  status        String
-  sourceId      String
-  createdAt     Int
-  updatedAt     Int
-  revision      Int    @default(0)
+  id        String @id @default(uuid())
+  url       String
+  status    String
+  sourceId  String
+  createdAt BigInt
+  updatedAt BigInt
+  revision  Int    @default(0)
 }

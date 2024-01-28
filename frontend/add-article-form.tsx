@@ -13,6 +13,7 @@ export function AddArticleForm() {
   const notify = bg.useToastTrigger();
 
   const url = bg.useField<types.ArticleType["url"]>("article-url", "");
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
 
   const addArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
@@ -47,13 +48,14 @@ export function AddArticleForm() {
         onChange={url.handleChange}
         {...bg.Form.pattern(types.ArticleUrlValidations)}
         {...url.input.props}
+        {...shortcut}
       />
 
       <button
         class="c-button"
         data-variant="secondary"
         type="submit"
-        disabled={addArticleRequest.isLoading}
+        disabled={addArticleRequest.isLoading || url.unchanged}
         {...bg.Rhythm().times(5).style.minWidth}
       >
         {addArticleRequest.isLoading
@@ -63,7 +65,7 @@ export function AddArticleForm() {
 
       <UI.ClearButton
         onClick={url.clear}
-        disabled={url.unchanged || addArticleRequest.isLoading}
+        disabled={addArticleRequest.isLoading || url.unchanged}
       />
     </form>
   );
