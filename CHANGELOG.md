@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-28 19:07 07b3232 **fix: article list header on desktop**
+## 2024-01-28 19:07 
 - 2024-01-28 19:00 20d43ee **fix: article list header on mobile**
-## 2024-01-28 19:00 
 - 2024-01-28 18:58 62832a0 **fix: remove add article form autofocus**
+- 2024-01-28 18:00 f840b27 **docs: generate CHANGELOG**
 - 2024-01-28 17:02 ad1aa2b **build(deps-dev): bump husky from 8.0.3 to 9.0.6 (#158)**
 - 2024-01-28 17:00 0fc87b5 **build(deps-dev): bump esbuild from 0.19.11 to 0.20.0 (#159)**
 - 2024-01-28 16:55 daf231a **build(deps-dev): bump @typescript-eslint/parser from 6.19.0 to 6.19.1 (#160)**
