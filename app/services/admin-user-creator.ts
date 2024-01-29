@@ -14,17 +14,10 @@ export class AdminUserCreator {
       .pbkdf2Sync(password, "password", 1000, 64, "sha512")
       .toString("hex");
 
-    const result = await infra.db.user.upsert({
+    await infra.db.user.upsert({
       where: { email: username },
       create: { id, email: username, password: hash },
       update: { email: username, password: hash },
     });
-
-    try {
-      const session = await infra.lucia.createSession(result.id, {});
-      console.log(session);
-    } catch (error) {
-      console.error(error);
-    }
   }
 }
