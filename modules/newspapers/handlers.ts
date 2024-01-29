@@ -5,9 +5,11 @@ import * as Recommendations from "../recommendations";
 
 import * as Aggregates from "./aggregates";
 import * as Events from "./events";
-import * as Repos from "./repositories";
 import * as VO from "./value-objects";
 import * as Services from "./services";
+
+import { ArticleRepository } from "./repositories/article-repository";
+import { NewspaperRepository } from "./repositories/newspaper-repository";
 
 import * as infra from "../../infra";
 
@@ -15,7 +17,7 @@ const EventHandler = new bg.EventHandler(infra.logger);
 
 export const onArticleAddedEventHandler =
   EventHandler.handle<Events.ArticleAddedEventType>(async (event) => {
-    await Repos.ArticleRepository.create(event.payload);
+    await ArticleRepository.create(event.payload);
     await Stats.Repos.StatsRepository.incrementCreatedArticles();
 
     const content = (await Services.ArticleContentDownloader.download(
@@ -27,12 +29,12 @@ export const onArticleAddedEventHandler =
       url: event.payload.url,
     });
 
-    await Repos.ArticleRepository.updateReadingTime({
+    await ArticleRepository.updateReadingTime({
       id: event.payload.id,
       estimatedReadingTimeInMinutes: readableArticle?.readingTime ?? null,
     });
 
-    await Repos.ArticleRepository.updateRating({
+    await ArticleRepository.updateRating({
       id: event.payload.id,
       rating: await Recommendations.Services.TextRatingCalculator.calculate(
         readableArticle?.title
@@ -42,7 +44,7 @@ export const onArticleAddedEventHandler =
 
 export const onArticleDeletedEventHandler =
   EventHandler.handle<Events.ArticleDeletedEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus({
+    await ArticleRepository.updateStatus({
       id: event.payload.articleId,
       status: VO.ArticleStatusEnum.deleted,
       revision: event.payload.revision,
@@ -51,7 +53,7 @@ export const onArticleDeletedEventHandler =
 
 export const onArticleReadEventHandler =
   EventHandler.handle<Events.ArticleReadEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus({
+    await ArticleRepository.updateStatus({
       id: event.payload.articleId,
       status: VO.ArticleStatusEnum.read,
       revision: event.payload.revision,
@@ -61,7 +63,7 @@ export const onArticleReadEventHandler =
 
 export const onArticleUndeletedEventHandler =
   EventHandler.handle<Events.ArticleUndeleteEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus({
+    await ArticleRepository.updateStatus({
       id: event.payload.articleId,
       status: VO.ArticleStatusEnum.ready,
       revision: event.payload.revision,
@@ -71,13 +73,13 @@ export const onArticleUndeletedEventHandler =
 export const onArticleLockedEventHandler =
   EventHandler.handle<Events.ArticleLockedEventType>(async (event) => {
     try {
-      await Repos.ArticleRepository.updateStatus({
+      await ArticleRepository.updateStatus({
         id: event.payload.articleId,
         status: VO.ArticleStatusEnum.in_progress,
         revision: event.payload.revision,
       });
 
-      await Repos.ArticleRepository.assignToNewspaper(
+      await ArticleRepository.assignToNewspaper(
         event.payload.articleId,
         event.payload.newspaperId,
         event.payload.revision
@@ -93,7 +95,7 @@ export const onArticleLockedEventHandler =
 
 export const onArticleUnlockedEventHandler =
   EventHandler.handle<Events.ArticleUnlockedEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus({
+    await ArticleRepository.updateStatus({
       id: event.payload.articleId,
       status: VO.ArticleStatusEnum.ready,
       revision: event.payload.revision,
@@ -102,7 +104,7 @@ export const onArticleUnlockedEventHandler =
 
 export const onArticleProcessedEventHandler =
   EventHandler.handle<Events.ArticleProcessedEventType>(async (event) => {
-    await Repos.ArticleRepository.updateStatus({
+    await ArticleRepository.updateStatus({
       id: event.payload.articleId,
       status: VO.ArticleStatusEnum.processed,
       revision: event.payload.revision,
@@ -117,7 +119,7 @@ export const onArticleOpenedEventHandler =
 
 export const onNewspaperScheduledEventHandler =
   EventHandler.handle<Events.NewspaperScheduledEventType>(async (event) => {
-    await Repos.NewspaperRepository.create({
+    await NewspaperRepository.create({
       id: event.payload.id,
       scheduledAt: event.payload.createdAt,
       status: VO.NewspaperStatusEnum.scheduled,
@@ -138,7 +140,7 @@ export const onNewspaperScheduledEventHandler =
 
 export const onNewspaperGeneratedEventHandler =
   EventHandler.handle<Events.NewspaperGenerateEventType>(async (event) => {
-    await Repos.NewspaperRepository.updateStatus({
+    await NewspaperRepository.updateStatus({
       id: event.payload.newspaperId,
       status: VO.NewspaperStatusEnum.ready_to_send,
       revision: event.payload.revision,
@@ -156,13 +158,13 @@ export const onNewspaperSentEventHandler =
   EventHandler.handle<Events.NewspaperSentEventType>(async (event) => {
     await Stats.Repos.StatsRepository.incrementSentNewspapers();
 
-    await Repos.NewspaperRepository.updateStatus({
+    await NewspaperRepository.updateStatus({
       id: event.payload.newspaperId,
       status: VO.NewspaperStatusEnum.delivered,
       revision: event.payload.revision,
     });
 
-    await Repos.NewspaperRepository.updateSentAt({
+    await NewspaperRepository.updateSentAt({
       id: event.payload.newspaperId,
       sentAt: event.payload.sentAt,
       revision: event.payload.revision,
@@ -180,7 +182,7 @@ export const onNewspaperSentEventHandler =
 
 export const onNewspaperArchivedEventHandler =
   EventHandler.handle<Events.NewspaperArchivedEventType>(async (event) => {
-    await Repos.NewspaperRepository.updateStatus({
+    await NewspaperRepository.updateStatus({
       id: event.payload.newspaperId,
       status: VO.NewspaperStatusEnum.archived,
       revision: event.payload.revision,
@@ -189,7 +191,7 @@ export const onNewspaperArchivedEventHandler =
 
 export const onNewspaperFailedEventHandler =
   EventHandler.handle<Events.NewspaperFailedEventType>(async (event) => {
-    await Repos.NewspaperRepository.updateStatus({
+    await NewspaperRepository.updateStatus({
       id: event.payload.newspaperId,
       status: VO.NewspaperStatusEnum.error,
       revision: event.payload.revision,

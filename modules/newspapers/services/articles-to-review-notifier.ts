@@ -2,8 +2,8 @@ import * as bg from "@bgord/node";
 
 import * as Settings from "../../settings";
 
-import * as Repos from "../repositories";
 import * as infra from "../../../infra";
+import { ArticleRepository } from "../repositories/article-repository";
 
 const mailer = new bg.Mailer({
   SMTP_HOST: infra.Env.SMTP_HOST,
@@ -28,7 +28,7 @@ export class ArticlesToReviewNotifier {
 
   async build() {
     this.numberOfArticlesToReview =
-      await Repos.ArticleRepository.getNumberOfNonProcessed();
+      await ArticleRepository.getNumberOfNonProcessed();
 
     return this;
   }
