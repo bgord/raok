@@ -4,7 +4,7 @@ import crypto from "node:crypto";
 import * as infra from "../../infra";
 
 export class AdminUserCreator {
-  static async seed() {
+  static async create() {
     const id = bg.NewUUID.generate();
     const username = infra.Env.ADMIN_USERNAME;
     const password = infra.Env.ADMIN_PASSWORD;
