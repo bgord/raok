@@ -1,10 +1,12 @@
 # Changelog
+- 2024-01-29 08:43 ff90b8a **build(deps): bump @bgord/frontend from `95a9f82` to `9b8301a` (#164)**
+## 2024-01-29 08:43 
 - 2024-01-28 19:19 0947a8e **fix: article reading time alignment on mobile**
-## 2024-01-28 19:19 
 - 2024-01-28 19:15 ac52e0d **fix: article reading time alignment**
 - 2024-01-28 19:07 07b3232 **fix: article list header on desktop**
 - 2024-01-28 19:00 20d43ee **fix: article list header on mobile**
 - 2024-01-28 18:58 62832a0 **fix: remove add article form autofocus**
+- 2024-01-28 18:20 1d1c39d **docs: generate CHANGELOG**
 - 2024-01-28 18:15 fb6a0d5 **docs: generate CHANGELOG**
 - 2024-01-28 18:08 d9c2b13 **docs: generate CHANGELOG**
 - 2024-01-28 18:00 f840b27 **docs: generate CHANGELOG**
