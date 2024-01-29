@@ -21,10 +21,10 @@ bg.I18n.applyTo(app, { supportedLanguages: infra.SupportedLanguages });
 bg.HttpLogger.applyTo(app, infra.logger);
 
 // Auth ========================
-app.get("/", bg.CsrfShield.attach, bg.Route(App.Routes.Home));
+app.get("/", bg.Route(App.Routes.Home));
 app.post(
   "/login",
-  bg.CsrfShield.verify,
+  // bg.CsrfShield.verify,
   // infra.AuthShield.attach,
   (_request, response) => response.redirect("/dashboard")
 );
