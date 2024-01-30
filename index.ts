@@ -136,9 +136,7 @@ app.get(
       console.log("sessionId does not exist");
       response.locals.user = null;
       response.locals.session = null;
-      throw new bg.Errors.AccessDeniedError({
-        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
-      });
+      return next();
     }
 
     const { session, user } = await infra.lucia.validateSession(sessionId);
@@ -147,14 +145,20 @@ app.get(
       console.log("session does not exist");
       response.locals.user = null;
       response.locals.session = null;
-      throw new bg.Errors.AccessDeniedError({
-        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
-      });
+      return next();
     }
 
     console.log("session exists");
     response.locals.user = user;
     response.locals.session = session;
+    return next();
+  }),
+  bg.Middleware(async (_request, response, next) => {
+    if (!response.locals.user ) {
+      throw new bg.Errors.AccessDeniedError({
+        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
+      });
+    }
     return next();
   }),
   bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
