@@ -1,9 +1,23 @@
 # Changelog
+
+- 2024-01-30 09:14 a329619 **Update articles-search-form.tsx**
+
+## 2024-01-30 09:14
+
+- 2024-01-30 09:09 adedc16 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#165)**
+- 2024-01-30 09:08 f6b3005 **build(deps-dev): bump @typescript-eslint/parser from 6.19.1 to 6.20.0 (#166)**
+- 2024-01-30 09:08 db1272c **build(deps-dev): bump husky from 9.0.6 to 9.0.7 (#168)**
+- 2024-01-30 08:09 e258977 **docs: generate CHANGELOG**
+- 2024-01-30 08:09 83223a0 **docs: generate CHANGELOG**
+- 2024-01-29 08:43 ff90b8a **build(deps): bump @bgord/frontend from `95a9f82` to `9b8301a` (#164)**
+- 2024-01-29 07:44 0bbd84e **docs: generate CHANGELOG**
+- 2024-01-28 19:19 0947a8e **fix: article reading time alignment on mobile**
 - 2024-01-28 19:15 ac52e0d **fix: article reading time alignment**
-## 2024-01-28 19:15 
 - 2024-01-28 19:07 07b3232 **fix: article list header on desktop**
 - 2024-01-28 19:00 20d43ee **fix: article list header on mobile**
 - 2024-01-28 18:58 62832a0 **fix: remove add article form autofocus**
+- 2024-01-28 18:20 1d1c39d **docs: generate CHANGELOG**
+- 2024-01-28 18:15 fb6a0d5 **docs: generate CHANGELOG**
 - 2024-01-28 18:08 d9c2b13 **docs: generate CHANGELOG**
 - 2024-01-28 18:00 f840b27 **docs: generate CHANGELOG**
 - 2024-01-28 17:02 ad1aa2b **build(deps-dev): bump husky from 8.0.3 to 9.0.6 (#158)**
@@ -1099,7 +1113,7 @@
 - 2022-03-23 21:35 70cae3c **step: add deleted article status**
 - 2022-03-23 21:26 c672ab7 **step: define undelete article event**
 - 2022-03-21 15:05 9c13394 **feature: add server error extractor**
-- 2022-03-21 14:40 2e723a3 **step: add _server: true part to the error handler response**
+- 2022-03-21 14:40 2e723a3 **step: add \_server: true part to the error handler response**
 - 2022-03-21 14:01 76cc440 **step: handle Policies.NonProcessedArticleUrlIsNotUniqueError**
 - 2022-03-19 21:04 57624ec **refactor: delete unused settings hbs template**
 - 2022-03-19 16:50 ff47b13 **refactor: use url filter from bgord frontend**

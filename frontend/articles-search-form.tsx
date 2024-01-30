@@ -25,7 +25,7 @@ export function ArticlesSearchForm() {
         notify({ message: error.message });
         queryClient.setQueryData(api.keys.articlesSearch, []);
       },
-    }
+    },
   );
 
   return (
@@ -43,12 +43,12 @@ export function ArticlesSearchForm() {
         <input
           list="articles"
           class="c-input"
-          placeholder={t("articles.search.placeholder")}
+          placeholder={t("article.search.placeholder")}
           data-width="100%"
           onInvalid={(event) =>
             // @ts-ignore
             event.target.setCustomValidity(
-              t("articles.search.validation", types.ArticleSearchValidations)
+              t("articles.search.validation", types.ArticleSearchValidations),
             )
           }
           value={search.value}
@@ -61,7 +61,7 @@ export function ArticlesSearchForm() {
             } else {
               // @ts-ignore
               event.target.setCustomValidity(
-                t("articles.search.validation", types.ArticleSearchValidations)
+                t("articles.search.validation", types.ArticleSearchValidations),
               );
             }
           }}
