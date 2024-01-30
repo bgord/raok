@@ -1,14 +1,20 @@
 import * as bg from "@bgord/node";
 import express from "express";
+import { Lucia } from "lucia";
 
-import * as infra from "../infra";
-import { Password, HashedPassword, Username } from "./password";
+import {
+  Password,
+  HashedPassword,
+  Username,
+  PasswordType,
+  IdType,
+} from "./password";
 
 export class SessionId {
   private value: string | null;
 
-  constructor(cookie: string | undefined) {
-    this.value = infra.lucia.readSessionCookie(cookie ?? "");
+  constructor(cookie: string | undefined, lucia: Lucia) {
+    this.value = lucia.readSessionCookie(cookie ?? "");
   }
 
   get(): SessionId["value"] {
@@ -16,13 +22,17 @@ export class SessionId {
   }
 }
 
-export class AuthShield {
-  static verify = bg.Middleware(AuthShield._verify);
-  static reverse = bg.Middleware(AuthShield._reverse);
-  static detach = bg.Middleware(AuthShield._detach);
-  static attach = bg.Middleware(AuthShield._attach);
+export class AuthShield<T extends { password: PasswordType; id: IdType }> {
+  constructor(
+    private readonly config: {
+      Username: typeof Username;
+      Password: typeof Password;
+      lucia: Lucia;
+      findUniqueUserOrThrow: (username: Username) => Promise<T>;
+    }
+  ) {}
 
-  private static async _verify(
+  private async _verify(
     _request: express.Request,
     response: express.Response,
     next: express.NextFunction
@@ -35,7 +45,7 @@ export class AuthShield {
     return next();
   }
 
-  private static async _reverse(
+  private async _reverse(
     _request: express.Request,
     response: express.Response,
     next: express.NextFunction
@@ -48,29 +58,35 @@ export class AuthShield {
     return next();
   }
 
-  private static async _detach(
+  private async _detach(
     request: express.Request,
     _response: express.Response,
     next: express.NextFunction
   ) {
-    const sessionId = new SessionId(request.headers.cookie).get();
+    const sessionId = new SessionId(
+      request.headers.cookie,
+      this.config.lucia
+    ).get();
 
     if (!sessionId) return next();
 
-    await infra.lucia.invalidateSession(sessionId);
+    await this.config.lucia.invalidateSession(sessionId);
     return next();
   }
 
-  static applyTo(app: express.Application): void {
-    app.use(bg.Middleware(AuthShield._applyTo));
+  applyTo(app: express.Application): void {
+    app.use(bg.Middleware(this._applyTo.bind(this)));
   }
 
-  private static async _applyTo(
+  private async _applyTo(
     request: express.Request,
     response: express.Response,
     next: express.NextFunction
   ) {
-    const sessionId = new SessionId(request.headers.cookie).get();
+    const sessionId = new SessionId(
+      request.headers.cookie,
+      this.config.lucia
+    ).get();
 
     if (!sessionId) {
       response.locals.user = null;
@@ -78,12 +94,14 @@ export class AuthShield {
       return next();
     }
 
-    const { session, user } = await infra.lucia.validateSession(sessionId);
+    const { session, user } = await this.config.lucia.validateSession(
+      sessionId
+    );
 
     if (!session) {
       response.appendHeader(
         "Set-Cookie",
-        infra.lucia.createBlankSessionCookie().serialize()
+        this.config.lucia.createBlankSessionCookie().serialize()
       );
       response.locals.user = null;
       response.locals.session = null;
@@ -93,7 +111,7 @@ export class AuthShield {
     if (session.fresh) {
       response.appendHeader(
         "Set-Cookie",
-        infra.lucia.createSessionCookie(session.id).serialize()
+        this.config.lucia.createSessionCookie(session.id).serialize()
       );
     }
     response.locals.user = user;
@@ -101,24 +119,22 @@ export class AuthShield {
     return next();
   }
 
-  private static async _attach(
+  private async _attach(
     request: express.Request,
     response: express.Response,
     next: express.NextFunction
   ) {
     try {
-      const username = new Username(request.body.username);
-      const password = new Password(request.body.password);
+      const username = new this.config.Username(request.body.username);
+      const password = new this.config.Password(request.body.password);
 
-      const user = await infra.db.user.findUniqueOrThrow({
-        where: { email: username.read() },
-      });
+      const user = await this.config.findUniqueUserOrThrow(username);
 
       const hashedPassword = await HashedPassword.fromHash(user.password);
       await hashedPassword.matchesOrThrow(password);
 
-      const session = await infra.lucia.createSession(user.id, {});
-      const sessionCookie = infra.lucia.createSessionCookie(session.id);
+      const session = await this.config.lucia.createSession(user.id, {});
+      const sessionCookie = this.config.lucia.createSessionCookie(session.id);
 
       response.appendHeader("Set-Cookie", sessionCookie.serialize());
       return next();
@@ -128,4 +144,9 @@ export class AuthShield {
       });
     }
   }
+
+  verify = bg.Middleware(this._verify.bind(this));
+  reverse = bg.Middleware(this._reverse.bind(this));
+  detach = bg.Middleware(this._detach.bind(this));
+  attach = bg.Middleware(this._attach.bind(this));
 }

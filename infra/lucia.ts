@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
 
 import { Env } from "./env";
 import { db, User, Session } from "./db";
+export type { User } from "./db";
 
 const adapter = new PrismaAdapter(db.session, db.user);
 
