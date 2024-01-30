@@ -17,6 +17,7 @@ import * as infra from "./infra";
 const AuthShield = new Auth.AuthShield<infra.User>({
   Username: Auth.Username,
   Password: Auth.Password,
+  HashedPassword: Auth.HashedPassword,
   lucia: infra.lucia,
   findUniqueUserOrThrow: (username: Auth.Username) =>
     infra.db.user.findUniqueOrThrow({

@@ -27,6 +27,7 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
     private readonly config: {
       Username: typeof Username;
       Password: typeof Password;
+      HashedPassword: typeof HashedPassword;
       lucia: Lucia;
       findUniqueUserOrThrow: (username: Username) => Promise<T>;
     }
@@ -130,7 +131,9 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
 
       const user = await this.config.findUniqueUserOrThrow(username);
 
-      const hashedPassword = await HashedPassword.fromHash(user.password);
+      const hashedPassword = await this.config.HashedPassword.fromHash(
+        user.password
+      );
       await hashedPassword.matchesOrThrow(password);
 
       const session = await this.config.lucia.createSession(user.id, {});
