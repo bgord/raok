@@ -1,20 +1,20 @@
 import * as bg from "@bgord/node";
-import { Argon2id } from "oslo/password";
 
+import * as Auth from "../../auth";
 import * as infra from "../../infra";
 
 export class AdminUserCreator {
   static async create() {
     const id = bg.NewUUID.generate();
-    const username = infra.Env.ADMIN_USERNAME;
-    const password = infra.Env.ADMIN_PASSWORD;
+    const { ADMIN_USERNAME, ADMIN_PASSWORD } = infra.Env;
 
-    const hash = await new Argon2id().hash(password);
+    const password = new Auth.Password(ADMIN_PASSWORD);
+    const hashedPassword = await Auth.HashedPassword.fromPassword(password);
 
     await infra.db.user.upsert({
-      where: { email: username },
-      create: { id, email: username, password: hash },
-      update: { email: username, password: hash },
+      where: { email: ADMIN_USERNAME },
+      create: { id, email: ADMIN_USERNAME, password: hashedPassword.read() },
+      update: { email: ADMIN_USERNAME, password: hashedPassword.read() },
     });
   }
 }
