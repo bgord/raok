@@ -2,7 +2,7 @@ import * as bg from "@bgord/node";
 import express from "express";
 
 import * as infra from "../infra";
-import { Password, HashedPassword } from "./password";
+import { Password, HashedPassword, Username } from "./password";
 
 export class SessionId {
   private value: string | null;
@@ -92,37 +92,26 @@ export class AuthShield {
     response: express.Response,
     next: express.NextFunction
   ) {
-    const password = new Password(request.body.password);
+    try {
+      const username = new Username(request.body.username);
+      const password = new Password(request.body.password);
 
-    if (!request.body.username || !password) {
+      const user = await infra.db.user.findUniqueOrThrow({
+        where: { email: username.read() },
+      });
+
+      const hashedPassword = await HashedPassword.fromHash(user.password);
+      await hashedPassword.matchesOrThrow(password);
+
+      const session = await infra.lucia.createSession(user.id, {});
+      const sessionCookie = infra.lucia.createSessionCookie(session.id);
+
+      response.appendHeader("Set-Cookie", sessionCookie.serialize());
+      return next();
+    } catch (error) {
       throw new bg.Errors.AccessDeniedError({
         reason: bg.Errors.AccessDeniedErrorReasonType.auth,
       });
     }
-
-    const user = await infra.db.user.findFirst({
-      where: { email: request.body.username },
-    });
-
-    if (!user) {
-      throw new bg.Errors.AccessDeniedError({
-        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
-      });
-    }
-
-    const hashedPassword = await HashedPassword.fromHash(user.password);
-    const isPasswordValid = hashedPassword.matches(password);
-
-    if (!isPasswordValid) {
-      throw new bg.Errors.AccessDeniedError({
-        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
-      });
-    }
-
-    const session = await infra.lucia.createSession(user.id, {});
-    const sessionCookie = infra.lucia.createSessionCookie(session.id);
-
-    response.appendHeader("Set-Cookie", sessionCookie.serialize());
-    return next();
   }
 }

@@ -1,8 +1,24 @@
 import z from "zod";
 import { Argon2id } from "oslo/password";
 
+type UsernameType = string;
 type PasswordType = string;
 type HashedPasswordType = string;
+
+export class Username {
+  private readonly schema: z.ZodSchema = z.string().max(256);
+
+  private readonly value: UsernameType;
+
+  constructor(value: UsernameType, schema?: z.ZodSchema) {
+    this.schema = schema ?? this.schema;
+    this.value = this.schema.parse(value);
+  }
+
+  read(): UsernameType {
+    return this.value;
+  }
+}
 
 export class Password {
   private schema: z.ZodSchema = z.string().min(1).max(256);
@@ -42,5 +58,15 @@ export class HashedPassword {
 
   async matches(password: Password): Promise<boolean> {
     return new Argon2id().verify(this.read(), password.read());
+  }
+
+  async matchesOrThrow(password: Password): Promise<true> {
+    const matches = await new Argon2id().verify(this.read(), password.read());
+
+    if (!matches) {
+      throw new Error("HashedPassword does not match the provided password");
+    }
+
+    return true;
   }
 }
