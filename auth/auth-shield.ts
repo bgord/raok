@@ -35,4 +35,46 @@ export class AuthShield {
 
     return next();
   }
+
+  static applyTo(app: express.Application): void {
+    app.use(bg.Middleware(AuthShield._applyTo));
+  }
+
+  private static async _applyTo(
+    request: express.Request,
+    response: express.Response,
+    next: express.NextFunction
+  ) {
+    const sessionId = infra.lucia.readSessionCookie(
+      request.headers.cookie ?? ""
+    );
+
+    if (!sessionId) {
+      response.locals.user = null;
+      response.locals.session = null;
+      return next();
+    }
+
+    const { session, user } = await infra.lucia.validateSession(sessionId);
+
+    if (!session) {
+      response.appendHeader(
+        "Set-Cookie",
+        infra.lucia.createBlankSessionCookie().serialize()
+      );
+      response.locals.user = null;
+      response.locals.session = null;
+      return next();
+    }
+
+    if (session.fresh) {
+      response.appendHeader(
+        "Set-Cookie",
+        infra.lucia.createSessionCookie(session.id).serialize()
+      );
+    }
+    response.locals.user = user;
+    response.locals.session = session;
+    return next();
+  }
 }

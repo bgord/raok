@@ -18,6 +18,7 @@ const app = express();
 
 bg.addExpressEssentials(app);
 bg.Handlebars.applyTo(app);
+Auth.AuthShield.applyTo(app);
 bg.I18n.applyTo(app, { supportedLanguages: infra.SupportedLanguages });
 bg.HttpLogger.applyTo(app, infra.logger);
 
@@ -106,34 +107,6 @@ app.get("/logout", Auth.AuthShield.detach, (_, response) =>
 
 app.get(
   "/dashboard",
-  bg.Middleware(async (request, response, next) => {
-    console.log({ cookie: request.headers.cookie });
-    const sessionId = infra.lucia.readSessionCookie(
-      request.headers.cookie ?? ""
-    );
-    console.log({ sessionId });
-
-    if (!sessionId) {
-      console.log("sessionId does not exist");
-      response.locals.user = null;
-      response.locals.session = null;
-      return next();
-    }
-
-    const { session, user } = await infra.lucia.validateSession(sessionId);
-
-    if (!session) {
-      console.log("session does not exist");
-      response.locals.user = null;
-      response.locals.session = null;
-      return next();
-    }
-
-    console.log("session exists");
-    response.locals.user = user;
-    response.locals.session = session;
-    return next();
-  }),
   Auth.AuthShield.verify,
   bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
   bg.Route(App.Routes.Dashboard)
