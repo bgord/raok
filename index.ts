@@ -100,26 +100,8 @@ app.post(
   }),
   (_request, response) => response.redirect("/dashboard")
 );
-app.get(
-  "/logout",
-  bg.Middleware(async (request, _response, next) => {
-    console.log({ cookie: request.headers.cookie });
-    const sessionId = infra.lucia.readSessionCookie(
-      request.headers.cookie ?? ""
-    );
-    console.log({ sessionId });
-
-    if (sessionId) {
-      console.log("sessionId does exist");
-      await infra.lucia.invalidateSession(sessionId);
-      console.log("session invalidated");
-      return next();
-    }
-
-    console.log("sessionId does not exists");
-    return next();
-  }),
-  (_, response) => response.redirect("/")
+app.get("/logout", Auth.AuthShield.detach, (_, response) =>
+  response.redirect("/")
 );
 
 app.get(
