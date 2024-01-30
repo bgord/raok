@@ -22,16 +22,16 @@ export class SessionId {
   }
 }
 
+export type AuthShieldConfigType<T> = {
+  Username: typeof Username;
+  Password: typeof Password;
+  HashedPassword: typeof HashedPassword;
+  lucia: Lucia;
+  findUniqueUserOrThrow: (username: Username) => Promise<T>;
+};
+
 export class AuthShield<T extends { password: PasswordType; id: IdType }> {
-  constructor(
-    private readonly config: {
-      Username: typeof Username;
-      Password: typeof Password;
-      HashedPassword: typeof HashedPassword;
-      lucia: Lucia;
-      findUniqueUserOrThrow: (username: Username) => Promise<T>;
-    }
-  ) {}
+  constructor(private readonly config: AuthShieldConfigType<T>) {}
 
   private async _verify(
     _request: express.Request,
