@@ -125,7 +125,7 @@ app.get(
 app.get(
   "/dashboard",
   // infra.AuthShield.verify,
-  bg.Middleware(async (request, _response, next) => {
+  bg.Middleware(async (request, response, next) => {
     console.log({ cookie: request.headers.cookie });
     const sessionId = infra.lucia.readSessionCookie(
       request.headers.cookie ?? "",
@@ -134,21 +134,27 @@ app.get(
 
     if (!sessionId) {
       console.log("sessionId does not exist");
+      response.locals.user = null;
+      response.locals.session = null;
       throw new bg.Errors.AccessDeniedError({
         reason: bg.Errors.AccessDeniedErrorReasonType.auth,
       });
     }
 
-    const { session } = await infra.lucia.validateSession(sessionId);
+    const { session, user } = await infra.lucia.validateSession(sessionId);
 
     if (!session) {
       console.log("session does not exist");
+      response.locals.user = null;
+      response.locals.session = null;
       throw new bg.Errors.AccessDeniedError({
         reason: bg.Errors.AccessDeniedErrorReasonType.auth,
       });
     }
 
     console.log("session exists");
+    response.locals.user = user;
+    response.locals.session = session;
     return next();
   }),
   bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),

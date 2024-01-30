@@ -2,7 +2,7 @@ import { Lucia, TimeSpan } from "lucia";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
 
 import { Env } from "./env";
-import { db, User } from "./db";
+import { db, User, Session } from "./db";
 
 const adapter = new PrismaAdapter(db.session, db.user);
 
@@ -24,5 +24,14 @@ declare module "lucia" {
   interface DatabaseUserAttributes {
     email: User["email"];
     password: User["password"];
+  }
+}
+
+declare global {
+  namespace Express {
+    interface Locals {
+      user: User | null;
+      session: Session | null;
+    }
   }
 }
