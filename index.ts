@@ -27,78 +27,7 @@ app.get("/", bg.Route(App.Routes.Home));
 app.post(
   "/login",
   // bg.CsrfShield.verify,
-  // infra.AuthShield.attach,
-  bg.Middleware(async (request, response, next) => {
-    console.log({ cookie: request.headers.cookie });
-    const sessionId = infra.lucia.readSessionCookie(
-      request.headers.cookie ?? ""
-    );
-    console.log({ sessionId });
-
-    if (sessionId) {
-      console.log("sessionId exists");
-      const { session } = await infra.lucia.validateSession(sessionId);
-      console.log({ session });
-
-      if (session) {
-        console.log("session exists");
-        if (session.fresh) {
-          console.log("session.fresh is set");
-          const sessionCookie = infra.lucia.createSessionCookie(session.id);
-          response.appendHeader("Set-Cookie", sessionCookie.serialize());
-          console.log("success - returning early");
-          return next();
-        }
-
-        console.log("session.fresh is not set");
-        console.log("success - returning early");
-        return next();
-      }
-    }
-
-    const password = new Auth.Password(request.body.password);
-    console.log({ password });
-
-    if (!request.body.username || !password) {
-      console.log("credentials are invalid");
-      throw new bg.Errors.AccessDeniedError({
-        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
-      });
-    }
-    console.log("credentials are valid");
-
-    const user = await infra.db.user.findFirst({
-      where: { email: request.body.username },
-    });
-    console.log({ user });
-
-    if (!user) {
-      console.log("user does not exist");
-      throw new bg.Errors.AccessDeniedError({
-        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
-      });
-    }
-
-    const hashedPassword = await Auth.HashedPassword.fromHash(user.password);
-    const isPasswordValid = hashedPassword.matches(password);
-
-    if (!isPasswordValid) {
-      console.log("passwords do not match");
-      throw new bg.Errors.AccessDeniedError({
-        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
-      });
-    }
-    console.log("passwords do match");
-
-    const session = await infra.lucia.createSession(user.id, {});
-    console.log({ session });
-    const sessionCookie = infra.lucia.createSessionCookie(session.id);
-    console.log({ sessionCookie });
-
-    response.appendHeader("Set-Cookie", sessionCookie.serialize());
-    console.log("cookie set", sessionCookie.serialize());
-    return next();
-  }),
+  Auth.AuthShield.attach,
   (_request, response) => response.redirect("/dashboard")
 );
 app.get("/logout", Auth.AuthShield.detach, (_, response) =>
