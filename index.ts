@@ -27,6 +27,7 @@ app.get("/", bg.Route(App.Routes.Home));
 app.post(
   "/login",
   // bg.CsrfShield.verify,
+  Auth.AuthShield.reverse,
   Auth.AuthShield.attach,
   (_request, response) => response.redirect("/dashboard")
 );

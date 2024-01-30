@@ -18,6 +18,7 @@ export class SessionId {
 
 export class AuthShield {
   static verify = bg.Middleware(AuthShield._verify);
+  static reverse = bg.Middleware(AuthShield._reverse);
   static detach = bg.Middleware(AuthShield._detach);
   static attach = bg.Middleware(AuthShield._attach);
 
@@ -27,6 +28,19 @@ export class AuthShield {
     next: express.NextFunction
   ) {
     if (!response.locals.user) {
+      throw new bg.Errors.AccessDeniedError({
+        reason: bg.Errors.AccessDeniedErrorReasonType.auth,
+      });
+    }
+    return next();
+  }
+
+  private static async _reverse(
+    _request: express.Request,
+    response: express.Response,
+    next: express.NextFunction
+  ) {
+    if (response.locals.user) {
       throw new bg.Errors.AccessDeniedError({
         reason: bg.Errors.AccessDeniedErrorReasonType.auth,
       });
