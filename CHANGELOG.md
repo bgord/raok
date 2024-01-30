@@ -1,6 +1,10 @@
 # Changelog
+- 2024-01-30 22:09 c6850d4 **fix: esmodule building**
+## 2024-01-30 22:09 
+- 2024-01-30 22:08 75a5421 **Merge branch 'master' of github.com:bgord/raok**
 - 2024-01-30 21:57 beb169b **Lucia (#163)**
-## 2024-01-30 21:57 
+- 2024-01-30 21:48 1ea86e7 **step: bump bgord/scripts**
+- 2024-01-30 20:57 070575d **docs: generate CHANGELOG**
 - 2024-01-30 09:14 a329619 **Update articles-search-form.tsx**
 - 2024-01-30 09:09 adedc16 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#165)**
 - 2024-01-30 09:08 f6b3005 **build(deps-dev): bump @typescript-eslint/parser from 6.19.1 to 6.20.0 (#166)**
