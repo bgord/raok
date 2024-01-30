@@ -1,6 +1,7 @@
 import { Lucia, TimeSpan } from "lucia";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
 
+import * as Auth from "../auth";
 import { Env } from "./env";
 import { db, User, Session } from "./db";
 export type { User } from "./db";
@@ -14,6 +15,12 @@ export const lucia = new Lucia(adapter, {
     email: attributes.email,
     password: attributes.password,
   }),
+});
+
+export const AuthShield = new Auth.AuthShield<User>({
+  lucia,
+  findUniqueUserOrThrow: (username: Auth.Username) =>
+    db.user.findUniqueOrThrow({ where: { email: username.read() } }),
 });
 
 declare module "lucia" {

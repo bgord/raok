@@ -2,8 +2,8 @@ import z from "zod";
 import { Argon2id } from "oslo/password";
 
 export type IdType = string;
-export type UsernameType = string;
 export type PasswordType = string;
+type UsernameType = string;
 type HashedPasswordType = string;
 
 export class Username {
