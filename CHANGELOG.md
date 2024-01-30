@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-30 09:09 adedc16 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#165)**
+## 2024-01-30 09:09 
 - 2024-01-30 09:08 f6b3005 **build(deps-dev): bump @typescript-eslint/parser from 6.19.1 to 6.20.0 (#166)**
 - 2024-01-30 09:08 db1272c **build(deps-dev): bump husky from 9.0.6 to 9.0.7 (#168)**
-## 2024-01-30 09:08 
+- 2024-01-30 08:09 83223a0 **docs: generate CHANGELOG**
 - 2024-01-29 08:43 ff90b8a **build(deps): bump @bgord/frontend from `95a9f82` to `9b8301a` (#164)**
 - 2024-01-29 07:44 0bbd84e **docs: generate CHANGELOG**
 - 2024-01-28 19:19 0947a8e **fix: article reading time alignment on mobile**
