@@ -31,12 +31,33 @@ export type AuthShieldConfigType<T> = {
 };
 
 export class AuthShield<T extends { password: PasswordType; id: IdType }> {
-  constructor(private readonly config: AuthShieldConfigType<T>) {}
+  private readonly config: AuthShieldConfigType<T>;
+
+  constructor(
+    overrides: Omit<
+      AuthShieldConfigType<T>,
+      "Username" | "Password" | "HashedPassword"
+    > & {
+      Username?: typeof Username;
+      Password?: typeof Password;
+      HashedPassword?: typeof HashedPassword;
+    },
+  ) {
+    const config = {
+      Username: overrides.Username ?? Username,
+      Password: overrides.Password ?? Password,
+      HashedPassword: overrides.HashedPassword ?? HashedPassword,
+      lucia: overrides.lucia,
+      findUniqueUserOrThrow: overrides.findUniqueUserOrThrow,
+    };
+
+    this.config = config;
+  }
 
   private async _verify(
     _request: express.Request,
     response: express.Response,
-    next: express.NextFunction
+    next: express.NextFunction,
   ) {
     if (!response.locals.user) {
       throw new bg.Errors.AccessDeniedError({
@@ -49,7 +70,7 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
   private async _reverse(
     _request: express.Request,
     response: express.Response,
-    next: express.NextFunction
+    next: express.NextFunction,
   ) {
     if (response.locals.user) {
       throw new bg.Errors.AccessDeniedError({
@@ -62,11 +83,11 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
   private async _detach(
     request: express.Request,
     _response: express.Response,
-    next: express.NextFunction
+    next: express.NextFunction,
   ) {
     const sessionId = new SessionId(
       request.headers.cookie,
-      this.config.lucia
+      this.config.lucia,
     ).get();
 
     if (!sessionId) return next();
@@ -82,11 +103,11 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
   private async _applyTo(
     request: express.Request,
     response: express.Response,
-    next: express.NextFunction
+    next: express.NextFunction,
   ) {
     const sessionId = new SessionId(
       request.headers.cookie,
-      this.config.lucia
+      this.config.lucia,
     ).get();
 
     if (!sessionId) {
@@ -95,14 +116,13 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
       return next();
     }
 
-    const { session, user } = await this.config.lucia.validateSession(
-      sessionId
-    );
+    const { session, user } =
+      await this.config.lucia.validateSession(sessionId);
 
     if (!session) {
       response.appendHeader(
         "Set-Cookie",
-        this.config.lucia.createBlankSessionCookie().serialize()
+        this.config.lucia.createBlankSessionCookie().serialize(),
       );
       response.locals.user = null;
       response.locals.session = null;
@@ -112,7 +132,7 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
     if (session.fresh) {
       response.appendHeader(
         "Set-Cookie",
-        this.config.lucia.createSessionCookie(session.id).serialize()
+        this.config.lucia.createSessionCookie(session.id).serialize(),
       );
     }
     response.locals.user = user;
@@ -123,7 +143,7 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
   private async _attach(
     request: express.Request,
     response: express.Response,
-    next: express.NextFunction
+    next: express.NextFunction,
   ) {
     try {
       const username = new this.config.Username(request.body.username);
@@ -132,7 +152,7 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
       const user = await this.config.findUniqueUserOrThrow(username);
 
       const hashedPassword = await this.config.HashedPassword.fromHash(
-        user.password
+        user.password,
       );
       await hashedPassword.matchesOrThrow(password);
 
@@ -149,7 +169,10 @@ export class AuthShield<T extends { password: PasswordType; id: IdType }> {
   }
 
   verify = bg.Middleware(this._verify.bind(this));
+
   reverse = bg.Middleware(this._reverse.bind(this));
+
   detach = bg.Middleware(this._detach.bind(this));
+
   attach = bg.Middleware(this._attach.bind(this));
 }
