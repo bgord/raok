@@ -43,7 +43,7 @@ export function ArticlesSearchForm() {
         <input
           list="articles"
           class="c-input"
-          placeholder={t("articles.search.placeholder")}
+          placeholder={t("article.search.placeholder")}
           data-width="100%"
           onInvalid={(event) =>
             // @ts-ignore
