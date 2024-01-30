@@ -1,5 +1,5 @@
 import * as bg from "@bgord/node";
-import crypto from "node:crypto";
+import { Argon2id } from "oslo/password";
 
 import * as infra from "../../infra";
 
@@ -9,10 +9,7 @@ export class AdminUserCreator {
     const username = infra.Env.ADMIN_USERNAME;
     const password = infra.Env.ADMIN_PASSWORD;
 
-    // TODO: Password VO
-    const hash = crypto
-      .pbkdf2Sync(password, "password", 1000, 64, "sha512")
-      .toString("hex");
+    const hash = await new Argon2id().hash(password);
 
     await infra.db.user.upsert({
       where: { email: username },
