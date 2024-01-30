@@ -3,6 +3,18 @@ import express from "express";
 
 import * as infra from "../infra";
 
+export class SessionId {
+  private value: string | null;
+
+  constructor(cookie: string | undefined) {
+    this.value = infra.lucia.readSessionCookie(cookie ?? "");
+  }
+
+  get(): SessionId["value"] {
+    return this.value;
+  }
+}
+
 export class AuthShield {
   static verify = bg.Middleware(AuthShield._verify);
   static detach = bg.Middleware(AuthShield._detach);
@@ -25,14 +37,11 @@ export class AuthShield {
     _response: express.Response,
     next: express.NextFunction
   ) {
-    const sessionId = infra.lucia.readSessionCookie(
-      request.headers.cookie ?? ""
-    );
+    const sessionId = new SessionId(request.headers.cookie).get();
 
     if (!sessionId) return next();
 
     await infra.lucia.invalidateSession(sessionId);
-
     return next();
   }
 
@@ -45,9 +54,7 @@ export class AuthShield {
     response: express.Response,
     next: express.NextFunction
   ) {
-    const sessionId = infra.lucia.readSessionCookie(
-      request.headers.cookie ?? ""
-    );
+    const sessionId = new SessionId(request.headers.cookie).get();
 
     if (!sessionId) {
       response.locals.user = null;
