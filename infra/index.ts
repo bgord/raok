@@ -67,19 +67,9 @@ export const healthcheck = [
   }),
   new bg.PrerequisiteMailer({ label: "nodemailer", mailer: Mailer }),
   ...prerequisites.filter(
-    (prerequisite) => prerequisite.config.label !== "port"
+    (prerequisite) => prerequisite.config.label !== "port",
   ),
 ];
-
-export const Session = new bg.Session({
-  secret: Env.COOKIE_SECRET,
-  store: bg.SessionFileStore.build({ ttl: bg.Time.Days(3).seconds }),
-});
-
-export const AuthShield = new bg.EnvUserAuthShield({
-  ADMIN_USERNAME: Env.ADMIN_USERNAME,
-  ADMIN_PASSWORD: Env.ADMIN_PASSWORD,
-});
 
 export const BasicAuthShield = new bg.BasicAuthShield({
   username: Env.BASIC_AUTH_USERNAME,
@@ -90,3 +80,5 @@ export { EventStore } from "./event-store";
 export * from "./jobs";
 
 export const CacheResponse = new bg.CacheResponse(ResponseCache);
+
+export * from "./lucia";

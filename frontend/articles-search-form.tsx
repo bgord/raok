@@ -25,7 +25,7 @@ export function ArticlesSearchForm() {
         notify({ message: error.message });
         queryClient.setQueryData(api.keys.articlesSearch, []);
       },
-    }
+    },
   );
 
   return (
@@ -48,7 +48,7 @@ export function ArticlesSearchForm() {
           onInvalid={(event) =>
             // @ts-ignore
             event.target.setCustomValidity(
-              t("articles.search.validation", types.ArticleSearchValidations)
+              t("articles.search.validation", types.ArticleSearchValidations),
             )
           }
           value={search.value}
@@ -61,7 +61,7 @@ export function ArticlesSearchForm() {
             } else {
               // @ts-ignore
               event.target.setCustomValidity(
-                t("articles.search.validation", types.ArticleSearchValidations)
+                t("articles.search.validation", types.ArticleSearchValidations),
               );
             }
           }}
