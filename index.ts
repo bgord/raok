@@ -1,7 +1,7 @@
 import express from "express";
 import * as bg from "@bgord/node";
-import { Argon2id } from "oslo/password";
 
+import * as Auth from "./auth";
 import * as App from "./app";
 
 import * as RSS from "./modules/rss";
@@ -46,15 +46,17 @@ app.post(
       }
     }
 
-    const { username, password } = request.body;
+    const password = new Auth.Password(request.body.password);
 
-    if (!username || !password) {
+    if (!request.body.username || !password) {
       throw new bg.Errors.AccessDeniedError({
         reason: bg.Errors.AccessDeniedErrorReasonType.auth,
       });
     }
 
-    const user = await infra.db.user.findFirst({ where: { email: username } });
+    const user = await infra.db.user.findFirst({
+      where: { email: request.body.username },
+    });
 
     if (!user) {
       throw new bg.Errors.AccessDeniedError({
@@ -62,9 +64,10 @@ app.post(
       });
     }
 
-    const validPassword = await new Argon2id().verify(user.password, password);
+    const hashedPassword = await Auth.HashedPassword.fromHash(user.password);
+    const isPasswordValid = hashedPassword.matches(password);
 
-    if (!validPassword) {
+    if (!isPasswordValid) {
       throw new bg.Errors.AccessDeniedError({
         reason: bg.Errors.AccessDeniedErrorReasonType.auth,
       });
