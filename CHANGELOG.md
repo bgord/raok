@@ -1,7 +1,9 @@
 # Changelog
+- 2024-01-31 17:37 8e04865 **step: bump bgord/scripts**
+## 2024-01-31 17:37 
 - 2024-01-30 23:08 8a77633 **fix: staging-server-start**
-## 2024-01-30 23:08 
 - 2024-01-30 22:09 c6850d4 **fix: esmodule building**
+- 2024-01-30 22:09 1cb0475 **docs: generate CHANGELOG**
 - 2024-01-30 22:08 75a5421 **Merge branch 'master' of github.com:bgord/raok**
 - 2024-01-30 21:57 beb169b **Lucia (#163)**
 - 2024-01-30 21:48 1ea86e7 **step: bump bgord/scripts**
