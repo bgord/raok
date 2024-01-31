@@ -3,7 +3,7 @@ import { z } from "zod";
 
 const EnvironmentSchema = z.object({
   PORT: bg.Schema.Port,
-  ADMIN_USERNAME: bg.Schema.AdminUsername,
+  ADMIN_USERNAME: z.string().email(),
   ADMIN_PASSWORD: bg.Schema.AdminPassword,
   COOKIE_SECRET: bg.Schema.CookieSecret,
   SMTP_HOST: bg.Schema.SmtpHost,
@@ -12,7 +12,6 @@ const EnvironmentSchema = z.object({
   SMTP_PASS: bg.Schema.SmtpPass,
   EMAIL_FROM: bg.Schema.Email,
   EMAIL_TO_DELIVER_TO: bg.Schema.Email,
-  EMAIL_FOR_NOTIFICATIONS: bg.Schema.Email,
   LOGS_LEVEL: bg.Schema.LogLevel,
   BASIC_AUTH_USERNAME: bg.Schema.BasicAuthUsername,
   BASIC_AUTH_PASSWORD: bg.Schema.BasicAuthPassword,
