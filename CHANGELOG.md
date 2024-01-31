@@ -1,6 +1,10 @@
 # Changelog
+- 2024-01-31 21:35 d3b4791 **build(deps): bump @prisma/client from 5.8.1 to 5.9.0 (#170)**
+- 2024-01-31 21:35 18b9f1d **build(deps): bump oslo from 1.0.2 to 1.0.3 (#171)**
+- 2024-01-31 21:35 174b434 **build(deps-dev): bump prisma from 5.8.1 to 5.9.0 (#169)**
+## 2024-01-31 21:35 
 - 2024-01-31 21:27 470c6ff **refactor: use email address as admin username**
-## 2024-01-31 21:27 
+- 2024-01-31 20:27 c31fd0d **docs: generate CHANGELOG**
 - 2024-01-31 17:37 8e04865 **step: bump bgord/scripts**
 - 2024-01-31 16:38 e0121a7 **docs: generate CHANGELOG**
 - 2024-01-30 23:08 8a77633 **fix: staging-server-start**
