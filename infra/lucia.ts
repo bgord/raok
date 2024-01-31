@@ -1,7 +1,7 @@
+import * as bg from "@bgord/node";
 import { Lucia, TimeSpan } from "lucia";
 import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
 
-import * as Auth from "../auth";
 import { Env } from "./env";
 import { db, User, Session } from "./db";
 
@@ -16,9 +16,9 @@ const lucia = new Lucia(adapter, {
   }),
 });
 
-export const AuthShield = new Auth.AuthShield<User>({
+export const AuthShield = new bg.AuthShield<User>({
   lucia,
-  findUniqueUserOrThrow: (username: Auth.Username) =>
+  findUniqueUserOrThrow: (username: bg.Username) =>
     db.user.findUniqueOrThrow({ where: { email: username.read() } }),
 });
 

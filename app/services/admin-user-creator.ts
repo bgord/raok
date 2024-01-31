@@ -1,6 +1,5 @@
 import * as bg from "@bgord/node";
 
-import * as Auth from "../../auth";
 import * as infra from "../../infra";
 
 export class AdminUserCreator {
@@ -8,8 +7,8 @@ export class AdminUserCreator {
     const id = bg.NewUUID.generate();
     const { ADMIN_USERNAME, ADMIN_PASSWORD } = infra.Env;
 
-    const password = new Auth.Password(ADMIN_PASSWORD);
-    const hashedPassword = await Auth.HashedPassword.fromPassword(password);
+    const password = new bg.Password(ADMIN_PASSWORD);
+    const hashedPassword = await bg.HashedPassword.fromPassword(password);
 
     await infra.db.user.upsert({
       where: { email: ADMIN_USERNAME },

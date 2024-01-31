@@ -23,7 +23,7 @@ export async function ArticleDeliverByEmail(
 
   await article.markAsProcessed(revision);
   await infra.Mailer.send({
-    to: infra.Env.EMAIL_FOR_NOTIFICATIONS,
+    to: infra.Env.ADMIN_USERNAME,
     from: infra.Env.EMAIL_FROM,
     ...message,
   });
