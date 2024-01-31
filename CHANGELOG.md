@@ -1,6 +1,8 @@
 # Changelog
+- 2024-01-31 21:27 470c6ff **refactor: use email address as admin username**
+## 2024-01-31 21:27 
 - 2024-01-31 17:37 8e04865 **step: bump bgord/scripts**
-## 2024-01-31 17:37 
+- 2024-01-31 16:38 e0121a7 **docs: generate CHANGELOG**
 - 2024-01-30 23:08 8a77633 **fix: staging-server-start**
 - 2024-01-30 22:09 c6850d4 **fix: esmodule building**
 - 2024-01-30 22:09 1cb0475 **docs: generate CHANGELOG**
