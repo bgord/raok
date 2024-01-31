@@ -1,8 +1,10 @@
 # Changelog
+- 2024-01-31 23:37 0793728 **Update .env.example**
+## 2024-01-31 23:37 
 - 2024-01-31 23:21 ab369ec **refactor: remove COOKIE_SECRET**
-## 2024-01-31 23:21 
 - 2024-01-31 22:47 7dbbcaa **step: bump bgord/scripts**
 - 2024-01-31 22:25 6458937 **refactor: use auth shield from bgord/node**
+- 2024-01-31 22:21 308c1f5 **docs: generate CHANGELOG**
 - 2024-01-31 21:48 f9b477e **docs: generate CHANGELOG**
 - 2024-01-31 21:35 d3b4791 **build(deps): bump @prisma/client from 5.8.1 to 5.9.0 (#170)**
 - 2024-01-31 21:35 18b9f1d **build(deps): bump oslo from 1.0.2 to 1.0.3 (#171)**
