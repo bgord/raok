@@ -5,7 +5,6 @@ const EnvironmentSchema = z.object({
   PORT: bg.Schema.Port,
   ADMIN_USERNAME: z.string().email(),
   ADMIN_PASSWORD: bg.Schema.AdminPassword,
-  COOKIE_SECRET: bg.Schema.CookieSecret,
   SMTP_HOST: bg.Schema.SmtpHost,
   SMTP_PORT: bg.Schema.SmtpPort,
   SMTP_USER: bg.Schema.SmtpUser,
