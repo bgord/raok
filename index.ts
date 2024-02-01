@@ -27,11 +27,9 @@ app.post(
   "/login",
   infra.AuthShield.reverse,
   infra.AuthShield.attach,
-  (_request, response) => response.redirect("/dashboard")
+  bg.Redirector.build("/dashboard")
 );
-app.get("/logout", infra.AuthShield.detach, (_, response) =>
-  response.redirect("/")
-);
+app.get("/logout", infra.AuthShield.detach, bg.Redirector.build("/"));
 
 app.get(
   "/dashboard",
@@ -280,7 +278,7 @@ app.delete(
 );
 // =============================
 
-app.get("*", (_, response) => response.redirect("/"));
+app.get("*", bg.Redirector.build("/"));
 app.use(App.Routes.ErrorHandler.handle);
 
 (async function main() {
