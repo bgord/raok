@@ -67,7 +67,7 @@ export const healthcheck = [
   }),
   new bg.PrerequisiteMailer({ label: "nodemailer", mailer: Mailer }),
   ...prerequisites.filter(
-    (prerequisite) => prerequisite.config.label !== "port",
+    (prerequisite) => prerequisite.config.label !== "port"
   ),
 ];
 
@@ -82,3 +82,9 @@ export * from "./jobs";
 export const CacheResponse = new bg.CacheResponse(ResponseCache);
 
 export * from "./lucia";
+
+export const hCaptchaShield = new bg.HCaptchaShield({
+  mode:
+    Env.type === bg.Schema.NodeEnvironmentEnum.local ? "local" : "production",
+  secretKey: Env.HCAPTCHA_SECRET_KEY,
+});

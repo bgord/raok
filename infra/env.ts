@@ -15,6 +15,8 @@ const EnvironmentSchema = z.object({
   BASIC_AUTH_USERNAME: bg.Schema.BasicAuthUsername,
   BASIC_AUTH_PASSWORD: bg.Schema.BasicAuthPassword,
   RSS_CRAWLING_ENABLED: bg.Schema.FeatureFlag,
+  HCAPTCHA_SECRET_KEY: bg.Schema.HCaptchaSecretKey,
+  HCAPTCHA_SITE_KEY: bg.Schema.HCaptchaSiteKey,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 
