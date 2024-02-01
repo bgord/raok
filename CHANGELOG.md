@@ -1,9 +1,12 @@
 # Changelog
+- 2024-02-02 00:03 c5e3b21 **feature: add hcaptcha to login**
+## 2024-02-02 00:03 
+- 2024-02-01 22:29 e1bfc0f **refactor: login username field**
 - 2024-02-01 13:39 d3dcb8d **step: bump bgord/node**
-## 2024-02-01 13:39 
 - 2024-02-01 13:20 89067e4 **refactor: pinpoint deps version**
 - 2024-02-01 13:09 6782a10 **step: bump bgord/node**
 - 2024-02-01 12:59 d41e6e2 **step: bump bgord/scripts**
+- 2024-02-01 12:39 550e98d **docs: generate CHANGELOG**
 - 2024-02-01 12:23 f0ef00a **refactor: upgrade execa**
 - 2024-02-01 12:21 abdc1b3 **docs: generate CHANGELOG**
 - 2024-02-01 12:18 fa1935a **refactor: update emittery**
