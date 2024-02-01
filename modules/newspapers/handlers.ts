@@ -3,10 +3,14 @@ import * as bg from "@bgord/node";
 import * as Stats from "../stats";
 import * as Recommendations from "../recommendations";
 
-import * as Aggregates from "./aggregates";
+import { Article, Newspaper } from "./aggregates";
 import * as Events from "./events";
 import * as VO from "./value-objects";
-import * as Services from "./services";
+import {
+  NewspaperFile,
+  ReadableArticleGenerator,
+  ArticleContentDownloader,
+} from "./services";
 
 import { ArticleRepository } from "./repositories/article-repository";
 import { NewspaperRepository } from "./repositories/newspaper-repository";
@@ -20,11 +24,11 @@ export const onArticleAddedEventHandler =
     await ArticleRepository.create(event.payload);
     await Stats.Repos.StatsRepository.incrementCreatedArticles();
 
-    const content = (await Services.ArticleContentDownloader.download(
+    const content = (await ArticleContentDownloader.download(
       event.payload.url
     )) as VO.ArticleContentType;
 
-    const readableArticle = Services.ReadableArticleGenerator.generate({
+    const readableArticle = ReadableArticleGenerator.generate({
       content,
       url: event.payload.url,
     });
@@ -126,13 +130,13 @@ export const onNewspaperScheduledEventHandler =
     });
 
     for (const entity of event.payload.articles) {
-      const article = await Aggregates.Article.build(entity.id);
+      const article = await Article.build(entity.id);
       const revision = new bg.Revision(article.revision);
 
       await article.lock(event.payload.id, revision);
     }
 
-    const newspaper = await new Aggregates.Newspaper(event.payload.id).build();
+    const newspaper = await new Newspaper(event.payload.id).build();
     const revision = new bg.Revision(newspaper.revision);
 
     await newspaper.generate(revision);
@@ -146,9 +150,7 @@ export const onNewspaperGeneratedEventHandler =
       revision: event.payload.revision,
     });
 
-    const newspaper = await new Aggregates.Newspaper(
-      event.payload.newspaperId
-    ).build();
+    const newspaper = await new Newspaper(event.payload.newspaperId).build();
     const revision = new bg.Revision(newspaper.revision);
 
     await newspaper.send(revision);
@@ -171,13 +173,13 @@ export const onNewspaperSentEventHandler =
     });
 
     for (const entity of event.payload.articles) {
-      const article = await Aggregates.Article.build(entity.id);
+      const article = await Article.build(entity.id);
       const revision = new bg.Revision(article.revision);
 
       await article.markAsProcessed(revision);
     }
 
-    await Services.NewspaperFile.clear(event.payload.newspaperId);
+    await NewspaperFile.clear(event.payload.newspaperId);
   });
 
 export const onNewspaperArchivedEventHandler =
@@ -197,12 +199,10 @@ export const onNewspaperFailedEventHandler =
       revision: event.payload.revision,
     });
 
-    const newspaper = await new Aggregates.Newspaper(
-      event.payload.newspaperId
-    ).build();
+    const newspaper = await new Newspaper(event.payload.newspaperId).build();
 
     for (const item of newspaper.articles) {
-      const article = await Aggregates.Article.build(item.id);
+      const article = await Article.build(item.id);
       const revision = new bg.Revision(article.revision);
       await article.unlock(revision);
     }
