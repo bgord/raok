@@ -1,8 +1,11 @@
 # Changelog
+- 2024-02-01 10:51 babd94b **build(deps): bump @bgord/frontend from `9b8301a` to `f6a2776` (#172)**
+## 2024-02-01 10:51 
+- 2024-01-31 23:38 95bf470 **Update .env.example [skip ci]**
 - 2024-01-31 23:37 0793728 **Update .env.example**
-## 2024-01-31 23:37 
 - 2024-01-31 23:21 ab369ec **refactor: remove COOKIE_SECRET**
 - 2024-01-31 22:47 7dbbcaa **step: bump bgord/scripts**
+- 2024-01-31 22:38 472892f **docs: generate CHANGELOG**
 - 2024-01-31 22:25 6458937 **refactor: use auth shield from bgord/node**
 - 2024-01-31 22:21 308c1f5 **docs: generate CHANGELOG**
 - 2024-01-31 21:48 f9b477e **docs: generate CHANGELOG**
