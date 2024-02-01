@@ -1,7 +1,9 @@
 # Changelog
+- 2024-02-01 12:18 fa1935a **refactor: update emittery**
+## 2024-02-01 12:18 
 - 2024-02-01 11:32 ec97d2b **refactor: remove unused packages**
-## 2024-02-01 11:32 
 - 2024-02-01 10:51 babd94b **build(deps): bump @bgord/frontend from `9b8301a` to `f6a2776` (#172)**
+- 2024-02-01 10:32 911060c **docs: generate CHANGELOG**
 - 2024-02-01 09:51 e5b3d11 **docs: generate CHANGELOG**
 - 2024-02-01 00:15 4f0a654 **step: bump bgord/scripts**
 - 2024-01-31 23:38 95bf470 **Update .env.example [skip ci]**
