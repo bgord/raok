@@ -59,14 +59,15 @@ model StatsKeyValue {
 }
 
 model Source {
-  id            String @id @default(uuid())
-  url           String
-  status        String
-  createdAt     BigInt
-  updatedAt     BigInt @default(0)
-  revision      Int    @default(0)
-  countValue    Int    @default(0)
-  countStrategy String @default("total_last_month")
+  id             String @id @default(uuid())
+  url            String
+  status         String
+  createdAt      BigInt
+  updatedAt      BigInt @default(0)
+  processedUntil BigInt @default(0)
+  revision       Int    @default(0)
+  countValue     Int    @default(0)
+  countStrategy  String @default("total_last_month")
 }
 
 model Reordering {

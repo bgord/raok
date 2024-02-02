@@ -10,17 +10,17 @@ import { RSSCrawlerJob } from "./rss-crawler-job";
 export class RSSCrawlerJobFactory {
   static async create(
     item: bg.AsyncReturnType<Parser["parseString"]>["items"][number],
-    sourceId: VO.SourceIdType,
+    source: Pick<VO.SourceType, "id"> & { processedUntil: bg.RelativeDateType },
   ): Promise<RSSCrawlerJob | null> {
     try {
       const url = Newspapers.VO.ArticleUrl.safeParse(item.link);
       const createdAt = new VO.SourceItemCreatedAt(item.isoDate);
 
       if (!url.success) return null;
-      if (!createdAt.isAcceptable()) return null;
-      if (await RSSCrawlerJob.exists(url.data, sourceId)) return null;
+      if (!createdAt.isAcceptable(source.processedUntil)) return null;
+      if (await RSSCrawlerJob.exists(url.data, source.id)) return null;
 
-      return RSSCrawlerJob.create(url.data, sourceId);
+      return RSSCrawlerJob.create(url.data, source.id);
     } catch (error) {
       return null;
     }

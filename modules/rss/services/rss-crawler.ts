@@ -3,9 +3,9 @@ import Parser from "rss-parser";
 import _ from "lodash";
 import { callLimit as plimit } from "promise-call-limit";
 
-import * as Services from "../services";
 import * as Repos from "../repositories";
 import * as infra from "../../../infra";
+import { RSSCrawlerJobFactory, SourceMetadataUpdater } from "../services";
 
 const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
 
@@ -19,13 +19,13 @@ export class RSSCrawler {
       try {
         const rss = await parser.parseURL(source.url);
 
-        await Services.SourceMetadataUpdater.update(
+        await SourceMetadataUpdater.update(
           source.id,
-          Services.SourceMetadataUpdater.map(rss.items)
+          SourceMetadataUpdater.map(rss.items),
         );
 
         const jobs = rss.items.map(
-          (item) => () => Services.RSSCrawlerJobFactory.create(item, source.id)
+          (item) => () => RSSCrawlerJobFactory.create(item, source),
         );
 
         infra.logger.info({

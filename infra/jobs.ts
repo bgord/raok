@@ -1,7 +1,7 @@
 import * as bg from "@bgord/node";
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
-import * as App from "../app";
+import { ExpiredSessionRemover } from "../app/services";
 import * as RSS from "../modules/rss";
 import * as Settings from "../modules/settings";
 import * as Newspapers from "../modules/newspapers";
@@ -19,7 +19,7 @@ const ArticlesToReviewNotifierTask = new AsyncTask(
 
       const notification =
         await new Newspapers.Services.ArticlesToReviewNotifier(
-          settings
+          settings,
         ).build();
       await notification.send();
     } catch (error) {
@@ -29,12 +29,12 @@ const ArticlesToReviewNotifierTask = new AsyncTask(
         metadata: { error: JSON.stringify(error) },
       });
     }
-  }
+  },
 );
 
 const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
   { minutes: 1, runImmediately: true },
-  ArticlesToReviewNotifierTask
+  ArticlesToReviewNotifierTask,
 );
 
 const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
@@ -51,7 +51,7 @@ const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
 
 const RssCrawlerJob = new SimpleIntervalJob(
   { minutes: RSS.Services.RSSCrawler.INTERVAL_MINUTES, runImmediately: true },
-  RssCrawlerTask
+  RssCrawlerTask,
 );
 
 const RssCrawlJobProcessorTask = new AsyncTask(
@@ -66,7 +66,7 @@ const RssCrawlJobProcessorTask = new AsyncTask(
         metadata: { error: logger.formatError(error) },
       });
     }
-  }
+  },
 );
 
 const RssCrawlJobProcessorJob = new SimpleIntervalJob(
@@ -74,19 +74,19 @@ const RssCrawlJobProcessorJob = new SimpleIntervalJob(
     minutes: RSS.Services.RssCrawlerJobProcessor.INTERVAL_MINUTES,
     runImmediately: true,
   },
-  RssCrawlJobProcessorTask
+  RssCrawlJobProcessorTask,
 );
 
 const ExpiredSessionRemoverTask = new AsyncTask(
   "expired-session-remover",
   async () => {
-    await App.Services.ExpiredSessionRemover.process();
-  }
+    await ExpiredSessionRemover.process();
+  },
 );
 
 const ExpiredSessionRemoverTaskJob = new SimpleIntervalJob(
   { minutes: 1, runImmediately: true },
-  ExpiredSessionRemoverTask
+  ExpiredSessionRemoverTask,
 );
 
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);

@@ -2,9 +2,8 @@ import * as bg from "@bgord/node";
 import { callLimit as plimit } from "promise-call-limit";
 
 import * as Newspapers from "../../newspapers";
-
-import * as Services from "../services";
 import * as Repos from "../repositories";
+import { Source, RSSCrawlerJob } from "../services";
 
 import * as infra from "../../../infra";
 
@@ -25,7 +24,7 @@ export class RssCrawlerJobProcessor {
 
     const jobs = ids.map(
       (job) => () =>
-        Services.RSSCrawlerJob.build(job.id).then(async (job) => {
+        RSSCrawlerJob.build(job.id).then(async (job) => {
           try {
             await Newspapers.Aggregates.Article.add({
               url: job.url,
@@ -33,7 +32,7 @@ export class RssCrawlerJobProcessor {
             });
             await job.process(job.revision);
 
-            const source = await Services.Source.build(job.sourceId);
+            const source = await Source.build(job.sourceId);
             const sourceRevision = new bg.Revision(source.data.revision);
             await source.bump(sourceRevision);
           } catch (error) {

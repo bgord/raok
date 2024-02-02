@@ -16,16 +16,20 @@ export class SourceMetadataUpdater {
           typeof item === "object" &&
           item !== null &&
           "isoDate" in item &&
-          typeof item.isoDate === "string"
+          typeof item.isoDate === "string",
       )
       .map((item) => parseISO(item.isoDate).getTime())
       .filter((createdAtTimestamp: number) =>
         bg.Time.Ms(createdAtTimestamp).isAfter(
-          bg.Time.Now().Minus(bg.Time.Days(30))
-        )
+          bg.Time.Now().Minus(bg.Time.Days(30)),
+        ),
       ).length;
 
-    return { countValue, countStrategy: "total_last_month" };
+    return {
+      processedUntil: BigInt(Date.now()),
+      countValue,
+      countStrategy: "total_last_month",
+    };
   }
 
   static async update(id: VO.SourceIdType, metadata: SourceMetadataType) {
