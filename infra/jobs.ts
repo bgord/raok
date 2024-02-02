@@ -1,6 +1,7 @@
 import * as bg from "@bgord/node";
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
+import * as App from "../app";
 import * as RSS from "../modules/rss";
 import * as Settings from "../modules/settings";
 import * as Newspapers from "../modules/newspapers";
@@ -76,7 +77,20 @@ const RssCrawlJobProcessorJob = new SimpleIntervalJob(
   RssCrawlJobProcessorTask
 );
 
+const ExpiredSessionRemoverTask = new AsyncTask(
+  "expired-session-remover",
+  async () => {
+    await App.Services.ExpiredSessionRemover.process();
+  }
+);
+
+const ExpiredSessionRemoverTaskJob = new SimpleIntervalJob(
+  { minutes: 1, runImmediately: true },
+  ExpiredSessionRemoverTask
+);
+
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
+Scheduler.addSimpleIntervalJob(ExpiredSessionRemoverTaskJob);
 if (bg.FeatureFlag.isEnabled(Env.RSS_CRAWLING_ENABLED)) {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
   Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
