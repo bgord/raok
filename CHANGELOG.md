@@ -1,6 +1,10 @@
 # Changelog
+- 2024-02-02 12:50 6af6128 **step: bump bgord/scripts**
+## 2024-02-02 12:50 
+- 2024-02-02 12:43 dbc00c1 **feature: add ExpiredSessionRemoverJob**
+- 2024-02-02 12:37 65b55b1 **refactor: bump eslint-config-bgord**
 - 2024-02-02 00:03 c5e3b21 **feature: add hcaptcha to login**
-## 2024-02-02 00:03 
+- 2024-02-01 23:06 dafd623 **docs: generate CHANGELOG**
 - 2024-02-01 22:29 e1bfc0f **refactor: login username field**
 - 2024-02-01 13:39 d3dcb8d **step: bump bgord/node**
 - 2024-02-01 13:20 89067e4 **refactor: pinpoint deps version**
