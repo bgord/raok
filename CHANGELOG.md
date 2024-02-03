@@ -1,6 +1,9 @@
 # Changelog
+- 2024-02-03 13:29 123ab7e **fix: settings token blacklist search**
+## 2024-02-03 13:29 
+- 2024-02-03 13:27 91cb24c **fix: add pb on settings on mobile**
 - 2024-02-03 13:24 418d0cd **refactor: review stopwords**
-## 2024-02-03 13:24 
+- 2024-02-03 12:26 16442d8 **docs: generate CHANGELOG**
 - 2024-02-03 10:15 194007a **fix: source item created at acceptable method**
 - 2024-02-03 09:16 e10c4a7 **docs: generate CHANGELOG**
 - 2024-02-02 14:21 e1313d1 **feature: add source processedUntil**
