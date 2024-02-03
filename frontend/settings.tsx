@@ -31,6 +31,7 @@ export function Settings(_props: RoutableProps) {
       data-mt="24"
       data-max-width="768"
       data-md-px="6"
+      data-md-mb="48"
     >
       <h2 data-fs="20" data-color="gray-800" data-fw="500">
         {t("app.settings")}
