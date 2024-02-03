@@ -20,7 +20,7 @@ export function SettingsTokenBlacklist() {
 
   const tokenBlacklist = useQuery(
     api.keys.tokenBlacklist,
-    api.TokenBlacklist.list
+    api.TokenBlacklist.list,
   );
 
   const sort = bg.useClientSort<types.TokenBlacklistType>(
@@ -32,7 +32,7 @@ export function SettingsTokenBlacklist() {
         [types.SourceSortEnum.a_z]: (a, b) => bg.Sorts.aToZ(a.token, b.token),
         [types.SourceSortEnum.z_a]: (a, b) => bg.Sorts.zToA(a.token, b.token),
       },
-    }
+    },
   );
 
   const tokens = (tokenBlacklist.data ?? [])
@@ -98,7 +98,6 @@ export function SettingsTokenBlacklist() {
           data-width="100%"
         >
           <input
-            list="token_blacklist"
             onInput={search.onChange}
             value={search.query}
             class="c-input"
