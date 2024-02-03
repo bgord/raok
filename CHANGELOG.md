@@ -1,7 +1,9 @@
 # Changelog
+- 2024-02-03 10:15 194007a **fix: source item created at acceptable method**
+## 2024-02-03 10:15 
 - 2024-02-02 14:21 e1313d1 **feature: add source processedUntil**
 - 2024-02-02 14:21 aa32023 **step: bump bgord/scripts**
-## 2024-02-02 14:21 
+- 2024-02-02 13:21 9566312 **docs: generate CHANGELOG**
 - 2024-02-02 13:15 50dd7bc **refactor: bump bgord/node**
 - 2024-02-02 12:50 6af6128 **step: bump bgord/scripts**
 - 2024-02-02 12:43 dbc00c1 **feature: add ExpiredSessionRemoverJob**
