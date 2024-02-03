@@ -15,5 +15,5 @@ export const STOP_WORDS = [
   "own", "same", "so", "than", "too", "very", "s", "t", "can", "will", "just",
   "don", "should", "now", "new", "one", "us", "made", "like", "many", "actually",
   "real", "two", "may", "got", "need", "say", "yet", "ever", "io", "use", "best",
-  "self", "com",
+  "self", "com", "everything", "using", "hn", "old", "data", "make"
 ];
