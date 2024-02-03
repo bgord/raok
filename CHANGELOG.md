@@ -1,6 +1,8 @@
 # Changelog
+- 2024-02-03 13:24 418d0cd **refactor: review stopwords**
+## 2024-02-03 13:24 
 - 2024-02-03 10:15 194007a **fix: source item created at acceptable method**
-## 2024-02-03 10:15 
+- 2024-02-03 09:16 e10c4a7 **docs: generate CHANGELOG**
 - 2024-02-02 14:21 e1313d1 **feature: add source processedUntil**
 - 2024-02-02 14:21 aa32023 **step: bump bgord/scripts**
 - 2024-02-02 13:21 9566312 **docs: generate CHANGELOG**
