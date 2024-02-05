@@ -1,8 +1,13 @@
 # Changelog
+- 2024-02-05 08:22 47dcae2 **build(deps-dev): bump prisma from 5.9.0 to 5.9.1 (#174)**
+## 2024-02-05 08:22 
+- 2024-02-05 08:21 ffa7447 **build(deps): bump @prisma/client from 5.9.0 to 5.9.1 (#176)**
+- 2024-02-05 08:21 a72dab9 **build(deps): bump toad-scheduler from 3.0.0 to 3.0.1 (#175)**
+- 2024-02-05 08:21 405703a **build(deps-dev): bump oxlint from 0.2.6 to 0.2.7 (#177)**
 - 2024-02-03 13:29 123ab7e **fix: settings token blacklist search**
-## 2024-02-03 13:29 
 - 2024-02-03 13:27 91cb24c **fix: add pb on settings on mobile**
 - 2024-02-03 13:24 418d0cd **refactor: review stopwords**
+- 2024-02-03 12:30 079a259 **docs: generate CHANGELOG**
 - 2024-02-03 12:26 16442d8 **docs: generate CHANGELOG**
 - 2024-02-03 10:15 194007a **fix: source item created at acceptable method**
 - 2024-02-03 09:16 e10c4a7 **docs: generate CHANGELOG**
