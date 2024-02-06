@@ -200,5 +200,6 @@
   "stats.sent_articles": "sent",
   "article.delivered-by-email": "Articled delivered by email",
   "article.deliver-by-email": "Deliver by email",
-  "blacklisted_token.dismissed": "Blacklisted token suggestion dismissed"
+  "blacklisted_token.dismissed": "Blacklisted token suggestion dismissed",
+  "article.actions.inspect": "inspect article"
 }

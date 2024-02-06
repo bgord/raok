@@ -62,6 +62,21 @@ export function ArticleUrl(props: ArticlePropsType) {
         url={props.url}
         onClick={() => articleOpened.mutate(props.id)}
       />
+
+      <button
+        type="button"
+        class="c-button"
+        data-variant="with-icon"
+        data-ml="6"
+        onClick={bg.exec([
+          () => articleOpened.mutate(props.id),
+          () => window.open(props.url),
+          () => window.open(new URL(props.url).origin),
+        ])}
+        title={t("article.actions.inspect")}
+      >
+        <Icons.InfoCircle height="16" width="16" />
+      </button>
     </div>
   );
 }
