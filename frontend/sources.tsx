@@ -20,6 +20,8 @@ export function Sources(_props: RoutableProps) {
   hooks.useLeavingPrompt();
 
   const t = bg.useTranslations();
+
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
   const search = bg.useClientSearch();
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
@@ -34,7 +36,7 @@ export function Sources(_props: RoutableProps) {
   const sourceList = useQuery(
     api.keys.sources(filters),
     () => api.Source.list(filters),
-    { refetchOnMount: true }
+    { refetchOnMount: true },
   );
 
   const reorder = useMutation(api.Reordering.transfer, {
@@ -153,6 +155,7 @@ export function Sources(_props: RoutableProps) {
             class="c-input"
             placeholder={t("source.search.placeholder")}
             data-width="100%"
+            {...shortcut}
           />
           <Icons.Search
             height="34"

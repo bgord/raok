@@ -12,6 +12,7 @@ export function SourceCreate() {
   const queryClient = useQueryClient();
 
   const sourceUrl = bg.useField<types.SourceType["url"]>("source-url", "");
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
 
   const createSource = useMutation(api.Source.create, {
     onSuccess: () => {
@@ -55,6 +56,7 @@ export function SourceCreate() {
           value={sourceUrl.value}
           {...bg.Form.pattern(types.SourceUrlValidations)}
           {...sourceUrl.input.props}
+          {...shortcut}
         />
       </div>
 
