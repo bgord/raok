@@ -1,7 +1,10 @@
 # Changelog
+- 2024-02-06 22:39 f9dc2ad **feature: add staging server backup script trap**
+## 2024-02-06 22:39 
+- 2024-02-06 22:38 d124e3d **step: bump bgord/scripts**
 - 2024-02-06 21:58 8f34500 **feature: add article homepage opened event**
-## 2024-02-06 21:58 
 - 2024-02-06 21:34 c861183 **feature: add article inspect button**
+- 2024-02-06 20:58 e93cba5 **docs: generate CHANGELOG**
 - 2024-02-06 12:19 2cc6170 **feature: add source input focus shortcuts**
 - 2024-02-06 11:44 48bb267 **build(deps-dev): bump @typescript-eslint/parser from 6.20.0 to 6.21.0 (#178)**
 - 2024-02-06 11:43 e326536 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#179)**
