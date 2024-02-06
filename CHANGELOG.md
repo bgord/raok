@@ -1,9 +1,11 @@
 # Changelog
+- 2024-02-06 12:19 2cc6170 **feature: add source input focus shortcuts**
+## 2024-02-06 12:19 
 - 2024-02-06 11:44 48bb267 **build(deps-dev): bump @typescript-eslint/parser from 6.20.0 to 6.21.0 (#178)**
-## 2024-02-06 11:44 
 - 2024-02-06 11:43 e326536 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#179)**
 - 2024-02-06 11:43 8cb1bea **build(deps): bump @bgord/frontend from `f6a2776` to `f15ef76` (#180)**
 - 2024-02-06 11:42 c6ee9cd **build(deps-dev): bump postcss from 8.4.33 to 8.4.34 (#181)**
+- 2024-02-06 10:44 8492393 **docs: generate CHANGELOG**
 - 2024-02-06 10:43 21b2aab **docs: generate CHANGELOG**
 - 2024-02-06 10:43 1644520 **docs: generate CHANGELOG**
 - 2024-02-05 08:22 7fe39b5 **build(deps-dev): bump husky from 9.0.7 to 9.0.10 (#173)**
