@@ -3,6 +3,7 @@
 echo "Environment: staging"
 
 PROJECT_NAME=$1
+LOBBYGOW_API_KEY=$2
 CURRENT_TIME=$(date +%F-%H-%M-%S)
 
 BACKUPS_PATH="/var/backups/$PROJECT_NAME"
@@ -15,6 +16,17 @@ FILES_BACKUP_PATH="$BACKUPS_PATH/$CURRENT_TIME.files.tar.gz"
 
 NEWSPAPERS_PATH="/var/www/$PROJECT_NAME/newspapers"
 NEWSPAPERS_BACKUP_PATH="$BACKUPS_PATH/$CURRENT_TIME.newspapers.tar.gz"
+
+trap 'catch $? $LINENO' ERR
+
+catch() {
+  http POST https://lobbygow.bgord.me/notification-send \
+    kind="error" \
+    subject="[$PROJECT_NAME] staging server backup error" \
+    content="Error occurred on $2 with status code $1" \
+    bgord-api-key:"$LOBBYGOW_API_KEY"
+  exit 1
+}
 
 echo "Creating a database backup: $DATABASE_PATH"
 sqlite3 "$DATABASE_PATH" ".backup $DATABASE_BACKUP_PATH"
