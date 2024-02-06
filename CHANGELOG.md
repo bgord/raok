@@ -1,6 +1,9 @@
 # Changelog
+- 2024-02-06 11:43 e326536 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#179)**
+- 2024-02-06 11:43 8cb1bea **build(deps): bump @bgord/frontend from `f6a2776` to `f15ef76` (#180)**
+## 2024-02-06 11:43 
 - 2024-02-06 11:42 c6ee9cd **build(deps-dev): bump postcss from 8.4.33 to 8.4.34 (#181)**
-## 2024-02-06 11:42 
+- 2024-02-06 10:43 1644520 **docs: generate CHANGELOG**
 - 2024-02-05 08:22 7fe39b5 **build(deps-dev): bump husky from 9.0.7 to 9.0.10 (#173)**
 - 2024-02-05 08:22 47dcae2 **build(deps-dev): bump prisma from 5.9.0 to 5.9.1 (#174)**
 - 2024-02-05 08:21 ffa7447 **build(deps): bump @prisma/client from 5.9.0 to 5.9.1 (#176)**
