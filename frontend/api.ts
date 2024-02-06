@@ -29,6 +29,10 @@ export class Article {
     return bg.API(`/article/${id}/opened`, { method: "POST" });
   }
 
+  static async homepageOpened(id: types.ArticleType["id"]) {
+    return bg.API(`/article/${id}/homepage-opened`, { method: "POST" });
+  }
+
   static async delete(payload: Pick<types.ArticleType, "id" | "revision">) {
     return bg.API(`/delete-article/${payload.id}`, {
       method: "POST",

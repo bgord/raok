@@ -24,6 +24,7 @@ export const emittery = new Emittery<{
   ARTICLE_UNDELETE_EVENT: NewspapersEvents.ArticleUndeleteEventType;
   ARTICLE_UNLOCKED_EVENT: NewspapersEvents.ArticleUnlockedEventType;
   ARTICLE_OPENED_EVENT: NewspapersEvents.ArticleOpenedEventType;
+  ARTICLE_HOMEPAGE_OPENED_EVENT: NewspapersEvents.ArticleHomepageOpenedEventType;
   NEWSPAPER_ARCHIVED_EVENT: NewspapersEvents.NewspaperArchivedEventType;
   NEWSPAPER_FAILED_EVENT: NewspapersEvents.NewspaperFailedEventType;
   NEWSPAPER_GENERATED_EVENT: NewspapersEvents.NewspaperGenerateEventType;
@@ -35,97 +36,102 @@ export const emittery = new Emittery<{
 
 emittery.on(
   NewspapersEvents.ARTICLE_ADDED_EVENT,
-  NewspapersHandlers.onArticleAddedEventHandler
+  NewspapersHandlers.onArticleAddedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_DELETED_EVENT,
-  NewspapersHandlers.onArticleDeletedEventHandler
+  NewspapersHandlers.onArticleDeletedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_READ_EVENT,
-  NewspapersHandlers.onArticleReadEventHandler
+  NewspapersHandlers.onArticleReadEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_UNDELETE_EVENT,
-  NewspapersHandlers.onArticleUndeletedEventHandler
+  NewspapersHandlers.onArticleUndeletedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_LOCKED_EVENT,
-  NewspapersHandlers.onArticleLockedEventHandler
+  NewspapersHandlers.onArticleLockedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_UNLOCKED_EVENT,
-  NewspapersHandlers.onArticleUnlockedEventHandler
+  NewspapersHandlers.onArticleUnlockedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_PROCESSED_EVENT,
-  NewspapersHandlers.onArticleProcessedEventHandler
+  NewspapersHandlers.onArticleProcessedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_OPENED_EVENT,
-  NewspapersHandlers.onArticleOpenedEventHandler
+  NewspapersHandlers.onArticleOpenedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.NEWSPAPER_SCHEDULED_EVENT,
-  NewspapersHandlers.onNewspaperScheduledEventHandler
+  NewspapersHandlers.onNewspaperScheduledEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.NEWSPAPER_GENERATED_EVENT,
-  NewspapersHandlers.onNewspaperGeneratedEventHandler
+  NewspapersHandlers.onNewspaperGeneratedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.NEWSPAPER_SENT_EVENT,
-  NewspapersHandlers.onNewspaperSentEventHandler
+  NewspapersHandlers.onNewspaperSentEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.NEWSPAPER_ARCHIVED_EVENT,
-  NewspapersHandlers.onNewspaperArchivedEventHandler
+  NewspapersHandlers.onNewspaperArchivedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.NEWSPAPER_FAILED_EVENT,
-  NewspapersHandlers.onNewspaperFailedEventHandler
+  NewspapersHandlers.onNewspaperFailedEventHandler,
 );
 
 emittery.on(
   Files.Events.ARBITRARY_FILE_SCHEDULED_EVENT,
-  Files.Handlers.onArbitraryFileScheduledEventHandler
+  Files.Handlers.onArbitraryFileScheduledEventHandler,
 );
 
 // Recommendations
 
 emittery.on(
   NewspapersEvents.ARTICLE_ADDED_EVENT,
-  Recommendations.Handlers.onArticleAddedEventHandler
+  Recommendations.Handlers.onArticleAddedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_OPENED_EVENT,
-  Recommendations.Handlers.onArticleOpenedEventHandler
+  Recommendations.Handlers.onArticleOpenedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_PROCESSED_EVENT,
-  Recommendations.Handlers.onArticleProcessedEventHandler
+  Recommendations.Handlers.onArticleProcessedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_DELETED_EVENT,
-  Recommendations.Handlers.onArticleDeletedEventHandler
+  Recommendations.Handlers.onArticleDeletedEventHandler,
 );
 
 emittery.on(
   NewspapersEvents.ARTICLE_READ_EVENT,
-  Recommendations.Handlers.onArticleReadEventHandler
+  Recommendations.Handlers.onArticleReadEventHandler,
+);
+
+emittery.on(
+  NewspapersEvents.ARTICLE_HOMEPAGE_OPENED_EVENT,
+  Recommendations.Handlers.onArticleHomepageOpenedEventHandler,
 );

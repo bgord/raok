@@ -9,7 +9,7 @@ export const ArticleAddedEvent = bg.EventDraft.merge(
     name: z.literal(ARTICLE_ADDED_EVENT),
     version: z.literal(1),
     payload: VO.Article.merge(VO.ArticleMetatags),
-  })
+  }),
 );
 export type ArticleAddedEventType = z.infer<typeof ArticleAddedEvent>;
 
@@ -22,7 +22,7 @@ export const ArticleDeletedEvent = bg.EventDraft.merge(
       articleId: VO.ArticleId,
       revision: VO.ArticleRevision,
     }),
-  })
+  }),
 );
 export type ArticleDeletedEventType = z.infer<typeof ArticleDeletedEvent>;
 
@@ -35,7 +35,7 @@ export const ArticleReadEvent = bg.EventDraft.merge(
       articleId: VO.ArticleId,
       revision: VO.ArticleRevision,
     }),
-  })
+  }),
 );
 export type ArticleReadEventType = z.infer<typeof ArticleReadEvent>;
 
@@ -45,9 +45,21 @@ export const ArticleOpenedEvent = bg.EventDraft.merge(
     name: z.literal(ARTICLE_OPENED_EVENT),
     version: z.literal(1),
     payload: z.object({ articleId: VO.ArticleId }),
-  })
+  }),
 );
 export type ArticleOpenedEventType = z.infer<typeof ArticleOpenedEvent>;
+
+export const ARTICLE_HOMEPAGE_OPENED_EVENT = "ARTICLE_HOMEPAGE_OPENED_EVENT";
+export const ArticleHomepageOpenedEvent = bg.EventDraft.merge(
+  z.object({
+    name: z.literal(ARTICLE_HOMEPAGE_OPENED_EVENT),
+    version: z.literal(1),
+    payload: z.object({ articleId: VO.ArticleId }),
+  }),
+);
+export type ArticleHomepageOpenedEventType = z.infer<
+  typeof ArticleHomepageOpenedEvent
+>;
 
 export const ARTICLE_LOCKED_EVENT = "ARTICLE_LOCKED_EVENT";
 export const ArticleLockedEvent = bg.EventDraft.merge(
@@ -59,7 +71,7 @@ export const ArticleLockedEvent = bg.EventDraft.merge(
       newspaperId: VO.NewspaperId,
       revision: VO.ArticleRevision,
     }),
-  })
+  }),
 );
 export type ArticleLockedEventType = z.infer<typeof ArticleLockedEvent>;
 
@@ -72,7 +84,7 @@ export const ArticleUnlockedEvent = bg.EventDraft.merge(
       articleId: VO.ArticleId,
       revision: VO.ArticleRevision,
     }),
-  })
+  }),
 );
 export type ArticleUnlockedEventType = z.infer<typeof ArticleUnlockedEvent>;
 
@@ -85,7 +97,7 @@ export const ArticleProcessedEvent = bg.EventDraft.merge(
       articleId: VO.ArticleId,
       revision: VO.ArticleRevision,
     }),
-  })
+  }),
 );
 export type ArticleProcessedEventType = z.infer<typeof ArticleProcessedEvent>;
 
@@ -98,7 +110,7 @@ export const ArticleUndeleteEvent = bg.EventDraft.merge(
       articleId: VO.ArticleId,
       revision: VO.ArticleRevision,
     }),
-  })
+  }),
 );
 export type ArticleUndeleteEventType = z.infer<typeof ArticleUndeleteEvent>;
 
@@ -113,7 +125,7 @@ export const NewspaperScheduledEvent = bg.EventDraft.merge(
       createdAt: bg.Schema.Timestamp,
       revision: VO.NewspaperRevision,
     }),
-  })
+  }),
 );
 export type NewspaperScheduledEventType = z.infer<
   typeof NewspaperScheduledEvent
@@ -128,7 +140,7 @@ export const NewspaperGenerateEvent = bg.EventDraft.merge(
       newspaperId: VO.NewspaperId,
       revision: VO.NewspaperRevision,
     }),
-  })
+  }),
 );
 export type NewspaperGenerateEventType = z.infer<typeof NewspaperGenerateEvent>;
 
@@ -143,7 +155,7 @@ export const NewspaperSentEvent = bg.EventDraft.merge(
       sentAt: VO.Newspaper._def.shape().sentAt,
       revision: VO.NewspaperRevision,
     }),
-  })
+  }),
 );
 export type NewspaperSentEventType = z.infer<typeof NewspaperSentEvent>;
 
@@ -156,7 +168,7 @@ export const NewspaperArchivedEvent = bg.EventDraft.merge(
       newspaperId: VO.NewspaperId,
       revision: VO.NewspaperRevision,
     }),
-  })
+  }),
 );
 export type NewspaperArchivedEventType = z.infer<typeof NewspaperArchivedEvent>;
 
@@ -169,6 +181,6 @@ export const NewspaperFailedEvent = bg.EventDraft.merge(
       newspaperId: VO.NewspaperId,
       revision: VO.NewspaperRevision,
     }),
-  })
+  }),
 );
 export type NewspaperFailedEventType = z.infer<typeof NewspaperFailedEvent>;

@@ -15,7 +15,7 @@ export class Article {
 
   private constructor(
     article: VO.ArticleType,
-    readonly revision: bg.Schema.RevisionType
+    readonly revision: bg.Schema.RevisionType,
   ) {
     this.id = article.id;
     this.entity = article;
@@ -36,7 +36,7 @@ export class Article {
         Events.ArticleUndeleteEvent,
         Events.ArticleReadEvent,
       ],
-      Article.getStream(id)
+      Article.getStream(id),
     );
 
     for (const event of events) {
@@ -112,7 +112,7 @@ export class Article {
           revision: bg.Revision.initial,
           ...metatags,
         },
-      } satisfies Events.ArticleAddedEventType)
+      } satisfies Events.ArticleAddedEventType),
     );
   }
 
@@ -129,7 +129,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleDeletedEventType)
+      } satisfies Events.ArticleDeletedEventType),
     );
   }
 
@@ -150,7 +150,7 @@ export class Article {
           newspaperId,
           revision: revision.next().value,
         },
-      } satisfies Events.ArticleLockedEventType)
+      } satisfies Events.ArticleLockedEventType),
     );
   }
 
@@ -167,7 +167,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleUnlockedEventType)
+      } satisfies Events.ArticleUnlockedEventType),
     );
   }
 
@@ -184,7 +184,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleProcessedEventType)
+      } satisfies Events.ArticleProcessedEventType),
     );
   }
 
@@ -201,7 +201,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleReadEventType)
+      } satisfies Events.ArticleReadEventType),
     );
   }
 
@@ -212,7 +212,18 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
-      } satisfies Events.ArticleOpenedEventType)
+      } satisfies Events.ArticleOpenedEventType),
+    );
+  }
+
+  async homepageOpened() {
+    await infra.EventStore.save(
+      Events.ArticleHomepageOpenedEvent.parse({
+        name: Events.ARTICLE_HOMEPAGE_OPENED_EVENT,
+        stream: this.stream,
+        version: 1,
+        payload: { articleId: this.id },
+      } satisfies Events.ArticleHomepageOpenedEventType),
     );
   }
 
@@ -229,7 +240,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleUndeleteEventType)
+      } satisfies Events.ArticleUndeleteEventType),
     );
   }
 

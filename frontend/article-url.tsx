@@ -16,6 +16,7 @@ export function ArticleUrl(props: ArticlePropsType) {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
   const articleOpened = useMutation(api.Article.opened);
+  const articleHomepageOpened = useMutation(api.Article.homepageOpened);
 
   const details = bg.useToggle();
 
@@ -70,6 +71,7 @@ export function ArticleUrl(props: ArticlePropsType) {
         data-ml="6"
         onClick={bg.exec([
           () => articleOpened.mutate(props.id),
+          () => articleHomepageOpened.mutate(props.id),
           () => window.open(props.url),
           () => window.open(new URL(props.url).origin),
         ])}

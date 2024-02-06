@@ -13,7 +13,7 @@ export const onArticleAddedEventHandler =
     if (event.payload.source === ArticleSourceEnum.web) {
       await Services.TokenRatingUpdateProcessor.process(
         event.payload.id,
-        Services.RatingActionEnum.added
+        Services.RatingActionEnum.added,
       );
     }
   });
@@ -22,7 +22,7 @@ export const onArticleDeletedEventHandler =
   EventHandler.handle<Events.ArticleDeletedEventType>(async (event) => {
     await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
-      Services.RatingActionEnum.deleted
+      Services.RatingActionEnum.deleted,
     );
   });
 
@@ -30,7 +30,7 @@ export const onArticleReadEventHandler =
   EventHandler.handle<Events.ArticleReadEventType>(async (event) => {
     await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
-      Services.RatingActionEnum.read
+      Services.RatingActionEnum.read,
     );
   });
 
@@ -38,7 +38,7 @@ export const onArticleProcessedEventHandler =
   EventHandler.handle<Events.ArticleProcessedEventType>(async (event) => {
     await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
-      Services.RatingActionEnum.processed
+      Services.RatingActionEnum.processed,
     );
   });
 
@@ -46,6 +46,14 @@ export const onArticleOpenedEventHandler =
   EventHandler.handle<Events.ArticleOpenedEventType>(async (event) => {
     await Services.TokenRatingUpdateProcessor.process(
       event.payload.articleId,
-      Services.RatingActionEnum.opened
+      Services.RatingActionEnum.opened,
+    );
+  });
+
+export const onArticleHomepageOpenedEventHandler =
+  EventHandler.handle<Events.ArticleHomepageOpenedEventType>(async (event) => {
+    await Services.TokenRatingUpdateProcessor.process(
+      event.payload.articleId,
+      Services.RatingActionEnum.homepage_opened,
     );
   });
