@@ -12,6 +12,7 @@ export function SettingsBlacklistedTokenCreate() {
   const queryClient = useQueryClient();
 
   const token = bg.useField<types.TokenBlacklistType["token"]>("token", "");
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
 
   const createBlacklistedToken = useMutation(api.TokenBlacklist.create, {
     onSuccess: () => {
@@ -56,6 +57,7 @@ export function SettingsBlacklistedTokenCreate() {
           value={token.value}
           {...bg.Form.pattern(types.BlacklistedTokenValidations)}
           {...token.input.props}
+          {...shortcut}
         />
       </div>
 

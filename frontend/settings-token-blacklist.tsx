@@ -17,6 +17,7 @@ export function SettingsTokenBlacklist() {
 
   const t = bg.useTranslations();
   const search = bg.useClientSearch();
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
 
   const tokenBlacklist = useQuery(
     api.keys.tokenBlacklist,
@@ -103,6 +104,7 @@ export function SettingsTokenBlacklist() {
             class="c-input"
             placeholder={t("token_blacklist.search.placeholder")}
             data-width="100%"
+            {...shortcut}
           />
           <Icons.Search
             height="34"
