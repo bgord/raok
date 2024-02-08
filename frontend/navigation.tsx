@@ -3,15 +3,19 @@ import { h, Fragment } from "preact";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
-export function Navigation() {
+import * as types from "./types";
+
+type NavigationPropsType = { email: types.EmailType };
+
+export function Navigation(props: NavigationPropsType) {
   const { width } = bg.useWindowDimensions();
 
   if (!width) return <NavigationShell />; // Don't SSR navigation
-  if (width <= 768) return <NavigationMobile />;
-  return <NavigationDesktop />;
+  if (width <= 768) return <NavigationMobile {...props} />;
+  return <NavigationDesktop {...props} />;
 }
 
-function NavigationDesktop() {
+function NavigationDesktop(props: NavigationPropsType) {
   const t = bg.useTranslations();
 
   return (
@@ -32,7 +36,7 @@ function NavigationDesktop() {
         <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
 
         <strong data-mx="12" data-color="white">
-          admin
+          {props.email}
         </strong>
 
         <NavigationLink href="/logout">{t("app.logout")}</NavigationLink>
@@ -41,7 +45,7 @@ function NavigationDesktop() {
   );
 }
 
-function NavigationMobile() {
+function NavigationMobile(props: NavigationPropsType) {
   const navigation = bg.useToggle();
   const t = bg.useTranslations();
 
@@ -129,8 +133,7 @@ function NavigationMobile() {
               {t("app.settings")}
             </NavigationLink>
 
-            <strong data-color="white">admin</strong>
-
+            <strong data-color="white">{props.email}</strong>
             <NavigationLink onClick={navigation.disable} href="/logout">
               {t("app.logout")}
             </NavigationLink>

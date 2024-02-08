@@ -67,7 +67,7 @@ export function App(props: InitialDataType) {
       >
         <bg.ToastsContextProvider>
           <SkipNavLink as="a" />
-          <Navigation />
+          <Navigation email={props.email} />
           <SkipNavContent as="div" />
 
           <Router url={props.url}>
