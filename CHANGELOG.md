@@ -1,8 +1,11 @@
 # Changelog
+- 2024-02-08 09:57 0342c8a **fix: toasts size on mobile**
+## 2024-02-08 09:57 
+- 2024-02-08 09:52 6324b06 **step: bump bgord/scripts**
 - 2024-02-06 22:39 f9dc2ad **feature: add staging server backup script trap**
-## 2024-02-06 22:39 
 - 2024-02-06 22:38 d124e3d **step: bump bgord/scripts**
 - 2024-02-06 21:58 8f34500 **feature: add article homepage opened event**
+- 2024-02-06 21:39 dcd6506 **docs: generate CHANGELOG**
 - 2024-02-06 21:34 c861183 **feature: add article inspect button**
 - 2024-02-06 20:58 e93cba5 **docs: generate CHANGELOG**
 - 2024-02-06 12:19 2cc6170 **feature: add source input focus shortcuts**
