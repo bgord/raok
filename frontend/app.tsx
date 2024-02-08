@@ -5,6 +5,7 @@ import * as bg from "@bgord/frontend";
 import type { Schema, TranslationsType } from "@bgord/node";
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav";
 
+import * as types from "./types";
 import * as api from "./api";
 import { Toasts } from "./toasts";
 import { Navigation } from "./navigation";
@@ -30,6 +31,7 @@ export type InitialDataType = InitialDashboardDataType &
     url: string;
     language: Schema.LanguageType;
     translations: TranslationsType;
+    email: types.EmailType;
   };
 
 const queryClient = new QueryClient({

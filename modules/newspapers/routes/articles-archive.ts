@@ -27,6 +27,7 @@ export async function ArticlesArchive(
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
+    email: response.locals.user?.email as bg.Schema.EmailType,
     translations,
     archiveArticles: await Repos.ArticleRepository.pagedGetAll(
       pagination,

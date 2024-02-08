@@ -25,6 +25,7 @@ export async function FilesArchive(
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
+    email: response.locals.user?.email as bg.Schema.EmailType,
     translations,
     archiveArticles: await Newspapers.Repos.ArticleRepository.pagedGetAll(
       bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE }),

@@ -11,7 +11,7 @@ import type { SourceRepository } from "../modules/rss/repositories/source-reposi
 import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
 
 /** @public */
-export type { HourType } from "@bgord/node/dist/schema";
+export type { HourType, EmailType } from "@bgord/node/dist/schema";
 /** @public */
 export type { ArticleSearchQueryType } from "../modules/newspapers/value-objects/article-search-query";
 
