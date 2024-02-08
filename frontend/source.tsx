@@ -14,9 +14,9 @@ export function Source(
   props: types.SourceType & h.JSX.IntrinsicElements["li"]
 ) {
   // prettier-ignore
-  const { position, url, status, id, name, createdAt, updatedAt, revision, ...rest } = props;
+  const {  url, status, id, name, createdAt, updatedAt, revision, ...rest } = props;
   // prettier-ignore
-  const source = { position, id, name, createdAt, updatedAt, url, status, revision };
+  const source = {  id, name, createdAt, updatedAt, url, status, revision };
 
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();

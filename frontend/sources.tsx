@@ -1,6 +1,6 @@
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
-import { useQuery, useQueryClient, useMutation } from "react-query";
+import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
@@ -23,8 +23,6 @@ export function Sources(_props: RoutableProps) {
 
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
   const search = bg.useClientSearch();
-  const queryClient = useQueryClient();
-  const notify = bg.useToastTrigger();
 
   const statusFilter = bg.useUrlFilter({
     name: "status",
@@ -36,21 +34,13 @@ export function Sources(_props: RoutableProps) {
   const sourceList = useQuery(
     api.keys.sources(filters),
     () => api.Source.list(filters),
-    { refetchOnMount: true },
+    { refetchOnMount: true }
   );
-
-  const reorder = useMutation(api.Reordering.transfer, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(api.keys.allSources);
-      notify({ message: "sources.reordered" });
-    },
-  });
 
   const usedAtSort = bg.useClientSort<types.SourceType>("sort-sources", {
     enum: types.SourceSortEnum,
     options: {
       [types.SourceSortEnum.default]: bg.defaultSortFn,
-      [types.SourceSortEnum.used_at_most_recent]: bg.Sorts.updatedAtMostRecent,
       [types.SourceSortEnum.used_at_least_recent]:
         bg.Sorts.updatedAtLeastRecent,
       [types.SourceSortEnum.a_z]: (a, b) =>
@@ -64,16 +54,11 @@ export function Sources(_props: RoutableProps) {
     },
   });
 
-  const sources = bg.useReordering({
-    correlationId: "sources",
-    initialItems: (sourceList.data ?? [])
-      .filter((source) => search.filterFn(String(source.url)))
-      .toSorted(usedAtSort.sortFn),
-    callback: reorder.mutate,
-    enabled: usedAtSort.unchanged && search.unchanged && statusFilter.unchanged,
-  });
+  const sources = (sourceList.data ?? [])
+    .filter((source) => search.filterFn(String(source.url)))
+    .toSorted(usedAtSort.sortFn);
 
-  const numberOfSources = sources.items.length;
+  const numberOfSources = sources.length;
 
   return (
     <main
@@ -185,7 +170,7 @@ export function Sources(_props: RoutableProps) {
         </button>
       </div>
 
-      {sourceList.isSuccess && sources.items.length === 0 && (
+      {sourceList.isSuccess && sources.length === 0 && (
         <UI.Info data-mt="6" data-transform="upper-first">
           {t("source.list.empty")}
         </UI.Info>
@@ -204,13 +189,8 @@ export function Sources(_props: RoutableProps) {
         data-max-width="100%"
         data-my="24"
       >
-        {sources.items.map((source, idx) => (
-          <Source
-            key={source.id}
-            {...source}
-            {...sources.props.item(idx)}
-            {...sources.props.handle(idx)}
-          />
+        {sources.map((source) => (
+          <Source key={source.id} {...source} />
         ))}
       </ul>
     </main>

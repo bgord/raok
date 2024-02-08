@@ -255,15 +255,6 @@ export class Source {
   }
 }
 
-export class Reordering {
-  static async transfer(config: bg.ReorderingTransferType) {
-    return bg.API(`/reordering/${config.correlationId}/transfer`, {
-      method: "POST",
-      body: JSON.stringify({ id: config.id, to: config.to }),
-    });
-  }
-}
-
 export class TokenBlacklist {
   static async create(payload: Pick<types.TokenBlacklistType, "token">) {
     return bg.API("/token-blacklist/create", {

@@ -89,7 +89,6 @@ export { SUGGESTED_BLACKLISTED_TOKENS_COUNT } from "../modules/recommendations/v
 
 export enum SourceSortEnum {
   default = "default",
-  used_at_most_recent = "used_at_most_recent",
   used_at_least_recent = "used_at_least_recent",
   most_frequent = "most_frequent",
   least_frequent = "least_frequent",

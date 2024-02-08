@@ -70,12 +70,6 @@ model Source {
   countStrategy  String @default("total_last_month")
 }
 
-model Reordering {
-  id            String @id @default(uuid())
-  correlationId String
-  position      Int
-}
-
 model TokenRating {
   token          String  @id
   value          Int     @default(0)

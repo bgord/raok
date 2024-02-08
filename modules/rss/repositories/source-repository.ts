@@ -2,14 +2,12 @@ import z from "zod";
 import _ from "lodash";
 import * as bg from "@bgord/node";
 
-import * as Reordering from "../../reordering";
-
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 import * as Services from "../services";
 
 export const SourceFilter = new bg.Filter(
-  z.object({ status: VO.SourceStatus.optional() }),
+  z.object({ status: VO.SourceStatus.optional() })
 );
 
 export class SourceRepository {
@@ -65,16 +63,10 @@ export class SourceRepository {
 
     const sources = await infra.db.source.findMany({
       where: filters,
-      orderBy: { createdAt: "desc" },
+      orderBy: { updatedAt: "desc" },
     });
 
-    const reordering =
-      await Reordering.Repos.ReorderingRepository.list("sources");
-
-    return sources
-      .map(SourceRepository.map)
-      .map(bg.ReorderingIntegrator.appendPosition(reordering))
-      .toSorted(bg.ReorderingIntegrator.sortByPosition());
+    return sources.map(SourceRepository.map);
   }
 
   static async listActive() {
@@ -88,7 +80,7 @@ export class SourceRepository {
 
   static async updateMetadata(
     id: VO.SourceIdType,
-    metadata: Services.SourceMetadataType,
+    metadata: Services.SourceMetadataType
   ) {
     await infra.db.source.update({ where: { id }, data: metadata });
   }
