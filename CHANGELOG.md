@@ -1,7 +1,10 @@
 # Changelog
+- 2024-02-08 15:56 9221ef1 **refactor: remove reordering**
+## 2024-02-08 15:56 
+- 2024-02-08 15:52 232e8a9 **step: add settings shortcuts**
 - 2024-02-08 12:41 679dbcb **step: display email**
-## 2024-02-08 12:41 
 - 2024-02-08 12:39 944c150 **step: pass email to frontend**
+- 2024-02-08 11:47 dddb5e1 **docs: generate CHANGELOG**
 - 2024-02-08 09:57 0342c8a **fix: toasts size on mobile**
 - 2024-02-08 09:52 6324b06 **step: bump bgord/scripts**
 - 2024-02-08 08:58 2cbdf2e **docs: generate CHANGELOG**
