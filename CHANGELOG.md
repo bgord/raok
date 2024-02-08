@@ -1,7 +1,10 @@
 # Changelog
+- 2024-02-08 12:41 679dbcb **step: display email**
+## 2024-02-08 12:41 
+- 2024-02-08 12:39 944c150 **step: pass email to frontend**
 - 2024-02-08 09:57 0342c8a **fix: toasts size on mobile**
-## 2024-02-08 09:57 
 - 2024-02-08 09:52 6324b06 **step: bump bgord/scripts**
+- 2024-02-08 08:58 2cbdf2e **docs: generate CHANGELOG**
 - 2024-02-06 22:39 f9dc2ad **feature: add staging server backup script trap**
 - 2024-02-06 22:38 d124e3d **step: bump bgord/scripts**
 - 2024-02-06 21:58 8f34500 **feature: add article homepage opened event**
