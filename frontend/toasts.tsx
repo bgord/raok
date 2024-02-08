@@ -9,6 +9,8 @@ export function Toasts() {
   const [_toasts] = bg.useToastsContext<types.ToastType>();
   const toasts = bg.useAnimaList(_toasts, { direction: "tail" });
 
+  if (!toasts.items.filter((item) => item.props.visible).length) return null;
+
   return (
     <bg.AnimaList
       data-display="flex"
@@ -20,7 +22,10 @@ export function Toasts() {
       data-mb="12"
       data-pt="12"
       data-width="100%"
-      {...bg.Rhythm().times(24).style.square}
+      style={{
+        ...bg.Rhythm().times(24).maxHeight,
+        ...bg.Rhythm().times(24).maxWidth,
+      }}
     >
       {toasts.items.map((toast) => (
         <bg.Anima key={toast.item.id} effect="opacity" {...toast.props}>
@@ -67,7 +72,7 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
         <span data-transform="upper-first">{t(props.item.message)}</span>
 
         {["article.deleted", "article.marked-as-read"].includes(
-          props.item.message
+          props.item.message,
         ) && (
           <button
             type="button"
