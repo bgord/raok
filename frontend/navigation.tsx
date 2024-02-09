@@ -24,21 +24,14 @@ function NavigationDesktop(props: NavigationPropsType) {
 
       <OfflineIndicator />
 
-      <div data-display="flex" data-gap="24">
+      <div data-display="flex" data-gap="12">
         <NavigationLink href="/archive/articles">
           {t("app.articles")}
         </NavigationLink>
-
         <NavigationLink href="/archive/files">{t("app.files")}</NavigationLink>
-
         <NavigationLink href="/sources">{t("app.sources")}</NavigationLink>
-
         <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
-
-        <strong data-mx="12" data-color="white">
-          {props.email}
-        </strong>
-
+        <strong data-mx="6" data-color="white">{props.email}</strong>
         <NavigationLink href="/logout">{t("app.logout")}</NavigationLink>
       </div>
     </nav>
