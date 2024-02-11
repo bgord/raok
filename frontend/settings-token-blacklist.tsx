@@ -18,6 +18,7 @@ export function SettingsTokenBlacklist() {
   const t = bg.useTranslations();
   const search = bg.useClientSearch();
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
+  const actions = bg.useToggle();
 
   const tokenBlacklist = useQuery(
     api.keys.tokenBlacklist,
@@ -57,76 +58,103 @@ export function SettingsTokenBlacklist() {
         </div>
       </div>
 
-      <SettingsBlacklistedTokenCreate />
-
       <div
         data-display="flex"
-        data-wrap="nowrap"
-        data-max-width="100%"
-        data-gap="12"
-        data-md-gap="3"
+        data-main="between"
+        data-cross="end"
+        data-my="24"
       >
-        <div
-          data-display="flex"
-          data-cross="center"
-          data-md-direction="column"
-          data-gap="12"
-          data-wrap="nowrap"
-          data-md-gap="3"
-        >
-          <label class="c-label" {...sort.label.props} data-transform="nowrap">
-            {t("sort")}
-          </label>
-
-          <UI.Select
-            key={sort.value}
-            value={sort.value}
-            onInput={sort.handleChange}
-            {...sort.input.props}
-          >
-            {sort.options.map((option) => (
-              <option key={option} value={option}>
-                {t(`source.sort.${option}`)}
-              </option>
-            ))}
-          </UI.Select>
-        </div>
-
-        <div
-          data-position="relative"
-          data-grow="1"
-          data-self="end"
-          data-width="100%"
-        >
-          <input
-            onInput={search.onChange}
-            value={search.query}
-            class="c-input"
-            placeholder={t("token_blacklist.search.placeholder")}
-            data-width="100%"
-            {...shortcut}
-          />
-          <Icons.Search
-            height="34"
-            width="34"
-            data-position="absolute"
-            data-p="6"
-            data-top="0"
-            data-right="0"
-          />
-        </div>
-
+        <SettingsBlacklistedTokenCreate />
         <button
           type="button"
           class="c-button"
-          data-variant="bare"
-          data-self="end"
-          onClick={bg.exec([search.clear, sort.clear])}
-          disabled={search.unchanged && sort.unchanged}
+          data-variant="with-icon"
+          data-mr="72"
+          data-md-mr="0"
+          onClick={actions.toggle}
+          title={
+            actions.on ? t("article.actions.hide") : t("article.actions.show")
+          }
         >
-          {t("app.reset")}
+          {actions.off && <Icons.NavArrowLeft height="20" width="20" />}
+          {actions.on && <Icons.NavArrowDown height="20" width="20" />}
         </button>
       </div>
+
+      {actions.on && (
+        <div
+          data-display="flex"
+          data-wrap="nowrap"
+          data-max-width="100%"
+          data-gap="12"
+          data-md-gap="3"
+        >
+          <div
+            data-display="flex"
+            data-cross="center"
+            data-md-direction="column"
+            data-gap="12"
+            data-wrap="nowrap"
+            data-md-gap="3"
+          >
+            <label
+              class="c-label"
+              {...sort.label.props}
+              data-transform="nowrap"
+            >
+              {t("sort")}
+            </label>
+
+            <UI.Select
+              key={sort.value}
+              value={sort.value}
+              onInput={sort.handleChange}
+              {...sort.input.props}
+            >
+              {sort.options.map((option) => (
+                <option key={option} value={option}>
+                  {t(`source.sort.${option}`)}
+                </option>
+              ))}
+            </UI.Select>
+          </div>
+
+          <div
+            data-position="relative"
+            data-grow="1"
+            data-self="end"
+            data-width="100%"
+          >
+            <input
+              onInput={search.onChange}
+              value={search.query}
+              class="c-input"
+              placeholder={t("token_blacklist.search.placeholder")}
+              data-width="100%"
+              {...shortcut}
+            />
+            <Icons.Search
+              height="34"
+              width="34"
+              data-position="absolute"
+              data-p="6"
+              data-top="0"
+              data-right="0"
+            />
+          </div>
+
+          <button
+            type="button"
+            class="c-button"
+            data-variant="bare"
+            data-self="end"
+            onClick={bg.exec([search.clear, sort.clear])}
+            disabled={search.unchanged && sort.unchanged}
+          >
+            {t("app.reset")}
+          </button>
+        </div>
+      )}
 
       {tokenBlacklist.isSuccess && tokens.length === 0 && (
         <UI.Info data-mt="12" data-transform="upper-first">
