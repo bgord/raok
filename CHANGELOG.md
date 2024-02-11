@@ -1,6 +1,9 @@
 # Changelog
+- 2024-02-11 10:18 89bb0d4 **refactor: hide token blacklist actions behind a toggle button**
+## 2024-02-11 10:18 
+- 2024-02-10 10:18 7f39836 **fix: bottom paddings on mobile**
 - 2024-02-09 12:41 98fd0ee **refactor: improve navigation desktop spacing**
-## 2024-02-09 12:41 
+- 2024-02-09 11:41 078b299 **docs: generate CHANGELOG**
 - 2024-02-08 15:56 9221ef1 **refactor: remove reordering**
 - 2024-02-08 15:52 232e8a9 **step: add settings shortcuts**
 - 2024-02-08 15:05 afd9341 **docs: generate CHANGELOG**
