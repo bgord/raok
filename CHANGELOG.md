@@ -1,6 +1,8 @@
 # Changelog
+- 2024-02-12 08:12 7e16b00 **build(deps): bump open-graph-scraper from 6.3.3 to 6.3.4 (#182)**
+## 2024-02-12 08:12 
 - 2024-02-11 10:18 89bb0d4 **refactor: hide token blacklist actions behind a toggle button**
-## 2024-02-11 10:18 
+- 2024-02-11 09:18 45e1df3 **docs: generate CHANGELOG**
 - 2024-02-10 10:18 7f39836 **fix: bottom paddings on mobile**
 - 2024-02-09 12:41 98fd0ee **refactor: improve navigation desktop spacing**
 - 2024-02-09 11:41 078b299 **docs: generate CHANGELOG**
