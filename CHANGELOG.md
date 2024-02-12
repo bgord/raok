@@ -1,11 +1,13 @@
 # Changelog
+- 2024-02-12 11:09 7038326 **feature: fix add minimum token rating value threshold to getSuggestedBlacklistedTokens**
+## 2024-02-12 11:09 
 - 2024-02-12 08:15 e3f622b **build(deps-dev): bump oxlint from 0.2.7 to 0.2.8 (#183)**
-## 2024-02-12 08:15 
 - 2024-02-12 08:14 e72fd67 **build(deps-dev): bump postcss from 8.4.34 to 8.4.35 (#184)**
 - 2024-02-12 08:13 5f82eec **build(deps): bump iconoir-react from 7.3.0 to 7.4.0 (#187)**
 - 2024-02-12 08:13 5c7c02c **build(deps): bump preact from 10.19.3 to 10.19.4 (#185)**
 - 2024-02-12 08:13 58dd7a5 **build(deps-dev): bump tsx from 4.7.0 to 4.7.1 (#186)**
 - 2024-02-12 08:12 7e16b00 **build(deps): bump open-graph-scraper from 6.3.3 to 6.3.4 (#182)**
+- 2024-02-12 07:16 d545559 **docs: generate CHANGELOG**
 - 2024-02-12 07:14 d2fa9e9 **docs: generate CHANGELOG**
 - 2024-02-12 07:14 b85a583 **docs: generate CHANGELOG**
 - 2024-02-12 07:13 c603cb4 **docs: generate CHANGELOG**
