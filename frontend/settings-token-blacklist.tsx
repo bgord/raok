@@ -60,7 +60,6 @@ export function SettingsTokenBlacklist() {
 
       <div
         data-display="flex"
-        data-main="between"
         data-cross="end"
         data-my="24"
       >
@@ -69,8 +68,7 @@ export function SettingsTokenBlacklist() {
           type="button"
           class="c-button"
           data-variant="with-icon"
-          data-mr="72"
-          data-md-mr="0"
+          data-ml="24"
           onClick={actions.toggle}
           title={
             actions.on ? t("article.actions.hide") : t("article.actions.show")
