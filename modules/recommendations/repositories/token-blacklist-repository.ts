@@ -33,12 +33,15 @@ export class TokenBlacklistRepository {
   static async getSuggestedBlacklistedTokens(
     limit: number
   ): Promise<VO.TokenRatingType[]> {
+    const minimumValueTreshold = -10;
+
     return infra.db.$queryRaw`
       SELECT tr.*
       FROM TokenRating tr
       LEFT JOIN TokenBlacklist tb ON tr.token = tb.token
       WHERE tb.token IS NULL
         AND (tr.dismissedUntil IS NULL OR tr.dismissedUntil < strftime('%s', 'now') * 1000)
+        AND (tr.value <= ${minimumValueTreshold})
       ORDER BY tr.value ASC
       LIMIT ${limit};
     `;
