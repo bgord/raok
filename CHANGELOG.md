@@ -1,6 +1,8 @@
 # Changelog
+- 2024-02-12 11:22 80d53b4 **Update settings-token-blacklist.tsx**
+## 2024-02-12 11:22 
 - 2024-02-12 11:09 7038326 **feature: fix add minimum token rating value threshold to getSuggestedBlacklistedTokens**
-## 2024-02-12 11:09 
+- 2024-02-12 10:09 3a66794 **docs: generate CHANGELOG**
 - 2024-02-12 08:15 e3f622b **build(deps-dev): bump oxlint from 0.2.7 to 0.2.8 (#183)**
 - 2024-02-12 08:14 e72fd67 **build(deps-dev): bump postcss from 8.4.34 to 8.4.35 (#184)**
 - 2024-02-12 08:13 5f82eec **build(deps): bump iconoir-react from 7.3.0 to 7.4.0 (#187)**
