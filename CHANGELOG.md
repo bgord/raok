@@ -1,9 +1,11 @@
 # Changelog
+- 2024-02-12 08:14 e72fd67 **build(deps-dev): bump postcss from 8.4.34 to 8.4.35 (#184)**
+## 2024-02-12 08:14 
 - 2024-02-12 08:13 5f82eec **build(deps): bump iconoir-react from 7.3.0 to 7.4.0 (#187)**
 - 2024-02-12 08:13 5c7c02c **build(deps): bump preact from 10.19.3 to 10.19.4 (#185)**
 - 2024-02-12 08:13 58dd7a5 **build(deps-dev): bump tsx from 4.7.0 to 4.7.1 (#186)**
-## 2024-02-12 08:13 
 - 2024-02-12 08:12 7e16b00 **build(deps): bump open-graph-scraper from 6.3.3 to 6.3.4 (#182)**
+- 2024-02-12 07:14 d2fa9e9 **docs: generate CHANGELOG**
 - 2024-02-12 07:13 c603cb4 **docs: generate CHANGELOG**
 - 2024-02-12 07:13 9e03e86 **docs: generate CHANGELOG**
 - 2024-02-12 07:13 026326b **docs: generate CHANGELOG**
