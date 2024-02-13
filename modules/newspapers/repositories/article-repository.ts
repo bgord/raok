@@ -11,14 +11,14 @@ export const ArchiveArticlesFilter = new bg.Filter(
     status: VO.ArticleStatus.optional(),
     source: VO.ArticleSource.optional(),
     createdAt: VO.TimeStampFilter,
-  })
+  }),
 );
 
 export class ArticleRepository {
   static async pagedGetAll(
     pagination: bg.PaginationType,
     search: VO.ArticleArchiveSearchQueryType,
-    filters?: infra.Prisma.ArticleWhereInput
+    filters?: infra.Prisma.ArticleWhereInput,
   ) {
     const where = { ...filters, title: { contains: search } };
 
@@ -45,7 +45,7 @@ export class ArticleRepository {
       infra.db.article.count({ where }),
       infra.db.article.findMany({
         where,
-        orderBy: { createdAt: "desc" },
+        orderBy: [{ rating: "desc" }, { createdAt: "desc" }],
         ...pagination.values,
       }),
     ]);
@@ -66,7 +66,7 @@ export class ArticleRepository {
   static async create(
     article: Pick<VO.ArticleType, "id" | "url" | "source" | "createdAt"> & {
       title: VO.ArticleMetatagsType["title"];
-    }
+    },
   ) {
     return infra.db.article.create({
       data: { ...article, status: VO.ArticleStatusEnum.ready },
@@ -74,7 +74,7 @@ export class ArticleRepository {
   }
 
   static async updateStatus(
-    payload: Pick<VO.ArticleType, "id" | "status" | "revision">
+    payload: Pick<VO.ArticleType, "id" | "status" | "revision">,
   ) {
     return infra.db.article.updateMany({
       where: { id: payload.id },
@@ -85,7 +85,7 @@ export class ArticleRepository {
   static async assignToNewspaper(
     articleId: VO.ArticleType["id"],
     newspaperId: VO.NewspaperType["id"],
-    revision: VO.ArticleType["revision"]
+    revision: VO.ArticleType["revision"],
   ) {
     return infra.db.article.update({
       where: { id: articleId },
@@ -94,7 +94,7 @@ export class ArticleRepository {
   }
 
   static async updateReadingTime(
-    payload: Pick<VO.ArticleType, "id" | "estimatedReadingTimeInMinutes">
+    payload: Pick<VO.ArticleType, "id" | "estimatedReadingTimeInMinutes">,
   ) {
     return infra.db.article.update({
       where: { id: payload.id },
@@ -112,7 +112,7 @@ export class ArticleRepository {
   }
 
   static async getNumbersOfNonProcessedArticlesWithUrl(
-    url: VO.ArticleType["url"]
+    url: VO.ArticleType["url"],
   ) {
     return infra.db.article.count({
       where: { url, status: VO.ArticleStatusEnum.ready },
