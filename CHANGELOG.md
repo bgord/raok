@@ -1,9 +1,11 @@
 # Changelog
+- 2024-02-13 22:14 3feba38 **feature: add experimental raok article sorting**
+## 2024-02-13 22:14 
 - 2024-02-13 09:13 f45b3f0 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#192)**
-## 2024-02-13 09:13 
 - 2024-02-13 09:12 961d030 **build(deps-dev): bump @typescript-eslint/parser from 6.21.0 to 7.0.1 (#191)**
 - 2024-02-13 09:12 8476ec5 **build(deps): bump @bgord/frontend from `f15ef76` to `63dfe62` (#190)**
 - 2024-02-13 09:12 4fd6cc8 **build(deps-dev): bump eslint-plugin-sonarjs from 0.23.0 to 0.24.0 (#189)**
+- 2024-02-13 08:13 07ba7e8 **docs: generate CHANGELOG**
 - 2024-02-13 08:12 f28ff1e **docs: generate CHANGELOG**
 - 2024-02-12 11:22 80d53b4 **Update settings-token-blacklist.tsx**
 - 2024-02-12 11:09 7038326 **feature: fix add minimum token rating value threshold to getSuggestedBlacklistedTokens**
