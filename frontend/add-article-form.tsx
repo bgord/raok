@@ -1,4 +1,5 @@
 import { h } from "preact";
+import { useEffect } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
@@ -14,6 +15,20 @@ export function AddArticleForm() {
 
   const url = bg.useField<types.ArticleType["url"]>("article-url", "");
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
+
+  // const preview = bg.useField<string | null>("preview", null);
+
+  useEffect(() => {
+    if (!navigator || !navigator.clipboard || !navigator.clipboard.read) {
+      console.log("clipboard.read not supported");
+      return;
+    }
+    console.log("clipboard.reading");
+    navigator.clipboard.read().then((text) => {
+      console.log("clipboard.read");
+      console.log(text);
+    });
+  }, []);
 
   const addArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
