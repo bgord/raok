@@ -1,8 +1,10 @@
 # Changelog
+- 2024-02-14 20:44 092c4fd **fix: article opened on article open button**
+## 2024-02-14 20:44 
 - 2024-02-14 15:27 ea66516 **fix: add unknown article rating**
-## 2024-02-14 15:27 
 - 2024-02-14 15:24 6aa59b7 **feature: add autodiscovery source candidate finder**
 - 2024-02-14 15:22 ec0f73a **refactor: allow multiple strategies for source candidate finder**
+- 2024-02-14 14:28 48b0c5f **docs: generate CHANGELOG**
 - 2024-02-14 14:24 69f3e3e **docs: generate CHANGELOG**
 - 2024-02-14 13:17 d98cf87 **feature: add article open new window button**
 - 2024-02-14 13:16 ca80dd4 **fix: article homepage icon**
