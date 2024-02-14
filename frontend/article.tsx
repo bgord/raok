@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { h } from "preact";
 import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
 import * as types from "./types";
 
 import { ArticleHomepage } from "./article-homepage";
 import { ArticleMarkAsAdded } from "./article-mark-as-added";
-import { ArticleSourceAdd } from "./article-source-add";
 import { ArticleDelete } from "./article-delete";
 import { ArticleUrl } from "./article-url";
 import { ArticleRating } from "./article-rating";
@@ -158,7 +158,16 @@ export function Article(props: ArticlePropsType) {
           data-ml="auto"
           data-md-ml="12"
         >
-          <ArticleSourceAdd {...props} />
+          <button
+            type="button"
+            class="c-button"
+            data-variant="with-icon"
+            title={t("article.open")}
+            onClick={() => window.open(props.url)}
+            {...bg.Rhythm().times(2).style.height}
+          >
+            <Icons.OpenNewWindow height="16" width="16" />
+          </button>
           <ArticleHomepage {...props} />
           <ArticleMarkAsAdded {...props} />
           <ArticleDelete {...props} />
