@@ -26,7 +26,7 @@ export function ArticleHomepage(props: ArticleHomepagePropsType) {
       ])}
       {...bg.Rhythm().times(2).style.height}
     >
-      <Icons.Home width="18" height="18" />
+      <Icons.Home width="17" height="17" />
     </button>
   );
 }
