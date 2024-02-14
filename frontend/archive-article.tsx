@@ -19,7 +19,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
       data-display="flex"
       data-cross="center"
       data-wrap="nowrap"
-      data-gap="12"
+      data-gap="6"
       data-max-width="768"
       data-width="100%"
     >
@@ -45,10 +45,9 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
           data-display="flex"
           data-cross="center"
           data-wrap="nowrap"
-          data-gap="6"
+          data-gap="3"
         >
           <UI.Badge>{props.status}</UI.Badge>
-
           <UI.Badge>{props.source}</UI.Badge>
         </div>
 

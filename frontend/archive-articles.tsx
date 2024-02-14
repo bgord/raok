@@ -66,8 +66,8 @@ export function ArchiveArticles(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
-      data-gap="36"
-      data-md-gap="12"
+      data-gap="24"
+      data-md-gap="6"
       data-my="24"
       data-mx="auto"
       data-md-pl="6"
@@ -168,6 +168,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         data-wrap="nowrap"
         data-max-width="100%"
         data-gap="6"
+        data-md-mb="12"
       >
         <div data-position="relative" data-width="100%">
           <input
