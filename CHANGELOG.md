@@ -1,9 +1,12 @@
 # Changelog
+- 2024-02-14 15:24 6aa59b7 **feature: add autodiscovery source candidate finder**
+## 2024-02-14 15:24 
+- 2024-02-14 15:22 ec0f73a **refactor: allow multiple strategies for source candidate finder**
 - 2024-02-14 13:17 d98cf87 **feature: add article open new window button**
-## 2024-02-14 13:17 
 - 2024-02-14 13:16 ca80dd4 **fix: article homepage icon**
 - 2024-02-14 13:08 238b33b **refactor: revamp archive articles**
 - 2024-02-14 13:04 72f14ae **step: hide empty newspaper list**
+- 2024-02-14 12:23 1ce25b5 **docs: generate CHANGELOG**
 - 2024-02-14 10:00 cdd638b **feature: add useArticleUrlClipboardPreview**
 - 2024-02-14 09:28 8c5b4d5 **step: clipboard read text**
 - 2024-02-14 09:01 25dcafa **docs: generate CHANGELOG**
