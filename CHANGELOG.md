@@ -1,7 +1,12 @@
 # Changelog
+- 2024-02-14 13:17 d98cf87 **feature: add article open new window button**
+## 2024-02-14 13:17 
+- 2024-02-14 13:16 ca80dd4 **fix: article homepage icon**
+- 2024-02-14 13:08 238b33b **refactor: revamp archive articles**
+- 2024-02-14 13:04 72f14ae **step: hide empty newspaper list**
 - 2024-02-14 10:00 cdd638b **feature: add useArticleUrlClipboardPreview**
-## 2024-02-14 10:00 
 - 2024-02-14 09:28 8c5b4d5 **step: clipboard read text**
+- 2024-02-14 09:01 25dcafa **docs: generate CHANGELOG**
 - 2024-02-14 08:28 2164fa8 **docs: generate CHANGELOG**
 - 2024-02-13 22:14 3feba38 **feature: add experimental raok article sorting**
 - 2024-02-13 21:15 d1ec8b6 **docs: generate CHANGELOG**
