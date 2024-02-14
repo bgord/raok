@@ -2,7 +2,9 @@
 import { h } from "preact";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
+import { useMutation } from "react-query";
 
+import * as api from "./api";
 import * as UI from "./ui";
 import * as types from "./types";
 
@@ -18,6 +20,8 @@ type ArticlePropsType = types.ArticleType &
 
 export function Article(props: ArticlePropsType) {
   const t = bg.useTranslations();
+
+  const articleOpened = useMutation(api.Article.opened);
 
   return (
     <li
@@ -163,7 +167,10 @@ export function Article(props: ArticlePropsType) {
             class="c-button"
             data-variant="with-icon"
             title={t("article.open")}
-            onClick={() => window.open(props.url)}
+            onClick={bg.exec([
+              () => articleOpened.mutate(props.id),
+              () => window.open(props.url),
+            ])}
             {...bg.Rhythm().times(2).style.height}
           >
             <Icons.OpenNewWindow height="16" width="16" />
