@@ -1,11 +1,11 @@
 import { h } from "preact";
-import { useEffect } from "preact/hooks";
 import { useMutation, useQueryClient } from "react-query";
 import * as bg from "@bgord/frontend";
 
 import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
+import * as hooks from "./hooks";
 
 export function AddArticleForm() {
   const t = bg.useTranslations();
@@ -16,19 +16,7 @@ export function AddArticleForm() {
   const url = bg.useField<types.ArticleType["url"]>("article-url", "");
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
 
-  // const preview = bg.useField<string | null>("preview", null);
-
-  useEffect(() => {
-    if (!navigator || !navigator.clipboard || !navigator.clipboard.read) {
-      console.log("clipboard.read not supported");
-      return;
-    }
-    console.log("clipboard.reading");
-    navigator.clipboard.read().then((text) => {
-      console.log("clipboard.read");
-      console.log(text);
-    });
-  }, []);
+  const preview = hooks.useArticleUrlClipboardPreview();
 
   const addArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
@@ -36,51 +24,86 @@ export function AddArticleForm() {
       queryClient.invalidateQueries(api.keys.articles);
       queryClient.invalidateQueries(api.keys.stats);
       notify({ message: "article.added" });
+      preview.clear();
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
   return (
-    <form
-      data-display="flex"
-      data-gap="12"
-      data-md-gap="6"
-      data-mt="12"
-      data-md-mt="3"
-      onSubmit={(event) => {
-        event.preventDefault();
-        addArticleRequest.mutate({ url: url.value });
-      }}
-    >
-      <input
-        class="c-input"
-        data-grow="1"
-        type="url"
-        inputMode="url"
-        placeholder={t("article.placeholder")}
-        value={url.value}
-        onChange={url.handleChange}
-        {...bg.Form.pattern(types.ArticleUrlValidations)}
-        {...url.input.props}
-        {...shortcut}
-      />
-
-      <button
-        class="c-button"
-        data-variant="secondary"
-        type="submit"
-        disabled={addArticleRequest.isLoading || url.unchanged}
-        {...bg.Rhythm().times(5).style.minWidth}
+    <div data-display="flex" data-direction="column" data-width="100%">
+      <form
+        data-display="flex"
+        data-gap="12"
+        data-md-gap="6"
+        data-mt="12"
+        data-md-mt="3"
+        onSubmit={(event) => {
+          event.preventDefault();
+          addArticleRequest.mutate({ url: url.value });
+        }}
       >
-        {addArticleRequest.isLoading
-          ? t("article.adding_article")
-          : t("article.add")}
-      </button>
+        <input
+          class="c-input"
+          data-grow="1"
+          type="url"
+          inputMode="url"
+          placeholder={t("article.placeholder")}
+          value={url.value}
+          onChange={url.handleChange}
+          {...bg.Form.pattern(types.ArticleUrlValidations)}
+          {...url.input.props}
+          {...shortcut}
+        />
 
-      <UI.ClearButton
-        onClick={url.clear}
-        disabled={addArticleRequest.isLoading || url.unchanged}
-      />
-    </form>
+        <button
+          class="c-button"
+          data-variant="secondary"
+          type="submit"
+          disabled={addArticleRequest.isLoading || url.unchanged}
+          {...bg.Rhythm().times(5).style.minWidth}
+        >
+          {addArticleRequest.isLoading
+            ? t("article.adding_article")
+            : t("article.add")}
+        </button>
+
+        <UI.ClearButton
+          onClick={url.clear}
+          disabled={addArticleRequest.isLoading || url.unchanged}
+        />
+      </form>
+
+      {preview.changed && (
+        <form
+          data-display="flex"
+          data-mt="6"
+          onSubmit={(event) => {
+            event.preventDefault();
+            addArticleRequest.mutate({
+              url: preview.value as types.ArticleType["url"],
+            });
+          }}
+        >
+          <UI.Info>{preview.value}</UI.Info>
+
+          <button
+            class="c-button"
+            data-variant="bare"
+            type="submit"
+            disabled={addArticleRequest.isLoading}
+            {...bg.Rhythm().times(5).style.minWidth}
+          >
+            {addArticleRequest.isLoading
+              ? t("article.adding_article")
+              : t("article.add")}
+          </button>
+
+          <UI.ClearButton
+            onClick={preview.clear}
+            disabled={addArticleRequest.isLoading}
+          />
+        </form>
+      )}
+    </div>
   );
 }
