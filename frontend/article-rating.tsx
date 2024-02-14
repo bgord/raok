@@ -7,6 +7,7 @@ export function ArticleRating(props: Pick<types.ArticleType, "rating">) {
   const ratingLevelToColor: Record<types.ArticleRatingLevel, string> = {
     [types.ArticleRatingLevel.recommended]: "green-300",
     [types.ArticleRatingLevel.default]: "gray-300",
+    [types.ArticleRatingLevel.unknown]: "gray-500",
     [types.ArticleRatingLevel.not_recommended]: "red-300",
   };
 

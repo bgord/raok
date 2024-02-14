@@ -7,6 +7,7 @@ import * as types from "./types";
 const ratingToSortValue = {
   [types.ArticleRatingLevel.recommended]: 3,
   [types.ArticleRatingLevel.default]: 2,
+  [types.ArticleRatingLevel.unknown]: 0,
   [types.ArticleRatingLevel.not_recommended]: 1,
 };
 
