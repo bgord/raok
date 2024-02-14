@@ -30,7 +30,7 @@ export class SourceCandidateFinderStrategyYouTube {
       const dom = new JSDOM(response);
 
       const linkTag = dom.window.document.querySelector(
-        'link[rel="canonical"]',
+        'link[rel="canonical"]'
       );
 
       const url = linkTag?.getAttribute("href");
@@ -53,8 +53,10 @@ export class SourceCandidateFinderStrategyYouTube {
 export class SourceCandidateFinderStrategyDefault {
   static strategy = "default";
 
-  static isApplicable(_value: VO.SourceUrlType): boolean {
-    return true;
+  static isApplicable(value: VO.SourceUrlType): boolean {
+    const url = new URL(value);
+
+    return url.origin !== "https://www.youtube.com";
   }
 
   static async get(value: VO.SourceUrlType): Promise<VO.SourceUrlType[]> {
@@ -75,15 +77,14 @@ export class SourceCandidateFinderStrategyDefault {
 }
 
 export class SourceCandidatesFinder {
-  static find(value: VO.SourceUrlType): SourceCandidateFinderStrategyType {
+  static find(value: VO.SourceUrlType): SourceCandidateFinderStrategyType[] {
     const strategies: SourceCandidateFinderStrategyType[] = [
+      SourceCandidateFinderStrategyAutodiscovery,
       SourceCandidateFinderStrategyYouTube,
+      SourceCandidateFinderStrategyDefault,
     ];
 
-    return (
-      strategies.find((strategy) => strategy.isApplicable(value)) ??
-      SourceCandidateFinderStrategyDefault
-    );
+    return strategies.filter((strategy) => strategy.isApplicable(value));
   }
 }
 
@@ -91,15 +92,18 @@ export class SourceFinder {
   private constructor(private readonly candidates: VO.SourceUrlType[]) {}
 
   static async build(url: VO.SourceUrlType) {
-    const strategy = SourceCandidatesFinder.find(url);
-    const candidates = await strategy.get(url);
+    const strategies = SourceCandidatesFinder.find(url);
 
-    return new SourceFinder(candidates);
+    const candidates = await Promise.all(
+      strategies.map((strategy) => strategy.get(url))
+    );
+
+    return new SourceFinder(candidates.flat());
   }
 
   async find(): Promise<VO.SourceUrlType> {
     const options = this.candidates.map((sourceUrl) =>
-      Policies.SourceUrlResponds.perform({ sourceUrl }).then(() => sourceUrl),
+      Policies.SourceUrlResponds.perform({ sourceUrl }).then(() => sourceUrl)
     );
 
     return Promise.any(options).catch(() => {
