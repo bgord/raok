@@ -1,6 +1,8 @@
 # Changelog
+- 2024-02-14 10:00 cdd638b **feature: add useArticleUrlClipboardPreview**
+## 2024-02-14 10:00 
 - 2024-02-14 09:28 8c5b4d5 **step: clipboard read text**
-## 2024-02-14 09:28 
+- 2024-02-14 08:28 2164fa8 **docs: generate CHANGELOG**
 - 2024-02-13 22:14 3feba38 **feature: add experimental raok article sorting**
 - 2024-02-13 21:15 d1ec8b6 **docs: generate CHANGELOG**
 - 2024-02-13 09:13 f45b3f0 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#192)**
