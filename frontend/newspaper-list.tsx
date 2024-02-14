@@ -17,6 +17,8 @@ export function NewspaperList() {
     direction: "head",
   });
 
+  if (!newspapers.items.length) return null;
+
   return (
     <section data-my="24">
       <UI.Header
