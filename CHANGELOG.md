@@ -1,6 +1,12 @@
 # Changelog
+- 2024-02-15 08:30 f8a16f1 **build(deps): bump open-graph-scraper from 6.3.4 to 6.4.0 (#197)**
+- 2024-02-15 08:30 b2fefcc **build(deps): bump emittery from 1.0.2 to 1.0.3 (#196)**
+- 2024-02-15 08:30 87a8f1d **build(deps-dev): bump eslint-plugin-security from 2.1.0 to 2.1.1 (#198)**
+- 2024-02-15 08:30 34a87f5 **build(deps-dev): bump husky from 9.0.10 to 9.0.11 (#193)**
+- 2024-02-15 08:30 066251f **build(deps-dev): bump @commitlint/config-conventional (#199)**
+## 2024-02-15 08:30 
 - 2024-02-14 20:44 092c4fd **fix: article opened on article open button**
-## 2024-02-14 20:44 
+- 2024-02-14 19:44 9afb916 **docs: generate CHANGELOG**
 - 2024-02-14 15:27 ea66516 **fix: add unknown article rating**
 - 2024-02-14 15:24 6aa59b7 **feature: add autodiscovery source candidate finder**
 - 2024-02-14 15:22 ec0f73a **refactor: allow multiple strategies for source candidate finder**
