@@ -41,7 +41,7 @@ export function Dashboard(_: RoutableProps) {
         <section
           data-width="100%"
           data-mt="6"
-          data-px="24"
+          data-pr="24"
           data-md-px="0"
           {...bg.Rhythm().times(62).style.maxWidth}
         >
