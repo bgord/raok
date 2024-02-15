@@ -1,11 +1,13 @@
 # Changelog
+- 2024-02-15 16:09 759b832 **refactor: reduce article list padding**
+## 2024-02-15 16:09 
 - 2024-02-15 08:31 8fc21a7 **build(deps-dev): bump @commitlint/cli from 18.6.0 to 18.6.1 (#195)**
-## 2024-02-15 08:31 
 - 2024-02-15 08:30 f8a16f1 **build(deps): bump open-graph-scraper from 6.3.4 to 6.4.0 (#197)**
 - 2024-02-15 08:30 b2fefcc **build(deps): bump emittery from 1.0.2 to 1.0.3 (#196)**
 - 2024-02-15 08:30 87a8f1d **build(deps-dev): bump eslint-plugin-security from 2.1.0 to 2.1.1 (#198)**
 - 2024-02-15 08:30 34a87f5 **build(deps-dev): bump husky from 9.0.10 to 9.0.11 (#193)**
 - 2024-02-15 08:30 066251f **build(deps-dev): bump @commitlint/config-conventional (#199)**
+- 2024-02-15 07:31 9181fb6 **docs: generate CHANGELOG**
 - 2024-02-15 07:31 45c9f2d **docs: generate CHANGELOG**
 - 2024-02-14 20:44 092c4fd **fix: article opened on article open button**
 - 2024-02-14 19:44 9afb916 **docs: generate CHANGELOG**
