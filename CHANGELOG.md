@@ -1,6 +1,10 @@
 # Changelog
+- 2024-02-19 08:21 84c3ca8 **build(deps-dev): bump vitest from 1.2.2 to 1.3.0 (#201)**
+- 2024-02-19 08:21 5b3493e **build(deps-dev): bump oxlint from 0.2.8 to 0.2.9 (#200)**
+- 2024-02-19 08:21 1fe2519 **build(deps): bump preact from 10.19.4 to 10.19.5 (#202)**
+## 2024-02-19 08:21 
 - 2024-02-15 16:09 759b832 **refactor: reduce article list padding**
-## 2024-02-15 16:09 
+- 2024-02-15 15:10 fa171be **docs: generate CHANGELOG**
 - 2024-02-15 08:31 8fc21a7 **build(deps-dev): bump @commitlint/cli from 18.6.0 to 18.6.1 (#195)**
 - 2024-02-15 08:30 f8a16f1 **build(deps): bump open-graph-scraper from 6.3.4 to 6.4.0 (#197)**
 - 2024-02-15 08:30 b2fefcc **build(deps): bump emittery from 1.0.2 to 1.0.3 (#196)**
