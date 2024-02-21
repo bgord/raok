@@ -1,11 +1,13 @@
 # Changelog
+- 2024-02-21 15:12 c4ca3e2 **fix: article list mobile bottom padding**
+## 2024-02-21 15:12 
 - 2024-02-21 08:23 cf059b0 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#204)**
-## 2024-02-21 08:23 
 - 2024-02-21 08:22 9fc88bd **build(deps-dev): bump @typescript-eslint/parser from 7.0.1 to 7.0.2 (#205)**
 - 2024-02-21 08:22 46b4117 **build(deps): bump @prisma/client from 5.9.1 to 5.10.1 (#206)**
 - 2024-02-21 08:21 f8c03b9 **build(deps-dev): bump prisma from 5.9.1 to 5.10.1 (#207)**
 - 2024-02-21 08:21 95e1860 **build(deps-dev): bump vitest from 1.3.0 to 1.3.1 (#208)**
 - 2024-02-21 08:21 8dcc76c **build(deps-dev): bump esbuild from 0.20.0 to 0.20.1 (#203)**
+- 2024-02-21 07:23 fa6cd8d **docs: generate CHANGELOG**
 - 2024-02-21 07:22 92bc58c **docs: generate CHANGELOG**
 - 2024-02-21 07:22 3938c22 **docs: generate CHANGELOG**
 - 2024-02-19 08:21 84c3ca8 **build(deps-dev): bump vitest from 1.2.2 to 1.3.0 (#201)**
