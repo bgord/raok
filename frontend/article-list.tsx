@@ -50,7 +50,7 @@ export function ArticleList() {
   const searchModeEnabled = articlesSearchResults > 0;
 
   return (
-    <section>
+    <section data-md-mb="24">
       <div
         data-bg="gray-100"
         data-p="12"
