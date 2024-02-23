@@ -1,7 +1,9 @@
 # Changelog
+- 2024-02-23 08:38 a72fc54 **build(deps): bump @bgord/node from 0.58.271 to 0.58.272 (#215)**
+## 2024-02-23 08:38 
+- 2024-02-22 16:02 9716c32 **docs: generate CHANGELOG**
 - 2024-02-21 15:12 c4ca3e2 **fix: article list mobile bottom padding**
 - 2024-02-21 14:13 4d5a023 **docs: generate CHANGELOG**
-## 2024-02-21 14:13 
 - 2024-02-21 08:23 cf059b0 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#204)**
 - 2024-02-21 08:22 9fc88bd **build(deps-dev): bump @typescript-eslint/parser from 7.0.1 to 7.0.2 (#205)**
 - 2024-02-21 08:22 46b4117 **build(deps): bump @prisma/client from 5.9.1 to 5.10.1 (#206)**
