@@ -1,6 +1,8 @@
 # Changelog
+- 2024-02-23 12:04 e297013 **fix: add missing knip install**
+## 2024-02-23 12:04 
 - 2024-02-23 12:02 58c4f16 **refactor: align article actions by usage frequency**
-## 2024-02-23 12:02 
+- 2024-02-23 11:04 52e0774 **docs: generate CHANGELOG**
 - 2024-02-23 08:41 b8d2327 **build(deps): bump @prisma/client from 5.10.1 to 5.10.2 (#209)**
 - 2024-02-23 08:40 4a353c6 **build(deps-dev): bump prisma from 5.10.1 to 5.10.2 (#211)**
 - 2024-02-23 08:40 48d00bc **build(deps): bump @bgord/frontend from `63dfe62` to `b610f43` (#216)**
