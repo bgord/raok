@@ -1,12 +1,14 @@
 # Changelog
+- 2024-02-23 12:02 58c4f16 **refactor: align article actions by usage frequency**
+## 2024-02-23 12:02 
 - 2024-02-23 08:41 b8d2327 **build(deps): bump @prisma/client from 5.10.1 to 5.10.2 (#209)**
-## 2024-02-23 08:41 
 - 2024-02-23 08:40 4a353c6 **build(deps-dev): bump prisma from 5.10.1 to 5.10.2 (#211)**
 - 2024-02-23 08:40 48d00bc **build(deps): bump @bgord/frontend from `63dfe62` to `b610f43` (#216)**
 - 2024-02-23 08:40 1fd39f3 **build(deps): bump preact-render-to-string from 6.3.1 to 6.4.0 (#212)**
 - 2024-02-23 08:39 3527cbc **build(deps-dev): bump oxlint from 0.2.9 to 0.2.10 (#213)**
 - 2024-02-23 08:38 a72fc54 **build(deps): bump @bgord/node from 0.58.271 to 0.58.272 (#215)**
 - 2024-02-23 08:38 27b58a5 **build(deps): bump preact from 10.19.5 to 10.19.6 (#214)**
+- 2024-02-23 07:41 86e1225 **docs: generate CHANGELOG**
 - 2024-02-23 07:39 3539da4 **docs: generate CHANGELOG**
 - 2024-02-23 07:38 98d3aee **docs: generate CHANGELOG**
 - 2024-02-23 07:38 4e0c124 **docs: generate CHANGELOG**
