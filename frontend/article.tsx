@@ -162,6 +162,8 @@ export function Article(props: ArticlePropsType) {
           data-ml="auto"
           data-md-ml="12"
         >
+          <ArticleHomepage {...props} />
+          <ArticleMarkAsAdded {...props} />
           <button
             type="button"
             class="c-button"
@@ -175,8 +177,6 @@ export function Article(props: ArticlePropsType) {
           >
             <Icons.OpenNewWindow height="16" width="16" />
           </button>
-          <ArticleHomepage {...props} />
-          <ArticleMarkAsAdded {...props} />
           <ArticleDelete {...props} />
         </div>
 
