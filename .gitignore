@@ -21,3 +21,7 @@ static/normalize.css
 static/normalize.min.css
 tmp/
 tsconfig.tsbuildinfo
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
