@@ -35,7 +35,7 @@ export const prerequisites = [
   }),
   new bg.PrerequisiteNode({
     label: "node",
-    version: bg.PackageVersion.fromStringWithV("v20.5.1"),
+    version: bg.PackageVersion.fromStringWithV("v21.6.2"),
   }),
   new bg.PrerequisiteRAM({
     label: "RAM",
@@ -67,7 +67,7 @@ export const healthcheck = [
   }),
   new bg.PrerequisiteMailer({ label: "nodemailer", mailer: Mailer }),
   ...prerequisites.filter(
-    (prerequisite) => prerequisite.config.label !== "port"
+    (prerequisite) => prerequisite.config.label !== "port",
   ),
 ];
 
