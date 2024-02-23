@@ -1,7 +1,9 @@
 # Changelog
+- 2024-02-23 08:39 3527cbc **build(deps-dev): bump oxlint from 0.2.9 to 0.2.10 (#213)**
+## 2024-02-23 08:39 
 - 2024-02-23 08:38 a72fc54 **build(deps): bump @bgord/node from 0.58.271 to 0.58.272 (#215)**
 - 2024-02-23 08:38 27b58a5 **build(deps): bump preact from 10.19.5 to 10.19.6 (#214)**
-## 2024-02-23 08:38 
+- 2024-02-23 07:38 98d3aee **docs: generate CHANGELOG**
 - 2024-02-23 07:38 4e0c124 **docs: generate CHANGELOG**
 - 2024-02-22 16:02 9716c32 **docs: generate CHANGELOG**
 - 2024-02-21 15:12 c4ca3e2 **fix: article list mobile bottom padding**
