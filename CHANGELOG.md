@@ -1,7 +1,9 @@
 # Changelog
+- 2024-02-24 20:24 d41bb41 **step: bump bgord/scripts**
+## 2024-02-24 20:24 
 - 2024-02-24 20:14 0fe4c86 **refactor: make build prechecks to a separate step**
-## 2024-02-24 20:14 
 - 2024-02-24 20:08 dad8847 **Playwright (#217)**
+- 2024-02-24 19:14 44be3a1 **docs: generate CHANGELOG**
 - 2024-02-24 19:08 815ebdb **docs: generate CHANGELOG**
 - 2024-02-24 08:34 b3e0afb **Update article-url.ts**
 - 2024-02-24 07:34 1a7413c **docs: generate CHANGELOG**
