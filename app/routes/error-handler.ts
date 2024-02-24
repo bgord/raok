@@ -15,7 +15,7 @@ export class ErrorHandler {
     error,
     request,
     response,
-    next
+    next,
   ) => {
     if (error instanceof bg.Errors.InvalidCredentialsError) {
       infra.logger.error({
@@ -31,6 +31,7 @@ export class ErrorHandler {
         message: "Access denied",
         operation: "access_denied_error",
         correlationId: request.requestId,
+        metadata: { reason: error.reason, message: error.message },
       });
       return response.redirect("/");
     }
@@ -225,7 +226,7 @@ export class ErrorHandler {
         error.issues.find(
           (issue) =>
             issue.message ===
-            Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE,
         )
       ) {
         return response.status(400).send({
@@ -238,7 +239,7 @@ export class ErrorHandler {
         error.issues.find(
           (issue) =>
             issue.message ===
-            Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE,
         )
       ) {
         return response.status(400).send({
@@ -250,7 +251,7 @@ export class ErrorHandler {
       if (
         error.issues.find(
           (issue) =>
-            issue.message === Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY
+            issue.message === Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY,
         )
       ) {
         return response.status(400).send({

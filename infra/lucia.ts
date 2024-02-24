@@ -8,7 +8,11 @@ import { db, User, Session } from "./db";
 const adapter = new PrismaAdapter(db.session, db.user);
 
 const lucia = new Lucia(adapter, {
-  sessionCookie: { attributes: { secure: Env.type === "production" } },
+  sessionCookie: {
+    attributes: {
+      secure: Env.type === bg.Schema.NodeEnvironmentEnum.production,
+    },
+  },
   sessionExpiresIn: new TimeSpan(4, "w"),
   getUserAttributes: (attributes) => ({
     email: attributes.email,
