@@ -32,9 +32,7 @@ export function CreateNewspaper() {
     >
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.BookStack width="20" height="20" data-mr="6" />
-        <h4 data-fw="500" data-transform="upper-first">
-          {t("app.create_newspaper")}
-        </h4>
+        <span data-transform="upper-first">{t("app.create_newspaper")}</span>
       </UI.Header>
 
       {newspaperCreator.selectedArticleIds.length > 0 && (
