@@ -43,6 +43,9 @@ jobs:
         if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         run: npm install
 
+      - name: Create .env.test file
+        run: echo "${{ secrets.ENV_TEST }}" > .env.test
+
       - name: Create .env.staging file
         run: echo "${{ secrets.ENV_STAGING }}" > .env.staging
 
