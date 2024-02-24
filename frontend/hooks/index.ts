@@ -36,6 +36,7 @@ export function useArticleUrlClipboardPreview() {
         preview.set(url ?? null);
       })
       .catch(preview.clear);
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, []);
 
   return preview;

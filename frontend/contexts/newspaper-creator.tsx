@@ -24,6 +24,7 @@ export function NewspaperCreatorProvider(props: NewspaperCreatorProviderProps) {
 
   const actions = {
     ...props.state.actions,
+    /* eslint-disable consistent-return */
     toggle: (payload: types.ArticleType["id"]) => {
       if (
         props.state.selectedArticleIds.length <
