@@ -1,6 +1,8 @@
 # Changelog
+- 2024-02-24 20:08 dad8847 **Playwright (#217)**
+## 2024-02-24 20:08 
 - 2024-02-24 08:34 b3e0afb **Update article-url.ts**
-## 2024-02-24 08:34 
+- 2024-02-24 07:34 1a7413c **docs: generate CHANGELOG**
 - 2024-02-23 12:35 6b0c179 **refactor: bump node version**
 - 2024-02-23 12:07 5aec72a **step: bump bgord/scripts**
 - 2024-02-23 12:04 e297013 **fix: add missing knip install**
