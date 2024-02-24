@@ -24,7 +24,9 @@ export function Stats() {
     <div data-mt="48" data-bg="gray-100" data-p="12" data-shadow>
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.StatsUpSquare height="20" width="20" data-mr="6" />
-        <span data-transform="upper-first">{t("app.statistics")}</span>
+        <h4 data-fw="500" data-transform="upper-first">
+          {t("app.statistics")}
+        </h4>
       </UI.Header>
 
       <div data-display="flex" data-gap="6" data-fs="14" data-color="gray-600">
