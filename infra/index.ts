@@ -15,8 +15,16 @@ import { SupportedLanguages } from "./supported-languages";
 
 export const prerequisites = [
   new bg.PrerequisitePort({ label: "port", port: Env.PORT }),
-  new bg.PrerequisiteBinary({ label: "pandoc", binary: "pandoc" }),
-  new bg.PrerequisiteBinary({ label: "calibre", binary: "ebook-convert" }),
+  new bg.PrerequisiteBinary({
+    label: "pandoc",
+    binary: "pandoc",
+    enabled: Env.type !== bg.Schema.NodeEnvironmentEnum.test,
+  }),
+  new bg.PrerequisiteBinary({
+    label: "calibre",
+    binary: "ebook-convert",
+    enabled: Env.type !== bg.Schema.NodeEnvironmentEnum.test,
+  }),
   new bg.PrerequisitePrisma({ label: "prisma-sqlite", client: db }),
   new bg.PrerequisitePath({
     label: "static directory",
@@ -67,7 +75,7 @@ export const healthcheck = [
   }),
   new bg.PrerequisiteMailer({ label: "nodemailer", mailer: Mailer }),
   ...prerequisites.filter(
-    (prerequisite) => prerequisite.config.label !== "port"
+    (prerequisite) => prerequisite.config.label !== "port",
   ),
 ];
 
