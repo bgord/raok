@@ -1,11 +1,13 @@
 # Changelog
+- 2024-02-24 20:50 36875e5 **step: bump bgord/scripts**
+## 2024-02-24 20:50 
 - 2024-02-24 20:38 5b79c64 **step: create .env.test file**
-## 2024-02-24 20:38 
 - 2024-02-24 20:35 6b34d5c **step: bump bgord/scripts**
 - 2024-02-24 20:29 8e672be **refactor: suppress eslint warnings**
 - 2024-02-24 20:24 d41bb41 **step: bump bgord/scripts**
 - 2024-02-24 20:14 0fe4c86 **refactor: make build prechecks to a separate step**
 - 2024-02-24 20:08 dad8847 **Playwright (#217)**
+- 2024-02-24 19:39 af55fff **docs: generate CHANGELOG**
 - 2024-02-24 19:35 7e4b1d3 **docs: generate CHANGELOG**
 - 2024-02-24 19:34 13a5b77 **docs: generate CHANGELOG**
 - 2024-02-24 19:24 f7ceb06 **docs: generate CHANGELOG**
