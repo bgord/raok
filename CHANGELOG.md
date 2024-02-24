@@ -1,8 +1,10 @@
 # Changelog
+- 2024-02-24 20:29 8e672be **refactor: suppress eslint warnings**
+## 2024-02-24 20:29 
 - 2024-02-24 20:24 d41bb41 **step: bump bgord/scripts**
-## 2024-02-24 20:24 
 - 2024-02-24 20:14 0fe4c86 **refactor: make build prechecks to a separate step**
 - 2024-02-24 20:08 dad8847 **Playwright (#217)**
+- 2024-02-24 19:24 f7ceb06 **docs: generate CHANGELOG**
 - 2024-02-24 19:14 44be3a1 **docs: generate CHANGELOG**
 - 2024-02-24 19:08 815ebdb **docs: generate CHANGELOG**
 - 2024-02-24 08:34 b3e0afb **Update article-url.ts**
