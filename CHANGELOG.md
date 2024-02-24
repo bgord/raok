@@ -1,6 +1,8 @@
 # Changelog
+- 2024-02-24 20:14 0fe4c86 **refactor: make build prechecks to a separate step**
+## 2024-02-24 20:14 
 - 2024-02-24 20:08 dad8847 **Playwright (#217)**
-## 2024-02-24 20:08 
+- 2024-02-24 19:08 815ebdb **docs: generate CHANGELOG**
 - 2024-02-24 08:34 b3e0afb **Update article-url.ts**
 - 2024-02-24 07:34 1a7413c **docs: generate CHANGELOG**
 - 2024-02-23 12:35 6b0c179 **refactor: bump node version**
