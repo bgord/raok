@@ -15,6 +15,7 @@ export const ArticleUrl = z
       "utm_term",
       "utm_content",
       "ck_subscriber_id",
+      "ref",
     ];
 
     const url = new URL(value);
