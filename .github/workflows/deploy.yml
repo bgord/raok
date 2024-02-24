@@ -46,6 +46,9 @@ jobs:
       - name: Create .env.staging file
         run: echo "${{ secrets.ENV_STAGING }}" > .env.staging
 
+      - name: Run build prechecks
+        run: ./bgord-scripts/build-prechecks.sh
+
       - name: Build the app
         run: ./scripts/staging-server-build.sh
 
