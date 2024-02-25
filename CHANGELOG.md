@@ -1,6 +1,7 @@
 # Changelog
+- 2024-02-25 22:09 dda953d **refactor: improve article list header**
+## 2024-02-25 22:09 
 - 2024-02-24 21:28 fa77773 **step: bump bgord/scripts**
-## 2024-02-24 21:28 
 - 2024-02-24 21:11 6a2d1e4 **refactor: disable binary checks on test env**
 - 2024-02-24 21:09 a1dc70c **fix: node version in deploy**
 - 2024-02-24 21:06 6f18753 **fix: do not ignore stdout webserver output**
@@ -8,6 +9,7 @@
 - 2024-02-24 20:38 5b79c64 **step: create .env.test file**
 - 2024-02-24 20:35 6b34d5c **step: bump bgord/scripts**
 - 2024-02-24 20:29 8e672be **refactor: suppress eslint warnings**
+- 2024-02-24 20:28 74ecdef **docs: generate CHANGELOG**
 - 2024-02-24 20:24 d41bb41 **step: bump bgord/scripts**
 - 2024-02-24 20:14 0fe4c86 **refactor: make build prechecks to a separate step**
 - 2024-02-24 20:12 8b5bdb2 **docs: generate CHANGELOG**
