@@ -61,7 +61,7 @@ const WeeklyStatsReportNotificationTask = new AsyncTask(
 );
 
 const WeeklyStatsReportNotificationJob = new CronJob(
-  { cronExpression: `0 12 * * ${bg.UTC_DAY_OF_THE_WEEK.Monday}` },
+  { cronExpression: `0 8 * * ${bg.UTC_DAY_OF_THE_WEEK.Monday}` },
   WeeklyStatsReportNotificationTask,
 );
 
