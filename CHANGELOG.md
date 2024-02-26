@@ -1,6 +1,9 @@
 # Changelog
+- 2024-02-26 12:47 2bdaa53 **feature: raok weekly stats report notification**
+## 2024-02-26 12:47 
+- 2024-02-26 11:11 0dd1d57 **feature: add weekly stats notifier**
 - 2024-02-25 22:09 dda953d **refactor: improve article list header**
-## 2024-02-25 22:09 
+- 2024-02-25 21:09 952e5b2 **docs: generate CHANGELOG**
 - 2024-02-24 21:28 fa77773 **step: bump bgord/scripts**
 - 2024-02-24 21:11 6a2d1e4 **refactor: disable binary checks on test env**
 - 2024-02-24 21:09 a1dc70c **fix: node version in deploy**
