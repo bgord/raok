@@ -1,6 +1,9 @@
 # Changelog
+- 2024-02-26 21:15 e2e32ba **build(deps): bump @bgord/frontend from `b610f43` to `80dd3ab` (#219)**
+- 2024-02-26 21:15 2bf902f **build(deps-dev): bump eslint from 8.56.0 to 8.57.0 (#218)**
+## 2024-02-26 21:15 
 - 2024-02-26 21:12 dff5eb5 **step: bump bgord/scripts**
-## 2024-02-26 21:12 
+- 2024-02-26 20:14 db0f8ce **docs: generate CHANGELOG**
 - 2024-02-26 14:26 29c4149 **refactor: remove .versionrc.json [skip ci]**
 - 2024-02-26 13:12 0e8fad8 **refactor: bump node version**
 - 2024-02-26 13:10 0deff58 **refactor: change WeeklyStatsReportNotificationJob cron expression**
