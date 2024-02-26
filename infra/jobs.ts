@@ -10,6 +10,7 @@ import { ExpiredSessionRemover } from "../app/services";
 import * as RSS from "../modules/rss";
 import * as Settings from "../modules/settings";
 import * as Newspapers from "../modules/newspapers";
+import * as Stats from "../modules/stats";
 
 import { logger } from "./logger";
 import { Env } from "./env";
@@ -24,7 +25,7 @@ const ArticlesToReviewNotifierTask = new AsyncTask(
 
       const notification =
         await new Newspapers.Services.ArticlesToReviewNotifier(
-          settings
+          settings,
         ).build();
       await notification.send();
     } catch (error) {
@@ -34,22 +35,34 @@ const ArticlesToReviewNotifierTask = new AsyncTask(
         metadata: { error: JSON.stringify(error) },
       });
     }
-  }
+  },
 );
 
 const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
   { minutes: 1, runImmediately: true },
-  ArticlesToReviewNotifierTask
+  ArticlesToReviewNotifierTask,
 );
 
-const WeeklyStatsNotifierTask = new AsyncTask(
-  "weekly stats notifier",
-  async () => {}
+const WeeklyStatsReportNotificationTask = new AsyncTask(
+  "weekly stats report notifier",
+  async () => {
+    const email = Env.ADMIN_USERNAME as bg.Schema.EmailToType;
+    const range = new Stats.Services.WeeklyStatsRange();
+    const stats = await Stats.Services.WeeklyStats.build(range);
+
+    const notification =
+      Stats.Services.WeeklyStatsReportNotificationComposer.compose(
+        stats,
+        range,
+      );
+
+    await notification.send(email);
+  },
 );
 
-const WeeklyStatsNotifierJob = new CronJob(
-  { cronExpression: `0 8 * * ${bg.UTC_DAY_OF_THE_WEEK.Monday}` },
-  WeeklyStatsNotifierTask
+const WeeklyStatsReportNotificationJob = new CronJob(
+  { cronExpression: `0 12 * * ${bg.UTC_DAY_OF_THE_WEEK.Monday}` },
+  WeeklyStatsReportNotificationTask,
 );
 
 const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
@@ -66,7 +79,7 @@ const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
 
 const RssCrawlerJob = new SimpleIntervalJob(
   { minutes: RSS.Services.RSSCrawler.INTERVAL_MINUTES, runImmediately: true },
-  RssCrawlerTask
+  RssCrawlerTask,
 );
 
 const RssCrawlJobProcessorTask = new AsyncTask(
@@ -81,7 +94,7 @@ const RssCrawlJobProcessorTask = new AsyncTask(
         metadata: { error: logger.formatError(error) },
       });
     }
-  }
+  },
 );
 
 const RssCrawlJobProcessorJob = new SimpleIntervalJob(
@@ -89,24 +102,24 @@ const RssCrawlJobProcessorJob = new SimpleIntervalJob(
     minutes: RSS.Services.RssCrawlerJobProcessor.INTERVAL_MINUTES,
     runImmediately: true,
   },
-  RssCrawlJobProcessorTask
+  RssCrawlJobProcessorTask,
 );
 
 const ExpiredSessionRemoverTask = new AsyncTask(
   "expired-session-remover",
   async () => {
     await ExpiredSessionRemover.process();
-  }
+  },
 );
 
 const ExpiredSessionRemoverTaskJob = new SimpleIntervalJob(
   { minutes: 1, runImmediately: true },
-  ExpiredSessionRemoverTask
+  ExpiredSessionRemoverTask,
 );
 
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
 Scheduler.addSimpleIntervalJob(ExpiredSessionRemoverTaskJob);
-Scheduler.addCronJob(WeeklyStatsNotifierJob);
+Scheduler.addCronJob(WeeklyStatsReportNotificationJob);
 if (bg.FeatureFlag.isEnabled(Env.RSS_CRAWLING_ENABLED)) {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
   Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
