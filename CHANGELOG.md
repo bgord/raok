@@ -1,6 +1,9 @@
 # Changelog
+- 2024-02-26 13:12 0e8fad8 **refactor: bump node version**
+## 2024-02-26 13:12 
+- 2024-02-26 13:10 0deff58 **refactor: change WeeklyStatsReportNotificationJob cron expression**
 - 2024-02-26 12:47 2bdaa53 **feature: raok weekly stats report notification**
-## 2024-02-26 12:47 
+- 2024-02-26 11:48 62e9a9b **docs: generate CHANGELOG**
 - 2024-02-26 11:11 0dd1d57 **feature: add weekly stats notifier**
 - 2024-02-25 22:09 dda953d **refactor: improve article list header**
 - 2024-02-25 21:09 952e5b2 **docs: generate CHANGELOG**
