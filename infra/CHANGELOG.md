@@ -1,8 +1,10 @@
 # Changelog
+- 2024-02-29 07:46 2352260 **build(deps-dev): bump @commitlint/config-conventional (#228)**
+## 2024-02-29 07:46 
 - 2024-02-29 07:45 e397fa2 **build(deps-dev): bump @commitlint/cli from 18.6.1 to 19.0.3 (#229)**
-## 2024-02-29 07:45 
 - 2024-02-29 07:44 5a1b3d7 **build(deps-dev): bump oxlint from 0.2.10 to 0.2.12 (#230)**
 - 2024-02-29 07:44 3547bf3 **build(deps-dev): bump @types/node from 20.11.20 to 20.11.22 (#231)**
+- 2024-02-29 06:45 58f807d **docs: generate CHANGELOG**
 - 2024-02-29 06:44 a48ccb4 **docs: generate CHANGELOG**
 - 2024-02-26 21:15 e2e32ba **build(deps): bump @bgord/frontend from `b610f43` to `80dd3ab` (#219)**
 - 2024-02-26 21:15 2bf902f **build(deps-dev): bump eslint from 8.56.0 to 8.57.0 (#218)**
