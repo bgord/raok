@@ -1,12 +1,14 @@
 # Changelog
+- 2024-02-29 07:48 0d8b480 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#221)**
+## 2024-02-29 07:48 
 - 2024-02-29 07:47 f426456 **build(deps-dev): bump @typescript-eslint/parser from 7.0.2 to 7.1.0 (#222)**
 - 2024-02-29 07:47 d591bcb **build(deps): bump @bgord/frontend from `80dd3ab` to `0ed3230` (#223)**
-## 2024-02-29 07:47 
 - 2024-02-29 07:46 d8657c6 **build(deps-dev): bump @playwright/test from 1.41.2 to 1.42.0 (#227)**
 - 2024-02-29 07:46 2352260 **build(deps-dev): bump @commitlint/config-conventional (#228)**
 - 2024-02-29 07:45 e397fa2 **build(deps-dev): bump @commitlint/cli from 18.6.1 to 19.0.3 (#229)**
 - 2024-02-29 07:44 5a1b3d7 **build(deps-dev): bump oxlint from 0.2.10 to 0.2.12 (#230)**
 - 2024-02-29 07:44 3547bf3 **build(deps-dev): bump @types/node from 20.11.20 to 20.11.22 (#231)**
+- 2024-02-29 06:47 192a83b **docs: generate CHANGELOG**
 - 2024-02-29 06:47 1080fbf **docs: generate CHANGELOG**
 - 2024-02-29 06:46 0f4b23f **docs: generate CHANGELOG**
 - 2024-02-29 06:45 58f807d **docs: generate CHANGELOG**
