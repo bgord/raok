@@ -25,7 +25,7 @@ export function ArticleList() {
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
 
   bg.useDocumentTitle(
-    `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`,
+    `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`
   );
 
   const sort = useArticleSort();
@@ -37,7 +37,7 @@ export function ArticleList() {
       getNextPageParam: (page) => page.meta.nextPage,
       onSuccess: () => stats.refetch(),
       refetchOnMount: true,
-    },
+    }
   );
 
   const articles = bg.Pagination.infinite(_articles).toSorted(sort.sortFn);
@@ -105,6 +105,7 @@ export function ArticleList() {
           data-gap="6"
           data-variant="bare"
           onClick={articleActions.toggle}
+          {...articleActions.props.controller}
         >
           {articleActions.off && <Icons.NavArrowRight height="20" width="20" />}
           {articleActions.on && <Icons.NavArrowDown height="20" width="20" />}
@@ -136,6 +137,7 @@ export function ArticleList() {
           data-mb="24"
           data-md-mx="3"
           data-gap="6"
+          {...articleActions.props.target}
         >
           <ArticleListSort {...sort} />
           <ArticlesSearchForm />

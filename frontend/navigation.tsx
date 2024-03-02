@@ -31,7 +31,9 @@ function NavigationDesktop(props: NavigationPropsType) {
         <NavigationLink href="/archive/files">{t("app.files")}</NavigationLink>
         <NavigationLink href="/sources">{t("app.sources")}</NavigationLink>
         <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
-        <strong data-mx="6" data-color="white">{props.email}</strong>
+        <strong data-mx="6" data-color="white">
+          {props.email}
+        </strong>
         <NavigationLink href="/logout">{t("app.logout")}</NavigationLink>
       </div>
     </nav>
@@ -62,14 +64,19 @@ function NavigationMobile(props: NavigationPropsType) {
           type="button"
           class="c-button"
           data-variant="bare"
-          onClick={navigation.enable}
           title={t("app.menu.show")}
+          onClick={navigation.enable}
+          {...navigation.props.controller}
         >
           <Icons.Menu data-color="white" height="24" width="24" />
         </button>
       </nav>
 
-      <bg.Anima visible={navigation.on} effect="opacity">
+      <bg.Anima
+        visible={navigation.on}
+        effect="opacity"
+        {...navigation.props.target}
+      >
         <nav
           data-display="flex"
           data-direction="column"

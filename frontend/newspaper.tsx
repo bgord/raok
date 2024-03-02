@@ -86,6 +86,7 @@ export function Newspaper(props: NewspaperProps) {
               data-variant="bare"
               data-mx="6"
               onClick={details.toggle}
+              {...details.props.controller}
             >
               {details.off && <Icons.NavArrowLeft height="24" width="24" />}
               {details.on && <Icons.NavArrowDown height="24" width="24" />}
@@ -97,6 +98,7 @@ export function Newspaper(props: NewspaperProps) {
       <bg.Anima
         visible={details.on && props.status === "delivered"}
         effect="opacity"
+        {...details.props.target}
       >
         <div data-display="flex" data-mt="12" data-mb="6">
           {["delivered", "error"].includes(props.status) && (
@@ -134,7 +136,7 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       </bg.Anima>
 
-      <bg.Anima visible={details.on} effect="opacity">
+      <bg.Anima visible={details.on} effect="opacity" {...details.props.target}>
         <ul data-mt="6" data-max-width="100%">
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />

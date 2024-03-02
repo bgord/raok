@@ -22,7 +22,7 @@ export function SettingsTokenBlacklist() {
 
   const tokenBlacklist = useQuery(
     api.keys.tokenBlacklist,
-    api.TokenBlacklist.list,
+    api.TokenBlacklist.list
   );
 
   const sort = bg.useClientSort<types.TokenBlacklistType>(
@@ -34,7 +34,7 @@ export function SettingsTokenBlacklist() {
         [types.SourceSortEnum.a_z]: (a, b) => bg.Sorts.aToZ(a.token, b.token),
         [types.SourceSortEnum.z_a]: (a, b) => bg.Sorts.zToA(a.token, b.token),
       },
-    },
+    }
   );
 
   const tokens = (tokenBlacklist.data ?? [])
@@ -58,11 +58,7 @@ export function SettingsTokenBlacklist() {
         </div>
       </div>
 
-      <div
-        data-display="flex"
-        data-cross="end"
-        data-my="24"
-      >
+      <div data-display="flex" data-cross="end" data-my="24">
         <SettingsBlacklistedTokenCreate />
         <button
           type="button"
@@ -73,6 +69,7 @@ export function SettingsTokenBlacklist() {
           title={
             actions.on ? t("article.actions.hide") : t("article.actions.show")
           }
+          {...actions.props.controller}
         >
           {actions.off && <Icons.NavArrowLeft height="20" width="20" />}
           {actions.on && <Icons.NavArrowDown height="20" width="20" />}
@@ -86,6 +83,7 @@ export function SettingsTokenBlacklist() {
           data-max-width="100%"
           data-gap="12"
           data-md-gap="3"
+          {...actions.props.target}
         >
           <div
             data-display="flex"

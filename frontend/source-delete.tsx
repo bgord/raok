@@ -40,11 +40,17 @@ export function SourceDelete(
         data-variant="with-icon"
         title={t("source.delete")}
         {...rest}
+        {...dialog.props.controller}
       >
         <Icons.BinMinusIn height="18" width="18" data-color="red-500" />
       </button>
 
-      <bg.Dialog {...dialog} data-gap="24" data-mt="72">
+      <bg.Dialog
+        {...dialog}
+        {...dialog.props.target}
+        data-gap="24"
+        data-mt="72"
+      >
         <div data-lh="16">{t("source.delete.confirmation")}</div>
 
         <div data-display="flex" data-gap="48" data-mx="auto">

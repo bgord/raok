@@ -46,6 +46,7 @@ export function ArticleUrl(props: ArticlePropsType) {
         title={
           details.on ? t("article.actions.hide") : t("article.actions.show")
         }
+        {...details.props.controller}
       >
         {details.off && <Icons.NavArrowRight height="18" width="18" />}
         {details.on && <Icons.NavArrowDown height="18" width="18" />}

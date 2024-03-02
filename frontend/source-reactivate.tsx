@@ -39,12 +39,18 @@ export function SourceReactivate(
         class="c-button"
         data-variant="with-icon"
         title={t("source.reactivate")}
+        {...dialog.props.controller}
         {...rest}
       >
         <Icons.Redo height="18" width="18" />
       </button>
 
-      <bg.Dialog {...dialog} data-gap="24" data-mt="72">
+      <bg.Dialog
+        {...dialog}
+        {...dialog.props.target}
+        data-gap="24"
+        data-mt="72"
+      >
         <div data-lh="16">{t("source.reactivate.confirmation")}</div>
 
         <div data-display="flex" data-gap="48" data-mx="auto">

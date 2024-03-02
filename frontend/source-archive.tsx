@@ -40,11 +40,17 @@ export function SourceArchive(
         data-variant="with-icon"
         title={t("source.archive")}
         {...rest}
+        {...dialog.props.controller}
       >
         <Icons.Archive height="18" width="18" />
       </button>
 
-      <bg.Dialog {...dialog} data-gap="24" data-mt="72">
+      <bg.Dialog
+        {...dialog}
+        {...dialog.props.target}
+        data-gap="24"
+        data-mt="72"
+      >
         <div data-lh="16">{t("source.archive.confirmation")}</div>
 
         <div data-display="flex" data-gap="48" data-mx="auto">
