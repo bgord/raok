@@ -1,7 +1,10 @@
 # Changelog
+- 2024-03-02 19:10 9a4d9ca **step: bump bgord/frontend**
+## 2024-03-02 19:10 
+- 2024-03-02 19:00 be565a9 **step: bump bgord/frontend**
 - 2024-03-02 11:42 905aa26 **build(deps): bump express from 4.18.2 to 4.18.3 (#233)**
 - 2024-03-02 11:42 1c447de **build(deps-dev): bump @types/node from 20.11.22 to 20.11.24 (#232)**
-## 2024-03-02 11:42 
+- 2024-03-02 10:42 c8bc56e **docs: generate CHANGELOG**
 - 2024-02-29 23:33 a474068 **fix: username autocomplete**
 - 2024-02-29 22:33 95c09fd **docs: generate CHANGELOG**
 - 2024-02-29 07:48 0d8b480 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#221)**
