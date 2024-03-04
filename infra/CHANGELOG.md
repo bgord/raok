@@ -1,9 +1,11 @@
 # Changelog
+- 2024-03-04 20:42 9b7accd **feature: add select device in send arbitrary file**
+## 2024-03-04 20:42 
 - 2024-03-04 20:21 f9bac8d **feature: add device delete ui**
-## 2024-03-04 20:21 
 - 2024-03-04 20:06 e113bfd **refactor: improve Token blacklist toggle**
 - 2024-03-04 20:04 e66aef5 **feature: add device form**
 - 2024-03-04 19:51 dcfd1e9 **feature: add device list ui**
+- 2024-03-04 19:30 edbdf39 **docs: generate CHANGELOG**
 - 2024-03-04 19:28 5550ab6 **feature: add device migrator**
 - 2024-03-04 19:04 6028da8 **feature: introduce device manager**
 - 2024-03-04 18:58 2e36c9e **step: add device repository**
