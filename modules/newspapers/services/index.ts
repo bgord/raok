@@ -4,7 +4,6 @@ export * from "./article-metatags-scraper";
 export * from "./article-rating-level-calculator";
 export * from "./articles-to-review-notifier";
 export * from "./device-manager";
-export * from "./device-migrator";
 export * from "./estimated-reading-time-calculator";
 export * from "./html-to-epub";
 export * from "./newspaper-file";

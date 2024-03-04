@@ -45,7 +45,7 @@ export function SettingsTokenBlacklist() {
     <section
       data-display="flex"
       data-direction="column"
-      data-mt="24"
+      data-my="24"
       data-mx="auto"
       data-max-width="768"
       data-md-max-width="100%"
