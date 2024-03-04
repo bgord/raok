@@ -1,5 +1,5 @@
 import { h, Fragment } from "preact";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import prettyBytes from "pretty-bytes-es5";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
@@ -12,6 +12,14 @@ export function SendArbitraryFile() {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
 
+  const deviceList = useQuery(api.keys.allDevices, api.Devices.list);
+  const devices = deviceList.data ?? [];
+
+  const deviceId = bg.useField<types.DeviceType["id"]>(
+    "device-id",
+    devices[0]?.id as types.DeviceType["id"]
+  );
+
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
   const fileUpload = useMutation(api.sendArbitraryFile, {
     onSuccess: () => notify({ message: "app.file.sent" }),
@@ -23,8 +31,11 @@ export function SendArbitraryFile() {
 
   return (
     <form
-      data-bg="gray-100"
+      data-display="flex"
+      data-direction="column"
+      data-gap="12"
       data-p="12"
+      data-bg="gray-100"
       data-shadow
       onSubmit={(event) => {
         event.preventDefault();
@@ -34,14 +45,35 @@ export function SendArbitraryFile() {
 
         const form = new FormData();
         form.append("file", file.data);
+        form.append("deviceId", deviceId.value);
 
         fileUpload.mutate(form);
       }}
     >
-      <UI.Header data-display="flex" data-mb="24">
+      <UI.Header data-display="flex">
         <Icons.Book height="20" width="20" data-mr="6" />
         <span data-transform="upper-first">{t("app.send_a_file")}</span>
       </UI.Header>
+
+      <div data-display="flex" data-direction="column">
+        <label class="c-label" {...deviceId.label.props}>
+          {t("send_a_file.device.label")}
+        </label>
+
+        <UI.Select
+          key={devices.length}
+          onInput={deviceId.handleChange}
+          data-mr="auto"
+          {...deviceId.input.props}
+          {...bg.Rhythm().times(20).style.minWidth}
+        >
+          {devices.map((device) => (
+            <option key={device.id} value={device.id}>
+              {device.name}
+            </option>
+          ))}
+        </UI.Select>
+      </div>
 
       <div data-display="flex" data-gap="12">
         <input
@@ -92,7 +124,7 @@ export function SendArbitraryFile() {
       )}
 
       {(fileUpload.isIdle || fileUpload.isSuccess) && file.isIdle && (
-        <UI.Info data-gap="6" data-mt="24">
+        <UI.Info data-gap="6" data-mt="12">
           <Icons.InfoCircle height="20" width="20" />
 
           <span data-mt="3">

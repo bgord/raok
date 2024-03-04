@@ -153,7 +153,7 @@ export class Newspaper {
     }
   }
 
-  async send(revision: bg.Revision) {
+  async send(revision: bg.Revision, to: bg.Schema.EmailType) {
     revision.validate(this.revision);
     await Policies.NewspaperStatusTransition.perform({
       from: this.status,
@@ -162,7 +162,8 @@ export class Newspaper {
 
     try {
       await Files.Services.ArbitraryFileSender.send(
-        Services.NewspaperFile.getAttachment(this.id)
+        Services.NewspaperFile.getAttachment(this.id),
+        to
       );
 
       await infra.EventStore.save(

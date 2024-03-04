@@ -65,4 +65,14 @@ export class DeviceManager {
   list() {
     return this.devices.map((device) => device.specification);
   }
+
+  getPrimaryDevice(): Device {
+    const device = this.devices[0];
+
+    if (!device) {
+      throw new Error("No primary device available");
+    }
+
+    return device;
+  }
 }

@@ -1,7 +1,7 @@
 import { JSDOM } from "jsdom";
 import { Readability } from "@mozilla/readability";
 
-import * as Services from "../services";
+import { ReadingTimeCalculator } from "../services/estimated-reading-time-calculator";
 import * as VO from "../value-objects";
 
 type ReadableArticleContentGeneratorConfigType = {
@@ -23,9 +23,7 @@ export class ReadableArticleGenerator {
     return {
       content: readableArticleContent,
       title: VO.ArticleTitle.parse(article.title),
-      readingTime: Services.ReadingTimeCalculator.getMinutes(
-        readableArticleContent
-      ),
+      readingTime: ReadingTimeCalculator.getMinutes(readableArticleContent),
     };
   }
 }

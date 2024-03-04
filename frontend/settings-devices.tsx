@@ -61,9 +61,10 @@ export function SettingsDevices() {
           data-my="24"
           data-max-width="100%"
         >
-          {devices.map((device) => (
+          {devices.map((device, index) => (
             <SettingsDevice
               key={device.id}
+              index={index}
               numberOfDevices={devices.length}
               {...device}
             />

@@ -31,7 +31,7 @@ export function Header(props: h.JSX.IntrinsicElements["h2"]) {
 
 export function Select(props: h.JSX.IntrinsicElements["select"]) {
   return (
-    <div class="c-select-wrapper">
+    <div class="c-select-wrapper" data-mr="auto">
       <select class="c-select" {...props} />
     </div>
   );

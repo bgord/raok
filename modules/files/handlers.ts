@@ -10,10 +10,10 @@ const EventHandler = new bg.EventHandler(infra.logger);
 
 export const onArbitraryFileScheduledEventHandler =
   EventHandler.handle<Events.ArbitraryFileScheduledEventType>(async (event) => {
-    const file = event.payload;
+    const { email, ...file } = event.payload;
 
     try {
-      await Services.ArbitraryFileSender.send(file);
+      await Services.ArbitraryFileSender.send(file, email);
 
       infra.logger.info({
         message: "Mailer success",

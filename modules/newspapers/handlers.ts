@@ -4,6 +4,7 @@ import * as Stats from "../stats";
 import * as Recommendations from "../recommendations";
 
 import { Article, Newspaper } from "./aggregates";
+import { DeviceManager } from "./services/device-manager";
 import * as Events from "./events";
 import * as VO from "./value-objects";
 import {
@@ -153,7 +154,10 @@ export const onNewspaperGeneratedEventHandler =
     const newspaper = await new Newspaper(event.payload.newspaperId).build();
     const revision = new bg.Revision(newspaper.revision);
 
-    await newspaper.send(revision);
+    const deviceManager = await DeviceManager.build();
+    const primaryDevice = deviceManager.getPrimaryDevice();
+
+    await newspaper.send(revision, primaryDevice.specification.email);
   });
 
 export const onNewspaperSentEventHandler =

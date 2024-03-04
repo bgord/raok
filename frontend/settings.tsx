@@ -20,8 +20,9 @@ export function Settings(_props: RoutableProps) {
 
   const settings = useQuery(api.keys.settings, api.Settings.getSettings);
 
-  if (!settings.isSuccess)
+  if (!settings.isSuccess) {
     return <div data-p="24">{t("settings.preparing")}</div>;
+  }
 
   return (
     <main
