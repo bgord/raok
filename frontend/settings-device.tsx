@@ -1,8 +1,11 @@
 import { h } from "preact";
 
 import * as types from "./types";
+import { SettingsDeviceDelete } from "./settings-device-delete";
 
-export function SettingsDevice(props: types.DeviceType) {
+export function SettingsDevice(
+  props: types.DeviceType & { numberOfDevices: number },
+) {
   return (
     <li
       data-display="flex"
@@ -21,6 +24,8 @@ export function SettingsDevice(props: types.DeviceType) {
       >
         {props.email}
       </div>
+
+      {props.numberOfDevices > 1 && <SettingsDeviceDelete {...props} />}
     </li>
   );
 }

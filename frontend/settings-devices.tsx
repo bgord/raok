@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
 
 import * as UI from "./ui";
 import * as api from "./api";
@@ -13,6 +14,7 @@ export function SettingsDevices() {
   hooks.useLeavingPrompt();
 
   const t = bg.useTranslations();
+  const actions = bg.useToggle();
 
   const deviceList = useQuery(api.keys.allDevices, api.Devices.list);
   const devices = deviceList.data ?? [];
@@ -32,21 +34,42 @@ export function SettingsDevices() {
         <div data-fs="14" data-color="gray-600">
           {t("settings.device_list")}
         </div>
+
+        <button
+          type="button"
+          class="c-button"
+          data-variant="with-icon"
+          data-ml="auto"
+          onClick={actions.toggle}
+          title={
+            actions.on ? t("article.actions.hide") : t("article.actions.show")
+          }
+          {...actions.props.controller}
+        >
+          {actions.off && <Icons.NavArrowLeft height="20" width="20" />}
+          {actions.on && <Icons.NavArrowDown height="20" width="20" />}
+        </button>
       </div>
 
-      <DeviceCreate />
+      {actions.on && <DeviceCreate />}
 
-      <ul
-        data-display="flex"
-        data-direction="column"
-        data-gap="12"
-        data-my="24"
-        data-max-width="100%"
-      >
-        {devices.map((device) => (
-          <SettingsDevice key={device.id} {...device} />
-        ))}
-      </ul>
+      {actions.on && (
+        <ul
+          data-display="flex"
+          data-direction="column"
+          data-gap="12"
+          data-my="24"
+          data-max-width="100%"
+        >
+          {devices.map((device) => (
+            <SettingsDevice
+              key={device.id}
+              numberOfDevices={devices.length}
+              {...device}
+            />
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

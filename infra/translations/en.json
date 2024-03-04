@@ -208,5 +208,6 @@
   "device.email.label": "Device email",
   "device.email.placeholder": "user@example.com",
   "device.create.submit": "Create",
-  "device.create.waiting": "Creating..."
+  "device.create.waiting": "Creating...",
+  "device.deleted": "Device deleted"
 }
