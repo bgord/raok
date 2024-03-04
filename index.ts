@@ -27,7 +27,7 @@ app.post(
   infra.hCaptchaShield.verify,
   infra.AuthShield.reverse,
   infra.AuthShield.attach,
-  bg.Redirector.build("/dashboard"),
+  bg.Redirector.build("/dashboard")
 );
 app.get("/logout", infra.AuthShield.detach, bg.Redirector.build("/"));
 
@@ -35,7 +35,7 @@ app.get(
   "/dashboard",
   infra.AuthShield.verify,
   bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
-  bg.Route(App.Routes.Dashboard),
+  bg.Route(App.Routes.Dashboard)
 );
 
 // =============================
@@ -44,57 +44,57 @@ app.get(
 app.get(
   "/articles",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.Articles),
+  bg.Route(Newspapers.Routes.Articles)
 );
 app.get(
   "/articles/search",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArticlesSearch),
+  bg.Route(Newspapers.Routes.ArticlesSearch)
 );
 app.get(
   "/articles/archive",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArchiveArticles),
+  bg.Route(Newspapers.Routes.ArchiveArticles)
 );
 app.post(
   "/add-article",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.AddArticle),
+  bg.Route(Newspapers.Routes.AddArticle)
 );
 app.post(
   "/delete-article/:articleId",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.DeleteArticle),
+  bg.Route(Newspapers.Routes.DeleteArticle)
 );
 app.post(
   "/undelete-article/:articleId",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.UndeleteArticle),
+  bg.Route(Newspapers.Routes.UndeleteArticle)
 );
 app.post(
   "/article/:articleId/mark-as-read",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArticleMarkAsRead),
+  bg.Route(Newspapers.Routes.ArticleMarkAsRead)
 );
 app.post(
   "/article/:articleId/deliver-by-email",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArticleDeliverByEmail),
+  bg.Route(Newspapers.Routes.ArticleDeliverByEmail)
 );
 app.post(
   "/article/:articleId/opened",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArticleOpened),
+  bg.Route(Newspapers.Routes.ArticleOpened)
 );
 app.post(
   "/article/:articleId/homepage-opened",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArticleHomepageOpened),
+  bg.Route(Newspapers.Routes.ArticleHomepageOpened)
 );
 app.get(
   "/archive/articles",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArticlesArchive),
+  bg.Route(Newspapers.Routes.ArticlesArchive)
 );
 // =============================
 
@@ -102,37 +102,37 @@ app.get(
 app.get(
   "/newspapers",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.Newspapers),
+  bg.Route(Newspapers.Routes.Newspapers)
 );
 app.get(
   "/newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.SingleNewspaper),
+  bg.Route(Newspapers.Routes.SingleNewspaper)
 );
 app.get(
   "/newspaper/:newspaperId/read",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.NewspaperRead),
+  bg.Route(Newspapers.Routes.NewspaperRead)
 );
 app.post(
   "/create-newspaper",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.CreateNewspaper),
+  bg.Route(Newspapers.Routes.CreateNewspaper)
 );
 app.post(
   "/archive-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ArchiveNewspaper),
+  bg.Route(Newspapers.Routes.ArchiveNewspaper)
 );
 app.post(
   "/cancel-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.CancelNewspaper),
+  bg.Route(Newspapers.Routes.CancelNewspaper)
 );
 app.post(
   "/resend-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  bg.Route(Newspapers.Routes.ResendNewspaper),
+  bg.Route(Newspapers.Routes.ResendNewspaper)
 );
 // =============================
 
@@ -146,22 +146,22 @@ app.post(
     uploadDir: "files",
     mimeTypes: Files.VO.FileMimeTypes.value,
   }),
-  bg.Route(Files.Routes.SendArbitraryFile),
+  bg.Route(Files.Routes.SendArbitraryFile)
 );
 app.get(
   "/files/archive/:fileId/download",
   infra.AuthShield.verify,
-  bg.Route(Files.Routes.DownloadFile),
+  bg.Route(Files.Routes.DownloadFile)
 );
 app.get(
   "/files/archive",
   infra.AuthShield.verify,
-  bg.Route(Files.Routes.ArchiveFiles),
+  bg.Route(Files.Routes.ArchiveFiles)
 );
 app.get(
   "/archive/files",
   infra.AuthShield.verify,
-  bg.Route(Files.Routes.FilesArchive),
+  bg.Route(Files.Routes.FilesArchive)
 );
 // =============================
 
@@ -174,22 +174,22 @@ app.get("/settings", infra.AuthShield.verify, bg.Route(App.Routes.Dashboard));
 app.get(
   "/account/settings",
   infra.AuthShield.verify,
-  bg.Route(Settings.Routes.Settings),
+  bg.Route(Settings.Routes.Settings)
 );
 app.post(
   "/disable-articles-to-review-notification",
   infra.AuthShield.verify,
-  bg.Route(Settings.Routes.DisableArticlesToReviewNotification),
+  bg.Route(Settings.Routes.DisableArticlesToReviewNotification)
 );
 app.post(
   "/enable-articles-to-review-notification",
   infra.AuthShield.verify,
-  bg.Route(Settings.Routes.EnableArticlesToReviewNotification),
+  bg.Route(Settings.Routes.EnableArticlesToReviewNotification)
 );
 app.post(
   "/set-articles-to-review-notification-hour",
   infra.AuthShield.verify,
-  bg.Route(Settings.Routes.SetArticlesToReviewNotificationHour),
+  bg.Route(Settings.Routes.SetArticlesToReviewNotificationHour)
 );
 // =============================
 
@@ -199,31 +199,31 @@ app.post(
   "/rss/source/create",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(RSS.Routes.SourceCreate),
+  bg.Route(RSS.Routes.SourceCreate)
 );
 app.delete(
   "/rss/source/:sourceId",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(RSS.Routes.SourceDelete),
+  bg.Route(RSS.Routes.SourceDelete)
 );
 app.post(
   "/rss/source/:sourceId/archive",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(RSS.Routes.SourceArchive),
+  bg.Route(RSS.Routes.SourceArchive)
 );
 app.post(
   "/rss/source/:sourceId/reactivate",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(RSS.Routes.SourceReactivate),
+  bg.Route(RSS.Routes.SourceReactivate)
 );
 app.get(
   "/rss/source/list",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  bg.Route(RSS.Routes.SourceList),
+  bg.Route(RSS.Routes.SourceList)
 );
 // =============================
 
@@ -233,7 +233,7 @@ app.get(
   bg.RateLimitShield.build(bg.Time.Seconds(15)),
   bg.Timeout.build(bg.Time.Seconds(15)),
   infra.BasicAuthShield.verify,
-  bg.Healthcheck.build(infra.healthcheck),
+  bg.Healthcheck.build(infra.healthcheck)
 );
 // =============================
 
@@ -242,35 +242,58 @@ app.get(
   "/token-blacklist",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  bg.Route(Recommendations.Routes.TokenBlacklist),
+  bg.Route(Recommendations.Routes.TokenBlacklist)
 );
 
 app.post(
   "/token-blacklist/create",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(Recommendations.Routes.BlacklistedTokenCreate),
+  bg.Route(Recommendations.Routes.BlacklistedTokenCreate)
 );
 
 app.post(
   "/token-blacklist/delete",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(Recommendations.Routes.BlacklistedTokenDelete),
+  bg.Route(Recommendations.Routes.BlacklistedTokenDelete)
 );
 
 app.get(
   "/token-blacklist/suggestions",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  bg.Route(Recommendations.Routes.BlacklistedTokenSuggestions),
+  bg.Route(Recommendations.Routes.BlacklistedTokenSuggestions)
 );
 
 app.delete(
   "/token-blacklist/suggestions/dismiss",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(Recommendations.Routes.SuggestedBlacklistedTokenDismiss),
+  bg.Route(Recommendations.Routes.SuggestedBlacklistedTokenDismiss)
+);
+// =============================
+
+// Devices =====================
+app.get(
+  "/device-list",
+  infra.AuthShield.verify,
+  infra.CacheResponse.handle,
+  bg.Route(Newspapers.Routes.DeviceList)
+);
+
+app.post(
+  "/device/create",
+  infra.AuthShield.verify,
+  infra.CacheResponse.clear,
+  bg.Route(Newspapers.Routes.DeviceCreate)
+);
+
+app.post(
+  "/device/:id/delete",
+  infra.AuthShield.verify,
+  infra.CacheResponse.clear,
+  bg.Route(Newspapers.Routes.DeviceDelete)
 );
 // =============================
 
