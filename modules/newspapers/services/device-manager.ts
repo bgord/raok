@@ -12,7 +12,7 @@ export class Device {
     return (
       this.specification.id === another.specification.id ||
       this.specification.email === another.specification.email ||
-      this.specification.name === this.specification.name
+      this.specification.name === another.specification.name
     );
   }
 
