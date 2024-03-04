@@ -276,7 +276,7 @@ app.delete(
 
 // Devices =====================
 app.get(
-  "/device-list",
+  "/device/list",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
   bg.Route(Newspapers.Routes.DeviceList),

@@ -16,12 +16,13 @@ export const keys = {
   ],
   archiveArticles: (
     filters: Record<string, unknown>,
-    search: string | undefined,
+    search: string | undefined
   ) => ["archive-articles", filters, search],
   allArchiveFiles: ["archive-files"],
   allArchiveArticles: ["archive-articles"],
   tokenBlacklist: ["token-blacklist"],
   tokenBlacklistSuggestions: ["token-blacklist-suggestions"],
+  allDevices: ["devices"],
 };
 
 export class Article {
@@ -62,17 +63,17 @@ export class Article {
   }
 
   static async listPaged(
-    page: bg.PageType,
+    page: bg.PageType
   ): Promise<bg.Paged<types.ArticleType>> {
     return bg
       .API(`/articles?page=${page}`, { method: "GET" })
       .then((response) =>
-        response.ok ? response.json() : bg.Pagination.empty,
+        response.ok ? response.json() : bg.Pagination.empty
       );
   }
 
   static async search(
-    _query: types.ArticleSearchQueryType,
+    _query: types.ArticleSearchQueryType
   ): Promise<types.ArticleType[]> {
     if (_query.length === 0) return [];
 
@@ -84,7 +85,7 @@ export class Article {
   }
 
   static async deliverByEmail(
-    payload: Pick<types.ArticleType, "id" | "revision">,
+    payload: Pick<types.ArticleType, "id" | "revision">
   ) {
     return bg.API(`/article/${payload.id}/deliver-by-email`, {
       method: "POST",
@@ -101,7 +102,7 @@ export class Newspaper {
   }
 
   static async getSingle(
-    id: types.NewspaperType["id"],
+    id: types.NewspaperType["id"]
   ): Promise<types.NewspaperType> {
     return bg
       .API(`/newspaper/${id}`)
@@ -164,7 +165,7 @@ export class Archive {
   static async getArticles(
     page: bg.PageType,
     filters: bg.FilterType,
-    search: string | undefined,
+    search: string | undefined
   ): Promise<bg.Paged<types.ArchiveArticleType>> {
     const url = new bg.FilterUrl(`/articles/archive`, {
       ...filters,
@@ -175,12 +176,12 @@ export class Archive {
     return bg
       .API(url.value, { method: "GET" })
       .then((response) =>
-        response.ok ? response.json() : bg.Pagination.empty,
+        response.ok ? response.json() : bg.Pagination.empty
       );
   }
 
   static async getFiles(
-    filters?: bg.FilterType,
+    filters?: bg.FilterType
   ): Promise<types.ArchiveFileType[]> {
     const url = new bg.FilterUrl("/files/archive", filters).value;
 
@@ -298,5 +299,13 @@ export class NewspaperLink {
   static getFull(newspaper: types.NewspaperType): string {
     const safeWindow = bg.getSafeWindow();
     return `${safeWindow?.location.origin}/newspaper/${newspaper.id}/read`;
+  }
+}
+
+export class Devices {
+  static async list(): Promise<types.DeviceType[]> {
+    return bg
+      .API("/device/list", { method: "GET" })
+      .then((response) => (response.ok ? response.json() : []));
   }
 }

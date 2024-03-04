@@ -1,5 +1,5 @@
 import * as VO from "../value-objects";
-import * as Repos from "../repositories";
+import { DeviceRepository } from "../repositories/device-repository";
 
 export class Device {
   constructor(readonly specification: VO.DeviceType) {}
@@ -17,7 +17,7 @@ export class Device {
   }
 
   static async build(id: VO.DeviceIdType): Promise<Device> {
-    const device = await Repos.DeviceRepository.getById({ id });
+    const device = await DeviceRepository.getById({ id });
 
     if (!device) {
       throw new Error("Device not found");
@@ -31,7 +31,7 @@ export class DeviceManager {
   private constructor(private readonly devices: Device[]) {}
 
   static async build() {
-    const devices = await Repos.DeviceRepository.list();
+    const devices = await DeviceRepository.list();
 
     return new DeviceManager(devices.map((device) => new Device(device)));
   }
@@ -41,7 +41,7 @@ export class DeviceManager {
       throw new Error("Device already exists");
     }
 
-    await Repos.DeviceRepository.create(given.specification);
+    await DeviceRepository.create(given.specification);
     this.devices.push(given);
   }
 
@@ -54,7 +54,7 @@ export class DeviceManager {
       throw new Error("There is only one device left");
     }
 
-    await Repos.DeviceRepository.delete(given.specification.id);
+    await DeviceRepository.delete(given.specification.id);
     this.devices.push(given);
   }
 

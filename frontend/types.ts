@@ -9,6 +9,7 @@ import type { SettingsRepository } from "../modules/settings/repositories/settin
 import type { FilesRepository } from "../modules/files/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
+import type { DeviceRepository } from "../modules/newspapers/repositories/device-repository";
 
 /** @public */
 export type { HourType, EmailType } from "@bgord/node/dist/schema";
@@ -62,6 +63,10 @@ export type SourceType = AsyncReturnType<
 
 export type TokenBlacklistType = AsyncReturnType<
   (typeof TokenBlacklistRepository)["list"]
+>[number];
+
+export type DeviceType = AsyncReturnType<
+  (typeof DeviceRepository)["list"]
 >[number];
 
 export enum SourceStatusEnum {

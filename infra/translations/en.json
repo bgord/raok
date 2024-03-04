@@ -200,5 +200,6 @@
   "article.deliver-by-email": "Deliver by email",
   "blacklisted_token.dismissed": "Blacklisted token suggestion dismissed",
   "article.actions.inspect": "inspect article",
-  "article.open": "Open article"
+  "article.open": "Open article",
+  "settings.device_list": "Devices"
 }
