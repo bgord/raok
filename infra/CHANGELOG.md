@@ -1,8 +1,19 @@
 # Changelog
+- 2024-03-04 20:21 f9bac8d **feature: add device delete ui**
+## 2024-03-04 20:21 
+- 2024-03-04 20:06 e113bfd **refactor: improve Token blacklist toggle**
+- 2024-03-04 20:04 e66aef5 **feature: add device form**
+- 2024-03-04 19:51 dcfd1e9 **feature: add device list ui**
+- 2024-03-04 19:28 5550ab6 **feature: add device migrator**
+- 2024-03-04 19:04 6028da8 **feature: introduce device manager**
+- 2024-03-04 18:58 2e36c9e **step: add device repository**
+- 2024-03-04 18:57 0ca9b2a **feature: setup device routes**
+- 2024-03-04 18:45 b460cfb **step: add device schema**
+- 2024-03-04 18:43 948e4e7 **feature: add device vos**
 - 2024-03-04 08:02 fa83227 **build(deps): bump open-graph-scraper from 6.4.0 to 6.5.0 (#234)**
-## 2024-03-04 08:02 
 - 2024-03-04 08:01 8432ffc **build(deps): bump iconoir-react from 7.4.0 to 7.5.0 (#235)**
 - 2024-03-04 08:01 16f2dfb **build(deps-dev): bump @playwright/test from 1.42.0 to 1.42.1 (#236)**
+- 2024-03-04 07:02 e6a5f6c **docs: generate CHANGELOG**
 - 2024-03-02 19:10 9a4d9ca **step: bump bgord/frontend**
 - 2024-03-02 19:00 be565a9 **step: bump bgord/frontend**
 - 2024-03-02 18:20 1bf2deb **docs: generate CHANGELOG**
