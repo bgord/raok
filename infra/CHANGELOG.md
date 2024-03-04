@@ -1,7 +1,11 @@
 # Changelog
+- 2024-03-04 08:02 fa83227 **build(deps): bump open-graph-scraper from 6.4.0 to 6.5.0 (#234)**
+## 2024-03-04 08:02 
+- 2024-03-04 08:01 8432ffc **build(deps): bump iconoir-react from 7.4.0 to 7.5.0 (#235)**
+- 2024-03-04 08:01 16f2dfb **build(deps-dev): bump @playwright/test from 1.42.0 to 1.42.1 (#236)**
 - 2024-03-02 19:10 9a4d9ca **step: bump bgord/frontend**
-## 2024-03-02 19:10 
 - 2024-03-02 19:00 be565a9 **step: bump bgord/frontend**
+- 2024-03-02 18:20 1bf2deb **docs: generate CHANGELOG**
 - 2024-03-02 11:42 905aa26 **build(deps): bump express from 4.18.2 to 4.18.3 (#233)**
 - 2024-03-02 11:42 1c447de **build(deps-dev): bump @types/node from 20.11.22 to 20.11.24 (#232)**
 - 2024-03-02 10:42 c8bc56e **docs: generate CHANGELOG**
