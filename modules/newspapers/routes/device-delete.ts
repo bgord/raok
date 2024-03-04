@@ -1,6 +1,6 @@
 import express from "express";
 
-import * as Repos from "../repositories";
+import * as Services from "../services";
 import * as VO from "../value-objects";
 
 /** @public */
@@ -11,8 +11,9 @@ export async function DeviceDelete(
 ) {
   const id = VO.DeviceId.parse(request.params.id);
 
-  // TODO: Add at least one device check
-  await Repos.DeviceRepository.delete(id);
+  const deviceManager = await Services.DeviceManager.build();
+  const device = await Services.Device.build(id);
+  await deviceManager.delete(device);
 
   return response.send(201);
 }

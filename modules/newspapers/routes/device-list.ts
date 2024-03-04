@@ -1,6 +1,6 @@
 import express from "express";
 
-import * as Repos from "../repositories";
+import * as Services from "../services";
 
 /** @public */
 export async function DeviceList(
@@ -8,7 +8,8 @@ export async function DeviceList(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const devices = await Repos.DeviceRepository.list();
+  const deviceManager = await Services.DeviceManager.build();
+  const devices = deviceManager.list();
 
   return response.send(devices);
 }

@@ -1,7 +1,7 @@
 import * as bg from "@bgord/node";
 import express from "express";
 
-import * as Repos from "../repositories";
+import * as Services from "../services";
 import * as VO from "../value-objects";
 
 /** @public */
@@ -13,9 +13,12 @@ export async function DeviceCreate(
   const id = bg.NewUUID.generate();
   const name = VO.DeviceName.parse(request.body.name);
   const email = VO.DeviceEmail.parse(request.body.email);
+  const createdAt = BigInt(Date.now());
 
-  // TODO: Add a unique check
-  await Repos.DeviceRepository.create({ id, email, name });
+  const deviceManager = await Services.DeviceManager.build();
+
+  const device = new Services.Device({ id, name, email, createdAt });
+  await deviceManager.add(device);
 
   return response.send(201);
 }
