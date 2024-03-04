@@ -308,4 +308,11 @@ export class Devices {
       .API("/device/list", { method: "GET" })
       .then((response) => (response.ok ? response.json() : []));
   }
+
+  static async create(payload: Pick<types.DeviceType, "name" | "email">) {
+    return bg.API("/device/create", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+  }
 }

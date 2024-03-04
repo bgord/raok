@@ -201,5 +201,12 @@
   "blacklisted_token.dismissed": "Blacklisted token suggestion dismissed",
   "article.actions.inspect": "inspect article",
   "article.open": "Open article",
-  "settings.device_list": "Devices"
+  "settings.device_list": "Devices",
+  "device.create.success": "Device created",
+  "device.name.label": "Device name",
+  "device.name.placeholder": "My Kindle device",
+  "device.email.label": "Device email",
+  "device.email.placeholder": "user@example.com",
+  "device.create.submit": "Create",
+  "device.create.waiting": "Creating..."
 }

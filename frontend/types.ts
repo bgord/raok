@@ -83,6 +83,7 @@ export { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../modules/newspapers/value-objec
 
 import { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-objects/article-search-query-min-length";
 import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-objects/article-search-query-max-length";
+import { DEVICE_NAME_MAX_LENGTH } from "../modules/newspapers/value-objects/device-name-max-length";
 
 import { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";
 export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-status-enum";
@@ -125,6 +126,11 @@ export enum ArchiveFilesSortEnum {
 export const BlacklistedTokenValidations = {
   min: SOURCE_URL_MIN_LENGTH,
   max: SOURCE_URL_MAX_LENGTH,
+};
+
+export const DeviceNameValidations = {
+  min: 1,
+  max: DEVICE_NAME_MAX_LENGTH,
 };
 
 export enum ArticlesSortEnum {

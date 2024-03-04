@@ -7,6 +7,7 @@ import * as api from "./api";
 import * as hooks from "./hooks";
 
 import { SettingsDevice } from "./settings-device";
+import { DeviceCreate } from "./settings-device-create";
 
 export function SettingsDevices() {
   hooks.useLeavingPrompt();
@@ -33,7 +34,15 @@ export function SettingsDevices() {
         </div>
       </div>
 
-      <ul data-display="flex" data-gap="12" data-my="24" data-max-width="100%">
+      <DeviceCreate />
+
+      <ul
+        data-display="flex"
+        data-direction="column"
+        data-gap="12"
+        data-my="24"
+        data-max-width="100%"
+      >
         {devices.map((device) => (
           <SettingsDevice key={device.id} {...device} />
         ))}
