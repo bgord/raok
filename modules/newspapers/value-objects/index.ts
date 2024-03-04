@@ -20,6 +20,7 @@ export * from "./article-title-max-chars";
 export * from "./article-url";
 export * from "./article-url-max-chars";
 export * from "./articles-per-page";
+export * from "./device";
 export * from "./newspaper";
 export * from "./newspaper-id";
 export * from "./newspaper-max-articles-number";
