@@ -106,3 +106,10 @@ model Session {
   expiresAt DateTime
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model Device {
+  id        String @id @default(uuid())
+  name      String @unique
+  email     String @unique
+  createdAt BigInt
+}
