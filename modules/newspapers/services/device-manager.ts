@@ -41,6 +41,10 @@ export class DeviceManager {
       throw new Error("Device already exists");
     }
 
+    if (this.devices.length >= 5) {
+      throw new Error("Maximum number of devices exceeded");
+    }
+
     await DeviceRepository.create(given.specification);
     this.devices.push(given);
   }

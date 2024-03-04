@@ -49,7 +49,7 @@ export function DeviceCreate() {
         data-wrap="nowrap"
         data-grow="1"
         data-gap="6"
-        {...bg.Rhythm().times(30).style.maxWidth}
+        {...bg.Rhythm().times(18).style.maxWidth}
       >
         <label class="c-label" {...deviceName.label.props}>
           {t("device.name.label")}
@@ -72,7 +72,7 @@ export function DeviceCreate() {
         data-wrap="nowrap"
         data-grow="1"
         data-gap="6"
-        {...bg.Rhythm().times(30).style.maxWidth}
+        {...bg.Rhythm().times(25).style.maxWidth}
       >
         <label class="c-label" {...deviceEmail.label.props}>
           {t("device.email.label")}

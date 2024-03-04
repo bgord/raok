@@ -27,6 +27,7 @@ export function SettingsBlacklistedTokenCreate() {
     <form
       data-display="flex"
       data-cross="end"
+      data-my="24"
       data-gap="12"
       data-md-gap="12"
       onSubmit={(event) => {

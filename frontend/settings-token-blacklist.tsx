@@ -42,7 +42,7 @@ export function SettingsTokenBlacklist() {
     .toSorted(sort.sortFn);
 
   return (
-    <main
+    <section
       data-display="flex"
       data-direction="column"
       data-mt="24"
@@ -56,15 +56,12 @@ export function SettingsTokenBlacklist() {
         <div data-fs="14" data-color="gray-600">
           {t("app.token_blacklist")}
         </div>
-      </div>
 
-      <div data-display="flex" data-cross="end" data-my="24">
-        <SettingsBlacklistedTokenCreate />
         <button
           type="button"
           class="c-button"
           data-variant="with-icon"
-          data-ml="24"
+          data-ml="auto"
           onClick={actions.toggle}
           title={
             actions.on ? t("article.actions.hide") : t("article.actions.show")
@@ -75,6 +72,8 @@ export function SettingsTokenBlacklist() {
           {actions.on && <Icons.NavArrowDown height="20" width="20" />}
         </button>
       </div>
+
+      {actions.on && <SettingsBlacklistedTokenCreate />}
 
       {actions.on && (
         <div
@@ -152,7 +151,7 @@ export function SettingsTokenBlacklist() {
         </div>
       )}
 
-      {tokenBlacklist.isSuccess && tokens.length === 0 && (
+      {actions.on && tokenBlacklist.isSuccess && tokens.length === 0 && (
         <UI.Info data-mt="12" data-transform="upper-first">
           {t("token_blacklist.list.empty")}
         </UI.Info>
@@ -164,13 +163,15 @@ export function SettingsTokenBlacklist() {
         ))}
       </datalist>
 
-      <ul data-display="flex" data-gap="12" data-my="24">
-        {tokens.map((token) => (
-          <SettingsBlacklistedToken key={token.token} {...token} />
-        ))}
-      </ul>
+      {actions.on && (
+        <ul data-display="flex" data-gap="12" data-my="24">
+          {tokens.map((token) => (
+            <SettingsBlacklistedToken key={token.token} {...token} />
+          ))}
+        </ul>
+      )}
 
-      <SettingsBlacklistedTokensSuggestions />
-    </main>
+      {actions.on && <SettingsBlacklistedTokensSuggestions />}
+    </section>
   );
 }
