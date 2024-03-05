@@ -1,7 +1,10 @@
 # Changelog
+- 2024-03-05 10:31 f687340 **build(deps-dev): bump knip from 5.0.2 to 5.0.3 (#237)**
+- 2024-03-05 10:31 2ed24e0 **build(deps-dev): bump @typescript-eslint/parser from 7.1.0 to 7.1.1 (#238)**
+## 2024-03-05 10:31 
 - 2024-03-05 10:30 6b0eb33 **build(deps-dev): bump eslint-plugin-react from 7.33.2 to 7.34.0 (#239)**
-## 2024-03-05 10:30 
 - 2024-03-05 10:29 2c91a80 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#240)**
+- 2024-03-05 09:30 6683a2a **docs: generate CHANGELOG**
 - 2024-03-05 09:29 40b7fef **docs: generate CHANGELOG**
 - 2024-03-04 21:33 a431fe2 **refactor: remove device migrator**
 - 2024-03-04 20:43 14d67c9 **docs: generate CHANGELOG**
