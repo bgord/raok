@@ -1,10 +1,14 @@
 # Changelog
+- 2024-03-05 13:22 1804b13 **step: bump bgord/scripts**
+## 2024-03-05 13:22 
+- 2024-03-05 13:16 e475ae3 **step: bump bgord/scripts**
+- 2024-03-05 13:13 50b3525 **refactor: change send a file copy**
+- 2024-03-05 12:06 ed84251 **docs: generate CHANGELOG**
 - 2024-03-05 10:31 f687340 **build(deps-dev): bump knip from 5.0.2 to 5.0.3 (#237)**
 - 2024-03-05 10:31 2ed24e0 **build(deps-dev): bump @typescript-eslint/parser from 7.1.0 to 7.1.1 (#238)**
 - 2024-03-05 10:30 6b0eb33 **build(deps-dev): bump eslint-plugin-react from 7.33.2 to 7.34.0 (#239)**
 - 2024-03-05 10:29 2c91a80 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#240)**
 - 2024-03-05 10:25 d4cb43d **feature: add email censor**
-## 2024-03-05 10:25 
 - 2024-03-05 09:32 133b221 **refactor: extract device class to a file**
 - 2024-03-05 09:31 bb1164f **docs: generate CHANGELOG**
 - 2024-03-05 09:30 6683a2a **docs: generate CHANGELOG**
