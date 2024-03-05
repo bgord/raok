@@ -15,7 +15,7 @@ export class Article {
 
   private constructor(
     article: VO.ArticleType,
-    readonly revision: bg.Schema.RevisionType,
+    readonly revision: bg.Schema.RevisionType
   ) {
     this.id = article.id;
     this.entity = article;
@@ -36,7 +36,7 @@ export class Article {
         Events.ArticleUndeleteEvent,
         Events.ArticleReadEvent,
       ],
-      Article.getStream(id),
+      Article.getStream(id)
     );
 
     for (const event of events) {
@@ -85,7 +85,10 @@ export class Article {
     return new Article(entity as VO.ArticleType, revision);
   }
 
-  static async add(article: Pick<VO.ArticleType, "source" | "url">) {
+  static async add(
+    article: Pick<VO.ArticleType, "source" | "url">,
+    source?: { id: string; url: string }
+  ) {
     const id = VO.ArticleId.parse(bg.NewUUID.generate());
 
     if (article.source === VO.ArticleSourceEnum.rss) {
@@ -112,16 +115,14 @@ export class Article {
           revision: bg.Revision.initial,
           ...metatags,
         },
-      } satisfies Events.ArticleAddedEventType),
+      } satisfies Events.ArticleAddedEventType)
     );
   }
 
   async delete(revision: bg.Revision) {
     revision.validate(this.revision);
     await Policies.ArticleShouldExist.perform({ entity: this.entity });
-    await Policies.ArticleWasNotProcessed.perform({
-      entity: this.entity as VO.ArticleType,
-    });
+    await Policies.ArticleWasNotProcessed.perform({ entity: this.entity });
 
     await infra.EventStore.save(
       Events.ArticleDeletedEvent.parse({
@@ -129,7 +130,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleDeletedEventType),
+      } satisfies Events.ArticleDeletedEventType)
     );
   }
 
@@ -150,7 +151,7 @@ export class Article {
           newspaperId,
           revision: revision.next().value,
         },
-      } satisfies Events.ArticleLockedEventType),
+      } satisfies Events.ArticleLockedEventType)
     );
   }
 
@@ -167,7 +168,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleUnlockedEventType),
+      } satisfies Events.ArticleUnlockedEventType)
     );
   }
 
@@ -184,7 +185,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleProcessedEventType),
+      } satisfies Events.ArticleProcessedEventType)
     );
   }
 
@@ -201,7 +202,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleReadEventType),
+      } satisfies Events.ArticleReadEventType)
     );
   }
 
@@ -212,7 +213,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
-      } satisfies Events.ArticleOpenedEventType),
+      } satisfies Events.ArticleOpenedEventType)
     );
   }
 
@@ -223,7 +224,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id },
-      } satisfies Events.ArticleHomepageOpenedEventType),
+      } satisfies Events.ArticleHomepageOpenedEventType)
     );
   }
 
@@ -240,7 +241,7 @@ export class Article {
         stream: this.stream,
         version: 1,
         payload: { articleId: this.id, revision: revision.next().value },
-      } satisfies Events.ArticleUndeleteEventType),
+      } satisfies Events.ArticleUndeleteEventType)
     );
   }
 
