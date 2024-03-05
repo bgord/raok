@@ -40,6 +40,8 @@ model Article {
   rating                        Float?
   description                   String?
   Newspaper                     Newspaper? @relation(fields: [newspaperId], references: [id])
+  rssSourceId                   String?
+  RssSource                     Source?    @relation(fields: [rssSourceId], references: [id])
 
   @@index([status])
 }

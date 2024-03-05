@@ -6,6 +6,8 @@ import * as Policies from "../policies";
 import * as Services from "../services";
 import * as infra from "../../../infra";
 
+import { SourceIdType } from "../../rss/value-objects";
+
 export class Article {
   private readonly id: VO.ArticleType["id"];
 
@@ -87,7 +89,7 @@ export class Article {
 
   static async add(
     article: Pick<VO.ArticleType, "source" | "url">,
-    source?: { id: string; url: string }
+    source?: { id: SourceIdType }
   ) {
     const id = VO.ArticleId.parse(bg.NewUUID.generate());
 
@@ -113,6 +115,7 @@ export class Article {
           createdAt: Date.now(),
           estimatedReadingTimeInMinutes: null,
           revision: bg.Revision.initial,
+          rssSourceId: source?.id,
           ...metatags,
         },
       } satisfies Events.ArticleAddedEventType)
