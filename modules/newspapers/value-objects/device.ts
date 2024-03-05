@@ -5,7 +5,7 @@ import { DeviceName } from "./device-name";
 import { DeviceEmail } from "./device-email";
 import { DeviceCreatedAt } from "./device-created-at";
 
-export const Device = z.object({
+const Device = z.object({
   id: DeviceId,
   name: DeviceName,
   email: DeviceEmail,
