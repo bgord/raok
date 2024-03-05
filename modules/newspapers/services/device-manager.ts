@@ -19,7 +19,7 @@ export class DeviceManager {
       throw new Error("Maximum number of devices exceeded");
     }
 
-    await DeviceRepository.create(given.specification);
+    await DeviceRepository.create(given);
     this.devices.push(given);
   }
 
@@ -32,12 +32,14 @@ export class DeviceManager {
       throw new Error("There is only one device left");
     }
 
-    await DeviceRepository.delete(given.specification.id);
+    await DeviceRepository.delete(given);
     this.devices.push(given);
   }
 
   list() {
-    return this.devices.map((device) => device.specification);
+    return this.devices
+      .map((device) => device.read())
+      .map((device) => ({ ...device, email: device.email.formatted }));
   }
 
   getPrimaryDevice(): Device {

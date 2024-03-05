@@ -2,7 +2,7 @@ import express from "express";
 import * as bg from "@bgord/node";
 
 import * as Events from "../../../app/events";
-import { Device } from "../../newspapers/services/device-manager";
+import { Device } from "../../newspapers/services/device";
 import {
   ArbitraryFileScheduledEvent,
   ARBITRARY_FILE_SCHEDULED_EVENT,
@@ -12,7 +12,7 @@ import {
 export async function SendArbitraryFile(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
   const file = bg.Schema.UploadedFile.parse(request.body?.file);
   const deviceId = request.body.deviceId;
@@ -25,8 +25,8 @@ export async function SendArbitraryFile(
       stream: file.path,
       name: ARBITRARY_FILE_SCHEDULED_EVENT,
       version: 1,
-      payload: { ...file, email: device.specification.email },
-    })
+      payload: { ...file, email: device.read().email.raw },
+    }),
   );
 
   return response.send();

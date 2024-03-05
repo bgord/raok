@@ -18,7 +18,10 @@ export function SettingsTokenBlacklist() {
   const t = bg.useTranslations();
   const search = bg.useClientSearch();
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
-  const actions = bg.useToggle();
+  const actions = bg.usePersistentToggle(
+    "settings-token-blacklist-enabled",
+    false
+  );
 
   const tokenBlacklist = useQuery(
     api.keys.tokenBlacklist,

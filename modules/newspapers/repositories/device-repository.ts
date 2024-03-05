@@ -1,16 +1,27 @@
 import * as infra from "../../../infra";
 import * as VO from "../value-objects";
+import { Device } from "../services/device";
 
 export class DeviceRepository {
-  static async create(data: VO.DeviceType) {
-    await infra.db.device.create({ data });
+  static async create(device: Device) {
+    const data = device.read();
+
+    await infra.db.device.create({
+      data: {
+        id: data.id,
+        email: data.email.raw,
+        name: data.name,
+        createdAt: Date.now(),
+      },
+    });
   }
 
   static async list() {
     return infra.db.device.findMany({ orderBy: { createdAt: "asc" } });
   }
 
-  static async delete(id: VO.DeviceIdType) {
+  static async delete(device: Device) {
+    const { id } = device.read();
     await infra.db.device.delete({ where: { id } });
   }
 

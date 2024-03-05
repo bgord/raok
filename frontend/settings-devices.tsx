@@ -14,7 +14,7 @@ export function SettingsDevices() {
   hooks.useLeavingPrompt();
 
   const t = bg.useTranslations();
-  const actions = bg.useToggle();
+  const actions = bg.usePersistentToggle("settings-devices-enabled", false);
 
   const deviceList = useQuery(api.keys.allDevices, api.Devices.list);
   const devices = deviceList.data ?? [];
