@@ -1,11 +1,15 @@
 # Changelog
+- 2024-03-05 16:23 9c76fff **feature: add article source id implementation**
+## 2024-03-05 16:23 
+- 2024-03-05 14:18 23d7ed2 **step: add article rss source id column**
+- 2024-03-05 13:56 272f8d4 **refactor: article aggregate**
 - 2024-03-05 13:42 067db26 **refactor: move devices to the delivery module**
-## 2024-03-05 13:42 
 - 2024-03-05 13:32 08b29f9 **refactor: rename files module to delivery**
 - 2024-03-05 13:31 dd86961 **refactor: fetch the devices on server in dashboard**
 - 2024-03-05 13:22 1804b13 **step: bump bgord/scripts**
 - 2024-03-05 13:16 e475ae3 **step: bump bgord/scripts**
 - 2024-03-05 13:13 50b3525 **refactor: change send a file copy**
+- 2024-03-05 12:45 811b5c4 **docs: generate CHANGELOG**
 - 2024-03-05 12:24 a6c13b4 **docs: generate CHANGELOG**
 - 2024-03-05 12:06 ed84251 **docs: generate CHANGELOG**
 - 2024-03-05 10:31 f687340 **build(deps-dev): bump knip from 5.0.2 to 5.0.3 (#237)**
