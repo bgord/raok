@@ -27,61 +27,67 @@ export function ArticleUrl(props: ArticlePropsType) {
   });
 
   return (
-    <div
-      data-display="flex"
-      data-cross="center"
-      data-max-width="100%"
-      data-width="100%"
-      data-overflow="hidden"
-      data-wrap="nowrap"
-      data-gap={details.on ? "3" : "0"}
-      {...bg.Rhythm().times(2).style.height}
-    >
-      <button
-        type="button"
-        class="c-button"
-        data-variant="with-icon"
-        onClick={details.toggle}
-        style={{ marginLeft: "-6px" }}
-        title={
-          details.on ? t("article.actions.hide") : t("article.actions.show")
-        }
-        {...details.props.controller}
+    <div>
+      <div
+        data-display="flex"
+        data-cross="center"
+        data-max-width="100%"
+        data-width="100%"
+        data-overflow="hidden"
+        data-wrap="nowrap"
+        data-gap={details.on ? "3" : "0"}
+        {...bg.Rhythm().times(2).style.height}
       >
-        {details.off && <Icons.NavArrowRight height="18" width="18" />}
-        {details.on && <Icons.NavArrowDown height="18" width="18" />}
-      </button>
+        <button
+          type="button"
+          class="c-button"
+          data-variant="with-icon"
+          onClick={details.toggle}
+          style={{ marginLeft: "-6px" }}
+          title={
+            details.on ? t("article.actions.hide") : t("article.actions.show")
+          }
+          {...details.props.controller}
+        >
+          {details.off && <Icons.NavArrowRight height="18" width="18" />}
+          {details.on && <Icons.NavArrowDown height="18" width="18" />}
+        </button>
 
-      {details.on && (
-        <Fragment>
-          <ArticleSourceAdd {...props} />
-          <ArticleEmailDelivery {...props} />
-          <UI.CopyButton
-            data-pt="3"
-            options={{ text: props.url, onSuccess: articleUrlCopied }}
-          />
-        </Fragment>
+        {details.on && (
+          <Fragment>
+            <ArticleSourceAdd {...props} />
+            <ArticleEmailDelivery {...props} />
+            <UI.CopyButton
+              data-pt="3"
+              options={{ text: props.url, onSuccess: articleUrlCopied }}
+            />
+          </Fragment>
+        )}
+        <UI.ArticleUrl
+          url={props.url}
+          onClick={() => articleOpened.mutate(props.id)}
+        />
+
+        <button
+          type="button"
+          class="c-button"
+          data-variant="with-icon"
+          data-ml="6"
+          onClick={bg.exec([
+            () => articleOpened.mutate(props.id),
+            () => articleHomepageOpened.mutate(props.id),
+            () => window.open(props.url),
+            () => window.open(new URL(props.url).origin),
+          ])}
+          title={t("article.actions.inspect")}
+        >
+          <Icons.InfoCircle height="16" width="16" />
+        </button>
+      </div>
+
+      {details.on && props.RssSource?.url && (
+        <UI.Info>{t("article.from", { url: props.RssSource.url })}</UI.Info>
       )}
-      <UI.ArticleUrl
-        url={props.url}
-        onClick={() => articleOpened.mutate(props.id)}
-      />
-
-      <button
-        type="button"
-        class="c-button"
-        data-variant="with-icon"
-        data-ml="6"
-        onClick={bg.exec([
-          () => articleOpened.mutate(props.id),
-          () => articleHomepageOpened.mutate(props.id),
-          () => window.open(props.url),
-          () => window.open(new URL(props.url).origin),
-        ])}
-        title={t("article.actions.inspect")}
-      >
-        <Icons.InfoCircle height="16" width="16" />
-      </button>
     </div>
   );
 }

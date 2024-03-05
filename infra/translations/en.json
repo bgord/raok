@@ -211,5 +211,6 @@
   "token.structure.error": "Token should be 2 - 512 chars",
   "token_blacklist.list.empty": "No tokens matching your filters",
   "token_blacklist.search.placeholder": "Search for a token",
-  "web": "web"
+  "web": "web",
+  "article.from": "Source: {{url}}"
 }

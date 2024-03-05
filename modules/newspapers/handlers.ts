@@ -26,7 +26,7 @@ export const onArticleAddedEventHandler =
     await Stats.Repos.StatsRepository.incrementCreatedArticles();
 
     const content = (await ArticleContentDownloader.download(
-      event.payload.url,
+      event.payload.url
     )) as VO.ArticleContentType;
 
     const readableArticle = ReadableArticleGenerator.generate({
@@ -42,7 +42,7 @@ export const onArticleAddedEventHandler =
     await ArticleRepository.updateRating({
       id: event.payload.id,
       rating: await Recommendations.Services.TextRatingCalculator.calculate(
-        readableArticle?.title,
+        readableArticle?.title
       ),
     });
   });
@@ -87,7 +87,7 @@ export const onArticleLockedEventHandler =
       await ArticleRepository.assignToNewspaper(
         event.payload.articleId,
         event.payload.newspaperId,
-        event.payload.revision,
+        event.payload.revision
       );
     } catch (error) {
       infra.logger.error({
