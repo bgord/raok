@@ -5,6 +5,7 @@ import * as bg from "@bgord/node";
 import * as Settings from "../../settings";
 import * as Stats from "../../stats";
 import * as Newspapers from "../../newspapers";
+import * as Delivery from "../../delivery";
 
 import * as infra from "../../../infra";
 
@@ -28,7 +29,7 @@ export async function Sources(
     Newspapers.VO.ARTICLES_PER_PAGE,
   );
 
-  const deviceManager = await Newspapers.Services.DeviceManager.build();
+  const deviceManager = await Delivery.Services.DeviceManager.build();
 
   const state = {
     ...(await bg.BuildInfoRepository.extract()),

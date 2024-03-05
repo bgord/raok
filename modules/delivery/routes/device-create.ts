@@ -20,5 +20,5 @@ export async function DeviceCreate(
   const device = new Services.Device({ id, name, email, createdAt });
   await deviceManager.add(device);
 
-  return response.send(201);
+  return response.sendStatus(201);
 }

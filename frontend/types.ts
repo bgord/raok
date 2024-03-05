@@ -9,7 +9,7 @@ import type { SettingsRepository } from "../modules/settings/repositories/settin
 import type { FilesRepository } from "../modules/delivery/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
-import type { DeviceRepository } from "../modules/newspapers/repositories/device-repository";
+import type { DeviceRepository } from "../modules/delivery/repositories/device-repository";
 
 /** @public */
 export type { HourType, EmailType } from "@bgord/node/dist/schema";
@@ -84,7 +84,7 @@ export { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../modules/newspapers/value-objec
 
 import { ARTICLE_SEARCH_QUERY_MIN_LENGTH } from "../modules/newspapers/value-objects/article-search-query-min-length";
 import { ARTICLE_SEARCH_QUERY_MAX_LENGTH } from "../modules/newspapers/value-objects/article-search-query-max-length";
-import { DEVICE_NAME_MAX_LENGTH } from "../modules/newspapers/value-objects/device-name-max-length";
+import { DEVICE_NAME_MAX_LENGTH } from "../modules/delivery/value-objects/device-name-max-length";
 
 import { ARTICLE_URL_MAX_CHARS } from "../modules/newspapers/value-objects/article-url-max-chars";
 export { ArticleStatusEnum } from "../modules/newspapers/value-objects/article-status-enum";

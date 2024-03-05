@@ -2,9 +2,10 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
+import * as Delivery from "../../delivery";
+
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
-import * as Services from "../services";
 import * as Settings from "../../settings";
 import * as Stats from "../../stats";
 
@@ -25,7 +26,7 @@ export async function ArticlesArchive(
 
   const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
 
-  const deviceManager = await Services.DeviceManager.build();
+  const deviceManager = await Delivery.Services.DeviceManager.build();
 
   const state = {
     ...(await bg.BuildInfoRepository.extract()),

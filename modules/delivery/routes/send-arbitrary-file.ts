@@ -2,7 +2,7 @@ import express from "express";
 import * as bg from "@bgord/node";
 
 import * as Events from "../../../app/events";
-import { Device } from "../../newspapers/services/device";
+import { Device } from "../services/device";
 import {
   ArbitraryFileScheduledEvent,
   ARBITRARY_FILE_SCHEDULED_EVENT,

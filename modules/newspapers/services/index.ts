@@ -3,8 +3,6 @@ export * from "./article-email-message-composer";
 export * from "./article-metatags-scraper";
 export * from "./article-rating-level-calculator";
 export * from "./articles-to-review-notifier";
-export * from "./device";
-export * from "./device-manager";
 export * from "./estimated-reading-time-calculator";
 export * from "./html-to-epub";
 export * from "./newspaper-file";

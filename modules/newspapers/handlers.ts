@@ -2,9 +2,9 @@ import * as bg from "@bgord/node";
 
 import * as Stats from "../stats";
 import * as Recommendations from "../recommendations";
+import * as Delivery from "../delivery";
 
 import { Article, Newspaper } from "./aggregates";
-import { DeviceManager } from "./services/device-manager";
 import * as Events from "./events";
 import * as VO from "./value-objects";
 import {
@@ -154,7 +154,7 @@ export const onNewspaperGeneratedEventHandler =
     const newspaper = await new Newspaper(event.payload.newspaperId).build();
     const revision = new bg.Revision(newspaper.revision);
 
-    const deviceManager = await DeviceManager.build();
+    const deviceManager = await Delivery.Services.DeviceManager.build();
     const primaryDevice = deviceManager.getPrimaryDevice();
 
     await newspaper.send(revision, primaryDevice.read().email.raw);

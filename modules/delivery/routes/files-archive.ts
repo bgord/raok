@@ -7,7 +7,7 @@ import * as infra from "../../../infra";
 import * as Newspapers from "../../newspapers";
 import * as Settings from "../../settings";
 import * as Stats from "../../stats";
-import * as Files from "../";
+import * as Delivery from "../";
 
 import { App } from "../../../frontend/app";
 
@@ -22,7 +22,7 @@ export async function FilesArchive(
     request.translationsPath,
   );
 
-  const deviceManager = await Newspapers.Services.DeviceManager.build();
+  const deviceManager = await Delivery.Services.DeviceManager.build();
 
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
@@ -34,8 +34,8 @@ export async function FilesArchive(
       undefined,
       undefined,
     ),
-    archiveFiles: await Files.Repos.FilesRepository.getAll(
-      Files.Repos.ArchiveFilesFilter.parse(request.query),
+    archiveFiles: await Delivery.Repos.FilesRepository.getAll(
+      Delivery.Repos.ArchiveFilesFilter.parse(request.query),
     ),
     articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
       bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE }),

@@ -19,9 +19,7 @@ test("Login logout flow", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Newspaper creator" })
   ).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Send to Kindle" })
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Send file" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Stats" })).toBeVisible();
 
   // Logout

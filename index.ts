@@ -279,21 +279,21 @@ app.get(
   "/device/list",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  bg.Route(Newspapers.Routes.DeviceList),
+  bg.Route(Delivery.Routes.DeviceList),
 );
 
 app.post(
   "/device/create",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(Newspapers.Routes.DeviceCreate),
+  bg.Route(Delivery.Routes.DeviceCreate),
 );
 
 app.post(
   "/device/:id/delete",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  bg.Route(Newspapers.Routes.DeviceDelete),
+  bg.Route(Delivery.Routes.DeviceDelete),
 );
 // =============================
 

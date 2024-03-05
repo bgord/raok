@@ -1,7 +1,7 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
-import * as VO from "../newspapers/value-objects";
+import * as VO from "../delivery/value-objects";
 
 export const ARBITRARY_FILE_SCHEDULED_EVENT = "ARBITRARY_FILE_SCHEDULED_EVENT";
 export const ArbitraryFileScheduledEvent = bg.EventDraft.merge(

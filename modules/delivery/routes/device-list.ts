@@ -6,7 +6,7 @@ import * as Services from "../services";
 export async function DeviceList(
   _request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
   const deviceManager = await Services.DeviceManager.build();
   const devices = deviceManager.list();
