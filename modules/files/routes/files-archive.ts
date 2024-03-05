@@ -22,6 +22,8 @@ export async function FilesArchive(
     request.translationsPath,
   );
 
+  const deviceManager = await Newspapers.Services.DeviceManager.build();
+
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
@@ -42,6 +44,7 @@ export async function FilesArchive(
     settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Stats.Repos.StatsRepository.getAll(),
+    devices: deviceManager.list(),
   };
 
   const frontend = render(App({ ...state, url: "/archive/articles" }));

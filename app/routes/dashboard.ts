@@ -25,6 +25,8 @@ export async function Dashboard(
     Newspapers.VO.ARTICLES_PER_PAGE,
   );
 
+  const deviceManager = await Newspapers.Services.DeviceManager.build();
+
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
@@ -44,6 +46,7 @@ export async function Dashboard(
     settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Stats.Repos.StatsRepository.getAll(),
+    devices: deviceManager.list(),
   };
 
   const frontend = render(App({ ...state, url: request.url }));

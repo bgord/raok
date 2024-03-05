@@ -3,11 +3,12 @@ import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
 import * as Repos from "../repositories";
-import * as infra from "../../../infra";
-
 import * as VO from "../value-objects";
+import * as Services from "../services";
 import * as Settings from "../../settings";
 import * as Stats from "../../stats";
+
+import * as infra from "../../../infra";
 
 import { App } from "../../../frontend/app";
 
@@ -23,6 +24,8 @@ export async function ArticlesArchive(
   );
 
   const pagination = bg.Pagination.parse(request.query, VO.ARTICLES_PER_PAGE);
+
+  const deviceManager = await Services.DeviceManager.build();
 
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
@@ -44,6 +47,7 @@ export async function ArticlesArchive(
     sources: [],
     settings: await Settings.Repos.SettingsRepository.getAll(),
     stats: await Stats.Repos.StatsRepository.getAll(),
+    devices: deviceManager.list(),
   };
 
   const frontend = render(App({ ...state, url: "/archive/articles" }));

@@ -59,6 +59,7 @@ export function App(props: InitialDataType) {
     api.keys.sources({ status: undefined }),
     props.sources,
   );
+  queryClient.setQueryData(api.keys.allDevices, props.devices);
 
   return (
     <QueryClientProvider client={queryClient}>

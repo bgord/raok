@@ -28,6 +28,8 @@ export async function Sources(
     Newspapers.VO.ARTICLES_PER_PAGE,
   );
 
+  const deviceManager = await Newspapers.Services.DeviceManager.build();
+
   const state = {
     ...(await bg.BuildInfoRepository.extract()),
     language: request.language,
@@ -47,6 +49,7 @@ export async function Sources(
     settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: await Repos.SourceRepository.listAll(filters),
     stats: await Stats.Repos.StatsRepository.getAll(),
+    devices: deviceManager.list(),
   };
 
   const frontend = render(App({ ...state, url: request.url }));

@@ -65,9 +65,10 @@ export type TokenBlacklistType = AsyncReturnType<
   (typeof TokenBlacklistRepository)["list"]
 >[number];
 
-export type DeviceType = AsyncReturnType<
-  (typeof DeviceRepository)["list"]
->[number];
+export type DeviceType = Omit<
+  AsyncReturnType<(typeof DeviceRepository)["list"]>[number],
+  "createdAt"
+>;
 
 export enum SourceStatusEnum {
   "active" = "active",

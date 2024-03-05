@@ -17,6 +17,7 @@ export type InitialDashboardDataType = {
   stats: types.StatsType;
   articles: bg.Paged<types.ArticleType>;
   newspapers: types.NewspaperType[];
+  devices: types.DeviceType[];
 };
 
 export function Dashboard(_: RoutableProps) {
