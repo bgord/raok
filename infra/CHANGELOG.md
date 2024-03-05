@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-05 10:29 2c91a80 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#240)**
+## 2024-03-05 10:29 
 - 2024-03-04 21:33 a431fe2 **refactor: remove device migrator**
-## 2024-03-04 21:33 
+- 2024-03-04 20:43 14d67c9 **docs: generate CHANGELOG**
 - 2024-03-04 20:42 9b7accd **feature: add select device in send arbitrary file**
 - 2024-03-04 20:24 3e824fa **docs: generate CHANGELOG**
 - 2024-03-04 20:21 f9bac8d **feature: add device delete ui**
