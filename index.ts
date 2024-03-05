@@ -6,7 +6,7 @@ import * as App from "./app";
 import * as RSS from "./modules/rss";
 import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
-import * as Files from "./modules/files";
+import * as Delivery from "./modules/delivery";
 import * as Newspapers from "./modules/newspapers";
 import * as Recommendations from "./modules/recommendations";
 
@@ -142,26 +142,26 @@ app.post(
   infra.AuthShield.verify,
   ...bg.FileUploader.handle({
     autoClean: false,
-    maxFilesSize: Files.VO.MAX_UPLOADED_FILE_SIZE_BYTES,
+    maxFilesSize: Delivery.VO.MAX_UPLOADED_FILE_SIZE_BYTES,
     uploadDir: "files",
-    mimeTypes: Files.VO.FileMimeTypes.value,
+    mimeTypes: Delivery.VO.FileMimeTypes.value,
   }),
-  bg.Route(Files.Routes.SendArbitraryFile),
+  bg.Route(Delivery.Routes.SendArbitraryFile),
 );
 app.get(
   "/files/archive/:fileId/download",
   infra.AuthShield.verify,
-  bg.Route(Files.Routes.DownloadFile),
+  bg.Route(Delivery.Routes.DownloadFile),
 );
 app.get(
   "/files/archive",
   infra.AuthShield.verify,
-  bg.Route(Files.Routes.ArchiveFiles),
+  bg.Route(Delivery.Routes.ArchiveFiles),
 );
 app.get(
   "/archive/files",
   infra.AuthShield.verify,
-  bg.Route(Files.Routes.FilesArchive),
+  bg.Route(Delivery.Routes.FilesArchive),
 );
 // =============================
 

@@ -7,7 +7,7 @@ import { TimeStampFilter } from "../../newspapers/value-objects";
 import * as infra from "../../../infra";
 
 export const ArchiveFilesFilter = new bg.Filter(
-  z.object({ sentAt: TimeStampFilter })
+  z.object({ sentAt: TimeStampFilter }),
 );
 
 export class FilesRepository {

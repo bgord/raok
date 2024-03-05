@@ -2,7 +2,7 @@ import * as bg from "@bgord/node";
 import Emittery from "emittery";
 
 import * as Settings from "../modules/settings";
-import * as Files from "../modules/files";
+import * as Delivery from "../modules/delivery";
 import * as NewspapersEvents from "../modules/newspapers/events";
 import * as NewspapersHandlers from "../modules/newspapers/handlers";
 import * as Recommendations from "../modules/recommendations";
@@ -12,7 +12,7 @@ import * as infra from "../infra";
 const EventLogger = new bg.EventLogger(infra.logger);
 
 export const emittery = new Emittery<{
-  ARBITRARY_FILE_SCHEDULED_EVENT: Files.Events.ArbitraryFileScheduledEventType;
+  ARBITRARY_FILE_SCHEDULED_EVENT: Delivery.Events.ArbitraryFileScheduledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_DISABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsDisabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATIONS_ENABLED_EVENT: Settings.Events.ArticlesToReviewNotificationsEnabledEventType;
   ARTICLES_TO_REVIEW_NOTIFICATION_HOUR_SET_EVENT: Settings.Events.ArticlesToReviewNotificationHourSetEventType;
@@ -100,8 +100,8 @@ emittery.on(
 );
 
 emittery.on(
-  Files.Events.ARBITRARY_FILE_SCHEDULED_EVENT,
-  Files.Handlers.onArbitraryFileScheduledEventHandler,
+  Delivery.Events.ARBITRARY_FILE_SCHEDULED_EVENT,
+  Delivery.Handlers.onArbitraryFileScheduledEventHandler,
 );
 
 // Recommendations

@@ -6,7 +6,7 @@ import type { ArticleRepository } from "../modules/newspapers/repositories/artic
 import type { NewspaperRepository } from "../modules/newspapers/repositories/newspaper-repository";
 import type { StatsRepository } from "../modules/stats/repositories/stats-repository";
 import type { SettingsRepository } from "../modules/settings/repositories/settings-repository";
-import type { FilesRepository } from "../modules/files/repositories/files-repository";
+import type { FilesRepository } from "../modules/delivery/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
 import type { DeviceRepository } from "../modules/newspapers/repositories/device-repository";
@@ -77,8 +77,8 @@ export enum SourceStatusEnum {
 import { SOURCE_URL_MIN_LENGTH } from "../modules/rss/value-objects/source-url-min-length";
 import { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-max-length";
 
-export { MAX_UPLOADED_FILE_SIZE_BYTES } from "../modules/files/value-objects/max-uploaded-file-size";
-export { FileMimeTypes } from "../modules/files/value-objects/file-mime-types";
+export { MAX_UPLOADED_FILE_SIZE_BYTES } from "../modules/delivery/value-objects/max-uploaded-file-size";
+export { FileMimeTypes } from "../modules/delivery/value-objects/file-mime-types";
 
 export { NEWSPAPER_MAX_ARTICLES_NUMBER } from "../modules/newspapers/value-objects/newspaper-max-articles-number";
 

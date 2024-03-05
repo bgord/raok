@@ -1,6 +1,6 @@
 import * as bg from "@bgord/node";
 
-import * as Files from "../../files";
+import * as Delivery from "../../delivery";
 
 import * as Events from "../events";
 import * as VO from "../value-objects";
@@ -41,7 +41,7 @@ export class Newspaper {
         Events.NewspaperArchivedEvent,
         Events.NewspaperFailedEvent,
       ],
-      Newspaper.getStream(this.id)
+      Newspaper.getStream(this.id),
     );
 
     for (const event of events) {
@@ -110,7 +110,7 @@ export class Newspaper {
           createdAt: Date.now(),
           revision: bg.Revision.initial,
         },
-      } satisfies Events.NewspaperScheduledEventType)
+      } satisfies Events.NewspaperScheduledEventType),
     );
   }
 
@@ -133,7 +133,7 @@ export class Newspaper {
           stream: this.stream,
           version: 1,
           payload: { newspaperId: this.id, revision: revision.next().value },
-        } satisfies Events.NewspaperGenerateEventType)
+        } satisfies Events.NewspaperGenerateEventType),
       );
     } catch (error) {
       infra.logger.error({
@@ -148,7 +148,7 @@ export class Newspaper {
           version: 1,
           stream: this.stream,
           payload: { newspaperId: this.id, revision: revision.next().value },
-        } satisfies Events.NewspaperFailedEventType)
+        } satisfies Events.NewspaperFailedEventType),
       );
     }
   }
@@ -161,9 +161,9 @@ export class Newspaper {
     });
 
     try {
-      await Files.Services.ArbitraryFileSender.send(
+      await Delivery.Services.ArbitraryFileSender.send(
         Services.NewspaperFile.getAttachment(this.id),
-        to
+        to,
       );
 
       await infra.EventStore.save(
@@ -177,7 +177,7 @@ export class Newspaper {
             sentAt: Date.now(),
             revision: revision.next().value,
           },
-        } satisfies Events.NewspaperSentEventType)
+        } satisfies Events.NewspaperSentEventType),
       );
     } catch (error) {
       infra.logger.error({
@@ -192,7 +192,7 @@ export class Newspaper {
           version: 1,
           stream: this.stream,
           payload: { newspaperId: this.id, revision: revision.next().value },
-        } satisfies Events.NewspaperFailedEventType)
+        } satisfies Events.NewspaperFailedEventType),
       );
     }
   }
@@ -210,7 +210,7 @@ export class Newspaper {
         version: 1,
         stream: this.stream,
         payload: { newspaperId: this.id, revision: revision.next().value },
-      } satisfies Events.NewspaperArchivedEventType)
+      } satisfies Events.NewspaperArchivedEventType),
     );
   }
 
@@ -235,7 +235,7 @@ export class Newspaper {
         version: 1,
         stream: this.stream,
         payload: { newspaperId: this.id, revision: revision.next().value },
-      } satisfies Events.NewspaperArchivedEventType)
+      } satisfies Events.NewspaperArchivedEventType),
     );
   }
 
@@ -257,7 +257,7 @@ export class Newspaper {
           createdAt: Date.now(),
           revision: revision.next().value,
         },
-      } satisfies Events.NewspaperScheduledEventType)
+      } satisfies Events.NewspaperScheduledEventType),
     );
   }
 

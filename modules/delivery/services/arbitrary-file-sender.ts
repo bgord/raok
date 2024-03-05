@@ -6,7 +6,7 @@ import * as infra from "../../../infra";
 export class ArbitraryFileSender {
   static send(
     file: Pick<bg.Schema.UploadedFileType, "originalFilename" | "path">,
-    to: bg.Schema.EmailType
+    to: bg.Schema.EmailType,
   ) {
     return infra.Mailer.send({
       from: infra.Env.EMAIL_FROM,
