@@ -17,7 +17,7 @@ export function SendArbitraryFile() {
 
   const deviceId = bg.useField<types.DeviceType["id"]>(
     "device-id",
-    devices[0]?.id as types.DeviceType["id"]
+    devices[0]?.id as types.DeviceType["id"],
   );
 
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
@@ -55,66 +55,73 @@ export function SendArbitraryFile() {
         <span data-transform="upper-first">{t("app.send_a_file")}</span>
       </UI.Header>
 
-      <div data-display="flex" data-direction="column">
-        <label class="c-label" {...deviceId.label.props}>
-          {t("send_a_file.device.label")}
-        </label>
+      <div
+        data-display="flex"
+        data-wrap="nowrap"
+        data-cross="end"
+        data-gap="12"
+      >
+        <div data-display="flex" data-direction="column">
+          <label class="c-label" {...deviceId.label.props}>
+            {t("send_a_file.device.label")}
+          </label>
 
-        <UI.Select
-          key={devices.length}
-          onInput={deviceId.handleChange}
-          data-mr="auto"
-          {...deviceId.input.props}
-          {...bg.Rhythm().times(20).style.minWidth}
-        >
-          {devices.map((device) => (
-            <option key={device.id} value={device.id}>
-              {device.name}
-            </option>
-          ))}
-        </UI.Select>
-      </div>
-
-      <div data-display="flex" data-gap="12">
-        <input
-          class="c-file-explorer"
-          type="file"
-          accept={types.FileMimeTypes.form()}
-          onInput={file.actions.selectFile}
-          {...file.input.props}
-          {...shortcut}
-        />
-
-        <label data-cursor="pointer" {...file.label.props}>
-          <button
-            disabled={file.isSelected}
-            type="button"
-            class="c-button"
-            data-variant="secondary"
-            data-pointer-events="none"
+          <UI.Select
+            key={devices.length}
+            onInput={deviceId.handleChange}
+            data-mr="auto"
+            {...deviceId.input.props}
+            {...bg.Rhythm().times(20).style.minWidth}
           >
-            {t("app.file_explorer")}
-          </button>
-        </label>
+            {devices.map((device) => (
+              <option key={device.id} value={device.id}>
+                {device.name}
+              </option>
+            ))}
+          </UI.Select>
+        </div>
 
-        <div data-display="flex" data-wrap="nowrap" data-gap="12">
-          {file.isSelected && !fileUpload.isSuccess && (
-            <button type="submit" class="c-button" data-variant="primary">
-              {t("app.file.upload")}
-            </button>
-          )}
+        <div data-display="flex" data-gap="12">
+          <input
+            class="c-file-explorer"
+            type="file"
+            accept={types.FileMimeTypes.form()}
+            onInput={file.actions.selectFile}
+            {...file.input.props}
+            {...shortcut}
+          />
 
-          {file.matches([bg.UseFileState.selected, bg.UseFileState.error]) && (
+          <label data-cursor="pointer" {...file.label.props}>
             <button
+              disabled={file.isSelected}
               type="button"
               class="c-button"
               data-variant="secondary"
-              onClick={bg.exec([file.actions.clearFile, fileUpload.reset])}
+              data-pointer-events="none"
             >
-              {t("app.clear")}
+              {t("app.file_explorer")}
             </button>
-          )}
+          </label>
         </div>
+      </div>
+
+      <div data-display="flex" data-wrap="nowrap" data-gap="12">
+        {file.isSelected && !fileUpload.isSuccess && (
+          <button type="submit" class="c-button" data-variant="primary">
+            {t("app.file.upload")}
+          </button>
+        )}
+
+        {file.matches([bg.UseFileState.selected, bg.UseFileState.error]) && (
+          <button
+            type="button"
+            class="c-button"
+            data-variant="secondary"
+            onClick={bg.exec([file.actions.clearFile, fileUpload.reset])}
+          >
+            {t("app.clear")}
+          </button>
+        )}
       </div>
 
       {file.isError && (
@@ -124,7 +131,7 @@ export function SendArbitraryFile() {
       )}
 
       {(fileUpload.isIdle || fileUpload.isSuccess) && file.isIdle && (
-        <UI.Info data-gap="6" data-mt="12">
+        <UI.Info data-gap="6">
           <Icons.InfoCircle height="20" width="20" />
 
           <span data-mt="3">
