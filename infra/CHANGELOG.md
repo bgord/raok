@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-08 08:43 91b6f9b **build(deps-dev): bump @types/node from 20.11.24 to 20.11.25 (#242)**
+## 2024-03-08 08:43 
 - 2024-03-08 08:42 d1e44ed **build(deps): bump typescript from 5.3.3 to 5.4.2 (#243)**
-## 2024-03-08 08:42 
+- 2024-03-08 07:43 b01a15c **docs: generate CHANGELOG**
 - 2024-03-05 16:23 9c76fff **feature: add article source id implementation**
 - 2024-03-05 15:25 9d13795 **docs: generate CHANGELOG**
 - 2024-03-05 14:18 23d7ed2 **step: add article rss source id column**
