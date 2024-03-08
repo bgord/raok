@@ -1,8 +1,10 @@
 # Changelog
+- 2024-03-08 10:45 8dea3a3 **fix: dashboard ui bugs on mobile**
+## 2024-03-08 10:45 
 - 2024-03-08 08:43 f8013a0 **build(deps-dev): bump oxlint from 0.2.12 to 0.2.13 (#241)**
 - 2024-03-08 08:43 91b6f9b **build(deps-dev): bump @types/node from 20.11.24 to 20.11.25 (#242)**
-## 2024-03-08 08:43 
 - 2024-03-08 08:42 d1e44ed **build(deps): bump typescript from 5.3.3 to 5.4.2 (#243)**
+- 2024-03-08 07:44 320f237 **docs: generate CHANGELOG**
 - 2024-03-08 07:43 fb9eea7 **docs: generate CHANGELOG**
 - 2024-03-08 07:43 b01a15c **docs: generate CHANGELOG**
 - 2024-03-05 16:23 9c76fff **feature: add article source id implementation**
