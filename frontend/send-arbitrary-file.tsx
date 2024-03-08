@@ -17,7 +17,7 @@ export function SendArbitraryFile() {
 
   const deviceId = bg.useField<types.DeviceType["id"]>(
     "device-id",
-    devices[0]?.id as types.DeviceType["id"],
+    devices[0]?.id as types.DeviceType["id"]
   );
 
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
@@ -70,8 +70,9 @@ export function SendArbitraryFile() {
             key={devices.length}
             onInput={deviceId.handleChange}
             data-mr="auto"
+            data-width="100%"
             {...deviceId.input.props}
-            {...bg.Rhythm().times(20).style.minWidth}
+            {...bg.Rhythm().times(12).style.minWidth}
           >
             {devices.map((device) => (
               <option key={device.id} value={device.id}>

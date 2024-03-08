@@ -27,7 +27,7 @@ export function ArticleUrl(props: ArticlePropsType) {
   });
 
   return (
-    <div>
+    <div data-max-width="100%">
       <div
         data-display="flex"
         data-cross="center"
