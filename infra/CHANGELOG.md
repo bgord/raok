@@ -1,7 +1,9 @@
 # Changelog
+- 2024-03-10 17:17 48a9546 **feature: add source is quality alarming**
+## 2024-03-10 17:17 
 - 2024-03-10 14:34 91ea9a3 **refactor: use bg percentage**
-## 2024-03-10 14:34 
 - 2024-03-10 14:33 07b001d **step: bump bgord/node**
+- 2024-03-10 13:35 b631c3e **docs: generate CHANGELOG**
 - 2024-03-10 13:24 d189a71 **feature: add source quality ui**
 - 2024-03-10 13:04 a76f1e2 **feature: add SourceQualityUpdater**
 - 2024-03-10 13:02 5a612d0 **step: add source quality column**
