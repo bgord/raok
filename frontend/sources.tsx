@@ -37,7 +37,7 @@ export function Sources(_props: RoutableProps) {
     { refetchOnMount: true }
   );
 
-  const usedAtSort = bg.useClientSort<types.SourceType>("sort-sources", {
+  const sourcesSort = bg.useClientSort<types.SourceType>("sort-sources", {
     enum: types.SourceSortEnum,
     options: {
       [types.SourceSortEnum.default]: bg.defaultSortFn,
@@ -51,12 +51,16 @@ export function Sources(_props: RoutableProps) {
         bg.Sorts.descending(a.countValue, b.countValue),
       [types.SourceSortEnum.least_frequent]: (a, b) =>
         bg.Sorts.ascending(a.countValue, b.countValue),
+      [types.SourceSortEnum.most_quality]: (a, b) =>
+        bg.Sorts.descending(a.quality ?? -1, b.quality ?? -1),
+      [types.SourceSortEnum.least_quality]: (a, b) =>
+        bg.Sorts.ascending(a.quality ?? -1, b.quality ?? -1),
     },
   });
 
   const sources = (sourceList.data ?? [])
     .filter((source) => search.filterFn(String(source.url)))
-    .toSorted(usedAtSort.sortFn);
+    .toSorted(sourcesSort.sortFn);
 
   const numberOfSources = sources.length;
 
@@ -114,17 +118,17 @@ export function Sources(_props: RoutableProps) {
         </div>
 
         <div data-display="flex" data-direction="column">
-          <label class="c-label" {...usedAtSort.label.props}>
+          <label class="c-label" {...sourcesSort.label.props}>
             {t("sort")}
           </label>
 
           <UI.Select
-            key={usedAtSort.value}
-            value={usedAtSort.value}
-            onInput={usedAtSort.handleChange}
-            {...usedAtSort.input.props}
+            key={sourcesSort.value}
+            value={sourcesSort.value}
+            onInput={sourcesSort.handleChange}
+            {...sourcesSort.input.props}
           >
-            {usedAtSort.options.map((option) => (
+            {sourcesSort.options.map((option) => (
               <option key={option} value={option}>
                 {t(`source.sort.${option}`)}
               </option>
@@ -159,11 +163,11 @@ export function Sources(_props: RoutableProps) {
           data-self="end"
           onClick={bg.exec([
             search.clear,
-            usedAtSort.clear,
+            sourcesSort.clear,
             statusFilter.clear,
           ])}
           disabled={
-            search.unchanged && usedAtSort.unchanged && statusFilter.unchanged
+            search.unchanged && sourcesSort.unchanged && statusFilter.unchanged
           }
         >
           {t("app.reset")}

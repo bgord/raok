@@ -8,15 +8,16 @@ import * as types from "./types";
 import { SourceDelete } from "./source-delete";
 import { SourceArchive } from "./source-archive";
 import { SourceReactivate } from "./source-reactivate";
+import { SourceQuality } from "./source-quality";
 import { Health } from "./health";
 
 export function Source(
   props: types.SourceType & h.JSX.IntrinsicElements["li"]
 ) {
   // prettier-ignore
-  const {  url, status, id, name, createdAt, updatedAt, revision, ...rest } = props;
+  const {  url, status, id, name, createdAt, updatedAt, revision, quality, ...rest } = props;
   // prettier-ignore
-  const source = {  id, name, createdAt, updatedAt, url, status, revision };
+  const source = {  id, name, createdAt, updatedAt, url, status, revision, quality };
 
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
@@ -83,6 +84,8 @@ export function Source(
           count: props.countValue,
         })}
       </UI.Info>
+
+      <SourceQuality {...props} />
 
       <UI.CopyButton
         options={{ text: props.url, onSuccess: sourceUrlCopied }}

@@ -101,6 +101,8 @@ export enum SourceSortEnum {
   least_frequent = "least_frequent",
   a_z = "a_z",
   z_a = "z_a",
+  most_quality = "most_quality",
+  least_quality = "least_quality",
 }
 
 export const SourceUrlValidations = {
