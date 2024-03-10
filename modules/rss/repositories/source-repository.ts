@@ -80,7 +80,7 @@ export class SourceRepository {
 
   static async updateMetadata(
     id: VO.SourceIdType,
-    metadata: Services.SourceMetadataType
+    metadata: Partial<Services.SourceMetadataType>
   ) {
     await infra.db.source.update({ where: { id }, data: metadata });
   }

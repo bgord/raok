@@ -21,11 +21,11 @@ export class RSSCrawler {
 
         await SourceMetadataUpdater.update(
           source.id,
-          SourceMetadataUpdater.map(rss.items),
+          SourceMetadataUpdater.map(rss.items)
         );
 
         const jobs = rss.items.map(
-          (item) => () => RSSCrawlerJobFactory.create(item, source),
+          (item) => () => RSSCrawlerJobFactory.create(item, source)
         );
 
         infra.logger.info({

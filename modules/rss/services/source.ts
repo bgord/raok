@@ -69,7 +69,7 @@ export class Source {
   }
 
   static async create(
-    payload: Pick<VO.SourceType, "url" | "id">,
+    payload: Pick<VO.SourceType, "url" | "id">
   ): Promise<Source> {
     const now = Date.now();
 
@@ -88,6 +88,7 @@ export class Source {
       revision: bg.Revision.initial,
       countValue: 0,
       countStrategy: "total_last_month",
+      quality: null,
     };
 
     await Repos.SourceRepository.create(source);

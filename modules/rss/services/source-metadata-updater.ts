@@ -4,7 +4,11 @@ import { parseISO } from "date-fns";
 import * as VO from "../value-objects";
 import * as Repos from "../repositories";
 
-export type SourceMetadataType = { countValue: number; countStrategy: string };
+export type SourceMetadataType = {
+  countValue: number;
+  countStrategy: string;
+  quality: number;
+};
 
 type SourceItemType = { isoDate: string };
 
@@ -16,13 +20,13 @@ export class SourceMetadataUpdater {
           typeof item === "object" &&
           item !== null &&
           "isoDate" in item &&
-          typeof item.isoDate === "string",
+          typeof item.isoDate === "string"
       )
       .map((item) => parseISO(item.isoDate).getTime())
       .filter((createdAtTimestamp: number) =>
         bg.Time.Ms(createdAtTimestamp).isAfter(
-          bg.Time.Now().Minus(bg.Time.Days(30)),
-        ),
+          bg.Time.Now().Minus(bg.Time.Days(30))
+        )
       ).length;
 
     return {
@@ -32,7 +36,10 @@ export class SourceMetadataUpdater {
     };
   }
 
-  static async update(id: VO.SourceIdType, metadata: SourceMetadataType) {
+  static async update(
+    id: VO.SourceIdType,
+    metadata: Partial<SourceMetadataType>
+  ) {
     await Repos.SourceRepository.updateMetadata(id, metadata);
   }
 }
