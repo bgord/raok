@@ -70,6 +70,7 @@ model Source {
   revision       Int       @default(0)
   countValue     Int       @default(0)
   countStrategy  String    @default("total_last_month")
+  quality        Int?
   Article        Article[]
 }
 
