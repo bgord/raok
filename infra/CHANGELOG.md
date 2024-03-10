@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-10 23:31 08d904b **fix: newspaper creator z index issue**
+## 2024-03-10 23:31 
 - 2024-03-10 17:17 48a9546 **feature: add source is quality alarming**
-## 2024-03-10 17:17 
+- 2024-03-10 16:20 7899d7b **docs: generate CHANGELOG**
 - 2024-03-10 14:34 91ea9a3 **refactor: use bg percentage**
 - 2024-03-10 14:33 07b001d **step: bump bgord/node**
 - 2024-03-10 13:35 b631c3e **docs: generate CHANGELOG**
