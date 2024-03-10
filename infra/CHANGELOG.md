@@ -1,9 +1,12 @@
 # Changelog
+- 2024-03-10 14:34 91ea9a3 **refactor: use bg percentage**
+## 2024-03-10 14:34 
+- 2024-03-10 14:33 07b001d **step: bump bgord/node**
 - 2024-03-10 13:24 d189a71 **feature: add source quality ui**
-## 2024-03-10 13:24 
 - 2024-03-10 13:04 a76f1e2 **feature: add SourceQualityUpdater**
 - 2024-03-10 13:02 5a612d0 **step: add source quality column**
 - 2024-03-10 13:00 a6c7f1f **step: add SourceQualityCalculator**
+- 2024-03-10 12:28 f679ba3 **docs: generate CHANGELOG**
 - 2024-03-08 10:45 8dea3a3 **fix: dashboard ui bugs on mobile**
 - 2024-03-08 09:46 bfe8421 **docs: generate CHANGELOG**
 - 2024-03-08 08:43 f8013a0 **build(deps-dev): bump oxlint from 0.2.12 to 0.2.13 (#241)**
