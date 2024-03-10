@@ -4,10 +4,10 @@ import * as bg from "@bgord/node";
 
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
-import * as Services from "../services";
+import { SourceQualityAlarm, SourceMetadataType } from "../services";
 
 export const SourceFilter = new bg.Filter(
-  z.object({ status: VO.SourceStatus.optional() })
+  z.object({ status: VO.SourceStatus.optional() }),
 );
 
 export class SourceRepository {
@@ -80,7 +80,7 @@ export class SourceRepository {
 
   static async updateMetadata(
     id: VO.SourceIdType,
-    metadata: Partial<Services.SourceMetadataType>
+    metadata: Partial<SourceMetadataType>,
   ) {
     await infra.db.source.update({ where: { id }, data: metadata });
   }
@@ -91,6 +91,10 @@ export class SourceRepository {
       createdAt: bg.RelativeDate.truthy(Number(item.createdAt)),
       updatedAt: bg.RelativeDate.truthy(Number(item.updatedAt)),
       processedUntil: bg.RelativeDate.truthy(Number(item.processedUntil)),
+      isQualityAlarming: SourceQualityAlarm.isAlarming(
+        item.quality,
+        item.countValue,
+      ),
     };
   }
 }
