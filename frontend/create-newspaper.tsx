@@ -29,6 +29,7 @@ export function CreateNewspaper() {
       data-shadow="big"
       data-position="sticky"
       data-top="24"
+      data-z="1"
     >
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.BookStack width="20" height="20" data-mr="6" />
@@ -107,7 +108,7 @@ export function CreateNewspaper() {
                 event.preventDefault();
 
                 return createNewspaper.mutate(
-                  newspaperCreator.selectedArticleIds
+                  newspaperCreator.selectedArticleIds,
                 );
               }}
             >
