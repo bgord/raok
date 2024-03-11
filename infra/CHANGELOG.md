@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-11 09:47 289243d **build(deps): bump @lucia-auth/adapter-prisma from 4.0.0 to 4.0.1 (#246)**
+## 2024-03-11 09:47 
 - 2024-03-11 09:45 5752e0c **build(deps): bump lucia from 3.0.1 to 3.1.1 (#247)**
-## 2024-03-11 09:45 
+- 2024-03-11 08:46 6fdfb13 **docs: generate CHANGELOG**
 - 2024-03-10 23:31 08d904b **fix: newspaper creator z index issue**
 - 2024-03-10 22:32 f34a8fb **docs: generate CHANGELOG**
 - 2024-03-10 17:17 48a9546 **feature: add source is quality alarming**
