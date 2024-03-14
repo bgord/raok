@@ -1,7 +1,8 @@
 # Changelog
+- 2024-03-14 08:32 a6d557e **build(deps-dev): bump @commitlint/cli from 19.0.3 to 19.1.0 (#250)**
+## 2024-03-14 08:32 
 - 2024-03-14 08:31 8d86960 **build(deps-dev): bump prisma from 5.10.2 to 5.11.0 (#253)**
 - 2024-03-14 08:31 83e3714 **build(deps-dev): bump @typescript-eslint/parser from 7.1.1 to 7.2.0 (#251)**
-## 2024-03-14 08:31 
 - 2024-03-14 08:30 f1c9d99 **build(deps-dev): bump knip from 5.0.3 to 5.0.4 (#255)**
 - 2024-03-14 08:30 9721f18 **build(deps): bump @prisma/client from 5.10.2 to 5.11.0 (#254)**
 - 2024-03-14 08:29 8231c54 **build(deps-dev): bump @types/lodash from 4.14.202 to 4.17.0 (#256)**
@@ -10,6 +11,7 @@
 - 2024-03-14 08:27 b5887eb **build(deps-dev): bump @typescript-eslint/eslint-plugin (#248)**
 - 2024-03-14 07:31 bb5cd7e **docs: generate CHANGELOG**
 - 2024-03-14 07:31 4c33776 **docs: generate CHANGELOG**
+- 2024-03-14 07:31 1ec03cd **docs: generate CHANGELOG**
 - 2024-03-14 07:30 9ddf258 **docs: generate CHANGELOG**
 - 2024-03-14 07:30 46b493e **docs: generate CHANGELOG**
 - 2024-03-14 07:28 c2d2552 **docs: generate CHANGELOG**
