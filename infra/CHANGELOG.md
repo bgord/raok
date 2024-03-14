@@ -1,9 +1,11 @@
 # Changelog
+- 2024-03-14 08:27 b5887eb **build(deps-dev): bump @typescript-eslint/eslint-plugin (#248)**
+## 2024-03-14 08:27 
 - 2024-03-11 09:48 af10f04 **build(deps): bump @bgord/node from 0.58.275 to 0.58.277 (#244)**
-## 2024-03-11 09:48 
 - 2024-03-11 09:47 289243d **build(deps): bump @lucia-auth/adapter-prisma from 4.0.0 to 4.0.1 (#246)**
 - 2024-03-11 09:47 1a83580 **build(deps): bump @bgord/frontend from `17f64ef` to `b4de34c` (#245)**
 - 2024-03-11 09:45 5752e0c **build(deps): bump lucia from 3.0.1 to 3.1.1 (#247)**
+- 2024-03-11 08:49 94a24f6 **docs: generate CHANGELOG**
 - 2024-03-11 08:47 e284678 **docs: generate CHANGELOG**
 - 2024-03-11 08:47 2f526fc **docs: generate CHANGELOG**
 - 2024-03-11 08:46 6fdfb13 **docs: generate CHANGELOG**
