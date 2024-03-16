@@ -1,6 +1,7 @@
 # Changelog
+- 2024-03-16 07:57 4fe3d18 **build(deps): bump @bgord/frontend from `b4de34c` to `7dfc8b8` (#263)**
+## 2024-03-16 07:57 
 - 2024-03-14 08:33 1bdd3c3 **build(deps-dev): bump @commitlint/config-conventional (#249)**
-## 2024-03-14 08:33 
 - 2024-03-14 08:32 a6d557e **build(deps-dev): bump @commitlint/cli from 19.0.3 to 19.1.0 (#250)**
 - 2024-03-14 08:31 8d86960 **build(deps-dev): bump prisma from 5.10.2 to 5.11.0 (#253)**
 - 2024-03-14 08:31 83e3714 **build(deps-dev): bump @typescript-eslint/parser from 7.1.1 to 7.2.0 (#251)**
@@ -10,6 +11,7 @@
 - 2024-03-14 08:28 a52989e **build(deps-dev): bump @types/node from 20.11.25 to 20.11.27 (#258)**
 - 2024-03-14 08:28 15a1e4b **build(deps): bump @bgord/node from 0.58.277 to 0.58.278 (#257)**
 - 2024-03-14 08:27 b5887eb **build(deps-dev): bump @typescript-eslint/eslint-plugin (#248)**
+- 2024-03-14 07:33 c5cdfc7 **docs: generate CHANGELOG**
 - 2024-03-14 07:32 f43a0bb **docs: generate CHANGELOG**
 - 2024-03-14 07:31 bb5cd7e **docs: generate CHANGELOG**
 - 2024-03-14 07:31 4c33776 **docs: generate CHANGELOG**
