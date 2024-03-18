@@ -39,7 +39,7 @@
     "gzip-cli": "1.2.0",
     "husky": "9.0.11",
     "knip": "5.1.2",
-    "oxlint": "0.2.13",
+    "oxlint": "0.2.14",
     "postcss": "8.4.36",
     "postcss-cli": "11.0.0",
     "prisma": "5.11.0",
