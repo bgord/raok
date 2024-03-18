@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-18 08:24 8fb14bf **build(deps-dev): bump eslint-plugin-react from 7.34.0 to 7.34.1 (#269)**
 - 2024-03-18 08:24 065161a **build(deps-dev): bump knip from 5.1.0 to 5.1.2 (#270)**
 ## 2024-03-18 08:24 
+- 2024-03-18 07:24 7cc0691 **docs: generate CHANGELOG**
 - 2024-03-16 07:59 ec360a3 **build(deps-dev): bump esbuild from 0.20.1 to 0.20.2 (#259)**
 - 2024-03-16 07:59 ce3371c **build(deps-dev): bump knip from 5.0.4 to 5.1.0 (#260)**
 - 2024-03-16 07:59 790858d **build(deps-dev): bump @commitlint/cli from 19.1.0 to 19.2.0 (#261)**
