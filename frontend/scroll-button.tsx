@@ -15,6 +15,7 @@ export function ScrollButton() {
       <button
         type="button"
         className="c-button"
+        data-z="2"
         data-variant="primary"
         data-position="fixed"
         data-bottom="0"
