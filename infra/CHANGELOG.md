@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-18 11:06 733a578 **fix: mobile z index issues**
+## 2024-03-18 11:06 
+- 2024-03-18 10:03 a6bf8f0 **docs: generate CHANGELOG**
 - 2024-03-13 14:44 f20f366 **fix: update bgord node version**
-## 2024-03-13 14:44 
 - 2024-03-11 09:48 af10f04 **build(deps): bump @bgord/node from 0.58.275 to 0.58.277 (#244)**
 - 2024-03-11 09:47 289243d **build(deps): bump @lucia-auth/adapter-prisma from 4.0.0 to 4.0.1 (#246)**
 - 2024-03-11 09:47 1a83580 **build(deps): bump @bgord/frontend from `17f64ef` to `b4de34c` (#245)**
