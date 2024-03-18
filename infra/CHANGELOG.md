@@ -1,10 +1,12 @@
 # Changelog
+- 2024-03-18 08:24 065161a **build(deps-dev): bump knip from 5.1.0 to 5.1.2 (#270)**
+## 2024-03-18 08:24 
 - 2024-03-16 07:59 ec360a3 **build(deps-dev): bump esbuild from 0.20.1 to 0.20.2 (#259)**
 - 2024-03-16 07:59 ce3371c **build(deps-dev): bump knip from 5.0.4 to 5.1.0 (#260)**
 - 2024-03-16 07:59 790858d **build(deps-dev): bump @commitlint/cli from 19.1.0 to 19.2.0 (#261)**
-## 2024-03-16 07:59 
 - 2024-03-16 07:58 a4d8b6f **build(deps): bump @bgord/design from 0.27.74 to 0.27.76 (#262)**
 - 2024-03-16 07:57 4fe3d18 **build(deps): bump @bgord/frontend from `b4de34c` to `7dfc8b8` (#263)**
+- 2024-03-16 06:59 55a201f **docs: generate CHANGELOG**
 - 2024-03-16 06:57 3d365a4 **docs: generate CHANGELOG**
 - 2024-03-14 08:33 1bdd3c3 **build(deps-dev): bump @commitlint/config-conventional (#249)**
 - 2024-03-14 08:32 a6d557e **build(deps-dev): bump @commitlint/cli from 19.0.3 to 19.1.0 (#250)**
