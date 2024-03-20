@@ -6,11 +6,12 @@ import {
   AsyncTask,
 } from "toad-scheduler";
 
-import { ExpiredSessionRemover } from "../app/services";
 import * as RSS from "../modules/rss";
 import * as Settings from "../modules/settings";
 import * as Newspapers from "../modules/newspapers";
 import * as Stats from "../modules/stats";
+import { ExpiredSessionRemover } from "../app/services";
+import { ArticleDescriptionUpdater } from "../modules/newspapers/services";
 
 import { logger } from "./logger";
 import { Env } from "./env";
@@ -77,6 +78,18 @@ const SourceQualityUpdaterTaskJob = new SimpleIntervalJob(
   SourceQualityUpdaterTask
 );
 
+const ArticleDescriptionUpdaterTask = new AsyncTask(
+  "article description updater",
+  async () => {
+    await ArticleDescriptionUpdater.update();
+  }
+);
+
+const ArticleDescriptionUpdaterTaskJob = new SimpleIntervalJob(
+  { minutes: 5, runImmediately: true },
+  ArticleDescriptionUpdaterTask
+);
+
 const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
   try {
     await RSS.Services.RSSCrawler.crawl();
@@ -133,6 +146,7 @@ Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
 Scheduler.addSimpleIntervalJob(ExpiredSessionRemoverTaskJob);
 Scheduler.addCronJob(WeeklyStatsReportNotificationJob);
 Scheduler.addSimpleIntervalJob(SourceQualityUpdaterTaskJob);
+Scheduler.addSimpleIntervalJob(ArticleDescriptionUpdaterTaskJob);
 if (bg.FeatureFlag.isEnabled(Env.RSS_CRAWLING_ENABLED)) {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
   Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
