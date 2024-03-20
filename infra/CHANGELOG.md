@@ -1,10 +1,12 @@
 # Changelog
+- 2024-03-20 08:25 ac9afe9 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#275)**
+## 2024-03-20 08:25 
 - 2024-03-20 08:24 d04e909 **build(deps): bump @bgord/frontend from `b4de34c` to `e15a2a1` (#277)**
 - 2024-03-20 08:24 587a3c2 **build(deps-dev): bump esbuild from 0.20.1 to 0.20.2 (#276)**
-## 2024-03-20 08:24 
 - 2024-03-20 08:23 6d716b7 **build(deps-dev): bump @commitlint/config-conventional (#278)**
 - 2024-03-20 08:23 1efbf68 **build(deps-dev): bump vitest from 1.3.1 to 1.4.0 (#279)**
 - 2024-03-20 08:22 b477c5d **build(deps-dev): bump @types/node from 20.11.25 to 20.11.30 (#281)**
+- 2024-03-20 07:25 815df5b **docs: generate CHANGELOG**
 - 2024-03-20 07:24 2729b41 **docs: generate CHANGELOG**
 - 2024-03-20 07:23 294a47c **docs: generate CHANGELOG**
 - 2024-03-20 07:23 2920022 **docs: generate CHANGELOG**
