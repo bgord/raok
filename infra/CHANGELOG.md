@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-20 08:22 b477c5d **build(deps-dev): bump @types/node from 20.11.25 to 20.11.30 (#281)**
+## 2024-03-20 08:22 
 - 2024-03-18 11:06 733a578 **fix: mobile z index issues**
-## 2024-03-18 11:06 
+- 2024-03-18 10:08 12d2762 **docs: generate CHANGELOG**
 - 2024-03-18 10:03 a6bf8f0 **docs: generate CHANGELOG**
 - 2024-03-13 14:44 f20f366 **fix: update bgord node version**
 - 2024-03-11 09:48 af10f04 **build(deps): bump @bgord/node from 0.58.275 to 0.58.277 (#244)**
