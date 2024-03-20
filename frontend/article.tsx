@@ -156,7 +156,7 @@ export function Article(props: ArticlePropsType) {
         <div
           data-display="flex"
           data-wrap="nowrap"
-          data-mt="6"
+          data-mt="3"
           data-md-mt="0"
           data-gap="3"
           data-ml="auto"
@@ -185,6 +185,7 @@ export function Article(props: ArticlePropsType) {
           data-md-display="none"
           data-color="gray-400"
           data-ml="auto"
+          data-lh="16"
           title={bg.DateFormatter.datetime(props.createdAt.raw)}
         >
           {props.createdAt.relative}
