@@ -1,15 +1,17 @@
 # Changelog
+- 2024-03-20 08:31 7684593 **Update article.tsx**
+## 2024-03-20 08:31 
 - 2024-03-20 08:26 95925e7 **build(deps): bump @bgord/design from 0.27.74 to 0.27.76 (#271)**
 - 2024-03-20 08:26 411a84b **build(deps): bump @prisma/client from 5.10.2 to 5.11.0 (#273)**
 - 2024-03-20 08:26 1cc6f29 **build(deps-dev): bump oxlint from 0.2.13 to 0.2.14 (#272)**
 - 2024-03-20 08:26 0a795cc **build(deps-dev): bump @commitlint/cli from 19.0.3 to 19.2.1 (#274)**
-## 2024-03-20 08:26 
 - 2024-03-20 08:25 ac9afe9 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#275)**
 - 2024-03-20 08:24 d04e909 **build(deps): bump @bgord/frontend from `b4de34c` to `e15a2a1` (#277)**
 - 2024-03-20 08:24 587a3c2 **build(deps-dev): bump esbuild from 0.20.1 to 0.20.2 (#276)**
 - 2024-03-20 08:23 6d716b7 **build(deps-dev): bump @commitlint/config-conventional (#278)**
 - 2024-03-20 08:23 1efbf68 **build(deps-dev): bump vitest from 1.3.1 to 1.4.0 (#279)**
 - 2024-03-20 08:22 b477c5d **build(deps-dev): bump @types/node from 20.11.25 to 20.11.30 (#281)**
+- 2024-03-20 07:27 001c166 **docs: generate CHANGELOG**
 - 2024-03-20 07:26 abed168 **docs: generate CHANGELOG**
 - 2024-03-20 07:25 93a8845 **docs: generate CHANGELOG**
 - 2024-03-20 07:25 815df5b **docs: generate CHANGELOG**
