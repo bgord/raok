@@ -59,10 +59,10 @@ export const prerequisites = [
     supportedLanguages: SupportedLanguages,
   }),
   new bg.PrerequisiteMigrations({ label: "migrations" }),
-  new bg.PrerequisiteMemory({
-    label: "memory-consumption",
-    maximum: new bg.Size({ value: 500, unit: bg.SizeUnit.MB }),
-  }),
+  // new bg.PrerequisiteMemory({
+  //   label: "memory-consumption",
+  //   maximum: new bg.Size({ value: 500, unit: bg.SizeUnit.MB }),
+  // }),
 ];
 
 export const healthcheck = [
