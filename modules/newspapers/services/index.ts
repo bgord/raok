@@ -1,4 +1,5 @@
 export * from "./article-content-downloader";
+export * from "./article-description-updater";
 export * from "./article-email-message-composer";
 export * from "./article-metatags-scraper";
 export * from "./article-rating-level-calculator";
@@ -7,3 +8,4 @@ export * from "./estimated-reading-time-calculator";
 export * from "./html-to-epub";
 export * from "./newspaper-file";
 export * from "./readable-article-generator";
+export * from "./summary-creator";

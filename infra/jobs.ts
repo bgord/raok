@@ -6,11 +6,12 @@ import {
   AsyncTask,
 } from "toad-scheduler";
 
-import { ExpiredSessionRemover } from "../app/services";
 import * as RSS from "../modules/rss";
 import * as Settings from "../modules/settings";
 import * as Newspapers from "../modules/newspapers";
 import * as Stats from "../modules/stats";
+import { ExpiredSessionRemover } from "../app/services";
+import { ArticleDescriptionUpdater } from "../modules/newspapers/services";
 
 import { logger } from "./logger";
 import { Env } from "./env";
@@ -25,7 +26,7 @@ const ArticlesToReviewNotifierTask = new AsyncTask(
 
       const notification =
         await new Newspapers.Services.ArticlesToReviewNotifier(
-          settings
+          settings,
         ).build();
       await notification.send();
     } catch (error) {
@@ -35,12 +36,12 @@ const ArticlesToReviewNotifierTask = new AsyncTask(
         metadata: { error: JSON.stringify(error) },
       });
     }
-  }
+  },
 );
 
 const ArticlesToReviewNotifierJob = new SimpleIntervalJob(
   { minutes: 1, runImmediately: true },
-  ArticlesToReviewNotifierTask
+  ArticlesToReviewNotifierTask,
 );
 
 const WeeklyStatsReportNotificationTask = new AsyncTask(
@@ -53,28 +54,40 @@ const WeeklyStatsReportNotificationTask = new AsyncTask(
     const notification =
       Stats.Services.WeeklyStatsReportNotificationComposer.compose(
         stats,
-        range
+        range,
       );
 
     await notification.send(email);
-  }
+  },
 );
 
 const WeeklyStatsReportNotificationJob = new CronJob(
   { cronExpression: `0 8 * * ${bg.UTC_DAY_OF_THE_WEEK.Monday}` },
-  WeeklyStatsReportNotificationTask
+  WeeklyStatsReportNotificationTask,
 );
 
 const SourceQualityUpdaterTask = new AsyncTask(
   "source quality updater",
   async () => {
     await RSS.Services.SourceQualityUpdater.update();
-  }
+  },
 );
 
 const SourceQualityUpdaterTaskJob = new SimpleIntervalJob(
   { minutes: 15, runImmediately: true },
-  SourceQualityUpdaterTask
+  SourceQualityUpdaterTask,
+);
+
+const ArticleDescriptionUpdaterTask = new AsyncTask(
+  "article description updater",
+  async () => {
+    await ArticleDescriptionUpdater.update();
+  },
+);
+
+const ArticleDescriptionUpdaterTaskJob = new SimpleIntervalJob(
+  { minutes: 5, runImmediately: true },
+  ArticleDescriptionUpdaterTask,
 );
 
 const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
@@ -91,7 +104,7 @@ const RssCrawlerTask = new AsyncTask("rss-crawler", async () => {
 
 const RssCrawlerJob = new SimpleIntervalJob(
   { minutes: RSS.Services.RSSCrawler.INTERVAL_MINUTES, runImmediately: true },
-  RssCrawlerTask
+  RssCrawlerTask,
 );
 
 const RssCrawlJobProcessorTask = new AsyncTask(
@@ -106,7 +119,7 @@ const RssCrawlJobProcessorTask = new AsyncTask(
         metadata: { error: logger.formatError(error) },
       });
     }
-  }
+  },
 );
 
 const RssCrawlJobProcessorJob = new SimpleIntervalJob(
@@ -114,25 +127,28 @@ const RssCrawlJobProcessorJob = new SimpleIntervalJob(
     minutes: RSS.Services.RssCrawlerJobProcessor.INTERVAL_MINUTES,
     runImmediately: true,
   },
-  RssCrawlJobProcessorTask
+  RssCrawlJobProcessorTask,
 );
 
 const ExpiredSessionRemoverTask = new AsyncTask(
   "expired-session-remover",
   async () => {
     await ExpiredSessionRemover.process();
-  }
+  },
 );
 
 const ExpiredSessionRemoverTaskJob = new SimpleIntervalJob(
   { minutes: 1, runImmediately: true },
-  ExpiredSessionRemoverTask
+  ExpiredSessionRemoverTask,
 );
 
 Scheduler.addSimpleIntervalJob(ArticlesToReviewNotifierJob);
 Scheduler.addSimpleIntervalJob(ExpiredSessionRemoverTaskJob);
 Scheduler.addCronJob(WeeklyStatsReportNotificationJob);
 Scheduler.addSimpleIntervalJob(SourceQualityUpdaterTaskJob);
+if (bg.FeatureFlag.isEnabled(Env.AI_SUMMARIES_ENABLED)) {
+  Scheduler.addSimpleIntervalJob(ArticleDescriptionUpdaterTaskJob);
+}
 if (bg.FeatureFlag.isEnabled(Env.RSS_CRAWLING_ENABLED)) {
   Scheduler.addSimpleIntervalJob(RssCrawlerJob);
   Scheduler.addSimpleIntervalJob(RssCrawlJobProcessorJob);
