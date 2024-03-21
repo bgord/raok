@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-21 15:57 ea0af42 **fix: change minimum value threshold for blacklsted token suggestion**
+## 2024-03-21 15:57 
 - 2024-03-20 10:17 b622ae1 **AI description summarization (#282)**
-## 2024-03-20 10:17 
+- 2024-03-20 09:17 809e2d4 **docs: generate CHANGELOG**
 - 2024-03-20 08:31 7684593 **Update article.tsx**
 - 2024-03-20 08:26 95925e7 **build(deps): bump @bgord/design from 0.27.74 to 0.27.76 (#271)**
 - 2024-03-20 08:26 411a84b **build(deps): bump @prisma/client from 5.10.2 to 5.11.0 (#273)**
