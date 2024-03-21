@@ -33,7 +33,7 @@ export class TokenBlacklistRepository {
   static async getSuggestedBlacklistedTokens(
     limit: number,
   ): Promise<VO.TokenRatingType[]> {
-    const minimumValueThreshold = -10;
+    const minimumValueThreshold = -15;
 
     return infra.db.$queryRaw`
       SELECT tr.*
