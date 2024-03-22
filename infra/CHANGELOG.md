@@ -1,10 +1,13 @@
 # Changelog
 - 2024-03-22 08:16 c7bb6ae **build(deps-dev): bump @types/lodash from 4.14.202 to 4.17.0 (#288)**
+- 2024-03-22 08:16 68d84ec **build(deps-dev): bump postcss from 8.4.35 to 8.4.38 (#287)**
+- 2024-03-22 08:16 29f02e1 **build(deps-dev): bump @typescript-eslint/parser from 7.1.1 to 7.3.1 (#286)**
 ## 2024-03-22 08:16 
 - 2024-03-22 08:15 efe6807 **build(deps): bump @bgord/node from 0.58.278 to 0.58.279 (#290)**
 - 2024-03-22 08:15 1aba436 **build(deps): bump @xenova/transformers from 2.16.0 to 2.16.1 (#291)**
 - 2024-03-22 08:13 dec4a7f **build(deps-dev): bump knip from 5.0.3 to 5.2.2 (#293)**
 - 2024-03-22 08:13 7e8000e **build(deps): bump express from 4.18.3 to 4.19.1 (#292)**
+- 2024-03-22 07:16 60a1385 **docs: generate CHANGELOG**
 - 2024-03-22 07:15 fb0764d **docs: generate CHANGELOG**
 - 2024-03-22 07:15 652003b **docs: generate CHANGELOG**
 - 2024-03-22 07:14 ad725f6 **docs: generate CHANGELOG**
