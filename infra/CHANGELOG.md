@@ -1,7 +1,9 @@
 # Changelog
+- 2024-03-22 10:46 d90d7c1 **fix: add mb to article list**
+## 2024-03-22 10:46 
 - 2024-03-22 10:38 3ad1b7b **feature: add book-empty-art for no articles state**
-## 2024-03-22 10:38 
 - 2024-03-22 10:37 2e0c612 **step: bump bgord/scripts**
+- 2024-03-22 09:39 6bef688 **docs: generate CHANGELOG**
 - 2024-03-22 08:19 65fa061 **build(deps-dev): bump eslint-plugin-react from 7.34.0 to 7.34.1 (#283)**
 - 2024-03-22 08:18 e4c9633 **build(deps): bump preact-render-to-string from 6.4.0 to 6.4.1 (#284)**
 - 2024-03-22 08:17 bb7ab7b **build(deps): bump preact from 10.19.6 to 10.20.0 (#285)**
