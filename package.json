@@ -50,7 +50,7 @@
   "dependencies": {
     "@bgord/design": "0.27.76",
     "@bgord/frontend": "github:bgord/bgord-frontend",
-    "@bgord/node": "0.58.278",
+    "@bgord/node": "0.58.279",
     "@lucia-auth/adapter-prisma": "4.0.1",
     "@mozilla/readability": "0.5.0",
     "@prisma/client": "5.11.0",
