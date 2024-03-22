@@ -1,8 +1,10 @@
 # Changelog
+- 2024-03-22 08:15 efe6807 **build(deps): bump @bgord/node from 0.58.278 to 0.58.279 (#290)**
 - 2024-03-22 08:15 1aba436 **build(deps): bump @xenova/transformers from 2.16.0 to 2.16.1 (#291)**
 ## 2024-03-22 08:15 
 - 2024-03-22 08:13 dec4a7f **build(deps-dev): bump knip from 5.0.3 to 5.2.2 (#293)**
 - 2024-03-22 08:13 7e8000e **build(deps): bump express from 4.18.3 to 4.19.1 (#292)**
+- 2024-03-22 07:15 652003b **docs: generate CHANGELOG**
 - 2024-03-22 07:14 ad725f6 **docs: generate CHANGELOG**
 - 2024-03-22 07:13 e2eb827 **docs: generate CHANGELOG**
 - 2024-03-21 15:57 ea0af42 **fix: change minimum value threshold for blacklsted token suggestion**
