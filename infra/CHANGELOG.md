@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-22 08:13 dec4a7f **build(deps-dev): bump knip from 5.0.3 to 5.2.2 (#293)**
+## 2024-03-22 08:13 
 - 2024-03-21 15:57 ea0af42 **fix: change minimum value threshold for blacklsted token suggestion**
-## 2024-03-21 15:57 
+- 2024-03-21 14:57 004b927 **docs: generate CHANGELOG**
 - 2024-03-20 10:17 b622ae1 **AI description summarization (#282)**
 - 2024-03-20 09:17 809e2d4 **docs: generate CHANGELOG**
 - 2024-03-20 08:31 7684593 **Update article.tsx**
