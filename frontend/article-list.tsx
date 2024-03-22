@@ -151,6 +151,7 @@ export function ArticleList() {
           data-max-width="100%"
           data-wrap="nowrap"
           data-gap="12"
+          data-mb="24"
         >
           {articlesSearch.map((article) => (
             <Article
