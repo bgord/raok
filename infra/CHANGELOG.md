@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-22 10:38 3ad1b7b **feature: add book-empty-art for no articles state**
+## 2024-03-22 10:38 
+- 2024-03-22 10:37 2e0c612 **step: bump bgord/scripts**
 - 2024-03-22 08:19 65fa061 **build(deps-dev): bump eslint-plugin-react from 7.34.0 to 7.34.1 (#283)**
-## 2024-03-22 08:19 
 - 2024-03-22 08:18 e4c9633 **build(deps): bump preact-render-to-string from 6.4.0 to 6.4.1 (#284)**
 - 2024-03-22 08:17 bb7ab7b **build(deps): bump preact from 10.19.6 to 10.20.0 (#285)**
 - 2024-03-22 08:16 c7bb6ae **build(deps-dev): bump @types/lodash from 4.14.202 to 4.17.0 (#288)**
@@ -10,6 +12,7 @@
 - 2024-03-22 08:15 1aba436 **build(deps): bump @xenova/transformers from 2.16.0 to 2.16.1 (#291)**
 - 2024-03-22 08:13 dec4a7f **build(deps-dev): bump knip from 5.0.3 to 5.2.2 (#293)**
 - 2024-03-22 08:13 7e8000e **build(deps): bump express from 4.18.3 to 4.19.1 (#292)**
+- 2024-03-22 07:19 b86ab9d **docs: generate CHANGELOG**
 - 2024-03-22 07:17 2fd51a6 **docs: generate CHANGELOG**
 - 2024-03-22 07:17 08f9051 **docs: generate CHANGELOG**
 - 2024-03-22 07:16 60a1385 **docs: generate CHANGELOG**
