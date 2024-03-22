@@ -118,7 +118,7 @@
   "blacklisted_token.label": "Token",
   "blacklisted_token.placeholder": "e.g. github",
   "blacklisted_token.suggestions": "Add one of the suggested:",
-  "dashboard.no_articles_available": "No articles available, enjoy the moment!",
+  "dashboard.no_articles_available": "No articles available, enjoy this moment!",
   "dashboard.no_newspapers_available": "No newspapers added at the moment",
   "dashboard.scheduled": "scheduled!",
   "dashboard.scheduling": "scheduling...",
