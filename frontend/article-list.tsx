@@ -25,7 +25,7 @@ export function ArticleList() {
   const numberOfNonProcessedArticles = stats.data?.numberOfNonProcessedArticles;
 
   bg.useDocumentTitle(
-    `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`
+    `[${numberOfNonProcessedArticles}] RAOK - read articles on Kindle`,
   );
 
   const sort = useArticleSort();
@@ -37,7 +37,7 @@ export function ArticleList() {
       getNextPageParam: (page) => page.meta.nextPage,
       onSuccess: () => stats.refetch(),
       refetchOnMount: true,
-    }
+    },
   );
 
   const articles = bg.Pagination.infinite(_articles).toSorted(sort.sortFn);
@@ -163,9 +163,16 @@ export function ArticleList() {
       )}
 
       {!searchModeEnabled && articles.length === 0 && (
-        <UI.Info data-md-px="12" data-mt="24" data-ml="6">
-          {t("dashboard.no_articles_available")}
-        </UI.Info>
+        <div
+          data-display="flex"
+          data-direction="column"
+          data-cross="center"
+          data-mt="48"
+        >
+          <UI.Info>{t("dashboard.no_articles_available")}</UI.Info>
+
+          <img src="/book-empty-art.svg" width="300" height="200" alt="" />
+        </div>
       )}
 
       {!searchModeEnabled && (

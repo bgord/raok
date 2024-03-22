@@ -12,7 +12,7 @@ export class Html {
     const serializedState = Html.serializeState(config.state);
 
     return /* HTML */ `
-      <!DOCTYPE html>
+      <!doctype html>
       <html lang="${config.language}">
         <head>
           <meta charset="utf-8" />
@@ -31,6 +31,12 @@ export class Html {
             type="image/png"
             sizes="16x16"
             href="/favicon-16x16.png"
+          />
+          <link
+            as="image"
+            rel="preload"
+            type="image/svg"
+            href="/book-empty-art.svg"
           />
           <link rel="manifest" href="/site.webmanifest" />
 
