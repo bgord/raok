@@ -1,8 +1,10 @@
 # Changelog
+- 2024-03-24 15:26 213a42a **fix: default badge in settings devices**
+## 2024-03-24 15:26 
 - 2024-03-24 15:24 de32175 **fix: archive files spacing**
 - 2024-03-24 15:24 7974869 **fix: article source list**
-## 2024-03-24 15:24 
 - 2024-03-24 14:42 4fa806f **refactor: improve mobile archive articles view**
+- 2024-03-24 14:25 fcf998d **docs: generate CHANGELOG**
 - 2024-03-24 13:43 61b6168 **docs: generate CHANGELOG**
 - 2024-03-22 10:52 51b573e **Update en.json**
 - 2024-03-22 10:46 d90d7c1 **fix: add mb to article list**
