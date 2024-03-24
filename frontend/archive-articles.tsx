@@ -205,7 +205,12 @@ export function ArchiveArticles(_props: RoutableProps) {
         ))}
       </datalist>
 
-      <ul data-display="flex" data-direction="column" data-max-width="100%">
+      <ul
+        data-display="flex"
+        data-direction="column"
+        data-max-width="100%"
+        data-gap="6"
+      >
         {archiveArticles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />
         ))}

@@ -17,7 +17,6 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
   return (
     <li
       data-display="flex"
-      data-cross="center"
       data-wrap="nowrap"
       data-gap="6"
       data-max-width="768"
@@ -37,6 +36,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
 
       <div
         data-display="flex"
+        data-md-display="none"
         data-direction="column"
         data-wrap="nowrap"
         data-ml="auto"
@@ -61,7 +61,12 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
         </UI.Info>
       </div>
 
-      <div data-display="flex" data-direction="column" data-self="start">
+      <div
+        data-display="flex"
+        data-direction="column"
+        data-self="start"
+        data-md-ml="auto"
+      >
         <UI.CopyButton
           options={{ text: props.url, onSuccess: articleUrlCopied }}
         />
