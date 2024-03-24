@@ -20,6 +20,7 @@ export type { ArticleSearchQueryType } from "../modules/newspapers/value-objects
 export enum ArticleSourceEnum {
   web = "web",
   feedly = "feedly",
+  rss = "rss",
 }
 
 /** @public */
