@@ -38,7 +38,7 @@ export function ArchiveFiles(_props: RoutableProps) {
   const archiveFiles = useQuery(
     api.keys.archiveFiles(filters),
     () => api.Archive.getFiles(filters),
-    { refetchOnMount: true }
+    { refetchOnMount: true },
   );
 
   const sort = bg.useClientSort<types.ArchiveFileType>("sort-archive-files", {
@@ -60,7 +60,7 @@ export function ArchiveFiles(_props: RoutableProps) {
     <main
       data-display="flex"
       data-direction="column"
-      data-gap="36"
+      data-gap="24"
       data-my="24"
       data-mx="auto"
       data-md-pl="6"
