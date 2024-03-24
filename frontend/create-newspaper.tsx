@@ -28,6 +28,7 @@ export function CreateNewspaper() {
       data-pb="0"
       data-shadow="big"
       data-position="sticky"
+      data-md-position="unset"
       data-top="24"
       data-z="1"
     >
