@@ -83,7 +83,7 @@ export function ArchiveFiles(_props: RoutableProps) {
         data-cross="end"
         data-gap="12"
       >
-        <div data-display="flex" data-cross="end" data-gap="24">
+        <div data-display="flex" data-cross="end" data-gap="12">
           <div data-display="flex" data-direction="column">
             <label class="c-label" {...sentAtFilter.label.props}>
               {t("app.sent_at")}
