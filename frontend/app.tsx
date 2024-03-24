@@ -20,8 +20,6 @@ import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
 import { Sources, InitialSourcesDataType } from "./sources";
 import { TimestampFiltersEnum } from "./filters";
 
-import { ScrollButton } from "./scroll-button";
-
 /** @public */
 export type InitialDataType = InitialDashboardDataType &
   InitialSourcesDataType &
@@ -79,7 +77,6 @@ export function App(props: InitialDataType) {
             <Settings path="/settings" />
           </Router>
 
-          <ScrollButton />
           <Toasts />
         </bg.ToastsContextProvider>
       </bg.TranslationsContextProvider>
