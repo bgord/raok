@@ -1,7 +1,9 @@
 # Changelog
+- 2024-03-24 19:23 1e81dce **fix: hide stats on mobile**
+## 2024-03-24 19:23 
 - 2024-03-24 19:19 9e72cd2 **fix: create newspaper position on mobile**
-## 2024-03-24 19:19 
 - 2024-03-24 18:49 f2c8cf5 **fix: dashboard scrolling issue on mobile**
+- 2024-03-24 18:19 9bd78cf **docs: generate CHANGELOG**
 - 2024-03-24 17:50 c15b13c **docs: generate CHANGELOG**
 - 2024-03-24 15:27 917fa5d **fix: spacing difference between archive files and articles**
 - 2024-03-24 15:26 213a42a **fix: default badge in settings devices**
