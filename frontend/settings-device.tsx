@@ -17,7 +17,6 @@ export function SettingsDevice(
       data-gap="12"
       data-max-width="100%"
     >
-      {props.index === 0 && <UI.Badge>{t("device.default")}</UI.Badge>}
       <strong data-fs="14" data-transform="nowrap">
         {props.name}
       </strong>
@@ -31,6 +30,7 @@ export function SettingsDevice(
       </div>
 
       {props.numberOfDevices > 1 && <SettingsDeviceDelete {...props} />}
+      {props.index === 0 && <UI.Badge>{t("device.default")}</UI.Badge>}
     </li>
   );
 }
