@@ -21,7 +21,13 @@ export function Stats() {
   const sentArticles = stats.data?.sentArticles ?? 0;
 
   return (
-    <div data-mt="48" data-bg="gray-100" data-p="12" data-shadow>
+    <div
+      data-mt="48"
+      data-bg="gray-100"
+      data-p="12"
+      data-shadow
+      data-md-display="none"
+    >
       <UI.Header data-display="flex" data-mb="24" data-transform="upper-first">
         <Icons.StatsUpSquare height="20" width="20" data-mr="6" />
         <span data-transform="upper-first">{t("app.statistics")}</span>
