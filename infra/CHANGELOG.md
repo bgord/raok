@@ -1,9 +1,11 @@
 # Changelog
+- 2024-03-24 14:42 4fa806f **refactor: improve mobile archive articles view**
+## 2024-03-24 14:42 
 - 2024-03-22 10:52 51b573e **Update en.json**
-## 2024-03-22 10:52 
 - 2024-03-22 10:46 d90d7c1 **fix: add mb to article list**
 - 2024-03-22 10:38 3ad1b7b **feature: add book-empty-art for no articles state**
 - 2024-03-22 10:37 2e0c612 **step: bump bgord/scripts**
+- 2024-03-22 09:53 9830b43 **docs: generate CHANGELOG**
 - 2024-03-22 09:46 2d47763 **docs: generate CHANGELOG**
 - 2024-03-22 09:39 6bef688 **docs: generate CHANGELOG**
 - 2024-03-22 08:19 65fa061 **build(deps-dev): bump eslint-plugin-react from 7.34.0 to 7.34.1 (#283)**
