@@ -1,10 +1,12 @@
 # Changelog
+- 2024-03-24 18:49 f2c8cf5 **fix: dashboard scrolling issue on mobile**
+## 2024-03-24 18:49 
 - 2024-03-24 15:27 917fa5d **fix: spacing difference between archive files and articles**
-## 2024-03-24 15:27 
 - 2024-03-24 15:26 213a42a **fix: default badge in settings devices**
 - 2024-03-24 15:24 de32175 **fix: archive files spacing**
 - 2024-03-24 15:24 7974869 **fix: article source list**
 - 2024-03-24 14:42 4fa806f **refactor: improve mobile archive articles view**
+- 2024-03-24 14:28 337657f **docs: generate CHANGELOG**
 - 2024-03-24 14:26 23d793e **docs: generate CHANGELOG**
 - 2024-03-24 14:25 fcf998d **docs: generate CHANGELOG**
 - 2024-03-24 13:43 61b6168 **docs: generate CHANGELOG**
