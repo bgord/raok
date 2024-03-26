@@ -1,11 +1,14 @@
 # Changelog
+- 2024-03-26 08:18 df2b8d6 **build(deps): bump typescript from 5.4.2 to 5.4.3 (#296)**
 - 2024-03-26 08:18 8e13434 **build(deps-dev): bump prisma from 5.10.2 to 5.11.0 (#297)**
+- 2024-03-26 08:18 728d1bf **build(deps): bump preact from 10.20.0 to 10.20.1 (#295)**
 ## 2024-03-26 08:18 
 - 2024-03-26 08:17 f09a51f **build(deps): bump express from 4.19.1 to 4.19.2 (#299)**
 - 2024-03-26 08:17 537c789 **build(deps-dev): bump knip from 5.2.2 to 5.5.0 (#300)**
 - 2024-03-26 08:17 1c84c8b **build(deps): bump @bgord/frontend from `e15a2a1` to `d19aad7` (#298)**
 - 2024-03-26 08:16 da0d5a6 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#301)**
 - 2024-03-26 08:15 d8961aa **build(deps-dev): bump @typescript-eslint/parser from 7.3.1 to 7.4.0 (#302)**
+- 2024-03-26 07:18 7619219 **docs: generate CHANGELOG**
 - 2024-03-26 07:17 dd1c39a **docs: generate CHANGELOG**
 - 2024-03-26 07:17 1df1804 **docs: generate CHANGELOG**
 - 2024-03-26 07:16 ece8831 **docs: generate CHANGELOG**
