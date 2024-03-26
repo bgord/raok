@@ -1,9 +1,11 @@
 # Changelog
+- 2024-03-26 08:15 d8961aa **build(deps-dev): bump @typescript-eslint/parser from 7.3.1 to 7.4.0 (#302)**
+## 2024-03-26 08:15 
 - 2024-03-24 19:27 9cef3e7 **refactor: remove scroll button**
-## 2024-03-24 19:27 
 - 2024-03-24 19:23 1e81dce **fix: hide stats on mobile**
 - 2024-03-24 19:19 9e72cd2 **fix: create newspaper position on mobile**
 - 2024-03-24 18:49 f2c8cf5 **fix: dashboard scrolling issue on mobile**
+- 2024-03-24 18:27 9f58be3 **docs: generate CHANGELOG**
 - 2024-03-24 18:23 4779344 **docs: generate CHANGELOG**
 - 2024-03-24 18:19 9bd78cf **docs: generate CHANGELOG**
 - 2024-03-24 17:50 c15b13c **docs: generate CHANGELOG**
