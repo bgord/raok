@@ -1,6 +1,8 @@
 # Changelog
+- 2024-03-30 15:15 e69b3d7 **build(deps-dev): bump knip from 5.6.1 to 5.7.0 (#306)**
+## 2024-03-30 15:15 
 - 2024-03-28 09:16 c38869f **build(deps-dev): bump knip from 5.5.0 to 5.6.1 (#304)**
-## 2024-03-28 09:16 
+- 2024-03-28 08:16 246438b **docs: generate CHANGELOG**
 - 2024-03-26 08:18 df2b8d6 **build(deps): bump typescript from 5.4.2 to 5.4.3 (#296)**
 - 2024-03-26 08:18 8e13434 **build(deps-dev): bump prisma from 5.10.2 to 5.11.0 (#297)**
 - 2024-03-26 08:18 728d1bf **build(deps): bump preact from 10.20.0 to 10.20.1 (#295)**
