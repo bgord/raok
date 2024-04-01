@@ -1,7 +1,9 @@
 # Changelog
+- 2024-04-01 10:50 1214048 **build(deps-dev): bump @fullhuman/postcss-purgecss from 5.0.0 to 6.0.0 (#309)**
+## 2024-04-01 10:50 
 - 2024-03-30 15:16 c9504b1 **build(deps-dev): bump eslint-plugin-sonarjs from 0.24.0 to 0.25.0 (#305)**
-## 2024-03-30 15:16 
 - 2024-03-30 15:15 e69b3d7 **build(deps-dev): bump knip from 5.6.1 to 5.7.0 (#306)**
+- 2024-03-30 14:16 7ce8523 **docs: generate CHANGELOG**
 - 2024-03-30 14:15 91ed172 **docs: generate CHANGELOG**
 - 2024-03-28 09:16 c38869f **build(deps-dev): bump knip from 5.5.0 to 5.6.1 (#304)**
 - 2024-03-28 08:16 246438b **docs: generate CHANGELOG**
