@@ -1,8 +1,10 @@
 # Changelog
+- 2024-04-03 12:44 cef7b38 **step: bump bgord/frontend**
+## 2024-04-03 12:44 
 - 2024-04-03 12:26 e8e0a00 **refactor: journal created at label**
 - 2024-04-03 12:26 b6fd15d **refactor: journal created at label**
-## 2024-04-03 12:26 
 - 2024-04-03 12:23 b3e762e **refactor: time stamp filter**
+- 2024-04-03 10:27 44528a3 **docs: generate CHANGELOG**
 - 2024-04-03 10:24 1c91468 **docs: generate CHANGELOG**
 - 2024-04-03 08:39 0f49aaf **build(deps-dev): bump @typescript-eslint/parser from 7.4.0 to 7.5.0 (#310)**
 - 2024-04-03 08:37 f8b48e0 **build(deps): bump @prisma/client from 5.11.0 to 5.12.0 (#313)**
