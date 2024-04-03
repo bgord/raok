@@ -13,27 +13,20 @@ export const TimeStampFilter = z
   .nativeEnum(TimestampFiltersEnum)
   .default(TimestampFiltersEnum.last_3_days)
   .transform((value) => {
-    const now = Date.now();
-
-    const DAY = bg.Time.Days(1).ms;
-    const THREE_DAYS = bg.Time.Days(3).ms;
-    const WEEK = bg.Time.Days(7).ms;
-    const THIRTY_DAYS = bg.Time.Days(30).ms;
-
     if (value === TimestampFiltersEnum.today) {
-      return { gte: now - DAY };
+      return { gte: bg.Time.Now().Minus(bg.Time.Days(1)).ms };
     }
 
     if (value === TimestampFiltersEnum.last_3_days) {
-      return { gte: now - THREE_DAYS };
+      return { gte: bg.Time.Now().Minus(bg.Time.Days(3)).ms };
     }
 
     if (value === TimestampFiltersEnum.last_week) {
-      return { gte: now - WEEK };
+      return { gte: bg.Time.Now().Minus(bg.Time.Days(7)).ms };
     }
 
     if (value === TimestampFiltersEnum.last_30_days) {
-      return { gte: now - THIRTY_DAYS };
+      return { gte: bg.Time.Now().Minus(bg.Time.Days(30)).ms };
     }
 
     return undefined;
