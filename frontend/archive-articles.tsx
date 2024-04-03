@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { RoutableProps } from "preact-router";
 import { h } from "preact";
 import { useInfiniteQuery } from "react-query";
