@@ -48,7 +48,7 @@
     "vitest": "1.4.0"
   },
   "dependencies": {
-    "@bgord/design": "0.27.80",
+    "@bgord/design": "0.27.81",
     "@bgord/frontend": "github:bgord/bgord-frontend",
     "@bgord/node": "0.58.279",
     "@lucia-auth/adapter-prisma": "4.0.1",
