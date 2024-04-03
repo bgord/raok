@@ -87,7 +87,7 @@ export function ArchiveArticles(_props: RoutableProps) {
       <div data-display="flex" data-cross="end" data-gap="12" data-md-gap="3">
         <div data-display="flex" data-direction="column">
           <label class="c-label" {...createdAtFilter.label.props}>
-            Created at
+            {t("created_at")}
           </label>
           <UI.Select
             key={createdAtFilter.query}

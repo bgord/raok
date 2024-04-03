@@ -214,5 +214,6 @@
   "token_blacklist.list.empty": "No tokens matching your filters",
   "token_blacklist.search.placeholder": "Search for a token",
   "web": "web",
-  "article.from": "Source: {{url}}"
+  "article.from": "Source: {{url}}",
+  "created_at": "created_at"
 }
