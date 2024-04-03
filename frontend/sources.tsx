@@ -166,9 +166,7 @@ export function Sources(_props: RoutableProps) {
             sourcesSort.clear,
             statusFilter.clear,
           ])}
-          disabled={
-            search.unchanged && sourcesSort.unchanged && statusFilter.unchanged
-          }
+          disabled={bg.Fields.allUnchanged([search, sourcesSort, statusFilter])}
         >
           {t("app.reset")}
         </button>

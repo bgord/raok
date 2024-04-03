@@ -38,7 +38,7 @@ export function ArchiveFiles(_props: RoutableProps) {
   const archiveFiles = useQuery(
     api.keys.archiveFiles(filters),
     () => api.Archive.getFiles(filters),
-    { refetchOnMount: true },
+    { refetchOnMount: true }
   );
 
   const sort = bg.useClientSort<types.ArchiveFileType>("sort-archive-files", {
@@ -125,7 +125,7 @@ export function ArchiveFiles(_props: RoutableProps) {
             class="c-button"
             data-variant="bare"
             onClick={bg.exec([sentAtFilter.clear, sort.clear])}
-            disabled={sentAtFilter.unchanged && sort.unchanged}
+            disabled={bg.Fields.allUnchanged([sentAtFilter, sort])}
           >
             {t("app.reset")}
           </button>

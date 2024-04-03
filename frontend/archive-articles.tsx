@@ -50,11 +50,11 @@ export function ArchiveArticles(_props: RoutableProps) {
   const _archiveArticles = useInfiniteQuery(
     api.keys.archiveArticles(
       filters,
-      debouncedSearch === "" ? undefined : debouncedSearch,
+      debouncedSearch === "" ? undefined : debouncedSearch
     ),
     ({ pageParam = 1 }) =>
       api.Archive.getArticles(pageParam, filters, debouncedSearch),
-    { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true },
+    { getNextPageParam: (page) => page.meta.nextPage, refetchOnMount: true }
   );
 
   const archiveArticles = bg.Pagination.infinite(_archiveArticles) ?? [];
@@ -147,11 +147,11 @@ export function ArchiveArticles(_props: RoutableProps) {
           type="button"
           class="c-button"
           data-variant="bare"
-          disabled={
-            createdAtFilter.unchanged &&
-            statusFilter.unchanged &&
-            sourceFilter.unchanged
-          }
+          disabled={bg.Fields.allUnchanged([
+            createdAtFilter,
+            statusFilter,
+            sourceFilter,
+          ])}
           onClick={bg.exec([
             createdAtFilter.clear,
             statusFilter.clear,

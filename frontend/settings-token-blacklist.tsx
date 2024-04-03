@@ -147,7 +147,7 @@ export function SettingsTokenBlacklist() {
             data-variant="bare"
             data-self="end"
             onClick={bg.exec([search.clear, sort.clear])}
-            disabled={search.unchanged && sort.unchanged}
+            disabled={bg.Fields.allUnchanged([search, sort])}
           >
             {t("app.reset")}
           </button>

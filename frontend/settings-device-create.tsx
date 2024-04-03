@@ -95,8 +95,7 @@ export function DeviceCreate() {
           data-variant="primary"
           data-self="end"
           disabled={
-            deviceName.unchanged ||
-            deviceEmail.unchanged ||
+            bg.Fields.anyUnchanged([deviceEmail, deviceName]) ||
             createDevice.isLoading
           }
         >
@@ -105,8 +104,7 @@ export function DeviceCreate() {
 
         <UI.ClearButton
           disabled={
-            deviceName.unchanged ||
-            deviceEmail.unchanged ||
+            bg.Fields.anyUnchanged([deviceEmail, deviceName]) ||
             createDevice.isLoading
           }
           data-self="end"
