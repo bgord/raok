@@ -1,8 +1,16 @@
 # Changelog
+- 2024-04-05 08:21 9f51bb8 **build(deps): bump typescript from 5.4.3 to 5.4.4 (#322)**
+- 2024-04-05 08:21 2b9a09b **build(deps): bump @prisma/client from 5.12.0 to 5.12.1 (#321)**
+## 2024-04-05 08:21 
+- 2024-04-05 08:20 eafc89f **build(deps-dev): bump vite from 5.1.6 to 5.2.8 (#315)**
+- 2024-04-05 08:20 b0c38a5 **build(deps-dev): bump eslint-plugin-sonarjs from 0.25.0 to 0.25.1 (#318)**
+- 2024-04-05 08:20 acd3b4c **build(deps-dev): bump @types/node from 20.12.3 to 20.12.4 (#316)**
+- 2024-04-05 08:20 ab83a8a **build(deps): bump undici from 6.7.0 to 6.11.1 (#320)**
+- 2024-04-05 08:20 2b9cb98 **build(deps): bump @bgord/frontend from `c8a729a` to `67346a9` (#319)**
 - 2024-04-05 08:19 970cb8a **build(deps-dev): bump prisma from 5.12.0 to 5.12.1 (#325)**
 - 2024-04-05 08:19 6086d46 **build(deps-dev): bump @playwright/test from 1.42.1 to 1.43.0 (#324)**
 - 2024-04-05 08:19 27bc2f8 **build(deps-dev): bump knip from 5.7.0 to 5.8.0 (#323)**
-## 2024-04-05 08:19 
+- 2024-04-05 06:20 4b77d9b **docs: generate CHANGELOG**
 - 2024-04-03 15:11 c67f00a **refactor: bump design**
 - 2024-04-03 13:11 6504681 **docs: generate CHANGELOG**
 - 2024-04-03 12:44 cef7b38 **step: bump bgord/frontend**
