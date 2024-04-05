@@ -1,6 +1,10 @@
 # Changelog
+- 2024-04-05 08:19 970cb8a **build(deps-dev): bump prisma from 5.12.0 to 5.12.1 (#325)**
+- 2024-04-05 08:19 6086d46 **build(deps-dev): bump @playwright/test from 1.42.1 to 1.43.0 (#324)**
+- 2024-04-05 08:19 27bc2f8 **build(deps-dev): bump knip from 5.7.0 to 5.8.0 (#323)**
+## 2024-04-05 08:19 
 - 2024-04-03 15:11 c67f00a **refactor: bump design**
-## 2024-04-03 15:11 
+- 2024-04-03 13:11 6504681 **docs: generate CHANGELOG**
 - 2024-04-03 12:44 cef7b38 **step: bump bgord/frontend**
 - 2024-04-03 12:26 e8e0a00 **refactor: journal created at label**
 - 2024-04-03 12:26 b6fd15d **refactor: journal created at label**
