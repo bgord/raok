@@ -17,7 +17,7 @@ export function SendArbitraryFile() {
 
   const deviceId = bg.useField<types.DeviceType["id"]>(
     "device-id",
-    devices[0]?.id as types.DeviceType["id"]
+    devices[0]?.id as types.DeviceType["id"],
   );
 
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
@@ -33,7 +33,7 @@ export function SendArbitraryFile() {
     <form
       data-display="flex"
       data-direction="column"
-      data-gap="12"
+      data-gap="6"
       data-p="12"
       data-bg="gray-100"
       data-shadow
@@ -106,7 +106,7 @@ export function SendArbitraryFile() {
         </div>
       </div>
 
-      <div data-display="flex" data-wrap="nowrap" data-gap="12">
+      <div data-display="flex" data-wrap="nowrap" data-gap="6" data-mt="6">
         {file.isSelected && !fileUpload.isSuccess && (
           <button type="submit" class="c-button" data-variant="primary">
             {t("app.file.upload")}
@@ -117,7 +117,7 @@ export function SendArbitraryFile() {
           <button
             type="button"
             class="c-button"
-            data-variant="secondary"
+            data-variant="bare"
             onClick={bg.exec([file.actions.clearFile, fileUpload.reset])}
           >
             {t("app.clear")}
@@ -146,11 +146,12 @@ export function SendArbitraryFile() {
       {fileUpload.isIdle && file.isSelected && (
         <Fragment>
           <div
-            data-mt="24"
+            data-mt="12"
             data-pr="12"
             data-fs="14"
             data-color="gray-500"
             data-transform="truncate"
+            data-max-width="100%"
             title={file.data.name}
           >
             <strong>{t("app.file.name")}</strong>
