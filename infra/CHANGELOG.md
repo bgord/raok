@@ -1,6 +1,8 @@
 # Changelog
+- 2024-04-07 12:09 fbc4821 **fix: non-empty newspaper list on newspaper archive**
+## 2024-04-07 12:09 
 - 2024-04-05 11:22 f5a6410 **fix: file sending ui**
-## 2024-04-05 11:22 
+- 2024-04-05 09:23 a0a1d57 **docs: generate CHANGELOG**
 - 2024-04-05 08:21 9f51bb8 **build(deps): bump typescript from 5.4.3 to 5.4.4 (#322)**
 - 2024-04-05 08:21 2b9a09b **build(deps): bump @prisma/client from 5.12.0 to 5.12.1 (#321)**
 - 2024-04-05 08:20 eafc89f **build(deps-dev): bump vite from 5.1.6 to 5.2.8 (#315)**
