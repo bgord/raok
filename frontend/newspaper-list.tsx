@@ -17,7 +17,7 @@ export function NewspaperList() {
     direction: "head",
   });
 
-  if (!newspapers.items.length) return null;
+  if (!newspapers.count) return null;
 
   return (
     <section data-my="24">
