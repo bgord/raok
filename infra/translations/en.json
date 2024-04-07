@@ -215,5 +215,6 @@
   "token_blacklist.search.placeholder": "Search for a token",
   "web": "web",
   "article.from": "Source: {{url}}",
-  "created_at": "created_at"
+  "created_at": "created at",
+  "rss": "RSS"
 }
