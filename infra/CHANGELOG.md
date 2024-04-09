@@ -1,9 +1,11 @@
 # Changelog
 - 2024-04-09 08:17 6dac2ed **build(deps-dev): bump @types/node from 20.12.4 to 20.12.6 (#333)**
+- 2024-04-09 08:17 230ccbd **build(deps-dev): bump tsx from 4.7.1 to 4.7.2 (#327)**
 ## 2024-04-09 08:17 
 - 2024-04-09 08:16 8bd8d65 **build(deps-dev): bump knip from 5.8.0 to 5.9.2 (#334)**
 - 2024-04-09 08:16 59201d1 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#335)**
 - 2024-04-09 08:15 de14250 **build(deps-dev): bump @typescript-eslint/parser from 7.5.0 to 7.6.0 (#336)**
+- 2024-04-09 06:17 dab2494 **docs: generate CHANGELOG**
 - 2024-04-09 06:16 3ac5ebd **docs: generate CHANGELOG**
 - 2024-04-09 06:15 83e84a1 **docs: generate CHANGELOG**
 - 2024-04-07 17:48 80eae60 **fix: add missing translations**
