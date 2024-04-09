@@ -1,6 +1,8 @@
 # Changelog
+- 2024-04-09 08:15 de14250 **build(deps-dev): bump @typescript-eslint/parser from 7.5.0 to 7.6.0 (#336)**
+## 2024-04-09 08:15 
 - 2024-04-07 17:48 80eae60 **fix: add missing translations**
-## 2024-04-07 17:48 
+- 2024-04-07 17:25 9e59e70 **docs: generate CHANGELOG**
 - 2024-04-07 12:09 fbc4821 **fix: non-empty newspaper list on newspaper archive**
 - 2024-04-07 10:09 17a2452 **docs: generate CHANGELOG**
 - 2024-04-05 11:22 f5a6410 **fix: file sending ui**
