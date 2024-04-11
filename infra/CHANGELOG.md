@@ -1,6 +1,8 @@
 # Changelog
 - 2024-04-11 08:07 e0a3838 **build(deps-dev): bump knip from 5.9.2 to 5.9.4 (#344)**
+- 2024-04-11 08:07 ac233a6 **build(deps): bump preact-render-to-string from 6.4.1 to 6.4.2 (#343)**
 ## 2024-04-11 08:07 
+- 2024-04-11 06:07 f22a962 **docs: generate CHANGELOG**
 - 2024-04-09 17:02 6c84ad6 **refactor: bump design**
 - 2024-04-09 15:02 465348f **docs: generate CHANGELOG**
 - 2024-04-09 08:19 5d0cb29 **build(deps-dev): bump oxlint from 0.2.15 to 0.2.16 (#332)**
