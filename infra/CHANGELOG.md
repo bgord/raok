@@ -1,12 +1,14 @@
 # Changelog
+- 2024-04-11 14:53 b1e0850 **fix: css rule 5 violation**
+## 2024-04-11 14:53 
 - 2024-04-11 08:09 32439b6 **build(deps-dev): bump @types/node from 20.12.6 to 20.12.7 (#338)**
 - 2024-04-11 08:09 31824a4 **build(deps): bump preact from 10.20.1 to 10.20.2 (#337)**
-## 2024-04-11 08:09 
 - 2024-04-11 08:08 d902dfc **build(deps): bump @xenova/transformers from 2.16.1 to 2.17.0 (#340)**
 - 2024-04-11 08:08 cf6e360 **build(deps-dev): bump eslint-plugin-security from 2.1.1 to 3.0.0 (#341)**
 - 2024-04-11 08:08 1b81a6d **build(deps): bump typescript from 5.4.4 to 5.4.5 (#342)**
 - 2024-04-11 08:07 e0a3838 **build(deps-dev): bump knip from 5.9.2 to 5.9.4 (#344)**
 - 2024-04-11 08:07 ac233a6 **build(deps): bump preact-render-to-string from 6.4.1 to 6.4.2 (#343)**
+- 2024-04-11 06:09 8c92835 **docs: generate CHANGELOG**
 - 2024-04-11 06:08 d788dbd **docs: generate CHANGELOG**
 - 2024-04-11 06:08 796116a **docs: generate CHANGELOG**
 - 2024-04-11 06:07 f22a962 **docs: generate CHANGELOG**
