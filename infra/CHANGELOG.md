@@ -1,8 +1,11 @@
 # Changelog
+- 2024-04-11 08:08 d902dfc **build(deps): bump @xenova/transformers from 2.16.1 to 2.17.0 (#340)**
+- 2024-04-11 08:08 cf6e360 **build(deps-dev): bump eslint-plugin-security from 2.1.1 to 3.0.0 (#341)**
 - 2024-04-11 08:08 1b81a6d **build(deps): bump typescript from 5.4.4 to 5.4.5 (#342)**
 ## 2024-04-11 08:08 
 - 2024-04-11 08:07 e0a3838 **build(deps-dev): bump knip from 5.9.2 to 5.9.4 (#344)**
 - 2024-04-11 08:07 ac233a6 **build(deps): bump preact-render-to-string from 6.4.1 to 6.4.2 (#343)**
+- 2024-04-11 06:08 d788dbd **docs: generate CHANGELOG**
 - 2024-04-11 06:07 f22a962 **docs: generate CHANGELOG**
 - 2024-04-11 06:07 72d5c3d **docs: generate CHANGELOG**
 - 2024-04-09 17:02 6c84ad6 **refactor: bump design**
