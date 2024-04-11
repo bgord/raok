@@ -20,19 +20,21 @@ export function SettingsBlacklistedToken(props: types.TokenBlacklistType) {
   });
 
   return (
-    <UI.Badge
-      data-display="flex"
-      data-wrap="nowrap"
-      data-main="center"
-      data-cross="center"
-      data-pl="12"
-    >
-      {props.token}
+    <li>
+      <UI.Badge
+        data-display="flex"
+        data-wrap="nowrap"
+        data-main="center"
+        data-cross="center"
+        data-pl="12"
+      >
+        {props.token}
 
-      <UI.ClearButton
-        disabled={deleteBlacklistedToken.isLoading}
-        onClick={() => deleteBlacklistedToken.mutate({ token: props.token })}
-      />
-    </UI.Badge>
+        <UI.ClearButton
+          disabled={deleteBlacklistedToken.isLoading}
+          onClick={() => deleteBlacklistedToken.mutate({ token: props.token })}
+        />
+      </UI.Badge>
+    </li>
   );
 }
