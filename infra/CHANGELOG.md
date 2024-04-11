@@ -1,6 +1,8 @@
 # Changelog
+- 2024-04-11 08:07 e0a3838 **build(deps-dev): bump knip from 5.9.2 to 5.9.4 (#344)**
+## 2024-04-11 08:07 
 - 2024-04-09 17:02 6c84ad6 **refactor: bump design**
-## 2024-04-09 17:02 
+- 2024-04-09 15:02 465348f **docs: generate CHANGELOG**
 - 2024-04-09 08:19 5d0cb29 **build(deps-dev): bump oxlint from 0.2.15 to 0.2.16 (#332)**
 - 2024-04-09 08:18 319c99a **build(deps): bump open-graph-scraper from 6.5.0 to 6.5.1 (#330)**
 - 2024-04-09 08:18 0f4e3cc **build(deps): bump @bgord/frontend from `67346a9` to `37dd2c2` (#329)**
