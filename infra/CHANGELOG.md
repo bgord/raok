@@ -1,6 +1,8 @@
 # Changelog
+- 2024-04-15 08:27 2209256 **build(deps-dev): bump @commitlint/config-conventional (#349)**
+## 2024-04-15 08:27 
 - 2024-04-11 14:53 b1e0850 **fix: css rule 5 violation**
-## 2024-04-11 14:53 
+- 2024-04-11 12:55 cc01225 **docs: generate CHANGELOG**
 - 2024-04-11 08:09 32439b6 **build(deps-dev): bump @types/node from 20.12.6 to 20.12.7 (#338)**
 - 2024-04-11 08:09 31824a4 **build(deps): bump preact from 10.20.1 to 10.20.2 (#337)**
 - 2024-04-11 08:08 d902dfc **build(deps): bump @xenova/transformers from 2.16.1 to 2.17.0 (#340)**
