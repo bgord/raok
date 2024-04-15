@@ -11,7 +11,7 @@
   "author": "Bartosz Gordon",
   "license": "ISC",
   "devDependencies": {
-    "@commitlint/cli": "19.2.1",
+    "@commitlint/cli": "19.2.2",
     "@commitlint/config-conventional": "19.2.2",
     "@fullhuman/postcss-purgecss": "6.0.0",
     "@playwright/test": "1.43.1",
