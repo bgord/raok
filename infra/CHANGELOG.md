@@ -1,8 +1,12 @@
 # Changelog
+- 2024-04-15 08:29 a1f02c1 **build(deps-dev): bump vitest from 1.4.0 to 1.5.0 (#345)**
+## 2024-04-15 08:29 
+- 2024-04-15 08:28 88fa4fa **build(deps-dev): bump oxlint from 0.2.16 to 0.2.17 (#346)**
+- 2024-04-15 08:28 53c0e10 **build(deps-dev): bump @commitlint/cli from 19.2.1 to 19.2.2 (#347)**
 - 2024-04-15 08:27 2209256 **build(deps-dev): bump @commitlint/config-conventional (#349)**
 - 2024-04-15 08:27 1ddf3b2 **build(deps-dev): bump @playwright/test from 1.43.0 to 1.43.1 (#348)**
-## 2024-04-15 08:27 
 - 2024-04-15 06:27 6e91e22 **docs: generate CHANGELOG**
+- 2024-04-15 06:27 2c754f3 **docs: generate CHANGELOG**
 - 2024-04-11 14:53 b1e0850 **fix: css rule 5 violation**
 - 2024-04-11 12:55 cc01225 **docs: generate CHANGELOG**
 - 2024-04-11 08:09 32439b6 **build(deps-dev): bump @types/node from 20.12.6 to 20.12.7 (#338)**
