@@ -1,6 +1,8 @@
 # Changelog
 - 2024-04-15 08:27 2209256 **build(deps-dev): bump @commitlint/config-conventional (#349)**
+- 2024-04-15 08:27 1ddf3b2 **build(deps-dev): bump @playwright/test from 1.43.0 to 1.43.1 (#348)**
 ## 2024-04-15 08:27 
+- 2024-04-15 06:27 6e91e22 **docs: generate CHANGELOG**
 - 2024-04-11 14:53 b1e0850 **fix: css rule 5 violation**
 - 2024-04-11 12:55 cc01225 **docs: generate CHANGELOG**
 - 2024-04-11 08:09 32439b6 **build(deps-dev): bump @types/node from 20.12.6 to 20.12.7 (#338)**
