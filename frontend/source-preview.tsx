@@ -8,17 +8,18 @@ import * as api from "./api";
 import * as UI from "./ui";
 
 export function SourcePreview(
-  props: Pick<types.SourceType, "id"> & h.JSX.IntrinsicElements["button"]
+  props: Pick<types.SourceType, "id"> & h.JSX.IntrinsicElements["button"],
 ) {
   const { id, ...rest } = props;
 
   const t = bg.useTranslations();
+  const notify = bg.useToastTrigger();
   const dialog = bg.useToggle();
 
   const preview = useQuery(
     api.keys.sourcePreview(id),
     () => api.Source.preview(id),
-    { enabled: dialog.on }
+    { enabled: dialog.on },
   );
 
   return (
@@ -93,7 +94,17 @@ export function SourcePreview(
               data-md-gap="0"
               key={item.url}
             >
-              <UI.ArticleUrl data-fs="14" url={item.url}>{item.url}</UI.ArticleUrl>
+              <UI.CopyButton
+                {...bg.Rhythm().times(2).style.height}
+                options={{
+                  text: item.url,
+                  onSuccess: () => notify({ message: t("article.url.copied") }),
+                }}
+              />
+
+              <UI.ArticleUrl data-fs="12" url={item.url}>
+                {item.url}
+              </UI.ArticleUrl>
 
               <UI.Info
                 data-color="gray-400"
