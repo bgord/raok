@@ -1,8 +1,10 @@
 # Changelog
+- 2024-04-16 13:12 e321785 **build(deps): bump @bgord/frontend from `37dd2c2` to `0ae7d33` (#351)**
 - 2024-04-16 13:12 7112fdd **build(deps-dev): bump @typescript-eslint/parser from 7.6.0 to 7.7.0 (#352)**
 ## 2024-04-16 13:12 
 - 2024-04-16 12:59 bcdcc3e **refactor: remove notifications from settings**
 - 2024-04-16 11:50 840858f **step: add source item url copy button**
+- 2024-04-16 11:12 6db5c2d **docs: generate CHANGELOG**
 - 2024-04-16 11:10 c08ece9 **docs: generate CHANGELOG**
 - 2024-04-16 10:43 b6bdf1a **refactor: use rss downloader in rss crawler**
 - 2024-04-16 10:41 f432e80 **docs: generate CHANGELOG**
