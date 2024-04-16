@@ -6,14 +6,12 @@ import * as UI from "./ui";
 import * as types from "./types";
 
 import { SourceDelete } from "./source-delete";
-import { SourceArchive } from "./source-archive";
-import { SourceReactivate } from "./source-reactivate";
 import { SourceQuality } from "./source-quality";
 import { SourcePreview } from "./source-preview";
 import { Health } from "./health";
 
 export function Source(
-  props: types.SourceType & h.JSX.IntrinsicElements["li"]
+  props: types.SourceType & h.JSX.IntrinsicElements["li"],
 ) {
   // prettier-ignore
   const {  url, status, id, name, createdAt, updatedAt, revision, quality, ...rest } = props;
@@ -54,15 +52,11 @@ export function Source(
 
       <Health {...props} />
 
-      {props.status === types.SourceStatusEnum.active && (
-        <div class="c-badge" data-color="green-700" data-bg="green-100">
-          {props.status}
-        </div>
-      )}
+      <div class="c-badge" data-color="green-700" data-bg="green-100">
+        {t("source.status.active")}
+      </div>
 
-      {props.status === types.SourceStatusEnum.inactive && (
-        <div class="c-badge">{props.status}</div>
-      )}
+      <SourcePreview id={props.id} />
 
       <UI.OutboundLink
         href={props.url}
@@ -88,18 +82,10 @@ export function Source(
 
       <SourceQuality {...props} />
 
-      <SourcePreview id={props.id} />
-
       <UI.CopyButton
         options={{ text: props.url, onSuccess: sourceUrlCopied }}
       />
 
-      {props.status === types.SourceStatusEnum.active && (
-        <SourceArchive {...source} />
-      )}
-      {props.status === types.SourceStatusEnum.inactive && (
-        <SourceReactivate {...source} />
-      )}
       <SourceDelete {...source} />
     </li>
   );

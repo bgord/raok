@@ -1,14 +1,9 @@
-import z from "zod";
 import _ from "lodash";
 import * as bg from "@bgord/node";
 
 import * as VO from "../value-objects";
 import * as infra from "../../../infra";
 import { SourceQualityAlarm, SourceMetadataType } from "../services";
-
-export const SourceFilter = new bg.Filter(
-  z.object({ status: VO.SourceStatus.optional() }),
-);
 
 export class SourceRepository {
   static async create(payload: infra.Source) {
@@ -19,23 +14,6 @@ export class SourceRepository {
     await infra.db.source.update({
       where: { id: payload.id },
       data: { status: VO.SourceStatusEnum.deleted, revision: payload.revision },
-    });
-  }
-
-  static async archive(payload: Pick<VO.SourceType, "id" | "revision">) {
-    await infra.db.source.update({
-      where: { id: payload.id },
-      data: {
-        status: VO.SourceStatusEnum.inactive,
-        revision: payload.revision,
-      },
-    });
-  }
-
-  static async reactivate(payload: Pick<VO.SourceType, "id" | "revision">) {
-    await infra.db.source.update({
-      where: { id: payload.id },
-      data: { status: VO.SourceStatusEnum.active, revision: payload.revision },
     });
   }
 
@@ -56,13 +34,9 @@ export class SourceRepository {
     });
   }
 
-  static async listAll(_filters?: infra.Prisma.SourceWhereInput) {
-    const filters = _.isEmpty(_filters)
-      ? { status: { not: VO.SourceStatusEnum.deleted } }
-      : _filters;
-
+  static async listAll() {
     const sources = await infra.db.source.findMany({
-      where: filters,
+      where: { status: VO.SourceStatusEnum.active },
       orderBy: { updatedAt: "desc" },
     });
 

@@ -67,10 +67,6 @@ export type DeviceType = Omit<
   "createdAt"
 >;
 
-export enum SourceStatusEnum {
-  "active" = "active",
-  "inactive" = "inactive",
-}
 import { SOURCE_URL_MIN_LENGTH } from "../modules/rss/value-objects/source-url-min-length";
 import { SOURCE_URL_MAX_LENGTH } from "../modules/rss/value-objects/source-url-max-length";
 

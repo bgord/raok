@@ -22,7 +22,6 @@ export async function Sources(
     request.translationsPath,
   );
 
-  const filters = Repos.SourceFilter.parse(request.query);
   const pagination = bg.Pagination.parse(
     request.query,
     Newspapers.VO.ARTICLES_PER_PAGE,
@@ -46,7 +45,7 @@ export async function Sources(
         pagination,
       ),
     newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
-    sources: await Repos.SourceRepository.listAll(filters),
+    sources: await Repos.SourceRepository.listAll(),
     stats: await Stats.Repos.StatsRepository.getAll(),
     devices: deviceManager.list(),
   };

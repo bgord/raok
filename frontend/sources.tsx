@@ -24,18 +24,9 @@ export function Sources(_props: RoutableProps) {
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
   const search = bg.useClientSearch();
 
-  const statusFilter = bg.useUrlFilter({
-    name: "status",
-    enum: types.SourceStatusEnum,
+  const sourceList = useQuery(api.keys.sources, () => api.Source.list(), {
+    refetchOnMount: true,
   });
-
-  const filters = { status: statusFilter.query };
-
-  const sourceList = useQuery(
-    api.keys.sources(filters),
-    () => api.Source.list(filters),
-    { refetchOnMount: true }
-  );
 
   const sourcesSort = bg.useClientSort<types.SourceType>("sort-sources", {
     enum: types.SourceSortEnum,
@@ -95,29 +86,6 @@ export function Sources(_props: RoutableProps) {
         data-gap="12"
       >
         <div data-display="flex" data-direction="column">
-          <label class="c-label" {...statusFilter.label.props}>
-            {t("source.status")}
-          </label>
-
-          <UI.Select
-            class="c-select"
-            key={statusFilter.query}
-            value={statusFilter.query}
-            onInput={statusFilter.onChange}
-            {...statusFilter.input.props}
-          >
-            <option selected>{t("all")}</option>
-            <hr />
-
-            {statusFilter.options.map((status) => (
-              <option key={status} value={status}>
-                {t(`source.status.${status}`)}
-              </option>
-            ))}
-          </UI.Select>
-        </div>
-
-        <div data-display="flex" data-direction="column">
           <label class="c-label" {...sourcesSort.label.props}>
             {t("sort")}
           </label>
@@ -161,12 +129,8 @@ export function Sources(_props: RoutableProps) {
           class="c-button"
           data-variant="bare"
           data-self="end"
-          onClick={bg.exec([
-            search.clear,
-            sourcesSort.clear,
-            statusFilter.clear,
-          ])}
-          disabled={bg.Fields.allUnchanged([search, sourcesSort, statusFilter])}
+          onClick={bg.exec([search.clear, sourcesSort.clear])}
+          disabled={bg.Fields.allUnchanged([search, sourcesSort])}
         >
           {t("app.reset")}
         </button>

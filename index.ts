@@ -186,18 +186,6 @@ app.delete(
   infra.CacheResponse.clear,
   bg.Route(RSS.Routes.SourceDelete),
 );
-app.post(
-  "/rss/source/:sourceId/archive",
-  infra.AuthShield.verify,
-  infra.CacheResponse.clear,
-  bg.Route(RSS.Routes.SourceArchive),
-);
-app.post(
-  "/rss/source/:sourceId/reactivate",
-  infra.AuthShield.verify,
-  infra.CacheResponse.clear,
-  bg.Route(RSS.Routes.SourceReactivate),
-);
 app.get(
   "/rss/source/list",
   infra.AuthShield.verify,

@@ -8,10 +8,9 @@ import * as infra from "../../../infra";
 export async function SourceList(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction
+  _next: express.NextFunction,
 ) {
-  const filters = Repos.SourceFilter.parse(request.query);
-  const sources = await Repos.SourceRepository.listAll(filters);
+  const sources = await Repos.SourceRepository.listAll();
 
   infra.ResponseCache.set(request.url, sources, bg.Time.Minutes(5).seconds);
   return response.status(200).send(sources);

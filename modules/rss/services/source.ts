@@ -8,40 +8,6 @@ import { SourceFinder } from "./source-finder";
 export class Source {
   private constructor(readonly data: VO.SourceType) {}
 
-  async archive(revision: bg.Revision) {
-    revision.validate(this.data.revision);
-
-    if (this.data.status === VO.SourceStatusEnum.inactive) {
-      throw new Error("Source already archived");
-    }
-
-    if (this.data.status === VO.SourceStatusEnum.deleted) {
-      throw new Error("Source is deleted");
-    }
-
-    await Repos.SourceRepository.archive({
-      id: this.data.id,
-      revision: revision.next().value,
-    });
-  }
-
-  async reactivate(revision: bg.Revision) {
-    revision.validate(this.data.revision);
-
-    if (this.data.status === VO.SourceStatusEnum.active) {
-      throw new Error("Source already active");
-    }
-
-    if (this.data.status === VO.SourceStatusEnum.deleted) {
-      throw new Error("Source is deleted");
-    }
-
-    await Repos.SourceRepository.reactivate({
-      id: this.data.id,
-      revision: revision.next().value,
-    });
-  }
-
   async delete(revision: bg.Revision) {
     revision.validate(this.data.revision);
 
@@ -69,7 +35,7 @@ export class Source {
   }
 
   static async create(
-    payload: Pick<VO.SourceType, "url" | "id">
+    payload: Pick<VO.SourceType, "url" | "id">,
   ): Promise<Source> {
     const now = Date.now();
 

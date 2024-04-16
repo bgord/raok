@@ -48,13 +48,10 @@ export function App(props: InitialDataType) {
   });
   queryClient.setQueryData(
     api.keys.archiveFiles({ sentAt: TimestampFiltersEnum.last_3_days }),
-    props.archiveFiles
+    props.archiveFiles,
   );
   queryClient.setQueryData(api.keys.articlesSearch, []);
-  queryClient.setQueryData(
-    api.keys.sources({ status: undefined }),
-    props.sources
-  );
+  queryClient.setQueryData(api.keys.sources, props.sources);
   queryClient.setQueryData(api.keys.allDevices, props.devices);
 
   return (
