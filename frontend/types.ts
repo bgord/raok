@@ -5,7 +5,6 @@ import type * as bg from "@bgord/frontend";
 import type { ArticleRepository } from "../modules/newspapers/repositories/article-repository";
 import type { NewspaperRepository } from "../modules/newspapers/repositories/newspaper-repository";
 import type { StatsRepository } from "../modules/stats/repositories/stats-repository";
-import type { SettingsRepository } from "../modules/settings/repositories/settings-repository";
 import type { FilesRepository } from "../modules/delivery/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
@@ -44,9 +43,6 @@ export type NewspaperType = AsyncReturnType<
 >[number];
 
 export type StatsType = AsyncReturnType<(typeof StatsRepository)["getAll"]>;
-export type SettingsType = AsyncReturnType<
-  (typeof SettingsRepository)["getAll"]
->;
 
 export type ToastType = bg.BaseToastType & {
   articleId?: ArticleType["id"] | null;

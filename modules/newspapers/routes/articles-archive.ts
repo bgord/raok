@@ -6,7 +6,6 @@ import * as Delivery from "../../delivery";
 
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";
-import * as Settings from "../../settings";
 import * as Stats from "../../stats";
 
 import * as infra from "../../../infra";
@@ -46,7 +45,6 @@ export async function ArticlesArchive(
     },
     newspapers: [],
     sources: [],
-    settings: await Settings.Repos.SettingsRepository.getAll(),
     stats: await Stats.Repos.StatsRepository.getAll(),
     devices: deviceManager.list(),
   };

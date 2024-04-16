@@ -5,7 +5,6 @@ import * as bg from "@bgord/node";
 import * as infra from "../../../infra";
 
 import * as Newspapers from "../../newspapers";
-import * as Settings from "../../settings";
 import * as Stats from "../../stats";
 import * as Delivery from "../";
 
@@ -41,7 +40,6 @@ export async function FilesArchive(
       bg.Pagination.getFirstPage({ take: Newspapers.VO.ARTICLES_PER_PAGE }),
     ),
     newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
-    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Stats.Repos.StatsRepository.getAll(),
     devices: deviceManager.list(),

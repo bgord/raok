@@ -4,7 +4,6 @@ import * as bg from "@bgord/node";
 import * as App from "./app";
 
 import * as RSS from "./modules/rss";
-import * as Settings from "./modules/settings";
 import * as Stats from "./modules/stats";
 import * as Delivery from "./modules/delivery";
 import * as Newspapers from "./modules/newspapers";
@@ -171,26 +170,6 @@ app.get("/stats", infra.AuthShield.verify, bg.Route(Stats.Routes.Stats));
 
 // Settings ====================
 app.get("/settings", infra.AuthShield.verify, bg.Route(App.Routes.Dashboard));
-app.get(
-  "/account/settings",
-  infra.AuthShield.verify,
-  bg.Route(Settings.Routes.Settings),
-);
-app.post(
-  "/disable-articles-to-review-notification",
-  infra.AuthShield.verify,
-  bg.Route(Settings.Routes.DisableArticlesToReviewNotification),
-);
-app.post(
-  "/enable-articles-to-review-notification",
-  infra.AuthShield.verify,
-  bg.Route(Settings.Routes.EnableArticlesToReviewNotification),
-);
-app.post(
-  "/set-articles-to-review-notification-hour",
-  infra.AuthShield.verify,
-  bg.Route(Settings.Routes.SetArticlesToReviewNotificationHour),
-);
 // =============================
 
 // Source ======================

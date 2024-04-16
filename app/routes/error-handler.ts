@@ -3,7 +3,6 @@ import express from "express";
 import * as bg from "@bgord/node";
 
 import * as RSS from "../../modules/rss";
-import * as Settings from "../../modules/settings";
 import * as Newspapers from "../../modules/newspapers";
 import * as Recommendations from "../../modules/recommendations";
 
@@ -15,7 +14,7 @@ export class ErrorHandler {
     error,
     request,
     response,
-    next,
+    next
   ) => {
     if (error instanceof bg.Errors.InvalidCredentialsError) {
       infra.logger.error({
@@ -111,19 +110,6 @@ export class ErrorHandler {
 
       return response.status(400).send({
         message: Newspapers.Policies.MaximumNewspaperArticleNumber.message,
-        _known: true,
-      });
-    }
-
-    if (error instanceof Settings.Policies.NotificationHourShouldChangeError) {
-      infra.logger.error({
-        message: "article to review notification hour not changed error",
-        operation: Settings.Policies.NotificationHourShouldChange.message,
-        correlationId: request.requestId,
-      });
-
-      return response.status(400).send({
-        message: Settings.Policies.NotificationHourShouldChange.message,
         _known: true,
       });
     }
@@ -226,7 +212,7 @@ export class ErrorHandler {
         error.issues.find(
           (issue) =>
             issue.message ===
-            Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE,
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE
         )
       ) {
         return response.status(400).send({
@@ -239,7 +225,7 @@ export class ErrorHandler {
         error.issues.find(
           (issue) =>
             issue.message ===
-            Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE,
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE
         )
       ) {
         return response.status(400).send({
@@ -251,7 +237,7 @@ export class ErrorHandler {
       if (
         error.issues.find(
           (issue) =>
-            issue.message === Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY,
+            issue.message === Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY
         )
       ) {
         return response.status(400).send({

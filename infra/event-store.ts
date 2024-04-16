@@ -1,7 +1,6 @@
 import * as bg from "@bgord/node";
 import { z } from "zod";
 
-import * as Settings from "../modules/settings";
 import * as Newspapers from "../modules/newspapers";
 
 import * as infra from "../infra";
@@ -21,19 +20,16 @@ type AcceptedEvent =
   | typeof Newspapers.Events.NewspaperFailedEvent
   | typeof Newspapers.Events.NewspaperGenerateEvent
   | typeof Newspapers.Events.NewspaperScheduledEvent
-  | typeof Newspapers.Events.NewspaperSentEvent
-  | typeof Settings.Events.ArticlesToReviewNotificationHourSetEvent
-  | typeof Settings.Events.ArticlesToReviewNotificationsDisabledEvent
-  | typeof Settings.Events.ArticlesToReviewNotificationsEnabledEvent;
+  | typeof Newspapers.Events.NewspaperSentEvent;
 type AcceptedEventType = z.infer<AcceptedEvent>;
 
 export class EventStore {
   static async find<T extends AcceptedEvent[]>(
     acceptedEvents: T,
-    stream?: bg.EventType["stream"],
+    stream?: bg.EventType["stream"]
   ): Promise<z.infer<T[number]>[]> {
     const acceptedEventNames = acceptedEvents.map(
-      (acceptedEvent) => acceptedEvent._def.shape().name._def.value,
+      (acceptedEvent) => acceptedEvent._def.shape().name._def.value
     );
 
     const events = await infra.db.event.findMany({
@@ -46,7 +42,7 @@ export class EventStore {
       .map((event) => {
         const parser = acceptedEvents.find(
           (acceptedEvent) =>
-            acceptedEvent._def.shape().name._def.value === event.name,
+            acceptedEvent._def.shape().name._def.value === event.name
         );
 
         if (!parser) return undefined;
@@ -55,7 +51,7 @@ export class EventStore {
       })
       .filter(
         (event: z.infer<T[number]> | undefined): event is z.infer<T[number]> =>
-          event !== undefined,
+          event !== undefined
       );
   }
 

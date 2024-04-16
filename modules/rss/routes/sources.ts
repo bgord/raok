@@ -2,7 +2,6 @@ import express from "express";
 import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
-import * as Settings from "../../settings";
 import * as Stats from "../../stats";
 import * as Newspapers from "../../newspapers";
 import * as Delivery from "../../delivery";
@@ -47,7 +46,6 @@ export async function Sources(
         pagination,
       ),
     newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
-    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: await Repos.SourceRepository.listAll(filters),
     stats: await Stats.Repos.StatsRepository.getAll(),
     devices: deviceManager.list(),

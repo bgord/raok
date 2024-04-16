@@ -3,7 +3,6 @@ import render from "preact-render-to-string";
 import * as bg from "@bgord/node";
 
 import * as Newspapers from "../../modules/newspapers";
-import * as Settings from "../../modules/settings";
 import * as Stats from "../../modules/stats";
 import * as Delivery from "../../modules/delivery";
 
@@ -44,7 +43,6 @@ export async function Dashboard(
         pagination,
       ),
     newspapers: await Newspapers.Repos.NewspaperRepository.getAllNonArchived(),
-    settings: await Settings.Repos.SettingsRepository.getAll(),
     sources: [],
     stats: await Stats.Repos.StatsRepository.getAll(),
     devices: deviceManager.list(),

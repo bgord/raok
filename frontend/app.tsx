@@ -15,7 +15,7 @@ import {
   ArchiveArticles,
   InitialArchiveArticlesDataType,
 } from "./archive-articles";
-import { Settings, InitialSettingsDataType } from "./settings";
+import { Settings } from "./settings";
 import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
 import { Sources, InitialSourcesDataType } from "./sources";
 import { TimestampFiltersEnum } from "./filters";
@@ -24,7 +24,6 @@ import { TimestampFiltersEnum } from "./filters";
 export type InitialDataType = InitialDashboardDataType &
   InitialSourcesDataType &
   InitialArchiveArticlesDataType &
-  InitialSettingsDataType &
   InitialArchiveFilesDataType & {
     url: string;
     language: Schema.LanguageType;
@@ -49,13 +48,12 @@ export function App(props: InitialDataType) {
   });
   queryClient.setQueryData(
     api.keys.archiveFiles({ sentAt: TimestampFiltersEnum.last_3_days }),
-    props.archiveFiles,
+    props.archiveFiles
   );
-  queryClient.setQueryData(api.keys.settings, props.settings);
   queryClient.setQueryData(api.keys.articlesSearch, []);
   queryClient.setQueryData(
     api.keys.sources({ status: undefined }),
-    props.sources,
+    props.sources
   );
   queryClient.setQueryData(api.keys.allDevices, props.devices);
 

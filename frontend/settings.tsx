@@ -1,15 +1,9 @@
 import { h } from "preact";
 import { RoutableProps } from "preact-router";
-import { useQuery } from "react-query";
 import * as bg from "@bgord/frontend";
 
-import * as api from "./api";
 import * as hooks from "./hooks";
-import * as types from "./types";
 
-export type InitialSettingsDataType = { settings: types.SettingsType };
-
-import { SettingsArticlesToReviewNotifications } from "./settings-articles-to-review-notifications";
 import { SettingsTokenBlacklist } from "./settings-token-blacklist";
 import { SettingsDevices } from "./settings-devices";
 
@@ -17,12 +11,6 @@ export function Settings(_props: RoutableProps) {
   hooks.useLeavingPrompt();
 
   const t = bg.useTranslations();
-
-  const settings = useQuery(api.keys.settings, api.Settings.getSettings);
-
-  if (!settings.isSuccess) {
-    return <div data-p="24">{t("settings.preparing")}</div>;
-  }
 
   return (
     <main
@@ -39,7 +27,6 @@ export function Settings(_props: RoutableProps) {
         {t("app.settings")}
       </h2>
 
-      <SettingsArticlesToReviewNotifications {...settings.data} />
       <SettingsDevices />
       <SettingsTokenBlacklist />
     </main>

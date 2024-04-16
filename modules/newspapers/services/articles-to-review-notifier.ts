@@ -1,9 +1,6 @@
 import * as bg from "@bgord/node";
 
-import * as Settings from "../../settings";
-
 import * as infra from "../../../infra";
-import { ArticleRepository } from "../repositories/article-repository";
 
 const mailer = new bg.Mailer({
   SMTP_HOST: infra.Env.SMTP_HOST,
@@ -14,29 +11,20 @@ const mailer = new bg.Mailer({
 
 /** @public */
 export class ArticlesToReviewNotifier {
-  UTC_HOUR: bg.Schema.HourType;
+  UTC_HOUR: bg.Schema.HourType = 7;
 
   numberOfArticlesToReview = 0;
 
-  isArticlesToReviewNotificationEnabled = false;
-
-  constructor(settings: Settings.Aggregates.Settings) {
-    this.UTC_HOUR = settings.articlesToReviewNotificationHour;
-    this.isArticlesToReviewNotificationEnabled =
-      settings.isArticlesToReviewNotificationEnabled;
-  }
-
   async build() {
-    this.numberOfArticlesToReview =
-      await ArticleRepository.getNumberOfNonProcessed();
+    this.numberOfArticlesToReview = await infra.db.article.count({
+      where: { status: "ready" },
+    });
 
     return this;
   }
 
   private shouldBeSent() {
     if (this.numberOfArticlesToReview < 10) return false;
-
-    if (!this.isArticlesToReviewNotificationEnabled) return false;
 
     const now = new Date();
 

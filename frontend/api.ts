@@ -192,33 +192,6 @@ export class Archive {
   }
 }
 
-export class Settings {
-  static async getSettings(): Promise<types.SettingsType> {
-    return bg
-      .API("/account/settings", { method: "GET" })
-      .then((response) => response.json());
-  }
-
-  static async enableArticlesToReviewNotification() {
-    return bg.API("/enable-articles-to-review-notification", {
-      method: "POST",
-    });
-  }
-
-  static async disableArticlesToReviewNotification() {
-    return bg.API("/disable-articles-to-review-notification", {
-      method: "POST",
-    });
-  }
-
-  static async setArticlesToReviewNotificationHour(hour: types.HourType) {
-    return bg.API("/set-articles-to-review-notification-hour", {
-      method: "POST",
-      body: JSON.stringify({ hour }),
-    });
-  }
-}
-
 export class Source {
   static async list(filters?: bg.FilterType): Promise<types.SourceType[]> {
     const url = new bg.FilterUrl("/rss/source/list", filters).value;

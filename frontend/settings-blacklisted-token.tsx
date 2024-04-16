@@ -27,6 +27,9 @@ export function SettingsBlacklistedToken(props: types.TokenBlacklistType) {
         data-main="center"
         data-cross="center"
         data-pl="12"
+        data-bg="white"
+        data-fw="500"
+        data-gap="6"
       >
         {props.token}
 
