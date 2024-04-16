@@ -1,7 +1,9 @@
 # Changelog
+- 2024-04-16 12:59 bcdcc3e **refactor: remove notifications from settings**
+## 2024-04-16 12:59 
 - 2024-04-16 11:50 840858f **step: add source item url copy button**
-## 2024-04-16 11:50 
 - 2024-04-16 10:43 b6bdf1a **refactor: use rss downloader in rss crawler**
+- 2024-04-16 10:41 f432e80 **docs: generate CHANGELOG**
 - 2024-04-16 10:41 c09cc8e **feature: add source preview**
 - 2024-04-16 08:47 7c6ae02 **docs: generate CHANGELOG**
 - 2024-04-15 08:29 a1f02c1 **build(deps-dev): bump vitest from 1.4.0 to 1.5.0 (#345)**
