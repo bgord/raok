@@ -1,13 +1,13 @@
-import * as bg from "@bgord/node";
-import Parser from "rss-parser";
 import _ from "lodash";
 import { callLimit as plimit } from "promise-call-limit";
 
 import * as Repos from "../repositories";
 import * as infra from "../../../infra";
-import { RSSCrawlerJobFactory, SourceMetadataUpdater } from "../services";
-
-const parser = new Parser({ timeout: bg.Time.Seconds(5).ms });
+import {
+  RSSCrawlerJobFactory,
+  SourceMetadataUpdater,
+  RSSDownloader,
+} from "../services";
 
 export class RSSCrawler {
   static INTERVAL_MINUTES = 2;
@@ -17,14 +17,14 @@ export class RSSCrawler {
 
     for (const source of sources) {
       try {
-        const rss = await parser.parseURL(source.url);
+        const rss = await RSSDownloader.downlaod(source.url);
 
         await SourceMetadataUpdater.update(
           source.id,
-          SourceMetadataUpdater.map(rss.items)
+          SourceMetadataUpdater.map(rss)
         );
 
-        const jobs = rss.items.map(
+        const jobs = rss.map(
           (item) => () => RSSCrawlerJobFactory.create(item, source)
         );
 

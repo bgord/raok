@@ -93,9 +93,7 @@ export function SourcePreview(
               data-md-gap="0"
               key={item.url}
             >
-              <div data-fs="14" data-color="gray-600">
-                - {item.url}
-              </div>
+              <UI.ArticleUrl data-fs="14" url={item.url}>{item.url}</UI.ArticleUrl>
 
               <UI.Info
                 data-color="gray-400"
