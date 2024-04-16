@@ -225,6 +225,12 @@ app.get(
   infra.CacheResponse.handle,
   bg.Route(RSS.Routes.SourceList),
 );
+app.get(
+  "/rss/source/:sourceId/preview",
+  infra.AuthShield.verify,
+  infra.CacheResponse.handle,
+  bg.Route(RSS.Routes.SourcePreview),
+);
 // =============================
 
 // Healthcheck =================

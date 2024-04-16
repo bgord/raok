@@ -2,6 +2,7 @@ export * from "./rss-crawler";
 export * from "./rss-crawler-job";
 export * from "./rss-crawler-job-factory";
 export * from "./rss-crawler-job-processor";
+export * from "./rss-downloader";
 export * from "./source";
 export * from "./source-finder";
 export * from "./source-metadata-updater";

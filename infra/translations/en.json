@@ -216,5 +216,9 @@
   "web": "web",
   "article.from": "Source: {{url}}",
   "created_at": "created at",
-  "rss": "RSS"
+  "rss": "RSS",
+  "source.preview": "Source preview",
+  "app.close": "Close",
+  "app.loading": "Loading...",
+  "source.preview.error": "Source preview errror"
 }

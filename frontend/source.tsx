@@ -9,6 +9,7 @@ import { SourceDelete } from "./source-delete";
 import { SourceArchive } from "./source-archive";
 import { SourceReactivate } from "./source-reactivate";
 import { SourceQuality } from "./source-quality";
+import { SourcePreview } from "./source-preview";
 import { Health } from "./health";
 
 export function Source(
@@ -86,6 +87,8 @@ export function Source(
       </UI.Info>
 
       <SourceQuality {...props} />
+
+      <SourcePreview id={props.id} />
 
       <UI.CopyButton
         options={{ text: props.url, onSuccess: sourceUrlCopied }}
