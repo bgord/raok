@@ -1,6 +1,8 @@
 # Changelog
+- 2024-04-21 18:13 4fc9f1e **build(deps): bump zod from 3.22.4 to 3.22.5 (#354)**
+## 2024-04-21 18:13 
+- 2024-04-16 18:57 54c585e **docs: generate CHANGELOG**
 - 2024-04-16 16:42 25a6d62 **refactor: remove source inactive status**
-## 2024-04-16 16:42 
 - 2024-04-16 13:13 3dc5ade **build(deps-dev): bump @typescript-eslint/eslint-plugin (#350)**
 - 2024-04-16 13:12 e321785 **build(deps): bump @bgord/frontend from `37dd2c2` to `0ae7d33` (#351)**
 - 2024-04-16 13:12 7112fdd **build(deps-dev): bump @typescript-eslint/parser from 7.6.0 to 7.7.0 (#352)**
