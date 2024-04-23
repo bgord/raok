@@ -1,6 +1,9 @@
 # Changelog
+- 2024-04-23 12:28 d598b4e **refactor: improve source**
+## 2024-04-23 12:28 
+- 2024-04-23 12:23 242fbff **refactor: improve archive articles**
 - 2024-04-23 11:02 aba0dad **fix: zod version**
-## 2024-04-23 11:02 
+- 2024-04-23 09:03 c7801bb **docs: generate CHANGELOG**
 - 2024-04-23 08:13 9ebe731 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#357)**
 - 2024-04-23 08:13 533ef80 **build(deps-dev): bump @commitlint/cli from 19.2.2 to 19.3.0 (#358)**
 - 2024-04-23 08:12 ebc677d **build(deps-dev): bump @typescript-eslint/parser from 7.7.0 to 7.7.1 (#360)**
