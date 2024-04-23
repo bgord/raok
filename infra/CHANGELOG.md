@@ -1,9 +1,11 @@
 # Changelog
+- 2024-04-23 08:13 533ef80 **build(deps-dev): bump @commitlint/cli from 19.2.2 to 19.3.0 (#358)**
+## 2024-04-23 08:13 
 - 2024-04-23 08:12 ebc677d **build(deps-dev): bump @typescript-eslint/parser from 7.7.0 to 7.7.1 (#360)**
 - 2024-04-23 08:12 c8ec6be **build(deps): bump zod from 3.22.5 to 3.23.3 (#359)**
-## 2024-04-23 08:12 
 - 2024-04-23 08:11 53974ca **build(deps-dev): bump oxlint from 0.2.17 to 0.3.1 (#361)**
 - 2024-04-23 06:12 36b09ed **docs: generate CHANGELOG**
+- 2024-04-23 06:12 185d4a0 **docs: generate CHANGELOG**
 - 2024-04-23 06:11 6bdf1f8 **docs: generate CHANGELOG**
 - 2024-04-21 18:13 4fc9f1e **build(deps): bump zod from 3.22.4 to 3.22.5 (#354)**
 - 2024-04-21 18:13 24d52a8 **build(deps): bump @xenova/transformers from 2.17.0 to 2.17.1 (#353)**
