@@ -51,12 +51,7 @@ export function ArchiveArticle(props: types.ArchiveArticleType) {
           <UI.Badge>{props.source}</UI.Badge>
         </div>
 
-        <UI.Info
-          data-ml="auto"
-          data-transform="nowrap"
-          data-self="center"
-          data-mt="6"
-        >
+        <UI.Info data-ml="auto" data-transform="nowrap" data-self="center">
           {props.createdAt.relative}
         </UI.Info>
       </div>

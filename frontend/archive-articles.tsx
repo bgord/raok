@@ -19,11 +19,15 @@ export function ArchiveArticles(_props: RoutableProps) {
   hooks.useLeavingPrompt();
   const t = bg.useTranslations();
 
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
+
   const search = bg.useField("article-search", "");
   const debouncedSearch = bg.useDebounce<string>({
     value: search.value,
     delayMs: 250,
   });
+
+  bg.useKeyboardShortcuts({ "$mod+Control+KeyC": search.clear });
 
   const sourceFilter = bg.useUrlFilter({
     name: "source",
@@ -171,6 +175,7 @@ export function ArchiveArticles(_props: RoutableProps) {
       >
         <div data-position="relative" data-width="100%">
           <input
+            {...shortcut}
             list="articles"
             onInput={search.handleChange}
             required
@@ -208,7 +213,7 @@ export function ArchiveArticles(_props: RoutableProps) {
         data-display="flex"
         data-direction="column"
         data-max-width="100%"
-        data-gap="6"
+        data-gap="12"
       >
         {archiveArticles.map((article) => (
           <ArchiveArticle key={article.id} {...article} />

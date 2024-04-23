@@ -53,6 +53,7 @@ export function CopyButton(props: CopyButtonPropsType) {
       title={t("link.copy")}
       onClick={() => bg.copyToClipboard(options)}
       {...rest}
+      {...bg.Rhythm().times(2).style.height}
     >
       <Icons.Copy width="20" height="20" />
     </button>

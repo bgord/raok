@@ -28,8 +28,9 @@ export function ArticleReadd(props: Pick<types.ArticleType, "url">) {
       class="c-button"
       data-variant="bare"
       onClick={() => readdArticleRequest.mutate({ url: props.url })}
+      {...bg.Rhythm().times(2).style.height}
     >
-      <Icons.RedoAction width="24" height="24" />
+      <Icons.RedoAction width="20" height="20" />
     </button>
   );
 }
