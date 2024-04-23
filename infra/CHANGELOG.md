@@ -1,6 +1,8 @@
 # Changelog
+- 2024-04-23 08:12 ebc677d **build(deps-dev): bump @typescript-eslint/parser from 7.7.0 to 7.7.1 (#360)**
+## 2024-04-23 08:12 
 - 2024-04-23 08:11 53974ca **build(deps-dev): bump oxlint from 0.2.17 to 0.3.1 (#361)**
-## 2024-04-23 08:11 
+- 2024-04-23 06:11 6bdf1f8 **docs: generate CHANGELOG**
 - 2024-04-21 18:13 4fc9f1e **build(deps): bump zod from 3.22.4 to 3.22.5 (#354)**
 - 2024-04-21 18:13 24d52a8 **build(deps): bump @xenova/transformers from 2.17.0 to 2.17.1 (#353)**
 - 2024-04-21 16:14 86e0c29 **docs: generate CHANGELOG**
