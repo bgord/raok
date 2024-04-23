@@ -11,7 +11,7 @@ import { SourcePreview } from "./source-preview";
 import { Health } from "./health";
 
 export function Source(
-  props: types.SourceType & h.JSX.IntrinsicElements["li"],
+  props: types.SourceType & h.JSX.IntrinsicElements["li"]
 ) {
   // prettier-ignore
   const {  url, status, id, name, createdAt, updatedAt, revision, quality, ...rest } = props;
@@ -36,7 +36,7 @@ export function Source(
       data-md-wrap="wrap"
       data-max-width="100%"
       data-position="relative"
-      data-gap="6"
+      data-gap="3"
       {...rest}
       {...hover.attach}
     >
@@ -72,6 +72,7 @@ export function Source(
       <UI.Info
         data-transform="nowrap"
         data-ml="auto"
+        data-md-ml="unset"
         title={bg.DateFormatter.datetime(props.updatedAt.raw)}
       >
         {t("source.usage", {

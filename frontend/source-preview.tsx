@@ -31,6 +31,7 @@ export function SourcePreview(
         data-variant="bare"
         data-cross="center"
         title={t("source.preview")}
+        data-mx="3"
         {...rest}
         {...dialog.props.controller}
       >

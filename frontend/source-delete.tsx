@@ -42,7 +42,7 @@ export function SourceDelete(
         {...rest}
         {...dialog.props.controller}
       >
-        <Icons.BinMinusIn height="18" width="18" data-color="red-500" />
+        <Icons.XmarkSquare width="20" height="20" />
       </button>
 
       <bg.Dialog
