@@ -1,8 +1,10 @@
 # Changelog
+- 2024-04-25 08:12 b2c377b **build(deps-dev): bump prisma from 5.12.1 to 5.13.0 (#362)**
+## 2024-04-25 08:12 
 - 2024-04-23 12:28 d598b4e **refactor: improve source**
-## 2024-04-23 12:28 
 - 2024-04-23 12:23 242fbff **refactor: improve archive articles**
 - 2024-04-23 11:02 aba0dad **fix: zod version**
+- 2024-04-23 10:36 b012dbb **docs: generate CHANGELOG**
 - 2024-04-23 09:03 c7801bb **docs: generate CHANGELOG**
 - 2024-04-23 08:13 9ebe731 **build(deps-dev): bump @typescript-eslint/eslint-plugin (#357)**
 - 2024-04-23 08:13 533ef80 **build(deps-dev): bump @commitlint/cli from 19.2.2 to 19.3.0 (#358)**
