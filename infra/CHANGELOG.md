@@ -1,6 +1,8 @@
 # Changelog
 - 2024-04-25 08:12 b2c377b **build(deps-dev): bump prisma from 5.12.1 to 5.13.0 (#362)**
+- 2024-04-25 08:12 0cb8f13 **build(deps-dev): bump vitest from 1.5.0 to 1.5.1 (#367)**
 ## 2024-04-25 08:12 
+- 2024-04-25 06:12 91ea4cc **docs: generate CHANGELOG**
 - 2024-04-23 12:28 d598b4e **refactor: improve source**
 - 2024-04-23 12:23 242fbff **refactor: improve archive articles**
 - 2024-04-23 11:02 aba0dad **fix: zod version**
