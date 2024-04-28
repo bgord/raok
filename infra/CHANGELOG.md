@@ -1,7 +1,9 @@
 # Changelog
+- 2024-04-28 09:12 125af9f **build(deps-dev): bump vitest from 1.5.1 to 1.5.2 (#370)**
+## 2024-04-28 09:12 
 - 2024-04-28 09:11 ca270d1 **build(deps): bump iconoir-react from 7.6.0 to 7.7.0 (#372)**
 - 2024-04-28 09:11 557ff25 **build(deps-dev): bump eslint-plugin-react-hooks from 4.6.0 to 4.6.1 (#371)**
-## 2024-04-28 09:11 
+- 2024-04-28 07:12 86e50b1 **docs: generate CHANGELOG**
 - 2024-04-28 07:11 b420828 **docs: generate CHANGELOG**
 - 2024-04-25 08:14 a7c2797 **build(deps): bump lucia from 3.1.1 to 3.2.0 (#363)**
 - 2024-04-25 08:14 8c2b157 **build(deps): bump @prisma/client from 5.12.1 to 5.13.0 (#366)**
