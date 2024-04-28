@@ -45,7 +45,7 @@
     "prisma": "5.13.0",
     "standard-version": "9.5.0",
     "tsx": "4.7.2",
-    "vitest": "1.5.1"
+    "vitest": "1.5.2"
   },
   "dependencies": {
     "@bgord/design": "0.27.82",
