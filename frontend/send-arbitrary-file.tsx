@@ -17,7 +17,7 @@ export function SendArbitraryFile() {
 
   const deviceId = bg.useField<types.DeviceType["id"]>(
     "device-id",
-    devices[0]?.id as types.DeviceType["id"],
+    devices[0]?.id as types.DeviceType["id"]
   );
 
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
@@ -118,7 +118,11 @@ export function SendArbitraryFile() {
             type="button"
             class="c-button"
             data-variant="bare"
-            onClick={bg.exec([file.actions.clearFile, fileUpload.reset])}
+            onClick={bg.exec([
+              file.actions.clearFile,
+              fileUpload.reset,
+              deviceId.clear,
+            ])}
           >
             {t("app.clear")}
           </button>
