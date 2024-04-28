@@ -1,10 +1,12 @@
 # Changelog
+- 2024-04-28 09:11 ca270d1 **build(deps): bump iconoir-react from 7.6.0 to 7.7.0 (#372)**
+## 2024-04-28 09:11 
 - 2024-04-25 08:14 a7c2797 **build(deps): bump lucia from 3.1.1 to 3.2.0 (#363)**
 - 2024-04-25 08:14 8c2b157 **build(deps): bump @prisma/client from 5.12.1 to 5.13.0 (#366)**
 - 2024-04-25 08:14 330c18a **build(deps-dev): bump knip from 5.9.4 to 5.10.0 (#365)**
-## 2024-04-25 08:14 
 - 2024-04-25 08:12 b2c377b **build(deps-dev): bump prisma from 5.12.1 to 5.13.0 (#362)**
 - 2024-04-25 08:12 0cb8f13 **build(deps-dev): bump vitest from 1.5.0 to 1.5.1 (#367)**
+- 2024-04-25 06:15 c240a22 **docs: generate CHANGELOG**
 - 2024-04-25 06:14 c39da4a **docs: generate CHANGELOG**
 - 2024-04-25 06:14 667b48a **docs: generate CHANGELOG**
 - 2024-04-25 06:13 97d52f8 **docs: generate CHANGELOG**
