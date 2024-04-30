@@ -163,7 +163,7 @@
   "source.error.not_unique": "Source already exists",
   "source.list.empty": "No sources matching your filters",
   "source.preview": "Source preview",
-  "source.preview.error": "Source preview errror",
+  "source.preview.error": "Source preview error",
   "source.search.placeholder": "Search for a source...",
   "source.sort.a_z": "A-Z",
   "source.sort.default": "most recent",
