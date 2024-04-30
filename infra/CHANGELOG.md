@@ -1,11 +1,13 @@
 # Changelog
+- 2024-04-30 08:19 1d7d97e **build(deps-dev): bump @typescript-eslint/eslint-plugin (#378)**
+## 2024-04-30 08:19 
 - 2024-04-28 09:39 9395638 **fix: make clear button reset device**
-## 2024-04-28 09:39 
 - 2024-04-28 09:13 24af420 **build(deps-dev): bump tsx from 4.7.2 to 4.7.3 (#369)**
 - 2024-04-28 09:13 0f87b8f **build(deps): bump @bgord/frontend from `0ae7d33` to `60e0d3c` (#368)**
 - 2024-04-28 09:12 125af9f **build(deps-dev): bump vitest from 1.5.1 to 1.5.2 (#370)**
 - 2024-04-28 09:11 ca270d1 **build(deps): bump iconoir-react from 7.6.0 to 7.7.0 (#372)**
 - 2024-04-28 09:11 557ff25 **build(deps-dev): bump eslint-plugin-react-hooks from 4.6.0 to 4.6.1 (#371)**
+- 2024-04-28 07:40 84d6d58 **docs: generate CHANGELOG**
 - 2024-04-28 07:13 467c431 **docs: generate CHANGELOG**
 - 2024-04-28 07:12 c966a69 **docs: generate CHANGELOG**
 - 2024-04-28 07:12 86e50b1 **docs: generate CHANGELOG**
