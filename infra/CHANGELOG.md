@@ -1,6 +1,8 @@
 # Changelog
+- 2024-05-02 12:51 60f2282 **build(deps-dev): bump tsx from 4.7.3 to 4.8.2 (#383)**
+## 2024-05-02 12:51 
 - 2024-04-30 14:29 8e9dde6 **Update en.json**
-## 2024-04-30 14:29 
+- 2024-04-30 12:29 740ece5 **docs: generate CHANGELOG**
 - 2024-04-30 08:22 f7ed97e **build(deps-dev): bump eslint-plugin-react-hooks from 4.6.1 to 4.6.2 (#375)**
 - 2024-04-30 08:22 9f039d5 **build(deps-dev): bump knip from 5.10.0 to 5.11.0 (#373)**
 - 2024-04-30 08:22 8fc5b11 **build(deps-dev): bump @typescript-eslint/parser from 7.7.1 to 7.8.0 (#377)**
