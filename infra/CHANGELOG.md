@@ -1,10 +1,12 @@
 # Changelog
+- 2024-05-02 12:53 56d3261 **build(deps-dev): bump vitest from 1.5.2 to 1.5.3 (#379)**
+## 2024-05-02 12:53 
 - 2024-05-02 12:52 d8d1435 **build(deps): bump preact from 10.20.2 to 10.21.0 (#380)**
 - 2024-05-02 12:52 377f11a **build(deps-dev): bump @types/node from 20.12.7 to 20.12.8 (#382)**
-## 2024-05-02 12:52 
 - 2024-05-02 12:51 60f2282 **build(deps-dev): bump tsx from 4.7.3 to 4.8.2 (#383)**
 - 2024-05-02 10:52 f3f8bc6 **docs: generate CHANGELOG**
 - 2024-05-02 10:52 45a420b **docs: generate CHANGELOG**
+- 2024-05-02 10:52 2b7b23f **docs: generate CHANGELOG**
 - 2024-04-30 14:29 8e9dde6 **Update en.json**
 - 2024-04-30 12:29 740ece5 **docs: generate CHANGELOG**
 - 2024-04-30 08:22 f7ed97e **build(deps-dev): bump eslint-plugin-react-hooks from 4.6.1 to 4.6.2 (#375)**
