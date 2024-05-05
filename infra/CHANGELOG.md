@@ -1,6 +1,9 @@
 # Changelog
+- 2024-05-05 10:20 8a3c6fc **build(deps-dev): bump @types/nodemailer from 6.4.14 to 6.4.15 (#387)**
+- 2024-05-05 10:20 76ac7c0 **build(deps-dev): bump knip from 5.11.0 to 5.12.0 (#385)**
+## 2024-05-05 10:20 
 - 2024-05-05 10:19 52b7d18 **build(deps): bump @bgord/frontend from `34b9c76` to `1733e38` (#384)**
-## 2024-05-05 10:19 
+- 2024-05-05 08:19 a776d6b **docs: generate CHANGELOG**
 - 2024-05-02 12:53 56d3261 **build(deps-dev): bump vitest from 1.5.2 to 1.5.3 (#379)**
 - 2024-05-02 12:52 d8d1435 **build(deps): bump preact from 10.20.2 to 10.21.0 (#380)**
 - 2024-05-02 12:52 377f11a **build(deps-dev): bump @types/node from 20.12.7 to 20.12.8 (#382)**
