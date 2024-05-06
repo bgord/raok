@@ -1,12 +1,14 @@
 # Changelog
+- 2024-05-06 12:12 8697286 **build(deps-dev): bump vitest from 1.5.3 to 1.6.0 (#390)**
+## 2024-05-06 12:12 
 - 2024-05-06 12:11 b55e20f **build(deps-dev): bump @types/lodash from 4.17.0 to 4.17.1 (#389)**
 - 2024-05-06 12:11 8d4bd98 **build(deps-dev): bump knip from 5.12.0 to 5.12.2 (#388)**
 - 2024-05-06 12:11 6cfe40a **build(deps-dev): bump tsx from 4.8.2 to 4.9.3 (#394)**
 - 2024-05-06 12:11 690b8f9 **build(deps): bump @bgord/frontend from `1733e38` to `a63a3d6` (#392)**
-## 2024-05-06 12:11 
 - 2024-05-06 11:29 ad1a761 **fix: archive files download url**
 - 2024-05-06 11:19 e8b78c5 **step: install latest packages**
 - 2024-05-06 11:15 851ab4b **feature: add archive files cleanup script**
+- 2024-05-06 10:11 9605c4c **docs: generate CHANGELOG**
 - 2024-05-06 09:29 56f7522 **docs: generate CHANGELOG**
 - 2024-05-06 09:20 cfea5ac **docs: generate CHANGELOG**
 - 2024-05-06 09:16 d19d28b **docs: generate CHANGELOG**
