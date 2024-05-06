@@ -1,6 +1,8 @@
 # Changelog
+- 2024-05-06 11:19 e8b78c5 **step: install latest packages**
+## 2024-05-06 11:19 
 - 2024-05-06 11:15 851ab4b **feature: add archive files cleanup script**
-## 2024-05-06 11:15 
+- 2024-05-06 09:16 d19d28b **docs: generate CHANGELOG**
 - 2024-05-05 10:20 8a3c6fc **build(deps-dev): bump @types/nodemailer from 6.4.14 to 6.4.15 (#387)**
 - 2024-05-05 10:20 76ac7c0 **build(deps-dev): bump knip from 5.11.0 to 5.12.0 (#385)**
 - 2024-05-05 10:19 52b7d18 **build(deps): bump @bgord/frontend from `34b9c76` to `1733e38` (#384)**
