@@ -38,7 +38,7 @@ export function ArchiveFiles(_props: RoutableProps) {
   const archiveFiles = useQuery(
     api.keys.archiveFiles(filters),
     () => api.Archive.getFiles(filters),
-    { refetchOnMount: true }
+    { refetchOnMount: true },
   );
 
   const sort = bg.useClientSort<types.ArchiveFileType>("sort-archive-files", {
@@ -241,5 +241,5 @@ export function ArchiveFiles(_props: RoutableProps) {
 function getFileDownloadUrl(id: types.ArchiveFileType["id"]) {
   const safeWindow = bg.getSafeWindow();
 
-  return `${safeWindow?.location.host}/files/archive/${id}/download`;
+  return `${safeWindow?.location.origin}/files/archive/${id}/download`;
 }
