@@ -1,7 +1,13 @@
 # Changelog
+- 2024-05-09 08:55 f0fbb8c **build(deps-dev): bump eslint-plugin-sonarjs from 1.0.2 to 1.0.3 (#400)**
+- 2024-05-09 08:55 e3cce70 **build(deps-dev): bump @playwright/test from 1.43.1 to 1.44.0 (#399)**
+- 2024-05-09 08:55 a1a84f5 **build(deps): bump @bgord/frontend from `a63a3d6` to `9909d0c` (#402)**
+- 2024-05-09 08:55 97769d2 **build(deps-dev): bump esbuild from 0.20.2 to 0.21.1 (#404)**
+- 2024-05-09 08:55 6d5c6f1 **build(deps-dev): bump knip from 5.12.2 to 5.13.0 (#401)**
+- 2024-05-09 08:55 2e5a064 **build(deps-dev): bump @types/node from 20.12.8 to 20.12.11 (#407)**
+## 2024-05-09 08:55 
 - 2024-05-06 12:13 f579a7b **build(deps-dev): bump eslint-plugin-sonarjs from 0.25.1 to 1.0.2 (#395)**
 - 2024-05-06 12:13 35c37a0 **build(deps-dev): bump oxlint from 0.3.1 to 0.3.2 (#393)**
-## 2024-05-06 12:13 
 - 2024-05-06 12:12 8697286 **build(deps-dev): bump vitest from 1.5.3 to 1.6.0 (#390)**
 - 2024-05-06 12:11 b55e20f **build(deps-dev): bump @types/lodash from 4.17.0 to 4.17.1 (#389)**
 - 2024-05-06 12:11 8d4bd98 **build(deps-dev): bump knip from 5.12.0 to 5.12.2 (#388)**
@@ -10,6 +16,7 @@
 - 2024-05-06 11:29 ad1a761 **fix: archive files download url**
 - 2024-05-06 11:19 e8b78c5 **step: install latest packages**
 - 2024-05-06 11:15 851ab4b **feature: add archive files cleanup script**
+- 2024-05-06 10:13 83ec5ab **docs: generate CHANGELOG**
 - 2024-05-06 10:12 893ba67 **docs: generate CHANGELOG**
 - 2024-05-06 10:11 9605c4c **docs: generate CHANGELOG**
 - 2024-05-06 09:29 56f7522 **docs: generate CHANGELOG**
