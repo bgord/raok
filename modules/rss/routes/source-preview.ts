@@ -15,7 +15,7 @@ export async function SourcePreview(
 
   const source = await Service.Source.build(sourceId);
 
-  const rss = await Service.RSSDownloader.downlaod(source.data.url);
+  const rss = await Service.RSSDownloader.download(source.data.url);
 
   const items = rss.map((item) => ({
     url: item.link,

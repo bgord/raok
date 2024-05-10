@@ -17,7 +17,7 @@ export class RSSCrawler {
 
     for (const source of sources) {
       try {
-        const rss = await RSSDownloader.downlaod(source.url);
+        const rss = await RSSDownloader.download(source.url);
 
         await SourceMetadataUpdater.update(
           source.id,
