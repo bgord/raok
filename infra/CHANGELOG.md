@@ -1,8 +1,10 @@
 # Changelog
+- 2024-05-11 11:38 c9b7723 **refactor: disable eslint-disable**
+## 2024-05-11 11:38 
 - 2024-05-11 11:28 cbbd051 **step: bump bgord/scripts**
-## 2024-05-11 11:28 
 - 2024-05-11 11:23 4799551 **fix: linting errors**
 - 2024-05-11 11:17 2f99b0c **step: bump bgord/scripts**
+- 2024-05-11 09:29 108216e **docs: generate CHANGELOG**
 - 2024-05-10 20:19 a55029a **step: bump bgord/scripts**
 - 2024-05-10 20:14 030c1dc **step: bump bgord/scripts**
 - 2024-05-10 19:29 28a8e86 **step: bump bgord/scripts**
