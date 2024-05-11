@@ -1,11 +1,19 @@
 # Changelog
+- 2024-05-11 11:28 cbbd051 **step: bump bgord/scripts**
+## 2024-05-11 11:28 
+- 2024-05-11 11:23 4799551 **fix: linting errors**
+- 2024-05-11 11:17 2f99b0c **step: bump bgord/scripts**
+- 2024-05-10 20:19 a55029a **step: bump bgord/scripts**
+- 2024-05-10 20:14 030c1dc **step: bump bgord/scripts**
+- 2024-05-10 19:29 28a8e86 **step: bump bgord/scripts**
+- 2024-05-10 18:57 547c581 **step: bump bgord/frontend**
 - 2024-05-09 08:55 f0fbb8c **build(deps-dev): bump eslint-plugin-sonarjs from 1.0.2 to 1.0.3 (#400)**
 - 2024-05-09 08:55 e3cce70 **build(deps-dev): bump @playwright/test from 1.43.1 to 1.44.0 (#399)**
 - 2024-05-09 08:55 a1a84f5 **build(deps): bump @bgord/frontend from `a63a3d6` to `9909d0c` (#402)**
 - 2024-05-09 08:55 97769d2 **build(deps-dev): bump esbuild from 0.20.2 to 0.21.1 (#404)**
 - 2024-05-09 08:55 6d5c6f1 **build(deps-dev): bump knip from 5.12.2 to 5.13.0 (#401)**
 - 2024-05-09 08:55 2e5a064 **build(deps-dev): bump @types/node from 20.12.8 to 20.12.11 (#407)**
-## 2024-05-09 08:55 
+- 2024-05-09 06:56 110e929 **docs: generate CHANGELOG**
 - 2024-05-06 12:13 f579a7b **build(deps-dev): bump eslint-plugin-sonarjs from 0.25.1 to 1.0.2 (#395)**
 - 2024-05-06 12:13 35c37a0 **build(deps-dev): bump oxlint from 0.3.1 to 0.3.2 (#393)**
 - 2024-05-06 12:12 8697286 **build(deps-dev): bump vitest from 1.5.3 to 1.6.0 (#390)**
