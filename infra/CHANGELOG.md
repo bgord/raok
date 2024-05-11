@@ -1,7 +1,9 @@
 # Changelog
+- 2024-05-11 16:02 e71ea7b **build(deps): bump execa from 8.0.1 to 9.0.2 (#409)**
+## 2024-05-11 16:02 
 - 2024-05-11 15:44 c282b59 **refactor: remove anima**
-## 2024-05-11 15:44 
 - 2024-05-11 15:41 39d8200 **step: bump bgord/frontend**
+- 2024-05-11 13:48 d41e3b1 **docs: generate CHANGELOG**
 - 2024-05-11 12:35 3fed825 **step: bump bgord/scripts**
 - 2024-05-11 11:38 c9b7723 **refactor: disable eslint-disable**
 - 2024-05-11 11:28 cbbd051 **step: bump bgord/scripts**
