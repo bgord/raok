@@ -24,7 +24,6 @@ export function NewspaperCreatorProvider(props: NewspaperCreatorProviderProps) {
 
   const actions = {
     ...props.state.actions,
-    /* eslint-disable consistent-return */
     toggle: (payload: types.ArticleType["id"]) => {
       if (
         props.state.selectedArticleIds.length <
@@ -62,7 +61,7 @@ export function useNewspaperCreator() {
 
   if (!context) {
     throw new Error(
-      "useNewspaperCreator must be used within a NewspaperCreatorProvider"
+      "useNewspaperCreator must be used within a NewspaperCreatorProvider",
     );
   }
 

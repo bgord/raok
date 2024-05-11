@@ -35,7 +35,6 @@ export function Health(props: Pick<types.SourceType, "updatedAt">) {
     <svg
       data-my="auto"
       data-shrink="0"
-      /* eslint-disable security/detect-object-injection */
       data-color={healthLevelToColor[level]}
       {...bg.Rhythm(8).times(1).style.square}
     >

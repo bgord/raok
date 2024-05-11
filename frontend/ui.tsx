@@ -25,7 +25,6 @@ export function OutboundLink(props: h.JSX.IntrinsicElements["a"]) {
 }
 
 export function Header(props: h.JSX.IntrinsicElements["h2"]) {
-  /* eslint-disable jsx-a11y/heading-has-content */
   return <h2 data-fs="16" data-color="gray-700" data-fw="500" {...props} />;
 }
 
@@ -100,7 +99,7 @@ export function Title(props: h.JSX.IntrinsicElements["div"]) {
 }
 
 export function ArticleUrl(
-  props: h.JSX.IntrinsicElements["a"] & { url: types.ArticleType["url"] }
+  props: h.JSX.IntrinsicElements["a"] & { url: types.ArticleType["url"] },
 ) {
   const { url, ...rest } = props;
 

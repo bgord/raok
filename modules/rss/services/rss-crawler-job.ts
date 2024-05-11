@@ -17,7 +17,6 @@ export enum RSSCrawlerJobStatusEnum {
 }
 
 export class RSSCrawlerJob {
-  /* eslint-disable max-params */
   private constructor(
     private readonly id: bg.Schema.UUIDType,
     readonly url: Newspapers.VO.ArticleUrlType,

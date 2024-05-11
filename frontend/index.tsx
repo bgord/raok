@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { h, render } from "preact";
 
 import { App, InitialDataType } from "./app";
