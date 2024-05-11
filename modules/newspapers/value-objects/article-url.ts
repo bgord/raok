@@ -21,7 +21,9 @@ export const ArticleUrl = z
     const url = new URL(value);
     const params = url.searchParams;
 
-    MARKETING_PARAMS.forEach((param) => params.delete(param));
+    for (const param of MARKETING_PARAMS) {
+      params.delete(param);
+    }
 
     url.search = params.toString();
 

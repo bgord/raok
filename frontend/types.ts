@@ -24,9 +24,9 @@ export enum ArticleSourceEnum {
 
 /** @public */
 export enum NewspaperStatusEnum {
-  "delivered" = "delivered",
-  "archived" = "archived",
-  "error" = "error",
+  delivered = "delivered",
+  archived = "archived",
+  error = "error",
 }
 
 export type ArticlePayloadType = Pick<Article, "url">;

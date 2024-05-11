@@ -1,4 +1,4 @@
 export enum SourceStatusEnum {
-  "active" = "active",
-  "deleted" = "deleted",
+  active = "active",
+  deleted = "deleted",
 }

@@ -3,13 +3,13 @@ import { pipeline, SummarizationPipelineType } from "@xenova/transformers";
 
 export class SummaryCreator {
   private constructor(
-    private readonly summarization: SummarizationPipelineType
+    private readonly summarization: SummarizationPipelineType,
   ) {}
 
   static async build() {
-    let summarization = await pipeline(
+    const summarization = await pipeline(
       "summarization",
-      "Xenova/distilbart-cnn-6-6"
+      "Xenova/distilbart-cnn-6-6",
     );
 
     return new SummaryCreator(summarization);

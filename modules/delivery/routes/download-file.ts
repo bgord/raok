@@ -1,7 +1,7 @@
 import express from "express";
 import * as bg from "@bgord/node";
-import * as fs from "fs/promises";
-import path from "path";
+import * as fs from "node:fs/promises";
+import path from "node:path";
 
 import * as Repos from "../repositories";
 import * as VO from "../value-objects";

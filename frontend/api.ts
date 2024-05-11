@@ -168,7 +168,7 @@ export class Archive {
     filters: bg.FilterType,
     search: string | undefined,
   ): Promise<bg.Paged<types.ArchiveArticleType>> {
-    const url = new bg.FilterUrl(`/articles/archive`, {
+    const url = new bg.FilterUrl("/articles/archive", {
       ...filters,
       page,
       search,

@@ -1,8 +1,8 @@
 import * as bg from "@bgord/node";
 import _ from "lodash";
-import path from "path";
-import { promises as fs } from "fs";
-import crypto from "crypto";
+import path from "node:path";
+import { promises as fs } from "node:fs";
+import crypto from "node:crypto";
 
 import * as infra from "../../../infra";
 
@@ -57,7 +57,7 @@ export class NewspaperFile {
 
     for (const article of this.articles) {
       const articleContent = await ArticleContentDownloader.download(
-        article.url
+        article.url,
       );
 
       if (!articleContent) continue;

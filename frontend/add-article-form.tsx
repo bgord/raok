@@ -5,7 +5,6 @@ import * as bg from "@bgord/frontend";
 import * as UI from "./ui";
 import * as api from "./api";
 import * as types from "./types";
-import * as hooks from "./hooks";
 
 export function AddArticleForm() {
   const t = bg.useTranslations();
@@ -16,15 +15,12 @@ export function AddArticleForm() {
   const url = bg.useField<types.ArticleType["url"]>("article-url", "");
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyA");
 
-  const preview = hooks.useArticleUrlClipboardPreview();
-
   const addArticleRequest = useMutation(api.Article.add, {
     onSuccess: () => {
       url.clear();
       queryClient.invalidateQueries(api.keys.articles);
       queryClient.invalidateQueries(api.keys.stats);
       notify({ message: "article.added" });
-      preview.clear();
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
@@ -72,38 +68,6 @@ export function AddArticleForm() {
           disabled={addArticleRequest.isLoading || url.unchanged}
         />
       </form>
-
-      {preview.changed && (
-        <form
-          data-display="flex"
-          data-mt="6"
-          onSubmit={(event) => {
-            event.preventDefault();
-            addArticleRequest.mutate({
-              url: preview.value as types.ArticleType["url"],
-            });
-          }}
-        >
-          <UI.Info>{preview.value}</UI.Info>
-
-          <button
-            class="c-button"
-            data-variant="bare"
-            type="submit"
-            disabled={addArticleRequest.isLoading}
-            {...bg.Rhythm().times(5).style.minWidth}
-          >
-            {addArticleRequest.isLoading
-              ? t("article.adding_article")
-              : t("article.add")}
-          </button>
-
-          <UI.ClearButton
-            onClick={preview.clear}
-            disabled={addArticleRequest.isLoading}
-          />
-        </form>
-      )}
     </div>
   );
 }

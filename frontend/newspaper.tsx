@@ -149,7 +149,7 @@ export function Newspaper(props: NewspaperProps) {
 
 function useAutoUpdateNewspaper(
   props: types.NewspaperType,
-  callback: VoidFunction = () => {}
+  callback: VoidFunction = () => {},
 ) {
   const queryClient = useQueryClient();
 
@@ -157,6 +157,7 @@ function useAutoUpdateNewspaper(
     Date.now() - props.scheduledAt > bg.Time.Minutes(3).ms;
 
   const shouldKeepAutoUpdating =
+    // biome-ignore lint: lint/complexity/useSimplifiedLogicExpression
     !["delivered", "archived", "error"].includes(props.status) &&
     !hasCutoffPassed;
 
@@ -170,7 +171,7 @@ function useAutoUpdateNewspaper(
       queryClient.setQueryData<types.NewspaperType[]>(
         "newspapers",
         (newspapers = []) =>
-          newspapers.map((x) => (x.id === updated.id ? updated : x))
+          newspapers.map((x) => (x.id === updated.id ? updated : x)),
       );
 
       if (updated.status === "delivered") {
