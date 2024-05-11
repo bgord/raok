@@ -72,11 +72,7 @@ function NavigationMobile(props: NavigationPropsType) {
         </button>
       </nav>
 
-      <bg.Anima
-        visible={navigation.on}
-        effect="opacity"
-        {...navigation.props.target}
-      >
+      {navigation.on && (
         <nav
           data-display="flex"
           data-direction="column"
@@ -86,6 +82,7 @@ function NavigationMobile(props: NavigationPropsType) {
           data-inset="0"
           data-z="1"
           data-bg="gray-800"
+          {...navigation.props.target}
         >
           <div
             data-display="flex"
@@ -139,7 +136,7 @@ function NavigationMobile(props: NavigationPropsType) {
             </NavigationLink>
           </div>
         </nav>
-      </bg.Anima>
+      )}
     </Fragment>
   );
 }

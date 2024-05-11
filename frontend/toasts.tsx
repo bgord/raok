@@ -26,9 +26,9 @@ export function Toasts() {
       }}
     >
       {toasts.map((toast) => (
-        <bg.Anima key={toast.id} effect="opacity" visible duration={1000}>
+        <li key={toast.id}>
           <Toast {...toast} />
-        </bg.Anima>
+        </li>
       ))}
     </ul>
   );

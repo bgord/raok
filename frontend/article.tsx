@@ -28,7 +28,6 @@ export function Article(props: ArticlePropsType) {
       data-md-direction="column"
       data-wrap="nowrap"
       data-md-mx="6"
-      {...bg.getAnimaProps(props)}
     >
       <div
         data-display="flex"

@@ -11,13 +11,9 @@ import { Newspaper } from "./newspaper";
 export function NewspaperList() {
   const t = bg.useTranslations();
 
-  const _newspapers = useQuery(api.keys.newspapers, api.Newspaper.list);
+  const newspapers = useQuery(api.keys.newspapers, api.Newspaper.list);
 
-  const newspapers = bg.useAnimaList(_newspapers.data ?? [], {
-    direction: "head",
-  });
-
-  if (!newspapers.count) return null;
+  if (!newspapers.data?.length) return null;
 
   return (
     <section data-my="24">
@@ -32,23 +28,11 @@ export function NewspaperList() {
         <span data-transform="upper-first">{t("app.newspapers")}</span>
       </UI.Header>
 
-      {newspapers.count === 0 && (
-        <UI.Info data-md-px="12" data-mt="24" data-ml="6">
-          {t("dashboard.no_newspapers_available")}
-        </UI.Info>
-      )}
-
-      <bg.AnimaList data-mt="24">
-        {newspapers.items.map((newspaper) => (
-          <bg.Anima
-            key={newspaper.item.id}
-            effect="opacity"
-            {...newspaper.props}
-          >
-            <Newspaper {...newspaper.item} />
-          </bg.Anima>
+      <ul data-mt="24">
+        {newspapers.data?.map((newspaper) => (
+          <Newspaper key={newspaper.id} {...newspaper} />
         ))}
-      </bg.AnimaList>
+      </ul>
     </section>
   );
 }

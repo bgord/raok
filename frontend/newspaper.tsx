@@ -95,61 +95,59 @@ export function Newspaper(props: NewspaperProps) {
         </div>
       </div>
 
-      <bg.Anima
-        visible={details.on && props.status === "delivered"}
-        effect="opacity"
-        {...details.props.target}
-      >
-        <div data-display="flex" data-mt="12" data-mb="6">
-          {["delivered", "error"].includes(props.status) && (
-            <NewspaperResend {...details} {...props} />
-          )}
+      {details.on && props.status === "delivered" && (
+        <div {...details.props.target}>
+          <div data-display="flex" data-mt="12" data-mb="6">
+            {["delivered", "error"].includes(props.status) && (
+              <NewspaperResend {...details} {...props} />
+            )}
 
-          {["delivered", "error"].includes(props.status) && (
-            <NewspaperArchive
-              id={props.id}
-              revision={props.revision}
-              data-mr="12"
-            />
-          )}
+            {["delivered", "error"].includes(props.status) && (
+              <NewspaperArchive
+                id={props.id}
+                revision={props.revision}
+                data-mr="12"
+              />
+            )}
 
-          {props.status === "delivered" && (
-            <UI.OutboundLink
-              href={api.NewspaperLink.getDownload(props)}
-              data-mr="auto"
-            >
-              <button type="button" class="c-button" data-variant="bare">
-                {t("newspaper.read_online")}
-              </button>
-            </UI.OutboundLink>
-          )}
+            {props.status === "delivered" && (
+              <UI.OutboundLink
+                href={api.NewspaperLink.getDownload(props)}
+                data-mr="auto"
+              >
+                <button type="button" class="c-button" data-variant="bare">
+                  {t("newspaper.read_online")}
+                </button>
+              </UI.OutboundLink>
+            )}
 
-          {props.status === "delivered" && (
-            <UI.CopyButton
-              data-mr="6"
-              options={{
-                text: api.NewspaperLink.getFull(props),
-                onSuccess: newspaperUrlCopied,
-              }}
-            />
-          )}
+            {props.status === "delivered" && (
+              <UI.CopyButton
+                data-mr="6"
+                options={{
+                  text: api.NewspaperLink.getFull(props),
+                  onSuccess: newspaperUrlCopied,
+                }}
+              />
+            )}
+          </div>
         </div>
-      </bg.Anima>
+      )}
 
-      <bg.Anima visible={details.on} effect="opacity" {...details.props.target}>
-        <ul data-mt="6" data-max-width="100%">
+      {details.on && (
+        <ul data-mt="6" data-max-width="100%" {...details.props.target}>
           {props.articles.map((article) => (
             <NewspaperArticle key={article.id} {...article} />
           ))}
         </ul>
-      </bg.Anima>
+      )}
     </li>
   );
 }
 
 function useAutoUpdateNewspaper(
   props: types.NewspaperType,
-  callback: VoidFunction = () => {},
+  callback: VoidFunction = () => {}
 ) {
   const queryClient = useQueryClient();
 
@@ -171,7 +169,7 @@ function useAutoUpdateNewspaper(
       queryClient.setQueryData<types.NewspaperType[]>(
         "newspapers",
         (newspapers = []) =>
-          newspapers.map((x) => (x.id === updated.id ? updated : x)),
+          newspapers.map((x) => (x.id === updated.id ? updated : x))
       );
 
       if (updated.status === "delivered") {
