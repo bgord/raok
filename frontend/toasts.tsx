@@ -6,13 +6,10 @@ import * as api from "./api";
 import * as types from "./types";
 
 export function Toasts() {
-  const [_toasts] = bg.useToastsContext<types.ToastType>();
-  const toasts = bg.useAnimaList(_toasts, { direction: "tail" });
-
-  if (!toasts.items.filter((item) => item.props.visible).length) return null;
+  const [toasts] = bg.useToastsContext<types.ToastType>();
 
   return (
-    <bg.AnimaList
+    <ul
       data-display="flex"
       data-direction="column"
       data-main="end"
@@ -28,16 +25,16 @@ export function Toasts() {
         ...bg.Rhythm().times(24).maxWidth,
       }}
     >
-      {toasts.items.map((toast) => (
-        <bg.Anima key={toast.item.id} effect="opacity" {...toast.props}>
+      {toasts.map((toast) => (
+        <bg.Anima key={toast.id} effect="opacity" visible duration={1000}>
           <Toast {...toast} />
         </bg.Anima>
       ))}
-    </bg.AnimaList>
+    </ul>
   );
 }
 
-function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
+function Toast(props: types.ToastType) {
   const t = bg.useTranslations();
   const queryClient = useQueryClient();
 
@@ -70,10 +67,10 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
         data-cross="center"
         data-width="100%"
       >
-        <span data-transform="upper-first">{t(props.item.message)}</span>
+        <span data-transform="upper-first">{t(props.message)}</span>
 
         {["article.deleted", "article.marked-as-read"].includes(
-          props.item.message,
+          props.message
         ) && (
           <button
             type="button"
@@ -82,10 +79,10 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
             data-fs="16"
             disabled={undeleteArticle.isSuccess}
             onClick={() => {
-              if (!props.item.articleId) return;
+              if (!props.articleId) return;
               undeleteArticle.mutate({
-                id: props.item.articleId,
-                revision: ((props.item.revision ?? 0) +
+                id: props.articleId,
+                revision: ((props.revision ?? 0) +
                   1) as types.ArticleType["revision"],
               });
             }}
@@ -98,11 +95,11 @@ function Toast(props: bg.UseAnimaListItemType<types.ToastType>) {
       </div>
 
       <div
-        title={props.item.articleTitle ?? ""}
+        title={props.articleTitle ?? ""}
         data-transform="truncate"
         data-max-width="100%"
       >
-        {props.item.articleTitle}
+        {props.articleTitle}
       </div>
     </li>
   );
