@@ -21,6 +21,20 @@ jobs:
           node-version: 21.x
           cache: "npm"
 
+      - name: Get installed Playwright version
+        shell: bash
+        working-directory: ${{ inputs.WORKSPACE_ROOT }}
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(jq '.devDependencies."@playwright/test"' package.json)" >> $GITHUB_ENV
+
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
