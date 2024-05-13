@@ -1,8 +1,12 @@
 # Changelog
+- 2024-05-13 08:46 d296b03 **build(deps-dev): bump tsx from 4.9.3 to 4.10.1 (#410)**
+- 2024-05-13 08:46 51e4eb2 **build(deps-dev): bump esbuild from 0.21.1 to 0.21.2 (#411)**
+- 2024-05-13 08:46 2207044 **build(deps-dev): bump knip from 5.13.0 to 5.15.1 (#412)**
+## 2024-05-13 08:46 
 - 2024-05-11 16:02 e71ea7b **build(deps): bump execa from 8.0.1 to 9.0.2 (#409)**
-## 2024-05-11 16:02 
 - 2024-05-11 15:44 c282b59 **refactor: remove anima**
 - 2024-05-11 15:41 39d8200 **step: bump bgord/frontend**
+- 2024-05-11 14:02 69d7ab7 **docs: generate CHANGELOG**
 - 2024-05-11 13:48 d41e3b1 **docs: generate CHANGELOG**
 - 2024-05-11 12:35 3fed825 **step: bump bgord/scripts**
 - 2024-05-11 11:38 c9b7723 **refactor: disable eslint-disable**
