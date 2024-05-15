@@ -1,8 +1,10 @@
 # Changelog
+- 2024-05-15 08:51 6516f8e **build(deps): bump execa from 9.0.2 to 9.1.0 (#414)**
+## 2024-05-15 08:51 
 - 2024-05-15 08:50 340a487 **build(deps-dev): bump knip from 5.15.1 to 5.16.0 (#418)**
 - 2024-05-15 08:50 2650f0a **build(deps-dev): bump @types/node from 20.12.11 to 20.12.12 (#417)**
-## 2024-05-15 08:50 
 - 2024-05-15 06:50 3c28b67 **docs: generate CHANGELOG**
+- 2024-05-15 06:50 216cb1f **docs: generate CHANGELOG**
 - 2024-05-13 21:32 8a5ea92 **feature: add sidebar collapse**
 - 2024-05-13 20:00 bec92df **step: cache playwright binaries**
 - 2024-05-13 19:38 6130f38 **docs: generate CHANGELOG**
