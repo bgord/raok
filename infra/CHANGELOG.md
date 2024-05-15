@@ -1,7 +1,9 @@
 # Changelog
+- 2024-05-15 08:50 340a487 **build(deps-dev): bump knip from 5.15.1 to 5.16.0 (#418)**
+## 2024-05-15 08:50 
 - 2024-05-13 21:32 8a5ea92 **feature: add sidebar collapse**
-## 2024-05-13 21:32 
 - 2024-05-13 20:00 bec92df **step: cache playwright binaries**
+- 2024-05-13 19:38 6130f38 **docs: generate CHANGELOG**
 - 2024-05-13 18:01 43b127b **docs: generate CHANGELOG**
 - 2024-05-13 08:46 d296b03 **build(deps-dev): bump tsx from 4.9.3 to 4.10.1 (#410)**
 - 2024-05-13 08:46 51e4eb2 **build(deps-dev): bump esbuild from 0.21.1 to 0.21.2 (#411)**
