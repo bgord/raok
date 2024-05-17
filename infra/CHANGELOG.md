@@ -1,12 +1,14 @@
 # Changelog
+- 2024-05-17 18:35 de1b262 **build(deps-dev): bump @types/lodash from 4.17.1 to 4.17.4 (#423)**
+## 2024-05-17 18:35 
 - 2024-05-15 08:52 eae414e **build(deps): bump @prisma/client from 5.13.0 to 5.14.0 (#416)**
 - 2024-05-15 08:52 4b21c4f **build(deps-dev): bump tsx from 4.10.1 to 4.10.2 (#413)**
 - 2024-05-15 08:52 3fec4c3 **build(deps-dev): bump prisma from 5.13.0 to 5.14.0 (#415)**
-## 2024-05-15 08:52 
 - 2024-05-15 08:51 6516f8e **build(deps): bump execa from 9.0.2 to 9.1.0 (#414)**
 - 2024-05-15 08:50 340a487 **build(deps-dev): bump knip from 5.15.1 to 5.16.0 (#418)**
 - 2024-05-15 08:50 2650f0a **build(deps-dev): bump @types/node from 20.12.11 to 20.12.12 (#417)**
 - 2024-05-15 06:52 8481997 **docs: generate CHANGELOG**
+- 2024-05-15 06:52 6a8ebea **docs: generate CHANGELOG**
 - 2024-05-15 06:51 70bf47f **docs: generate CHANGELOG**
 - 2024-05-15 06:50 3c28b67 **docs: generate CHANGELOG**
 - 2024-05-15 06:50 216cb1f **docs: generate CHANGELOG**
