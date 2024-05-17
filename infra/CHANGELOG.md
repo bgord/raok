@@ -1,6 +1,8 @@
 # Changelog
 - 2024-05-17 18:35 de1b262 **build(deps-dev): bump @types/lodash from 4.17.1 to 4.17.4 (#423)**
+- 2024-05-17 18:35 5a1e325 **build(deps-dev): bump tsx from 4.10.2 to 4.10.4 (#422)**
 ## 2024-05-17 18:35 
+- 2024-05-17 16:35 97ae3fa **docs: generate CHANGELOG**
 - 2024-05-15 08:52 eae414e **build(deps): bump @prisma/client from 5.13.0 to 5.14.0 (#416)**
 - 2024-05-15 08:52 4b21c4f **build(deps-dev): bump tsx from 4.10.1 to 4.10.2 (#413)**
 - 2024-05-15 08:52 3fec4c3 **build(deps-dev): bump prisma from 5.13.0 to 5.14.0 (#415)**
