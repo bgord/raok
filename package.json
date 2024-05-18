@@ -25,6 +25,7 @@
     "@types/nodemailer": "6.4.15",
     "@types/open-graph-scraper": "4.8.5",
     "@types/serialize-javascript": "5.0.4",
+    "cspell": "8.8.1",
     "esbuild": "0.21.3",
     "gzip-cli": "1.2.0",
     "husky": "9.0.11",
@@ -32,6 +33,7 @@
     "postcss": "8.4.38",
     "postcss-cli": "11.0.0",
     "prisma": "5.14.0",
+    "shellcheck": "2.2.0",
     "standard-version": "9.5.0",
     "tsx": "4.10.4",
     "vitest": "1.6.0"
@@ -39,7 +41,7 @@
   "dependencies": {
     "@bgord/design": "0.27.82",
     "@bgord/frontend": "github:bgord/bgord-frontend",
-    "@bgord/node": "0.58.284",
+    "@bgord/node": "0.58.286",
     "@lucia-auth/adapter-prisma": "4.0.1",
     "@mozilla/readability": "0.5.0",
     "@prisma/client": "5.14.0",

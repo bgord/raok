@@ -1,14 +1,9 @@
 import * as bg from "@bgord/node";
-import Parser from "rss-parser";
 import _ from "lodash";
 
 import * as VO from "../value-objects";
 import * as Newspapers from "../../newspapers";
 import * as Repos from "../repositories";
-
-export type RSSItemType = bg.AsyncReturnType<
-  Parser["parseString"]
->["items"][number];
 
 export enum RSSCrawlerJobStatusEnum {
   ready = "ready",
@@ -22,7 +17,7 @@ export class RSSCrawlerJob {
     readonly url: Newspapers.VO.ArticleUrlType,
     readonly sourceId: VO.SourceIdType,
     public revision: bg.Revision,
-    private status: RSSCrawlerJobStatusEnum = RSSCrawlerJobStatusEnum.ready,
+    private status: RSSCrawlerJobStatusEnum = RSSCrawlerJobStatusEnum.ready
   ) {}
 
   static async build(id: bg.Schema.UUIDType): Promise<RSSCrawlerJob> {
@@ -37,13 +32,13 @@ export class RSSCrawlerJob {
       job.url,
       job.sourceId,
       new bg.Revision(job.revision),
-      job.status as RSSCrawlerJobStatusEnum,
+      job.status as RSSCrawlerJobStatusEnum
     );
   }
 
   static async create(
     url: Newspapers.VO.ArticleUrlType,
-    sourceId: VO.SourceIdType,
+    sourceId: VO.SourceIdType
   ) {
     const id = bg.NewUUID.generate();
     const job = { id, url, sourceId, status: RSSCrawlerJobStatusEnum.ready };
@@ -54,7 +49,7 @@ export class RSSCrawlerJob {
       id,
       url,
       sourceId,
-      new bg.Revision(bg.Revision.initial),
+      new bg.Revision(bg.Revision.initial)
     );
   }
 
@@ -73,7 +68,7 @@ export class RSSCrawlerJob {
     await Repos.RssCrawlerJobRepository.updateStatus(
       this.id,
       RSSCrawlerJobStatusEnum.processed,
-      revision.next().value,
+      revision.next().value
     );
 
     this.status = RSSCrawlerJobStatusEnum.processed;
@@ -95,7 +90,7 @@ export class RSSCrawlerJob {
     await Repos.RssCrawlerJobRepository.updateStatus(
       this.id,
       RSSCrawlerJobStatusEnum.failed,
-      revision.next().value,
+      revision.next().value
     );
 
     this.status = RSSCrawlerJobStatusEnum.failed;
@@ -104,7 +99,7 @@ export class RSSCrawlerJob {
 
   static async exists(
     url: Newspapers.VO.ArticleUrlType,
-    sourceId: VO.SourceIdType,
+    sourceId: VO.SourceIdType
   ): Promise<boolean> {
     const count = await Repos.RssCrawlerJobRepository.count({ url, sourceId });
 

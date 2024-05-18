@@ -9,7 +9,7 @@ type SourceCandidateFinderStrategyType = {
   get(value: VO.SourceUrlType): Promise<VO.SourceUrlType[]>;
 };
 
-export class SourceCandidateFinderStrategyYouTube {
+class SourceCandidateFinderStrategyYouTube {
   static strategy = "default";
 
   static isApplicable(value: VO.SourceUrlType): boolean {
@@ -30,7 +30,7 @@ export class SourceCandidateFinderStrategyYouTube {
       const dom = new JSDOM(response);
 
       const linkTag = dom.window.document.querySelector(
-        'link[rel="canonical"]',
+        'link[rel="canonical"]'
       );
 
       const url = linkTag?.getAttribute("href");
@@ -50,7 +50,7 @@ export class SourceCandidateFinderStrategyYouTube {
   }
 }
 
-export class SourceCandidateFinderStrategyAutoDiscovery {
+class SourceCandidateFinderStrategyAutoDiscovery {
   static strategy = "auto_discovery";
 
   static isApplicable(value: VO.SourceUrlType): boolean {
@@ -70,7 +70,7 @@ export class SourceCandidateFinderStrategyAutoDiscovery {
       const dom = new JSDOM(response);
 
       const linkTag = dom.window.document.querySelector(
-        'link[type="application/rss+xml"]',
+        'link[type="application/rss+xml"]'
       );
 
       const href = linkTag?.getAttribute("href");
@@ -86,7 +86,7 @@ export class SourceCandidateFinderStrategyAutoDiscovery {
   }
 }
 
-export class SourceCandidateFinderStrategyDefault {
+class SourceCandidateFinderStrategyDefault {
   static strategy = "default";
 
   static isApplicable(value: VO.SourceUrlType): boolean {
@@ -112,7 +112,7 @@ export class SourceCandidateFinderStrategyDefault {
   }
 }
 
-export class SourceCandidatesFinder {
+class SourceCandidatesFinder {
   static find(value: VO.SourceUrlType): SourceCandidateFinderStrategyType[] {
     const strategies: SourceCandidateFinderStrategyType[] = [
       SourceCandidateFinderStrategyAutoDiscovery,
@@ -131,7 +131,7 @@ export class SourceFinder {
     const strategies = SourceCandidatesFinder.find(url);
 
     const candidates = await Promise.all(
-      strategies.map((strategy) => strategy.get(url)),
+      strategies.map((strategy) => strategy.get(url))
     );
 
     return new SourceFinder(candidates.flat());
@@ -139,7 +139,7 @@ export class SourceFinder {
 
   async find(): Promise<VO.SourceUrlType> {
     const options = this.candidates.map((sourceUrl) =>
-      Policies.SourceUrlResponds.perform({ sourceUrl }).then(() => sourceUrl),
+      Policies.SourceUrlResponds.perform({ sourceUrl }).then(() => sourceUrl)
     );
 
     return Promise.any(options).catch(() => {
