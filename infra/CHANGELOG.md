@@ -1,10 +1,12 @@
 # Changelog
+- 2024-05-18 13:48 099a9b2 **step: install linters**
+## 2024-05-18 13:48 
 - 2024-05-17 18:37 e5acdfd **build(deps): bump @bgord/frontend from `1abf0da` to `3d78276` (#419)**
 - 2024-05-17 18:37 e500046 **build(deps): bump preact from 10.21.0 to 10.22.0 (#420)**
-## 2024-05-17 18:37 
 - 2024-05-17 18:36 4383058 **build(deps-dev): bump esbuild from 0.21.2 to 0.21.3 (#421)**
 - 2024-05-17 18:35 de1b262 **build(deps-dev): bump @types/lodash from 4.17.1 to 4.17.4 (#423)**
 - 2024-05-17 18:35 5a1e325 **build(deps-dev): bump tsx from 4.10.2 to 4.10.4 (#422)**
+- 2024-05-17 16:37 daa9aed **docs: generate CHANGELOG**
 - 2024-05-17 16:37 128b5f3 **docs: generate CHANGELOG**
 - 2024-05-17 16:36 a60d20a **docs: generate CHANGELOG**
 - 2024-05-17 16:36 091545c **docs: generate CHANGELOG**
