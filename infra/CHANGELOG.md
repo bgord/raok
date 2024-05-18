@@ -1,6 +1,8 @@
 # Changelog
+- 2024-05-18 14:11 f40f18e **step: bump bgord/scripts**
+## 2024-05-18 14:11 
 - 2024-05-18 13:48 099a9b2 **step: install linters**
-## 2024-05-18 13:48 
+- 2024-05-18 11:50 94e029a **docs: generate CHANGELOG**
 - 2024-05-17 18:37 e5acdfd **build(deps): bump @bgord/frontend from `1abf0da` to `3d78276` (#419)**
 - 2024-05-17 18:37 e500046 **build(deps): bump preact from 10.21.0 to 10.22.0 (#420)**
 - 2024-05-17 18:36 4383058 **build(deps-dev): bump esbuild from 0.21.2 to 0.21.3 (#421)**
