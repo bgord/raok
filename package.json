@@ -56,7 +56,7 @@
     "lucia": "3.2.0",
     "open-graph-scraper": "6.5.1",
     "preact": "10.22.0",
-    "preact-render-to-string": "6.4.2",
+    "preact-render-to-string": "6.5.2",
     "preact-router": "4.1.2",
     "pretty-bytes-es5": "5.1.9",
     "promise-call-limit": "3.0.1",
