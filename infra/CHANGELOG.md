@@ -1,7 +1,9 @@
 # Changelog
+- 2024-05-27 09:30 de7ed7d **build(deps): bump jsdom from 24.0.0 to 24.1.0 (#435)**
+## 2024-05-27 09:30 
 - 2024-05-22 12:24 8b01ff4 **build(deps): bump @bgord/frontend from `3d78276` to `1c0701f` (#424)**
-## 2024-05-22 12:24 
 - 2024-05-22 12:23 f7bbd02 **build(deps-dev): bump tsx from 4.10.4 to 4.10.5 (#425)**
+- 2024-05-22 10:24 f5e7db6 **docs: generate CHANGELOG**
 - 2024-05-18 14:11 f40f18e **step: bump bgord/scripts**
 - 2024-05-18 13:48 099a9b2 **step: install linters**
 - 2024-05-18 12:13 dab780f **docs: generate CHANGELOG**
