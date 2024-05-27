@@ -26,7 +26,7 @@
     "@types/open-graph-scraper": "4.8.5",
     "@types/serialize-javascript": "5.0.4",
     "cspell": "8.8.1",
-    "esbuild": "0.21.3",
+    "esbuild": "0.21.4",
     "gzip-cli": "1.2.0",
     "husky": "9.0.11",
     "knip": "5.16.0",
