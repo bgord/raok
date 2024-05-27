@@ -1,8 +1,10 @@
 # Changelog
+- 2024-05-27 09:31 b5e1b2f **build(deps-dev): bump cspell from 8.8.1 to 8.8.3 (#432)**
+## 2024-05-27 09:31 
 - 2024-05-27 09:30 de7ed7d **build(deps): bump jsdom from 24.0.0 to 24.1.0 (#435)**
 - 2024-05-27 09:30 b749f96 **build(deps): bump preact-render-to-string from 6.4.2 to 6.5.3 (#434)**
 - 2024-05-27 09:30 7e1f23c **build(deps-dev): bump esbuild from 0.21.3 to 0.21.4 (#433)**
-## 2024-05-27 09:30 
+- 2024-05-27 07:31 0dad243 **docs: generate CHANGELOG**
 - 2024-05-27 07:30 a9767ea **docs: generate CHANGELOG**
 - 2024-05-27 07:30 47da5f1 **docs: generate CHANGELOG**
 - 2024-05-22 12:24 8b01ff4 **build(deps): bump @bgord/frontend from `3d78276` to `1c0701f` (#424)**
