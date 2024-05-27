@@ -1,12 +1,14 @@
 # Changelog
+- 2024-05-27 09:33 2aa7e20 **build(deps-dev): bump tsx from 4.10.5 to 4.11.0 (#428)**
+## 2024-05-27 09:33 
 - 2024-05-27 09:32 c83d015 **build(deps): bump @bgord/frontend from `1c0701f` to `35f2984` (#429)**
 - 2024-05-27 09:32 ad6524b **build(deps-dev): bump @playwright/test from 1.44.0 to 1.44.1 (#431)**
-## 2024-05-27 09:32 
 - 2024-05-27 09:31 b5e1b2f **build(deps-dev): bump cspell from 8.8.1 to 8.8.3 (#432)**
 - 2024-05-27 09:30 de7ed7d **build(deps): bump jsdom from 24.0.0 to 24.1.0 (#435)**
 - 2024-05-27 09:30 b749f96 **build(deps): bump preact-render-to-string from 6.4.2 to 6.5.3 (#434)**
 - 2024-05-27 09:30 7e1f23c **build(deps-dev): bump esbuild from 0.21.3 to 0.21.4 (#433)**
 - 2024-05-27 07:32 e73677a **docs: generate CHANGELOG**
+- 2024-05-27 07:32 dc33b55 **docs: generate CHANGELOG**
 - 2024-05-27 07:32 9600a71 **docs: generate CHANGELOG**
 - 2024-05-27 07:31 0dad243 **docs: generate CHANGELOG**
 - 2024-05-27 07:30 a9767ea **docs: generate CHANGELOG**
