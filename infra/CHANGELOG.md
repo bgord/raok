@@ -1,6 +1,8 @@
 # Changelog
+- 2024-05-30 15:33 8a69aac **build(deps): bump @xenova/transformers from 2.17.1 to 2.17.2 (#439)**
+## 2024-05-30 15:33 
 - 2024-05-30 15:32 ad34e9a **build(deps-dev): bump @types/node from 20.12.12 to 20.12.13 (#440)**
-## 2024-05-30 15:32 
+- 2024-05-30 13:32 8c9c488 **docs: generate CHANGELOG**
 - 2024-05-27 09:33 2aa7e20 **build(deps-dev): bump tsx from 4.10.5 to 4.11.0 (#428)**
 - 2024-05-27 09:32 c83d015 **build(deps): bump @bgord/frontend from `1c0701f` to `35f2984` (#429)**
 - 2024-05-27 09:32 ad6524b **build(deps-dev): bump @playwright/test from 1.44.0 to 1.44.1 (#431)**
