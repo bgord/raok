@@ -1,7 +1,14 @@
 # Changelog
+- 2024-06-04 21:41 df7ef3d **build(deps-dev): bump knip from 5.17.3 to 5.17.4 (#447)**
+- 2024-06-04 21:41 cc35386 **build(deps-dev): bump cspell from 8.8.3 to 8.8.4 (#449)**
+- 2024-06-04 21:41 a1dba9d **build(deps-dev): bump tsx from 4.11.0 to 4.11.2 (#445)**
+- 2024-06-04 21:41 7c31858 **build(deps): bump preact-render-to-string from 6.5.3 to 6.5.4 (#446)**
+- 2024-06-04 21:41 35ded0f **build(deps): bump open-graph-scraper from 6.5.1 to 6.5.2 (#443)**
+- 2024-06-04 21:41 1d2c068 **build(deps-dev): bump @types/node from 20.12.13 to 20.14.1 (#448)**
+## 2024-06-04 21:41 
 - 2024-06-02 15:05 ab25865 **build(deps): bump @bgord/frontend from `b510103` to `65a8df7` (#442)**
 - 2024-06-02 15:05 40277fe **build(deps-dev): bump @types/jsdom from 21.1.6 to 21.1.7 (#441)**
-## 2024-06-02 15:05 
+- 2024-06-02 13:05 cadb522 **docs: generate CHANGELOG**
 - 2024-06-02 13:05 70478bc **docs: generate CHANGELOG**
 - 2024-05-30 15:33 f6b4bd2 **build(deps): bump @bgord/frontend from `35f2984` to `b510103` (#437)**
 - 2024-05-30 15:33 eb844d8 **build(deps-dev): bump knip from 5.16.0 to 5.17.3 (#438)**
