@@ -47,7 +47,7 @@
     "@prisma/client": "5.14.0",
     "@reach/skip-nav": "0.18.0",
     "emittery": "1.0.3",
-    "execa": "9.1.0",
+    "execa": "9.2.0",
     "express": "4.19.2",
     "iconoir-react": "7.7.0",
     "jsdom": "24.1.0",
