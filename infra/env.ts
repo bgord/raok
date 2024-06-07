@@ -16,7 +16,6 @@ const EnvironmentSchema = z.object({
   RSS_CRAWLING_ENABLED: bg.Schema.FeatureFlag,
   HCAPTCHA_SECRET_KEY: bg.Schema.HCaptchaSecretKey,
   HCAPTCHA_SITE_KEY: bg.Schema.HCaptchaSiteKey,
-  AI_SUMMARIES_ENABLED: bg.Schema.FeatureFlag,
 });
 type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
 
