@@ -1,6 +1,7 @@
 # Changelog
 - 2024-06-02 15:05 ab25865 **build(deps): bump @bgord/frontend from `b510103` to `65a8df7` (#442)**
-## 2024-06-02 15:05 
+- 2024-06-02 13:05 70478bc **docs: generate CHANGELOG**
+## 2024-06-02 13:05 
 - 2024-05-30 15:33 f6b4bd2 **build(deps): bump @bgord/frontend from `35f2984` to `b510103` (#437)**
 - 2024-05-30 15:33 eb844d8 **build(deps-dev): bump knip from 5.16.0 to 5.17.3 (#438)**
 - 2024-05-30 15:33 8a69aac **build(deps): bump @xenova/transformers from 2.17.1 to 2.17.2 (#439)**
