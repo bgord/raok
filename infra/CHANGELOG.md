@@ -1,7 +1,9 @@
 # Changelog
+- 2024-06-07 16:44 5751fbb **step: remove xenova transformers**
+## 2024-06-07 16:44 
 - 2024-06-07 16:42 6a857d6 **refactor: remove ai description summaries**
-## 2024-06-07 16:42 
 - 2024-06-07 16:38 a0b6b18 **refactor: remove article inspect action**
+- 2024-06-07 14:42 e4a66b1 **docs: generate CHANGELOG**
 - 2024-06-07 14:39 caf350c **docs: generate CHANGELOG**
 - 2024-06-07 14:38 b1c18ef **docs: generate CHANGELOG**
 - 2024-06-02 15:05 ab25865 **build(deps): bump @bgord/frontend from `b510103` to `65a8df7` (#442)**
