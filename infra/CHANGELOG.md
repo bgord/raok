@@ -1,9 +1,11 @@
 # Changelog
+- 2024-06-07 16:57 dad5c97 **refactor: reduce rss crawler intervals**
+## 2024-06-07 16:57 
 - 2024-06-07 16:49 14f9f34 **feature: make env schema stricter**
-## 2024-06-07 16:49 
 - 2024-06-07 16:44 5751fbb **step: remove xenova transformers**
 - 2024-06-07 16:42 6a857d6 **refactor: remove ai description summaries**
 - 2024-06-07 16:38 a0b6b18 **refactor: remove article inspect action**
+- 2024-06-07 14:50 24df287 **docs: generate CHANGELOG**
 - 2024-06-07 14:45 966708f **docs: generate CHANGELOG**
 - 2024-06-07 14:42 e4a66b1 **docs: generate CHANGELOG**
 - 2024-06-07 14:39 caf350c **docs: generate CHANGELOG**
