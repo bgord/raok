@@ -1,7 +1,9 @@
 # Changelog
+- 2024-06-07 14:51 d806406 **build(deps-dev): bump prisma from 5.14.0 to 5.15.0 (#450)**
+## 2024-06-07 14:51 
 - 2024-06-07 14:48 6a63822 **step: remove ai article descripton generator**
 - 2024-06-07 14:47 7b9808c **refactor: remove article inspect action**
-## 2024-06-07 14:47 
+- 2024-06-07 12:50 d939165 **docs: generate CHANGELOG**
 - 2024-06-04 21:41 df7ef3d **build(deps-dev): bump knip from 5.17.3 to 5.17.4 (#447)**
 - 2024-06-04 21:41 cc35386 **build(deps-dev): bump cspell from 8.8.3 to 8.8.4 (#449)**
 - 2024-06-04 21:41 a1dba9d **build(deps-dev): bump tsx from 4.11.0 to 4.11.2 (#445)**
