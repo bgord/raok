@@ -17,7 +17,6 @@ export function ArticleUrl(props: ArticlePropsType) {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
   const articleOpened = useMutation(api.Article.opened);
-  const articleHomepageOpened = useMutation(api.Article.homepageOpened);
 
   const details = bg.useToggle();
 
@@ -67,22 +66,6 @@ export function ArticleUrl(props: ArticlePropsType) {
           url={props.url}
           onClick={() => articleOpened.mutate(props.id)}
         />
-
-        <button
-          type="button"
-          class="c-button"
-          data-variant="with-icon"
-          data-ml="6"
-          onClick={bg.exec([
-            () => articleOpened.mutate(props.id),
-            () => articleHomepageOpened.mutate(props.id),
-            () => window.open(props.url),
-            () => window.open(new URL(props.url).origin),
-          ])}
-          title={t("article.actions.inspect")}
-        >
-          <Icons.InfoCircle height="16" width="16" />
-        </button>
       </div>
 
       {details.on && props.RssSource?.url && (
