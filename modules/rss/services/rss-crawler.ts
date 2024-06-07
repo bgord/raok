@@ -10,7 +10,7 @@ import {
 } from "../services";
 
 export class RSSCrawler {
-  static INTERVAL_MINUTES = 2;
+  static INTERVAL_MINUTES = 15;
 
   static async crawl() {
     const sources = await Repos.SourceRepository.listActive();
@@ -21,11 +21,11 @@ export class RSSCrawler {
 
         await SourceMetadataUpdater.update(
           source.id,
-          SourceMetadataUpdater.map(rss)
+          SourceMetadataUpdater.map(rss),
         );
 
         const jobs = rss.map(
-          (item) => () => RSSCrawlerJobFactory.create(item, source)
+          (item) => () => RSSCrawlerJobFactory.create(item, source),
         );
 
         infra.logger.info({

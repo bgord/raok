@@ -8,13 +8,13 @@ import { Source, RSSCrawlerJob } from "../services";
 import * as infra from "../../../infra";
 
 export class RssCrawlerJobProcessor {
-  static readonly INTERVAL_MINUTES = 1;
+  static readonly INTERVAL_MINUTES = 5;
 
   static readonly PROCESSING_JOBS_BATCH_LIMIT = 200;
 
   static async process() {
     const ids = await Repos.RssCrawlerJobRepository.listReady(
-      RssCrawlerJobProcessor.PROCESSING_JOBS_BATCH_LIMIT
+      RssCrawlerJobProcessor.PROCESSING_JOBS_BATCH_LIMIT,
     );
 
     infra.logger.info({
@@ -43,7 +43,7 @@ export class RssCrawlerJobProcessor {
           } finally {
             infra.ResponseCache.flushAll();
           }
-        })
+        }),
     );
 
     await plimit(jobs, { limit: 25 });
