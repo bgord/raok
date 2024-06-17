@@ -1,11 +1,13 @@
 # Changelog
+- 2024-06-17 12:46 4d21b09 **build(deps): bump @prisma/client from 5.14.0 to 5.15.0 (#461)**
+## 2024-06-17 12:46 
 - 2024-06-17 12:45 ec3e692 **build(deps-dev): bump @types/jsdom from 21.1.6 to 21.1.7 (#468)**
 - 2024-06-17 12:45 cc19a55 **build(deps-dev): bump @biomejs/biome from 1.7.3 to 1.8.1 (#470)**
 - 2024-06-17 12:45 a7e98bf **build(deps-dev): bump cspell from 8.8.3 to 8.8.4 (#464)**
 - 2024-06-17 12:45 7cb7da0 **build(deps-dev): bump shellcheck from 2.2.0 to 3.0.0 (#463)**
 - 2024-06-17 12:45 5b668c7 **build(deps): bump execa from 9.1.0 to 9.2.0 (#466)**
-## 2024-06-17 12:45 
 - 2024-06-17 12:44 133ba2a **build(deps): bump @bgord/frontend from `65a8df7` to `4ba073a` (#474)**
+- 2024-06-17 10:45 1f7af12 **docs: generate CHANGELOG**
 - 2024-06-07 16:57 dad5c97 **refactor: reduce rss crawler intervals**
 - 2024-06-07 16:49 14f9f34 **feature: make env schema stricter**
 - 2024-06-07 16:44 5751fbb **step: remove xenova transformers**
