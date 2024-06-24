@@ -1,12 +1,23 @@
 # Changelog
+- 2024-06-24 12:28 c288902 **build(deps-dev): bump @types/lodash from 4.17.4 to 4.17.5 (#465)**
+- 2024-06-24 12:28 01894d7 **build(deps-dev): bump knip from 5.17.3 to 5.22.2 (#491)**
+## 2024-06-24 12:28 
+- 2024-06-24 12:27 e334b63 **build(deps-dev): bump tsx from 4.11.0 to 4.15.7 (#490)**
+- 2024-06-24 12:27 a10c37b **build(deps): bump @bgord/frontend from `4ba073a` to `d61550b` (#482)**
+- 2024-06-24 12:27 975720d **build(deps): bump ws from 8.17.0 to 8.17.1 (#483)**
+- 2024-06-24 12:27 95c3c14 **build(deps-dev): bump prisma from 5.14.0 to 5.15.1 (#484)**
+- 2024-06-24 12:27 77250a8 **build(deps-dev): bump esbuild from 0.21.4 to 0.21.5 (#476)**
+- 2024-06-24 12:27 5c20aaa **build(deps): bump preact-render-to-string from 6.5.3 to 6.5.5 (#481)**
+- 2024-06-24 12:26 6226134 **build(deps): bump open-graph-scraper from 6.5.1 to 6.6.0 (#493)**
+- 2024-06-24 12:26 0f8278d **build(deps-dev): bump @types/node from 20.12.13 to 20.14.8 (#492)**
 - 2024-06-17 12:46 4d21b09 **build(deps): bump @prisma/client from 5.14.0 to 5.15.0 (#461)**
-## 2024-06-17 12:46 
 - 2024-06-17 12:45 ec3e692 **build(deps-dev): bump @types/jsdom from 21.1.6 to 21.1.7 (#468)**
 - 2024-06-17 12:45 cc19a55 **build(deps-dev): bump @biomejs/biome from 1.7.3 to 1.8.1 (#470)**
 - 2024-06-17 12:45 a7e98bf **build(deps-dev): bump cspell from 8.8.3 to 8.8.4 (#464)**
 - 2024-06-17 12:45 7cb7da0 **build(deps-dev): bump shellcheck from 2.2.0 to 3.0.0 (#463)**
 - 2024-06-17 12:45 5b668c7 **build(deps): bump execa from 9.1.0 to 9.2.0 (#466)**
 - 2024-06-17 12:44 133ba2a **build(deps): bump @bgord/frontend from `65a8df7` to `4ba073a` (#474)**
+- 2024-06-17 10:46 be818cd **docs: generate CHANGELOG**
 - 2024-06-17 10:45 1f7af12 **docs: generate CHANGELOG**
 - 2024-06-07 16:57 dad5c97 **refactor: reduce rss crawler intervals**
 - 2024-06-07 16:49 14f9f34 **feature: make env schema stricter**
