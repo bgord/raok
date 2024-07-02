@@ -1,6 +1,8 @@
 # Changelog
+- 2024-07-02 23:12 f1a8cf0 **step: bump bgord/node**
+## 2024-07-02 23:12 
 - 2024-07-02 16:55 e411c85 **step: temporarily disable hcaptcha on login**
-## 2024-07-02 16:55 
+- 2024-07-02 14:56 be4de43 **docs: generate CHANGELOG**
 - 2024-06-24 12:28 c288902 **build(deps-dev): bump @types/lodash from 4.17.4 to 4.17.5 (#465)**
 - 2024-06-24 12:28 01894d7 **build(deps-dev): bump knip from 5.17.3 to 5.22.2 (#491)**
 - 2024-06-24 12:27 e334b63 **build(deps-dev): bump tsx from 4.11.0 to 4.15.7 (#490)**
