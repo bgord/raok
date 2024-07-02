@@ -1,7 +1,8 @@
 # Changelog
+- 2024-07-02 16:55 e411c85 **step: temporarily disable hcaptcha on login**
+## 2024-07-02 16:55 
 - 2024-06-24 12:28 c288902 **build(deps-dev): bump @types/lodash from 4.17.4 to 4.17.5 (#465)**
 - 2024-06-24 12:28 01894d7 **build(deps-dev): bump knip from 5.17.3 to 5.22.2 (#491)**
-## 2024-06-24 12:28 
 - 2024-06-24 12:27 e334b63 **build(deps-dev): bump tsx from 4.11.0 to 4.15.7 (#490)**
 - 2024-06-24 12:27 a10c37b **build(deps): bump @bgord/frontend from `4ba073a` to `d61550b` (#482)**
 - 2024-06-24 12:27 975720d **build(deps): bump ws from 8.17.0 to 8.17.1 (#483)**
@@ -10,6 +11,7 @@
 - 2024-06-24 12:27 5c20aaa **build(deps): bump preact-render-to-string from 6.5.3 to 6.5.5 (#481)**
 - 2024-06-24 12:26 6226134 **build(deps): bump open-graph-scraper from 6.5.1 to 6.6.0 (#493)**
 - 2024-06-24 12:26 0f8278d **build(deps-dev): bump @types/node from 20.12.13 to 20.14.8 (#492)**
+- 2024-06-24 10:28 fb4a685 **docs: generate CHANGELOG**
 - 2024-06-17 12:46 4d21b09 **build(deps): bump @prisma/client from 5.14.0 to 5.15.0 (#461)**
 - 2024-06-17 12:45 ec3e692 **build(deps-dev): bump @types/jsdom from 21.1.6 to 21.1.7 (#468)**
 - 2024-06-17 12:45 cc19a55 **build(deps-dev): bump @biomejs/biome from 1.7.3 to 1.8.1 (#470)**
