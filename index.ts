@@ -23,7 +23,7 @@ bg.HttpLogger.applyTo(app, infra.logger);
 app.get("/", bg.Route(App.Routes.Home));
 app.post(
   "/login",
-  infra.hCaptchaShield.verify,
+  // infra.hCaptchaShield.verify,
   infra.AuthShield.reverse,
   infra.AuthShield.attach,
   bg.Redirector.build("/dashboard"),
