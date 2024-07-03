@@ -1,12 +1,16 @@
 # Changelog
+- 2024-07-03 09:40 00ad998 **build(deps): bump execa from 9.2.0 to 9.3.0 (#501)**
+## 2024-07-03 09:40 
+- 2024-07-03 09:39 8ae4ae8 **build(deps-dev): bump @types/node from 20.14.8 to 20.14.9 (#503)**
 - 2024-07-03 09:39 2796ee1 **build(deps): bump @prisma/client from 5.15.0 to 5.16.1 (#507)**
-## 2024-07-03 09:39 
+- 2024-07-03 09:39 161e952 **build(deps-dev): bump prisma from 5.15.1 to 5.16.1 (#506)**
 - 2024-07-03 09:38 f0c6c99 **build(deps-dev): bump @biomejs/biome from 1.8.1 to 1.8.3 (#509)**
 - 2024-07-03 09:38 b348a54 **build(deps): bump typescript from 5.4.5 to 5.5.3 (#512)**
 - 2024-07-03 09:38 84dd26a **build(deps-dev): bump knip from 5.22.2 to 5.23.3 (#511)**
 - 2024-07-03 09:38 404916f **build(deps-dev): bump cspell from 8.8.4 to 8.10.0 (#514)**
 - 2024-07-03 09:38 3cbcb35 **build(deps): bump @bgord/frontend from `d61550b` to `9f7903a` (#513)**
 - 2024-07-03 09:37 7b680cb **build(deps-dev): bump @playwright/test from 1.44.1 to 1.45.1 (#515)**
+- 2024-07-03 07:39 d2bf9e6 **docs: generate CHANGELOG**
 - 2024-07-03 07:39 8beb979 **docs: generate CHANGELOG**
 - 2024-07-03 07:37 09be904 **docs: generate CHANGELOG**
 - 2024-07-02 23:12 f1a8cf0 **step: bump bgord/node**
