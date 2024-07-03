@@ -1,6 +1,8 @@
 # Changelog
+- 2024-07-03 09:37 7b680cb **build(deps-dev): bump @playwright/test from 1.44.1 to 1.45.1 (#515)**
+## 2024-07-03 09:37 
 - 2024-07-02 23:12 f1a8cf0 **step: bump bgord/node**
-## 2024-07-02 23:12 
+- 2024-07-02 21:14 2723ec8 **docs: generate CHANGELOG**
 - 2024-07-02 16:55 e411c85 **step: temporarily disable hcaptcha on login**
 - 2024-07-02 14:56 be4de43 **docs: generate CHANGELOG**
 - 2024-06-24 12:28 c288902 **build(deps-dev): bump @types/lodash from 4.17.4 to 4.17.5 (#465)**
