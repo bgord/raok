@@ -1,7 +1,13 @@
 # Changelog
+- 2024-07-05 09:53 e3eec60 **build(deps-dev): bump @types/lodash from 4.17.5 to 4.17.6 (#518)**
+- 2024-07-05 09:53 d64d651 **build(deps): bump preact from 10.22.0 to 10.22.1 (#521)**
+- 2024-07-05 09:53 cd1c88f **build(deps-dev): bump esbuild from 0.21.5 to 0.23.0 (#517)**
+- 2024-07-05 09:53 a94b59b **build(deps-dev): bump tsx from 4.15.7 to 4.16.2 (#520)**
+- 2024-07-05 09:53 8915dfe **build(deps-dev): bump postcss from 8.4.38 to 8.4.39 (#516)**
+## 2024-07-05 09:53 
 - 2024-07-05 09:52 c10ffb1 **build(deps): bump open-graph-scraper from 6.6.0 to 6.6.2 (#522)**
 - 2024-07-05 09:52 b33f15f **build(deps-dev): bump knip from 5.23.3 to 5.24.1 (#523)**
-## 2024-07-05 09:52 
+- 2024-07-05 07:53 b66834f **docs: generate CHANGELOG**
 - 2024-07-03 09:40 00ad998 **build(deps): bump execa from 9.2.0 to 9.3.0 (#501)**
 - 2024-07-03 09:39 8ae4ae8 **build(deps-dev): bump @types/node from 20.14.8 to 20.14.9 (#503)**
 - 2024-07-03 09:39 2796ee1 **build(deps): bump @prisma/client from 5.15.0 to 5.16.1 (#507)**
