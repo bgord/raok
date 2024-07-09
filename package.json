@@ -36,7 +36,7 @@
     "shellcheck": "3.0.0",
     "standard-version": "9.5.0",
     "tsx": "4.16.2",
-    "vitest": "1.6.0"
+    "vitest": "2.0.1"
   },
   "dependencies": {
     "@bgord/design": "0.27.82",
