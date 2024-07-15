@@ -1,9 +1,11 @@
 # Changelog
+- 2024-07-15 08:24 7ef85f5 **build(deps-dev): bump knip from 5.25.1 to 5.26.0 (#533)**
+## 2024-07-15 08:24 
 - 2024-07-11 09:59 d49ef1f **build(deps): bump @prisma/client from 5.16.1 to 5.16.2 (#529)**
 - 2024-07-11 09:59 75821b2 **build(deps-dev): bump prisma from 5.16.1 to 5.16.2 (#530)**
 - 2024-07-11 09:59 696d1c2 **build(deps-dev): bump vitest from 2.0.1 to 2.0.2 (#531)**
-## 2024-07-11 09:59 
 - 2024-07-11 09:58 6a6a55f **build(deps): bump @bgord/frontend from `9f7903a` to `72243d1` (#528)**
+- 2024-07-11 07:59 20051f9 **docs: generate CHANGELOG**
 - 2024-07-09 11:09 e9f3909 **build(deps-dev): bump knip from 5.24.1 to 5.25.1 (#527)**
 - 2024-07-09 11:08 dc8bb69 **build(deps-dev): bump @types/node from 20.14.9 to 20.14.10 (#525)**
 - 2024-07-09 11:08 cb709d3 **build(deps-dev): bump cspell from 8.10.0 to 8.10.4 (#524)**
