@@ -26,9 +26,7 @@ export function Toasts() {
       }}
     >
       {toasts.map((toast) => (
-        <li key={toast.id}>
-          <Toast {...toast} />
-        </li>
+        <Toast {...toast} key={toast.id} />
       ))}
     </ul>
   );
@@ -70,7 +68,7 @@ function Toast(props: types.ToastType) {
         <span data-transform="upper-first">{t(props.message)}</span>
 
         {["article.deleted", "article.marked-as-read"].includes(
-          props.message
+          props.message,
         ) && (
           <button
             type="button"

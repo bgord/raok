@@ -91,6 +91,7 @@ export const CacheResponse = new bg.CacheResponse(ResponseCache);
 
 export * from "./lucia";
 
+/** @public */
 export const hCaptchaShield = new bg.HCaptchaShield({
   mode:
     Env.type === bg.Schema.NodeEnvironmentEnum.production
