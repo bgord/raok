@@ -1,6 +1,8 @@
 # Changelog
+- 2024-07-16 12:16 1dc81be **fix: toast overflow**
+## 2024-07-16 12:16 
 - 2024-07-15 08:24 7ef85f5 **build(deps-dev): bump knip from 5.25.1 to 5.26.0 (#533)**
-## 2024-07-15 08:24 
+- 2024-07-15 06:24 b404258 **docs: generate CHANGELOG**
 - 2024-07-11 09:59 d49ef1f **build(deps): bump @prisma/client from 5.16.1 to 5.16.2 (#529)**
 - 2024-07-11 09:59 75821b2 **build(deps-dev): bump prisma from 5.16.1 to 5.16.2 (#530)**
 - 2024-07-11 09:59 696d1c2 **build(deps-dev): bump vitest from 2.0.1 to 2.0.2 (#531)**
