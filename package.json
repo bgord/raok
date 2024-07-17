@@ -53,7 +53,7 @@
     "jsdom": "24.1.0",
     "lodash": "4.17.21",
     "lucia": "3.2.0",
-    "open-graph-scraper": "6.6.2",
+    "open-graph-scraper": "6.6.3",
     "preact": "10.22.1",
     "preact-render-to-string": "6.5.5",
     "preact-router": "4.1.2",
