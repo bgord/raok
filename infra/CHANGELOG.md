@@ -1,7 +1,10 @@
 # Changelog
+- 2024-07-19 09:32 8cb2cd1 **build(deps-dev): bump husky from 9.0.11 to 9.1.1 (#547)**
+## 2024-07-19 09:32 
+- 2024-07-19 09:31 a3bef36 **build(deps): bump @bgord/frontend from `fc4d529` to `1719ec8` (#546)**
+- 2024-07-19 09:31 46169d2 **build(deps): bump preact-render-to-string from 6.5.5 to 6.5.6 (#545)**
 - 2024-07-17 09:52 35683e5 **build(deps): bump open-graph-scraper from 6.6.2 to 6.6.3 (#542)**
 - 2024-07-17 09:52 170f7b9 **build(deps): bump @bgord/node from 0.58.287 to 0.58.288 (#543)**
-## 2024-07-17 09:52 
 - 2024-07-17 09:51 6ed3bb8 **build(deps-dev): bump @types/node from 20.14.10 to 20.14.11 (#537)**
 - 2024-07-17 09:51 62e2d4d **build(deps-dev): bump prisma from 5.16.2 to 5.17.0 (#541)**
 - 2024-07-17 09:51 5928658 **build(deps-dev): bump cspell from 8.10.4 to 8.11.0 (#538)**
@@ -10,6 +13,7 @@
 - 2024-07-17 09:49 6e7377b **build(deps-dev): bump @types/lodash from 4.17.6 to 4.17.7 (#535)**
 - 2024-07-17 09:49 6bda5e5 **build(deps-dev): bump vitest from 2.0.2 to 2.0.3 (#536)**
 - 2024-07-17 09:49 67fd0b1 **build(deps): bump @bgord/frontend from `72243d1` to `fc4d529` (#534)**
+- 2024-07-17 07:52 4819095 **docs: generate CHANGELOG**
 - 2024-07-17 07:50 d828d18 **docs: generate CHANGELOG**
 - 2024-07-16 12:16 1dc81be **fix: toast overflow**
 - 2024-07-16 10:18 148af1d **docs: generate CHANGELOG**
