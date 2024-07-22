@@ -8,7 +8,7 @@ import { Source, RSSCrawlerJob } from "../services";
 import * as infra from "../../../infra";
 
 export class RssCrawlerJobProcessor {
-  static readonly INTERVAL_MINUTES = 5;
+  static readonly INTERVAL_MINUTES = 15;
 
   static readonly PROCESSING_JOBS_BATCH_LIMIT = 200;
 

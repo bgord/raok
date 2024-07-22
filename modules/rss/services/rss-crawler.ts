@@ -10,7 +10,7 @@ import {
 } from "../services";
 
 export class RSSCrawler {
-  static INTERVAL_MINUTES = 15;
+  static INTERVAL_MINUTES = 60;
 
   static async crawl() {
     const sources = await Repos.SourceRepository.listActive();
