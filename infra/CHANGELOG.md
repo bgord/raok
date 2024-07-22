@@ -1,8 +1,10 @@
 # Changelog
+- 2024-07-22 19:49 e057c37 **step: reduce rss crawler interval**
+## 2024-07-22 19:49 
 - 2024-07-19 09:32 8cb2cd1 **build(deps-dev): bump husky from 9.0.11 to 9.1.1 (#547)**
-## 2024-07-19 09:32 
 - 2024-07-19 09:31 a3bef36 **build(deps): bump @bgord/frontend from `fc4d529` to `1719ec8` (#546)**
 - 2024-07-19 09:31 46169d2 **build(deps): bump preact-render-to-string from 6.5.5 to 6.5.6 (#545)**
+- 2024-07-19 07:32 cdd9f14 **docs: generate CHANGELOG**
 - 2024-07-17 09:52 35683e5 **build(deps): bump open-graph-scraper from 6.6.2 to 6.6.3 (#542)**
 - 2024-07-17 09:52 170f7b9 **build(deps): bump @bgord/node from 0.58.287 to 0.58.288 (#543)**
 - 2024-07-17 09:51 6ed3bb8 **build(deps-dev): bump @types/node from 20.14.10 to 20.14.11 (#537)**
