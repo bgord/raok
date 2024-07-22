@@ -55,8 +55,6 @@
   "article.adding_article": "adding...",
   "article.delete": "delete article",
   "article.deleted": "article deleted",
-  "article.deliver-by-email": "Deliver by email",
-  "article.delivered-by-email": "Articled delivered by email",
   "article.error.not_unique": "article is not unique",
   "article.from": "Source: {{url}}",
   "article.homepage": "article homepage",

@@ -1,5 +1,4 @@
 export * from "./article-content-downloader";
-export * from "./article-email-message-composer";
 export * from "./article-metatags-scraper";
 export * from "./article-rating-level-calculator";
 export * from "./articles-to-review-notifier";

@@ -15,4 +15,3 @@ export * from "./single-newspaper";
 export * from "./undelete-article";
 export * from "./article-opened";
 export * from "./article-homepage-opened";
-export * from "./article-deliver-by-email";

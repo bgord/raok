@@ -8,7 +8,6 @@ import * as UI from "./ui";
 import * as types from "./types";
 
 import { ArticleSourceAdd } from "./article-source-add";
-import { ArticleEmailDelivery } from "./article-email-delivery";
 
 type ArticlePropsType = types.ArticleType &
   bg.UseListActionsType<types.ArticleType["id"]>;
@@ -55,7 +54,6 @@ export function ArticleUrl(props: ArticlePropsType) {
         {details.on && (
           <Fragment>
             <ArticleSourceAdd {...props} />
-            <ArticleEmailDelivery {...props} />
             <UI.CopyButton
               data-pt="3"
               options={{ text: props.url, onSuccess: articleUrlCopied }}
