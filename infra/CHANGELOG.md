@@ -1,6 +1,8 @@
 # Changelog
+- 2024-07-22 20:16 b666359 **step: remove article deliver by email**
+## 2024-07-22 20:16 
 - 2024-07-22 19:49 e057c37 **step: reduce rss crawler interval**
-## 2024-07-22 19:49 
+- 2024-07-22 17:49 e750ed4 **docs: generate CHANGELOG**
 - 2024-07-19 09:32 8cb2cd1 **build(deps-dev): bump husky from 9.0.11 to 9.1.1 (#547)**
 - 2024-07-19 09:31 a3bef36 **build(deps): bump @bgord/frontend from `fc4d529` to `1719ec8` (#546)**
 - 2024-07-19 09:31 46169d2 **build(deps): bump preact-render-to-string from 6.5.5 to 6.5.6 (#545)**
