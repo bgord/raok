@@ -30,7 +30,7 @@
     "gzip-cli": "1.2.0",
     "husky": "9.1.1",
     "knip": "5.27.0",
-    "postcss": "8.4.39",
+    "postcss": "8.4.40",
     "postcss-cli": "11.0.0",
     "prisma": "5.17.0",
     "shellcheck": "3.0.0",
