@@ -1,6 +1,10 @@
 # Changelog
+- 2024-07-25 08:44 93182e6 **build(deps-dev): bump knip from 5.26.0 to 5.27.0 (#558)**
+- 2024-07-25 08:44 78ea82c **build(deps-dev): bump @types/node from 20.14.11 to 20.14.12 (#559)**
+- 2024-07-25 08:44 219e040 **build(deps): bump preact from 10.22.1 to 10.23.0 (#557)**
+## 2024-07-25 08:44 
+- 2024-07-25 08:43 d31273c **build(deps): bump @bgord/frontend from `9b50c1c` to `73b8d29` (#556)**
 - 2024-07-23 08:13 3a4f32f **build(deps-dev): bump @playwright/test from 1.45.2 to 1.45.3 (#555)**
-## 2024-07-23 08:13 
 - 2024-07-23 08:12 b7609f3 **build(deps-dev): bump vitest from 2.0.3 to 2.0.4 (#553)**
 - 2024-07-23 08:12 9057dfe **build(deps): bump iconoir-react from 7.7.0 to 7.8.0 (#550)**
 - 2024-07-23 08:12 88f2c05 **build(deps-dev): bump cspell from 8.11.0 to 8.12.1 (#552)**
@@ -8,6 +12,7 @@
 - 2024-07-23 08:12 03ae28b **build(deps): bump open-graph-scraper from 6.6.3 to 6.7.0 (#551)**
 - 2024-07-23 08:11 46a322d **build(deps): bump jsdom from 24.1.0 to 24.1.1 (#549)**
 - 2024-07-23 08:10 1a112ca **build(deps): bump @bgord/frontend from `1719ec8` to `9b50c1c` (#548)**
+- 2024-07-23 06:13 c995bd3 **docs: generate CHANGELOG**
 - 2024-07-23 06:11 7f08766 **docs: generate CHANGELOG**
 - 2024-07-22 20:16 b666359 **step: remove article deliver by email**
 - 2024-07-22 19:49 e057c37 **step: reduce rss crawler interval**
