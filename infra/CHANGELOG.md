@@ -1,11 +1,16 @@
 # Changelog
+- 2024-07-30 12:38 c816da6 **build(deps-dev): bump @types/node from 20.14.12 to 22.0.0 (#565)**
+- 2024-07-30 12:38 98fb516 **build(deps): bump preact from 10.23.0 to 10.23.1 (#564)**
+- 2024-07-30 12:38 6f25406 **build(deps-dev): bump husky from 9.1.1 to 9.1.4 (#567)**
+## 2024-07-30 12:38 
+- 2024-07-30 12:37 658e910 **build(deps): bump @bgord/frontend from `73b8d29` to `7e64958` (#562)**
 - 2024-07-25 08:46 edf44a1 **build(deps): bump preact-render-to-string from 6.5.6 to 6.5.7 (#560)**
 - 2024-07-25 08:46 a3226fc **build(deps-dev): bump postcss from 8.4.39 to 8.4.40 (#561)**
-## 2024-07-25 08:46 
 - 2024-07-25 08:44 93182e6 **build(deps-dev): bump knip from 5.26.0 to 5.27.0 (#558)**
 - 2024-07-25 08:44 78ea82c **build(deps-dev): bump @types/node from 20.14.11 to 20.14.12 (#559)**
 - 2024-07-25 08:44 219e040 **build(deps): bump preact from 10.22.1 to 10.23.0 (#557)**
 - 2024-07-25 08:43 d31273c **build(deps): bump @bgord/frontend from `9b50c1c` to `73b8d29` (#556)**
+- 2024-07-25 06:46 726c322 **docs: generate CHANGELOG**
 - 2024-07-25 06:44 1c0a99b **docs: generate CHANGELOG**
 - 2024-07-23 08:13 3a4f32f **build(deps-dev): bump @playwright/test from 1.45.2 to 1.45.3 (#555)**
 - 2024-07-23 08:12 b7609f3 **build(deps-dev): bump vitest from 2.0.3 to 2.0.4 (#553)**
