@@ -1,6 +1,7 @@
 # Changelog
+- 2024-07-31 09:41 d8e4cac **build(deps-dev): bump cspell from 8.12.1 to 8.13.0 (#569)**
+## 2024-07-31 09:41 
 - 2024-07-30 12:48 5378bd5 **fix: open graph scraper types**
-## 2024-07-30 12:48 
 - 2024-07-30 12:45 c2b9d31 **step: bump bgord/node**
 - 2024-07-30 12:45 54e3965 **refactor: update husky pre-commit**
 - 2024-07-30 12:43 67aa931 **build(deps): bump open-graph-scraper from 6.7.0 to 6.7.1 (#568)**
@@ -8,6 +9,7 @@
 - 2024-07-30 12:38 98fb516 **build(deps): bump preact from 10.23.0 to 10.23.1 (#564)**
 - 2024-07-30 12:38 6f25406 **build(deps-dev): bump husky from 9.1.1 to 9.1.4 (#567)**
 - 2024-07-30 12:37 658e910 **build(deps): bump @bgord/frontend from `73b8d29` to `7e64958` (#562)**
+- 2024-07-30 10:51 91538aa **docs: generate CHANGELOG**
 - 2024-07-30 10:44 0d99817 **docs: generate CHANGELOG**
 - 2024-07-30 10:38 f641d16 **docs: generate CHANGELOG**
 - 2024-07-25 08:46 edf44a1 **build(deps): bump preact-render-to-string from 6.5.6 to 6.5.7 (#560)**
