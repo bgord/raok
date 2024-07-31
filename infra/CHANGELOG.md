@@ -1,6 +1,9 @@
 # Changelog
+- 2024-07-31 09:42 2e98006 **build(deps): bump @bgord/frontend from `7e64958` to `a84384f` (#571)**
+## 2024-07-31 09:42 
 - 2024-07-31 09:41 d8e4cac **build(deps-dev): bump cspell from 8.12.1 to 8.13.0 (#569)**
-## 2024-07-31 09:41 
+- 2024-07-31 09:41 a9de2ed **build(deps-dev): bump tsx from 4.16.2 to 4.16.3 (#570)**
+- 2024-07-31 07:41 8953d5f **docs: generate CHANGELOG**
 - 2024-07-30 12:48 5378bd5 **fix: open graph scraper types**
 - 2024-07-30 12:45 c2b9d31 **step: bump bgord/node**
 - 2024-07-30 12:45 54e3965 **refactor: update husky pre-commit**
