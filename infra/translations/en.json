@@ -13,7 +13,7 @@
   "app.file.errors.too_big": "This file is too big, please select another file",
   "app.file.loading": "Loading...",
   "app.file.name": "Name: ",
-  "app.file.sent": "File has been sent",
+  "app.file.sent": "File has been sent!",
   "app.file.size": "Size: ",
   "app.file.size.max": "Send a file up to {{value}}",
   "app.file.try_again": "Please, try again.",

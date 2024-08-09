@@ -17,7 +17,7 @@ export function SendArbitraryFile() {
 
   const deviceId = bg.useField<types.DeviceType["id"]>(
     "device-id",
-    devices[0]?.id as types.DeviceType["id"],
+    devices[0]?.id as types.DeviceType["id"]
   );
 
   const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyE");
@@ -117,20 +117,21 @@ export function SendArbitraryFile() {
           </button>
         )}
 
-        {file.matches([bg.UseFileState.selected, bg.UseFileState.error]) && (
-          <button
-            type="button"
-            class="c-button"
-            data-variant="bare"
-            onClick={bg.exec([
-              file.actions.clearFile,
-              fileUpload.reset,
-              deviceId.clear,
-            ])}
-          >
-            {t("app.clear")}
-          </button>
-        )}
+        {file.matches([bg.UseFileState.selected, bg.UseFileState.error]) &&
+          !fileUpload.isSuccess && (
+            <button
+              type="button"
+              class="c-button"
+              data-variant="bare"
+              onClick={bg.exec([
+                file.actions.clearFile,
+                fileUpload.reset,
+                deviceId.clear,
+              ])}
+            >
+              {t("app.clear")}
+            </button>
+          )}
       </div>
 
       {file.isError && (
@@ -174,18 +175,21 @@ export function SendArbitraryFile() {
       )}
 
       {fileUpload.isSuccess && file.isSelected && (
-        <div data-mt="24" data-fs="14" data-color="gray-600">
-          {t("app.file.sent")}
+        <div data-display="flex" data-gap="6" data-cross="center">
+          <Icons.CheckCircle data-fs="12" />
+          <div data-fs="14" data-color="gray-600">
+            {t("app.file.sent")}
+          </div>
         </div>
       )}
       {fileUpload.isError && (
-        <div data-mt="24" data-fs="14" data-color="gray-600">
+        <div data-mt="12" data-fs="14" data-color="gray-600">
           {t("app.file.try_again")}
         </div>
       )}
 
       {fileUpload.isLoading && (
-        <div data-mt="24" data-fs="14" data-color="gray-600">
+        <div data-mt="12" data-fs="14" data-color="gray-600">
           {t("app.file.loading")}
         </div>
       )}
