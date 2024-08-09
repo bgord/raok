@@ -17,10 +17,10 @@ export function SendArbitraryFile() {
 
   const deviceId = bg.useField<types.DeviceType["id"]>(
     "device-id",
-    devices[0]?.id as types.DeviceType["id"]
+    devices[0]?.id as types.DeviceType["id"],
   );
 
-  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyS");
+  const shortcut = bg.useFocusKeyboardShortcut("$mod+Control+KeyE");
   const fileUpload = useMutation(api.sendArbitraryFile, {
     onSuccess: () => notify({ message: "app.file.sent" }),
   });
