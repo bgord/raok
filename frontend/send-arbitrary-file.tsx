@@ -29,6 +29,10 @@ export function SendArbitraryFile() {
     maxSize: types.MAX_UPLOADED_FILE_SIZE_BYTES,
   });
 
+  bg.useKeyboardShortcuts({
+    Escape: bg.exec([file.actions.clearFile, fileUpload.reset, deviceId.clear]),
+  });
+
   return (
     <form
       data-display="flex"
