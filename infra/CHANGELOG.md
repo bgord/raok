@@ -1,9 +1,20 @@
 # Changelog
+- 2024-08-11 12:58 6bbd597 **build(deps-dev): bump tsx from 4.16.3 to 4.17.0 (#586)**
+- 2024-08-11 12:58 31efbce **build(deps-dev): bump cspell from 8.13.0 to 8.13.2 (#585)**
+## 2024-08-11 12:58 
+- 2024-08-11 12:57 bdcd9ff **build(deps): bump @prisma/client from 5.17.0 to 5.18.0 (#583)**
+- 2024-08-11 12:57 84eef8c **build(deps-dev): bump prisma from 5.17.0 to 5.18.0 (#582)**
+- 2024-08-11 12:57 6ec145c **build(deps-dev): bump postcss from 8.4.40 to 8.4.41 (#580)**
+- 2024-08-11 12:57 4821e9d **build(deps): bump @bgord/frontend from `a84384f` to `65db691` (#584)**
+- 2024-08-11 12:57 370fa52 **build(deps-dev): bump @playwright/test from 1.45.3 to 1.46.0 (#581)**
+- 2024-08-11 12:57 25ca352 **build(deps-dev): bump @types/node from 22.0.0 to 22.1.0 (#579)**
+- 2024-08-11 12:56 9aff184 **build(deps-dev): bump vitest from 2.0.4 to 2.0.5 (#572)**
+- 2024-08-11 12:56 2a6dac5 **build(deps): bump open-graph-scraper from 6.7.1 to 6.7.2 (#576)**
 - 2024-08-09 19:04 1ca0b29 **refactor: autoclear send arbitrary file ui after success**
 - 2024-08-09 19:04 14b6798 **refactor: update send arbitrary file u**
-## 2024-08-09 19:04 
 - 2024-08-09 18:56 c521e82 **feature: clear abitrary file sender on escape**
 - 2024-08-09 18:50 e8dc95b **fix: focus keyboard shortcut for file explorer**
+- 2024-08-09 17:05 828d6e0 **docs: generate CHANGELOG**
 - 2024-07-31 09:42 2e98006 **build(deps): bump @bgord/frontend from `7e64958` to `a84384f` (#571)**
 - 2024-07-31 09:41 d8e4cac **build(deps-dev): bump cspell from 8.12.1 to 8.13.0 (#569)**
 - 2024-07-31 09:41 a9de2ed **build(deps-dev): bump tsx from 4.16.2 to 4.16.3 (#570)**
