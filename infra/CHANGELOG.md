@@ -1,7 +1,14 @@
 # Changelog
+- 2024-08-13 10:40 d28b88f **build(deps): bump preact from 10.23.1 to 10.23.2 (#593)**
+## 2024-08-13 10:40 
+- 2024-08-13 10:39 36d834a **build(deps-dev): bump cspell from 8.13.2 to 8.13.3 (#592)**
+- 2024-08-13 10:38 cb220ed **build(deps-dev): bump knip from 5.27.0 to 5.27.2 (#590)**
+- 2024-08-13 10:38 c048a7f **build(deps): bump @bgord/frontend from `65db691` to `7a57fb3` (#588)**
+- 2024-08-13 10:38 9acc997 **build(deps): bump preact-render-to-string from 6.5.7 to 6.5.8 (#589)**
+- 2024-08-13 10:38 80070f7 **build(deps-dev): bump @types/node from 22.1.0 to 22.2.0 (#591)**
+- 2024-08-13 10:38 1d2ea8d **build(deps-dev): bump @commitlint/cli from 19.3.0 to 19.4.0 (#587)**
 - 2024-08-11 12:58 6bbd597 **build(deps-dev): bump tsx from 4.16.3 to 4.17.0 (#586)**
 - 2024-08-11 12:58 31efbce **build(deps-dev): bump cspell from 8.13.0 to 8.13.2 (#585)**
-## 2024-08-11 12:58 
 - 2024-08-11 12:57 bdcd9ff **build(deps): bump @prisma/client from 5.17.0 to 5.18.0 (#583)**
 - 2024-08-11 12:57 84eef8c **build(deps-dev): bump prisma from 5.17.0 to 5.18.0 (#582)**
 - 2024-08-11 12:57 6ec145c **build(deps-dev): bump postcss from 8.4.40 to 8.4.41 (#580)**
@@ -10,6 +17,7 @@
 - 2024-08-11 12:57 25ca352 **build(deps-dev): bump @types/node from 22.0.0 to 22.1.0 (#579)**
 - 2024-08-11 12:56 9aff184 **build(deps-dev): bump vitest from 2.0.4 to 2.0.5 (#572)**
 - 2024-08-11 12:56 2a6dac5 **build(deps): bump open-graph-scraper from 6.7.1 to 6.7.2 (#576)**
+- 2024-08-11 10:58 661a5ff **docs: generate CHANGELOG**
 - 2024-08-09 19:04 1ca0b29 **refactor: autoclear send arbitrary file ui after success**
 - 2024-08-09 19:04 14b6798 **refactor: update send arbitrary file u**
 - 2024-08-09 18:56 c521e82 **feature: clear abitrary file sender on escape**
