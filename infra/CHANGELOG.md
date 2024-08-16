@@ -1,12 +1,16 @@
 # Changelog
+- 2024-08-16 08:46 d592109 **build(deps): bump preact-render-to-string from 6.5.8 to 6.5.9 (#596)**
+- 2024-08-16 08:46 6d85d5f **build(deps-dev): bump @types/node from 22.2.0 to 22.3.0 (#595)**
+- 2024-08-16 08:46 38eb45f **build(deps): bump execa from 9.3.0 to 9.3.1 (#594)**
+## 2024-08-16 08:46 
 - 2024-08-13 10:40 d28b88f **build(deps): bump preact from 10.23.1 to 10.23.2 (#593)**
-## 2024-08-13 10:40 
 - 2024-08-13 10:39 36d834a **build(deps-dev): bump cspell from 8.13.2 to 8.13.3 (#592)**
 - 2024-08-13 10:38 cb220ed **build(deps-dev): bump knip from 5.27.0 to 5.27.2 (#590)**
 - 2024-08-13 10:38 c048a7f **build(deps): bump @bgord/frontend from `65db691` to `7a57fb3` (#588)**
 - 2024-08-13 10:38 9acc997 **build(deps): bump preact-render-to-string from 6.5.7 to 6.5.8 (#589)**
 - 2024-08-13 10:38 80070f7 **build(deps-dev): bump @types/node from 22.1.0 to 22.2.0 (#591)**
 - 2024-08-13 10:38 1d2ea8d **build(deps-dev): bump @commitlint/cli from 19.3.0 to 19.4.0 (#587)**
+- 2024-08-13 08:44 53f0742 **docs: generate CHANGELOG**
 - 2024-08-11 12:58 6bbd597 **build(deps-dev): bump tsx from 4.16.3 to 4.17.0 (#586)**
 - 2024-08-11 12:58 31efbce **build(deps-dev): bump cspell from 8.13.0 to 8.13.2 (#585)**
 - 2024-08-11 12:57 bdcd9ff **build(deps): bump @prisma/client from 5.17.0 to 5.18.0 (#583)**
