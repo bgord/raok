@@ -1,8 +1,14 @@
 # Changelog
+- 2024-08-19 08:52 ca01fd3 **build(deps): bump open-graph-scraper from 6.7.2 to 6.8.0 (#601)**
+- 2024-08-19 08:52 b611a41 **build(deps-dev): bump @playwright/test from 1.46.0 to 1.46.1 (#600)**
+- 2024-08-19 08:52 84406cf **build(deps): bump @bgord/frontend from `7a57fb3` to `dd7dda0` (#598)**
+- 2024-08-19 08:52 38bb5c8 **build(deps-dev): bump @types/node from 22.3.0 to 22.4.1 (#599)**
+- 2024-08-19 08:52 2c14079 **build(deps-dev): bump cspell from 8.13.3 to 8.14.1 (#597)**
+## 2024-08-19 08:52 
 - 2024-08-16 08:46 d592109 **build(deps): bump preact-render-to-string from 6.5.8 to 6.5.9 (#596)**
 - 2024-08-16 08:46 6d85d5f **build(deps-dev): bump @types/node from 22.2.0 to 22.3.0 (#595)**
 - 2024-08-16 08:46 38eb45f **build(deps): bump execa from 9.3.0 to 9.3.1 (#594)**
-## 2024-08-16 08:46 
+- 2024-08-16 06:46 90d3741 **docs: generate CHANGELOG**
 - 2024-08-13 10:40 d28b88f **build(deps): bump preact from 10.23.1 to 10.23.2 (#593)**
 - 2024-08-13 10:39 36d834a **build(deps-dev): bump cspell from 8.13.2 to 8.13.3 (#592)**
 - 2024-08-13 10:38 cb220ed **build(deps-dev): bump knip from 5.27.0 to 5.27.2 (#590)**
