@@ -1,6 +1,8 @@
 # Changelog
+- 2024-08-21 20:16 3aa0224 **step: bump bgord/scripts**
+## 2024-08-21 20:16 
 - 2024-08-21 20:05 0828d06 **step: update to latest node 22.6**
-## 2024-08-21 20:05 
+- 2024-08-21 18:06 ce25845 **docs: generate CHANGELOG**
 - 2024-08-21 08:30 fbd4c99 **build(deps-dev): bump cspell from 8.14.1 to 8.14.2 (#604)**
 - 2024-08-21 08:30 6dfdfc9 **build(deps-dev): bump husky from 9.1.4 to 9.1.5 (#605)**
 - 2024-08-21 08:30 51f93db **build(deps-dev): bump @types/node from 22.4.1 to 22.4.2 (#603)**
