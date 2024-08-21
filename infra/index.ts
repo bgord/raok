@@ -43,7 +43,7 @@ export const prerequisites = [
   }),
   new bg.PrerequisiteNode({
     label: "node",
-    version: bg.PackageVersion.fromStringWithV("v21.6.2"),
+    version: bg.PackageVersion.fromStringWithV("v22.6.0"),
   }),
   new bg.PrerequisiteRAM({
     label: "RAM",
