@@ -276,7 +276,10 @@ app.use(App.Routes.ErrorHandler.handle);
     infra.logger.info({
       message: "Server has started",
       operation: "server_startup",
-      metadata: { port: infra.Env.PORT },
+      metadata: {
+        port: infra.Env.PORT,
+        startupTimeMs: app.locals.startup.stop().durationMs,
+      },
     });
     await Recommendations.Services.StopWordsCleaner.run();
   });
