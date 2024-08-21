@@ -8,4 +8,7 @@ export NODE_ENV="staging"
 cd /var/www/raok/ || exit
 npx prisma migrate deploy
 npx prisma generate
-node --require tsx/cjs index.js
+node \
+  --require tsx/cjs \
+  --env-file=".env.$NODE_ENV" \
+  index.js
