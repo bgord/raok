@@ -19,10 +19,11 @@ const EnvironmentSchema = z
     HCAPTCHA_SITE_KEY: bg.Schema.HCaptchaSiteKey,
     TZ: bg.Schema.TimezoneUTC,
   })
-  .strict();
-type EnvironmentSchemaType = z.infer<typeof EnvironmentSchema>;
+  .strip();
 
-export const Env = new bg.EnvironmentValidator<EnvironmentSchemaType>({
+export const Env = new bg.EnvironmentValidator<
+  z.infer<typeof EnvironmentSchema>
+>({
   type: process.env.NODE_ENV,
   schema: EnvironmentSchema,
 }).load();
