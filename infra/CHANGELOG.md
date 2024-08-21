@@ -1,6 +1,7 @@
 # Changelog
+- 2024-08-21 21:16 8b3e5f4 **step: bump bgord/scripts**
+## 2024-08-21 21:16 
 - 2024-08-21 21:04 54d6571 **step: bump bgord/scripts**
-## 2024-08-21 21:04 
 - 2024-08-21 21:02 97f5aa5 **refactor: update staging server start script**
 - 2024-08-21 21:01 9cddf47 **refactor: env validator**
 - 2024-08-21 21:01 0c8dfde **step: bump bgord/scripts**
@@ -8,6 +9,7 @@
 - 2024-08-21 20:25 8ab6d18 **step: bump bgord/node**
 - 2024-08-21 20:16 3aa0224 **step: bump bgord/scripts**
 - 2024-08-21 20:05 0828d06 **step: update to latest node 22.6**
+- 2024-08-21 19:05 35c8edc **docs: generate CHANGELOG**
 - 2024-08-21 18:25 778b085 **docs: generate CHANGELOG**
 - 2024-08-21 18:17 b40037e **docs: generate CHANGELOG**
 - 2024-08-21 18:06 ce25845 **docs: generate CHANGELOG**
