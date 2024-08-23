@@ -1,6 +1,9 @@
 # Changelog
+- 2024-08-23 08:38 ff710fe **build(deps-dev): bump @types/node from 22.4.2 to 22.5.0 (#608)**
+- 2024-08-23 08:38 90a2aef **build(deps): bump @bgord/frontend from `dd7dda0` to `810210a` (#607)**
+- 2024-08-23 08:38 511089c **build(deps-dev): bump knip from 5.27.2 to 5.27.3 (#606)**
+## 2024-08-23 08:38 
 - 2024-08-21 21:43 6253051 **feature: add startupTimeMs**
-## 2024-08-21 21:43 
 - 2024-08-21 21:41 eb5d9a9 **step: bump bgord/node**
 - 2024-08-21 21:16 8b3e5f4 **step: bump bgord/scripts**
 - 2024-08-21 21:04 54d6571 **step: bump bgord/scripts**
@@ -11,6 +14,7 @@
 - 2024-08-21 20:25 8ab6d18 **step: bump bgord/node**
 - 2024-08-21 20:16 3aa0224 **step: bump bgord/scripts**
 - 2024-08-21 20:05 0828d06 **step: update to latest node 22.6**
+- 2024-08-21 19:44 50414e3 **docs: generate CHANGELOG**
 - 2024-08-21 19:17 c553ced **docs: generate CHANGELOG**
 - 2024-08-21 19:05 35c8edc **docs: generate CHANGELOG**
 - 2024-08-21 18:25 778b085 **docs: generate CHANGELOG**
