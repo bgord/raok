@@ -1,7 +1,9 @@
 # Changelog
+- 2024-08-23 12:40 6548932 **feature: add sidebar toggle shortcut**
+## 2024-08-23 12:40 
 - 2024-08-23 12:29 6b34137 **refactor: remove async return type**
-## 2024-08-23 12:29 
 - 2024-08-23 12:27 17ddea4 **step: bump bgord/node**
+- 2024-08-23 10:30 678f4be **docs: generate CHANGELOG**
 - 2024-08-23 08:38 ff710fe **build(deps-dev): bump @types/node from 22.4.2 to 22.5.0 (#608)**
 - 2024-08-23 08:38 90a2aef **build(deps): bump @bgord/frontend from `dd7dda0` to `810210a` (#607)**
 - 2024-08-23 08:38 511089c **build(deps-dev): bump knip from 5.27.2 to 5.27.3 (#606)**
