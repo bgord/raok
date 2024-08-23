@@ -9,7 +9,7 @@ import { RSSCrawlerJob } from "./rss-crawler-job";
 
 export class RSSCrawlerJobFactory {
   static async create(
-    item: bg.AsyncReturnType<Parser["parseString"]>["items"][number],
+    item: Awaited<ReturnType<Parser["parseString"]>>["items"][number],
     source: Pick<VO.SourceType, "id"> & { processedUntil: bg.RelativeDateType },
   ): Promise<RSSCrawlerJob | null> {
     try {

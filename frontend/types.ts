@@ -1,5 +1,4 @@
 import type { Article } from "../infra/db";
-import type { AsyncReturnType } from "@bgord/node";
 import type * as bg from "@bgord/frontend";
 
 import type { ArticleRepository } from "../modules/newspapers/repositories/article-repository";
@@ -30,19 +29,19 @@ export enum NewspaperStatusEnum {
 }
 
 export type ArticlePayloadType = Pick<Article, "url">;
-export type ArticleType = AsyncReturnType<
-  (typeof ArticleRepository)["pagedGetAllNonProcessed"]
+export type ArticleType = Awaited<
+  ReturnType<(typeof ArticleRepository)["pagedGetAllNonProcessed"]>
 >["result"][number];
 
-export type ArchiveArticleType = AsyncReturnType<
-  (typeof ArticleRepository)["pagedGetAll"]
+export type ArchiveArticleType = Awaited<
+  ReturnType<(typeof ArticleRepository)["pagedGetAll"]>
 >["result"][number];
 
-export type NewspaperType = AsyncReturnType<
-  (typeof NewspaperRepository)["getAllNonArchived"]
+export type NewspaperType = Awaited<
+  ReturnType<(typeof NewspaperRepository)["getAllNonArchived"]>
 >[number];
 
-export type StatsType = AsyncReturnType<(typeof StatsRepository)["getAll"]>;
+export type StatsType = Awaited<ReturnType<(typeof StatsRepository)["getAll"]>>;
 
 export type ToastType = bg.BaseToastType & {
   articleId?: ArticleType["id"] | null;
@@ -50,20 +49,20 @@ export type ToastType = bg.BaseToastType & {
   revision?: ArticleType["revision"] | null;
 };
 
-export type ArchiveFileType = AsyncReturnType<
-  (typeof FilesRepository)["getAll"]
+export type ArchiveFileType = Awaited<
+  ReturnType<(typeof FilesRepository)["getAll"]>
 >[number];
 
-export type SourceType = AsyncReturnType<
-  (typeof SourceRepository)["listAll"]
+export type SourceType = Awaited<
+  ReturnType<(typeof SourceRepository)["listAll"]>
 >[number];
 
-export type TokenBlacklistType = AsyncReturnType<
-  (typeof TokenBlacklistRepository)["list"]
+export type TokenBlacklistType = Awaited<
+  ReturnType<(typeof TokenBlacklistRepository)["list"]>
 >[number];
 
 export type DeviceType = Omit<
-  AsyncReturnType<(typeof DeviceRepository)["list"]>[number],
+  Awaited<ReturnType<(typeof DeviceRepository)["list"]>>[number],
   "createdAt"
 >;
 
