@@ -33,6 +33,8 @@ export function Dashboard(_: RoutableProps) {
 
   const sidebar = bg.usePersistentToggle("sidebar-visible", true);
 
+  bg.useKeyboardShortcuts({ "$mod+Control+KeyS": sidebar.toggle });
+
   return (
     <contexts.NewspaperCreatorProvider state={{ selectedArticleIds, actions }}>
       <main
