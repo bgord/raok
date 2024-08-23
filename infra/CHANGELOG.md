@@ -1,8 +1,11 @@
 # Changelog
+- 2024-08-23 12:29 6b34137 **refactor: remove async return type**
+## 2024-08-23 12:29 
+- 2024-08-23 12:27 17ddea4 **step: bump bgord/node**
 - 2024-08-23 08:38 ff710fe **build(deps-dev): bump @types/node from 22.4.2 to 22.5.0 (#608)**
 - 2024-08-23 08:38 90a2aef **build(deps): bump @bgord/frontend from `dd7dda0` to `810210a` (#607)**
 - 2024-08-23 08:38 511089c **build(deps-dev): bump knip from 5.27.2 to 5.27.3 (#606)**
-## 2024-08-23 08:38 
+- 2024-08-23 06:38 b22282c **docs: generate CHANGELOG**
 - 2024-08-21 21:43 6253051 **feature: add startupTimeMs**
 - 2024-08-21 21:41 eb5d9a9 **step: bump bgord/node**
 - 2024-08-21 21:16 8b3e5f4 **step: bump bgord/scripts**
