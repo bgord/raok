@@ -1,9 +1,11 @@
 # Changelog
+- 2024-08-24 16:03 1384867 **refactor: update husky git hooks**
+## 2024-08-24 16:03 
 - 2024-08-23 12:45 e645533 **step: bump bgord/scripts**
-## 2024-08-23 12:45 
 - 2024-08-23 12:40 6548932 **feature: add sidebar toggle shortcut**
 - 2024-08-23 12:29 6b34137 **refactor: remove async return type**
 - 2024-08-23 12:27 17ddea4 **step: bump bgord/node**
+- 2024-08-23 10:45 4a695e3 **docs: generate CHANGELOG**
 - 2024-08-23 10:41 9c13d48 **docs: generate CHANGELOG**
 - 2024-08-23 10:30 678f4be **docs: generate CHANGELOG**
 - 2024-08-23 08:38 ff710fe **build(deps-dev): bump @types/node from 22.4.2 to 22.5.0 (#608)**
