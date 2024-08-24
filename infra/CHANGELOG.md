@@ -1,6 +1,8 @@
 # Changelog
+- 2024-08-24 17:00 86e97bd **step: bump bgord/scripts**
+## 2024-08-24 17:00 
 - 2024-08-24 16:03 1384867 **refactor: update husky git hooks**
-## 2024-08-24 16:03 
+- 2024-08-24 14:03 7faee60 **docs: generate CHANGELOG**
 - 2024-08-23 12:45 e645533 **step: bump bgord/scripts**
 - 2024-08-23 12:40 6548932 **feature: add sidebar toggle shortcut**
 - 2024-08-23 12:29 6b34137 **refactor: remove async return type**
