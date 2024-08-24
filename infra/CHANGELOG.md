@@ -1,7 +1,9 @@
 # Changelog
+- 2024-08-24 17:04 f98f2f9 **step: install husky**
+## 2024-08-24 17:04 
 - 2024-08-24 17:00 86e97bd **step: bump bgord/scripts**
-## 2024-08-24 17:00 
 - 2024-08-24 16:03 1384867 **refactor: update husky git hooks**
+- 2024-08-24 15:01 9899a39 **docs: generate CHANGELOG**
 - 2024-08-24 14:03 7faee60 **docs: generate CHANGELOG**
 - 2024-08-23 12:45 e645533 **step: bump bgord/scripts**
 - 2024-08-23 12:40 6548932 **feature: add sidebar toggle shortcut**
