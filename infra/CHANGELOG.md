@@ -1,8 +1,10 @@
 # Changelog
+- 2024-08-27 08:23 59685de **build(deps-dev): bump knip from 5.27.3 to 5.27.4 (#609)**
+## 2024-08-27 08:23 
 - 2024-08-24 17:04 f98f2f9 **step: install husky**
-## 2024-08-24 17:04 
 - 2024-08-24 17:00 86e97bd **step: bump bgord/scripts**
 - 2024-08-24 16:03 1384867 **refactor: update husky git hooks**
+- 2024-08-24 15:04 593d2f4 **docs: generate CHANGELOG**
 - 2024-08-24 15:01 9899a39 **docs: generate CHANGELOG**
 - 2024-08-24 14:03 7faee60 **docs: generate CHANGELOG**
 - 2024-08-23 12:45 e645533 **step: bump bgord/scripts**
