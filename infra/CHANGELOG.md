@@ -1,10 +1,13 @@
 # Changelog
+- 2024-08-27 10:47 ea8910e **refactor: change production alias**
+- 2024-08-27 10:47 abecff7 **step: bump bgord/scripts**
+## 2024-08-27 10:47 
 - 2024-08-27 08:24 6f7b795 **build(deps): bump jsdom from 24.1.1 to 25.0.0 (#610)**
 - 2024-08-27 08:24 69bc167 **build(deps-dev): bump tsx from 4.17.0 to 4.18.0 (#611)**
 - 2024-08-27 08:24 4b6fb64 **build(deps): bump @bgord/frontend from `810210a` to `a8595e2` (#612)**
-## 2024-08-27 08:24 
 - 2024-08-27 08:23 59685de **build(deps-dev): bump knip from 5.27.3 to 5.27.4 (#609)**
 - 2024-08-27 06:24 d9a87fe **docs: generate CHANGELOG**
+- 2024-08-27 06:24 1675a68 **docs: generate CHANGELOG**
 - 2024-08-24 17:04 f98f2f9 **step: install husky**
 - 2024-08-24 17:00 86e97bd **step: bump bgord/scripts**
 - 2024-08-24 16:03 1384867 **refactor: update husky git hooks**
