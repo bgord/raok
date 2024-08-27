@@ -1,10 +1,12 @@
 # Changelog
+- 2024-08-27 11:17 d43aaec **fix: prod build script**
+## 2024-08-27 11:17 
 - 2024-08-27 11:07 c6f8538 **step: bump bgord/scripts**
-## 2024-08-27 11:07 
 - 2024-08-27 11:06 9cb93ff **refactor: rename staging scripts**
 - 2024-08-27 11:04 02c1293 **step: bump bgord/scripts**
 - 2024-08-27 10:47 ea8910e **refactor: change production alias**
 - 2024-08-27 10:47 abecff7 **step: bump bgord/scripts**
+- 2024-08-27 09:16 c86e83e **docs: generate CHANGELOG**
 - 2024-08-27 08:47 621fb46 **docs: generate CHANGELOG**
 - 2024-08-27 08:24 6f7b795 **build(deps): bump jsdom from 24.1.1 to 25.0.0 (#610)**
 - 2024-08-27 08:24 69bc167 **build(deps-dev): bump tsx from 4.17.0 to 4.18.0 (#611)**
