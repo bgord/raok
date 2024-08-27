@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Environment: staging"
+echo "Environment: production"
 
 PROJECT_NAME=$1
 LOBBYGOW_API_KEY=$2
@@ -22,7 +22,7 @@ trap 'catch $? $LINENO' ERR
 catch() {
   http POST https://lobbygow.bgord.me/notification-send \
     kind="error" \
-    subject="[$PROJECT_NAME] staging server backup error" \
+    subject="[$PROJECT_NAME] production server backup error" \
     content="Error occurred on $2 with status code $1" \
     bgord-api-key:"$LOBBYGOW_API_KEY"
   exit 1

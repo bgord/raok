@@ -5,13 +5,13 @@ source bgord-scripts/base.sh
 
 OUT_DIR="build"
 
-info "Environment: staging"
-export NODE_ENV="staging"
+info "Environment: production"
+export NODE_ENV="production"
 
-check_if_file_exists .env.staging
+check_if_file_exists .env.production
 check_if_directory_exists node_modules
-check_if_file_exists scripts/staging-server-start.sh
-check_if_file_exists scripts/staging-server-backup.sh
+check_if_file_exists scripts/production-server-start.sh
+check_if_file_exists scripts/production-server-backup.sh
 validate_environment_file
 
 # ==========================================================
@@ -64,8 +64,8 @@ fi
 
 # ==========================================================
 
-cp .env.staging $OUT_DIR
-info "Copied .env.staging"
+cp .env.production $OUT_DIR
+info "Copied .env.production"
 
 # ==========================================================
 
@@ -80,8 +80,8 @@ fi
 
 # ==========================================================
 
-cp scripts/staging-server-{start,backup}.sh $OUT_DIR
-info "Copied staging-server-start and backup script"
+cp scripts/production-server-{start,backup}.sh $OUT_DIR
+info "Copied production-server-start and backup script"
 
 # ==========================================================
 
