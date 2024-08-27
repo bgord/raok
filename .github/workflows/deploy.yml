@@ -60,14 +60,14 @@ jobs:
       - name: Create .env.test file
         run: echo "${{ secrets.ENV_TEST }}" > .env.test
 
-      - name: Create .env.staging file
-        run: echo "${{ secrets.ENV_STAGING }}" > .env.staging
+      - name: Create .env.production file
+        run: echo "${{ secrets.ENV_PRODUCTION }}" > .env.production
 
       - name: Run build prechecks
         run: ./bgord-scripts/build-prechecks.sh
 
       - name: Build the app
-        run: ./scripts/staging-server-build.sh
+        run: ./scripts/production-server-build.sh
 
       - name: Configure SSH
         run: |
