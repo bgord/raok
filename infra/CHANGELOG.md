@@ -1,11 +1,18 @@
 # Changelog
+- 2024-08-29 08:53 d882102 **build(deps-dev): bump tsx from 4.18.0 to 4.19.0 (#617)**
+- 2024-08-29 08:53 9461c1b **build(deps): bump @bgord/frontend from `a8595e2` to `cb936d5` (#615)**
+- 2024-08-29 08:53 590c80a **build(deps-dev): bump @types/node from 22.5.0 to 22.5.1 (#616)**
+- 2024-08-29 08:53 2446b8b **build(deps-dev): bump @commitlint/cli from 19.4.0 to 19.4.1 (#618)**
+## 2024-08-29 08:53 
+- 2024-08-29 08:52 f7da277 **build(deps): bump @prisma/client from 5.18.0 to 5.19.0 (#614)**
+- 2024-08-29 08:52 3b0b1b8 **build(deps-dev): bump prisma from 5.18.0 to 5.19.0 (#613)**
 - 2024-08-27 11:17 d43aaec **fix: prod build script**
-## 2024-08-27 11:17 
 - 2024-08-27 11:07 c6f8538 **step: bump bgord/scripts**
 - 2024-08-27 11:06 9cb93ff **refactor: rename staging scripts**
 - 2024-08-27 11:04 02c1293 **step: bump bgord/scripts**
 - 2024-08-27 10:47 ea8910e **refactor: change production alias**
 - 2024-08-27 10:47 abecff7 **step: bump bgord/scripts**
+- 2024-08-27 09:17 525a1d0 **docs: generate CHANGELOG**
 - 2024-08-27 09:16 c86e83e **docs: generate CHANGELOG**
 - 2024-08-27 08:47 621fb46 **docs: generate CHANGELOG**
 - 2024-08-27 08:24 6f7b795 **build(deps): bump jsdom from 24.1.1 to 25.0.0 (#610)**
