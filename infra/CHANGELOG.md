@@ -1,13 +1,15 @@
 # Changelog
+- 2024-08-30 13:41 123e225 **fix: too long article metadata title/description**
+## 2024-08-30 13:41 
 - 2024-08-29 08:54 e7df9b7 **build(deps): bump open-graph-scraper from 6.8.0 to 6.8.1 (#620)**
 - 2024-08-29 08:54 449a078 **build(deps-dev): bump @commitlint/config-conventional (#619)**
-## 2024-08-29 08:54 
 - 2024-08-29 08:53 d882102 **build(deps-dev): bump tsx from 4.18.0 to 4.19.0 (#617)**
 - 2024-08-29 08:53 9461c1b **build(deps): bump @bgord/frontend from `a8595e2` to `cb936d5` (#615)**
 - 2024-08-29 08:53 590c80a **build(deps-dev): bump @types/node from 22.5.0 to 22.5.1 (#616)**
 - 2024-08-29 08:53 2446b8b **build(deps-dev): bump @commitlint/cli from 19.4.0 to 19.4.1 (#618)**
 - 2024-08-29 08:52 f7da277 **build(deps): bump @prisma/client from 5.18.0 to 5.19.0 (#614)**
 - 2024-08-29 08:52 3b0b1b8 **build(deps-dev): bump prisma from 5.18.0 to 5.19.0 (#613)**
+- 2024-08-29 06:55 3518431 **docs: generate CHANGELOG**
 - 2024-08-29 06:53 f72cf00 **docs: generate CHANGELOG**
 - 2024-08-27 11:17 d43aaec **fix: prod build script**
 - 2024-08-27 11:07 c6f8538 **step: bump bgord/scripts**
