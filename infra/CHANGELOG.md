@@ -1,6 +1,9 @@
 # Changelog
+- 2024-08-31 16:42 b6f4962 **build(deps): bump preact-render-to-string from 6.5.9 to 6.5.10 (#621)**
+- 2024-08-31 16:42 52e79bd **build(deps): bump @bgord/frontend from `cb936d5` to `e80f756` (#622)**
+## 2024-08-31 16:42 
 - 2024-08-30 13:41 123e225 **fix: too long article metadata title/description**
-## 2024-08-30 13:41 
+- 2024-08-30 11:42 f57b480 **docs: generate CHANGELOG**
 - 2024-08-29 08:54 e7df9b7 **build(deps): bump open-graph-scraper from 6.8.0 to 6.8.1 (#620)**
 - 2024-08-29 08:54 449a078 **build(deps-dev): bump @commitlint/config-conventional (#619)**
 - 2024-08-29 08:53 d882102 **build(deps-dev): bump tsx from 4.18.0 to 4.19.0 (#617)**
