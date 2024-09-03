@@ -44,7 +44,7 @@
     "@bgord/node": "0.58.293",
     "@lucia-auth/adapter-prisma": "4.0.1",
     "@mozilla/readability": "0.5.0",
-    "@prisma/client": "5.19.0",
+    "@prisma/client": "5.19.1",
     "@reach/skip-nav": "0.18.0",
     "emittery": "1.0.3",
     "execa": "9.3.1",
