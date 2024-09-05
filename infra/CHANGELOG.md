@@ -1,7 +1,9 @@
 # Changelog
+- 2024-09-05 11:19 f485237 **build(deps-dev): bump knip from 5.27.4 to 5.29.2 (#630)**
 - 2024-09-05 11:19 1b79b0a **build(deps-dev): bump prisma from 5.19.0 to 5.19.1 (#627)**
 ## 2024-09-05 11:19 
 - 2024-09-05 11:18 cb62bae **build(deps): bump @prisma/client from 5.19.0 to 5.19.1 (#626)**
+- 2024-09-05 09:19 d470a9e **docs: generate CHANGELOG**
 - 2024-09-05 09:18 5652eba **docs: generate CHANGELOG**
 - 2024-08-31 16:42 b6f4962 **build(deps): bump preact-render-to-string from 6.5.9 to 6.5.10 (#621)**
 - 2024-08-31 16:42 52e79bd **build(deps): bump @bgord/frontend from `cb936d5` to `e80f756` (#622)**
