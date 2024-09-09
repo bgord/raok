@@ -1,9 +1,11 @@
 # Changelog
+- 2024-09-09 14:51 53bdced **step: bump bgord/frontend**
+## 2024-09-09 14:51 
 - 2024-09-09 10:42 38661d7 **build(deps-dev): bump knip from 5.29.2 to 5.30.0 (#636)**
-## 2024-09-09 10:42 
 - 2024-09-09 10:41 f49a66e **build(deps): bump iconoir-react from 7.8.0 to 7.9.0 (#634)**
 - 2024-09-09 10:41 7348178 **build(deps): bump promise-call-limit from 3.0.1 to 3.0.2 (#635)**
 - 2024-09-09 10:41 3aecb87 **build(deps-dev): bump @playwright/test from 1.46.1 to 1.47.0 (#633)**
+- 2024-09-09 08:42 572ca68 **docs: generate CHANGELOG**
 - 2024-09-05 11:21 6a210bd **build(deps-dev): bump @types/node from 22.5.1 to 22.5.4 (#632)**
 - 2024-09-05 11:20 d4036b1 **build(deps-dev): bump postcss from 8.4.41 to 8.4.45 (#631)**
 - 2024-09-05 11:19 f485237 **build(deps-dev): bump knip from 5.27.4 to 5.29.2 (#630)**
