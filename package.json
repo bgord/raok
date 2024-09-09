@@ -58,7 +58,7 @@
     "preact-render-to-string": "6.5.10",
     "preact-router": "4.1.2",
     "pretty-bytes-es5": "5.1.9",
-    "promise-call-limit": "3.0.1",
+    "promise-call-limit": "3.0.2",
     "react": "npm:@preact/compat@17.1.2",
     "react-dom": "npm:@preact/compat@17.1.2",
     "react-query": "3.39.3",
