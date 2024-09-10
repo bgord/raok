@@ -48,7 +48,7 @@
     "@reach/skip-nav": "0.18.0",
     "emittery": "1.0.3",
     "execa": "9.3.1",
-    "express": "4.19.2",
+    "express": "4.20.0",
     "iconoir-react": "7.9.0",
     "jsdom": "25.0.0",
     "lodash": "4.17.21",
