@@ -1,6 +1,10 @@
 # Changelog
+- 2024-09-11 08:32 867c58a **build(deps-dev): bump knip from 5.30.0 to 5.30.1 (#638)**
+- 2024-09-11 08:32 5c7c235 **build(deps): bump typescript from 5.5.4 to 5.6.2 (#639)**
+## 2024-09-11 08:32 
+- 2024-09-11 08:31 6943d54 **build(deps): bump express from 4.19.2 to 4.20.0 (#637)**
 - 2024-09-09 14:51 53bdced **step: bump bgord/frontend**
-## 2024-09-09 14:51 
+- 2024-09-09 12:51 ba9e7cc **docs: generate CHANGELOG**
 - 2024-09-09 10:42 38661d7 **build(deps-dev): bump knip from 5.29.2 to 5.30.0 (#636)**
 - 2024-09-09 10:41 f49a66e **build(deps): bump iconoir-react from 7.8.0 to 7.9.0 (#634)**
 - 2024-09-09 10:41 7348178 **build(deps): bump promise-call-limit from 3.0.1 to 3.0.2 (#635)**
