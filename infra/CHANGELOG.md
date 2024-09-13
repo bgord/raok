@@ -1,4 +1,6 @@
 # Changelog
+- 2024-09-13 11:33 d8638b5 **build(deps-dev): bump vitest from 2.0.5 to 2.1.0 (#647)**
+- 2024-09-13 11:33 851c334 **build(deps-dev): bump @biomejs/biome from 1.8.3 to 1.9.0 (#646)**
 - 2024-09-13 11:33 4e2d7cc **build(deps): bump @bgord/frontend from `0af039a` to `8b69d3c` (#645)**
 ## 2024-09-13 11:33 
 - 2024-09-13 11:32 2ddcde6 **build(deps-dev): bump @commitlint/config-conventional (#644)**
@@ -6,6 +8,7 @@
 - 2024-09-13 11:31 879767b **build(deps): bump express from 4.20.0 to 4.21.0 (#643)**
 - 2024-09-13 11:31 4ff414f **build(deps-dev): bump husky from 9.1.5 to 9.1.6 (#642)**
 - 2024-09-13 11:31 3e5803b **build(deps-dev): bump tsx from 4.19.0 to 4.19.1 (#641)**
+- 2024-09-13 09:33 c56a2e4 **docs: generate CHANGELOG**
 - 2024-09-13 09:33 aa5b557 **docs: generate CHANGELOG**
 - 2024-09-13 09:31 33c48ba **docs: generate CHANGELOG**
 - 2024-09-11 08:32 867c58a **build(deps-dev): bump knip from 5.30.0 to 5.30.1 (#638)**
