@@ -1,10 +1,12 @@
 # Changelog
+- 2024-09-13 11:33 4e2d7cc **build(deps): bump @bgord/frontend from `0af039a` to `8b69d3c` (#645)**
+## 2024-09-13 11:33 
 - 2024-09-13 11:32 2ddcde6 **build(deps-dev): bump @commitlint/config-conventional (#644)**
-## 2024-09-13 11:32 
 - 2024-09-13 11:31 fa4f0ef **build(deps-dev): bump @commitlint/cli from 19.4.1 to 19.5.0 (#640)**
 - 2024-09-13 11:31 879767b **build(deps): bump express from 4.20.0 to 4.21.0 (#643)**
 - 2024-09-13 11:31 4ff414f **build(deps-dev): bump husky from 9.1.5 to 9.1.6 (#642)**
 - 2024-09-13 11:31 3e5803b **build(deps-dev): bump tsx from 4.19.0 to 4.19.1 (#641)**
+- 2024-09-13 09:33 aa5b557 **docs: generate CHANGELOG**
 - 2024-09-13 09:31 33c48ba **docs: generate CHANGELOG**
 - 2024-09-11 08:32 867c58a **build(deps-dev): bump knip from 5.30.0 to 5.30.1 (#638)**
 - 2024-09-11 08:32 5c7c235 **build(deps): bump typescript from 5.5.4 to 5.6.2 (#639)**
