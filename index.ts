@@ -145,6 +145,7 @@ app.post(
 app.get(
   "/files/archive/:fileId/download",
   infra.AuthShield.verify,
+  bg.RateLimitShield.build(bg.Time.Seconds(10)),
   bg.Route(Delivery.Routes.DownloadFile),
 );
 app.get(
