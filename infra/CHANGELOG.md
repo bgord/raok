@@ -1,10 +1,12 @@
 # Changelog
+- 2024-09-14 17:03 eae9b8c **refactor: remove custom node modules cache**
+## 2024-09-14 17:03 
 - 2024-09-14 16:57 e72919b **step: update gh actions workflow versions**
 - 2024-09-14 16:57 966a101 **step: bump bgord/scripts**
-## 2024-09-14 16:57 
 - 2024-09-14 16:54 6c19565 **step: bump bgord/scripts**
 - 2024-09-14 16:29 cb56c56 **step: bump bgord/scripts**
 - 2024-09-14 15:30 a450003 **step: remove standard version**
+- 2024-09-14 14:58 08d24a4 **docs: generate CHANGELOG**
 - 2024-09-14 14:31 8bfd7f9 **docs: generate CHANGELOG**
 - 2024-09-14 14:30 718c8e0 **build(deps): bump serve-static from 1.15.0 to 1.16.2 (#648)**
 - 2024-09-14 14:29 1c2ccad **step: bump bgord/scripts**
