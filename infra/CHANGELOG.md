@@ -1,7 +1,10 @@
 # Changelog
+- 2024-09-14 14:13 62a72b0 **step: bump bgord/scripts**
+## 2024-09-14 14:13 
+- 2024-09-14 14:10 52975d8 **step: bump bgord/node**
 - 2024-09-14 13:57 6d24b61 **fix: file download rate limit**
-## 2024-09-14 13:57 
 - 2024-09-14 13:54 0b4ee65 **fix: vulnerability Open Redirect**
+- 2024-09-14 11:57 e7e976c **docs: generate CHANGELOG**
 - 2024-09-14 11:55 8dc4699 **docs: generate CHANGELOG**
 - 2024-09-13 11:33 d8638b5 **build(deps-dev): bump vitest from 2.0.5 to 2.1.0 (#647)**
 - 2024-09-13 11:33 851c334 **build(deps-dev): bump @biomejs/biome from 1.8.3 to 1.9.0 (#646)**
