@@ -1,10 +1,12 @@
 # Changelog
+- 2024-09-14 14:29 1c2ccad **step: bump bgord/scripts**
+## 2024-09-14 14:29 
 - 2024-09-14 14:19 cd25417 **step: bump bgord/frontend**
-## 2024-09-14 14:19 
 - 2024-09-14 14:13 62a72b0 **step: bump bgord/scripts**
 - 2024-09-14 14:10 52975d8 **step: bump bgord/node**
 - 2024-09-14 13:57 6d24b61 **fix: file download rate limit**
 - 2024-09-14 13:54 0b4ee65 **fix: vulnerability Open Redirect**
+- 2024-09-14 12:19 4971a99 **docs: generate CHANGELOG**
 - 2024-09-14 12:14 a1be819 **docs: generate CHANGELOG**
 - 2024-09-14 11:57 e7e976c **docs: generate CHANGELOG**
 - 2024-09-14 11:55 8dc4699 **docs: generate CHANGELOG**
