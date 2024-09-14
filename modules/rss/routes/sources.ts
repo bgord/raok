@@ -50,7 +50,7 @@ export async function Sources(
     devices: deviceManager.list(),
   };
 
-  const frontend = render(App({ ...state, url: request.url }));
+  const frontend = render(App({ ...state, url: "/sources" }));
   const html = infra.Html.process({
     frontend,
     state,
