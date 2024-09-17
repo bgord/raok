@@ -1,12 +1,15 @@
 # Changelog
+- 2024-09-17 10:44 6e435df **build(deps-dev): bump @playwright/test from 1.47.0 to 1.47.1 (#650)**
+- 2024-09-17 10:44 3781144 **build(deps): bump preact-render-to-string from 6.5.10 to 6.5.11 (#649)**
+## 2024-09-17 10:44 
 - 2024-09-14 17:07 1823099 **step: bump bgord/scripts**
-## 2024-09-14 17:07 
 - 2024-09-14 17:03 eae9b8c **refactor: remove custom node modules cache**
 - 2024-09-14 16:57 e72919b **step: update gh actions workflow versions**
 - 2024-09-14 16:57 966a101 **step: bump bgord/scripts**
 - 2024-09-14 16:54 6c19565 **step: bump bgord/scripts**
 - 2024-09-14 16:29 cb56c56 **step: bump bgord/scripts**
 - 2024-09-14 15:30 a450003 **step: remove standard version**
+- 2024-09-14 15:08 3adf09b **docs: generate CHANGELOG**
 - 2024-09-14 15:03 526e55f **docs: generate CHANGELOG**
 - 2024-09-14 14:58 08d24a4 **docs: generate CHANGELOG**
 - 2024-09-14 14:31 8bfd7f9 **docs: generate CHANGELOG**
