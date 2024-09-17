@@ -1,8 +1,10 @@
 # Changelog
+- 2024-09-17 10:46 aadc163 **build(deps): bump @bgord/frontend from `641a0df` to `7f025f5` (#652)**
+## 2024-09-17 10:46 
 - 2024-09-17 10:45 298e8cc **build(deps): bump preact from 10.23.2 to 10.24.0 (#651)**
-## 2024-09-17 10:45 
 - 2024-09-17 10:44 6e435df **build(deps-dev): bump @playwright/test from 1.47.0 to 1.47.1 (#650)**
 - 2024-09-17 10:44 3781144 **build(deps): bump preact-render-to-string from 6.5.10 to 6.5.11 (#649)**
+- 2024-09-17 08:46 b2f5829 **docs: generate CHANGELOG**
 - 2024-09-17 08:44 a2e9304 **docs: generate CHANGELOG**
 - 2024-09-14 17:07 1823099 **step: bump bgord/scripts**
 - 2024-09-14 17:03 eae9b8c **refactor: remove custom node modules cache**
