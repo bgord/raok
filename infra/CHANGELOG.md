@@ -1,10 +1,16 @@
 # Changelog
+- 2024-09-17 10:49 4e74961 **build(deps-dev): bump vitest from 2.1.0 to 2.1.1 (#656)**
+- 2024-09-17 10:49 437ef58 **build(deps): bump execa from 9.3.1 to 9.4.0 (#658)**
+- 2024-09-17 10:49 3b1ace0 **build(deps-dev): bump @types/node from 22.5.4 to 22.5.5 (#657)**
+## 2024-09-17 10:49 
+- 2024-09-17 10:48 c7e9431 **build(deps-dev): bump knip from 5.30.1 to 5.30.2 (#654)**
+- 2024-09-17 10:48 900d9bd **build(deps-dev): bump @biomejs/biome from 1.9.0 to 1.9.1 (#655)**
 - 2024-09-17 10:47 323e5fb **build(deps-dev): bump postcss from 8.4.45 to 8.4.47 (#653)**
-## 2024-09-17 10:47 
 - 2024-09-17 10:46 aadc163 **build(deps): bump @bgord/frontend from `641a0df` to `7f025f5` (#652)**
 - 2024-09-17 10:45 298e8cc **build(deps): bump preact from 10.23.2 to 10.24.0 (#651)**
 - 2024-09-17 10:44 6e435df **build(deps-dev): bump @playwright/test from 1.47.0 to 1.47.1 (#650)**
 - 2024-09-17 10:44 3781144 **build(deps): bump preact-render-to-string from 6.5.10 to 6.5.11 (#649)**
+- 2024-09-17 08:47 ba0ae9b **docs: generate CHANGELOG**
 - 2024-09-17 08:46 b2f5829 **docs: generate CHANGELOG**
 - 2024-09-17 08:46 1e9aa82 **docs: generate CHANGELOG**
 - 2024-09-17 08:44 a2e9304 **docs: generate CHANGELOG**
