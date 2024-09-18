@@ -1,6 +1,8 @@
 # Changelog
+- 2024-09-18 11:21 6aca5cd **step: bump bgord/scripts**
+## 2024-09-18 11:21 
 - 2024-09-18 11:19 7d516f2 **step: bump bgord/scripts**
-## 2024-09-18 11:19 
+- 2024-09-18 09:19 1085b10 **docs: generate CHANGELOG**
 - 2024-09-17 13:42 c83f3b0 **Revert "build(deps): bump execa from 9.3.1 to 9.4.0 (#658)"**
 - 2024-09-17 11:43 a4f0dc0 **docs: generate CHANGELOG**
 - 2024-09-17 10:49 4e74961 **build(deps-dev): bump vitest from 2.1.0 to 2.1.1 (#656)**
