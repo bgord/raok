@@ -1,7 +1,15 @@
 # Changelog
+- 2024-09-19 11:17 f20a4b5 **build(deps-dev): bump cspell from 8.14.2 to 8.14.4 (#666)**
+- 2024-09-19 11:17 91f1d27 **build(deps): bump open-graph-scraper from 6.8.1 to 6.8.2 (#667)**
+- 2024-09-19 11:17 5c56369 **build(deps): bump @bgord/design from 0.27.82 to 0.28.0 (#665)**
+## 2024-09-19 11:17 
+- 2024-09-19 11:16 dfc8580 **build(deps-dev): bump @types/nodemailer from 6.4.15 to 6.4.16 (#664)**
+- 2024-09-19 11:16 9696a8d **build(deps-dev): bump vite from 5.4.5 to 5.4.6 (#659)**
+- 2024-09-19 11:16 59f496a **build(deps): bump @bgord/node from 0.58.294 to 0.59.0 (#662)**
+- 2024-09-19 11:16 3466109 **build(deps): bump @bgord/frontend from `7f025f5` to `dd6841e` (#663)**
 - 2024-09-18 11:21 6aca5cd **step: bump bgord/scripts**
-## 2024-09-18 11:21 
 - 2024-09-18 11:19 7d516f2 **step: bump bgord/scripts**
+- 2024-09-18 09:21 8af0f0d **docs: generate CHANGELOG**
 - 2024-09-18 09:19 1085b10 **docs: generate CHANGELOG**
 - 2024-09-17 13:42 c83f3b0 **Revert "build(deps): bump execa from 9.3.1 to 9.4.0 (#658)"**
 - 2024-09-17 11:43 a4f0dc0 **docs: generate CHANGELOG**
