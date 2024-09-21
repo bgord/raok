@@ -1,7 +1,9 @@
 # Changelog
+- 2024-09-21 16:44 8feba78 **fix: execa issue**
+## 2024-09-21 16:44 
 - 2024-09-21 16:15 2f5b9e9 **build(deps-dev): bump @biomejs/biome from 1.9.1 to 1.9.2 (#669)**
 - 2024-09-21 16:15 1a012e6 **build(deps): bump @bgord/frontend from `dd6841e` to `d2efd09` (#668)**
-## 2024-09-21 16:15 
+- 2024-09-21 14:16 adf1cd9 **docs: generate CHANGELOG**
 - 2024-09-19 11:17 f20a4b5 **build(deps-dev): bump cspell from 8.14.2 to 8.14.4 (#666)**
 - 2024-09-19 11:17 91f1d27 **build(deps): bump open-graph-scraper from 6.8.1 to 6.8.2 (#667)**
 - 2024-09-19 11:17 5c56369 **build(deps): bump @bgord/design from 0.27.82 to 0.28.0 (#665)**
