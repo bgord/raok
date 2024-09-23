@@ -1,9 +1,15 @@
 # Changelog
+- 2024-09-23 09:20 c9fba0a **build(deps-dev): bump @playwright/test from 1.47.1 to 1.47.2 (#674)**
+## 2024-09-23 09:20 
+- 2024-09-23 09:19 efc2df7 **build(deps): bump jsdom from 25.0.0 to 25.0.1 (#672)**
+- 2024-09-23 09:19 e8e3d72 **build(deps-dev): bump esbuild from 0.23.1 to 0.24.0 (#671)**
+- 2024-09-23 09:19 e25b8d7 **build(deps-dev): bump knip from 5.30.2 to 5.30.4 (#673)**
+- 2024-09-23 09:19 da9cf1c **build(deps): bump @bgord/frontend from `d2efd09` to `8ed61fa` (#670)**
 - 2024-09-21 17:12 ce01392 **step: bump bgord/node**
-## 2024-09-21 17:12 
 - 2024-09-21 16:44 8feba78 **fix: execa issue**
 - 2024-09-21 16:15 2f5b9e9 **build(deps-dev): bump @biomejs/biome from 1.9.1 to 1.9.2 (#669)**
 - 2024-09-21 16:15 1a012e6 **build(deps): bump @bgord/frontend from `dd6841e` to `d2efd09` (#668)**
+- 2024-09-21 15:13 8eb4b33 **docs: generate CHANGELOG**
 - 2024-09-21 14:44 9d0c17b **docs: generate CHANGELOG**
 - 2024-09-21 14:16 adf1cd9 **docs: generate CHANGELOG**
 - 2024-09-19 11:17 f20a4b5 **build(deps-dev): bump cspell from 8.14.2 to 8.14.4 (#666)**
