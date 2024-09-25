@@ -1,8 +1,12 @@
 # Changelog
+- 2024-09-25 09:55 c6b18e5 **build(deps): bump preact from 10.24.0 to 10.24.1 (#681)**
+- 2024-09-25 09:55 8e312f4 **build(deps): bump @prisma/client from 5.19.1 to 5.20.0 (#680)**
+## 2024-09-25 09:55 
 - 2024-09-25 09:54 de79aaf **build(deps-dev): bump rollup from 4.21.3 to 4.22.4 (#675)**
 - 2024-09-25 09:54 dd2706c **build(deps-dev): bump knip from 5.30.4 to 5.30.5 (#678)**
+- 2024-09-25 09:54 ba251f2 **build(deps-dev): bump prisma from 5.19.1 to 5.20.0 (#679)**
 - 2024-09-25 09:54 152b5d3 **build(deps-dev): bump @types/lodash from 4.17.7 to 4.17.9 (#677)**
-## 2024-09-25 09:54 
+- 2024-09-25 07:54 d7c91d5 **docs: generate CHANGELOG**
 - 2024-09-23 09:20 c9fba0a **build(deps-dev): bump @playwright/test from 1.47.1 to 1.47.2 (#674)**
 - 2024-09-23 09:19 efc2df7 **build(deps): bump jsdom from 25.0.0 to 25.0.1 (#672)**
 - 2024-09-23 09:19 e8e3d72 **build(deps-dev): bump esbuild from 0.23.1 to 0.24.0 (#671)**
