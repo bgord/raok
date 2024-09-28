@@ -1,7 +1,10 @@
 # Changelog
+- 2024-09-28 19:58 c24f387 **step: bump bgord/node**
+## 2024-09-28 19:58 
+- 2024-09-28 18:39 c635f9e **step: express 5 migration**
 - 2024-09-27 10:36 0743382 **build(deps-dev): bump @types/node from 22.7.0 to 22.7.3 (#686)**
-## 2024-09-27 10:36 
 - 2024-09-27 10:35 d65998f **build(deps): bump @bgord/frontend from `8ed61fa` to `632138b` (#684)**
+- 2024-09-27 08:36 46befb2 **docs: generate CHANGELOG**
 - 2024-09-25 09:55 c6b18e5 **build(deps): bump preact from 10.24.0 to 10.24.1 (#681)**
 - 2024-09-25 09:55 b800145 **build(deps-dev): bump @types/node from 22.5.5 to 22.7.0 (#682)**
 - 2024-09-25 09:55 8e312f4 **build(deps): bump @prisma/client from 5.19.1 to 5.20.0 (#680)**
