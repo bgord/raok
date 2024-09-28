@@ -57,5 +57,5 @@ export async function Sources(
     language: request.language,
   });
 
-  return response.send(html);
+  response.send(html);
 }

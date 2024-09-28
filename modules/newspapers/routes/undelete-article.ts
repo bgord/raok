@@ -16,5 +16,5 @@ export async function UndeleteArticle(
   const article = await Aggregates.Article.build(id);
   await article.undelete(revision);
 
-  return response.send();
+  response.send();
 }

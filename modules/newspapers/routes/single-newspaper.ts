@@ -13,5 +13,5 @@ export async function SingleNewspaper(
 
   const newspaper = await Repos.NewspaperRepository.getById(newspaperId);
 
-  return response.send(newspaper);
+  response.send(newspaper);
 }

@@ -18,5 +18,5 @@ export async function SuggestedBlacklistedTokenDismiss(
 
   await suggestedBlacklistedToken.dismiss(until);
 
-  return response.status(200).send();
+  response.status(200).send();
 }

@@ -13,7 +13,7 @@ export class ErrorHandler {
     error,
     request,
     response,
-    next,
+    next
   ) => {
     if (error instanceof bg.Errors.InvalidCredentialsError) {
       infra.logger.error({
@@ -21,7 +21,8 @@ export class ErrorHandler {
         operation: "invalid_credentials_error",
         correlationId: request.requestId,
       });
-      return response.redirect("/");
+      response.redirect("/");
+      return;
     }
 
     if (error instanceof bg.Errors.AccessDeniedError) {
@@ -31,7 +32,8 @@ export class ErrorHandler {
         correlationId: request.requestId,
         metadata: { reason: error.reason, message: error.message },
       });
-      return response.redirect("/");
+      response.redirect("/");
+      return;
     }
 
     if (error instanceof bg.Errors.FileNotFoundError) {
@@ -41,7 +43,8 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(404).send("File not found");
+      response.status(404).send("File not found");
+      return;
     }
 
     if (error instanceof bg.Errors.TooManyRequestsError) {
@@ -52,9 +55,10 @@ export class ErrorHandler {
         metadata: { remainingMs: error.remainingMs },
       });
 
-      return response
+      response
         .status(429)
         .send({ message: "app.too_many_requests", _known: true });
+      return;
     }
 
     if (error instanceof bg.Errors.InvalidRevisionError) {
@@ -65,9 +69,10 @@ export class ErrorHandler {
         metadata: { url: request.url },
       });
 
-      return response
+      response
         .status(400)
         .send({ message: "revision.invalid.error", _known: true });
+      return;
     }
 
     if (error instanceof bg.Errors.RevisionMismatchError) {
@@ -78,9 +83,10 @@ export class ErrorHandler {
         metadata: { url: request.url },
       });
 
-      return response
+      response
         .status(412)
         .send({ message: "revision.mismatch.error", _known: true });
+      return;
     }
 
     if (
@@ -94,10 +100,11 @@ export class ErrorHandler {
         metadata: request.body,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: Newspapers.Policies.NonProcessedArticleUrlIsUnique.message,
         _known: true,
       });
+      return;
     }
 
     if (error instanceof Newspapers.Policies.TooManyArticlesInNewspaperError) {
@@ -107,10 +114,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: Newspapers.Policies.MaximumNewspaperArticleNumber.message,
         _known: true,
       });
+      return;
     }
 
     if (error instanceof Newspapers.VO.ArticleNotFoundError) {
@@ -120,10 +128,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: "article.not_found_during_metatags_scrapping_error",
         _known: true,
       });
+      return;
     }
 
     if (error instanceof Newspapers.VO.ArticleIsNotHTML) {
@@ -133,10 +142,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: "article.is_not_html_error",
         _known: true,
       });
+      return;
     }
 
     if (error instanceof Newspapers.VO.ArticleScrapingTimeoutError) {
@@ -146,10 +156,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: "article.scraping_timeout_error",
         _known: true,
       });
+      return;
     }
 
     if (error instanceof RSS.Policies.SourceUrlIsNotUniqueError) {
@@ -159,10 +170,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: RSS.Policies.SourceUrlIsUnique.message,
         _known: true,
       });
+      return;
     }
 
     if (error instanceof RSS.Policies.SourceUrlRespondsError) {
@@ -172,10 +184,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: RSS.Policies.SourceUrlResponds.message,
         _known: true,
       });
+      return;
     }
 
     if (
@@ -187,10 +200,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: Recommendations.Policies.BlacklistedTokenIsUnique.message,
         _known: true,
       });
+      return;
     }
 
     if (error instanceof Newspapers.Policies.ArticleBlacklistedError) {
@@ -200,10 +214,11 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
 
-      return response.status(400).send({
+      response.status(400).send({
         message: Newspapers.Policies.ArticleTitleNotBlacklisted.message,
         _known: true,
       });
+      return;
     }
 
     if (error instanceof z.ZodError) {
@@ -211,38 +226,41 @@ export class ErrorHandler {
         error.issues.find(
           (issue) =>
             issue.message ===
-            Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE,
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE
         )
       ) {
-        return response.status(400).send({
+        response.status(400).send({
           message: Newspapers.VO.ARTICLE_SEARCH_QUERY_MIN_LENGTH_ERROR_MESSAGE,
           _known: true,
         });
+        return;
       }
 
       if (
         error.issues.find(
           (issue) =>
             issue.message ===
-            Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE,
+            Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE
         )
       ) {
-        return response.status(400).send({
+        response.status(400).send({
           message: Newspapers.VO.ARTICLE_SEARCH_QUERY_MAX_LENGTH_ERROR_MESSAGE,
           _known: true,
         });
+        return;
       }
 
       if (
         error.issues.find(
           (issue) =>
-            issue.message === Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY,
+            issue.message === Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY
         )
       ) {
-        return response.status(400).send({
+        response.status(400).send({
           message: Recommendations.VO.TOKEN_STRUCTURE_ERROR_KEY,
           _known: true,
         });
+        return;
       }
     }
 

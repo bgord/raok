@@ -7,9 +7,12 @@ export async function Home(
   response: express.Response,
   _next: express.NextFunction
 ): Promise<void> {
-  if (response.locals.user) return response.redirect("/dashboard");
+  if (response.locals.user) {
+    response.redirect("/dashboard");
+    return;
+  }
 
   const vars = { HCAPTCHA_SITE_KEY: infra.Env.HCAPTCHA_SITE_KEY };
 
-  return response.render("home", vars);
+  response.render("home", vars);
 }

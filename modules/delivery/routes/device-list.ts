@@ -11,5 +11,5 @@ export async function DeviceList(
   const deviceManager = await Services.DeviceManager.build();
   const devices = deviceManager.list();
 
-  return response.send(devices);
+  response.send(devices);
 }

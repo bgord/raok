@@ -104,6 +104,8 @@ export class Article {
 
     await infra.EventStore.save(
       Events.ArticleAddedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_ADDED_EVENT,
         stream: Article.getStream(id),
         version: 1,
@@ -129,6 +131,8 @@ export class Article {
 
     await infra.EventStore.save(
       Events.ArticleDeletedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_DELETED_EVENT,
         stream: this.stream,
         version: 1,
@@ -146,6 +150,8 @@ export class Article {
 
     await infra.EventStore.save(
       Events.ArticleLockedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_LOCKED_EVENT,
         stream: this.stream,
         version: 1,
@@ -167,6 +173,8 @@ export class Article {
 
     await infra.EventStore.save(
       Events.ArticleUnlockedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_UNLOCKED_EVENT,
         stream: this.stream,
         version: 1,
@@ -184,6 +192,8 @@ export class Article {
 
     await infra.EventStore.save(
       Events.ArticleProcessedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_PROCESSED_EVENT,
         stream: this.stream,
         version: 1,
@@ -201,6 +211,8 @@ export class Article {
 
     await infra.EventStore.save(
       Events.ArticleReadEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_READ_EVENT,
         stream: this.stream,
         version: 1,
@@ -212,6 +224,8 @@ export class Article {
   async opened() {
     await infra.EventStore.save(
       Events.ArticleOpenedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_OPENED_EVENT,
         stream: this.stream,
         version: 1,
@@ -223,6 +237,8 @@ export class Article {
   async homepageOpened() {
     await infra.EventStore.save(
       Events.ArticleHomepageOpenedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_HOMEPAGE_OPENED_EVENT,
         stream: this.stream,
         version: 1,
@@ -240,6 +256,8 @@ export class Article {
 
     await infra.EventStore.save(
       Events.ArticleUndeleteEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.ARTICLE_UNDELETE_EVENT,
         stream: this.stream,
         version: 1,

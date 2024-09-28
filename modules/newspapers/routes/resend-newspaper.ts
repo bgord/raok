@@ -16,5 +16,5 @@ export async function ResendNewspaper(
   const newspaper = await new Aggregates.Newspaper(newspaperId).build();
   await newspaper.resend(revision);
 
-  return response.send();
+  response.send();
 }

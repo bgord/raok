@@ -18,5 +18,5 @@ export async function CancelNewspaper(
   const newspaper = await new Aggregates.Newspaper(newspaperId).build();
   await newspaper.cancel(revision);
 
-  return response.send();
+  response.send();
 }

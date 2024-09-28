@@ -18,5 +18,5 @@ export async function ArchiveNewspaper(
   const newspaper = await new Aggregates.Newspaper(newspaperId).build();
   await newspaper.archive(revision);
 
-  return response.send();
+  response.send();
 }

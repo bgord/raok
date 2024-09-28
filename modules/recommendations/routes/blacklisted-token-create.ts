@@ -14,5 +14,5 @@ export async function BlacklistedTokenCreate(
   await Policies.BlacklistedTokenIsUnique.perform({ token });
   await Repos.TokenBlacklistRepository.create({ token });
 
-  return response.status(201).send();
+  response.status(201).send();
 }

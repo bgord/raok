@@ -13,5 +13,5 @@ export async function TokenBlacklist(
   const tokens = await Repos.TokenBlacklistRepository.list();
 
   infra.ResponseCache.set(request.url, tokens, bg.Time.Minutes(30).seconds);
-  return response.status(200).send(tokens);
+  response.status(200).send(tokens);
 }

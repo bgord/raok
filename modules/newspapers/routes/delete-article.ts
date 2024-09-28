@@ -16,5 +16,5 @@ export async function DeleteArticle(
   const article = await Aggregates.Article.build(id);
   await article.delete(revision);
 
-  return response.send();
+  response.send();
 }

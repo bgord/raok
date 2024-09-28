@@ -15,5 +15,5 @@ export async function SourceDelete(
   const source = await Services.Source.build(id);
   await source.delete(revision);
 
-  return response.status(200).send();
+  response.status(200).send();
 }

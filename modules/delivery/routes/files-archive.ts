@@ -52,5 +52,5 @@ export async function FilesArchive(
     language: request.language,
   });
 
-  return response.send(html);
+  response.send(html);
 }

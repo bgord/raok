@@ -56,5 +56,5 @@ export async function ArticlesArchive(
     language: request.language,
   });
 
-  return response.send(html);
+  response.send(html);
 }

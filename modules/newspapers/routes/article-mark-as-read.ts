@@ -16,5 +16,6 @@ export async function ArticleMarkAsRead(
   const article = await Aggregates.Article.build(id);
   await article.markAsRead(revision);
 
-  return response.send();
+  response.send();
 }
+

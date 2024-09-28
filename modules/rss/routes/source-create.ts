@@ -14,5 +14,5 @@ export async function SourceCreate(
 
   await Services.Source.create({ id, url });
 
-  return response.status(201).send();
+  response.status(201).send();
 }

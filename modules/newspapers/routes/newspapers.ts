@@ -10,5 +10,5 @@ export async function Newspapers(
 ) {
   const newspapers = await Repos.NewspaperRepository.getAllNonArchived();
 
-  return response.send(newspapers);
+  response.send(newspapers);
 }

@@ -21,5 +21,5 @@ export async function BlacklistedTokenSuggestions(
     suggestions,
     bg.Time.Minutes(30).seconds
   );
-  return response.status(200).send(suggestions);
+  response.status(200).send(suggestions);
 }

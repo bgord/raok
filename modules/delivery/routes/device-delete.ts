@@ -15,5 +15,5 @@ export async function DeviceDelete(
   const device = await Services.Device.build(id);
   await deviceManager.delete(device);
 
-  return response.sendStatus(200);
+  response.sendStatus(200);
 }

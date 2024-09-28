@@ -14,5 +14,5 @@ export async function Articles(
   const articles =
     await Repos.ArticleRepository.pagedGetAllNonProcessed(pagination);
 
-  return response.send(articles);
+  response.send(articles);
 }

@@ -13,5 +13,5 @@ export async function AddArticle(
 
   await Aggregates.Article.add({ url, source: VO.ArticleSourceEnum.web });
 
-  return response.send();
+  response.send();
 }

@@ -14,5 +14,5 @@ export async function ArticleHomepageOpened(
   const article = await Aggregates.Article.build(id);
   await article.homepageOpened();
 
-  return response.send();
+  response.send();
 }

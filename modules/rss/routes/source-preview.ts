@@ -25,5 +25,5 @@ export async function SourcePreview(
   }));
 
   infra.ResponseCache.set(request.url, items, bg.Time.Minutes(5).minutes);
-  return response.status(200).send(items);
+  response.status(200).send(items);
 }

@@ -11,5 +11,5 @@ export async function ArchiveFiles(
   const filters = Repos.ArchiveFilesFilter.parse(request.query);
   const files = await Repos.FilesRepository.getAll(filters);
 
-  return response.send(files);
+  response.send(files);
 }

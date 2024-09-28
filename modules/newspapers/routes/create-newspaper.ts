@@ -21,5 +21,5 @@ export async function CreateNewspaper(
 
   await Aggregates.Newspaper.schedule(articles);
 
-  return response.send();
+  response.send();
 }

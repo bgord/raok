@@ -8,16 +8,22 @@ import * as Services from "../services";
 export async function NewspaperRead(
   request: express.Request,
   response: express.Response,
-  _next: express.NextFunction,
+  _next: express.NextFunction
 ) {
   const newspaperId = VO.NewspaperId.parse(request.params.newspaperId);
   const newspaper = await Repos.NewspaperRepository.getById(newspaperId);
 
-  if (!newspaper) return response.send("File doesn't exist");
+  if (!newspaper) {
+    response.send("File doesn't exist");
+    return;
+  }
 
   const html = await Services.NewspaperFile.read(newspaperId);
 
-  if (!html) return response.send("File doesn't exist");
+  if (!html) {
+    response.send("File doesn't exist");
+    return;
+  }
 
-  return response.send(html);
+  response.send(html);
 }

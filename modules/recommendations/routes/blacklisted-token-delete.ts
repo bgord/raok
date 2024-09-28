@@ -12,5 +12,5 @@ export async function BlacklistedTokenDelete(
 
   await Repos.TokenBlacklistRepository.delete({ token });
 
-  return response.status(200).send();
+  response.status(200).send();
 }

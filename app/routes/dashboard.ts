@@ -54,5 +54,5 @@ export async function Dashboard(
     language: request.language,
   });
 
-  return response.send(html);
+  response.send(html);
 }

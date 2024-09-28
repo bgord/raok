@@ -13,5 +13,5 @@ export async function SourceList(
   const sources = await Repos.SourceRepository.listAll();
 
   infra.ResponseCache.set(request.url, sources, bg.Time.Minutes(5).seconds);
-  return response.status(200).send(sources);
+  response.status(200).send(sources);
 }

@@ -8,7 +8,6 @@ export * from "./supported-languages";
 
 import * as bg from "@bgord/node";
 import { ResponseCache } from "./response-cache";
-import { db } from "./db";
 import { Env } from "./env";
 import { Mailer } from "./mailer";
 import { SupportedLanguages } from "./supported-languages";
@@ -25,7 +24,6 @@ export const prerequisites = [
     binary: "ebook-convert",
     enabled: Env.type !== bg.Schema.NodeEnvironmentEnum.test,
   }),
-  new bg.PrerequisitePrisma({ label: "prisma-sqlite", client: db }),
   new bg.PrerequisitePath({
     label: "static directory",
     path: "static",

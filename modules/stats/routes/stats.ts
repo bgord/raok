@@ -9,5 +9,5 @@ export async function Stats(
 ) {
   const stats = await Repos.StatsRepository.getAll();
 
-  return response.send(stats);
+  response.send(stats);
 }

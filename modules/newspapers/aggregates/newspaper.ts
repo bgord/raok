@@ -41,7 +41,7 @@ export class Newspaper {
         Events.NewspaperArchivedEvent,
         Events.NewspaperFailedEvent,
       ],
-      Newspaper.getStream(this.id),
+      Newspaper.getStream(this.id)
     );
 
     for (const event of events) {
@@ -101,6 +101,8 @@ export class Newspaper {
 
     await infra.EventStore.save(
       Events.NewspaperScheduledEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         stream: Newspaper.getStream(newspaperId),
         version: 1,
@@ -110,7 +112,7 @@ export class Newspaper {
           createdAt: Date.now(),
           revision: bg.Revision.initial,
         },
-      } satisfies Events.NewspaperScheduledEventType),
+      } satisfies Events.NewspaperScheduledEventType)
     );
   }
 
@@ -129,11 +131,13 @@ export class Newspaper {
 
       await infra.EventStore.save(
         Events.NewspaperGenerateEvent.parse({
+          id: bg.NewUUID.generate(),
+          createdAt: new Date(),
           name: Events.NEWSPAPER_GENERATED_EVENT,
           stream: this.stream,
           version: 1,
           payload: { newspaperId: this.id, revision: revision.next().value },
-        } satisfies Events.NewspaperGenerateEventType),
+        } satisfies Events.NewspaperGenerateEventType)
       );
     } catch (error) {
       infra.logger.error({
@@ -144,11 +148,13 @@ export class Newspaper {
 
       await infra.EventStore.save(
         Events.NewspaperFailedEvent.parse({
+          id: bg.NewUUID.generate(),
+          createdAt: new Date(),
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
           stream: this.stream,
           payload: { newspaperId: this.id, revision: revision.next().value },
-        } satisfies Events.NewspaperFailedEventType),
+        } satisfies Events.NewspaperFailedEventType)
       );
     }
   }
@@ -163,11 +169,13 @@ export class Newspaper {
     try {
       await Delivery.Services.ArbitraryFileSender.send(
         Services.NewspaperFile.getAttachment(this.id),
-        to,
+        to
       );
 
       await infra.EventStore.save(
         Events.NewspaperSentEvent.parse({
+          id: bg.NewUUID.generate(),
+          createdAt: new Date(),
           name: Events.NEWSPAPER_SENT_EVENT,
           stream: this.stream,
           version: 1,
@@ -177,7 +185,7 @@ export class Newspaper {
             sentAt: Date.now(),
             revision: revision.next().value,
           },
-        } satisfies Events.NewspaperSentEventType),
+        } satisfies Events.NewspaperSentEventType)
       );
     } catch (error) {
       infra.logger.error({
@@ -188,11 +196,13 @@ export class Newspaper {
 
       await infra.EventStore.save(
         Events.NewspaperFailedEvent.parse({
+          id: bg.NewUUID.generate(),
+          createdAt: new Date(),
           name: Events.NEWSPAPER_FAILED_EVENT,
           version: 1,
           stream: this.stream,
           payload: { newspaperId: this.id, revision: revision.next().value },
-        } satisfies Events.NewspaperFailedEventType),
+        } satisfies Events.NewspaperFailedEventType)
       );
     }
   }
@@ -206,11 +216,13 @@ export class Newspaper {
 
     await infra.EventStore.save(
       Events.NewspaperArchivedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
         stream: this.stream,
         payload: { newspaperId: this.id, revision: revision.next().value },
-      } satisfies Events.NewspaperArchivedEventType),
+      } satisfies Events.NewspaperArchivedEventType)
     );
   }
 
@@ -231,11 +243,13 @@ export class Newspaper {
 
     await infra.EventStore.save(
       Events.NewspaperArchivedEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.NEWSPAPER_ARCHIVED_EVENT,
         version: 1,
         stream: this.stream,
         payload: { newspaperId: this.id, revision: revision.next().value },
-      } satisfies Events.NewspaperArchivedEventType),
+      } satisfies Events.NewspaperArchivedEventType)
     );
   }
 
@@ -248,6 +262,8 @@ export class Newspaper {
 
     await infra.EventStore.save(
       Events.NewspaperScheduledEvent.parse({
+        id: bg.NewUUID.generate(),
+        createdAt: new Date(),
         name: Events.NEWSPAPER_SCHEDULED_EVENT,
         version: 1,
         stream: this.stream,
@@ -257,7 +273,7 @@ export class Newspaper {
           createdAt: Date.now(),
           revision: revision.next().value,
         },
-      } satisfies Events.NewspaperScheduledEventType),
+      } satisfies Events.NewspaperScheduledEventType)
     );
   }
 

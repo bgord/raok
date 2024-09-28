@@ -20,5 +20,5 @@ export async function ArchiveArticles(
     filters,
   );
 
-  return response.send(articles);
+  response.send(articles);
 }
