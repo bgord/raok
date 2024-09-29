@@ -1,8 +1,10 @@
 # Changelog
+- 2024-09-29 14:05 f27e830 **step: bump bgord/node**
+## 2024-09-29 14:05 
 - 2024-09-29 12:54 85a76af **step: update package lock**
-## 2024-09-29 12:54 
 - 2024-09-29 12:08 966aa0d **fix: formatting issue**
 - 2024-09-29 12:06 9d5e2df **step: bump bgord/node**
+- 2024-09-29 10:55 25c82ca **docs: generate CHANGELOG**
 - 2024-09-29 10:09 3057475 **docs: generate CHANGELOG**
 - 2024-09-29 10:08 aa997d6 **docs: generate CHANGELOG**
 - 2024-09-28 19:58 c24f387 **step: bump bgord/node**
