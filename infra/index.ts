@@ -56,7 +56,6 @@ export const prerequisites = [
     label: "translations",
     supportedLanguages: SupportedLanguages,
   }),
-  new bg.PrerequisiteMigrations({ label: "migrations" }),
   new bg.PrerequisiteMemory({
     label: "memory-consumption",
     maximum: new bg.Size({ value: 500, unit: bg.SizeUnit.MB }),
