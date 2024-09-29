@@ -1,6 +1,8 @@
 # Changelog
+- 2024-09-29 12:08 966aa0d **fix: formatting issue**
+## 2024-09-29 12:08 
 - 2024-09-29 12:06 9d5e2df **step: bump bgord/node**
-## 2024-09-29 12:06 
+- 2024-09-29 10:08 aa997d6 **docs: generate CHANGELOG**
 - 2024-09-28 19:58 c24f387 **step: bump bgord/node**
 - 2024-09-28 18:40 424d665 **docs: generate CHANGELOG**
 - 2024-09-28 18:39 c635f9e **step: express 5 migration**
