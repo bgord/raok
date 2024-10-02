@@ -1,7 +1,10 @@
 # Changelog
+- 2024-10-03 00:02 cf357a9 **build(deps): bump @bgord/frontend from `632138b` to `bed3a96` (#690)**
+- 2024-10-03 00:02 8c48ffe **build(deps-dev): bump @biomejs/biome from 1.9.2 to 1.9.3 (#689)**
+## 2024-10-03 00:02 
 - 2024-10-01 11:00 cc61761 **build(deps-dev): bump @types/node from 22.7.3 to 22.7.4 (#688)**
-## 2024-10-01 11:00 
 - 2024-10-01 10:57 c8f7a0b **build(deps-dev): bump knip from 5.30.5 to 5.30.6 (#687)**
+- 2024-10-01 09:00 f4c6054 **docs: generate CHANGELOG**
 - 2024-10-01 08:57 afe46f7 **docs: generate CHANGELOG**
 - 2024-09-29 14:05 f27e830 **step: bump bgord/node**
 - 2024-09-29 12:54 85a76af **step: update package lock**
