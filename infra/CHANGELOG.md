@@ -1,8 +1,14 @@
 # Changelog
+- 2024-10-07 08:51 930f4bd **build(deps): bump preact from 10.24.1 to 10.24.2 (#696)**
+- 2024-10-07 08:51 5141105 **build(deps-dev): bump knip from 5.30.6 to 5.32.0 (#695)**
+## 2024-10-07 08:51 
+- 2024-10-07 08:50 cab8f17 **build(deps-dev): bump vitest from 2.1.1 to 2.1.2 (#691)**
+- 2024-10-07 08:50 7632307 **build(deps): bump @bgord/frontend from `bed3a96` to `c592b8e` (#692)**
+- 2024-10-07 08:50 2b7115f **build(deps-dev): bump @types/lodash from 4.17.9 to 4.17.10 (#693)**
 - 2024-10-03 00:20 e32d34c **step: update deps**
-## 2024-10-03 00:20 
 - 2024-10-03 00:02 cf357a9 **build(deps): bump @bgord/frontend from `632138b` to `bed3a96` (#690)**
 - 2024-10-03 00:02 8c48ffe **build(deps-dev): bump @biomejs/biome from 1.9.2 to 1.9.3 (#689)**
+- 2024-10-02 22:21 676c6ff **docs: generate CHANGELOG**
 - 2024-10-02 22:02 2c8be5b **docs: generate CHANGELOG**
 - 2024-10-01 11:00 cc61761 **build(deps-dev): bump @types/node from 22.7.3 to 22.7.4 (#688)**
 - 2024-10-01 10:57 c8f7a0b **build(deps-dev): bump knip from 5.30.5 to 5.30.6 (#687)**
