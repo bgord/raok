@@ -1,10 +1,15 @@
 # Changelog
+- 2024-10-09 12:07 f19dba3 **build(deps-dev): bump @playwright/test from 1.47.2 to 1.48.0 (#704)**
+- 2024-10-09 12:07 be393e9 **build(deps-dev): bump knip from 5.33.1 to 5.33.2 (#703)**
+- 2024-10-09 12:07 ba5d24e **build(deps): bump typescript from 5.6.2 to 5.6.3 (#701)**
+- 2024-10-09 12:07 7d91c4a **build(deps): bump express from 5.0.0 to 5.0.1 (#702)**
+## 2024-10-09 12:07 
 - 2024-10-08 23:41 3ee6459 **step: bump bgord/node**
-## 2024-10-08 23:41 
 - 2024-10-08 23:40 177c419 **build(deps-dev): bump @types/node from 22.7.4 to 22.7.5 (#700)**
 - 2024-10-08 23:39 b2235b9 **build(deps): bump @bgord/frontend from `c592b8e` to `29f3661` (#698)**
 - 2024-10-08 23:39 a7fea78 **build(deps-dev): bump knip from 5.32.0 to 5.33.1 (#697)**
 - 2024-10-08 23:39 380f21a **build(deps): bump lucia from 3.2.0 to 3.2.1 (#699)**
+- 2024-10-08 21:41 6ad6f93 **docs: generate CHANGELOG**
 - 2024-10-08 21:40 93349a1 **docs: generate CHANGELOG**
 - 2024-10-07 08:51 930f4bd **build(deps): bump preact from 10.24.1 to 10.24.2 (#696)**
 - 2024-10-07 08:51 5141105 **build(deps-dev): bump knip from 5.30.6 to 5.32.0 (#695)**
