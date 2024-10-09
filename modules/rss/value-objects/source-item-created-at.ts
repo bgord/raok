@@ -1,5 +1,11 @@
 import * as bg from "@bgord/node";
-import df from "date-fns";
+import {
+  isWithinInterval,
+  max,
+  subMonths,
+  subDays,
+  endOfToday,
+} from "date-fns";
 
 export class SourceItemCreatedAt {
   constructor(readonly isoDate: string | undefined) {}
@@ -7,12 +13,12 @@ export class SourceItemCreatedAt {
   public isAcceptable(_sourceProcessedUntil: bg.RelativeDateType): boolean {
     if (!this.isoDate) return false;
 
-    return df.isWithinInterval(new Date(this.isoDate), {
-      start: df.max([
-        df.subMonths(new Date(), 3),
-        df.subDays(_sourceProcessedUntil.raw, 3),
+    return isWithinInterval(new Date(this.isoDate), {
+      start: max([
+        subMonths(new Date(), 3),
+        subDays(_sourceProcessedUntil.raw, 3),
       ]),
-      end: df.endOfToday(),
+      end: endOfToday(),
     });
   }
 }
