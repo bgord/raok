@@ -1,9 +1,12 @@
 # Changelog
+- 2024-10-09 18:59 bfbfc39 **step: bump bgord/scripts**
+## 2024-10-09 18:59 
+- 2024-10-09 18:53 918c257 **refactor: do not use default date-fns import**
 - 2024-10-09 12:07 f19dba3 **build(deps-dev): bump @playwright/test from 1.47.2 to 1.48.0 (#704)**
 - 2024-10-09 12:07 be393e9 **build(deps-dev): bump knip from 5.33.1 to 5.33.2 (#703)**
 - 2024-10-09 12:07 ba5d24e **build(deps): bump typescript from 5.6.2 to 5.6.3 (#701)**
 - 2024-10-09 12:07 7d91c4a **build(deps): bump express from 5.0.0 to 5.0.1 (#702)**
-## 2024-10-09 12:07 
+- 2024-10-09 10:07 00dbbe2 **docs: generate CHANGELOG**
 - 2024-10-08 23:41 3ee6459 **step: bump bgord/node**
 - 2024-10-08 23:40 177c419 **build(deps-dev): bump @types/node from 22.7.4 to 22.7.5 (#700)**
 - 2024-10-08 23:39 b2235b9 **build(deps): bump @bgord/frontend from `c592b8e` to `29f3661` (#698)**
