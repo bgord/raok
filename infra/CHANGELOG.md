@@ -1,7 +1,11 @@
 # Changelog
+- 2024-10-13 01:05 86a6ef6 **step: add setup_base_config to prod build**
+- 2024-10-13 01:05 78324bf **step: bump bgord/scripts**
+## 2024-10-13 01:05 
+- 2024-10-11 21:36 f358f02 **step: bump bgord/scripts**
 - 2024-10-09 18:59 bfbfc39 **step: bump bgord/scripts**
-## 2024-10-09 18:59 
 - 2024-10-09 18:53 918c257 **refactor: do not use default date-fns import**
+- 2024-10-09 17:00 37b8f75 **docs: generate CHANGELOG**
 - 2024-10-09 12:07 f19dba3 **build(deps-dev): bump @playwright/test from 1.47.2 to 1.48.0 (#704)**
 - 2024-10-09 12:07 be393e9 **build(deps-dev): bump knip from 5.33.1 to 5.33.2 (#703)**
 - 2024-10-09 12:07 ba5d24e **build(deps): bump typescript from 5.6.2 to 5.6.3 (#701)**
