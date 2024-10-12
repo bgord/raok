@@ -1,7 +1,9 @@
 # Changelog
+- 2024-10-13 01:07 d247f85 **step: bump bgord/node**
+## 2024-10-13 01:07 
 - 2024-10-13 01:05 86a6ef6 **step: add setup_base_config to prod build**
 - 2024-10-13 01:05 78324bf **step: bump bgord/scripts**
-## 2024-10-13 01:05 
+- 2024-10-12 23:05 68b538c **docs: generate CHANGELOG**
 - 2024-10-11 21:36 f358f02 **step: bump bgord/scripts**
 - 2024-10-09 18:59 bfbfc39 **step: bump bgord/scripts**
 - 2024-10-09 18:53 918c257 **refactor: do not use default date-fns import**
