@@ -1,6 +1,11 @@
 # Changelog
+- 2024-10-15 17:35 427dd37 **build(deps): bump preact from 10.24.2 to 10.24.3 (#710)**
+## 2024-10-15 17:35 
+- 2024-10-15 17:34 f419e79 **build(deps-dev): bump knip from 5.33.2 to 5.33.3 (#705)**
+- 2024-10-15 17:34 b2fb90c **build(deps-dev): bump cspell from 8.14.4 to 8.15.2 (#709)**
+- 2024-10-15 17:34 71ae584 **build(deps-dev): bump vitest from 2.1.2 to 2.1.3 (#708)**
 - 2024-10-15 14:16 6ee1e08 **step: bump bgord/node**
-## 2024-10-15 14:16 
+- 2024-10-15 12:16 a8a9201 **docs: generate CHANGELOG**
 - 2024-10-13 01:18 08e2675 **Revert "step: bump bgord/node"**
 - 2024-10-13 01:07 d247f85 **step: bump bgord/node**
 - 2024-10-13 01:05 86a6ef6 **step: add setup_base_config to prod build**
