@@ -32,7 +32,7 @@
     "knip": "5.33.3",
     "postcss": "8.4.47",
     "postcss-cli": "11.0.0",
-    "prisma": "5.21.0",
+    "prisma": "5.21.1",
     "shellcheck": "3.0.0",
     "tsx": "4.19.1",
     "vitest": "2.1.3"
