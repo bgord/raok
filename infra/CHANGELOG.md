@@ -1,8 +1,10 @@
 # Changelog
+- 2024-10-19 20:00 db9962e **step: bump bgord/node**
+## 2024-10-19 20:00 
 - 2024-10-19 16:12 64014c3 **build(deps-dev): bump prisma from 5.21.0 to 5.21.1 (#719)**
 - 2024-10-19 16:12 19ce88d **build(deps-dev): bump @biomejs/biome from 1.9.3 to 1.9.4 (#720)**
 - 2024-10-19 16:12 0558164 **build(deps): bump @prisma/client from 5.21.0 to 5.21.1 (#718)**
-## 2024-10-19 16:12 
+- 2024-10-19 14:13 fa25cd0 **docs: generate CHANGELOG**
 - 2024-10-17 08:09 1ed158a **build(deps-dev): bump @types/node from 22.7.5 to 22.7.6 (#717)**
 - 2024-10-17 08:08 a819de6 **build(deps-dev): bump @playwright/test from 1.48.0 to 1.48.1 (#715)**
 - 2024-10-17 08:08 1a3dc9f **build(deps-dev): bump cspell from 8.15.2 to 8.15.3 (#716)**
