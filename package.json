@@ -25,7 +25,7 @@
     "@types/nodemailer": "6.4.16",
     "@types/open-graph-scraper": "4.8.5",
     "@types/serialize-javascript": "5.0.4",
-    "cspell": "8.15.3",
+    "cspell": "8.15.4",
     "esbuild": "0.24.0",
     "gzip-cli": "1.2.0",
     "husky": "9.1.6",
