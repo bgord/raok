@@ -1,8 +1,10 @@
 # Changelog
+- 2024-10-23 08:23 f23e8c3 **build(deps-dev): bump @types/node from 22.7.6 to 22.7.9 (#726)**
+## 2024-10-23 08:23 
 - 2024-10-23 08:21 fdc7bf5 **build(deps): bump lucia from 3.2.1 to 3.2.2 (#724)**
 - 2024-10-23 08:21 47f257e **build(deps-dev): bump cspell from 8.15.3 to 8.15.4 (#723)**
 - 2024-10-23 08:21 368138b **build(deps-dev): bump @types/lodash from 4.17.10 to 4.17.12 (#722)**
-## 2024-10-23 08:21 
+- 2024-10-23 06:22 ce9c0c7 **docs: generate CHANGELOG**
 - 2024-10-19 20:00 db9962e **step: bump bgord/node**
 - 2024-10-19 18:01 44606b5 **docs: generate CHANGELOG**
 - 2024-10-19 16:12 64014c3 **build(deps-dev): bump prisma from 5.21.0 to 5.21.1 (#719)**
