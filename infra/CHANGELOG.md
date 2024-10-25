@@ -1,10 +1,13 @@
 # Changelog
+- 2024-10-25 09:58 ae5c75b **build(deps-dev): bump knip from 5.33.3 to 5.34.0 (#728)**
+- 2024-10-25 09:58 3e8fc4b **build(deps): bump @bgord/frontend from `c267109` to `ad59933` (#727)**
+## 2024-10-25 09:58 
 - 2024-10-23 08:58 e1ab052 **step: bump bgord/node**
-## 2024-10-23 08:58 
 - 2024-10-23 08:23 f23e8c3 **build(deps-dev): bump @types/node from 22.7.6 to 22.7.9 (#726)**
 - 2024-10-23 08:21 fdc7bf5 **build(deps): bump lucia from 3.2.1 to 3.2.2 (#724)**
 - 2024-10-23 08:21 47f257e **build(deps-dev): bump cspell from 8.15.3 to 8.15.4 (#723)**
 - 2024-10-23 08:21 368138b **build(deps-dev): bump @types/lodash from 4.17.10 to 4.17.12 (#722)**
+- 2024-10-23 06:59 420af1c **docs: generate CHANGELOG**
 - 2024-10-23 06:24 4ac769d **docs: generate CHANGELOG**
 - 2024-10-23 06:22 ce9c0c7 **docs: generate CHANGELOG**
 - 2024-10-19 20:00 db9962e **step: bump bgord/node**
