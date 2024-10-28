@@ -47,7 +47,7 @@
     "@reach/skip-nav": "0.18.0",
     "date-fns": "4.1.0",
     "emittery": "1.0.3",
-    "execa": "9.3.1",
+    "execa": "9.5.0",
     "express": "5.0.1",
     "iconoir-react": "7.9.0",
     "jsdom": "25.0.1",
