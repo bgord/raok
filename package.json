@@ -15,7 +15,7 @@
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
     "@fullhuman/postcss-purgecss": "6.0.0",
-    "@playwright/test": "1.48.1",
+    "@playwright/test": "1.48.2",
     "@types/cors": "2.8.17",
     "@types/express": "5.0.0",
     "@types/express-form-data": "2.0.5",
