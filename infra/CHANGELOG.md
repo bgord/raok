@@ -1,7 +1,13 @@
 # Changelog
+- 2024-10-29 07:58 fd3b28d **build(deps-dev): bump @playwright/test from 1.48.1 to 1.48.2 (#735)**
+- 2024-10-29 07:58 ee54c43 **build(deps-dev): bump knip from 5.34.0 to 5.34.2 (#736)**
+- 2024-10-29 07:58 7107563 **build(deps): bump @bgord/node from 0.83.2 to 0.83.3 (#734)**
+## 2024-10-29 07:58 
+- 2024-10-29 07:57 8b1a0e6 **build(deps-dev): bump vitest from 2.1.3 to 2.1.4 (#737)**
+- 2024-10-29 07:57 77ffa37 **build(deps-dev): bump @types/node from 22.7.9 to 22.8.2 (#738)**
 - 2024-10-25 09:58 ae5c75b **build(deps-dev): bump knip from 5.33.3 to 5.34.0 (#728)**
 - 2024-10-25 09:58 3e8fc4b **build(deps): bump @bgord/frontend from `c267109` to `ad59933` (#727)**
-## 2024-10-25 09:58 
+- 2024-10-25 07:59 b91e50b **docs: generate CHANGELOG**
 - 2024-10-23 08:58 e1ab052 **step: bump bgord/node**
 - 2024-10-23 08:23 f23e8c3 **build(deps-dev): bump @types/node from 22.7.6 to 22.7.9 (#726)**
 - 2024-10-23 08:21 fdc7bf5 **build(deps): bump lucia from 3.2.1 to 3.2.2 (#724)**
