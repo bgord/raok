@@ -1,12 +1,17 @@
 # Changelog
+- 2024-10-31 08:52 a09d7cc **build(deps-dev): bump cspell from 8.15.4 to 8.15.5 (#743)**
+- 2024-10-31 08:52 61398fa **build(deps): bump @bgord/frontend from `1d04099` to `8192c70` (#740)**
+- 2024-10-31 08:52 1a67e32 **build(deps-dev): bump @types/lodash from 4.17.12 to 4.17.13 (#739)**
+- 2024-10-31 08:52 17b29d1 **build(deps-dev): bump knip from 5.34.2 to 5.34.4 (#744)**
+## 2024-10-31 08:52 
 - 2024-10-29 07:59 3edaac0 **build(deps-dev): bump tsx from 4.19.1 to 4.19.2 (#732)**
 - 2024-10-29 07:59 2a931b8 **build(deps): bump @bgord/frontend from `ad59933` to `1d04099` (#731)**
-## 2024-10-29 07:59 
 - 2024-10-29 07:58 fd3b28d **build(deps-dev): bump @playwright/test from 1.48.1 to 1.48.2 (#735)**
 - 2024-10-29 07:58 ee54c43 **build(deps-dev): bump knip from 5.34.0 to 5.34.2 (#736)**
 - 2024-10-29 07:58 7107563 **build(deps): bump @bgord/node from 0.83.2 to 0.83.3 (#734)**
 - 2024-10-29 07:57 8b1a0e6 **build(deps-dev): bump vitest from 2.1.3 to 2.1.4 (#737)**
 - 2024-10-29 07:57 77ffa37 **build(deps-dev): bump @types/node from 22.7.9 to 22.8.2 (#738)**
+- 2024-10-29 06:59 483e05a **docs: generate CHANGELOG**
 - 2024-10-29 06:58 b2fad55 **docs: generate CHANGELOG**
 - 2024-10-25 09:58 ae5c75b **build(deps-dev): bump knip from 5.33.3 to 5.34.0 (#728)**
 - 2024-10-25 09:58 3e8fc4b **build(deps): bump @bgord/frontend from `c267109` to `ad59933` (#727)**
