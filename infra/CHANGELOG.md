@@ -1,8 +1,12 @@
 # Changelog
+- 2024-11-08 08:20 298814a **build(deps-dev): bump cspell from 8.15.7 to 8.16.0 (#758)**
+- 2024-11-08 08:20 1d8dad1 **build(deps-dev): bump knip from 5.36.2 to 5.36.3 (#757)**
+- 2024-11-08 08:20 127b5b3 **build(deps-dev): bump @types/node from 22.8.7 to 22.9.0 (#754)**
+## 2024-11-08 08:20 
 - 2024-11-04 08:04 b0cd6f2 **build(deps-dev): bump knip from 5.34.4 to 5.36.2 (#751)**
 - 2024-11-04 08:04 99b2373 **build(deps-dev): bump cspell from 8.15.5 to 8.15.7 (#752)**
-## 2024-11-04 08:04 
 - 2024-11-04 08:03 1b6acc0 **build(deps-dev): bump @types/node from 22.8.5 to 22.8.7 (#749)**
+- 2024-11-04 07:04 d3cf2fe **docs: generate CHANGELOG**
 - 2024-11-04 07:03 80de44d **docs: generate CHANGELOG**
 - 2024-10-31 08:54 e50cf9d **build(deps-dev): bump @types/node from 22.8.2 to 22.8.5 (#745)**
 - 2024-10-31 08:52 a09d7cc **build(deps-dev): bump cspell from 8.15.4 to 8.15.5 (#743)**
