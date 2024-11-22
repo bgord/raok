@@ -1,8 +1,10 @@
 # Changelog
+- 2024-11-22 21:39 59a177b **step: cleanup**
+## 2024-11-22 21:39 
 - 2024-11-22 21:34 90394da **step: cleanup**
-## 2024-11-22 21:34 
 - 2024-11-22 21:32 b874e1e **refactor: hardocde bgord/frontend version**
 - 2024-11-22 21:10 7d58a66 **feature: remove newspaper files**
+- 2024-11-22 20:35 001625f **docs: generate CHANGELOG**
 - 2024-11-22 19:54 0daa89d **refactor: remove dependabot and codeql**
 - 2024-11-22 19:44 dbf2100 **feature: remove files**
 - 2024-11-08 08:20 298814a **build(deps-dev): bump cspell from 8.15.7 to 8.16.0 (#758)**
