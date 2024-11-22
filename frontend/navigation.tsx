@@ -28,7 +28,6 @@ function NavigationDesktop(props: NavigationPropsType) {
         <NavigationLink href="/archive/articles">
           {t("app.articles")}
         </NavigationLink>
-        <NavigationLink href="/archive/files">{t("app.files")}</NavigationLink>
         <NavigationLink href="/sources">{t("app.sources")}</NavigationLink>
         <NavigationLink href="/settings">{t("app.settings")}</NavigationLink>
         <strong data-mx="6" data-color="white">
@@ -116,10 +115,6 @@ function NavigationMobile(props: NavigationPropsType) {
               href="/archive/articles"
             >
               {t("app.articles")}
-            </NavigationLink>
-
-            <NavigationLink onClick={navigation.disable} href="/archive/files">
-              {t("app.files")}
             </NavigationLink>
 
             <NavigationLink onClick={navigation.disable} href="/sources">

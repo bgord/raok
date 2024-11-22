@@ -46,14 +46,6 @@ model Article {
   @@index([status])
 }
 
-model Files {
-  id     String  @id @default(uuid())
-  name   String
-  size   Int
-  path   String
-  sentAt BigInt?
-}
-
 model StatsKeyValue {
   id    String  @id @default(uuid())
   key   String? @unique(map: "sqlite_autoindex_StatsKeyValue_2")

@@ -26,7 +26,7 @@ app.post(
   // infra.hCaptchaShield.verify,
   infra.AuthShield.reverse,
   infra.AuthShield.attach,
-  bg.Redirector.build("/dashboard"),
+  bg.Redirector.build("/dashboard")
 );
 app.get("/logout", infra.AuthShield.detach, bg.Redirector.build("/"));
 
@@ -34,7 +34,7 @@ app.get(
   "/dashboard",
   infra.AuthShield.verify,
   bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
-  App.Routes.Dashboard,
+  App.Routes.Dashboard
 );
 
 // =============================
@@ -44,43 +44,43 @@ app.get("/articles", infra.AuthShield.verify, Newspapers.Routes.Articles);
 app.get(
   "/articles/search",
   infra.AuthShield.verify,
-  Newspapers.Routes.ArticlesSearch,
+  Newspapers.Routes.ArticlesSearch
 );
 app.get(
   "/articles/archive",
   infra.AuthShield.verify,
-  Newspapers.Routes.ArchiveArticles,
+  Newspapers.Routes.ArchiveArticles
 );
 app.post("/add-article", infra.AuthShield.verify, Newspapers.Routes.AddArticle);
 app.post(
   "/delete-article/:articleId",
   infra.AuthShield.verify,
-  Newspapers.Routes.DeleteArticle,
+  Newspapers.Routes.DeleteArticle
 );
 app.post(
   "/undelete-article/:articleId",
   infra.AuthShield.verify,
-  Newspapers.Routes.UndeleteArticle,
+  Newspapers.Routes.UndeleteArticle
 );
 app.post(
   "/article/:articleId/mark-as-read",
   infra.AuthShield.verify,
-  Newspapers.Routes.ArticleMarkAsRead,
+  Newspapers.Routes.ArticleMarkAsRead
 );
 app.post(
   "/article/:articleId/opened",
   infra.AuthShield.verify,
-  Newspapers.Routes.ArticleOpened,
+  Newspapers.Routes.ArticleOpened
 );
 app.post(
   "/article/:articleId/homepage-opened",
   infra.AuthShield.verify,
-  Newspapers.Routes.ArticleHomepageOpened,
+  Newspapers.Routes.ArticleHomepageOpened
 );
 app.get(
   "/archive/articles",
   infra.AuthShield.verify,
-  Newspapers.Routes.ArticlesArchive,
+  Newspapers.Routes.ArticlesArchive
 );
 // =============================
 
@@ -89,32 +89,32 @@ app.get("/newspapers", infra.AuthShield.verify, Newspapers.Routes.Newspapers);
 app.get(
   "/newspaper/:newspaperId",
   infra.AuthShield.verify,
-  Newspapers.Routes.SingleNewspaper,
+  Newspapers.Routes.SingleNewspaper
 );
 app.get(
   "/newspaper/:newspaperId/read",
   infra.AuthShield.verify,
-  Newspapers.Routes.NewspaperRead,
+  Newspapers.Routes.NewspaperRead
 );
 app.post(
   "/create-newspaper",
   infra.AuthShield.verify,
-  Newspapers.Routes.CreateNewspaper,
+  Newspapers.Routes.CreateNewspaper
 );
 app.post(
   "/archive-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  Newspapers.Routes.ArchiveNewspaper,
+  Newspapers.Routes.ArchiveNewspaper
 );
 app.post(
   "/cancel-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  Newspapers.Routes.CancelNewspaper,
+  Newspapers.Routes.CancelNewspaper
 );
 app.post(
   "/resend-newspaper/:newspaperId",
   infra.AuthShield.verify,
-  Newspapers.Routes.ResendNewspaper,
+  Newspapers.Routes.ResendNewspaper
 );
 // =============================
 
@@ -128,23 +128,7 @@ app.post(
     uploadDir: "files",
     mimeTypes: Delivery.VO.FileMimeTypes.value,
   }),
-  Delivery.Routes.SendArbitraryFile,
-);
-app.get(
-  "/files/archive/:fileId/download",
-  infra.AuthShield.verify,
-  bg.RateLimitShield.build(bg.Time.Seconds(10)),
-  Delivery.Routes.DownloadFile,
-);
-app.get(
-  "/files/archive",
-  infra.AuthShield.verify,
-  Delivery.Routes.ArchiveFiles,
-);
-app.get(
-  "/archive/files",
-  infra.AuthShield.verify,
-  Delivery.Routes.FilesArchive,
+  Delivery.Routes.SendArbitraryFile
 );
 // =============================
 
@@ -162,25 +146,25 @@ app.post(
   "/rss/source/create",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  RSS.Routes.SourceCreate,
+  RSS.Routes.SourceCreate
 );
 app.delete(
   "/rss/source/:sourceId",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  RSS.Routes.SourceDelete,
+  RSS.Routes.SourceDelete
 );
 app.get(
   "/rss/source/list",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  RSS.Routes.SourceList,
+  RSS.Routes.SourceList
 );
 app.get(
   "/rss/source/:sourceId/preview",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  RSS.Routes.SourcePreview,
+  RSS.Routes.SourcePreview
 );
 // =============================
 
@@ -190,7 +174,7 @@ app.get(
   bg.RateLimitShield.build(bg.Time.Seconds(15)),
   bg.Timeout.build(bg.Time.Seconds(15)),
   infra.BasicAuthShield.verify,
-  bg.Healthcheck.build(infra.healthcheck),
+  bg.Healthcheck.build(infra.healthcheck)
 );
 // =============================
 
@@ -199,35 +183,35 @@ app.get(
   "/token-blacklist",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  Recommendations.Routes.TokenBlacklist,
+  Recommendations.Routes.TokenBlacklist
 );
 
 app.post(
   "/token-blacklist/create",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  Recommendations.Routes.BlacklistedTokenCreate,
+  Recommendations.Routes.BlacklistedTokenCreate
 );
 
 app.post(
   "/token-blacklist/delete",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  Recommendations.Routes.BlacklistedTokenDelete,
+  Recommendations.Routes.BlacklistedTokenDelete
 );
 
 app.get(
   "/token-blacklist/suggestions",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  Recommendations.Routes.BlacklistedTokenSuggestions,
+  Recommendations.Routes.BlacklistedTokenSuggestions
 );
 
 app.delete(
   "/token-blacklist/suggestions/dismiss",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  Recommendations.Routes.SuggestedBlacklistedTokenDismiss,
+  Recommendations.Routes.SuggestedBlacklistedTokenDismiss
 );
 // =============================
 
@@ -236,21 +220,21 @@ app.get(
   "/device/list",
   infra.AuthShield.verify,
   infra.CacheResponse.handle,
-  Delivery.Routes.DeviceList,
+  Delivery.Routes.DeviceList
 );
 
 app.post(
   "/device/create",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  Delivery.Routes.DeviceCreate,
+  Delivery.Routes.DeviceCreate
 );
 
 app.post(
   "/device/:id/delete",
   infra.AuthShield.verify,
   infra.CacheResponse.clear,
-  Delivery.Routes.DeviceDelete,
+  Delivery.Routes.DeviceDelete
 );
 // =============================
 

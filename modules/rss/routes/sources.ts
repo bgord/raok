@@ -39,7 +39,6 @@ export async function Sources(
       undefined,
       undefined,
     ),
-    archiveFiles: [],
     articles:
       await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
         pagination,

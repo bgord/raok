@@ -30,11 +30,6 @@ export const prerequisites = [
     access: { write: true },
   }),
   new bg.PrerequisitePath({
-    label: "files directory",
-    path: "files",
-    access: { write: true },
-  }),
-  new bg.PrerequisitePath({
     label: "newspapers directory",
     path: "newspapers",
     access: { write: true },

@@ -37,7 +37,6 @@ export async function Dashboard(
       undefined,
       undefined
     ),
-    archiveFiles: [],
     articles: await Newspapers.Repos.ArticleRepository.pagedGetAllNonProcessed(
       pagination
     ),

@@ -4,7 +4,6 @@ import type * as bg from "@bgord/frontend";
 import type { ArticleRepository } from "../modules/newspapers/repositories/article-repository";
 import type { NewspaperRepository } from "../modules/newspapers/repositories/newspaper-repository";
 import type { StatsRepository } from "../modules/stats/repositories/stats-repository";
-import type { FilesRepository } from "../modules/delivery/repositories/files-repository";
 import type { SourceRepository } from "../modules/rss/repositories/source-repository";
 import type { TokenBlacklistRepository } from "../modules/recommendations/repositories/token-blacklist-repository";
 import type { DeviceRepository } from "../modules/delivery/repositories/device-repository";
@@ -48,10 +47,6 @@ export type ToastType = bg.BaseToastType & {
   articleTitle?: ArticleType["title"] | null;
   revision?: ArticleType["revision"] | null;
 };
-
-export type ArchiveFileType = Awaited<
-  ReturnType<(typeof FilesRepository)["getAll"]>
->[number];
 
 export type SourceType = Awaited<
   ReturnType<(typeof SourceRepository)["listAll"]>
@@ -111,12 +106,6 @@ export const ArticleUrlValidations = {
   min: 1,
   max: ARTICLE_URL_MAX_CHARS,
 };
-
-export enum ArchiveFilesSortEnum {
-  default = "default",
-  a_z = "a_z",
-  z_a = "z_a",
-}
 
 export const BlacklistedTokenValidations = {
   min: SOURCE_URL_MIN_LENGTH,

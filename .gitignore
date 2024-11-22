@@ -7,8 +7,6 @@
 .eslintcache
 access.log
 build/
-files/*
-!files/.gitkeep
 newspapers/*
 !newspapers/.gitkeep
 node_modules/

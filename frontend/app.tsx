@@ -16,15 +16,12 @@ import {
   InitialArchiveArticlesDataType,
 } from "./archive-articles";
 import { Settings } from "./settings";
-import { ArchiveFiles, InitialArchiveFilesDataType } from "./archive-files";
 import { Sources, InitialSourcesDataType } from "./sources";
-import { TimestampFiltersEnum } from "./filters";
 
 /** @public */
 export type InitialDataType = InitialDashboardDataType &
   InitialSourcesDataType &
-  InitialArchiveArticlesDataType &
-  InitialArchiveFilesDataType & {
+  InitialArchiveArticlesDataType & {
     url: string;
     language: Schema.LanguageType;
     translations: TranslationsType;
@@ -46,10 +43,6 @@ export function App(props: InitialDataType) {
     pages: [props.archiveArticles],
     pageParams: [1],
   });
-  queryClient.setQueryData(
-    api.keys.archiveFiles({ sentAt: TimestampFiltersEnum.last_3_days }),
-    props.archiveFiles,
-  );
   queryClient.setQueryData(api.keys.articlesSearch, []);
   queryClient.setQueryData(api.keys.sources, props.sources);
   queryClient.setQueryData(api.keys.allDevices, props.devices);
@@ -67,7 +60,6 @@ export function App(props: InitialDataType) {
           <Router url={props.url}>
             <Sources path="/sources" />
             <ArchiveArticles path="/archive/articles" />
-            <ArchiveFiles path="/archive/files" />
             <Dashboard path="/dashboard" />
             <Settings path="/settings" />
           </Router>
