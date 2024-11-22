@@ -1,8 +1,14 @@
 # Changelog
+- 2024-11-22 21:34 90394da **step: cleanup**
+## 2024-11-22 21:34 
+- 2024-11-22 21:32 b874e1e **refactor: hardocde bgord/frontend version**
+- 2024-11-22 21:10 7d58a66 **feature: remove newspaper files**
+- 2024-11-22 19:54 0daa89d **refactor: remove dependabot and codeql**
+- 2024-11-22 19:44 dbf2100 **feature: remove files**
 - 2024-11-08 08:20 298814a **build(deps-dev): bump cspell from 8.15.7 to 8.16.0 (#758)**
 - 2024-11-08 08:20 1d8dad1 **build(deps-dev): bump knip from 5.36.2 to 5.36.3 (#757)**
 - 2024-11-08 08:20 127b5b3 **build(deps-dev): bump @types/node from 22.8.7 to 22.9.0 (#754)**
-## 2024-11-08 08:20 
+- 2024-11-08 07:21 86d233d **docs: generate CHANGELOG**
 - 2024-11-04 08:04 b0cd6f2 **build(deps-dev): bump knip from 5.34.4 to 5.36.2 (#751)**
 - 2024-11-04 08:04 99b2373 **build(deps-dev): bump cspell from 8.15.5 to 8.15.7 (#752)**
 - 2024-11-04 08:03 1b6acc0 **build(deps-dev): bump @types/node from 22.8.5 to 22.8.7 (#749)**
