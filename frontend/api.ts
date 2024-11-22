@@ -13,7 +13,7 @@ export const keys = {
   articlesSearch: ["articles-search"],
   archiveArticles: (
     filters: Record<string, unknown>,
-    search: string | undefined
+    search: string | undefined,
   ) => ["archive-articles", filters, search],
   allArchiveFiles: ["archive-files"],
   allArchiveArticles: ["archive-articles"],
@@ -60,17 +60,17 @@ export class Article {
   }
 
   static async listPaged(
-    page: bg.PageType
+    page: bg.PageType,
   ): Promise<bg.Paged<types.ArticleType>> {
     return bg
       .API(`/articles?page=${page}`, { method: "GET" })
       .then((response) =>
-        response.ok ? response.json() : bg.Pagination.empty
+        response.ok ? response.json() : bg.Pagination.empty,
       );
   }
 
   static async search(
-    _query: types.ArticleSearchQueryType
+    _query: types.ArticleSearchQueryType,
   ): Promise<types.ArticleType[]> {
     if (_query.length === 0) return [];
 
@@ -90,7 +90,7 @@ export class Newspaper {
   }
 
   static async getSingle(
-    id: types.NewspaperType["id"]
+    id: types.NewspaperType["id"],
   ): Promise<types.NewspaperType> {
     return bg
       .API(`/newspaper/${id}`)
@@ -153,7 +153,7 @@ export class Archive {
   static async getArticles(
     page: bg.PageType,
     filters: bg.FilterType,
-    search: string | undefined
+    search: string | undefined,
   ): Promise<bg.Paged<types.ArchiveArticleType>> {
     const url = new bg.FilterUrl("/articles/archive", {
       ...filters,
@@ -164,7 +164,7 @@ export class Archive {
     return bg
       .API(url.value, { method: "GET" })
       .then((response) =>
-        response.ok ? response.json() : bg.Pagination.empty
+        response.ok ? response.json() : bg.Pagination.empty,
       );
   }
 }
@@ -205,7 +205,7 @@ export class Source {
   }
 
   static async preview(
-    id: types.SourceType["id"]
+    id: types.SourceType["id"],
   ): Promise<{ url: string; createdAt: { raw: number; relative: string } }[]> {
     return bg
       .API(`/rss/source/${id}/preview`, { method: "GET" })
@@ -245,17 +245,6 @@ export class TokenBlacklist {
       method: "DELETE",
       body: JSON.stringify({ token }),
     });
-  }
-}
-
-export class NewspaperLink {
-  static getDownload(newspaper: types.NewspaperType): string {
-    return `/newspaper/${newspaper.id}/read`;
-  }
-
-  static getFull(newspaper: types.NewspaperType): string {
-    const safeWindow = bg.getSafeWindow();
-    return `${safeWindow?.location.origin}/newspaper/${newspaper.id}/read`;
   }
 }
 
