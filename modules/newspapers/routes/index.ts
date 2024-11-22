@@ -8,7 +8,6 @@ export * from "./articles-search";
 export * from "./cancel-newspaper";
 export * from "./create-newspaper";
 export * from "./delete-article";
-export * from "./newspaper-read";
 export * from "./newspapers";
 export * from "./resend-newspaper";
 export * from "./single-newspaper";

@@ -17,17 +17,11 @@ type NewspaperProps = types.NewspaperType & h.JSX.IntrinsicElements["li"];
 
 export function Newspaper(props: NewspaperProps) {
   const t = bg.useTranslations();
-  const notify = bg.useToastTrigger();
 
   const details = bg.useToggle();
   useAutoUpdateNewspaper(props, details.enable);
 
   const sentAtRelative = props.sentAt?.relative ?? "-";
-
-  const newspaperUrlCopied = bg.useRateLimiter({
-    limitMs: bg.Time.Seconds(2).ms,
-    action: () => notify({ message: "newspaper.url.copied" }),
-  });
 
   const isStalled = hasNewspaperStalled({
     status: props.status,
@@ -109,27 +103,6 @@ export function Newspaper(props: NewspaperProps) {
                 data-mr="12"
               />
             )}
-
-            {props.status === "delivered" && (
-              <UI.OutboundLink
-                href={api.NewspaperLink.getDownload(props)}
-                data-mr="auto"
-              >
-                <button type="button" class="c-button" data-variant="bare">
-                  {t("newspaper.read_online")}
-                </button>
-              </UI.OutboundLink>
-            )}
-
-            {props.status === "delivered" && (
-              <UI.CopyButton
-                data-mr="6"
-                options={{
-                  text: api.NewspaperLink.getFull(props),
-                  onSuccess: newspaperUrlCopied,
-                }}
-              />
-            )}
           </div>
         </div>
       )}
@@ -147,7 +120,7 @@ export function Newspaper(props: NewspaperProps) {
 
 function useAutoUpdateNewspaper(
   props: types.NewspaperType,
-  callback: VoidFunction = () => {}
+  callback: VoidFunction = () => {},
 ) {
   const queryClient = useQueryClient();
 
@@ -169,7 +142,7 @@ function useAutoUpdateNewspaper(
       queryClient.setQueryData<types.NewspaperType[]>(
         "newspapers",
         (newspapers = []) =>
-          newspapers.map((x) => (x.id === updated.id ? updated : x))
+          newspapers.map((x) => (x.id === updated.id ? updated : x)),
       );
 
       if (updated.status === "delivered") {

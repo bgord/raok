@@ -91,11 +91,6 @@ app.get(
   infra.AuthShield.verify,
   Newspapers.Routes.SingleNewspaper
 );
-app.get(
-  "/newspaper/:newspaperId/read",
-  infra.AuthShield.verify,
-  Newspapers.Routes.NewspaperRead
-);
 app.post(
   "/create-newspaper",
   infra.AuthShield.verify,

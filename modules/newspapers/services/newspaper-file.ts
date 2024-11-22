@@ -57,7 +57,7 @@ export class NewspaperFile {
 
     for (const article of this.articles) {
       const articleContent = await ArticleContentDownloader.download(
-        article.url,
+        article.url
       );
 
       if (!articleContent) continue;
@@ -149,22 +149,5 @@ export class NewspaperFile {
         .shape()
         .originalFilename.parse(path.basename(epub)),
     };
-  }
-
-  static async read(id: VO.NewspaperType["id"]): Promise<string | null> {
-    const { html } = NewspaperFile.getPaths(id);
-
-    try {
-      const file = await fs.readFile(html);
-      return file.toString();
-    } catch (error) {
-      infra.logger.error({
-        message: "NewspaperFile read error",
-        operation: "newspaper_file",
-        metadata: infra.logger.formatError(error),
-      });
-
-      return null;
-    }
   }
 }
