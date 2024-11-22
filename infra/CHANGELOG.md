@@ -1,10 +1,12 @@
 # Changelog
+- 2024-11-22 21:57 51758ba **step: cleanup**
+## 2024-11-22 21:57 
 - 2024-11-22 21:44 38a32fb **step: cleanup**
-## 2024-11-22 21:44 
 - 2024-11-22 21:39 59a177b **step: cleanup**
 - 2024-11-22 21:34 90394da **step: cleanup**
 - 2024-11-22 21:32 b874e1e **refactor: hardocde bgord/frontend version**
 - 2024-11-22 21:10 7d58a66 **feature: remove newspaper files**
+- 2024-11-22 20:45 d85176b **docs: generate CHANGELOG**
 - 2024-11-22 20:41 3b5648b **docs: generate CHANGELOG**
 - 2024-11-22 20:35 001625f **docs: generate CHANGELOG**
 - 2024-11-22 19:54 0daa89d **refactor: remove dependabot and codeql**
