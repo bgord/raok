@@ -62,7 +62,7 @@ export const healthcheck = [
   new bg.PrerequisiteOutsideConnectivity({ label: "outside-connectivity" }),
   new bg.PrerequisiteSSLCertificateExpiry({
     label: "ssl-certificate-expiry",
-    host: "raok.bgord.me",
+    host: "raok.bgord.dev",
     validDaysMinimum: 7,
   }),
   new bg.PrerequisiteMailer({ label: "nodemailer", mailer: Mailer }),
