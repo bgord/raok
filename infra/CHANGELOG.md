@@ -1,11 +1,16 @@
 # Changelog
+- 2025-05-28 23:19 55dc391 **step: change node version in deploy workflow to 24.1**
+## 2025-05-28 23:19 
+- 2025-05-28 23:18 cf13b24 **step: change ubuntu to 24 in github workflows**
+- 2025-05-28 22:53 b86eb10 **step: change host to bgord.dev**
+- 2025-05-28 22:52 6ac3961 **step: update node version prereq**
 - 2024-11-22 21:57 51758ba **step: cleanup**
-## 2024-11-22 21:57 
 - 2024-11-22 21:44 38a32fb **step: cleanup**
 - 2024-11-22 21:39 59a177b **step: cleanup**
 - 2024-11-22 21:34 90394da **step: cleanup**
 - 2024-11-22 21:32 b874e1e **refactor: hardocde bgord/frontend version**
 - 2024-11-22 21:10 7d58a66 **feature: remove newspaper files**
+- 2024-11-22 20:57 e503a45 **docs: generate CHANGELOG**
 - 2024-11-22 20:45 d85176b **docs: generate CHANGELOG**
 - 2024-11-22 20:41 3b5648b **docs: generate CHANGELOG**
 - 2024-11-22 20:35 001625f **docs: generate CHANGELOG**
