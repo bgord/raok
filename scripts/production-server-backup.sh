@@ -14,7 +14,7 @@ DATABASE_BACKUP_PATH="$BACKUPS_PATH/$CURRENT_TIME.sqlite.backup"
 trap 'catch $? $LINENO' ERR
 
 catch() {
-  http POST https://lobbygow.bgord.me/notification-send \
+  http POST https://lobbygow.bgord.dev/notification-send \
     kind="error" \
     subject="[$PROJECT_NAME] production server backup error" \
     content="Error occurred on $2 with status code $1" \

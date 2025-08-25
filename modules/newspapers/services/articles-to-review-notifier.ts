@@ -47,8 +47,8 @@ export class ArticlesToReviewNotifier {
         You have got ${this.numberOfArticlesToReview} articles to review on raok.
         <br/>
         <br/>
-        <a href="https://raok.bgord.me/dashboard" target="_blank" rel="noopener noreferer">
-          Go to dashboard
+        <a href="https://raok.bgord.dev/dashboard" target="_blank" rel="noopener noreferer">
+          Dashboard
         </a>
       `,
     });
