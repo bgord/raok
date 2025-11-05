@@ -1,6 +1,8 @@
 # Changelog
+- 2025-11-05 15:32 817a148 **refactor: adjust lobbygow base path**
+## 2025-11-05 15:32 
 - 2025-08-25 11:40 12dcd66 **fix: adjust .dev domain**
-## 2025-08-25 11:40 
+- 2025-08-25 09:40 4130e82 **docs: generate CHANGELOG**
 - 2025-05-28 23:19 55dc391 **step: change node version in deploy workflow to 24.1**
 - 2025-05-28 23:18 cf13b24 **step: change ubuntu to 24 in github workflows**
 - 2025-05-28 22:53 b86eb10 **step: change host to bgord.dev**
