@@ -3,7 +3,6 @@ import { h } from "preact";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 
-import * as hooks from "./hooks";
 import * as contexts from "./contexts";
 
 import { ArticleList } from "./article-list";
@@ -22,8 +21,6 @@ export type InitialDashboardDataType = {
 };
 
 export function Dashboard(_: RoutableProps) {
-  hooks.useLeavingPrompt();
-
   const t = bg.useTranslations();
   const scroll = bg.useScroll();
 
