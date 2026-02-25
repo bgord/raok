@@ -1,6 +1,8 @@
 # Changelog
+- 2026-02-25 11:56 a1d2030 **fix: blacklisted token validations**
+## 2026-02-25 11:56 
 - 2025-12-10 12:03 c8960bc **refactor: remove leaving prompt from dashboard**
-## 2025-12-10 12:03 
+- 2025-12-10 11:04 c3bee03 **docs: generate CHANGELOG**
 - 2025-11-05 15:32 817a148 **refactor: adjust lobbygow base path**
 - 2025-11-05 14:33 c7d6a63 **docs: generate CHANGELOG**
 - 2025-08-25 11:40 12dcd66 **fix: adjust .dev domain**
