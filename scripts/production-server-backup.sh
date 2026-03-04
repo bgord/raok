@@ -18,7 +18,7 @@ catch() {
     kind="error" \
     subject="[$PROJECT_NAME] production server backup error" \
     content="Error occurred on $2 with status code $1" \
-    bgord-api-key:"$LOBBYGOW_API_KEY"
+    api-key:"$LOBBYGOW_API_KEY"
   exit 1
 }
 
