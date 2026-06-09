@@ -62,13 +62,11 @@ export const healthcheck = [
   new bg.PrerequisiteOutsideConnectivity({ label: "outside-connectivity" }),
   new bg.PrerequisiteSSLCertificateExpiry({
     label: "ssl-certificate-expiry",
-    host: "raok.bgord.dev",
+    host: "raok.bgord.space",
     validDaysMinimum: 7,
   }),
   new bg.PrerequisiteMailer({ label: "nodemailer", mailer: Mailer }),
-  ...prerequisites.filter(
-    (prerequisite) => prerequisite.config.label !== "port",
-  ),
+  ...prerequisites.filter((prerequisite) => prerequisite.config.label !== "port"),
 ];
 
 export const BasicAuthShield = new bg.BasicAuthShield({
