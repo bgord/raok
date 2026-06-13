@@ -1,6 +1,12 @@
 # Changelog
+- 2026-06-13 14:44 e841258 **Adjust deploy**
+## 2026-06-13 14:44 
+- 2026-06-13 14:40 b25d3d6 **Adjust deploy**
+- 2026-06-13 14:39 42cb6b8 **Update scripts**
+- 2026-06-09 15:51 0e0457d **Adjust domain name**
+- 2026-03-04 22:28 4178c82 **refactor: adjust bgord-api-key**
 - 2026-02-25 11:56 a1d2030 **fix: blacklisted token validations**
-## 2026-02-25 11:56 
+- 2026-02-25 10:56 03047fe **docs: generate CHANGELOG**
 - 2025-12-10 12:03 c8960bc **refactor: remove leaving prompt from dashboard**
 - 2025-12-10 11:04 c3bee03 **docs: generate CHANGELOG**
 - 2025-11-05 15:32 817a148 **refactor: adjust lobbygow base path**
