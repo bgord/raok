@@ -11,8 +11,8 @@ export NODE_ENV="production"
 
 check_if_file_exists .env.production
 check_if_directory_exists node_modules
-check_if_file_exists scripts/production-server-start.sh
-check_if_file_exists scripts/production-server-backup.sh
+check_if_file_exists scripts/server-start-production.sh
+check_if_file_exists scripts/server-backup-production.sh
 validate_environment_file
 
 # ==========================================================
@@ -81,8 +81,8 @@ fi
 
 # ==========================================================
 
-cp scripts/production-server-{start,backup}.sh $OUT_DIR
-info "Copied production-server-start and backup script"
+cp scripts/server-{start,backup}-production.sh $OUT_DIR
+info "Copied server-{start,backup}-production scripts"
 
 # ==========================================================
 
